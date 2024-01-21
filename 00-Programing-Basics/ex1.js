@@ -55,7 +55,7 @@ console.log(c);
 /* Ziv's solution: */
 
 let a = prompt("Please write any number", "");
-let b= prompt("Please write any second number", "");
+let b = prompt("Please write any second number", "");
 
 // בדיקה האם שני הקלטים הם מספרים
 if (!isNaN(a) && !isNaN(b)) {
