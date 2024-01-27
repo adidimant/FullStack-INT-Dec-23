@@ -13,7 +13,7 @@ console.log(d); // 37.33
 // a is variable that points to some cell in the RAM memory, and the value there is 7
 
 // hard disk = persistent, RAM = volatile
-
+PeriodicW
 let e;
 e = 9;
 e = a ** 9;
@@ -55,7 +55,7 @@ console.log(c);
 /* Ziv's solution: */
 
 let a = prompt("Please write any number", "");
-let b= prompt("Please write any second number", "");
+let b = prompt("Please write any second number", "");
 
 // בדיקה האם שני הקלטים הם מספרים
 if (!isNaN(a) && !isNaN(b)) {
