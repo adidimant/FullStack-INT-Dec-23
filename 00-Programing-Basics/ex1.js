@@ -14,7 +14,7 @@ console.log(d); // 37.33
 
 // hard disk = persistent, RAM = volatile
 
-let e = 1;
+let e = null;
 e = 9;
 e = a ** 9;
 
