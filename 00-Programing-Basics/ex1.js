@@ -4,7 +4,7 @@ let c = a + b;
 let d = (a + b + c) / 3;
 // more calculations on b;
 
-console.log(a); // 755
+console.log(a); // 7
 console.log(b); // 49
 console.log(c); // 56
 console.log(d); // 37.33
