@@ -1,4 +1,4 @@
-let a = 11;
+let a = 15;
 let b = a ** 2;
 let c = a + b;
 let d = (a + b + c) / 3;
