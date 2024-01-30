@@ -1,4 +1,4 @@
-let a = null;
+let a = 12.2;
 let b = a ** 2;
 let c = a + b;
 let d = (a + b + c) / 3;
