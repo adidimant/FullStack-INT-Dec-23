@@ -1,4 +1,4 @@
-let a = 7;
+let a = 12.2;
 let b = a ** 2;
 let c = a + b;
 let d = (a + b + c) / 3;
@@ -14,7 +14,7 @@ console.log(d); // 37.33
 
 // hard disk = persistent, RAM = volatile
 
-let e;
+let e = 1;
 e = 9;
 e = a ** 9;
 
