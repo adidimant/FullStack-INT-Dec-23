@@ -13,8 +13,8 @@ console.log(d); // 37.33
 // a is variable that points to some cell in the RAM memory, and the value there is 7
 
 // hard disk = persistent, RAM = volatile
-PeriodicW
-let e;
+
+let e = 1;
 e = 9;
 e = a ** 9;
 
