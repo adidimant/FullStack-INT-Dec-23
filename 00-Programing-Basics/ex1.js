@@ -1,10 +1,10 @@
-let a = 7;
-let b = a**2;
+let a = 12.2;
+let b = a ** 2;
 let c = a + b;
 let d = (a + b + c) / 3;
 // more calculations on b;
 
-console.log(a); // 755
+console.log(a); // 7
 console.log(b); // 49
 console.log(c); // 56
 console.log(d); // 37.33
@@ -15,16 +15,16 @@ console.log(d); // 37.33
 
 // hard disk = persistent, RAM = volatile
 
-let e;
+let e = 1;
 e = 9;
 e = a ** 9;
 
 console.log(e); // 40,353,600
 
 a = 1; // type of a -> number
-a = '9'; // type of a -> string
+a = "9"; // type of a -> string
 a = undefined; // type of a -> undefined
-a = '9'/'a'; // typeof a -> NaN
+a = "9" / "a"; // typeof a -> NaN
 a = true; // type of a -> boolean
 a = null; // type of a -> null
 
@@ -39,9 +39,9 @@ console.log(e); // still 40,353,600
  * Your goal - read two numbers inputs from the user, save it in variables a & b, then calculate a**b, and print it to the console
  */
 
-let a = prompt('please write any number', '');
+let a = prompt("please write any number", "");
 a = parseInt(a);
-let b = parseInt(prompt('please write the second number', ''));
+let b = parseInt(prompt("please write the second number", ""));
 let c = a ** b;
 console.log(c);
 
@@ -67,7 +67,8 @@ if (!isNaN(a) && !isNaN(b)) {
   // חישוב c כאשר שני הקלטים הם מספרים
   let c = a ** b;
   console.log("The sum of the two numbers is: " + c);
-} else { // isNaN(a) || isNaN(b)
+} else {
+  // isNaN(a) || isNaN(b)
   console.log("At least one of the inputs is not a number.");
   // טיפול כאן למקרה של קלט שאינו מספר
 }
