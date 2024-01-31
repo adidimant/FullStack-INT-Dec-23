@@ -8,8 +8,7 @@ console.log(a); // 7
 console.log(b); // 49
 console.log(c); // 56
 console.log(d); // 37.33
-// amir comment
-//2
+
 // 7 exists in some cell in the RAM (Random access memory) memory, that a is pointing to
 // a is variable that points to some cell in the RAM memory, and the value there is 7
 
