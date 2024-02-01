@@ -2,48 +2,122 @@
 <html>
   <head>
     <title>My first page title</title>
+    <style>
+      div {
+        font-family: sans-serif;
+      }
+      caption {
+        color: #3f95af;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 auto 15px auto;
+        padding-bottom: 5px;
+        width: 250px;
+        border-bottom: 2px solid #3f95af;
+      }
+
+      table {
+        box-shadow: 0 0 15px 5px #b8b8b8;
+        margin: 50px auto;
+        width: 1000px;
+        font-size: 16px;
+        text-align: left;
+        border-collapse: collapse;
+        border-radius: 10px;
+      }
+
+      thead {
+        color: #cdf3ff;
+        background-color: #3f95af;
+        font-size: 1.2em;
+      }
+
+      thead th:first-child {
+        border-top-left-radius: 10px;
+      }
+
+      thead th:last-child {
+        border-top-right-radius: 10px;
+      }
+
+      th,
+      td {
+        padding: 15px;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f1f1f1;
+        border-top: 1px solid #d3d3d3;
+        border-bottom: 1px solid #d3d3d3;
+      }
+
+      #last-row {
+        border-bottom: none;
+      }
+
+      #last-row td:first-child {
+        border-bottom-left-radius: 10px;
+      }
+
+      #last-row td:last-child {
+        border-bottom-right-radius: 1cap;
+      }
+
+      table img {
+        height: 20px;
+      }
+
+      tbody tr td:last-child {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <h1>This is my first title!</h1>
     <h2>This is a secondary title</h2>
     <h4>This is a mini title</h4>
     <p>Today is 31/01/2024, and im happy with my first website.</p>
-    <a href="https://www.w3schools.com/html/html_basic.asp" title="Full HTML guide learning">Continue learn HTML here</a>
+    <a
+      href="https://www.w3schools.com/html/html_basic.asp"
+      title="Full HTML guide learning"
+      >Continue learn HTML here</a
+    >
     <p>This is an interesting story about winnie the poo</p>
     <br />
     <p>
       This is the second story, contain some ad
       <br />
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Features123/v4/c2/68/a6/c268a614-0a1f-9397-1168-f6995e0ff493/mzl.xhlzrxpi.png/3358x1889sr.webp" alt="this is alternative test" width="365" height="180" />
+      <img
+        src="https://is1-ssl.mzstatic.com/image/thumb/Features123/v4/c2/68/a6/c268a614-0a1f-9397-1168-f6995e0ff493/mzl.xhlzrxpi.png/3358x1889sr.webp"
+        alt="this is alternative test"
+        width="365"
+        height="180"
+      />
       <br />
-      <img src="./commercial1.png" alt="this is a new commercial" width="365" height="180" />
+      <img
+        src="./commercial1.png"
+        alt="this is a new commercial"
+        width="365"
+        height="180"
+      />
       <br />
-      <img src="./commercial2.png" alt="this is the second commercial (not exist)" width="365" height="180" />
+      <img
+        src="./commercial2.png"
+        alt="this is the second commercial (not exist)"
+        width="365"
+        height="180"
+      />
     </p>
-    <p style="color: navy;font-weight: normal;">
-      This is the final paragraph!
-      <p style="font-weight: bold;">
-        test text
-      </p>
-      <b>Another bold sentence</b>
-    </p>
+    <p style="color: navy; font-weight: normal">This is the final paragraph!</p>
+    <p style="font-weight: bold">test text</p>
+    <b>Another bold sentence</b>
     <p>
-      My Bonnie lies over the ocean.
-    
-      My Bonnie lies over the sea.
-    
-      My Bonnie lies over the ocean.
-    
-      Oh, bring back my Bonnie to me.
+      My Bonnie lies over the ocean. My Bonnie lies over the sea. My Bonnie lies
+      over the ocean. Oh, bring back my Bonnie to me.
     </p>
     <p style="width: 220px">
-      My Bonnie lies over the ocean.
-    
-      My Bonnie lies over the sea.
-    
-      My Bonnie lies over the ocean.
-    
-      Oh, bring back my Bonnie to me.
+      My Bonnie lies over the ocean. My Bonnie lies over the sea. My Bonnie lies
+      over the ocean. Oh, bring back my Bonnie to me.
     </p>
     <pre>
       My Bonnie lies over the ocean.
@@ -54,24 +128,38 @@
     
       Oh, bring back my Bonnie to me. aosjdnaojskn
     </pre>
-    <div style="background-image: url('./html-flat.png'); color: red; border: 1px solid #22a0b7">
-      this is my first div element!
-      this div - should have a background image from the internet or from your local project
-      the color of text should be red
-      the div should have border of 1px green solid
+    <div
+      style="
+        background-image: url('./html-flat.png');
+        color: red;
+        border: 1px solid #22a0b7;
+      "
+    >
+      this is my first div element! this div - should have a background image
+      from the internet or from your local project the color of text should be
+      red the div should have border of 1px green solid
     </div>
     <div style="width: 50%">
-      <div id="zebra-div" style="background-image: url(./zebra-stripes.jpg); width: 50%;" >
+      <div
+        id="zebra-div"
+        style="background-image: url(./zebra-stripes.jpg); width: 50%"
+      >
         Content for zebra div! quarter of the screen
       </div>
     </div>
     <br />
     <div style="width: 100%">
-      <div id="zebra-div" style="background-image: url(./pattern.png); background-repeat: repeat-x;" >
+      <div
+        id="zebra-div"
+        style="
+          background-image: url(./pattern.png);
+          background-repeat: repeat-x;
+        "
+      >
         Content for zebra div! quarter of the screen
       </div>
     </div>
-    <div id="world-temperators-container">
+    <div id="table-container">
       <!--
         Using the following html tables guide - https://www.w3schools.com/html/html_tables.asp
         You should create in this div - a table that organizes the current temperaturs in the world by cities
@@ -79,6 +167,105 @@
         The table should include countries from at least 4 different continents (different seasons)
         Be creative with more table information and styling
       -->
+      <table>
+        <caption>
+          World Temperatures
+        </caption>
+        <thead>
+          <tr>
+            <th>Continent</th>
+            <th>Country</th>
+            <th>capital</th>
+            <th>Season</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Wind Speed</th>
+            <th>Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>North America</td>
+            <td>USA</td>
+            <td>Washington, D.C</td>
+            <td>Winter</td>
+            <td>7°C</td>
+            <td>70%</td>
+            <td>8km/h</td>
+            <td><img src="./flags/usa.jpg" /></td>
+          </tr>
+          <tr>
+            <td>Asia</td>
+            <td>Israel</td>
+            <td>Jerusalem</td>
+            <td>Winter</td>
+            <td>9°C</td>
+            <td>64%</td>
+            <td>14km/h</td>
+            <td><img src="./flags/israel.png" /></td>
+          </tr>
+          <tr>
+            <td>Asia</td>
+            <td>Japan</td>
+            <td>Tokyo</td>
+            <td>Winter</td>
+            <td>4°C</td>
+            <td>38%</td>
+            <td>10km/h</td>
+            <td><img src="./flags/japan.png" /></td>
+          </tr>
+          <tr>
+            <td>Asia</td>
+            <td>India</td>
+            <td>New Delhi</td>
+            <td>Winter</td>
+            <td>13°C</td>
+            <td>96%</td>
+            <td>11km/h</td>
+            <td><img src="./flags/india.png" /></td>
+          </tr>
+          <tr>
+            <td>Europe</td>
+            <td>France</td>
+            <td>Paris</td>
+            <td>Winter</td>
+            <td>11°C</td>
+            <td>85%</td>
+            <td>8km/h</td>
+            <td><img src="./flags/france.png" /></td>
+          </tr>
+          <tr>
+            <td>Europe</td>
+            <td>Russia</td>
+            <td>Moscow</td>
+            <td>Winter</td>
+            <td>0°C</td>
+            <td>87%</td>
+            <td>19km/h</td>
+            <td><img src="./flags/russia.png" /></td>
+          </tr>
+          <tr>
+            <td>Australia</td>
+            <td>Australia</td>
+            <td>Canberra</td>
+            <td>Summer</td>
+            <td>16°C</td>
+            <td>79%</td>
+            <td>3km/h</td>
+            <td><img src="./flags/australia.png" /></td>
+          </tr>
+          <tr id="last-row">
+            <td>South America</td>
+            <td>Argentina</td>
+            <td>Buenos Aires</td>
+            <td>Summer</td>
+            <td>33°C</td>
+            <td>50%</td>
+            <td>11km/h</td>
+            <td><img src="./flags/argentina.png" /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
