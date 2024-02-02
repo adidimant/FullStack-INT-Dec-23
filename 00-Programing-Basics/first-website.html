@@ -2,6 +2,26 @@
 <html>
     <head >
         <title>Page title</title>
+        <style>
+            th{
+                border: 1px solid #ddd;
+                text-align: center;
+                padding: 8px;
+                font-weight: 1000;
+                background-color: #6c9988;
+            }
+            td {
+                width: 200px;
+                height: 100px;
+                border: 1px solid #ddd;
+                text-align: center;
+                padding: 8px;
+                font-weight: bold;
+            }
+            tr:nth-child(even){
+                background-color: #f2f2f2;
+            }
+        </style>
     </head>
     <body>
         <h1>This is my first title!</h1>
@@ -64,15 +84,72 @@
             <div id="zebra-div" style="background-image: url(./zebra-stripes.jpg); width: 50%;" >
               Content for zebra div! quarter of the screen
             </div>
-          </div>
-          <br />
-          <div style="width: 100%">
+        </div>
+        <br />
+        <div style="width: 100%">
             <div id="zebra-div" style="background-image: url(./pattern.png); background-repeat: repeat-x;" >
-              Content for zebra div! quarter of the screen
+                Content for zebra div! quarter of the screen
             </div>
-          </div>
-          <br />
-          <div id="world-temperators-container">
+        </div>
+        <br /> 
+        <div id="world-temperators-container">
+            <table style="font-family: Arial, sans-serif;border-collapse: collapse;width: 50%;">
+                <tr>
+                    <th>Country</th>
+                    <th>Capital</th>
+                    <th>Temperature (Celsius)</th>
+                    <th>Image</th>
+                </tr>
+                <tr>
+                    <td>Israel</td>
+                    <td>Jerusalem</td>
+                    <td>8</td>
+                    <td><img src="./Images/Jerusalem.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>USA</td>
+                    <td>Washington, D.C.</td>
+                    <td>10</td>
+                    <td><img src="./Images/Washington.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>Canada</td>
+                    <td>Ottawa</td>
+                    <td>2</td>
+                    <td><img src="./Images/Ottawa.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>Brazil</td>
+                    <td>Brasília</td>
+                    <td>26</td>
+                    <td><img src="./Images/Brasília.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>South Africa</td>
+                    <td>Pretoria</td>
+                    <td>24</td>
+                    <td><img src="./Images/Pretoria.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>China</td>
+                    <td>Beijing</td>
+                    <td>-8</td>
+                    <td><img src="./Images/Beijing.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>Australia</td>
+                    <td>Canberra</td>
+                    <td>30</td>
+                    <td><img src="./Images/Canberra.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+                <tr>
+                    <td>Russia</td>
+                    <td>Moscow</td>
+                    <td>-3</td>
+                    <td><img src="./Images/Moscow.jpg" alt="Moscow Image" style="width: 100%; height: 100%;"></td>
+                </tr>
+            </table>
+             
             <!--
               Using the following html tables guide - https://www.w3schools.com/html/html_tables.asp
               You should create in this div - a table that organizes the current temperaturs in the world by cities
