@@ -1,56 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      table, th, td {
-        border: 1px solid blue; border-collapse: collapse;
-      }
-    </style>
-    <title>My first page title</title>
-  </head>
-  <body>
-    <h1>This is my first title!</h1>
-    <h2>This is a secondary title</h2>
-    <h4>This is a mini title</h4>
-    <p>Today is 31/01/2024, and im happy with my first website.</p>
-    <a href="https://www.w3schools.com/html/html_basic.asp" title="Full HTML guide learning">Continue learn HTML here</a>
-    <p>This is an interesting story about winnie the poo</p>
+
+<head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid blue;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      background-color: #6b70ef;
+    }
+
+    th {
+      background-color: #6b70ef;
+    }
+
+    img {
+      max-width: 120px;
+      max-height: 55px;
+      border-radius: 5px;
+    }
+  </style>
+  <title>My first page title</title>
+</head>
+
+<body>
+  <h1>This is my first title!</h1>
+  <h2>This is a secondary title</h2>
+  <h4>This is a mini title</h4>
+  <p>Today is 31/01/2024, and im happy with my first website.</p>
+  <a href="https://www.w3schools.com/html/html_basic.asp" title="Full HTML guide learning">Continue learn HTML here</a>
+  <p>This is an interesting story about winnie the poo</p>
+  <br />
+  <p>
+    This is the second story, contain some ad
     <br />
-    <p>
-      This is the second story, contain some ad
-      <br />
-      <img src="https://is1-ssl.mzstatic.com/image/thumb/Features123/v4/c2/68/a6/c268a614-0a1f-9397-1168-f6995e0ff493/mzl.xhlzrxpi.png/3358x1889sr.webp" alt="this is alternative test" width="365" height="180" />
-      <br />
-      <img src="./commercial1.png" alt="this is a new commercial" width="365" height="180" />
-      <br />
-      <img src="./commercial2.png" alt="this is the second commercial (not exist)" width="365" height="180" />
-    </p>
-    <p style="color: navy;font-weight: normal;">
-      This is the final paragraph!
-      <p style="font-weight: bold;">
-        test text
-      </p>
-      <b>Another bold sentence</b>
-    </p>
-    <p>
-      My Bonnie lies over the ocean.
-    
-      My Bonnie lies over the sea.
-    
-      My Bonnie lies over the ocean.
-    
-      Oh, bring back my Bonnie to me.
-    </p>
-    <p style="width: 220px">
-      My Bonnie lies over the ocean.
-    
-      My Bonnie lies over the sea.
-    
-      My Bonnie lies over the ocean.
-    
-      Oh, bring back my Bonnie to me.
-    </p>
-    <pre>
+    <img
+      src="https://is1-ssl.mzstatic.com/image/thumb/Features123/v4/c2/68/a6/c268a614-0a1f-9397-1168-f6995e0ff493/mzl.xhlzrxpi.png/3358x1889sr.webp"
+      alt="this is alternative test" width="365" height="180" />
+    <br />
+    <img src="./commercial1.png" alt="this is a new commercial" width="365" height="180" />
+    <br />
+    <img src="./commercial2.png" alt="this is the second commercial (not exist)" width="365" height="180" />
+  </p>
+  <p style="color: navy;font-weight: normal;">
+    This is the final paragraph!
+  <p style="font-weight: bold;">
+    test text
+  </p>
+  <b>Another bold sentence</b>
+  </p>
+  <p>
+    My Bonnie lies over the ocean.
+
+    My Bonnie lies over the sea.
+
+    My Bonnie lies over the ocean.
+
+    Oh, bring back my Bonnie to me.
+  </p>
+  <p style="width: 220px">
+    My Bonnie lies over the ocean.
+
+    My Bonnie lies over the sea.
+
+    My Bonnie lies over the ocean.
+
+    Oh, bring back my Bonnie to me.
+  </p>
+  <pre>
       My Bonnie lies over the ocean.
     
       My Bonnie lies over the sea.
@@ -59,95 +83,129 @@
     
       Oh, bring back my Bonnie to me. aosjdnaojskn
     </pre>
-    <div style="background-image: url('./html-flat.png'); color: red; border: 1px solid #22a0b7">
-      this is my first div element!
-      this div - should have a background image from the internet or from your local project
-      the color of text should be red
-      the div should have border of 1px green solid
+  <div style="background-image: url('./html-flat.png'); color: red; border: 1px solid #22a0b7">
+    this is my first div element!
+    this div - should have a background image from the internet or from your local project
+    the color of text should be red
+    the div should have border of 1px green solid
+  </div>
+  <div style="width: 50%">
+    <div id="zebra-div" style="background-image: url(./zebra-stripes.jpg); width: 50%;">
+      Content for zebra div! quarter of the screen
     </div>
-    <div style="width: 50%">
-      <div id="zebra-div" style="background-image: url(./zebra-stripes.jpg); width: 50%;" >
-        Content for zebra div! quarter of the screen
-      </div>
+  </div>
+  <br />
+  <div style="width: 100%">
+    <div id="zebra-div" style="background-image: url(./pattern.png); background-repeat: repeat-x;">
+      Content for zebra div! quarter of the screen
     </div>
-    <br />
-    <div style="width: 100%">
-      <div id="zebra-div" style="background-image: url(./pattern.png); background-repeat: repeat-x;" >
-        Content for zebra div! quarter of the screen
-      </div>
-    </div>
-    <div id="world-temperators-container">
-      <!--
+  </div>
+  <div id="world-temperators-container">
+    <!--
         Using the following html tables guide - https://www.w3schools.com/html/html_tables.asp
         You should create in this div - a table that organizes the current temperaturs in the world by cities
         Your table should include at least 8 different countries (and their capitals), one of the column should be an image from the location
         The table should include countries from at least 4 different continents (different seasons)
         Be creative with more table information and styling
       -->
-    </div>
-    <div>
-      <table style="width: 50%;">
-        <caption style="font-size: larger; font: bolder; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Weather in the world</caption>
-        <tr style="font-weight: bold; font-size: larger; color: blue;">
-          <th>Country</td>
-          <th>minimum temperature</td>
-          <th>temperature max</td>
-          <th>Weather</td>
-        </tr>
-        <tr>
-          <td>New York</td>
-          <th>20</th>
-          <th>23</th>
-          <th><img src="./sun.gif"</th>
-        </tr>
-        <tr>
-          <td>Miami</td>
-          <th>24</th>
-          <th>29</th>
-          <th><img src="./sun.gif"</th>
-        </tr>
-        <tr>
-          <td>Paris</td>
-          <th>11</th>
-          <th>15</th>
-          <th><img src="./cloud.gif"</th>
-        </tr>
-        <tr>
-          <td>New Delhi</td>
-          <th>17</th>
-          <th>31</th>
-          <th><img src="./1.gif"</th>
-        </tr>
-        <tr>
-          <td>Berlin</td>
-          <th>6</th>
-          <th>14</th>
-          <th><img src="./cloud.gif"</th>
-        </tr>
-        <tr>
-          <td>Israel</td>
-          <th>10</th>
-          <th>15</th>
-          <th><img src="./rain.gif"</th>
-        </tr>
-        <tr>
-          <td>London</td>
-          <th>5</th>
-          <th>10</th>
-          <th><img src="./cloud.gif"</th>
-        </tr>
-        <tr>
-          <td>Bangkok</td>
-          <th>24</th>
-          <th>33</th>
-          <th><img src="./partly cloudy.gif"</th>
-        </tr>
-        <tr>
-          <td>Sydney</td>
-          <th>21</th>
-          <th>26</th>
-          <th><img src="./partly cloudy.gif"</th>
-        </tr>
+  </div>
+  <div id="world-temperators-container">
+    <table>
+      <caption style="font-size: larger; font-weight: bolder;">Weather in Different Continents</caption>
+      <tr>
+
+        <th>Country</th>
+        <th>Capital</th>
+        <th>Temperature (°C)</th>
+        <th>Season</th>
+        <th>Image</th>
+      </tr>
+      <tr>
+
+        <td>Japan</td>
+        <td>Tokyo</td>
+        <td>11</td>
+        <td>Winter</td>
+        <td><img
+            src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQw0G1ihqWZ0Uwi19tqm3A5qVKviqQTdS6UI1W5rpTRuMaYr_2CqScRL4ySKvc-wVLu0nfhy9irX4cIYSDviHZHmTJuXoi1tpeJmiyd2w"
+            alt="Tokyo"></td>
+      </tr>
+      <tr>
+
+        <td>United States</td>
+        <td>Washington, D.C.</td>
+        <td>2</td>
+        <td>Winter</td>
+        <td><img
+            src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTi0ViUDfyXSrTN2QUsOh8yMOs6AYdDPbx2ssYuApoTVdNX9ZeYcU1fPzW1wZ23bkAp-6lzsUKvxkTW-oVLLV0FPxHOJMg0M5e6j0pJCQ"
+            alt="Washington, D.C."></td>
+      </tr>
+      <tr>
+
+        <td>Australia</td>
+        <td>Canberra</td>
+        <td>31</td>
+        <td>Summer</td>
+        <td><img src="https://facts.net/wp-content/uploads/2023/07/40-facts-about-canberra-1689320757.jpeg"
+            alt="Canberra"></td>
+      </tr>
+      <tr>
+
+        <td>Italy</td>
+        <td>Rome</td>
+        <td>18</td>
+        <td>Winter</td>
+        <td><img
+            src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSj6Gy6M_X-tRUFClvdoEw9PdYYcNIglIvyOfGF_05oj6WOOgb1lESg0liFDIw-GmCfRwb2gL_SQLgMHcvkz0TB9jsd4CCNtB0cMtEVVg"
+            alt="Rome"></td>
+      </tr>
+      <tr>
+
+        <td>Egypt</td>
+        <td>Cairo</td>
+        <td>18</td>
+        <td>Winter</td>
+        <td><img
+            src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTbsOtPcwcCqOgCyElhKnutictYeu0PydGP7pP6XSigkeifvUqgoDHV9iCIwjcqbMKNuCa6sHLdGSY_kXSeqqEHqgrx8CqCuVu7GQMl1sg"
+            alt="Cairo"></td>
+      </tr>
+      <tr>
+
+        <td>South Africa</td>
+        <td>Pretoria</td>
+        <td>28</td>
+        <td>Summer</td>
+        <td><img
+            src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQtbFbh8g3SVDjYYcm_zvzuRYuf0D4xF2J4sVo8rA-bn-WE0py6dLiduj6PU7Uj4trll9BIwBiM5RmLVW9TbHdMhS0ltsIYGuw0rjHD0w"
+            alt="Pretoria"></td>
+      </tr>
+      <tr>
+
+        <td>Canada</td>
+        <td>Ottawa</td>
+        <td>-4</td>
+        <td>Winter</td>
+        <td><img
+            src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/09/15/14/panoramic-view-of-downtown-ottawa-with-parliament-hill-016-credit-ottawa-tourism.jpg"
+            alt="Ottawa"></td>
+      </tr>
+      <tr>
+
+        <td>Brazil</td>
+        <td>Brasília</td>
+        <td>26</td>
+        <td>Summer</td>
+        <td><img src="https://www.civitatis.com/f/brasil/brasilia/visita-guiada-brasilia-589x392.jpg" alt="Brasília">
+        </td>
+      </tr>
     </table>
-  </body>
+    <p class="city-info">Note: Temperatures are in Celsius.</p>
+  </div>
+
+  <div style="width: 50%">
+    <div id="zebra-div" style="background-image: url(./zebra-stripes.jpg); width: 50%;">
+      Content for zebra div! quarter of the screen
+    </div>
+</body>
+
 </html>
