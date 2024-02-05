@@ -1,0 +1,203 @@
+<!--
+  Build an html website, that contains unordered list of your weekly todos (your goals for the week)
+  1) define the basic css styiling for this list & list items
+  2) On every item hover - the text of the item should be bold & colored in another color & add some border and background to it 
+  3) On todo click - make a line over the text (search on the internet how to do it)
+  [hint - you'll need a javascript code for that, and also knowing the index/id of each list item]
+  4) [Bonus] - Add an input option for adding more todos & add it to the list
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #393e46;
+      }
+      .todo-container {
+        box-shadow: 0 0 20px 0 #2e2e2e;
+        border: none;
+        border-radius: 10px;
+        margin: 100px auto;
+        width: 400px;
+        min-height: 500px;
+        overflow: hidden;
+        background-color: #222831;
+      }
+      .todo-container .header {
+        position: relative;
+        font-size: 30px;
+        font-weight: 600;
+        color: #34a5b4;
+        background-color: #eeeeee;
+        padding: 20px;
+        border-bottom: 1px solid #dfdfdf;
+      }
+      .todo-container .add {
+        position: absolute;
+        font-size: 30px;
+        color: #eeeeee;
+        top: 70%;
+        left: 70%;
+        border: none;
+        background-color: #34a5b4;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        transition: 0.2s;
+      }
+      .todo-container .add:hover {
+        transform: scale(1.1) rotate(90deg);
+        cursor: pointer;
+      }
+      .todo-container .add:active {
+        transform: scale(1.03) rotate(90deg);
+      }
+      .todo-container .list {
+        color: #eeeeee;
+        padding: 30px;
+      }
+      .todo-container ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .todo-container .list li {
+        height: 80px;
+        border-bottom: 1px solid #eeeeee;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .todo-container .list li:last-child {
+        border-bottom: none;
+      }
+      .todo-container .list .checkbox {
+        height: 15px;
+        width: 15px;
+        margin-right: 10px;
+        vertical-align: top;
+        border: 1px solid #eeeeee;
+        border-radius: 3px;
+      }
+      .todo-container .list .text {
+        font-size: 20px;
+        font-weight: 200;
+      }
+      .todo-container .list .checkbox,
+      .todo-container .list .text {
+        transition: 0.2s;
+        display: inline-block;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .todo-container .list li.active .checkbox {
+        background-color: #34a5b4;
+        border-color: #34a5b4;
+      }
+      .todo-container .list li.active .checkbox::before {
+        content: "✔";
+        display: block;
+        font-size: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .todo-container .list li.active .text {
+        color: #34a5b4;
+      }
+      .todo-container .list li .text::before {
+        transition: 0.2s;
+        content: "";
+        position: absolute;
+        border-bottom: 2px solid #34a5b4;
+        width: 0;
+        top: 50%;
+      }
+      .todo-container .list li.active:hover .text {
+        font-weight: 200;
+        transform: translateY(-50%) scale(0.98);
+      }
+      .todo-container .list li.active .text::before {
+        width: 100%;
+      }
+      .todo-container .list li:hover {
+        cursor: pointer;
+      }
+      .todo-container .list li:hover .checkbox {
+        border-color: #34a5b4;
+      }
+      .todo-container .list li:hover .text {
+        color: #34a5b4;
+        font-weight: 600;
+      }
+    </style>
+    <script>
+      function clickButton() {
+        let itemText = prompt("Todo:", "");
+        if (itemText == null || itemText == "") {
+          return;
+        } else {
+          let list = document.querySelector(".todo-container ul");
+          console.log(list);
+          let newItem = document.createElement("li");
+          newItem.setAttribute("onclick", "completeTask(this)");
+          let checkbox = document.createElement("div");
+          checkbox.className = "checkbox";
+          let text = document.createElement("div");
+          text.className = "text";
+          text.textContent = itemText;
+          list.appendChild(newItem);
+          newItem.appendChild(checkbox);
+          newItem.appendChild(text);
+        }
+      }
+      function completeTask(e) {
+        if (e.className !== "active") {
+          e.classList.add("active");
+        } else {
+          e.classList.remove("active");
+        }
+      }
+    </script>
+    <title>List website</title>
+  </head>
+  <body>
+    <div class="todo-container">
+      <div class="header">
+        <div class="header-text">Todo List</div>
+        <button class="add" onclick="clickButton()">+</button>
+      </div>
+      <div class="list">
+        <ul>
+          <li onclick="completeTask(this)" class="active">
+            <div class="checkbox"></div>
+            <div class="text">push homework to github</div>
+          </li>
+          <li onclick="completeTask(this)">
+            <div class="checkbox"></div>
+            <div class="text">pre workout</div>
+          </li>
+          <li onclick="completeTask(this)">
+            <div class="checkbox"></div>
+            <div class="text">go jim</div>
+          </li>
+          <li onclick="completeTask(this)">
+            <div class="checkbox"></div>
+            <div class="text">eat</div>
+          </li>
+          <li onclick="completeTask(this)">
+            <div class="checkbox"></div>
+            <div class="text">eepie sleepie</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
