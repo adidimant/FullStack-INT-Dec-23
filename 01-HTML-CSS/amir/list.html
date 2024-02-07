@@ -5,7 +5,7 @@
 body {
     width: 30%;
     margin: 5% 10%;
-    background-color: #dbdada;
+    background-color: #ececec;
     box-shadow: 0px 4px 10px #8a8a8a;
     font-family: Georgia, 'Times New Roman', Times, serif;
     border-radius: 20px;
@@ -42,7 +42,7 @@ ul li:hover {
 }
 
 ul li.checked {
-  background: #f8f8f8;
+  background: #e7e7e7;
   color: #000000;
   text-decoration: line-through;
 }
@@ -130,7 +130,7 @@ input {
 
 
 
-
+// when click on item (line)
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
@@ -145,14 +145,16 @@ function newElement() {
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
 
+// if empty show error message else add item
   if (inputValue === '') {
-   // alert("You must write something!");
     document.querySelector(".error").innerHTML = 
       "You must write something!";
       document.querySelector(".error").style.display = 
       "block";
   } else {
-    document.getElementById("myUL").appendChild(li); //add new item to the list
+    document.getElementById("myUL").appendChild(li); 
+    document.querySelector(".error").innerHTML = 
+      "";
   }
 
  
