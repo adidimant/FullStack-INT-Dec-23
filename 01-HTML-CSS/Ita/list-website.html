@@ -43,8 +43,7 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-weight: bold;
         color: rgb(64, 54, 68);
-        text-align: center; 
-        
+        text-align: center;  
       }
 
       li:hover {
@@ -54,7 +53,27 @@
         font-weight: bold;
         border: 1px solid rgb(230, 182, 245);
         border-radius: 7px;
- 
+        cursor: pointer;
+      }
+
+      .button {
+        background: rgb(255, 255, 255);
+        width: 50px;
+        height: 50px;
+        border-radius: 90px;
+        font-size: 45px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        margin: 20px auto;
+        box-shadow: 0 0 10px 0; 
+      }
+
+      .input {
+        height: 50px;
+
       }
 
       .line {
@@ -74,8 +93,8 @@
       <li onclick="linethrough(3)">folding laundry</li>
       <li onclick="linethrough(4)">eat</li>
       <li onclick="linethrough(5)">sleep</li>
-      <li><input type="text" id="newItemInput" placeholder="add">
-        <button onclick="addItemToList()"> + </button></li>
+        <div><input class="input" type="text" placeholder="add a chore">
+        <button class=button onclick="addItemToList()"> + </button></div>
     </ul>
 
     
