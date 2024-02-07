@@ -114,7 +114,7 @@ input {
     <div id="myDIV" class="header">
 
         <h2 style="font-size: 30px;">To Do List</h2>
-        <input style=" font-family: Georgia, 'Times New Roman', Times, serif; " 
+        <input  style=" font-family: Georgia, 'Times New Roman', Times, serif; " 
         type="text" id="myInput" placeholder="Add to the list...">
       
         <span onclick="newElement()" class="addBtn"  
@@ -150,7 +150,7 @@ function newElement() {
   var t = document.createTextNode(inputValue);
   li.appendChild(t);
 
-// if empty show error message else add item
+// if empty show error message else add item and reset field
   if (inputValue === '') {
     document.querySelector(".error").innerHTML = 
       "You must write something!";
@@ -160,6 +160,8 @@ function newElement() {
     document.getElementById("myUL").appendChild(li); 
     document.querySelector(".error").innerHTML = 
       "";
+      document.getElementById("myInput").value = "";
+
   }
 
  
