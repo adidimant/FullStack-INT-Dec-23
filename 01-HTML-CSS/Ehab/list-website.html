@@ -38,7 +38,7 @@
       color:#fff;
     }
     ol {
-      list-style-type: none;
+      list-style-position: inside;
       padding: 0;
     }
 
@@ -91,6 +91,20 @@
       font-weight: bold;
       font-size: medium
     }
+
+    .beautiful-item {
+      color: blue;
+      background-color: green;
+      font-weight: bold;
+    }
+
+    .dangerous-area {
+      color: red;
+      min-width: 200px;
+      background-color: pink;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
   </style>
 </head>
 
@@ -100,10 +114,11 @@
     <ol id="todoList">
       <li onclick="toggleCompletion(this)">Grocery shopping</li>
       <li onclick="toggleCompletion(this)">Meal planning and preparation</li>
-      <li onclick="toggleCompletion(this)">Exercise and physical activity</li>
+      <li onclick="toggleCompletion(this)">Exercise and physical </li>
     </ol> <!-- List -->
     <input type="text" id="newTodo" placeholder="Add a new todo"> <!-- Textbox -->
     <button onclick="addTodo()">Add Todo</button><!-- Button -->
+    <button class="dangerous-area beautiful-item" style="margin-left: 26px;">Delete Todo</button><!-- Nothing happened here -->
 
     <script>
       // This function run when when each element in the list is clicked
