@@ -6,207 +6,149 @@
   [hint - you'll need a javascript code for that, and also knowing the index/id of each list item]
   4) [Bonus] - Add an input option for adding more todos & add it to the list
 -->
+
+<!-- For advanced reference & styling - you can see also beni work at: ./beni/list-website.html-->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0;
-  min-width: 250px;
-}
-
-/* Include the padding and border in an element's total width and height */
-* {
-  box-sizing: border-box;
-}
-
-/* Remove margins and padding from the list */
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-/* Style the list items */
-ul li {
-  cursor: pointer;
-  position: relative;
-  padding: 12px 8px 12px 40px;
-  list-style-type: none;
-  background: #eee;
-  font-size: 18px;
-  transition: 0.2s;
-  
-  /* make the list items unselectable */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(odd) {
-  background: #f9f9f9;
-}
-
-/* Darker background-color on hover */
-ul li:hover {
-  background: #ddd;
-}
-
-/* When clicked on, add a background color and strike out text */
-ul li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
-
-/* Add a "checked" mark when clicked on */
-ul li.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-}
-
-/* Style the close button */
-.close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 12px 16px 12px 16px;
-}
-
-.close:hover {
-  background-color: #f44336;
-  color: white;
-}
-
-/* Style the header */
-.header {
-  background-color: #f44336;
-  padding: 30px 40px;
-  color: white;
-  text-align: center;
-}
-
-/* Clear floats after the header */
-.header:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the input */
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-}
-
-/* Style the "Add" button */
-.addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-}
-
-.addBtn:hover {
-  background-color: #bbb;
-}
-</style>
-</head>
-<body>
-
-<div id="myDIV" class="header">
-  <h2 style="margin:5px">My To Do List</h2>
-  <input type="text" id="myInput" placeholder="Title...">
-  <span onclick="newElement()" class="addBtn">Add</span>
-</div>
-
-<ul id="myUL">
-  <li>Hit the gym</li>
-  <li class="checked">Pay bills</li>
-  <li>Meet George</li>
-  <li>Buy eggs</li>
-  <li>Read a book</li>
-  <li>Organize office</li>
-</ul>
-
-<script>
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Todos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding-left: 25%;
+      padding-right: 25%;
+      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/50598/concrete-wall-background.jpg) center center fixed;
     }
-  }
-}
-</script>
+    div{
+      position: relative;
+      width: 640px;
+      margin: 7% auto;
+      border: tan solid 12px;
+      border-top: #bda27e solid 12px;
+      border-left: #b19876 solid 12px;
+      border-bottom: #c9ad86 solid 12px;
+      box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782, 0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+      background-image: radial-gradient( circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient( 215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient( circle at right, #111, rgba(51, 51, 51, 1));
+      background-color: #333;
+    }
+    h1{
+      text-align: center;
+      color:#fff;
+    }
+    ol {
+      list-style-position: inside;
+      padding: 0;
+    }
 
+    li {
+      margin: 8px 15px;
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      border-radius:22px;
+    }
+
+    li:hover {
+      font-weight: bold;
+      color: #3498db;
+      /*background-color: #ecf0f1;*/
+      background-color: #c8b69d;
+      border: 3px solid #3498db;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: #777;
+    }
+
+    input[type="text"] {
+      flex-wrap: wrap;
+      margin: 8px 30px;
+      padding: 8px;
+      outline:none;
+      height:34px;
+      position:relative;
+      bottom:14px;
+      right:9px;
+      border-radius:22px;
+      width:70%;
+      box-sizing:border-box;
+    }
+    button{
+      margin: 8px 10px;
+      padding: 8px;
+      outline:none;
+      height:34px;
+      position:relative;
+      bottom:14px;
+      right:9px;
+      border-radius:22px;
+      width:100px;
+      box-sizing:border-box;
+      font-weight: bold;
+      font-size: medium
+    }
+
+    .beautiful-item {
+      color: blue;
+      background-color: green;
+      font-weight: bold;
+    }
+
+    .dangerous-area {
+      color: red;
+      min-width: 200px;
+      background-color: pink;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>My Weekly Todos</h1>
+    <ol id="todoList">
+      <li onclick="toggleCompletion(this)">Grocery shopping</li>
+      <li onclick="toggleCompletion(this)">Meal planning and preparation</li>
+      <li onclick="toggleCompletion(this)">Exercise and physical </li>
+    </ol> <!-- List -->
+    <input type="text" id="newTodo" placeholder="Add a new todo"> <!-- Textbox -->
+    <button onclick="addTodo()">Add Todo</button><!-- Button -->
+    <button class="dangerous-area beautiful-item" style="margin-left: 26px;">Delete Todo</button><!-- Nothing happened here -->
+
+    <script>
+      // This function run when when each element in the list is clicked
+      function toggleCompletion(todoItem) {
+        todoItem.classList.toggle("completed");
+      }
+      // This function run when the button "Add Todo" clicked
+      function addTodo() {
+        var input = document.getElementById("newTodo"); // Get the value from the textbox
+        var value = input.value.trim(); // Remove whitespace from both sides of a string
+        if (value !== "") {
+          var ol = document.getElementById("todoList"); // A pointer variable to a list  
+          var li = document.createElement("li"); // Create new li element
+          li.appendChild(document.createTextNode(value));
+          //document.createTextNode(value) ==> Creates a text node with the value of the "value" variable
+          //li.appendChild(....) // Appends the newly created text node as a child node to the list item
+          li.onclick = function () { // Add onclick action to the new li
+            toggleCompletion(this);  // Run this function when clicked on "li" 
+          };
+          li.ondblclick = function() { // Add ondblclick action to the new "li"
+            this.parentNode.removeChild(this);// Remove the "li"
+          };
+          ol.appendChild(li); // Added a newly created list item as a child node to the list
+          input.value = ""; // Clear the textbox
+        }
+      }
+    </script>
+  </div>
 </body>
+
 </html>
