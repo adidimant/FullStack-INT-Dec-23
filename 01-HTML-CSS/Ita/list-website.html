@@ -1,0 +1,93 @@
+<!--
+  Build an html website, that contains unordered list of your weekly todos (your goals for the week)
+  1) define the basic css styiling for this list & list items
+  2) On every item hover - the text of the item should be bold & colored in another color & add some border and background to it 
+  3) On todo click - make a line over the text (search on the internet how to do it)
+  [hint - you'll need a javascript code for that, and also knowing the index/id of each list item]
+  4) [Bonus] - Add an input option for adding more todos & add it to the list
+-->
+<!DOCTYPE html>
+<HTML>
+  <head>
+    <title>Weekly assignments - Ita</title>
+    <style>
+      body {
+        background-color: rgb(247, 220, 255);
+      }
+
+      ul {
+        width: 30%;
+        margin: 50px auto; /*מיקום הרשימה בעמוד*/
+        background: rgb(64, 54, 68); /*רקע כללי של הרשימה*/
+        padding: 30px;
+        border-radius: 10px; 
+        box-shadow: 0 0 10px 0; /*הצללה*/
+        list-style-position: inside;
+      }
+
+      ul li {
+        background: none;
+        margin-left: 10px;
+        font-size: 25px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: white;
+        text-align: left;
+        margin: 30px;
+        height: 40;
+      }
+
+      .titlelist {
+        width: 30%;
+        margin: 50px auto;
+        font-size: 40px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        color: rgb(64, 54, 68);
+        text-align: center; 
+        
+      }
+
+      li:hover {
+        height: 40px;
+        color: rgb(230, 182, 245);
+        text-shadow: 0 0 5px 0 write;
+        font-weight: bold;
+        border: 1px solid rgb(230, 182, 245);
+        border-radius: 7px;
+ 
+      }
+
+      .line {
+        text-decoration: line-through;
+      }
+      
+      
+    </style>
+  </head>
+
+  <body>
+    <div class="titlelist">Weekly assignments</div>
+    <ul class="basiclist" id="choreslist">
+      <li onclick="linethrough(0)">Course homework</li>
+      <li onclick="linethrough(1)">Shopping</li>
+      <li onclick="linethrough(2)">Testing tests</li>
+      <li onclick="linethrough(3)">folding laundry</li>
+      <li onclick="linethrough(4)">eat</li>
+      <li onclick="linethrough(5)">sleep</li>
+      <li><input type="text" id="newItemInput" placeholder="add">
+        <button onclick="addItemToList()"> + </button></li>
+    </ul>
+
+    
+
+  <script>
+    function linethrough(index) {
+    var todoItem = document.getElementById("choreslist").getElementsByTagName("li")[index];
+    todoItem.classList.toggle("line");
+  }
+  </script>
+
+  </body>
+</HTML>
+
+
