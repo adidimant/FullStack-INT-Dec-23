@@ -16,6 +16,8 @@
     <meta name="keywords" content="website lesson, fullstack, list website, list">
     <title>list website</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
         h1 { 
            color: #ffffff; 
            font-family: 'impact', Arial; 
@@ -29,9 +31,9 @@
         }
         h2 {    
             color: #ffffff; 
-           font-family: 'Arial'; 
-           font-size: 15px; 
-           font-weight: normal; 
+          font-family: 'Montserrat', sans-serif; 
+           font-size: smaller; 
+           font-weight: lighter; 
            text-align: center;
            background-color: rgb(87, 87, 87); 
            border-radius: 20px;
@@ -46,17 +48,23 @@
         }
 
         .p1 {
-            font-family: Impact, 'Arial Narrow Bold';
+            font-family: 'Montserrat', sans-serif;
             color: #ffffff;
             text-align: center;
             font-size: 20px;
+        }
+
+        .p2 {
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: smaller;
         }
 
         #liadd {
            list-style-type: none; 
            color: #ffffff;
            display: inline-block;
-           font-family:Impact,'Arial Narrow Bold';
+           font-family: 'Montserrat', sans-serif;
            font-size: 25px;
       
         }
@@ -72,7 +80,7 @@
         .button1 {
             padding: 12px 26px;
             text-align: center;
-            font-family: Impact,'Arial Narrow Bold';
+            font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             border-bottom-left-radius: 15px;
             border-top-right-radius: 15px;
@@ -99,18 +107,29 @@
         
     </style>
     <script> // function that adds list items to the ul with "liadd" id when clicking on a button.
-        function listadd() {
-            var ul = document.getElementById("liadd")
-            var li = document.createElement("li");
-            var text = document.createTextNode(prompt("what do you want to enter to the to do list?"," ",)); 
-                li.appendChild(text);
-                ul.appendChild(li);
-        }
+       function listadd() {
+    var ul = document.getElementById("liadd");
+    var li = document.createElement("li");
+    var userInput = prompt("What do you want to add to the to-do list?", "");
+    if (userInput !== null && userInput.trim() !== "") {
+        li.textContent = userInput.trim();
+        li.setAttribute("onclick", "striket(this)");
+        ul.appendChild(li);
+    }
+}
 
            function striket(element) {
             element.classList.toggle('completed');
                         } 
-          
+
+           function deleteTask() {
+            var selected = document.querySelector("#liadd li.completed");
+            if (selected) {
+                selected.remove();
+            } else {
+                alert("No task selected!");
+            }
+        }
              
 
     </script>
@@ -120,19 +139,21 @@
      <!--section 1--> <div class="div1">
                        <p class="p1">in this section you can see, add and manage your "to do list" </p>
                          <ul id="liadd">
-                            <li onclick="striket(this)">your task </li>
-                            <li onclick="striket(this)">your task </li>
-                            <li onclick="striket(this)"> your task </li>
+                            
                          </ul> </br>
           
                      </div>
                     </br>
- 
+ </br>
+            <!--button div section 3-->  <div class="bDiv">    <button class="button1" onclick="listadd()">add task</button> 
+              <p class="p2"> with this button you can add new tasks</p>
+              <button class="button1" onclick="deleteTask()">delete selected task</button>
+              <p class="p2"> with this button you can delete selected tasks</p>
+            </div>
 </body>
-</br>
-            <!--button div-->  <div class="bDiv">    <button class="button1" onclick="listadd()">add task</button> </div>
+
 <footer>
-        <!--section 2-->  <div>
+        <!--section 4-->  <div>
 
            
             <h2>this is the end of the website</h2>
