@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Custom Iframe Border</h2>
+<p>With CSS, you can also change the size, style and color of the iframe's border:</p>
+
+<iframe src="https://www.w3schools.com/html/demo_iframe.htm" width="800" height="500" id="roter-iframe" style="border:2px solid red;" title="Iframe Example"></iframe>
+
+	<script>
+    	var roterFrame = document.getElementById("roter-iframe");
+        
+      roterFrame.onload = function() {
+        let body = roterFrame.contentDocument.body;
+          body.style.fontSize = '10px';
+          body.style.fontFamily = 'Tahoma';
+      };
+  </script>
+
+</body>
+</html>
