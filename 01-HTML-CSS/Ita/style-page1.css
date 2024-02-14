@@ -1,5 +1,8 @@
 body {
     background-color: rgb(169, 180, 189);
+    width: 90%;
+    margin-left: 5%;
+    box-shadow: 0 0 10px 0;
 }
 
 header {
@@ -93,6 +96,7 @@ article h1 {
 article img {
     width: 60%;
     margin-left: 180px;
+    box-shadow: 0 0 7px 0;
 }
 
 article p {
@@ -130,7 +134,9 @@ iframe {
 footer  {
     height: 100px;
     background-color: rgb(144, 209, 113);
-    
+    border: 3px solid black;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 
