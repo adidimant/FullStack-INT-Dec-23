@@ -1,0 +1,149 @@
+body {
+    background-color: rgb(169, 180, 189);
+}
+
+header {
+    background-color: rgb(144, 209, 113);
+    height: 130px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    font-size: 70px;
+    font-family: monospace;
+    padding-top: 20px;
+    border: 3px solid rgb(0, 61, 8);
+}
+
+
+section {
+    display: flex; /*מציג אלמנטים כמיכלים גמישים*/
+}
+
+aside {
+    background-color: rgb(151, 0, 106);
+    width: 20%;
+    height: auto;
+    margin-top: none;
+    border: 3px solid rgb(0, 61, 8);
+}
+
+aside ul {
+    list-style-type: none; /*רשימה ללא נקודות או מספרים*/
+
+
+}
+
+
+
+aside ul li  {
+    margin-top: 12px;
+    padding: 25px;
+    font-size: 20px;
+    font-family: monospace;
+     
+}
+
+aside ul li a {
+    color: #fff;
+}
+a:link {
+    padding: 20px;
+    color: white; /*צבע טקסט*/
+    text-decoration-line: none;
+    
+a:active { /*מה קורה שלוחצים על הלינק*/
+    color: rgb(255, 180, 249);
+}
+
+a:visited {
+    color: rgb(255, 180, 249);
+}
+    
+}
+
+aside ul li:hover{
+    background-color: aliceblue;
+    color: black;
+}
+
+li a:hover{
+    color: black;
+}
+
+
+
+article {
+    background-color: #fff;
+    width: 80%;
+    border: 3px solid black;
+    
+}
+
+article h1 {
+    font-size: 60px;
+    font-family: "Protest Strike", sans-serif;
+    margin-left: 180px;
+    color: rgb(0, 0, 109);
+}
+
+article img {
+    width: 60%;
+    margin-left: 180px;
+}
+
+article p {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    width: 60%;
+    margin-left: 180px;
+    line-height: 1.5; /*מרחק בין שורות*/
+}
+
+article h2 {
+    font-family: "Protest Strike", sans-serif; 
+    font-size: 30px;
+    margin-left: 180px;
+    color: rgb(0, 0, 92);
+}
+
+article ul {
+    width: 60%;
+    margin-left: 180px;
+    line-height: 1.5;
+}
+
+article ul li {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
+iframe {
+    width: 70%;
+    margin-left: 180px;
+    height: 500px;
+}
+
+footer  {
+    height: 100px;
+    background-color: rgb(144, 209, 113);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
