@@ -83,7 +83,7 @@
             
             window.addEventListener('scroll', function() {
                 var scrollPercent = (document.documentElement.scrollTop + window.innerHeight) / document.documentElement.scrollHeight * 100; //גובה החלון+תוכן של האלמנט גולל אנכיתt  : לגובה כולל של האלמנט * 100 
-                if (scrollPercent >= 40) {
+                if (scrollPercent > 40) {
                     controlWindow.style.display = "block";  //הופך את החלון לגלוי
                 }
 
