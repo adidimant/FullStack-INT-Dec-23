@@ -1,3 +1,4 @@
+/* עיצוב כללי */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,7 +6,6 @@ body {
     background-image: url(macbookpro.jpg);
     background-size: cover;
     background-position: center;
-    text-align: center; /* מרכז את כל הטקסט והתמונה בעמוד */
 }
 
 header {
@@ -17,7 +17,6 @@ header {
 
 header .title h1 {
     margin: 0;
-    font-weight: bold; /* כותרות במודגש */
 }
 
 header nav ul {
@@ -46,7 +45,6 @@ section {
 
 h2 {
     color: #333;
-    font-weight: bold; /* כותרות במודגש */
 }
 
 p {
@@ -71,9 +69,9 @@ p {
 
 .takeover-window h2 {
     color: #333;
-    font-weight: bold; /* כותרות במודגש */
 }
 
 .takeover-window p {
     color: #666;
 }
+
