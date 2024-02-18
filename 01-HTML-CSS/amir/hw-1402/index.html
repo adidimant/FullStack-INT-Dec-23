@@ -114,7 +114,6 @@
               var scrolledPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
               if (scrolledPercentage > 40) {
                 modal.style.display = "block";
-                // Remove the event listener once the modal is shown to prevent it from reappearing
                 window.removeEventListener('scroll', showModalOnScroll);
               }
             }
