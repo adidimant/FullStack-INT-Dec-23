@@ -2,11 +2,13 @@
 <html> 
     <head>
         
-        <link rel="stylesheet" href="style-page1.css"/>
+        <link rel="stylesheet" href="style-page1.css"/>        
     </head>
     
     <body>
         <header>Purim</header>
+
+        
         <section> 
             <aside>
                 <ul>
@@ -65,11 +67,36 @@
         <footer>
             
         </footer>
-        
-        
-       
 
+        <div class=controlWindow  id="controlWindow" style="display: none;">
+            <div class=controlWindowContent>
+                <img  src="./clown.png" class="imgincontrol"><img/>
+                <h2 class="textcontrolh2">Well done for reading this far!</h2>
+                <p class="textcontrolp">Enjoy the rest of the reading</p>
+                <button id="buttoncontrol" onclick="closeControlWindow()">Close</button> <!-- לחצן שיש עליו פונקיציה לסגור את החלון-->
+            </div>
+        </div> 
 
+        
+
+        <script>
+            
+            window.addEventListener('scroll', function() {
+                var scrollPercent = (document.documentElement.scrollTop + window.innerHeight) / document.documentElement.scrollHeight * 100; //גובה החלון+תוכן של האלמנט גולל אנכית : לגובה כולל של האלמנט * 100 
+                if (scrollPercent >= 40) {
+                    controlWindow.style.display = "block";  //הופך את החלון לגלוי
+                }
+
+            });
+
+            function closeControlWindow(buttoncontrol) {
+                controlWindow.style.display = "none"; //הסתרת הקונטרול
+
+                
+            }
+
+        </script>
+        
     </body>
 
 </html>
