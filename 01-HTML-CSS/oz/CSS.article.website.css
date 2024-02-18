@@ -6,17 +6,35 @@ h1 {
     font-family: fantasy;
     background-color: bisque;
     border-radius: 10px;
-    margin: 100px 200px ;
+    margin: 100px 200px auto ;
 }          
 article {
     font-family:'poppings' sans-serif;
     font-size: large;
-    padding: 28px 30px 30;
+    padding: 28px 30px 30px ;
 }
 img {
-    padding-top: 30px;
-    padding-bottom:25 ;
+    padding-top: 30px ;
+    padding-bottom:25px ;
 }
 #img.un {
-    
+    padding-top: 30px ;
+    padding-bottom: 25px;
+}
+#popup {
+    display: none;
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    background:rgb(134, 131, 131);
+    text-align: center;
+    padding: 50% 0px 20px;
+}
+#close-popup {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }

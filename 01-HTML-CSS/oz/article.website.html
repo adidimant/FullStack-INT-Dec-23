@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    setTimeout(function() {
+    document.getElementById('popup').style.display = 'block';
+}, 7000);
+
+function closeTakeover() {
+    document.getElementById('popup').style.display = 'none';
+}
+  </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The first game</title>
     <link rel="stylesheet" href="CSS.article.website.css">
+
 </head>
-<h1>When did humans first started to play games?</h1>
-<body>
+
+  <h1>When did humans first started to play games?</h1>
+  <body onscroll="checkscroll()">
+
+  <div id="popup">
+    <p>this is a pop up window</p>
+    <button id="close-popup">close</button>
+  </div>
+
     <article>
   Prehistoric peoples probably played, but except for a few bones, no clear evidence has been found to date to certify the hypothesis.
 
@@ -18,6 +36,7 @@ In the Persian Gulf, we discovered the oldest game in the world: “The royal ga
 The Assyrians invented this game more than 5000 years ago. It was a board game, with a board representing a course and pieces that players were moving.
  This game is preserved in a museum in London.
  <br><br>
+
  <img class="un" src="/01-HTML-CSS/oz/roayal game of ur.jpg">
 
  <h1>Development of early games</h1>
