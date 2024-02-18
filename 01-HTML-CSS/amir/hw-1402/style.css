@@ -12,6 +12,9 @@ body {
   font-size: 100%;
   padding: 0px 100px;
   margin-bottom: 40px;
+  width: 80%;
+margin: 0 auto;
+margin-top: 10px;
 }
 
 .headline {
