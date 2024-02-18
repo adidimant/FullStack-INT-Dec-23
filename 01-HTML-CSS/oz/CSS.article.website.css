@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(246, 246, 246);
+    text-align: center;
+}
+h1 {
+    font-family: fantasy;
+    background-color: bisque;
+    border-radius: 10px;
+    margin: 100px 200px ;
+}          
+article {
+    font-family:'poppings' sans-serif;
+    font-size: large;
+    padding: 28px 30px 30;
+}
+img {
+    padding-top: 30px;
+    padding-bottom:25 ;
+}
+#img.un {
+    
+}
