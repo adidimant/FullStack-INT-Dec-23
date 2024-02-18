@@ -60,7 +60,9 @@ margin-top: 10px;
   grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
 }
 
-
+.apple{
+  width: 60px;
+}
 
 .article-img img {
   width: 92%;
