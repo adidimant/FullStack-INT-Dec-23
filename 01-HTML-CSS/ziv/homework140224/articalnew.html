@@ -4,13 +4,11 @@
         <title>my article website</title>
         <link rel="stylesheet" type="text/css" href="articalnew.css">
         <script>
-           setTimeout(function() {
-           openForm();
-           }, 7000);
+           setTimeout(openForm, 7000);
 
            function openForm() {
-           document.getElementById("myForm").style.display = "block";
-        }
+            document.getElementById("myForm").style.display = "block";
+          }
 
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
