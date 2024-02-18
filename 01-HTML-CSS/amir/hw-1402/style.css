@@ -27,15 +27,17 @@ body {
   width: 80%;
 margin: 0 auto;
 margin-top: 10px;
+margin-bottom: 10px;
 }
 
 .headline {
-  font-size: 80px;
+  font-size: 70px;
   letter-spacing: 5px;
   color: #fafafa;
   margin-bottom: 20px;
   text-align: center;
   font-weight: 100;
+  font-weight: bold;
 }
 
 .grid-wrapper {
