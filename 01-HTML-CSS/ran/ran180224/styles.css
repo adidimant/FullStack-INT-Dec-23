@@ -4,10 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.background-image {
-    background-image: url('reminder.jpg');
+    background-image: url('reminder.jpg'); /* Set background image */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
