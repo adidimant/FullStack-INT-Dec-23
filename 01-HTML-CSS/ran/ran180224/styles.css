@@ -1,4 +1,14 @@
-/* Styles for the container */
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('reminder.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -7,7 +17,6 @@
     position: relative;
 }
 
-/* Styles for the reminder items */
 .reminder {
     display: flex;
     align-items: center;
@@ -19,7 +28,6 @@
     width: 300px;
 }
 
-/* Styles for the delete button */
 .delete-btn {
     background-color: #e74c3c;
     color: white;
@@ -30,7 +38,6 @@
     position: absolute;
 }
 
-/* Style for the add reminder button */
 #add-reminder-btn {
     background-color: #3498db;
     color: white;
@@ -42,18 +49,15 @@
     position: absolute;
 }
 
-/* Style for the completed task text */
 .completed-task {
     text-decoration: line-through;
     opacity: 0.5;
 }
 
-/* Flexbox properties for even reminder items */
 .reminder:nth-child(even) {
     transform: rotate(-2deg);
 }
 
-/* Flexbox properties for odd reminder items */
 .reminder:nth-child(odd) {
     transform: rotate(2deg);
 }
