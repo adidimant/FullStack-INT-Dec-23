@@ -1,63 +1,40 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('reminder.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
+/* Flex container */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    position: relative;
+    justify-content: center;
 }
 
+.background-image {
+    background-image: url('reminder.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw; /* Set width to cover viewport width */
+    height: 100vh; /* Set height to cover viewport height */
+}
+
+/* Flex items */
 .reminder {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f0f0f0;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    width: 300px;
-}
-
-.delete-btn {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 5px 10px;
-    position: absolute;
-}
-
-#add-reminder-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #fff;
     padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    position: absolute;
+    margin: 10px;
+    border-radius: 5px;
 }
 
-.completed-task {
-    text-decoration: line-through;
-    opacity: 0.5;
-}
-
-.reminder:nth-child(even) {
-    transform: rotate(-2deg);
-}
-
-.reminder:nth-child(odd) {
-    transform: rotate(2deg);
+/* Additional content */
+.additional-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Add some transparency to the background */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
 }
