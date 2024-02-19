@@ -1,16 +1,10 @@
-body {
-    background-image: url('reminder.jpg');
-    background-size: cover; /* כדי לוודא שהתמונה מתאימה לגודל החלון */
-    background-repeat: no-repeat; /* למנוע חזרת התמונה על פני הרקע */
-    background-position: center; /* למרכז את התמונה באופן אופטימלי */
-}
-
 /* Styles for the container */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    position: relative;
 }
 
 /* Styles for the reminder items */
@@ -33,6 +27,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     padding: 5px 10px;
+    position: absolute;
 }
 
 /* Style for the add reminder button */
@@ -44,6 +39,7 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 20px;
+    position: absolute;
 }
 
 /* Style for the completed task text */
