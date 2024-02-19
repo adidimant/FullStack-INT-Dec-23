@@ -32,11 +32,12 @@ function createReminder() {
         completeButton.style.display = 'none';
     });
 
-    // Random positioning
+    // Random positioning and rotation
     const addButton = document.getElementById('add-reminder-btn');
     addButton.style.position = 'absolute';
-    addButton.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
-    addButton.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+    addButton.style.top = Math.floor(Math.random() * (window.innerHeight - addButton.clientHeight)) + 'px';
+    addButton.style.left = Math.floor(Math.random() * (window.innerWidth - addButton.clientWidth)) + 'px';
+    addButton.style.transform = 'rotate(' + Math.floor(Math.random() * 360) + 'deg)';
 }
 
 // Add event listener to the Add Reminder button
