@@ -31,6 +31,12 @@ function createReminder() {
         reminderText.classList.add('completed-task');
         completeButton.style.display = 'none';
     });
+
+    // Random positioning
+    const addButton = document.getElementById('add-reminder-btn');
+    addButton.style.position = 'absolute';
+    addButton.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
+    addButton.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
 }
 
 // Add event listener to the Add Reminder button
