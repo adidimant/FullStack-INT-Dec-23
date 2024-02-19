@@ -56,7 +56,7 @@ background: #252833;
     background: #4b71ee;
     color: black;
     border-radius: 2px;
-    box-shadow: 1px 1px 1px hsl(320, 70%, 8%);
+    box-shadow: 1px 10px 10px black;
     font-weight: 900;
     padding: 10px;
     width: 3%;
