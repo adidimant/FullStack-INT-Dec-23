@@ -338,12 +338,12 @@
     function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {
-          x.className += " responsive";
+          x.className += " responsive"; // x (html element: id, class, name, style)
         } else {
           x.className = "topnav";
         }
       }
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function(e) {
         var modal = document.getElementById("myModal");
         var span = document.getElementsByClassName("close")[0];
         
