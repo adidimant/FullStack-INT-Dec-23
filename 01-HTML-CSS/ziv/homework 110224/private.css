@@ -54,10 +54,10 @@ h1 {
             bottom: 0; /* מציין את המרחק מהתחתית של הדף */
             left: 50%; /* מציין את המרכז של הדף */
             transform: translateX(-50%); /* מעביר את הקישור למרכז באמצעות הזזתו 50% לשמאל */
-            text-decoration:underline; /*  קו תחתון */
+            text-decoration: underline; /*  קו תחתון */
             background-color: rgb(255, 255, 255);
             border-radius: 4px;
-            padding: 3px
+            padding: 3px;
         }
 
           /* הכיתוב של "בית" */
@@ -87,7 +87,7 @@ h1 {
  
         /* לא מצליח לשנות את הצבע של הטקסט ב nav */
         .-nav-color {
-            color: rgb(0, 0, 0);
+          color: rgb(0, 0, 0);
         }
 
         /* select "" */
@@ -101,7 +101,6 @@ h1 {
             padding: 4px; /* פריסה פנימית של 4 פיקסלים */
             direction: rtl; /* הופך את כיוון הטקסט מימין לשמאל */
             text-align: right; /* מגדיר את הטקסט להופיע מימין לשמאל */
-        
         }
         .ol-routing {
             list-style-type: none; /* הסרת המספרים */
