@@ -1,3 +1,9 @@
+// Function to reload background image
+function reloadBackgroundImage() {
+    const backgroundImage = document.getElementById('background-image');
+    backgroundImage.style.backgroundImage = `url('https://example.com/your-image.jpg')`;
+}
+
 // Function to create a new reminder item
 function createReminder() {
     const reminderContainer = document.getElementById('reminder-container');
@@ -10,6 +16,8 @@ function createReminder() {
         
         reminderItem.classList.add('reminder');
         reminderText.textContent = reminderInput.value.trim();
+        reminderItem.style.order = Math.floor(Math.random() * 100); // Randomize order
+        reminderText.style.order = -1; // Move user input text to the end
         deleteButton.textContent = '❌';
 
         deleteButton.addEventListener('click', () => {
@@ -25,7 +33,10 @@ function createReminder() {
 }
 
 // Add event listener to the Add Reminder button
-document.getElementById('add-reminder-btn').addEventListener('click', createReminder);
+document.getElementById('add-reminder-btn').addEventListener('click', () => {
+    createReminder();
+    reloadBackgroundImage();
+});
 
 // Add event listener to the reminder input to show placeholder text
 const reminderInput = document.getElementById('reminder-input');
