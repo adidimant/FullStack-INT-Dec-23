@@ -1,3 +1,10 @@
+body {
+    background-image: url('reminder.jpg');
+    background-size: cover; /* כדי לוודא שהתמונה מתאימה לגודל החלון */
+    background-repeat: no-repeat; /* למנוע חזרת התמונה על פני הרקע */
+    background-position: center; /* למרכז את התמונה באופן אופטימלי */
+}
+
 /* Styles for the container */
 .container {
     display: flex;
