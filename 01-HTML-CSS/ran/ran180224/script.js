@@ -7,7 +7,7 @@ function resetBackgroundImage() {
 // Function to reload background image
 function reloadBackgroundImage() {
     const backgroundImage = document.getElementById('background-image');
-    backgroundImage.style.backgroundImage = `url('https://example.com/your-image.jpg')`;
+    backgroundImage.style.backgroundImage = `url('reminder.jpg')`;
 }
 
 // Function to create a new reminder item
