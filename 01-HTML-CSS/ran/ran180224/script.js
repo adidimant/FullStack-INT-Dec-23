@@ -1,44 +1,39 @@
 // Function to create a new reminder item
 function createReminder() {
     const reminderContainer = document.getElementById('reminder-container');
+    const reminderInput = document.getElementById('reminder-input');
 
-    // Create elements
-    const reminderItem = document.createElement('div');
-    const reminderText = document.createElement('span');
-    const deleteButton = document.createElement('button');
-    const completeButton = document.createElement('button');
+    if (reminderInput.value.trim() !== '') {
+        const reminderItem = document.createElement('div');
+        const reminderText = document.createElement('span');
+        const deleteButton = document.createElement('button');
+        
+        reminderItem.classList.add('reminder');
+        reminderText.textContent = reminderInput.value.trim();
+        deleteButton.textContent = '❌';
 
-    // Set attributes and text content
-    reminderItem.classList.add('reminder');
-    reminderText.textContent = 'New Reminder';
-    deleteButton.classList.add('delete-btn');
-    deleteButton.textContent = 'X';
-    completeButton.textContent = '✓';
+        deleteButton.addEventListener('click', () => {
+            reminderContainer.removeChild(reminderItem);
+        });
 
-    // Append elements
-    reminderItem.appendChild(reminderText);
-    reminderItem.appendChild(deleteButton);
-    reminderItem.appendChild(completeButton);
-    reminderContainer.appendChild(reminderItem);
+        reminderItem.appendChild(reminderText);
+        reminderItem.appendChild(deleteButton);
+        reminderContainer.appendChild(reminderItem);
 
-    // Add event listener to delete button
-    deleteButton.addEventListener('click', () => {
-        reminderContainer.removeChild(reminderItem);
-    });
-
-    // Add event listener to complete button
-    completeButton.addEventListener('click', () => {
-        reminderText.classList.add('completed-task');
-        completeButton.style.display = 'none';
-    });
-
-    // Random positioning and rotation
-    const addButton = document.getElementById('add-reminder-btn');
-    addButton.style.position = 'absolute';
-    addButton.style.top = Math.floor(Math.random() * (window.innerHeight - addButton.clientHeight)) + 'px';
-    addButton.style.left = Math.floor(Math.random() * (window.innerWidth - addButton.clientWidth)) + 'px';
-    addButton.style.transform = 'rotate(' + Math.floor(Math.random() * 360) + 'deg)';
+        reminderInput.value = '';
+    }
 }
 
 // Add event listener to the Add Reminder button
 document.getElementById('add-reminder-btn').addEventListener('click', createReminder);
+
+// Add event listener to the reminder input to show placeholder text
+const reminderInput = document.getElementById('reminder-input');
+reminderInput.addEventListener('input', () => {
+    const placeholderText = 'Enter your reminder';
+    if (reminderInput.value.trim() === '') {
+        reminderInput.setAttribute('placeholder', placeholderText);
+    } else {
+        reminderInput.removeAttribute('placeholder');
+    }
+});
