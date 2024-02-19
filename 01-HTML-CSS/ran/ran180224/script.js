@@ -7,7 +7,7 @@ function resetBackgroundImage() {
 // Function to reload background image
 function reloadBackgroundImage() {
     const backgroundImage = document.getElementById('background-image');
-    backgroundImage.style.backgroundImage = `url('reminder.jpg')`;
+    backgroundImage.style.backgroundImage = `url('https://example.com/your-image.jpg')`;
 }
 
 // Function to create a new reminder item
@@ -40,8 +40,8 @@ function createReminder() {
 
 // Add event listener to the Add Reminder button
 document.getElementById('add-reminder-btn').addEventListener('click', () => {
-    createReminder();
-    reloadBackgroundImage();
+    createReminder(); // Call the createReminder function
+    reloadBackgroundImage(); // Call the reloadBackgroundImage function
 });
 
 // Add event listener to the reminder input to show placeholder text
