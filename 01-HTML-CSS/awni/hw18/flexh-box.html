@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Demo</title>
+    <!--parent :
+     if flex-direction == row
+         justify-content => X
+         align-items => Y
+         align-content => Y
+     if flex-direction == column
+         justify-content => Y
+         align-items => X
+         align-content => X
+         
+         "gap = margin"
+    */
+    /* flex-flow = flex-direction & flex-wrap */
+    /* items :
+         flex-grow & flex-shrink & flex-basis = flex */ -->
+  <style>
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        text-align: center ;
+    }
+    .wrapper > * {
+        padding: 10px;
+        margin: 10px;
+        flex-shrink: 1;
+        flex-basis: 100%;
+        border-radius: 10px;
+    }
+    .header {
+        background: linear-gradient(135deg, tomato, #ae5545); 
+        color: #05f805;
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 20px; 
+        text-shadow: 2px 2px 4px #000; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        border-bottom: 5px solid #05f805; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 80px;
+    }
+    .footer {
+        background: linear-gradient(135deg, lightgreen, rgb(70, 93, 70)); 
+
+        margin: 15px 5px;
+
+    }
+    .main{
+        text-align: center; 
+        background: deepskyblue;
+        height: 300px;
+        font-size: 24px;
+        background-image: url(file:///C:/Users/User/Downloads/DALL%C2%B7E%202024-02-20%2022.55.24%20-%20An%20image%20of%20a%20sleek,%20modern%20electric%20car%20with%20a%20glossy%20finish,%20parked%20on%20an%20open%20road%20with%20a%20scenic%20sunset%20in%20the%20background.%20The%20car%20should%20look%20futu.webp);
+        background-size: 700px 340px;
+    }
+    .p1:hover{
+        background-color: #35212175;
+        color: whitesmoke;
+    }
+    .aside1 {
+        background: linear-gradient(135deg, gold, rgb(107, 96, 35)); 
+    }
+    .aside2 {
+        background: linear-gradient(135deg, hotpink, rgb(114, 65, 90)); 
+
+    }
+    .wrapper >*:hover{
+        text-shadow:3px 3px 5px gold;
+        box-shadow: 3px 15px 20px black;
+        transform: scaleY(1.4);
+        color: black;
+        cursor: pointer;
+        font-size: larger;
+        transition:all 1s;
+
+    
+    }
+    @media all and (min-width: 800px){
+        .main{
+            /*flex-shrink: 3;
+            flex-grow: 3;
+            flex-basis: 0;*/
+            flex: 3;
+        }
+        .aside1{
+            order: 1;
+        }
+        .aside2{
+            order: 2;
+        }
+        .main{
+            order: 2;
+        }
+        .footer{
+            order: 4;
+        }
+    }
+    @media all and (min-width: 600px){
+        .aside{
+           /* flex-shrink: 1;
+            flex-grow: 1;
+            flex-basis: 0;*/
+            flex: 1;
+        }
+    }
+     
+  </style>
+
+</head>
+<body>
+    <div class="wrapper">
+    <header class="header">
+        <h1> The Thrilling World of Cars 🚗 </h1>
+    </header>
+    <article class="main">
+        <p class="p1">
+            Cars have revolutionized transportation, offering speed, efficiency, and personal mobility. 
+            From classic models that remind us of bygone eras to cutting-edge electric vehicles paving the way to a greener 
+            future, cars are an integral part of modern life. 🏎️🌿
+        </p>
+    </article>
+    <aside class="aside aside1">
+        <h2>Innovation in Motion 🛠️</h2>
+        <p>
+        Automotive design and technology have come a long way, with advancements in safety, fuel efficiency, 
+        and performance. Hybrid and electric cars are leading the charge towards sustainable driving. 🔋🍃
+        <img src="" alt="">
+        </p>
+        
+    </aside>
+    <aside class="aside aside2">
+        <h2>Speed and Sport 🏁</h2>
+        <p>
+            Sports cars and racing events like Formula 1 captivate audiences with high-speed thrills and the roar of engines, 
+            showcasing the pinnacle of automotive engineering and competitive spirit. 🏎️💨
+        </p>
+    </aside>
+    <footer class="footer">
+        <p>
+            As we embrace the era of autonomous vehicles and smart technology, the automotive industry continues 
+            to drive forward, promising a future where cars are more than just a means of transport, but partners in our everyday 
+            lives. 🤖🚘
+
+        </p>
+    </footer>
+</div>
+ 
+
+</body>
+</html>
