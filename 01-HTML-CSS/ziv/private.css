@@ -1,0 +1,134 @@
+
+body {
+    background-color:#2c2c2c; /* צבע הרקע של העמוד */
+    color:white; /* צבע הטקסט */
+   /* direction: rtl;  כיוון הטקסט מימין לשמאל */
+   
+}
+
+/* ניסיון לשנות ]ונט באתר
+.david-libre-regular {
+    font-family: "David Libre", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  */
+
+
+h1 {
+            margin: 0 auto; /* מרכז את ה-h1 ברוחב */
+            width: fit-content; /* נתן רוחב מתאים לתוכן */
+        }
+
+  p {
+    margin: 0 auto; /* מרכז את ה-h1 ברוחב */
+            width: fit-content; /* נתן רוחב מתאים לתוכן */
+            margin-bottom: 40px; /* רווח מלמעלה */
+        }
+
+        /* טבלה מהשיעורי בית הקודמים */
+        table {
+          width: 50%;
+          border-collapse: collapse;
+          text-align: center;
+          direction: ltr;
+          float: left;
+        }
+      
+        th, td {
+          border: 3px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+          color: black; /* צבע הכתב בטקסט */
+    background-color: lightgray; /* צבע הרקע */
+        }
+      
+        #wheather-table img {
+          max-width: 50%;
+          height: auto;
+        }
+
+        .link-clicked {
+            color: rgb(0, 0, 0); /* צבע הכתב בטקסט */
+            position: fixed; /* קישור יהיה במקום קבוע */
+            bottom: 0; /* מציין את המרחק מהתחתית של הדף */
+            left: 50%; /* מציין את המרכז של הדף */
+            transform: translateX(-50%); /* מעביר את הקישור למרכז באמצעות הזזתו 50% לשמאל */
+            text-decoration: underline; /*  קו תחתון */
+            background-color: rgb(255, 255, 255);
+            border-radius: 4px;
+            padding: 3px;
+        }
+
+          /* הכיתוב של "בית" */
+          .home-link {
+            position: fixed; /* קישור יהיה במקום קבוע */
+            top: 15px; /* מציין את המרחק מהחלק העליון של העמוד */
+            left: 120px; /* מציין את המרחק מהצד השמאלי של העמוד */
+            color: rgb(0, 0, 0); /* צבע הטקסט */
+            text-decoration: underline; /*  קו תחתון */
+            background-color: white;
+            border-radius: 5px;
+            padding: 4px; /* פריסה פנימית של 4 פיקסלים */
+        
+        }
+
+        /* צור קשר */
+        .contact-link {
+            position: fixed; /* קישור יהיה במקום קבוע */
+            top: 15px; /* מציין את המרחק מהחלק העליון של העמוד */
+            left: 50px; /* מציין את המרחק מהצד השמאלי של העמוד */
+            color: rgb(0, 0, 0); /* צבע הטקסט */
+            text-decoration: underline; /*  קו תחתון */
+            background-color: white;
+            border-radius: 5px;
+            padding: 4px; /* פריסה פנימית של 4 פיקסלים */
+        }
+ 
+        /* לא מצליח לשנות את הצבע של הטקסט ב nav */
+        .-nav-color {
+          color: rgb(0, 0, 0);
+        }
+
+        /* select "" */
+        .select-table {
+            position: fixed; /* קישור יהיה במקום קבוע */
+            top: 15px; /* מציין את המרחק מהחלק העליון של העמוד */
+            right: 120px; /* מציין את המרחק מהצד השמאלי של העמוד */
+            color: rgb(255, 254, 254); /* צבע הטקסט */
+            background-color: rgb(0, 0, 0);
+            border-radius: 5px;
+            padding: 4px; /* פריסה פנימית של 4 פיקסלים */
+            direction: rtl; /* הופך את כיוון הטקסט מימין לשמאל */
+            text-align: right; /* מגדיר את הטקסט להופיע מימין לשמאל */
+        }
+        .ol-routing {
+            list-style-type: none; /* הסרת המספרים */
+            padding: 0;
+        }
+        
+       
+       .iframe-link {
+        float: right; /* מיישר את ה-iframe לימין */
+        margin-left: 10px; /* רווח משמאל בין התוכן ל-iframe */
+       }
+
+       .h4-table {
+        text-align:left; /* ממקם את הטקסט */
+        text-decoration: underline; /* קו מתחת לטקסט */
+        margin-left: 20%; /* מיזוג משמאל */
+       }
+
+
+       .h4-iframe {
+        text-align: right; /* ממקם את הטקסט */
+        text-decoration: underline;/* eu n,j, kyexy */
+        margin-right: 30%;
+       }
+
+       .container {
+            display: flex; /*  הפעלת Flexbox */
+            justify-content: center; /* מיושר את הכותרות למרכז אופקי - לא הבנתי */ 
+        }
+
+
