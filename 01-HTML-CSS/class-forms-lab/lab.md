@@ -7,5 +7,6 @@ All fields are required (search how you do it)
 Except of the form - the page should contain top nav menu with links to other pages on the internet (select what you want)
 2) Yad2 product publish form - contains
 [Bonus] - After filling all the details in Yad2 form & pressing and "submit" button - a summary table is created
+- Add a checkbox input with text "I would like to recieve an updates to my mail about this product"
 - Ability to upload multiple images
 Hint - use the onsubmit attribute on the form: https://www.w3schools.com/jsref/event_onsubmit.asp
