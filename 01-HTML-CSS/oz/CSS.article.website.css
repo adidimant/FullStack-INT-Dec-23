@@ -26,9 +26,9 @@ img {
     position: fixed;
     width: 50%;
     height: 50%;
-    background:rgb(134, 131, 131);
+    background:rgb(246, 246, 246);
     text-align: center;
-    padding: 50% 0px 20px;
+    padding: 20px ;
 }
 #close-popup {
     background-color: black;
