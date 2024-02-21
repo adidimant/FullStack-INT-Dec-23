@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="form.css">
+ <script src="form.js" defer></script>
+ <title>Register</title>
+</head>
+<body>
+  
+ <div class="container">
+ <form action="" id="form">
+ <h1>Add product</h1>
+
+ <div class="input-group">
+ <label for="Name">Product Name</label>
+ <input type="text" id="Name" name="Name">
+ <div class="error"></div>
+ </div>
+
+ <div class="input-group">
+ <label for="Price">Price</label>
+ <input type="text" id="Price" name="Price" >
+ <div class="error"></div>
+ </div>
+
+ <div class="input-group">
+ <label for="description">description</label>
+ <input type="text" id="description" name="description">
+ <div class="error"></div>
+
+ </div>
+
+ <div class="input-group">
+    <label for="Address">Address</label>
+    <input type="text" id="Address" name="Address">
+    <div class="error"></div>
+   
+    </div>
+ 
+ <div class="food" id="Food">
+    <p>Condition:</p>
+      <input checked type="radio" id="new" name="fav" value="new">
+      <label  for="new">new</label><br>
+      <input type="radio" id="like new" name="fav" value="like new">
+      <label for="like new">like new</label><br>
+      <input type="radio" id="used" name="fav" value="used">
+      <label for="used">used</label><br>
+      <input style="margin-left: 10px;" type="radio" id="bad condition" name="fav" value="bad condition">
+      <label for="bad condition">bad condition</label>
+    <div class="error"></div>
+</div>
+<br>
+<label>Upload images: </label><br><br>
+<div class="photos1">
+<input multiple type="file" id="myFile" name="filename">
+</div>
+<br>
+<br>
+<input multiple type="checkbox" id="myFile" name="filename">
+<label>I would like to recieve an updates to my mail about this product</label>
+<br>
+
+
+ <button type="submit">Register</button>
+ </form>
+ </div>
+</body>
+</html>
