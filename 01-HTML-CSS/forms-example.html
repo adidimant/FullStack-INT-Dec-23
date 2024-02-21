@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function buttonClick() {
+      console.log('clicked!');
+    }
+
+  </script>
+  <style>
+    .general-input {
+      display: block;
+      height: 30px;
+      margin-top: 8px;
+      background-color: antiquewhite;
+      border-radius: 2px;
+    }
+    .submit-btn {
+      display: block;
+      margin-top: 8px;
+      background-color: darkblue;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      padding: 4px;
+      border: 1px solid white;
+      border-radius: 3px;
+    }
+    .submit-btn:hover {
+      background-color: rgb(1, 1, 78);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Forms demo website - Voting for class elections</h1>
+
+  <form method="post" action="http://localhost:5858/postFormData" onsubmit="mySubmit()">
+    <input class="general-input" type="text" placeholder="First Name" />
+    <input class="general-input" type="text" placeholder="Last Name" />
+    <input class="general-input" type="text" placeholder="Address" />
+    <span style="display: block; margin-top: 6px;"></span>
+    Select your prefered people:
+    <br />
+    <div>
+      <input type="radio" id="moshe" name="radio-vote" value="moshe" />
+      <label for="moshe">Moshe</label>
+    </div>
+    <div>
+      <input type="radio" id="david" name="radio-vote" value="david" />
+      <label for="david">David</label>
+    </div>
+    <div>
+      <input type="radio" id="yael" name="radio-vote" value="yael" />
+      <label for="yael">Yael</label>
+    </div>
+    <div>
+      <input type="radio" id="ita" name="radio-vote" value="ita">
+      <label for="ita">Ita</label>
+    </div>
+    <br />
+    Select your favorite ride:
+    <br />
+    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+    <label for="vehicle1"> I have a bike</label><br>
+    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+    <label for="vehicle2"> I have a car</label><br>
+    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+    <label for="vehicle3"> I have a boat</label>
+    <input class="submit-btn" type="submit" />
+    <br />
+    <input type="button" onclick="buttonClick()" value="Press Here for nothing!" />
+  </form>
+</body>
+</html>
