@@ -67,7 +67,6 @@ li:hover {
     padding-bottom: 30px;
     font-family: "Roboto Condensed", sans-serif ;
     font-size: 30px;
-
 }
 .divban {
     background-color:rgb(255, 255, 255);
@@ -114,5 +113,9 @@ body {
     border-radius: 10px;
 }
 .bantitle1 {
-    background-color:whitesmoke    
+    background-color: whitesmoke;
+    color: #333;  
+    font-family: "Roboto Condensed", sans-serif ;
+    font-size: 20px;
+    border-radius: 10px;      
 }
