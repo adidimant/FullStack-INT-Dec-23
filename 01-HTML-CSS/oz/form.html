@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS.form.css">
+    <script>
+     window.onload = function () {
+            var btn_div1 = document.getElementById("btn_div1");
+            var btn_div2 = document.getElementById("btn_div2");
+            var div1 = document.getElementById("div1");
+            var div2 = document.getElementById("div2");
+
+            btn_div1.addEventListener('click', function () {
+                div1.style.display = 'block';
+                div2.style.display = 'none';
+            });
+
+            btn_div2.addEventListener('click', function () {
+                div1.style.display = 'none';
+                div2.style.display = 'block';
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Form website</h1>
+    <div>
+    <div class="container-ul">
+    <nav class="menu">
+        <ul>
+            <a class="nav-a" href="https://www.w3schools.com/"><li class="nav-li">w3school</li></a>
+            <a class="nav-a" href="https://www.wikipedia.org/"><li class="nav-li">wikipedia</li></a>
+            <a class="nav-a" href="https://www.youtube.com/"><li class="nav-li">youtube</li></a>
+            <a class="nav-a" href="https://www.google.co.uk/"><li class="nav-li">google</li></a>
+        </ul>
+    </nav>
+    </div>
+    </div>
+    <div class="form">
+        <form action="My form" class="container">     
+            <label for="firstname">First name:</label>
+            <input type="text" id="fstnme">   
+            <label for="lastname">Last name:</label> 
+            <input type="text" id="lstnme"> 
+            <label for="birthdate">birthdate:</label> 
+            <input type="date" id="date"> 
+            <label for="gender">Gender:</label> 
+            <select name="gender" id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select> 
+            <label for="address">Address:</label>
+            <input type="text" id="add">
+            <label for="school">School:</label>
+            <input type="text" id="schl">
+            <label for="food preference">Food preference:</label>
+            <label for="none">
+                <input type="radio" name="food">None
+            </label>
+            <label for="vegeterian">
+                <input type="radio" name="food">Vegeterian
+            </label>
+            <label for="Vegan">
+                <input type="radio" name="food">Vegan
+            </label>
+            <label for="kosher">
+                <input type="radio" name="food">Kosher
+            </label>
+        </form>
+    </div>
+    <div>
+            <h1 class="h1-yad">the product i want to sell</h1>
+            <div class="main-container"> 
+                <div class="btns">
+                    <button id="btn_div1">free search</button>
+                    <button id="btn_div2">choose from a list</button>                              
+                </div>
+                <div class="blocks">
+                    <div class="div1" id="div1">
+                        <input class="divin" type="text" placeholder="the name of the product">
+                    </div>
+                    <div class="div2" id="div2">
+                        <label for="category"></label>
+                        <select class="opt" name="category">
+                            <option value="work tools">work tools</option>
+                            <option value="home deco">home deco</option>
+                            <option value="home products">home products</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>

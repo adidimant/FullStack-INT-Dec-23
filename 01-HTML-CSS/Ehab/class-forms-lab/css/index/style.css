@@ -1,0 +1,81 @@
+.container{
+    height: 97vh;
+    width: 99%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+}
+.container .topnav{
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #333;
+}
+.registration{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.registration h2{
+    text-align: center;
+}
+.registration form{
+    margin: 5px auto;
+    max-width: 250px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.styled-link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+  
+.styled-link:hover {
+    background-color: #ddd;
+    color: black;
+}
+.labelStyle{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+form input[type="text"],
+form input[type="date"],
+form select {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form select {
+    width: 100%;
+}
+
+form input[type="radio"] {
+    margin-right: 5px;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
