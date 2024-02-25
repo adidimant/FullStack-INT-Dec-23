@@ -18,6 +18,8 @@
  }
 .top-button
 {
+    margin-top: 20px;
+    justify-content: flex-end;
     float: right;
 }
 .top-button a
