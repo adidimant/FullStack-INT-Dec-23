@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./scripts/index-script.js" defer></script>
+    <link rel="stylesheet" href="./styles/index-style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="header">
+      <div class="logo"></div>
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a
+              href="./home.html"
+              class="nav-link active"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./rent-form.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Car Rent</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./catalog.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Catalog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./about-us.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >About Us</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <iframe src="./home.html" name="site"></iframe>
+    </main>
+  </body>
+</html>
