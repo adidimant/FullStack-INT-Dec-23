@@ -10,8 +10,10 @@ body {
 }
 
 #header {
-  background: #aaa;
+  position: fixed;
+  background: transparent;
   height: 80px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,13 +90,11 @@ body {
 }
 
 main {
-  height: calc(100vh - 80px);
-  background: red;
+  height: 100vh;
   display: flex;
 }
 
 iframe {
   flex: 1;
   border: none;
-  background: blue;
 }
