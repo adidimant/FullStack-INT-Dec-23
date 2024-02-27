@@ -7,6 +7,58 @@
     <title>Document</title>
   </head>
   <body>
-    this is the car rent form
+    <div class="flex-container">
+      <h1 class="title">Rent a Car</h1>
+      <form class="rent-form">
+        <div class="form-flex-item">
+          <label for="brand">Choose car brand:</label>
+          <div class="brand input-container">
+            <select id="brand" name="brand" required>
+              <option value="" hidden disabled selected>
+                Choose car brand
+              </option>
+              <option value="rolls-royce">BMW</option>
+              <option value="alfa-romeo">Alfa Romemo</option>
+              <option value="aston-martin">Aston Martin</option>
+              <option value="mercedes-benz">Mercedes-Benz</option>
+              <option value="ferrari">Ferrari</option>
+              <option value="prosche">Porsche</option>
+              <option value="bmw">BMW</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-flex-item">
+          <label for="model">Choose car model:</label>
+          <div class="model input-container">
+            <select id="model" name="model" required>
+              <option value="" hidden disabled selected>
+                Choose car model
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-flex-item">
+          <label for="pickup-date">Pick-up date:</label>
+          <div class="date input-container">
+            <input type="date" id="pickup-date" name="pickup-date" required />
+          </div>
+        </div>
+        <div class="form-flex-item">
+          <label for="dropoff-date">Drop-off date:</label>
+          <div class="date input-container">
+            <input type="date" id="dropoff-date" name="dropoff-date" required />
+          </div>
+        </div>
+        <div class="insurance input-container">
+          <input
+            type="checkbox"
+            id="insurance"
+            name="insurance"
+            value="insurance"
+          />
+          <label for="insurance">I wish to add insurance</label>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

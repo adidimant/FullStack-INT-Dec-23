@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  font-feature-settings: "liga" 1;
+}
+
+body {
+  margin: 0;
+  background: black;
+  padding-top: 80px;
+  background-image: url(../images/rent-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 100px 100px black;
+  backdrop-filter: brightness(30%);
+}
+
+.flex-container {
+  height: calc(100vh - 80px);
+  width: 100vw;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  text-align: center;
+  margin: 0;
+  color: #d2bd7f;
+  font-family: "Playfair Display", serif;
+  font-size: 5rem;
+}
+
+.rent-form {
+  height: 350px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-flex-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+label {
+  color: #eee;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  height: 40px;
+  background: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+option {
+  color: #000;
+}
+
+.brand.input-container,
+.model.input-container,
+.date.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  background: #eee;
+  border: 2px solid #aaa;
+  border-radius: 3px;
+}
+
+.brand.input-container:after,
+.model.input-container:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transform: rotate(45deg) translateY(-50%);
+  z-index: 0;
+}
+
+input[type="date"] {
+  appearance: none;
+  height: 40px;
+  background: transparent;
+  color: #000;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.insurance.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+label[for="insurance"] {
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  margin: 0;
+  margin-left: 2px;
+  height: 18px;
+  width: 18px;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -51%) scale(0);
+  color: #aaa;
+  font-weight: 900;
+  font-size: 0.7rem;
+  transition: 0.1s;
+}
+
+input[type="checkbox"]:checked:after {
+  transform: translate(-50%, -51%) scale(1);
+}
