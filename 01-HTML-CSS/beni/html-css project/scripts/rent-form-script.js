@@ -1,9 +1,9 @@
 const rollsRoyceModels = ["Phantom", "Ghost", "Cullinan"];
-const alfaRomeoModels = ["Stelvio", "Giulia", "Tonale"];
+const alfaRomeoModels = ["Stelvio", "Giulia", "4C Spider"];
 const astonMartinModels = ["Valhalla", "Valour", "Vanquish S"];
 const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90 Spider", "812 GTS"];
-const porscheModels = ["911 Carrera", "911 Turbo S", "718 Spyder RS"];
+const porscheModels = ["365 C Coupe", "911 Turbo S", "718 Spyder RS"];
 const bmwModels = ["i8", "X6 M Coupe", "M8 Competition"];
 
 const brandSelectInput = document.getElementById("brand");
