@@ -54,16 +54,24 @@ label {
 }
 
 select {
-  cursor: pointer;
   appearance: none;
   height: 40px;
   background: transparent;
-  color: #000;
+  color: #777;
   border: none;
   outline: none;
   padding: 0 10px;
   font-size: 14px;
   z-index: 1;
+}
+
+select.active {
+  cursor: pointer;
+}
+
+.brand.active select,
+.model.active select {
+  color: #000;
 }
 
 option {
@@ -90,10 +98,15 @@ option {
   right: 18px;
   width: 5px;
   height: 5px;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000;
+  border-right: 2px solid #777;
+  border-bottom: 2px solid #777;
   transform: rotate(45deg) translateY(-50%);
   z-index: 0;
+}
+
+.brand.input-container.active:after,
+.model.input-container.active:after {
+  border-color: #000;
 }
 
 input[type="date"] {
