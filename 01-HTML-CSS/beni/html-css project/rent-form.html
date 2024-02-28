@@ -12,8 +12,9 @@
       <form class="rent-form">
         <div class="form-flex-item">
           <label for="brand">Choose car brand:</label>
-          <div class="brand input-container">
+          <div class="brand input-container active">
             <select
+              class="active"
               id="brand"
               name="brand"
               onchange="showBrandModels()"
@@ -23,7 +24,7 @@
                 Choose car brand
               </option>
               <option value="rolls-royce">Rolls Royce</option>
-              <option value="alfa-romeo">Alfa Romemo</option>
+              <option value="alfa-romeo">Alfa Romeo</option>
               <option value="aston-martin">Aston Martin</option>
               <option value="mercedes-benz">Mercedes-Benz</option>
               <option value="ferrari">Ferrari</option>
@@ -35,7 +36,7 @@
         <div class="form-flex-item">
           <label for="model">Choose car model:</label>
           <div class="model input-container">
-            <select id="model" name="model" required>
+            <select id="model" name="model" disabled required>
               <option value="" hidden disabled selected>
                 Choose car model
               </option>
