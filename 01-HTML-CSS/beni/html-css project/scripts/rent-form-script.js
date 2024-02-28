@@ -55,3 +55,14 @@ function createOptions(model) {
   option.textContent = model;
   modelSelectInput.appendChild(option);
 }
+
+function getCurrentDate() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+document.getElementById("pickup-date").min = getCurrentDate();
+document.getElementById("dropoff-date").min = getCurrentDate();
