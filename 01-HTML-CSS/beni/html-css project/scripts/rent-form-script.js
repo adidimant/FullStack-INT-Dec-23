@@ -15,40 +15,19 @@ function showBrandModels() {
   document.querySelector(".model.input-container").classList.add("active");
   value = brandSelectInput.value;
   if (value == "rolls-royce") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    rollsRoyceModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(rollsRoyceModels);
   } else if (value == "alfa-romeo") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    alfaRomeoModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(alfaRomeoModels);
   } else if (value == "aston-martin") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    astonMartinModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(astonMartinModels);
   } else if (value == "mercedes-benz") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    mercedesModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(mercedesModels);
   } else if (value == "ferrari") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    ferrariModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(ferrariModels);
   } else if (value == "porsche") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    porscheModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(porscheModels);
   } else if (value == "bmw") {
-    modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
-    bmwModels.forEach((model) => {
-      createOptions(model);
-    });
+    addToSelect(bmwModels);
   }
 }
 
@@ -57,6 +36,13 @@ function createOptions(model) {
   option.value = model;
   option.textContent = model;
   modelSelectInput.appendChild(option);
+}
+
+function addToSelect(arr) {
+  modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
+  arr.forEach((model) => {
+    createOptions(model);
+  });
 }
 
 function getCurrentDate() {
