@@ -20,7 +20,7 @@ body {
 .flex-container {
   height: calc(100vh - 80px);
   width: 100vw;
-  padding-top: 30px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,14 +33,15 @@ body {
   color: #d2bd7f;
   font-family: "Playfair Display", serif;
   font-size: 5rem;
+  font-weight: 400;
 }
 
 .rent-form {
-  height: 350px;
   width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
 }
 
 .form-flex-item {
@@ -144,7 +145,7 @@ input[type="checkbox"] {
   height: 18px;
   width: 18px;
   border: 2px solid #aaa;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -153,13 +154,42 @@ input[type="checkbox"]:after {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -51%) scale(0);
-  color: #aaa;
+  text-align: center;
+  height: 18px;
+  width: 18px;
+  color: #333;
+  background-color: #eee;
+  border-radius: 18px;
   font-weight: 900;
   font-size: 0.7rem;
-  transition: 0.1s;
+  transform: translate(-50%, -50%) scale(0);
+  margin: 0;
+  transition: 0.3s;
 }
 
 input[type="checkbox"]:checked:after {
-  transform: translate(-50%, -51%) scale(1);
+  border-radius: 3px;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.submit.input-container {
+  align-self: center;
+}
+
+input[type="submit"] {
+  background: #333;
+  border: none;
+  height: 50px;
+  width: 110px;
+  border-radius: 3px;
+  color: #d2bd7f;
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+input[type="submit"]:hover {
+  background: #444;
 }
