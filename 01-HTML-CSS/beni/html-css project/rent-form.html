@@ -13,7 +13,12 @@
         <div class="form-flex-item">
           <label for="brand">Choose car brand:</label>
           <div class="brand input-container">
-            <select id="brand" name="brand" required>
+            <select
+              id="brand"
+              name="brand"
+              onchange="showBrandModels()"
+              required
+            >
               <option value="" hidden disabled selected>
                 Choose car brand
               </option>
