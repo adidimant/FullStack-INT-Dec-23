@@ -10,7 +10,6 @@ const brandSelectInput = document.getElementById("brand");
 const modelSelectInput = document.getElementById("model");
 
 function showBrandModels() {
-  console.log("changed");
   value = brandSelectInput.value;
   if (value == "rolls-royce") {
     modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
