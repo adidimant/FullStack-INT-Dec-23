@@ -1,6 +1,6 @@
 const rollsRoyceModels = ["Phantom", "Ghost", "Cullinan"];
 const alfaRomeoModels = ["Stelvio", "Giulia", "Tonale"];
-const astonMartinModels = ["Valhalla", "Valour", "DBS Coupe"];
+const astonMartinModels = ["Valhalla", "Valour", "Vanquish S"];
 const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90 Spider", "812 GTS"];
 const porscheModels = ["911 Carrera", "911 Turbo S", "718 Spyder RS"];
