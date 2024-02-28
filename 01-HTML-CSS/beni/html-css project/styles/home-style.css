@@ -123,13 +123,13 @@ body {
 .brand-logo {
   filter: brightness(0) invert(0.6);
   vertical-align: middle;
-  height: 40px;
+  height: 30px;
 }
 
 .ferrari {
-  height: 20px;
+  height: 15px;
 }
 
 .astonmartin {
-  height: 35px;
+  height: 25px;
 }
