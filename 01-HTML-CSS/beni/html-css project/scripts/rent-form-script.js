@@ -3,33 +3,33 @@ const alfaRomeoModels = ["Stelvio", "Giulia", "4C Spider"];
 const astonMartinModels = ["Valhalla", "Valour", "Vanquish S"];
 const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90 Spider", "812 GTS"];
-const porscheModels = ["365 C Coupe", "911 Turbo S", "718 Spyder RS"];
+const porscheModels = ["356 C Coupe", "911 Turbo S", "718 Spyder RS"];
 const bmwModels = ["i8", "X6 M Coupe", "M8 Competition"];
 
 const brandSelectInput = document.getElementById("brand");
 const modelSelectInput = document.getElementById("model");
-
 const pickupInput = document.getElementById("pickup-date");
 const dropoffInput = document.getElementById("dropoff-date");
+const insuranceInput = document.getElementById("insurance");
 
 function showBrandModels() {
   modelSelectInput.classList.add("active");
   modelSelectInput.disabled = false;
   document.querySelector(".model.input-container").classList.add("active");
   value = brandSelectInput.value;
-  if (value == "rolls-royce") {
+  if (value == "Rolls Royce") {
     addToSelect(rollsRoyceModels);
-  } else if (value == "alfa-romeo") {
+  } else if (value == "Alfa Romeo") {
     addToSelect(alfaRomeoModels);
-  } else if (value == "aston-martin") {
+  } else if (value == "Aston Martin") {
     addToSelect(astonMartinModels);
-  } else if (value == "mercedes-benz") {
+  } else if (value == "Mercedes-Benz") {
     addToSelect(mercedesModels);
-  } else if (value == "ferrari") {
+  } else if (value == "Ferrari") {
     addToSelect(ferrariModels);
-  } else if (value == "porsche") {
+  } else if (value == "Porsche") {
     addToSelect(porscheModels);
-  } else if (value == "bmw") {
+  } else if (value == "Bmw") {
     addToSelect(bmwModels);
   }
 }
@@ -58,7 +58,6 @@ function getCurrentDate() {
 
 function limitDropoffDate() {
   dropoffInput.value = pickupInput.value;
-  console.log("ok");
   dropoffInput.min = pickupInput.value;
 }
 
