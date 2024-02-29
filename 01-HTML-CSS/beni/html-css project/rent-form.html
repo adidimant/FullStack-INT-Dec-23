@@ -9,7 +9,12 @@
   <body>
     <div class="flex-container">
       <h1 class="title">Rent a Car</h1>
-      <form class="rent-form">
+      <form
+        class="rent-form"
+        onsubmit="submitForm(event)"
+        method="get"
+        novalidate
+      >
         <div class="form-flex-item">
           <label for="brand">Choose car brand:</label>
           <div class="brand input-container active">
@@ -23,13 +28,12 @@
               <option value="" hidden disabled selected>
                 Choose car brand
               </option>
-              <option value="rolls-royce">Rolls Royce</option>
-              <option value="alfa-romeo">Alfa Romeo</option>
-              <option value="aston-martin">Aston Martin</option>
-              <option value="mercedes-benz">Mercedes-Benz</option>
-              <option value="ferrari">Ferrari</option>
-              <option value="porsche">Porsche</option>
-              <option value="bmw">BMW</option>
+              <option value="Rolls Royce">Rolls Royce</option>
+              <option value="Alfa Romeo">Alfa Romeo</option>
+              <option value="Aston Martin">Aston Martin</option>
+              <option value="Mercedes-Benz">Mercedes-Benz</option>
+              <option value="Ferrari">Ferrari</option>
+              <option value="Bmw">Bmw</option>
             </select>
           </div>
         </div>
