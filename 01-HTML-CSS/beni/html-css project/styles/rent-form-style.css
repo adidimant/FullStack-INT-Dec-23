@@ -8,11 +8,13 @@
 
 body {
   margin: 0;
+  height: 100vh;
   background: black;
   padding-top: 80px;
   background-image: url(../images/rent-bg.jpg);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   box-shadow: inset 0 0 100px 100px black;
   backdrop-filter: brightness(30%);
 }
