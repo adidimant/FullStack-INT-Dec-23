@@ -46,7 +46,13 @@
         <div class="form-flex-item">
           <label for="pickup-date">Pick-up date:</label>
           <div class="date input-container">
-            <input type="date" id="pickup-date" name="pickup-date" required />
+            <input
+              type="date"
+              id="pickup-date"
+              name="pickup-date"
+              onchange="limitDropoffDate()"
+              required
+            />
           </div>
         </div>
         <div class="form-flex-item">
