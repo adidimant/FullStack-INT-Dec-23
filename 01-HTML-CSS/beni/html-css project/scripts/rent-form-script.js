@@ -9,6 +9,9 @@ const bmwModels = ["i8", "X6 M Coupe", "M8 Competition"];
 const brandSelectInput = document.getElementById("brand");
 const modelSelectInput = document.getElementById("model");
 
+const pickupInput = document.getElementById("pickup-date");
+const dropoffInput = document.getElementById("dropoff-date");
+
 function showBrandModels() {
   modelSelectInput.classList.add("active");
   modelSelectInput.disabled = false;
@@ -53,5 +56,11 @@ function getCurrentDate() {
   return `${year}-${month}-${day}`;
 }
 
-document.getElementById("pickup-date").min = getCurrentDate();
-document.getElementById("dropoff-date").min = getCurrentDate();
+function limitDropoffDate() {
+  dropoffInput.value = pickupInput.value;
+  console.log("ok");
+  dropoffInput.min = pickupInput.value;
+}
+
+pickupInput.min = getCurrentDate();
+dropoffInput.min = getCurrentDate();
