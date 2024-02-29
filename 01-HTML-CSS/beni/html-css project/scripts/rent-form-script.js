@@ -3,7 +3,6 @@ const alfaRomeoModels = ["Stelvio", "Giulia", "4C"];
 const astonMartinModels = ["Valhalla", "Valour", "Vanquish S"];
 const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90", "812"];
-const porscheModels = ["356 C", "911", "718"];
 const bmwModels = ["i8", "X6", "M8"];
 
 const brandSelectInput = document.getElementById("brand");
@@ -27,8 +26,6 @@ function showBrandModels() {
     addToSelect(mercedesModels);
   } else if (value == "Ferrari") {
     addToSelect(ferrariModels);
-  } else if (value == "Porsche") {
-    addToSelect(porscheModels);
   } else if (value == "Bmw") {
     addToSelect(bmwModels);
   }
