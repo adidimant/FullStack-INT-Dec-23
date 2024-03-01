@@ -60,3 +60,28 @@ function limitDropoffDate() {
 
 pickupInput.min = getCurrentDate();
 dropoffInput.min = getCurrentDate();
+
+function submitForm(e) {
+  e.preventDefault();
+  showCarDetails();
+}
+
+function showCarDetails() {
+  document.querySelector(".title").style.display = "none";
+  document.querySelector(".rent-form").style.display = "none";
+  document.querySelector(".msg-title").style.display = "block";
+  document.querySelector(".msg-content").style.display = "block";
+  document.querySelector(".brand-detail").textContent = brandSelectInput.value;
+  document.querySelector(".model-detail").textContent = modelSelectInput.value;
+  document.querySelector(".pickup-detail").textContent =
+    "Pickup: " + pickupInput.value;
+  document.querySelector(".dropoff-detail").textContent =
+    "Dropoff: " + dropoffInput.value;
+  if (insuranceInput.checked) {
+    document.querySelector(".insurance-detail").textContent =
+      "Insurance is included.";
+  } else {
+    document.querySelector(".insurance-detail").textContent =
+      "Insurance is not included.";
+  }
+}
