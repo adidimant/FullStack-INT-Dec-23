@@ -78,13 +78,14 @@ function showCarDetails() {
     document.querySelector(".loading-bar").style.display = "none";
     document.querySelector(".msg-title").style.display = "block";
     document.querySelector(".msg-content").style.display = "block";
+    document.querySelector(".car-details-container").style.display = "flex";
   }, 3000);
-  document.querySelector(".brand-detail").textContent = brandSelectInput.value;
-  document.querySelector(".model-detail").textContent = modelSelectInput.value;
-  document.querySelector(".pickup-detail").textContent =
-    "Pickup: " + pickupInput.value;
-  document.querySelector(".dropoff-detail").textContent =
-    "Dropoff: " + dropoffInput.value;
+  document.querySelector(
+    ".name-details"
+  ).textContent = `${brandSelectInput.value} ${modelSelectInput.value}`;
+  document.querySelector(
+    ".date-details"
+  ).textContent = `${pickupInput.value} to ${dropoffInput.value}`;
   if (insuranceInput.checked) {
     document.querySelector(".insurance-detail").textContent =
       "Insurance is included.";
