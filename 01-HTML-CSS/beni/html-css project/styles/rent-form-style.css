@@ -216,29 +216,27 @@ input[type="submit"]:hover {
 }
 
 .car-details-container {
+  width: 600px;
   display: none;
   flex-direction: column;
   gap: 8px;
-  text-align: center;
   color: #eee;
 }
 
 .name-details {
   display: flex;
-  justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
 }
 
 .date-details {
   display: flex;
-  justify-content: center;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 300;
 }
 
 .insurance-detail {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 }
 
