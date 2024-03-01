@@ -11,6 +11,17 @@
   }
 }
 
+@-webkit-keyframes titleReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-7%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+  }
+}
+
 @keyframes textReveal {
   from {
     opacity: 0;
@@ -22,6 +33,17 @@
   }
 }
 
+@-webkit-keyframes textReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(-2%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
 @keyframes brandReveal {
   from {
     opacity: 0;
@@ -30,6 +52,17 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@-webkit-keyframes brandReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
   }
 }
 
@@ -133,6 +166,7 @@ body {
   font-weight: 400;
   margin-bottom: 2%;
   animation: titleReveal 1s;
+  -webkit-animation: titleReveal 1s;
 }
 
 .text {
@@ -142,6 +176,7 @@ body {
   font-size: 1.5rem;
   font-weight: 200;
   animation: textReveal 1s;
+  -webkit-animation: textReveal 1s;
 }
 
 .brand-list {
@@ -160,6 +195,7 @@ body {
   vertical-align: middle;
   height: 30px;
   animation: brandReveal 1s;
+  -webkit-animation: brandReveal 1s;
 }
 
 .ferrari {

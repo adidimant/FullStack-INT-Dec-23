@@ -9,7 +9,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: #000;
+  background: radial-gradient(circle at center bottom, #1b1b1b, #000);
   padding-top: 80px;
 }
 
@@ -45,6 +45,16 @@ body {
   overflow-y: scroll;
 }
 
+h1.title {
+  text-align: center;
+  width: 100%;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 5rem;
+  color: #d2bd7f;
+  margin: 0 0 20px 0;
+}
+
 .car-container {
   filter: brightness(70%);
   text-decoration: none;
@@ -53,7 +63,7 @@ body {
   min-width: 350px;
   max-width: 400px;
   border-radius: 16px;
-  background: #222;
+  background: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,4 +117,5 @@ body {
 .price .number {
   font-size: 24px;
   font-weight: 600;
+  color: #d2bd7f;
 }
