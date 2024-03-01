@@ -12,22 +12,24 @@ const dropoffInput = document.getElementById("dropoff-date");
 const insuranceInput = document.getElementById("insurance");
 
 function showBrandModels() {
-  modelSelectInput.classList.add("active");
-  modelSelectInput.disabled = false;
-  document.querySelector(".model.input-container").classList.add("active");
   value = brandSelectInput.value;
-  if (value == "Rolls Royce") {
-    addToSelect(rollsRoyceModels);
-  } else if (value == "Alfa Romeo") {
-    addToSelect(alfaRomeoModels);
-  } else if (value == "Aston Martin") {
-    addToSelect(astonMartinModels);
-  } else if (value == "Mercedes-Benz") {
-    addToSelect(mercedesModels);
-  } else if (value == "Ferrari") {
-    addToSelect(ferrariModels);
-  } else if (value == "Bmw") {
-    addToSelect(bmwModels);
+  if (value !== "") {
+    modelSelectInput.classList.add("active");
+    modelSelectInput.disabled = false;
+    document.querySelector(".model.input-container").classList.add("active");
+    if (value == "Rolls Royce") {
+      addToSelect(rollsRoyceModels);
+    } else if (value == "Alfa Romeo") {
+      addToSelect(alfaRomeoModels);
+    } else if (value == "Aston Martin") {
+      addToSelect(astonMartinModels);
+    } else if (value == "Mercedes-Benz") {
+      addToSelect(mercedesModels);
+    } else if (value == "Ferrari") {
+      addToSelect(ferrariModels);
+    } else if (value == "Bmw") {
+      addToSelect(bmwModels);
+    }
   }
 }
 
@@ -85,3 +87,5 @@ function showCarDetails() {
       "Insurance is not included.";
   }
 }
+
+setTimeout(showBrandModels, 100);
