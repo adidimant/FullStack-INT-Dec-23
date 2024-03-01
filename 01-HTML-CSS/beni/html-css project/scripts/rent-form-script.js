@@ -74,6 +74,8 @@ function showCarDetails() {
   document.querySelector(".loading-bar").style.display = "block";
   document.querySelector(".loading-index").style.animation =
     "loading 3s forwards";
+  document.querySelector(".loading-index").style.webkitAnimation =
+    "loading 3s forwards";
   setTimeout(function () {
     document.querySelector(".loading-bar").style.display = "none";
     document.querySelector(".msg-title").style.display = "block";
