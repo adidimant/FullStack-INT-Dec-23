@@ -87,11 +87,10 @@ function showCarDetails() {
     ".date-details"
   ).textContent = `${pickupInput.value} to ${dropoffInput.value}`;
   if (insuranceInput.checked) {
-    document.querySelector(".insurance-detail").textContent =
-      "Insurance is included.";
+    document.querySelector(".insurance-detail").textContent = "With insurance.";
   } else {
     document.querySelector(".insurance-detail").textContent =
-      "Insurance is not included.";
+      "With no insurance.";
   }
 }
 
