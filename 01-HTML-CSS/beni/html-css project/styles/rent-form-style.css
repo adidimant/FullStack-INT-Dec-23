@@ -243,10 +243,10 @@ input[type="submit"]:hover {
 .loading-bar {
   display: none;
   position: relative;
-  height: 15px;
+  height: 5px;
   width: 200px;
-  border-radius: 15px;
-  background: #777;
+  border-radius: 2px;
+  background: #5a5a5a;
 }
 
 .loading-index {
@@ -254,9 +254,9 @@ input[type="submit"]:hover {
   top: 0;
   left: 0;
   width: 0%;
-  height: 15px;
-  background: #eee;
-  border-radius: 15px;
+  height: 5px;
+  background: #b1b1b1;
+  border-radius: 2px;
 }
 
 @keyframes loading {
