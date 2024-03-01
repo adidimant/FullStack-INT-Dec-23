@@ -71,8 +71,14 @@ function submitForm(e) {
 function showCarDetails() {
   document.querySelector(".title").style.display = "none";
   document.querySelector(".rent-form").style.display = "none";
-  document.querySelector(".msg-title").style.display = "block";
-  document.querySelector(".msg-content").style.display = "block";
+  document.querySelector(".loading-bar").style.display = "block";
+  document.querySelector(".loading-index").style.animation =
+    "loading 3s forwards";
+  setTimeout(function () {
+    document.querySelector(".loading-bar").style.display = "none";
+    document.querySelector(".msg-title").style.display = "block";
+    document.querySelector(".msg-content").style.display = "block";
+  }, 3000);
   document.querySelector(".brand-detail").textContent = brandSelectInput.value;
   document.querySelector(".model-detail").textContent = modelSelectInput.value;
   document.querySelector(".pickup-detail").textContent =
