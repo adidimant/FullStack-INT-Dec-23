@@ -39,8 +39,8 @@ body {
 }
 
 .rent-form {
-  width: 300px;
   display: flex;
+  width: 300px;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
@@ -221,4 +221,39 @@ input[type="submit"]:hover {
 .insurance-detail {
   color: #d2bd7f;
   font-weight: 500;
+}
+
+.loading-bar {
+  display: none;
+  position: relative;
+  margin-top: 200px;
+  height: 15px;
+  width: 200px;
+  border-radius: 15px;
+  background: #777;
+}
+
+.loading-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 15px;
+  background: #eee;
+  border-radius: 15px;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  10% {
+    width: 20%;
+  }
+  50% {
+    width: 80%;
+  }
+  100% {
+    width: 100%;
+  }
 }
