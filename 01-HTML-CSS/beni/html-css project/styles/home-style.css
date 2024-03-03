@@ -165,8 +165,8 @@ body {
   font-size: 5rem;
   font-weight: 400;
   margin-bottom: 2%;
-  animation: titleReveal 1s;
-  -webkit-animation: titleReveal 1s;
+  animation: titleReveal 2s ease-out;
+  -webkit-animation: titleReveal 2s ease-out;
 }
 
 .text {
@@ -175,8 +175,8 @@ body {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 200;
-  animation: textReveal 1s;
-  -webkit-animation: textReveal 1s;
+  animation: textReveal 2s ease-out;
+  -webkit-animation: textReveal 2s ease-out;
 }
 
 .brand-list {
@@ -194,8 +194,8 @@ body {
   filter: brightness(0) invert(0.8);
   vertical-align: middle;
   height: 30px;
-  animation: brandReveal 1s;
-  -webkit-animation: brandReveal 1s;
+  animation: brandReveal 2s ease-out;
+  -webkit-animation: brandReveal 2s ease-out;
 }
 
 .ferrari {
