@@ -7,12 +7,7 @@ function toggleNavItem(item) {
     link.classList.remove("active");
   });
   item.classList.add("active");
-  if (item.textContent == "Home") {
-    console.log("home");
-  } else if (item.textContent == "Rent") {
-    console.log("rent");
-  } else if (item.textContent == "Catalog") {
-    console.log("catalog");
+  if (item.textContent == "Catalog") {
     iframe.onload = function () {
       const cars = iframe.contentDocument.querySelectorAll(".car-container");
       cars.forEach((car) => {
@@ -34,7 +29,5 @@ function toggleNavItem(item) {
         };
       });
     };
-  } else if (item.textContent == "About Us") {
-    console.log("aboutus");
   }
 }
