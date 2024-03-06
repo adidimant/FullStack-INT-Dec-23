@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .calculator {
+    text-align: center;
+  }
+  input, select, button {
+    margin: 10px;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="calculator">
+  <input type="number" id="firstNumber" placeholder="First number">
+  <input type="number" id="secondNumber" placeholder="Second number">
+  <select id="operation">
+    <option value="add">+</option>
+    <option value="subtract">-</option>
+    <option value="multiply">*</option>
+    <option value="power">**</option>
+    <option value="divide">:</option>
+  </select>
+  <button onclick="calculate()">Calculate</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  function calculate() {
+    var firstNum = parseFloat(document.getElementById('firstNumber').value);
+    var secondNum = parseFloat(document.getElementById('secondNumber').value);
+    var operation = document.getElementById('operation').value;
+    var result;
+
+    switch(operation) {
+      case 'add':
+        result = firstNum + secondNum;
+        break;
+      case 'subtract':
+        result = firstNum - secondNum;
+        break;
+      case 'multiply':
+        result = firstNum * secondNum;
+        break;
+      case 'power':
+        result = Math.pow(firstNum, secondNum);
+        break;
+      case 'divide':
+        if(secondNum === 0) {
+          alert('Cannot divide by zero.');
+          return;
+        }
+        result = firstNum / secondNum;
+        break;
+    }
+
+    document.getElementById('result').innerHTML = `Result: ${result}`;
+  }
+</script>
+</body>
+</html>
