@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="./scripts/index-script.js" defer></script>
     <link rel="stylesheet" href="./styles/index-style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aristeiā</title>
@@ -9,12 +8,18 @@
   </head>
   <body>
     <header id="header">
-      <div class="logo">ARISTEIA</div>
+      <a
+        class="logo"
+        href="./pages/home.html"
+        target="site"
+        onclick="toggleNavItem(this)"
+        >ARISTEIA</a
+      >
       <nav class="navbar">
         <ul class="nav-list">
           <li class="nav-item">
             <a
-              href="./home.html"
+              href="./pages/home.html"
               class="nav-link active"
               target="site"
               onclick="toggleNavItem(this)"
@@ -23,7 +28,7 @@
           </li>
           <li class="nav-item">
             <a
-              href="./rent-form.html"
+              href="./pages/rent-form.html"
               class="nav-link"
               target="site"
               onclick="toggleNavItem(this)"
@@ -32,7 +37,7 @@
           </li>
           <li class="nav-item">
             <a
-              href="./catalog.html"
+              href="./pages/catalog.html"
               class="nav-link"
               target="site"
               onclick="toggleNavItem(this)"
@@ -41,7 +46,7 @@
           </li>
           <li class="nav-item">
             <a
-              href="./about-us.html"
+              href="./pages/about-us.html"
               class="nav-link"
               target="site"
               onclick="toggleNavItem(this)"
@@ -52,7 +57,8 @@
       </nav>
     </header>
     <main>
-      <iframe src="./home.html" name="site"></iframe>
+      <iframe src="./pages/home.html" name="site"></iframe>
     </main>
   </body>
+  <script src="./scripts/index-script.js"></script>
 </html>

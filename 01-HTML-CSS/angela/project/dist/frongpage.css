@@ -1,0 +1,240 @@
+body {
+  overflow-x: hidden;
+}
+
+#preloader {
+  background: black url(../imgs/loading.gif) no-repeat center center;
+  background-size: 10%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+}
+
+.navBar {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  height: 5rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.navBar i {
+  font-size: x-large;
+}
+.navBar .navBar-logo {
+  height: 5rem;
+}
+.navBar .navBar-logo img {
+  height: 100%;
+}
+.navBar .navBar-items:hover {
+  color: green;
+}
+
+.title {
+  width: 30%;
+  margin: 0 auto;
+}
+.title h1 {
+  text-align: center;
+  font-style: italic;
+}
+
+.container {
+  padding: 1rem;
+}
+.container .conSlider {
+  position: relative;
+  max-width: 70%;
+  margin: 0 auto;
+}
+.container .slider {
+  display: flex;
+  aspect-ratio: 16/9;
+  overflow-x: auto;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1rem 2rem -0.75rem #000d33;
+  border-radius: 1rem;
+}
+.container .slider img {
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+.container .sliderNav {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.container .sliderNav a {
+  width: 1rem;
+  position: relative;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #f7ecde;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+  cursor: pointer;
+}
+.container .sliderNav a:hover {
+  opacity: 1;
+}
+
+.info-container {
+  width: 85%;
+  height: fit-content;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-around;
+}
+.info-container .info-container-left {
+  height: fit-content;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+.info-container .info-container-left h4 {
+  text-align: center;
+}
+.info-container .info-container-item {
+  background-color: #c1f3b5;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  transform: translateY(-50px);
+  opacity: 0;
+}
+.info-container .slide-in {
+  animation-name: slide-in-animation;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes slide-in-animation {
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.info-container #outed {
+  position: relative;
+  left: 2rem;
+}
+.info-container .info-container-right {
+  height: fit-content;
+  width: 40%;
+}
+.info-container .info-container-right h4 {
+  text-align: center;
+}
+.info-container .info-container-right-img {
+  height: 20rem;
+  width: 100%;
+}
+.info-container .info-container-right-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.footer {
+  width: 80%;
+  height: fit-content;
+  background-color: #c8c1b8;
+  margin: auto;
+  border-radius: 10rem 10rem 0 0;
+  padding-bottom: 1rem;
+}
+.footer h2 {
+  text-align: center;
+}
+.footer .footer-brands {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 2rem;
+}
+.footer .footer-brands img {
+  border-radius: 50%;
+  height: 7rem;
+}
+.footer .footer-end {
+  height: fit-content;
+  padding-bottom: 2rem;
+  margin: auto;
+}
+.footer .footer-end-socials {
+  width: 30%;
+  height: 20%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.footer .footer-end-socials i {
+  font-size: 3rem;
+  cursor: pointer;
+}
+.footer #facebook:hover {
+  color: blue;
+  transition: ease 1s;
+}
+.footer #insta:hover {
+  color: #b325d6;
+  transition: ease 1s;
+}
+.footer #whatsapp:hover {
+  color: #04641e;
+  transition: ease 1s;
+}
+.footer #message {
+  display: none;
+  color: #ea150d;
+  font-size: 1.2em;
+  margin-top: 0.2rem;
+  position: relative;
+  left: 35%;
+  top: 2rem;
+}
+.footer .container-form {
+  font-family: "Nothing You Could Do", cursive;
+  font-weight: 600;
+  font-style: normal;
+  transform: translateY(2rem);
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  padding: 2rem 0 2rem 0;
+  width: 20%;
+  border: 2px solid #b9935b;
+  margin: auto;
+  font-size: 1.3em;
+  border-radius: 25px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4ssRk978TijeoocprWKyTvBE7sBT44hehpYbYfLzob5079SHrzwpwAhFSG25SGDE8eeE&usqp=CAU");
+}
+.footer .container-form label {
+  display: block;
+  align-items: center;
+}
+.footer .container-form span {
+  color: red;
+}
+.footer .container-form button {
+  display: block;
+  position: relative;
+  left: 3rem;
+  top: 1rem;
+}
