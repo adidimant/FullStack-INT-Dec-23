@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טופס צור קשר</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h2>צור קשר</h2>
+        <form class="contact-form" action="submit_form.php" method="POST">
+            <label for="name">שם מלא:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">דוא"ל:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">מספר טלפון:</label>
+            <input type="tel" id="phone" name="phone">
+            
+            <label for="message">הודעה:</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+            
+            <button type="submit">שלח</button>
+        </form>
+    </main>
+</body>
+</html>

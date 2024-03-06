@@ -1,30 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 body{
-    background: rgba(53, 53, 53, 0.589);
     margin:0;
-    font-family: 'Poppins', sans-serif; 
+    font-family: montserrat, arial, verdana;
+
 }
-.menu{
-    align-items: center;
-    background: #272727e7;
-    width: 100%;
-    height: 13%;
-    top:0;
-    left: 0;
-    position: fixed;
-    justify-content: center;
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-}
+html {
+    height: 100%;
+    /*Image only BG fallback*/
+    
+    /*background = gradient + image pattern combo*/
+    background: 
+      linear-gradient( #ffe53b80,#00ffff);
+  }
+  
+
 #form{
-    width:400px;
-    margin: 0 auto;
-    margin-top: 150px;
-    margin-bottom: 50px;
-    background-color: whitesmoke;
+    box-shadow: 1px 1px 5px rgb(116, 116, 116);
+
+    background-color: white;
     border-radius: 5px;
-    padding:30px;
-    border: 1px solid black;
+    padding:10px 30px 30px 30px;
+    border:1px solid rgb(34,193,195) ;
 }
 a{
     text-decoration: none;
@@ -38,6 +34,7 @@ a{
 h1{
     text-align: center;
     color:#2b2979;
+    font-weight: 900;
 }
 
 #form button{
@@ -53,6 +50,7 @@ h1{
 }
 
 .input-group{
+    width: 90%;
     display:flex;
     flex-direction: column;
     margin-bottom: 15px;
@@ -107,3 +105,51 @@ h1{
 .input-group.error input{
     border-color:rgb(206, 67, 67);
 }
+.photos 
+{
+cursor: pointer;
+width: 200px;
+height: 150px;
+
+display: flex;
+}
+.output{
+    width:400px;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding:30px;
+    border:1px solid rgb(34,193,195) ;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    justify-content: center;
+}
+.food{
+    margin-bottom: 20px;
+   
+}
+input[type="file"]::file-selector-button {
+    border: 2px solid #000000;
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+  }
+  input[type="file"]::file-selector-button:hover {
+  
+    background-color: #dadada;
+  }
+  input[type="file"]{
+    font-size: 14px;
+      }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    let lambOffSrc = "https://www.w3schools.com/js/pic_bulboff.gif";
+    let lambOnSrc = "https://www.w3schools.com/js/pic_bulbon.gif";
+  </script>
+  <style>
+    .container {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Lambs example</h2>
+
+<div class="container">
+  <button class="center-item" onclick="turnOn()">Turn On Lamb</button>
+  <img id="lamb" src="https://www.w3schools.com/js/pic_bulboff.gif" />
+  <button class="center-item" onclick="turnOff()">Turn Off Lamb</button>
+</div>
+
+<script>
+  function turnOn() {
+    document.getElementById('lamb').src = lambOnSrc;
+  }
+
+  function turnOff() {
+    document.getElementById('lamb').src = lambOffSrc;
+  }
+
+  function multiply(param1, param2) {
+    return param1 * param2;
+  }
+
+  let b = multiply(5,6); // b = 30
+
+</script>
+
+</body>
+</html>
