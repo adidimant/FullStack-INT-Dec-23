@@ -8,22 +8,25 @@
 
 body {
   margin: 0;
+  height: 100vh;
   background: black;
   padding-top: 80px;
   background-image: url(../images/rent-bg.jpg);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   box-shadow: inset 0 0 100px 100px black;
-  backdrop-filter: brightness(30%);
+  backdrop-filter: brightness(20%);
+  -webkit-backdrop-filter: brightness(20%);
 }
 
 .flex-container {
   height: calc(100vh - 80px);
   width: 100vw;
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -37,8 +40,8 @@ body {
 }
 
 .rent-form {
-  width: 300px;
   display: flex;
+  width: 300px;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
@@ -192,4 +195,97 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background: #444;
+}
+
+.msg-title {
+  display: none;
+  width: 600px;
+  color: #d2bd7f;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 42px;
+}
+
+.msg-content {
+  display: none;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  color: #eee;
+  width: 600px;
+}
+
+.car-details-container {
+  width: 600px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  color: #eee;
+}
+
+.name-details {
+  display: flex;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.date-details {
+  display: flex;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.insurance-detail {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.loading-bar {
+  display: none;
+  position: relative;
+  height: 5px;
+  width: 200px;
+  border-radius: 2px;
+  background: #5a5a5a;
+}
+
+.loading-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: #b1b1b1;
+  border-radius: 2px;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  10% {
+    width: 20%;
+  }
+  50% {
+    width: 80%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes loading {
+  0% {
+    width: 0%;
+  }
+  10% {
+    width: 20%;
+  }
+  50% {
+    width: 80%;
+  }
+  100% {
+    width: 100%;
+  }
 }
