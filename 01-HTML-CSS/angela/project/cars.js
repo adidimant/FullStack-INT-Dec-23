@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var windowHeight = window.innerHeight;
 
     function checkPosition() {
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
-            var positionFromTop = element.getBoundingClientRect().top;
+        for (let i = 0; i < elements.length; i++) {
+            let element = elements[i];
+            let positionFromTop = element.getBoundingClientRect().top;
 
             if (positionFromTop - windowHeight <= 0 && !element.classList.contains('slide-in')) {
                 element.classList.add('slide-in');

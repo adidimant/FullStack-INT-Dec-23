@@ -3,6 +3,12 @@ $primary-color:#c8c1b8;
 body{
     overflow-x: hidden;
  }
+ iframe{
+   width: 100%;
+   overflow: hidden;
+   height: 6rem;
+   overflow: hidden;
+ }
  #preloader{
      background: rgb(0, 0, 0) url(../imgs/loading.gif) no-repeat center center;
      background-size: 10%;
@@ -22,9 +28,11 @@ body{
      display: flex;
      justify-content: space-evenly;
      align-items: center;
+     font-size: 1.2em;
  
      i{
          font-size: x-large;
+         cursor: pointer;
      }
      .navBar-logo{
         height: 5rem;
@@ -33,9 +41,12 @@ body{
         }
     
      }
-     .navBar-items:hover{
-        color: green;
-    
+     a{
+      text-decoration: none;
+      color: black;
+     }
+     a:hover{
+      color: rgb(41, 78, 41);
      }
  }
  .title{
@@ -46,7 +57,6 @@ body{
         font-style: italic;
      }
  }
-
 .container{
      padding: 1rem;
 
@@ -185,7 +195,6 @@ body{
          margin: auto;
         
      }
-     
      .footer-end-socials{
         width: 30%;
         height: 20%;
@@ -234,7 +243,7 @@ body{
         margin: auto;
         font-size: 1.3em;
         border-radius: 25px;
-        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4ssRk978TijeoocprWKyTvBE7sBT44hehpYbYfLzob5079SHrzwpwAhFSG25SGDE8eeE&usqp=CAU") ;
+        background-color: #c3ae9283;
         
         label{
            display: block;
