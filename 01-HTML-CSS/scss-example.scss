@@ -1,0 +1,18 @@
+$primary-color: #ff6e6e;
+$secondary-color: #7e85e4;
+
+.mainContainer {
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: antiquewhite;
+  text-align: center;
+  border-color: 1px solid #ac0000;
+
+  .headerContainer {
+    font-weight: bold;
+    background-color: $primary-color;
+  }
+  .headerContainer:hover {
+    background-color: $secondary-color;
+  }
+}
