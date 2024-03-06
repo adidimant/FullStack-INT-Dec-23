@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בצע הזמנה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h2>בצע הזמנה</h2>
+        <form class="order-form" action="process_order.php" method="POST">
+            <label for="car-type">סוג הרכב:</label>
+            <select id="car-type" name="car_type" required>
+                <option value="">בחר סוג רכב...</option>
+                <option value="sedan">סדאן</option>
+                <option value="suv">SUV</option>
+                <option value="minivan">מיניוואן</option>
+                <option value="luxury">רכב יוקרה</option>
+            </select>
+
+            <label for="pickup-date">תאריך איסוף:</label>
+            <input type="date" id="pickup-date" name="pickup_date" required>
+            
+            <label for="return-date">תאריך החזרה:</label>
+            <input type="date" id="return-date" name="return_date" required>
+            
+            <label for="full-name">שם מלא:</label>
+            <input type="text" id="full-name" name="full_name" required>
+            
+            <label for="email">דוא"ל:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">מספר טלפון:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <button type="submit">שלח הזמנה</button>
+        </form>
+    </main>
+</body>
+</html>

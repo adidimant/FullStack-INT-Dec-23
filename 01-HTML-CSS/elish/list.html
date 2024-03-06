@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .task-list {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            list-style-type: none; /* הסתרת תבליטים של הרשימה */
+            padding: 0;
+        }
+
+        .task-list-header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .task-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item input {
+            margin-right: 10px;
+        }
+
+        .add-task {
+            padding: 10px;
+            text-align: center;
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .completed {
+            text-decoration: line-through; /* הוספת קו על טקסט */
+            color: #888; /* שינוי צבע טקסט לאפור כהה */
+        }
+
+        .footer-button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+<script>
+    function markCompleted(index) {
+        var taskList = document.getElementById('taskList');
+        var taskItem = taskList.getElementsByTagName('li')[index];
+
+        // הוספת קלאס לתיאור משימה שהושלמה
+        taskItem.classList.toggle('completed');
+    }
+
+    function addTask() {
+        var taskList = document.getElementById('taskList');
+        var taskText = prompt('הזן משימה חדשה:');
+        
+        if (taskText) {
+            var newTask = document.createElement('li');
+            newTask.className = 'task-item';
+
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.onchange = function() {
+                markCompleted(taskList.children.length - 1);
+            };
+
+            var taskTextNode = document.createElement('span');
+            taskTextNode.textContent = taskText;
+
+            newTask.appendChild(checkbox);
+            newTask.appendChild(taskTextNode);
+            taskList.appendChild(newTask);
+        }
+    }
+
+</script>
+
+</head>
+<body>
+    <ul class="task-list" id="taskList">
+        <li class="task-list-header">
+            <h2>My tasks for this week</h2>
+        </li>
+        <li class="task-item">
+            <input type="checkbox" onchange="markCompleted(1)">
+            order hair shampoo
+        </li>
+        <li class="task-item">
+            <input type="checkbox" onchange="markCompleted(2)">
+            Finish a report at work
+        </li>
+        <li class="task-item">
+            <input type="checkbox" onchange="markCompleted(3)">
+            to pack a suitcase
+        </li>
+        <li class="task-item">
+            <input type="checkbox" onchange="markCompleted(4)">
+            buy pants
+        </li>
+    </ul>
+
+    <button class="footer-button" onclick="addTask()">Add task +</button>
+
+</body>
+</html>

@@ -11,6 +11,8 @@ the website should contain:
 4) "About Us" page
 5) Top/Left navigation menu between the different pages
 
+[Additional bonus] - the frame with the logo & menu isn't appearing in every page.
+
 Additional Requirements:
 - Separate css files
 - Varient CSS attributes
