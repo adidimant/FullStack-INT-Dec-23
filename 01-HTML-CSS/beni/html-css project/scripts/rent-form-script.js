@@ -4,6 +4,29 @@ const astonMartinModels = ["Valhalla", "Valour", "Vanquish S"];
 const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90", "812"];
 const bmwModels = ["i8", "X6", "M8"];
+const bicycle = ["Pink"];
+
+const modelPrices = {
+  Phantom: "2,500$",
+  Ghost: "2,000$",
+  Cullinan: "2,200$",
+  Stelvio: "250$",
+  Giulia: "300$",
+  "4C": "400$",
+  Valhalla: "2,700$",
+  Valour: "2,400$",
+  "Vanquish S": "2500$",
+  Maybach: "1,900$",
+  "C-Class": "180$",
+  "G-Class": "320$",
+  LaFerrari: "8,000$",
+  SF90: "5,550$",
+  812: "4,500$",
+  i8: "500$",
+  X6: "230$",
+  M8: "700$",
+  Pink: "9,999,999$",
+};
 
 const brandSelectInput = document.getElementById("brand");
 const modelSelectInput = document.getElementById("model");
@@ -27,8 +50,10 @@ function showBrandModels() {
       addToSelect(mercedesModels);
     } else if (value == "Ferrari") {
       addToSelect(ferrariModels);
-    } else if (value == "Bmw") {
+    } else if (value == "BMW") {
       addToSelect(bmwModels);
+    } else if (value == "Bicycle") {
+      addToSelect(bicycle);
     }
   }
 }
@@ -42,9 +67,22 @@ function createOptions(model) {
 
 function addToSelect(arr) {
   modelSelectInput.innerHTML = `<option value="" hidden="" disabled="" selected="">Choose car model</option>`;
+  updatePrice();
   arr.forEach((model) => {
     createOptions(model);
   });
+}
+
+function updatePrice() {
+  const selectedModel = modelSelectInput.value;
+  if (selectedModel !== "") {
+    document.querySelector(".price-text").textContent = "Day / ";
+    document.querySelector(".price-num").textContent =
+      modelPrices[selectedModel];
+  } else {
+    document.querySelector(".price-text").textContent = "";
+    document.querySelector(".price-num").textContent = "";
+  }
 }
 
 function getCurrentDate() {
@@ -88,6 +126,9 @@ function showCarDetails() {
   document.querySelector(
     ".date-details"
   ).textContent = `${pickupInput.value} to ${dropoffInput.value}`;
+  document.querySelector(".price-details").textContent = `${
+    modelPrices[modelSelectInput.value]
+  } / day`;
   if (insuranceInput.checked) {
     document.querySelector(".insurance-detail").textContent = "With insurance.";
   } else {
@@ -97,3 +138,4 @@ function showCarDetails() {
 }
 
 setTimeout(showBrandModels, 100);
+setTimeout(updatePrice, 300);

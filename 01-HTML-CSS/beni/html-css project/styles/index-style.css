@@ -9,6 +9,7 @@
 body {
   margin: 0;
   height: 100vh;
+  background: #000;
 }
 
 #header {
@@ -23,13 +24,11 @@ body {
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  text-decoration: none;
   color: #fff;
   font-size: 30px;
   font-family: "Playfair Display", serif;
-  position: relative;
 }
 
 .logo:after {

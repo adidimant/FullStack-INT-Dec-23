@@ -23,12 +23,12 @@ body
   padding: 25px 30px;
   border-radius: 12px;
 }
+
 .container1 .title
 {
   font-size: 25px;
   font-weight: 500;
 }
-
 
 .user-details
 {
@@ -72,4 +72,3 @@ body
   width: 320px;
   border-radius: 30px;  
 }
-
