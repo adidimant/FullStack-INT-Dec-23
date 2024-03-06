@@ -1,71 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
-@keyframes titleReveal {
-  from {
-    opacity: 0;
-    transform: translateY(-7%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-@-webkit-keyframes titleReveal {
-  from {
-    opacity: 0;
-    -webkit-transform: translateY(-7%);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translateY(0%);
-  }
-}
-
-@keyframes textReveal {
-  from {
-    opacity: 0;
-    transform: translateX(-2%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@-webkit-keyframes textReveal {
-  from {
-    opacity: 0;
-    -webkit-transform: translateX(-2%);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-}
-
-@keyframes brandReveal {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@-webkit-keyframes brandReveal {
-  from {
-    opacity: 0;
-    -webkit-transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-}
-
 * {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
@@ -165,8 +99,8 @@ body {
   font-size: 5rem;
   font-weight: 400;
   margin-bottom: 2%;
-  animation: titleReveal 1s;
-  -webkit-animation: titleReveal 1s;
+  animation: titleReveal 2s ease-out;
+  -webkit-animation: titleReveal 2s ease-out;
 }
 
 .text {
@@ -175,8 +109,8 @@ body {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 200;
-  animation: textReveal 1s;
-  -webkit-animation: textReveal 1s;
+  animation: textReveal 2s ease-out;
+  -webkit-animation: textReveal 2s ease-out;
 }
 
 .brand-list {
@@ -194,8 +128,8 @@ body {
   filter: brightness(0) invert(0.8);
   vertical-align: middle;
   height: 30px;
-  animation: brandReveal 1s;
-  -webkit-animation: brandReveal 1s;
+  animation: brandReveal 2s ease-out;
+  -webkit-animation: brandReveal 2s ease-out;
 }
 
 .ferrari {
@@ -204,4 +138,70 @@ body {
 
 .astonmartin {
   height: 25px;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-7%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes titleReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-7%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-2%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes textReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(-2%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes brandReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes brandReveal {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
 }
