@@ -9,48 +9,73 @@
 body {
   margin: 0;
   height: 100vh;
-  background: black;
-  padding-top: 80px;
-  background-image: url(../images/rent-bg.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: inset 0 0 100px 100px black;
-  backdrop-filter: brightness(20%);
-  -webkit-backdrop-filter: brightness(20%);
+  background: radial-gradient(circle at center bottom, #1b1b1b, #000);
 }
 
-.flex-container {
+.container {
+  position: fixed;
+  top: 80px;
+  left: 0;
   height: calc(100vh - 80px);
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  overflow: hidden;
+  padding-top: 5%;
 }
 
 .title {
-  text-align: center;
-  margin: 0;
-  color: #d2bd7f;
   font-family: "Playfair Display", serif;
-  font-size: 5rem;
   font-weight: 400;
+  font-size: 2.8rem;
+  color: #d2bd7f;
+  margin: 0 0 20px 0;
+  animation: downwards 1s ease-out;
+  -webkit-animation: downwards 1s ease-out;
 }
 
 .rent-form {
   display: flex;
-  width: 300px;
   flex-direction: column;
-  justify-content: center;
   gap: 20px;
 }
 
-.form-flex-item {
+.form-top {
+  display: flex;
+  gap: 30px;
+}
+
+.form-item {
+  opacity: 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
+  width: 200px;
+  animation: ltr 0.5s ease-out forwards;
+  -webkit-animation: ltr 0.5s ease-out forwards;
+}
+
+.form-item:nth-child(2) {
+  animation-delay: 0.1s;
+  -webkit-animation-delay: 0.1s;
+}
+
+.form-item:nth-child(3) {
+  animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
+}
+
+.form-item:nth-child(4) {
+  animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+}
+
+.form-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 label {
@@ -59,6 +84,7 @@ label {
 
 select {
   appearance: none;
+  -webkit-appearance: none;
   height: 40px;
   background: transparent;
   color: #777;
@@ -105,6 +131,7 @@ option {
   border-right: 2px solid #777;
   border-bottom: 2px solid #777;
   transform: rotate(45deg) translateY(-50%);
+  -webkit-transform: rotate(45deg) translateY(-50%);
   z-index: 0;
 }
 
@@ -113,8 +140,9 @@ option {
   border-color: #000;
 }
 
-input[type="date"] {
+.date input {
   appearance: none;
+  -webkit-appearance: none;
   height: 40px;
   background: transparent;
   color: #000;
@@ -125,23 +153,27 @@ input[type="date"] {
   z-index: 1;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+.date input::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
 .insurance.input-container {
+  opacity: 0;
   display: flex;
   align-items: center;
   gap: 10px;
+  animation: upwards 1s forwards 1s;
+  -webkit-animation: upwards 1s forwards 0.2s;
 }
 
-label[for="insurance"] {
+.insurance label {
   cursor: pointer;
   user-select: none;
 }
 
-input[type="checkbox"] {
+.insurance input {
   appearance: none;
+  -webkit-appearance: none;
   position: relative;
   margin: 0;
   margin-left: 2px;
@@ -152,7 +184,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-input[type="checkbox"]:after {
+.insurance input:after {
   content: "✓";
   position: absolute;
   top: 50%;
@@ -166,34 +198,58 @@ input[type="checkbox"]:after {
   font-weight: 900;
   font-size: 0.7rem;
   transform: translate(-50%, -50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
   margin: 0;
   transition: 0.3s;
 }
 
-input[type="checkbox"]:checked:after {
+.insurance input:checked:after {
   border-radius: 3px;
   transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
-.submit.input-container {
-  align-self: center;
+.price {
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-spacing: 5px;
+  gap: 12px;
+  animation: rtl 1s ease-out 0.4s forwards;
+  -webkit-animation: rtl 1s ease-out 0.4s forwards;
 }
 
-input[type="submit"] {
+.price-text {
+  color: #eee;
+}
+
+.price-num {
+  font-size: 38px;
+  font-weight: 600;
+  color: #d2bd7f;
+}
+
+.submit {
+  align-self: flex-end;
+  animation: rtl 1s ease-out;
+  -webkit-animation: rtl 1s ease-out;
+}
+
+.submit input {
   background: #333;
   border: none;
-  height: 50px;
+  height: 42px;
   width: 110px;
   border-radius: 3px;
-  color: #d2bd7f;
-  font-family: "Playfair Display", serif;
-  font-size: 22px;
-  font-weight: 700;
+  color: #eee;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
 }
 
-input[type="submit"]:hover {
+.submit input:hover {
   background: #444;
 }
 
@@ -201,10 +257,42 @@ input[type="submit"]:hover {
   display: none;
   width: 600px;
   color: #d2bd7f;
-  margin: 0;
+  margin: 0 0 30px 0;
   font-family: "Playfair Display", serif;
   font-weight: 400;
   font-size: 42px;
+  animation: downwards 0.7s ease-out;
+  -webkit-animation: downwards 0.7s ease-out;
+}
+
+.car-details-container {
+  width: 600px;
+  font-weight: 600;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  color: #eee;
+  margin-bottom: 30px;
+  animation: downwards2 0.7s ease-out;
+  -webkit-animation: downwards2 0.7s ease-out;
+}
+
+.name-details {
+  display: flex;
+  font-size: 22px;
+}
+
+.date-details {
+  display: flex;
+  font-size: 18px;
+}
+
+.price-details {
+  font-size: 18px;
+}
+
+.insurance-detail {
+  font-size: 18px;
 }
 
 .msg-content {
@@ -214,39 +302,17 @@ input[type="submit"]:hover {
   font-weight: 400;
   color: #eee;
   width: 600px;
-}
-
-.car-details-container {
-  width: 600px;
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  color: #eee;
-}
-
-.name-details {
-  display: flex;
-  font-size: 22px;
-  font-weight: 400;
-}
-
-.date-details {
-  display: flex;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.insurance-detail {
-  font-size: 16px;
-  font-weight: 300;
+  animation: downwards2 0.7s ease-out;
+  -webkit-animation: downwards2 0.7s ease-out;
 }
 
 .loading-bar {
   display: none;
   position: relative;
+  top: 100px;
   height: 5px;
   width: 200px;
-  border-radius: 2px;
+  border-radius: 1px;
   background: #5a5a5a;
 }
 
@@ -258,6 +324,116 @@ input[type="submit"]:hover {
   height: 5px;
   background: #b1b1b1;
   border-radius: 2px;
+}
+
+@keyframes downwards {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes downwards {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes downwards2 {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes downwards2 {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes upwards {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes upwards {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes ltr {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes ltr {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes rtl {
+  from {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes rtl {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(5px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
 }
 
 @keyframes loading {
