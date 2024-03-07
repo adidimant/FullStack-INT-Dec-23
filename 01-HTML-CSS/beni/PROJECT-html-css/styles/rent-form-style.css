@@ -216,8 +216,8 @@ option {
   align-items: center;
   word-spacing: 5px;
   gap: 12px;
-  animation: rtl 1s ease-out 0.4s forwards;
-  -webkit-animation: rtl 1s ease-out 0.4s forwards;
+  animation: rtl 1s ease-out forwards;
+  -webkit-animation: rtl 1s ease-out forwards;
 }
 
 .price-text {

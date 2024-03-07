@@ -5,34 +5,47 @@ const mercedesModels = ["Maybach", "C-Class", "G-Class"];
 const ferrariModels = ["LaFerrari", "SF90", "812"];
 const bmwModels = ["i8", "X6", "M8"];
 const bicycle = ["Pink"];
-
-const modelPrices = {
-  Phantom: "2,500$",
-  Ghost: "2,000$",
-  Cullinan: "2,200$",
-  Stelvio: "250$",
-  Giulia: "300$",
-  "4C": "400$",
-  Valhalla: "2,700$",
-  Valour: "2,400$",
-  "Vanquish S": "2500$",
-  Maybach: "1,900$",
-  "C-Class": "180$",
-  "G-Class": "320$",
-  LaFerrari: "8,000$",
-  SF90: "5,550$",
-  812: "4,500$",
-  i8: "500$",
-  X6: "230$",
-  M8: "700$",
-  Pink: "9,999,999$",
-};
-
+const title = document.querySelector(".title");
+const form = document.querySelector(".rent-form");
 const brandSelectInput = document.getElementById("brand");
 const modelSelectInput = document.getElementById("model");
 const pickupInput = document.getElementById("pickup-date");
 const dropoffInput = document.getElementById("dropoff-date");
 const insuranceInput = document.getElementById("insurance");
+const price = document.querySelector(".price");
+const priceText = document.querySelector(".price-text");
+const priceNum = document.querySelector(".price-num");
+const loadBar = document.querySelector(".loading-bar");
+const loadIndex = document.querySelector(".loading-index");
+const msgTitle = document.querySelector(".msg-title");
+const msgContent = document.querySelector(".msg-content");
+const carDetailsContainer = document.querySelector(".car-details-container");
+const nameDetails = document.querySelector(".name-details");
+const dateDetails = document.querySelector(".date-details");
+const priceDetails = document.querySelector(".price-details");
+const insuranceDetails = document.querySelector(".insurance-detail");
+const modelPrices = {
+  Phantom: 2500,
+  Ghost: 2000,
+  Cullinan: 2200,
+  Stelvio: 250,
+  Giulia: 300,
+  "4C": 400,
+  Valhalla: 2700,
+  Valour: 2400,
+  "Vanquish S": 2500,
+  Maybach: 1900,
+  "C-Class": 180,
+  "G-Class": 320,
+  LaFerrari: 8000,
+  SF90: 5550,
+  812: 4500,
+  i8: 500,
+  X6: 230,
+  M8: 700,
+  Pink: 9999999,
+};
+let currPrice;
 
 function showBrandModels() {
   value = brandSelectInput.value;
@@ -76,13 +89,24 @@ function addToSelect(arr) {
 function updatePrice() {
   const selectedModel = modelSelectInput.value;
   if (selectedModel !== "") {
-    document.querySelector(".price-text").textContent = "Day / ";
-    document.querySelector(".price-num").textContent =
-      modelPrices[selectedModel];
+    price.style.display = "flex";
+    priceText.textContent = "Day / ";
+    if (insuranceInput.checked) {
+      console.log("checked");
+      priceNum.textContent =
+        (
+          modelPrices[selectedModel] +
+          0.2 * modelPrices[selectedModel]
+        ).toLocaleString() + "$";
+    } else {
+      priceNum.textContent = modelPrices[selectedModel].toLocaleString() + "$";
+    }
   } else {
-    document.querySelector(".price-text").textContent = "";
-    document.querySelector(".price-num").textContent = "";
+    price.style.display = "none";
+    priceText.textContent = "";
+    priceNum.textContent = "";
   }
+  currPrice = priceNum.textContent;
 }
 
 function getCurrentDate() {
@@ -107,33 +131,24 @@ function submitForm(e) {
 }
 
 function showCarDetails() {
-  document.querySelector(".title").style.display = "none";
-  document.querySelector(".rent-form").style.display = "none";
-  document.querySelector(".loading-bar").style.display = "block";
-  document.querySelector(".loading-index").style.animation =
-    "loading 3s forwards";
-  document.querySelector(".loading-index").style.webkitAnimation =
-    "loading 3s forwards";
+  title.style.display = "none";
+  form.style.display = "none";
+  loadBar.style.display = "block";
+  loadIndex.style.animation = "loading 3s forwards";
+  loadIndex.style.webkitAnimation = "loading 3s forwards";
   setTimeout(function () {
-    document.querySelector(".loading-bar").style.display = "none";
-    document.querySelector(".msg-title").style.display = "block";
-    document.querySelector(".msg-content").style.display = "block";
-    document.querySelector(".car-details-container").style.display = "flex";
+    loadBar.style.display = "none";
+    msgTitle.style.display = "block";
+    msgContent.style.display = "block";
+    carDetailsContainer.style.display = "flex";
   }, 3000);
-  document.querySelector(
-    ".name-details"
-  ).textContent = `${brandSelectInput.value} ${modelSelectInput.value}`;
-  document.querySelector(
-    ".date-details"
-  ).textContent = `${pickupInput.value} to ${dropoffInput.value}`;
-  document.querySelector(".price-details").textContent = `${
-    modelPrices[modelSelectInput.value]
-  } / day`;
+  nameDetails.textContent = `${brandSelectInput.value} ${modelSelectInput.value}`;
+  dateDetails.textContent = `${pickupInput.value} to ${dropoffInput.value}`;
+  priceDetails.textContent = `${currPrice} / day`;
   if (insuranceInput.checked) {
-    document.querySelector(".insurance-detail").textContent = "With insurance.";
+    insuranceDetails.textContent = "With insurance.";
   } else {
-    document.querySelector(".insurance-detail").textContent =
-      "With no insurance.";
+    insuranceDetails.textContent = "With no insurance.";
   }
 }
 
