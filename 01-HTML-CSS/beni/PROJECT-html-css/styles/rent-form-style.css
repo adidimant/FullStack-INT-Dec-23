@@ -75,7 +75,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
+  height: 50px;
 }
 
 label {
@@ -157,6 +157,29 @@ option {
   cursor: pointer;
 }
 
+.submit {
+  align-self: flex-end;
+  animation: rtl 1s ease-out;
+  -webkit-animation: rtl 1s ease-out;
+}
+
+.submit input {
+  background: #333;
+  border: none;
+  height: 42px;
+  width: 110px;
+  border-radius: 3px;
+  color: #eee;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit input:hover {
+  background: #444;
+}
+
 .insurance.input-container {
   opacity: 0;
   display: flex;
@@ -230,27 +253,18 @@ option {
   color: #d2bd7f;
 }
 
-.submit {
-  align-self: flex-end;
-  animation: rtl 1s ease-out;
-  -webkit-animation: rtl 1s ease-out;
+.car-img-container {
+  margin-top: 10px;
+  height: 100px;
+  filter: brightness(0.7);
+  -webkit-filter: brightness(0.7);
 }
 
-.submit input {
-  background: #333;
-  border: none;
-  height: 42px;
-  width: 110px;
-  border-radius: 3px;
-  color: #eee;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.submit input:hover {
-  background: #444;
+.car-img {
+  opacity: 0;
+  animation: rtl 1s ease-out forwards 0.2s;
+  -webkit-animation: rtl 1s ease-out forwards 0.2s;
+  height: 100%;
 }
 
 .msg-title {
@@ -269,12 +283,18 @@ option {
   width: 600px;
   font-weight: 600;
   display: none;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
   color: #eee;
   margin-bottom: 30px;
   animation: downwards2 0.7s ease-out;
   -webkit-animation: downwards2 0.7s ease-out;
+}
+
+.left {
+  flex-shrink: 0;
+  height: 100px;
 }
 
 .name-details {
@@ -293,6 +313,18 @@ option {
 
 .insurance-detail {
   font-size: 18px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.right img {
+  height: 80%;
+  filter: brightness(0.7);
+  -webkit-filter: brightness(0.7);
 }
 
 .msg-content {

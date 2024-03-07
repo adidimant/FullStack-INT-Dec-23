@@ -15,6 +15,8 @@ const insuranceInput = document.getElementById("insurance");
 const price = document.querySelector(".price");
 const priceText = document.querySelector(".price-text");
 const priceNum = document.querySelector(".price-num");
+const carImgContainer = document.querySelector(".car-img-container");
+const carImg = document.querySelector(".car-img");
 const loadBar = document.querySelector(".loading-bar");
 const loadIndex = document.querySelector(".loading-index");
 const msgTitle = document.querySelector(".msg-title");
@@ -24,6 +26,7 @@ const nameDetails = document.querySelector(".name-details");
 const dateDetails = document.querySelector(".date-details");
 const priceDetails = document.querySelector(".price-details");
 const insuranceDetails = document.querySelector(".insurance-detail");
+const imgDetails = document.querySelector(".right img");
 const modelPrices = {
   Phantom: 2500,
   Ghost: 2000,
@@ -92,7 +95,6 @@ function updatePrice() {
     price.style.display = "flex";
     priceText.textContent = "Day / ";
     if (insuranceInput.checked) {
-      console.log("checked");
       priceNum.textContent =
         (
           modelPrices[selectedModel] +
@@ -101,7 +103,66 @@ function updatePrice() {
     } else {
       priceNum.textContent = modelPrices[selectedModel].toLocaleString() + "$";
     }
+    carImg.style.display = "block";
+    if (selectedModel == "Phantom") {
+      carImg.src = "../images/car-models/phantom.png";
+    }
+    if (selectedModel == "Ghost") {
+      carImg.src = "../images/car-models/ghost.png";
+    }
+    if (selectedModel == "Cullinan") {
+      carImg.src = "../images/car-models/cullinan.png";
+    }
+    if (selectedModel == "Stelvio") {
+      carImg.src = "../images/car-models/stelvio.png";
+    }
+    if (selectedModel == "Giulia") {
+      carImg.src = "../images/car-models/giulia.png";
+    }
+    if (selectedModel == "4C") {
+      carImg.src = "../images/car-models/4c.png";
+    }
+    if (selectedModel == "Valhalla") {
+      carImg.src = "../images/car-models/valhalla.png";
+    }
+    if (selectedModel == "Valour") {
+      carImg.src = "../images/car-models/valour.png";
+    }
+    if (selectedModel == "Vanquish S") {
+      carImg.src = "../images/car-models/vanquish-s.png";
+    }
+    if (selectedModel == "Maybach") {
+      carImg.src = "../images/car-models/maybach.png";
+    }
+    if (selectedModel == "C-Class") {
+      carImg.src = "../images/car-models/c-class.png";
+    }
+    if (selectedModel == "G-Class") {
+      carImg.src = "../images/car-models/g-class.png";
+    }
+    if (selectedModel == "LaFerrari") {
+      carImg.src = "../images/car-models/laferrari.png";
+    }
+    if (selectedModel == "SF90") {
+      carImg.src = "../images/car-models/sf90.png";
+    }
+    if (selectedModel == "812") {
+      carImg.src = "../images/car-models/812.png";
+    }
+    if (selectedModel == "i8") {
+      carImg.src = "../images/car-models/i8.png";
+    }
+    if (selectedModel == "X6") {
+      carImg.src = "../images/car-models/x6.png";
+    }
+    if (selectedModel == "M8") {
+      carImg.src = "../images/car-models/m8.png";
+    }
+    if (selectedModel == "Pink") {
+      carImg.src = "../images/car-models/baby-cycle.png";
+    }
   } else {
+    carImg.style.display = "none";
     price.style.display = "none";
     priceText.textContent = "";
     priceNum.textContent = "";
@@ -131,16 +192,19 @@ function submitForm(e) {
 }
 
 function showCarDetails() {
+  console.log(carImg.src);
   title.style.display = "none";
   form.style.display = "none";
+  carImgContainer.style.display = "none";
   loadBar.style.display = "block";
   loadIndex.style.animation = "loading 3s forwards";
   loadIndex.style.webkitAnimation = "loading 3s forwards";
   setTimeout(function () {
     loadBar.style.display = "none";
     msgTitle.style.display = "block";
-    msgContent.style.display = "block";
+    imgDetails.src = carImg.src;
     carDetailsContainer.style.display = "flex";
+    msgContent.style.display = "block";
   }, 3000);
   nameDetails.textContent = `${brandSelectInput.value} ${modelSelectInput.value}`;
   dateDetails.textContent = `${pickupInput.value} to ${dropoffInput.value}`;

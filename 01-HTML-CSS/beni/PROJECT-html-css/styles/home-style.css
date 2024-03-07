@@ -70,6 +70,7 @@ body {
   object-fit: cover;
   object-position: center;
   filter: brightness(40%);
+  -webkit-filter: brightness(40%);
   opacity: 0;
   transition: 2s;
 }
@@ -126,6 +127,7 @@ body {
 
 .brand-logo {
   filter: brightness(0) invert(0.8);
+  -webkit-filter: brightness(0) invert(0.8);
   vertical-align: middle;
   height: 30px;
   animation: brandReveal 2s ease-out;

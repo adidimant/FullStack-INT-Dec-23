@@ -69,6 +69,7 @@ body {
 .car-container {
   opacity: 0;
   filter: brightness(70%);
+  -webkit-filter: brightness(70%);
   text-decoration: none;
   height: 230px;
   width: calc(25% - 8px);
@@ -88,6 +89,7 @@ body {
 
 .car-container:hover {
   filter: brightness(100%);
+  -webkit-filter: brightness(100%);
 }
 
 .car-img {
