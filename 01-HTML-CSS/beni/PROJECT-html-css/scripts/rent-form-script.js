@@ -192,7 +192,6 @@ function submitForm(e) {
 }
 
 function showCarDetails() {
-  console.log(carImg.src);
   title.style.display = "none";
   form.style.display = "none";
   carImgContainer.style.display = "none";
