@@ -10,17 +10,16 @@
 <body>
     <div class="container">
         <div class="top">
-            <div id="carousel">
-                <figure id="spinner">
-                    <img src="../images/AudiA3.jpg">
-                    <img src="../images/AUDI Q8.jpg" alt>
-                    <img src="../images/BMW3Series320i.jpg" alt>
-                    <img src="../images/BMW5Series(520i).jpg" alt>
-                    <img src="../images/MERCEDESBENZGLE53.jpg" alt>
-                    <img src="../images/MercedesG63.jpg" alt>
-                    <img src="../images/ToyotaCorolla.jpg" alt>
-                    <img src="../images/Hondapilot.jpg" alt>
-                </figure>
+            <div class="slider-container">
+                <div class="slide">
+                    <img src="../images/AudiA3.jpg" alt="Image 1">
+                </div>
+                <div class="slide">
+                    <img src="../images/AUDI Q8.jpg" alt="Image 2">
+                </div>
+                <div class="slide">
+                    <img src="../images/BMW3Series320i.jpg" alt="Image 3">
+                </div>
             </div>
         </div>
         <h1 style="direction: rtl; margin-bottom: -10px; color: rgb(0, 0, 0); text-align: center;">מקשרים אתכם לחברות הגדולות ביותר להשכרת רכב.</h1>
@@ -36,5 +35,25 @@
             <div></div>
         </div>
     </div>
+    <script>
+        var slideIndex = 0;
+        showSlides();
+    
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("slide");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    </script>
 </body>
 </html>
