@@ -1,0 +1,37 @@
+$primary-color:#c8c1b8;
+
+.navBar{
+    width: 90%;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    height: 5rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.2em;
+
+    i{
+        font-size: x-large;
+        cursor: pointer;
+    }
+    .navBar-logo{
+       height: 5rem;
+       img{
+           height: 100%;
+       }
+   
+    }
+    a{
+     text-decoration: none;
+     color: black;
+     font-family: "Playfair Display", serif;
+     font-optical-sizing: auto;
+     font-style: normal;
+    }
+    a:hover{
+     color: green;
+    }
+}
