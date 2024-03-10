@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yad2 Publish Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="/submit_product" method="post" enctype="multipart/form-data" onsubmit="return validateProductForm()">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="subcategory">Subcategory:</label>
+        <input type="text" id="subcategory" name="subcategory" required>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <fieldset>
+            <legend>Condition:</legend>
+            <label><input type="radio" name="condition" value="brand_new" required> Brand New</label>
+            <label><input type="radio" name="condition" value="like_new"> Like New</label>
+            <label><input type="radio" name="condition" value="used"> Used</label>
+            <label><input type="radio" name="condition" value="bad_condition"> Bad Condition</label>
+        </fieldset>
+
+        <label for="images">Images:</label>
+        <input type="file" id="images" name="images" multiple>
+
+        <label><input type="checkbox" id="updates" name="updates"> I would like to receive updates to my mail about this
+            product</label>
+
+        <input type="submit" value="Publish">
+    </form>
+
+    <script>
+        function validateProductForm() {
+            // Add validation?
+            return true;
+        }
+    </script>
+</body>
+
+</html>

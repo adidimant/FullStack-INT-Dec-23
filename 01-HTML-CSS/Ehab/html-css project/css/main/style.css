@@ -1,0 +1,59 @@
+body, html {
+    margin: 0;
+    padding: 0 10px;
+    height: 100%;
+    background-color: #f7f7f7;
+    scrollbar-width: none;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 99vh;
+}
+.top {
+    flex: 0 0 40%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.bottom {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    justify-content: center;
+    align-items: stretch;
+    padding-left: 10px;
+}
+.bottom div{
+    background-color: black; 
+    width: 300px; height: 300px; 
+    margin-top: 10px;
+}
+.top .slider-container {
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    max-width: 80%;
+    max-height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+/* Styles for slides */
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Styles for images inside slides */
+.slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
