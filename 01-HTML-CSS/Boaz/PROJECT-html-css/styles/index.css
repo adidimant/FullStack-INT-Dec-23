@@ -1,0 +1,145 @@
+/* Define base styles */
+:root {
+    --color-background: #121212;
+    --color-text: #FFFFFF;
+    --color-accent: #FFD700; /* Gold */
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styles */
+.navbarWrapper {
+    display: flex;
+    justify-content: space-between; /* Logo on the left, menu items on the right */
+    align-items: center;
+    background-color: #333;
+    padding: 0.5em 1em;
+}
+
+.homelogo {
+    width: 50px; /* Adjust the size as needed */
+    height: auto;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    padding: 0.5em;
+}
+
+.navbar a {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5em 1em;
+}
+
+.navbar a:hover, .navbar a.active {
+    background-color: var(--color-accent);
+    color: #000;
+}
+
+/* Carousel styles */
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: inherit;
+   width: 100%;
+   width: auto;
+    height: 1000px;
+    overflow: hidden;
+    margin: 2em auto;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%; /* or set a specific height */
+    position: absolute;
+    top: 0;
+    left: 0;
+     opacity: 0; /* Start with the image transparent */
+    transition: opacity 2s ease-in-out; /* Smooth transition for opacity */
+    z-index: 0;
+    display: none;
+}
+@keyframes fadeInOutCenter {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+.carousel img.active {
+    opacity: 1; /* Show active image */
+    display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  animation: fadeInOutCenter 10s infinite; /* Adjust the duration and iteration count as needed */
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+h1 {
+    text-align: center;
+    color: rgb(177, 185, 26);
+    font-family: 'Times New Roman', Times, serif;
+      animation: slideInFromLeft 2s ease forwards;
+
+}
+p {
+    z-index: 2; /* Higher than the image z-index to be on top */
+    position: absolute; /* Take the text out of the document flow */
+    top: 30%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Align the center of the element with its position */
+    color: white; /* Assuming white text for visibility */
+    text-align: center;
+    width: 100%; /* Let the text take full width of the carousel */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px; /* Adjust the font size as needed */
+    
+}
+
+
+.logo-list-container {
+  display: flex; /* Use flexbox for the container */
+  justify-content: center; /* Center the content horizontally */
+  margin-top: 20px; /* Add some space between the carousel and the logo list */
+}
+
+.logo-list-container ul {
+  list-style: none; /* Removes default list bullets */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+  display: flex; /* Use flexbox for the list */
+  justify-content: center; /* Center the list items horizontally */
+}
+
+.logo-list-container li {
+  display: inline-block; /* Displays list items inline with block formatting */
+  margin-right: 10px; /* Adds some space between the logos */
+  padding: 50px; /* Adjust padding as needed */}
