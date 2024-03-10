@@ -1,0 +1,96 @@
+body, h1, p, div, a, img, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-image: url('bg.jpg');
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: #ffffff;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.search input {
+    padding: 0.5em;
+    margin-right: 1em;
+}
+
+.header-nav a {
+    margin-right: 1em;
+    text-decoration: none;
+    color: #333333;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    padding: 1em;
+    background-color: #fff;
+    margin-right: 1em;
+}
+
+.item {
+    padding: 0.5em 0;
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 1em;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dish .title {
+    font-weight: bold;
+}
+
+.dish .description {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+}
+
+.time {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    margin-right: 0.5em;
+}
