@@ -94,6 +94,7 @@ input, select {
     margin-top: 5px;
 }
 img {
-    width: 300px; /* גודל התמונה ברוחב 300 פיקסלים */
-    height: auto; /* גובה התמונה מתבסס על יחסי התמונה */
+    width: 80px /* גודל התמונה ברוחב 300 פיקסלים */
+    height: ; /* גובה התמונה מתבסס על יחסי התמונה */
+    position: relative;;
 }
