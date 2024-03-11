@@ -47,8 +47,8 @@ header {
 /* הגדרות התוכן */
 main {
     padding: 20px;
-    width: 100%; /* כעת התוכן יתמקם במרכז תמיד */
-    text-align: center; /* מיקום תיבת התוכן במרכז */
+    width: 100%; 
+    text-align: center; 
 }
 
 article {
