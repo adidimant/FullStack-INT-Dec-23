@@ -38,7 +38,7 @@ nav ul li a:hover {
 
 /* הגדרות כותרת */
 header {
-    background: #333;
+    background-color: #e8f0fe;  /* צבע רקע כחלחל בהיר */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -55,7 +55,8 @@ article {
     background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* צל עדין */
+    color: #444;  /* צבע גופן מעט כהה יותר */
 }
 
 /* הגדרות הפוטר */
@@ -71,7 +72,7 @@ footer {
 
 /* כפתורים ופורמים */
 button, input[type="submit"] {
-    background-color: #007bff;
+    background-color: #00a86b; /* צבע ירוק מושך עין */
     color: white;
     padding: 10px;
     border: none;
