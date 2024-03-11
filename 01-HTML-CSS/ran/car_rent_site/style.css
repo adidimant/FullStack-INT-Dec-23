@@ -9,17 +9,22 @@ body {
 
 /* הגדרות הניווט */
 nav {
+    position: fixed; /* קביעת התפריט במקום קבוע בראש העמוד */
+    top: 0; /* מיון התפריט למעלה של כל העמוד */
+    left: 0; /* מיון התפריט לשמאל של כל העמוד */
+    width: 100%; /* רוחב תפריט הניווט המלא */
     background-color: #007bff;
     color: #ffffff;
     padding: 10px 0;
+    z-index: 1000; /* מקטע ההצגה של התפריט מעל כל האלמנטים האחרים */
 }
 
 nav ul {
+    display: flex;
+    justify-content: center;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
 nav ul li {
