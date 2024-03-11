@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>השכרת רכב</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">לוגו חברה</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">דף הבית</a></li>
+                <li><a href="rent.html">השכרת רכב</a></li>
+                <li><a href="catalog.html">קטלוג רכבים</a></li>
+                <li><a href="about.html">אודות</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>השכרת רכב</h1>
+        <form action="/submit-your-form" method="POST">
+            <label for="company">חברת רכב:</label>
+            <select id="company" name="company" required>
+                <option value="">בחר חברה...</option>
+                <option value="company1">חברה 1</option>
+                <option value="company2">חברה 2</option>
+                <!-- וכן הלאה... -->
+            </select>
+
+            <label for="model">דגם רכב:</label>
+            <select id="model" name="model" required>
+                <option value="">בחר דגם...</option>
+                <!-- האפשרויות יותווספו בהתאם לחברה שנבחרה, באמצעות JavaScript -->
+            </select>
+
+            <label for="start-date">תאריך התחלה:</label>
+            <input type="date" id="start-date" name="start-date" required>
+
+            <label for="end-date">תאריך סיום:</label>
+            <input type="date" id="end-date" name="end-date" required>
+
+            <div>
+                <input type="checkbox" id="insurance" name="insurance">
+                <label for="insurance">הוסף ביטוח</label>
+            </div>
+
+            <button type="submit">שלח</button>
+        </form>
+    </main>
+    <footer>זכויות יוצרים © 2024 חברת השכרת רכבים</footer>
+    <script src="script.js"></script>
+</body>
+</html>
