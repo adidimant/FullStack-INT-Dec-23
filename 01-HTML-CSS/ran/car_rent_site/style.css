@@ -44,6 +44,16 @@ header {
     text-align: center;
 }
 
+/* הצגת הלוגו בדף הבית בלבד */
+body.index header .logo {
+    display: block;
+}
+
+/* הסתרת הלוגו בכל הדפים האחרים */
+body:not(.index) header .logo {
+    display: none;
+}
+
 /* הגדרות התוכן */
 main {
     padding: 20px;
@@ -87,7 +97,4 @@ button:hover, input[type="submit"]:hover {
 input, select {
     padding: 10px;
     margin-top: 5px;
-}
-header .logo {
-    display: none; /* הסתרת הלוגו בדפים שאינם index.html */
 }
