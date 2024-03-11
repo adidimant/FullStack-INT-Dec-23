@@ -44,16 +44,6 @@ header {
     text-align: center;
 }
 
-/* הצגת הלוגו בדף הבית בלבד */
-body.index header .logo {
-    display: block;
-}
-
-/* הסתרת הלוגו בכל הדפים האחרים */
-body:not(.index) header .logo {
-    display: none;
-}
-
 /* הגדרות התוכן */
 main {
     padding: 20px;
