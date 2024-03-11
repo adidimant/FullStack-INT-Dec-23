@@ -1,0 +1,226 @@
+.body {
+    margin: 0px;
+
+}
+
+.body {
+  background-image: url(https://travelnevada.com/wp-content/uploads/2022/01/SM_Featured-1024x576.jpg);
+  background-size: cover; /* מתאים את גודל התמונה לגודל המסך */
+  background-repeat: no-repeat; /* מונע השקפות מרובות של התמונה */
+  background-attachment: fixed; /* מקבע את התמונה במקום גם כאשר המשתמש גולל */
+  
+}
+
+.div-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #ffffff6e;
+  z-index: -1;
+}
+
+.div-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1%;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* צל לאלמנט */
+    height: 50px;
+    background-color: black;
+}
+
+
+.button-home {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.button-about-us {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+
+.button-catalog {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+
+}
+
+.button-car-rentel {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+
+
+}
+
+
+.img-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 50px;
+}
+
+/* תמונות של החברות למטה */
+.container-model {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end ;
+    flex-flow: row;
+    padding: 55px;
+}
+
+.img-model {
+    margin-bottom: 1px;
+    width: 110px;    
+    height: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* צל לאלמנט */
+    border-radius: 50px;
+}
+
+
+
+
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+
+
+.myslides {display: none}
+
+
+img {vertical-align: middle;}
+
+.container-slideshow { 
+   max-width: 40%;
+   position:relative; /* מציין את מעמד האלמנט ביחס למקום שבו הוא מופיע בתצוגה */
+   margin: auto;
+}
+
+.mySlides-fade {
+   display: none;
+  }
+
+.img-slideshow {
+  width: 100%;
+  height: 350px;
+  margin-top: 28px;
+  object-fit: cover;
+  
+}
+
+  /* כפתורים אחורה קדימה */
+.prev, .next {
+   cursor: pointer;
+   position: absolute;
+   top: 47%;
+   width: 50px;
+   padding: 15px;
+   color: rgb(0, 0, 0);
+   background-color: rgba(255, 255, 255, 0.217);
+   font-weight: bold;
+   font-size: 18px;
+   transition: 0.5s linear;
+   user-select:none;
+   border-radius: 100%;
+   border: none;
+}
+
+.next {
+  right: 0;
+}
+
+  .prev:hover, .next:hover {
+   background-color: black;
+   color: white;
+   opacity: 0.6;
+   
+  }
+
+ 
+/*טקסט בתמונה */
+  .numbertext {
+   color: #000000;
+   font-size: 13px;
+   padding: 8px 12px;
+   position: absolute;
+   top: 15%;
+  }
+
+  /* נקודות מעבר בין תמונות */
+  .dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  border: #717171;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+
+  /* אנימציה דועכת */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  /* במסכים קטנים יותר, מקטין את גודל הטקסט */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+
+  .whatsapp {
+    position: fixed;
+    max-width: 80px;
+    max-height: 80px;
+    bottom: 5px;
+    left: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container-model {
+    flex-flow: column;
+    align-items:center;
+    gap: 25px;
+  }
+
+  .container-slideshow {
+    max-width: 100%;
+  }
+
+}
