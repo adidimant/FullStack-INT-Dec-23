@@ -1,0 +1,35 @@
+/* הגדרות הפורמולר */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block; /* שדות יופיעו בשורה משלהם */
+    margin-bottom: 5px; /* מרווח בין שדות */
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form button[type="submit"]:hover {
+    opacity: 0.9;
+}
