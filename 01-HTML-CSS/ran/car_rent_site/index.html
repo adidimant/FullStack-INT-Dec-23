@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>השכרת מכוניות</title>
+    <title>חברת השכרת רכבים</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>ברוכים הבאים לאתר השכרת המכוניות שלנו</h1>
+        <div class="logo">לוגו חברה</div>
         <nav>
             <ul>
                 <li><a href="index.html">דף הבית</a></li>
-                <li><a href="SUV.html">SUV</a></li>
-                <li><a href="Sedan.html">סדאן</a></li>
-                <li><a href="MiniVan.html">מיניוואן</a></li>
-                <li><a href="Luxury.html">רכבי יוקרה</a></li>
-                <li><a href="Contact.html">צור קשר</a></li>
+                <li><a href="rent.html">השכרת רכב</a></li>
+                <li><a href="catalog.html">קטלוג רכבים</a></li>
+                <li><a href="about.html">אודות</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
-            <h2>מבחר הרכבים שלנו</h2>
-            <p>אנחנו מציעים מגוון רחב של רכבים להשכרה. בחר את הקטגוריה שמתאימה לך ומצא את הרכב האידיאלי לצרכים שלך.</p>
+        <section class="carousel" aria-label="קרוסלת רכבים">
+            <img src="car1.jpg" alt="רכב מודרני כחול">
+            <img src="car2.jpg" alt="רכב יוקרתי שחור">
+            <img src="car3.jpg" alt="רכב משפחתי אדום">
+            <!-- הוסף יותר תמונות עם תיאורי alt מתאימים -->
+        </section>
+        <section class="brands">
+            <h2>מותגים שאיתנו</h2>
+            <div class="flex-container">
+                <div class="brand" aria-label="לוגו מותג 1">לוגו מותג 1</div>
+                <div class="brand" aria-label="לוגו מותג 2">לוגו מותג 2</div>
+                <div class="brand" aria-label="לוגו מותג 3">לוגו מותג 3</div>
+                <!-- וכן הלאה... -->
+            </div>
         </section>
     </main>
-    <footer>
-        <p>© כל הזכויות שמורות לאתר השכרת המכוניות שלנו</p>
-    </footer>
+    <footer>זכויות יוצרים © 2024 חברת השכרת רכבים</footer>
 </body>
+</html>
