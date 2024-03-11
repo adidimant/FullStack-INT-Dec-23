@@ -1,0 +1,22 @@
+#carousel {
+    position: relative;
+}
+
+#carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#carousel #prev {
+    left: 10px;
+}
+
+#carousel #next {
+    right: 10px;
+}
