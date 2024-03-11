@@ -47,6 +47,8 @@ header {
 /* הגדרות התוכן */
 main {
     padding: 20px;
+    width: 80%; /* הגדרה של רוחב תיבת התוכן */
+    margin: 0 auto; /* מיקום תיבת התוכן במרכז */
 }
 
 article {
@@ -84,4 +86,26 @@ button:hover, input[type="submit"]:hover {
 input, select {
     padding: 10px;
     margin-top: 5px;
+}
+
+/* הגדרות טקסט נגיש */
+.text-accessible {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* אפקט תלת מימד */
+.text-3d {
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #f9f9f9 50%, #ddd 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.text-3d:hover {
+    transform: translateY(-2px);
 }
