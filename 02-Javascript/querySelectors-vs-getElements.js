@@ -22,6 +22,8 @@ const matches2 = container.querySelectorAll("div.highlighted.some-class .some-cl
 const container2 = document.querySelector("#userlist");
 const matches3 = container2.querySelectorAll("li[data-active='1']");
 
+const matches4 = container2.querySelectorAll("a[href]"); // give me all the a elements that has hef attribute
+
 a.forEach((num) => {
   console.log(num+1);
 });

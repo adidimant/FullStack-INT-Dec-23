@@ -12,6 +12,8 @@
 <p id="demo2"></p>
 
 <script>
+const specialArr = [];
+const specialObj = {};
 let c = 8; // global variable (on the root block)
 var n1 = 9;
 f1();
@@ -19,6 +21,9 @@ function f1() {
   let a;
   const b = ['item1','item2'];
   function myFunction() {
+    if (b.length > 0) {
+      specialArr.push(b[0]);
+    }
     a = 7; // here you can access a, since it's defined in the outer block
     let d = 'inner-block-variable';
     n2 = 'inner-var-with-var';
@@ -47,6 +52,10 @@ function f1() {
   
   let h = calcSum(38, 43); // h = 81
 }
+
+let carName = 'BMW';
+let x = "John" + " " + "Doe";
+
 
 </script>
 
