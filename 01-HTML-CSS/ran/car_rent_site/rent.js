@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
 
     const carModels = {
-        'company1': ['מודל 1', 'מודל 2', 'מודל 3'],
-        'company2': ['מודל A', 'מודל B', 'מודל C']
+        'company1': ['bz4x'],
+        'company2': ['huracan'],
+        'company3': ['brz']
     };
 
     // עדכון דינמי של רשימת הדגמים
