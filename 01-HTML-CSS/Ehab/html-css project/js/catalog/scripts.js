@@ -19,7 +19,7 @@ function handleClick(button) {
     iframe = parent.document.getElementById('content');
     iframe.src = './html/reservation.html?company='+company+'&model='+model+'&img='+imgSrc;
 
-    parent.document.getElementById("link3").style.color = "#FEA000";
+    parent.document.getElementById("link3").style.color = "#e7a328";//#FEA000;
     parent.document.getElementById("link3").style.textDecoration = "underline";
     parent.document.getElementById("link1").style.color = "#000";
     parent.document.getElementById("link1").style.textDecoration = "none";

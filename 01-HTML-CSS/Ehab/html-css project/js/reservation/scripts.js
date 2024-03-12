@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if(params.get('company') != null){
         document.getElementById('car-company').value = params.get('company');
         carCompanyChange(params.get('company'));
-        document.getElementById('car-model').value = params.get('model').replace(/\s/g, '');
+        document.getElementById('car-model').value = params.get('model').replace(/\s/g, '');// delete the spaces from string
         document.getElementById('carImg').src = params.get('img');
+        document.getElementById('carImg').style.display = 'block';
     }
 });
 
@@ -166,7 +167,12 @@ function carCompanyChange(selected){
         default:
             alert('Error, Please choose a different car company');
     }
+    if(carModel.value === ''){
+        document.getElementById('carImg').src = null
+        document.getElementById('carImg').style.display = 'none';
+    }
 }
 function carModelChange(selected){
     document.getElementById('carImg').src = "../images/"+document.getElementById('car-company').value+selected.value+".jpg";
+    document.getElementById('carImg').style.display = 'block';
 }

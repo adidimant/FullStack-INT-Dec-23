@@ -60,12 +60,31 @@ body, html {
     color: black;
     text-decoration: none;
 }
-  
-/*.nav ul li a:hover {
-    color: #FEA000;
-    text-decoration: underline;
-}*/
 iframe{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+}
+.lLogo{
+    width: 170px;
+    height: 200px;
+    position: fixed; 
+    transform-style: preserve-3d;
+    animation: rotate 15s linear infinite;
+}
+.rLogo{
+    width: 170px; 
+    height: 200px; 
+    position: fixed; 
+    left: calc(100% - 195px); 
+    top: 0;
+    transform-style: preserve-3d;
+    animation: rotate 15s linear infinite;
+}
+@keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
 }
