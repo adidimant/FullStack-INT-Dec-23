@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbarWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin-right: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.navbar a.active, .navbar a:hover {
+    background-color: gold;
+    color: black;
+}
+
+.main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.about-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.about-section div {
+    flex-basis: 30%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.about-section h2 {
+    color: #333;
+}
+
+.logo-list-container ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.logo-list-container li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+.navbarWrapper {
+    display: flex;
+    justify-content: space-between; /* Logo on the left, menu items on the right */
+    align-items: center;
+    background-color: #333;
+    padding: 0.5em 1em;
+}
+
+.homelogo {
+    width: 50px; /* Adjust the size as needed */
+    height: auto;
+}
