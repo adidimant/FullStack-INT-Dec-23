@@ -2,6 +2,17 @@
     position: relative;
 }
 
+#carousel img {
+    display: none; /* ברירת מחדל - כל התמונות מוסתרות */
+    width: 100%; /* אפשרות לשליטה ברוחב התמונות */
+    max-width: 600px; /* או כל גודל מקסימלי אחר לתמונה */
+    margin: auto; /* מרכז את התמונה בקרוסלה */
+}
+
+#carousel img.active {
+    display: block; /* הצגת התמונה הפעילה */
+}
+
 #carousel button {
     position: absolute;
     top: 50%;
