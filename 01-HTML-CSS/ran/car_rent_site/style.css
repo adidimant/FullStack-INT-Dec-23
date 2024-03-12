@@ -1,78 +1,100 @@
 /* הגדרות גלובליות */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-header, nav, main, footer {
+/* הגדרות הניווט */
+nav {
+    position: fixed; /* קביעת התפריט במקום קבוע בראש העמוד */
+    top: 0; /* מיון התפריט למעלה של כל העמוד */
+    left: 0; /* מיון התפריט לשמאל של כל העמוד */
+    width: 100%; /* רוחב תפריט הניווט המלא */
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 0;
+    z-index: 1000; /* מקטע ההצגה של התפריט מעל כל האלמנטים האחרים */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
     margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* הגדרות כותרת */
+header {
+    background-color: #e8f0fe;  /* צבע רקע כחלחל בהיר */
+    color: #fff;
     padding: 20px;
     text-align: center;
 }
 
-/* ניווט */
-nav ul {
-    list-style-type: none;
-    padding: 0;
+/* הגדרות התוכן */
+main {
+    padding: 20px;
+    width: 100%; 
+    text-align: center; 
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #000;
-}
-
-/* רספונסיביות */
-@media (max-width: 600px) {
-    nav ul li {
-        display: block;
-        margin: 5px 0;
-    }
-}
-
-/* סגנונות נוספים שאולי תרצה להוסיף */
-.article-img {
-    width: 100%;
-    height: auto;
-}
-
-.article-description {
-    margin: 15px 0;
-}
-
-/* סגנון לטופס צור קשר */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 0 auto;
-}
-
-.contact-form label {
-    margin: 10px 0 5px;
-}
-
-.contact-form input, .contact-form textarea {
-    padding: 10px;
+article {
+    background-color: #fff;
+    padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* צל עדין */
+    color: #444;  /* צבע גופן מעט כהה יותר */
 }
 
-.contact-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
+/* הגדרות הפוטר */
+footer {
+    background-color: #333;
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
-.contact-form button:hover {
-    background-color: #0056b3;
+/* כפתורים ופורמים */
+button, input[type="submit"] {
+    background-color: #00a86b; /* צבע ירוק מושך עין */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover, input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+input, select {
+    padding: 10px;
+    margin-top: 5px;
+}
+img {
+    width: 300px; /* גודל התמונה ברוחב 300 פיקסלים */
+    height: auto; /* גובה התמונה מתבסס על יחסי התמונה */
+    position: relative;
 }

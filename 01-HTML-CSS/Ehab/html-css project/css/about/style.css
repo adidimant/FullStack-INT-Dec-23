@@ -5,11 +5,13 @@ body,html {
     background-color: #f7f7f7;
     scrollbar-width: none;
 }
-header {
+.header {
     background-color: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 .container {
     max-width: 800px;
