@@ -16,17 +16,41 @@ function removeFromHistory(url, order = 1) {
         if (historyData[i].url === url) {
             count++;
             if (count === order) {
-                historyData.splice(i, 1);
+                historyData.splice(i, 1); // הערך הראשון הוא האינדיקס ממנו מוחקים, השני כמה למחוק מהאינדיקס הזה
                 break;
             }
         }
     }
 }
 
-const visitObj1 = { url: "https://example.com/page1", timeVisited: "12-03-2024", errorsCount: 0, clicksCount: 5, loginsCount: 1 };
-const visitObj4 = { url: "https://example.com/page1", timeVisited: "13-03-2024", errorsCount: 3, clicksCount: 10, loginsCount: 10 };
-const visitObj2 = { url: "https://example.com/page2", timeVisited: "11-03-2024", errorsCount: 2, clicksCount: 8, loginsCount: 2 };
-const visitObj3 = { url: "https://example.com/page3", timeVisited: "10-03-2024", errorsCount: 1, clicksCount: 3, loginsCount: 0 };
+const visitObj1 = { 
+    url: "https://example.com/page1", 
+    timeVisited: "12-03-2024", 
+    errorsCount: 0, 
+    clicksCount: 5, 
+    loginsCount: 1 
+};
+const visitObj4 = { 
+    url: "https://example.com/page1", 
+    timeVisited: "13-03-2024", 
+    errorsCount: 3, 
+    clicksCount: 10, 
+    loginsCount: 10 
+};
+const visitObj2 = { 
+    url: "https://example.com/page2", 
+    timeVisited: "11-03-2024", 
+    errorsCount: 2, 
+    clicksCount: 8, 
+    loginsCount: 2 
+};
+const visitObj3 = { 
+    url: "https://example.com/page3", 
+    timeVisited: "10-03-2024", 
+    errorsCount: 1, 
+    clicksCount: 3, 
+    loginsCount: 0 
+};
 
 
 addToHistory(visitObj1);
