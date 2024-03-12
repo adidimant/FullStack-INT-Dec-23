@@ -24,4 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateImageVisibility(); // עדכון ראשוני של התמונה הנוכחית
+
+    // הוספת החלפה אוטומטית כל 3 שניות
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateImageVisibility();
+    }, 3000); // 3000 מילישניות = 3 שניות
 });
