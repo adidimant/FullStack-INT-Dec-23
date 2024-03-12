@@ -1,19 +1,19 @@
 #carousel {
     position: relative;
-    width: 100%; /* מתאים את הקרוסלה לרוחב העמוד */
-    max-width: 600px; /* מגביל את רוחב הקרוסלה ל-600px */
-    margin: auto; /* ממרכז את הקרוסלה בעמוד */
+    width: 100%; 
+    max-width: 600px;
+    margin: auto; 
 }
 
 #carousel img {
-    display: none; /* הסתרת כל התמונות כברירת מחדל */
-    width: 100%; /* מתאים את רוחב התמונות לקרוסלה */
-    max-height: 400px; /* מגביל את גובה התמונות */
-    object-fit: cover; /* מבטיח שהתמונות יכסו את הקרוסלה ללא הפרעה ליחס הממדים */
+    display: none; 
+    width: 100%; 
+    max-height: 400px; 
+    object-fit: cover; 
 }
 
 #carousel img.active {
-    display: block; /* הצגת התמונה הפעילה בלבד */
+    display: block; 
 }
 
 #carousel button {
@@ -25,7 +25,7 @@
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    z-index: 100; /* מבטיח שהכפתורים יהיו מעל התמונות */
+    z-index: 100; 
 }
 
 #carousel #prev {
