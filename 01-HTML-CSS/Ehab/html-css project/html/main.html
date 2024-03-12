@@ -8,6 +8,9 @@
     <script src="../js/main/scripts.js"></script>
 </head>
 <body>
+    <header class="header">
+        <h1>V.I.P Car Rental</h1>
+    </header>
     <div class="container">
         <div class="top">
             <div class="slider-container">
@@ -15,45 +18,49 @@
                     <img src="../images/AudiA3.jpg" alt="Image 1">
                 </div>
                 <div class="slide">
-                    <img src="../images/AUDI Q8.jpg" alt="Image 2">
+                    <img src="../images/AUDIQ8.jpg" alt="Image 2">
                 </div>
                 <div class="slide">
                     <img src="../images/BMW3Series320i.jpg" alt="Image 3">
                 </div>
+                <div class="slide">
+                    <img src="../images/kiasportage.jpg" alt="Image 3">
+                </div>
+                <div class="slide">
+                    <img src="../images/MercedesG63.jpg" alt="Image 3">
+                </div>
+                <div class="slide">
+                    <img src="../images/ToyotaCorolla.jpg" alt="Image 3">
+                </div>
             </div>
         </div>
-        <h1 style="direction: rtl; margin-bottom: -10px; color: rgb(0, 0, 0); text-align: center;">מקשרים אתכם לחברות הגדולות ביותר להשכרת רכב.</h1>
+        <h1 style="text-align: center;">Connecting you to the biggest brands in car rental</h1>
         <div class="bottom" >
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/budget_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/dollar_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/sixt_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/europcar_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/global_rent_a_car_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/greenmotion_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/thrifty_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
+            <div>
+                <img src="https://cdn2.rcstatic.com/images/supplier_logos/thrifty_israel_logo_lrg.gif" width="100%" height="100%"/>
+            </div>
         </div>
     </div>
-    <script>
-        var slideIndex = 0;
-        showSlides();
-    
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("slide");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlides, 2000); // Change image every 2 seconds
-        }
-    
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-    </script>
 </body>
 </html>

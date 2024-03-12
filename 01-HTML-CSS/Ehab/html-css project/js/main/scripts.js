@@ -1,7 +1,15 @@
-/*setInterval(galleryspin, 2000);
-var angle = 0;
-function galleryspin() { 
-    spinner = document.querySelector("#spinner");
-    angle = angle + 45;
-    spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
-}*/
+document.addEventListener("DOMContentLoaded", function() {
+    var slideIndex = 0;
+    showSlides();
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        slides[slideIndex-1].style.display = "block";  
+        setTimeout(showSlides,4000); // Change image every 2 seconds
+    }
+});
