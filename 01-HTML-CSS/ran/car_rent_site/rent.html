@@ -23,7 +23,7 @@
         <h1>השכרת רכב</h1>
         <form action="/submit-your-form" method="POST">
             <label for="company">חברת רכב:</label>
-            <select id="company" name="company" required>
+            <select id="company" name="company" required autocomplete="organization">
                 <option value="">בחר חברה...</option>
                 <option value="company1">toyota</option>
                 <option value="company2">lamborghini</option>
@@ -31,22 +31,22 @@
             </select>
 
             <label for="model">דגם רכב:</label>
-            <select id="model" name="model" required>
+            <select id="model" name="model" required autocomplete="off"> <!-- נכיוון שהמודלים מתעדכנים דינמית, ניתן לסמן את ה-autocomplete כבוי -->
                 <option value="">בחר דגם...</option>
                 <!-- האפשרויות יותווספו בהתאם לחברה שנבחרה, באמצעות JavaScript -->
             </select>
 
             <label for="start-date">תאריך התחלה:</label>
-            <input type="date" id="start-date" name="start-date" required>
+            <input type="date" id="start-date" name="start-date" required autocomplete="off">
 
             <label for="end-date">תאריך סיום:</label>
-            <input type="date" id="end-date" name="end-date" required>
+            <input type="date" id="end-date" name="end-date" required autocomplete="off">
 
             <label for="email">כתובת אימייל:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required autocomplete="email">
 
             <div>
-                <input type="checkbox" id="insurance" name="insurance">
+                <input type="checkbox" id="insurance" name="insurance" autocomplete="off">
                 <label for="insurance">הוסף ביטוח</label>
             </div>
 
