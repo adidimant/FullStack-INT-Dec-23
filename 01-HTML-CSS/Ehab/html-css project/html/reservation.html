@@ -13,9 +13,9 @@
     </header>
     <div class="container">
         <div class="formDiv">
-            <form onsubmit="func();">
+            <form>
                 <label for="car-company">Car Company:</label>
-                <select id="car-company" name="car-company" onchange="carCompanyChange(this)">
+                <select id="car-company" name="car-company" onchange="carCompanyChange(this)" required >
                     <option value="" selected disabled hidden>Choose Car Company</option>
                     <option value="Toyota">Toyota</option>
                     <option value="Kia">Kia</option>
@@ -26,19 +26,19 @@
                 </select>
                 <br />
                 <label for="car-model">Car Model:</label>
-                <select id="car-model" name="car-model" onchange="carModelChange(this)">
+                <select id="car-model" name="car-model" onchange="carModelChange(this)" required>
                     <option value="" selected disabled hidden>Choose Car Model</option>
                 </select>
                 <br />
                 <label for="start-date">Start Date:</label>
-                <input type="date" id="start-date" name="start-date" >
+                <input type="date" id="start-date" name="start-date" required>
                 <script>document.getElementById('start-date').value = new Date().toISOString().substr(0,10);</script>
                 <br />
                 <label for="end-date">End Date:</label>
-                <input type="date" id="end-date" name="end-date" placeholder="dd-mm-yyyy">
+                <input type="date" id="end-date" name="end-date" required>
                 <br />
                 <div class="chbox">
-                    <input type="checkbox" id="insurance" name="insurance"  >
+                    <input type="checkbox" id="insurance" name="insurance" >
                     <label for="insurance" style="padding-top: 10px;">Interested in purchasing insurance</label>
                 </div>
                 <input type="submit" value="Submit">

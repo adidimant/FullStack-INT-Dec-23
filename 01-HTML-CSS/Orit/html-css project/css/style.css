@@ -1,0 +1,123 @@
+nav.page-nav {
+    height: 50px;
+    display: flex;
+    background: rgb(129, 203, 255);
+}
+nav.page-nav .nav-item a {
+    text-decoration: none;
+    color: white;
+}
+ul.nav-container {
+    display: flex;
+    /*column-gap: 40px;*/
+    /*list-style-type: disclosure-closed;*/
+    list-style-type: none;
+    align-items: center;
+ }
+ 
+li.nav-item {
+    padding: 10px;
+    /*color: white;*/
+}
+nav.page-nav li.nav-item:hover{
+    background-color: aliceblue;
+    color: black;
+}
+nav.page-nav li.nav-item a:hover{
+    color: black;
+}
+section.main {
+    max-width: 1200px;
+    margin: auto;
+}
+.brands {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* carousel customizations: */
+.owl-carousel .owl-item {
+    height: 90vh;
+}
+.owl-carousel .owl-item img {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    /*height: auto;*/
+    object-fit: cover;
+}
+
+.owl-prev {
+    left: 0;
+    transform: translateX(50%) !important;
+}
+
+.owl-next {
+    right: 0;
+    transform: translateX(-50%) !important;
+}
+
+/* Adjust arrow styles as needed */
+.owl-prev,
+.owl-next {
+    position: absolute;
+    top: 45%;
+    /*transform: translateY(-50%) !important;*/
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+    width: 40px;
+    height: 40px;
+    font-size: 35px !important;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer !important;
+    transition: background-color 0.3s;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+.item {
+    position: relative;
+}
+.item .img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    font-weight: 800;
+    font-size:3vw;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.brands-container h2 {
+    text-align: center;
+}
+
+/* Catalogue page */
+.catalogue {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.car {
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0 0 15px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 0 15px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 15px 10px rgba(0,0,0,0.1);
+}
+.car .car-image {
+    height: 200px;
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* About-us page */
+.about-us .title {
+    font-weight: 800;
+    font-size: 24px;;
+}

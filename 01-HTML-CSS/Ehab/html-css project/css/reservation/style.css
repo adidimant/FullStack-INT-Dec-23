@@ -28,6 +28,7 @@ body, html {
 }
 .container .carImage img{
     border-radius: 50%;
+    display: none;
 }
 .container .formDiv{
     display: flex;

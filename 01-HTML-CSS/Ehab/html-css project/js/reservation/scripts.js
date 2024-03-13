@@ -1,18 +1,22 @@
+// A function to extract parameters from the link
 document.addEventListener("DOMContentLoaded", function() {
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     if(params.get('company') != null){
         document.getElementById('car-company').value = params.get('company');
         carCompanyChange(params.get('company'));
-        document.getElementById('car-model').value = params.get('model').replace(/\s/g, '');
+        document.getElementById('car-model').value = params.get('model').replace(/\s/g, '');// delete the spaces from string
         document.getElementById('carImg').src = params.get('img');
+        document.getElementById('carImg').style.display = 'block';
     }
 });
 
+// A function for filling car models after selecting the type of car
 function carCompanyChange(selected){
     let carModel = document.getElementById('car-model');
-    let option;
-    let val='';
+    let option; // use for create new option elemnt 
+    let val=''; // use for swith statement
+
     if(typeof selected.value === 'undefined')
         val = selected
     else
@@ -166,7 +170,14 @@ function carCompanyChange(selected){
         default:
             alert('Error, Please choose a different car company');
     }
+    // If no car model is selected, no image will be displayed
+    if(carModel.value === ''){
+        document.getElementById('carImg').src = null
+        document.getElementById('carImg').style.display = 'none';
+    }
 }
+// After selecting a car model, the car image will be displayed
 function carModelChange(selected){
     document.getElementById('carImg').src = "../images/"+document.getElementById('car-company').value+selected.value+".jpg";
+    document.getElementById('carImg').style.display = 'block';
 }
