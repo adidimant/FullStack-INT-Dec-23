@@ -1,26 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-let currentImageIndex = 0;
-const images = document.querySelectorAll('.carousel img');
-const totalImages = images.length;
+function updateModels() {
+        const manufacturer = document.getElementById("manufacturer").value;
+        const modelSelect = document.getElementById("model");
+        modelSelect.innerHTML = '';
 
-// Hide all images except the first one
-images.forEach((img, index) => {
-img.style.opacity = '0';
-img.style.display = 'none';
-if (index === 0) {
-img.style.opacity = '1';
-img.style.display = 'block';
-}
-});
+        //  default 
+        const defaultOption = document.createElement("option");
+        defaultOption.text = "Select Model";
+        defaultOption.value = "";
+        modelSelect.add(defaultOption);
 
-setInterval(() => {
-images[currentImageIndex].classList.remove('active'); // Remove the active class from the current image
-images[currentImageIndex].style.opacity = '0';
-images[currentImageIndex].style.display = 'none';
-currentImageIndex = (currentImageIndex + 1) % totalImages;
-images[currentImageIndex].style.opacity = '1';
-images[currentImageIndex].style.display = 'block';
-images[currentImageIndex].classList.add('active'); // Add the active class to the new current image
+        // מודלים שונים לפי סוג רכב
+        const models = {
+            "Audi": ["A3", "A4", "A6"],
+            "Mercedes": ["C-Class", "E-Class", "S-Class"],
+            "Corvet": ["Model 1", "Model 2", "Model 3"],
+            "BMW": ["3 Series", "5 Series", "7 Series"]
+        };
 
-}, 3000); // Change every 3 seconds
-});
+        // מוסיף את האופציות לפי הבחירה של הסוג רכב
+        if (manufacturer in models) {
+            models[manufacturer].forEach(function(model) {
+                const option = document.createElement("option");
+                option.text = model;
+                option.value = model;
+                modelSelect.add(option);
+            });
+        }
+    }

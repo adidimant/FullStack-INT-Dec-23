@@ -7,7 +7,7 @@
     <title>EliteMotion Car Hire</title>
     <link rel="icon" type="image/x-icon" href="../images/logos/EMicon.png" />
     <link rel="stylesheet" href="../styles/rent.css">
-    <script src="Script.js"></script>
+    <script src="../scripts/rent.js"></script>
 
 </head>
 
@@ -15,23 +15,18 @@
 
     <header>
         <div class="navbarWrapper">
-
             <a href="Index.html">
                 <img src="../Images/logos/EMlogo.webp" class="homelogo" alt="EliteMotion Logo">
             </a>
-
-
             <nav class="navbar">
                 <ul>
-                    <li><a class="nav-link active" href="Index.html">Home</a></li>
+                    <li><a class="nav-link" href="Index.html">Home</a></li>
                     <li><a class="nav-link" href="Catalog.html">Catalog</a></li>
                     <li><a class="nav-link active" href="Rent.html">Rent</a></li>
                     <li><a class="nav-link" href="About.html">About</a></li>
                 </ul>
             </nav>
         </div>
-
-
     </header>
     <main>
         <h1>Elite-Motion Car Hire <br> Unlock the road to unforgettable</h1>
@@ -39,6 +34,28 @@
             <div class="title">
                 <h2>Rent a Car</h2>
             </div>
+            <div class="input-group">
+                <label for="manufacturer">Car Manufacturer:</label>
+                <select id="manufacturer" required onchange="updateModels()">
+                    <option value="">Select Manufacturer</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Corvet">Corvet</option>
+                    <option value="BMW">BMW</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="model">Car Model:</label>
+                <select id="model" required>
+
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="color">Car Color:</label>
+                <input type="color" id="color" name="color" required>
+            </div>
+
+
             <h3>Personal Information:</h3>
             <form class="rental-form" id="rental-form">
                 <div class="input-group">
@@ -102,6 +119,7 @@
             </div>
 
         </footer>
+        <script src="../scripts/Navbar.js"></script>
 
 </body>
 
