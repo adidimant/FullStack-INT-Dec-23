@@ -1,0 +1,116 @@
+body {
+    background-image: url(/photos-files/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.header-div {
+    text-align: center;
+    margin-top: -10px; 
+}
+
+.ul-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 35px;
+    list-style-type: none;
+    color: white;
+    background-color: #333;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 50%; 
+    margin: 0 auto; 
+    
+    
+   
+    
+}
+
+.li-nav:hover {
+    text-decoration: underline 1px white;   
+    background-color: #585858;
+    padding: 5px 10px;
+    border-radius: 35px;
+    border: 1px solid white;
+}
+.li-nav {
+    background-color: #202020;
+    padding: 5px 10px;
+    border-radius: 35px;
+   
+}
+
+.a-nav {
+    text-decoration: none;
+    color:white;
+    
+}
+
+       /* CSS styles for the carousel container */
+       .photo-div {
+        
+       }
+       .carousel-container {
+        width: 40%; /* Adjust the width as needed */
+        overflow: hidden;
+        margin: 0 auto; /* Center-align the container */
+        position: relative;
+        text-align: center; /* Center-align images within container */
+        background-color: #f0f0f0; /* Set background color */
+        border-radius: 10px; /* Add border-radius for rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    }
+    
+    .carousel {
+        display: flex;
+        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
+        justify-content: flex-start; /* Align images to the left */
+        width: 100%; /* Ensure full width of carousel */
+    }
+    
+    .carousel-item {
+        flex: 0 0 auto;
+        width: 100%; /* Ensure each item takes full width of container */
+        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
+    }
+
+    /* CSS styles for navigation arrows */
+    .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+    }
+    
+    .carousel-nav button {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin: 0 20px; /* Fixed margin for arrows */
+    }
+
+    /* Adjustments for responsiveness */
+    @media screen and (max-width: 768px) {
+        .carousel-container {
+            width: 90%; /* Adjust width for smaller screens */
+        }
+    }
+    .carousel-nav button:hover {
+        background-color: #333;
+    }
+
+.company-img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.container-img
