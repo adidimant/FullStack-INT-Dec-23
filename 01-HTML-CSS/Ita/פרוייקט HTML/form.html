@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html dir="rtl">
+    <head>
+        <link rel="stylesheet" href="./form.css"/>
+        <link rel="stylesheet" href="./home-page.css"/>
+        <title>טופס השכרה</title>
+    </head>
+    
+    <body>
+
+      <div class="div-logo">
+        <img class="img-logo" src="./תמונות/לוגו ללא רקע.png"/>
+      </div>
+
+      <div >
+        <div id="mySidebar" class="sidebar">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+          <a href="home-page.html">דף הבית</a>
+          <a href="about.html">אודותינו</a>
+          <a href="form link.html">צור קשר</a>
+        </div>
+
+        <div id="main" class="topnav">
+          <button class="openbtn" onclick="openNav()">☰ תפריט</button>
+          <a><input type="search" placeholder="חיפוש" id="search" name="search"/></a>  
+        </div>
+
+        </div>
+
+        
+
+        
+        <div class="div-form">
+          <h1 class="tytle-form">טופס הזמנת רכב להשכרה</h1>
+        <form action="./home-page.html">
+          <ul>
+            <li>
+            <label for="fname">שם פרטי</label>
+            <input required type="text" id="fname" name="fname"/>
+            </li>
+            <li>
+            <label for="lname">שם משפחה:</label>
+            <input required type="text" id="lname" name="lname"/>
+          </li>
+          <li>
+            <label for="phone">מספר טלפון נייד:</label><br><br>
+            <input type="tel" id="phone" name="phone" placeholder="055-5555555" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" required>
+          </li>
+            <li>
+            <label for="Date">תאריך ושעת איסוף:</label>
+            <input type="date" id="startd" name="startd"/>
+            <input type="time" id="startt" name="startt"/>
+          </li>
+          <li>
+            <label for="Date">תאריך ושעת החזרה:</label>
+            <input type="date" id="eadd" name="eadd"/>
+            <input type="time" id="eadt" name="eadt"/>
+          </li>
+          <li>
+            <label for="manufacturer">סוג רכב</label>
+            <select id="manufacturer" name="manufacturer" style="display: block;">
+            <option value="123" >בחר</option>
+            <option value="volvo">VOLVO</option>
+            <option value="Toyota">טויוטה</option>
+            <option value="Subaro">סובארו</option>
+            <option value="hyundai">יונדאי</option>
+            <option value="Nissan">ניסאן</option>
+            <option value="mazda">מאזדה</option>
+            <option value="kia">קיה</option>
+            <option value="skoda">סקודה</option>
+            </select>
+          </li>
+
+
+          <li>
+            <label for="model">דגם:</label>
+              <!--וולבו-->
+            <select id="model1" name="model1">
+            <option value="cx40">cx40</option>
+            <option value="cx60">cx60</option>
+            </select>
+          
+          
+
+           <!--טויוטה-->
+            <select id="model2" name="model2">
+            <option value="verso">וורסו</option>
+            <option value="yaris">יאריס</option>
+            <option value="siena">סיאנה</option>
+            </select>
+          
+
+           <!--סובארו-->
+            <select id="model3" name="model3">
+            <option value="ivltis">איוולטיס</option>
+            <option value="XV">XV</option>
+            
+            </select>
+          
+          <!--יונדאי-->
+            <select id="model4" name="model4">
+            <option value="tuson">טוסון</option>
+            <option value="starya">סטאריה</option>
+            <option value="i20">i20</option>
+            </select>
+          
+          <!--ניסאן-->
+            <select id="model5" name="model5">
+            <option value="mikra">מיקרה</option>
+            <option value="sentra">סנטרה</option>
+            </select>
+          
+          <!--מאזדה-->
+            <select id="model6" name="model6">
+            <option value="CX-5">CX-5</option>
+            <option value="CX-3">CX-3</option>
+            </select>
+          
+          <!--קיה-->
+            <select id="model7" name="model7">
+            <option value="picanto">פיקנטו</option>
+            <option value="karnibl">קרניבל</option>
+            </select>
+          
+          <!--סקודה-->
+            <select id="model8" name="model8">
+            <option value="codihk">קודיאק</option>
+            </select>
+          </li><br><br>
+
+          
+          <label for="Insurance">האם תרצה להוסיף ביטוח:</label>
+          <input  type="radio" id="male" name="Insurance" value="yes">
+          <label for="yes">כן</label>
+          <input type="radio" id="female" name="Insurance" value="no">
+          <label for="no">לא</label>
+
+          <li><input type="submit" onclick="openpopup()" value="שלח טופס"></li>
+          </ul>
+
+        </form>
+        </div>
+
+        
+
+        <footer>
+          <img width="100%" src="./תמונות/RASKIN (1).png"/>
+        </footer>
+
+        <div class=controlWindow  id="controlWindow" style="display: none;">
+          <div class=controlWindowContent>
+              <img  src="./תמונות/RASKIN (2).png" class="imgincontrol"><img/>
+              <h2 class="textcontrolh2">הזמנתך נקלטה במערכת</h2>
+              <p class="textcontrolp">מספר הזמנה: 99999</p>
+              <div class="div-button">
+              <a href="home-page.html"><button class="button-popup">דף הבית</button></a>
+              <a><button id="buttoncontrol" class="button-popup" onclick="closepopup()">X</button></a> <!-- לחצן שיש עליו פונקיציה לסגור את החלון-->
+            </div>
+            </div>
+      </div> 
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              const urlParams = new URLSearchParams(window.location.search);
+              const manufacturer = urlParams.get('manufacturer');
+              const model1 = urlParams.get('model1');
+              const model2 = urlParams.get('model2');
+              const model3 = urlParams.get('model3');
+              const model4 = urlParams.get('model4');
+              const model5 = urlParams.get('model5');
+              const model6 = urlParams.get('model6');
+              const model7 = urlParams.get('model7');
+              const model8 = urlParams.get('model8');
+              
+              
+              
+              document.getElementById('manufacturer').value = manufacturer;
+              document.getElementById('model1').value = model1;
+              document.getElementById('model2').value = model2;
+              document.getElementById('model3').value = model3;
+              document.getElementById('model4').value = model4;
+              document.getElementById('model5').value = model5;
+              document.getElementById('model6').value = model6;
+              document.getElementById('model7').value = model7;
+              document.getElementById('model8').value = model8;
+              
+
+              
+          });
+      </script>
+
+      <script>
+            function openpopup() {
+            document.getElementById("controlWindow").style.display = "block";
+           }
+  
+            function closepopup() {
+            document.getElementById("controlWindow").style.display = "none";
+           }
+
+           
+       </script>
+
+        <script>
+          
+          document.getElementById("manufacturer").addEventListener("change", function() {
+            var selectedValue = this.value;
+            var model1 = document.getElementById("model1");
+            var model2 = document.getElementById("model2");
+            var model3 = document.getElementById("model3");
+            var model4 = document.getElementById("model4");
+            var model5 = document.getElementById("model5");
+            var model6 = document.getElementById("model6");
+            var model7 = document.getElementById("model7");
+            var model8 = document.getElementById("model8");
+          
+            if (selectedValue === "volvo") {
+              model1.style.display = "block";
+            } else  {
+              model1.style.display = "none";
+            }
+
+            if (selectedValue === "Toyota") {
+              model2.style.display = "block";
+            } else  {
+              model2.style.display = "none";
+            }
+
+            if (selectedValue === "Subaro") {
+              model3.style.display = "block";
+            } else  {
+              model3.style.display = "none";
+            }
+
+            if (selectedValue === "hyundai") {
+              model4.style.display = "block";
+            } else  {
+              model4.style.display = "none";
+            }
+
+            if (selectedValue === "Nissan") {
+              model5.style.display = "block";
+            } else  {
+              model5.style.display = "none";
+            }
+
+            if (selectedValue === "mazda") {
+              model6.style.display = "block";
+            } else  {
+              model6.style.display = "none";
+            }
+
+            if (selectedValue === "kia") {
+              model7.style.display = "block";
+            } else  {
+              model7.style.display = "none";
+            }
+
+            if (selectedValue === "skoda") {
+              model8.style.display = "block";
+            } else  {
+              model8.style.display = "none";
+            }
+          });
+
+         
+            document.addEventListener("DOMContentLoaded", function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const manufacturer = urlParams.get('manufacturer');
+                const model2 = urlParams.get('model2');
+                const model3 = urlParams.get('model3');
+                
+                
+                document.getElementById('manufacturer').value = manufacturer;
+                document.getElementById('model2').value = model2;
+                document.getElementById('model3').value = model3;
+  
+                model2.style.display = 'block';
+  
+                
+            });
+        </script>
+           <script>
+            function openNav() {
+           document.getElementById("mySidebar").style.width = "250px"
+           document.getElementById("main").style.marginLeft = "250px";
+         }
+ 
+          function closeNav() {
+           document.getElementById("mySidebar").style.width = "0";
+           document.getElementById("main").style.marginLeft= "0";
+         }
+         </script>
+        
+          
+
+    </body>
+</html>

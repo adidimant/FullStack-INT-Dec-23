@@ -1,0 +1,14 @@
+.mainContainer {
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: antiquewhite;
+  text-align: center;
+}
+
+.mainContainer .headerContainer {
+  font-weight: bold;
+}
+
+.mainContainer .headerContainer:hover {
+  background-color: blueviolet;
+}
