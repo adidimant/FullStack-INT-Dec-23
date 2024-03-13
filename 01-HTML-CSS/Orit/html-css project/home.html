@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car rentals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="page-nav">
+            <ul class="nav-container">
+                <li class="nav-item"><a href="home.html">Home</a></li>
+                <li class="nav-item"><a href="rent.html">Rent a car!</a></li>
+                <li class="nav-item"><a href="catalogue.html">Catalogue</a></li>
+                <li class="nav-item"><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+        <section class="main home">
+            <div class="image-slider">
+                <div class="owl-carousel rental-carousel">
+                    <div class="item"><img src="images/car-rental1.webp" alt=""><div class="img-text">The best car-rental Website!!</div></div>
+                    <div class="item"><img src="images/car-rental2.avif" alt=""><div class="img-text">Test us out!</div></div>
+                    <div class="item"><img src="images/car-rental3.jpg" alt=""><div class="img-text">Hundreds of options to choose from!</div></div>
+                    <div class="item"><img src="images/car-rental4.webp" alt=""><div class="img-text">10% off your first order!</div></div>
+                  </div>
+            </div>
+            <div class="brands-container">
+                <h2>We work with the best companies!</h2>
+                <div class="brands">
+                    <img src="images/budget_logo_lrg.gif" alt="">
+                    <img src="images/dollar_logo_lrg.gif" alt="">
+                    <img src="images/europcar_logo_lrg.gif" alt="">
+                    <img src="images/global_rent_a_car_logo_lrg.gif" alt="">
+                    <img src="images/greenmotion_logo_lrg.gif" alt="">
+                    <img src="images/sixt_logo_lrg.gif" alt="">
+                    <img src="images/thrifty_israel_logo_lrg.gif" alt="">
+                    <img src="images/thrifty_logo_lrg.gif" alt="">
+                </div>
+            </div>
+            <div class="about-us-main">
+                <iframe src="about.html" frameborder="0"></iframe>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel();
+            });
+    </script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            autoplay:true,
+            items:1
+        })
+    </script>
+</body>
+</html>
