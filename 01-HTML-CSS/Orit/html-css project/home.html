@@ -13,10 +13,10 @@
     <div class="page-container">
         <nav class="page-nav">
             <ul class="nav-container">
-                <li class="nav-item"><a href="home.html">Home</a></li>
-                <li class="nav-item"><a href="rent.html">Rent a car!</a></li>
-                <li class="nav-item"><a href="catalogue.html">Catalogue</a></li>
-                <li class="nav-item"><a href="about.html">About us</a></li>
+                <li class="nav-item" data-nav="home"><a href="home.html">Home</a></li>
+                <li class="nav-item" data-nav="rent"><a href="rent.html">Rent a car!</a></li>
+                <li class="nav-item" data-nav="catalogue"><a href="catalogue.html">Catalogue</a></li>
+                <li class="nav-item" data-nav="about"><a href="about.html">About us</a></li>
             </ul>
         </nav>
         <section class="main home">
@@ -42,7 +42,8 @@
                 </div>
             </div>
             <div class="about-us-main">
-                <iframe src="about.html" frameborder="0"></iframe>
+                <h2 class="title">Read about us from an iframe, removed navigation bar:</h2>
+                <iframe id="about-us-iframe" src="about.html" frameborder="0"></iframe>
             </div>
         </section>
     </div>
@@ -60,6 +61,23 @@
             autoplay:true,
             items:1
         })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var iframe = document.getElementById("about-us-iframe");
+        
+            // Check if the iframe has loaded
+            iframe.onload = function() {
+                // Access the content window and document of the iframe
+                var iframeWindow = iframe.contentWindow;
+                var iframeDocument = iframe.contentDocument || iframeWindow.document;
+        
+                // Now you can target elements inside the iframe using standard DOM methods
+                var iframeElement = iframeDocument.getElementsByClassName("page-nav");
+                // Do something with the targeted element
+                iframeElement[0].style.display = 'none';
+            };
+        });
     </script>
 </body>
 </html>
