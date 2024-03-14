@@ -31,12 +31,8 @@ body {
 .nav-item:hover {
     text-decoration: underline;
 }
-h1 {
+.site-logo {
     text-align: center;
-    font-size: 55px;
-    margin-top:50px ;
-    margin-bottom: 50px;
-    font-family: 'Times New Roman', Times, serif;
 }
 .seperator {
     border: 6px solid black;
@@ -56,7 +52,7 @@ section {
     justify-content: center;
     gap: 40px;
 }
-div {
+.para {
     border: 5px black solid;
     border-radius: 15px;
     padding: 15px auto;

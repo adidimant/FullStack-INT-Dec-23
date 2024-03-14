@@ -1,5 +1,5 @@
 body {
-    margin: 0px 0px 20px;
+    margin: 10px 10px 10px;
 }
 .car-container {
     display: flex;
@@ -31,6 +31,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 100px;
 }
 .nav-item {
     text-decoration: none;
@@ -46,6 +47,12 @@ img {
     border-radius: 15px;
     border: black 3px solid;
 }
+img.site-logo {
+    border: none;
+    text-align: center;
+    height: 170px;
+    width: 264px;
+}
 .stats {
     display: flex;
     flex-direction: column;
@@ -53,6 +60,9 @@ img {
     gap: 0;
     font-size: 15px;
     font-family: "Roboto Condensed", sans-serif;
+}
+.logo-div {
+    text-align: center;
 }
 .cars {
     width: 275px;
@@ -74,18 +84,18 @@ h1 {
 .seperator {
     border: 6px solid black;
     border-radius: 20px;
-    margin: 50px 50px 100px;
+    margin: 50px 50px 150px;
 }
 h2 {
     text-align: center;
-    font-family: "Inter", sans-serif;
 }
 .form-button {
     background-color: #989292;
     padding: 10px 25px;
     text-decoration: none;
     color: aliceblue;
-    border-radius: 15px;   
+    border-radius: 15px;
+    
 }
 a.form-button:hover {
     background-color: #c3c0c0;
