@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Rental form</title>
+    <link rel="stylesheet" href="/01-HTML-CSS/oz/html-css-project/Form/form-style.css">
+</head>
+<body>
+    <script>
+function populate(s1, s2) {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+        s2.innerHTML = "";
+
+        if (s1.value == "Huyndai") {
+            var optionArray = ["kona|Kona", "santa fe|Santa fe", "sonata|Sonata"];
+        } else if (s1.value == "Volvo") {
+            var optionArray = ["S90|S90", "C40|C40", "XC40|XC40"];
+        } else if (s1.value == "Mazda") {
+            var optionArray = ["CX30|CX30", "CX90|CX90", "CX3|CX3"];
+        } else if (s1.value == "Suzuki") {
+            var optionArray = ["vitara|Vitara", "ignis|Ignis", "jimny|Jimny"];
+        } else if (s1.value == "Mercedes") {
+            var optionArray = ["GLC|GLC", "GLE|GLE", "EQS|EQS"];
+        } else if (s1.value == "BMW") {
+            var optionArray = ["IX|IX", "IX3|IX3", "X7|X7"];
+        }
+
+        for (var option in optionArray) {
+            var pair = optionArray[option].split("|");
+            var newOption = document.createElement("option");
+            newOption.value = pair[0];
+            newOption.innerHTML = pair[1];
+            s2.options.add(newOption);
+        }
+    }
+    window.onload = function () {
+        populate('slct1', 'slct2');
+    };
+    </script>
+    <h1>Rental form</h1>
+    <nav class="head-nav">
+        <ul class="nav-menu">
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/aboutus.html"><li>About us</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/index.html"><li>Home page</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/rentalform.html"><li>Rental form</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/catalog.html"><li>Car catalog</li></a>
+        </ul>
+    </nav>
+    <hr class="seperator">
+    
+    <div class="flex-container">
+    <form class="form-container">
+            <label class="label">Car company:</label>
+            <select required class="select1" name="slct1" id="slct1" onchange="populate('slct1','slct2')">
+            <option value="Huyndai">Huyndai</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Mazda">Mazda</option>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="BMW">BMW</option>
+            </select>
+        <label class="label">Choose model:</label>
+        <select required class="select2" name="slct2" id="slct2"></select> 
+        <label class="label">Reserve dates:</label>
+        <input class="select-date" type="date">
+        <label for="checkbox" class="label">Include insurance:</label> <input class="checkbox" id="checkbox" type="checkbox"> 
+        <button class="sbmt-btn" id="submit-btn">submit</button>
+    </form>
+</div>
+    
+</body>
+</html>

@@ -1,3 +1,5 @@
+const birthdate = new Date(1980, 6, 2);
+
 function getAge(birthDate) {
   if (!birthDate) {
     return null;
@@ -5,6 +7,10 @@ function getAge(birthDate) {
   const currentTime = Date.now();
   const ageInMilliseconds = currentTime - birthDate.getTime();
   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; // מספר המילישניות בשנה
+  const ageInYears = ageInMilliseconds / millisecondsPerYear;
+  if (ageInYears < 1) { // if it's a baby
+    return ageInYears;
+  }
   return Math.floor(ageInMilliseconds / millisecondsPerYear);
 }
 

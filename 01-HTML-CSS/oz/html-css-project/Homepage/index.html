@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaRental</title>
+    
+    <link rel="stylesheet" href="/01-HTML-CSS/oz/html-css-project/Homepage/index-style.css">
+<script>
+    window.onload = function() {
+  let slideIndex = 1; 
+  showSlides(slideIndex);
+}
+  let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slide");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+</head>
+<body>
+  <h1>Welcome to KaRental</h1>
+    <nav class="head-nav">
+        <ul class="nav-menu">
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/aboutus.html"><li>About us</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/Homepage/index.html"><li>Home page</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/Form/rentalform.html"><li>Rental form</li></a>
+            <a class="nav-item" href="/01-HTML-CSS/oz/html-css-project/catalog.html"><li>Car catalog</li></a>
+        </ul>
+    </nav>
+    <hr class="seperator">
+        <div class="carousel-container">
+            <div class="carousel">
+              <img class="slide" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/C40.jpg" alt="Image 1">
+              <img class="slide" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/cx90.jpg" alt="Image 2">
+              <img class="slide" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/glc.jpg" alt="Image 3">
+              <img class="slide" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/ignis.jpg" alt="Image 3">
+              <img class="slide" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/ix.jpg" alt="Image 3">
+            </div>
+            <button class="prev" onclick="plusSlides(-1)">❮</button>
+            <button class="next" onclick="plusSlides(1)">❯</button>
+            <div class="dot-container">
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+              <span class="dot" onclick="currentSlide(4)"></span>
+              <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+          </div>
+    <div class="logo-container">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/volvo-logo.jpg" alt="volvo">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/hyundai-logo.jpg" alt="hyundai">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/mazda-logo.png" alt="mazda">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/Suzuki-logo.png" alt="suzuki">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/Mercedes-logo.jpg" alt="mercedes">
+        <img class="logos" src="/01-HTML-CSS/oz/html-css-project/imgs/imgs/bmw-logo.jpg" alt="bmw">
+    </div>
+    
+
+</body>
+</html>

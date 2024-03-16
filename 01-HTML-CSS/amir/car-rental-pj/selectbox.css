@@ -1,0 +1,17 @@
+
+
+  select {
+    background-color: var(--darkgray);
+
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 3em;
+    border-radius: .25em;
+    cursor: pointer;
+color: white;
+
+  }
+
+
+  
