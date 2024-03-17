@@ -10,14 +10,14 @@ background-attachment: fixed;
 
 
 .button-flight {
-    position: relative; /* קישור יהיה במקום קבוע */
+position: relative; /* קישור יהיה במקום קבוע */
 top: 1%; /* מציין את המרחק מהחלק העליון של העמוד */
 left: 3%; /* מציין את המרחק מהצד השמאלי של העמוד */
-    padding: 5px 5px;
-    color: rgb(255, 255, 255);
-    background-color: black;
-    border-radius: 5px;
-    cursor: pointer;
+padding: 5px 5px;
+color: rgb(255, 255, 255);
+background-color: black;
+border-radius: 5px;
+cursor: pointer;
 
 
 }

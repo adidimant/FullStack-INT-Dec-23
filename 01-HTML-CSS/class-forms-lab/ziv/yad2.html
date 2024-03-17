@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Yad2</title>
+        <link rel="stylesheet" href="yad2.css">
+        <script src=yad2.js></script>
+    </head>
+    <body class="body">
+  
+        <div class="div">
+
+         <img  src="https://assets.yad2.co.il/common/logo-orange.svg" alt="logo">
+           <div class="container"> 
+                 <button class="button-home-page" onclick="goToPageOne()">Homepage</button>
+                 <button class="button-new-post" onclick="goToPageTwo()">New post</button>
+           </div>
+        </div>
+       
+    <form class="form" method="post" onsubmit="sendForm(event)">
+        <img class="logo" src="https://assets.yad2.co.il/common/logo-orange.svg" alt="logo"><br>
+        <h2 class="h2-title"> Create a new ad ! </h2>
+        <input class="input-form" type="text" id="name" name="name" placeholder="name" required><br>
+        <input class="input-form" type="text" id="last name" name="last name" placeholder="last name" required> <br>
+        <input class="input-form" type="tel" id="phone" name="phone" placeholder="phone" required><br>
+        <input class="input-form" type="email" id="email" name="email" placeholder="email" required><br>
+        <input class="input-form" type="text" id="Adress" name="Adress" placeholder="Adress" required><br>
+        <select class="select-gender" id="gender" name="gender" required >
+            <option value="gender"></option>
+            <option value="Man">Man</option>
+            <option value="Women">Women</option>
+        </select>
+        
+       <div>
+        <input type="checkbox" id="Mailing List" name="Malling List" required>
+        <label class="label-form" for="Malling List">I would like to recieve an updates to my mail about this product</label><br><br>
+        <input class="file" type="file" id="file" name="file" multiple><br><br>
+       </div>
+        <input class="submit-1" type="submit" value="send">
+    </form>
+
+    </body>
+</html>

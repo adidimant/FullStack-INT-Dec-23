@@ -1,0 +1,119 @@
+body {
+    background-image: url(/01-HTML-CSS/michael/RentalCar-website-Project/photos-files/background4.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.header-div {
+    text-align: center;
+    margin-top: -10px; 
+}
+
+.ul-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 35px;
+    list-style-type: none;
+    color: white;
+    background-color: #333;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 25px;
+    width:700px; 
+    margin: 0 auto; 
+    border-left: #5e5e5e 15px solid;
+    border-right: #5e5e5e 15px solid;
+    border-bottom: #5e5e5e 8px solid;
+    
+    
+   
+    
+}
+
+.li-nav:hover {
+    text-decoration: underline 1px white;   
+    background-color: #585858;
+    padding: 5px 10px;
+    border-radius: 35px;
+    border-left: 4px solid white;
+    border-right: 4px solid white;
+}
+.li-nav {
+    background-color: #202020;
+    padding: 5px 10px;
+    border-radius: 35px;
+   
+}
+
+.a-nav {
+    text-decoration: none;
+    color:white;
+    
+}
+
+
+
+.s-div {
+    background-color: #333;
+    width: 550px;
+    height: 250px;
+    padding: 50px;
+    border-radius: 35px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    border-left: #5e5e5e 15px solid;
+    border-right: #5e5e5e 15px solid;
+    border-top: #5e5e5e 8px solid;
+    border-bottom: #5e5e5e 8px solid;
+}
+
+
+.container-s {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+   
+}
+a:hover {
+    font-weight: bolder;
+    text-decoration: underline;
+    color: white;
+   
+}
+
+.footer-div {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    width: 100%;
+    height: 30px;
+   margin-top: 170px;
+}
+.footer-p {
+padding: 5px;
+    
+}
+.footer-p:hover {
+ 
+    font-weight: bolder;
+    cursor:none;
+
+}
+
+
+.logodiv {
+    text-align: center;
+    padding-top: 25px;
+}
