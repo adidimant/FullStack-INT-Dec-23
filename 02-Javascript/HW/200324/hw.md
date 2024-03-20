@@ -1,4 +1,4 @@
-1) Write A System (html with javascript code) that after the document is loaded - opening a timer
+1) Write A System (html with javascript code) that after the document is loaded (use an event listener)- opening a timer
  - when its 30 seconds that the user isn't moving the mouse - timer stoppes
  - when the mouse returned to move / keyboard typed (keydown / keyup event) - time continue
 
