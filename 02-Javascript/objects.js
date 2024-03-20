@@ -44,3 +44,7 @@ const obj1 = {a: 1, b: 2};
 const obj2 = {b: 3, c: 4};
 const obj3 = { ...obj1, ...obj2 }; // ob3 = {a: 1, b: 3, c: 4}
 const obj4 = { ...obj1, ...obj2, b: 8  }; // ob3 = {a: 1, b: 8, c: 4} -> override b for both of them
+
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const arr3 = [...arr1, ...arr2]; // arr3 = [1, 2, 3, 4, 5, 6]
