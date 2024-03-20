@@ -7,7 +7,7 @@ body {
 
 .header-div {
     text-align: center;
-    margin-top: -10px; 
+    margin-top: -10px ; 
 }
 
 .ul-nav {
@@ -55,17 +55,17 @@ body {
     
 }
 
-       /* CSS styles for the carousel container */
+       
    
        .carousel-container {
-        width: 650px; /* Adjust the width as needed */
+        width: 650px; 
         overflow: hidden;
-        margin: 0 auto; /* Center-align the container */
+        margin: 0 auto; 
         position: relative;
-        text-align: center; /* Center-align images within container */
-        background-color: #333; /* Set background color */
-        border-radius: 35px; /* Add border-radius for rounded corners */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+        text-align: center; 
+        background-color: #333; 
+        border-radius: 35px; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         border-left: #5e5e5e 15px solid;
         border-right: #5e5e5e 15px solid;
         border-top: #5e5e5e 8px solid;
@@ -74,15 +74,15 @@ body {
     
     .carousel {
         display: flex;
-        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
-        justify-content: flex-start; /* Align images to the left */
-        width: 100%; /* Ensure full width of carousel */
+        transition: transform 0.5s ease; 
+        justify-content: flex-start; 
+        width: 100%; 
     }
     
     .carousel-item {
         flex: 0 0 auto;
         width: 100%;
-        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
+        transition: transform 0.5s ease; 
     }
 
    
@@ -128,7 +128,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
+    align-items: center; 
 
  
 }
