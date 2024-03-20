@@ -2,14 +2,14 @@
 const visitObjHistory = [];
 const visitObj = {
     url: "www.google.com",
-    timeVisited: 60,
+    timeVisited: new Date,
     errorCount: 3,
     clicksCount: 200,
     loginsCount: 2,
     googleUser: "OferBA",
 };
 addToHistory(visitObj);
-visitObj.timeVisited = 61;
+visitObj.timeVisited = new Date;
 addToHistory(visitObj);
 visitObj.loginsCount = 7;
 addToHistory(visitObj);

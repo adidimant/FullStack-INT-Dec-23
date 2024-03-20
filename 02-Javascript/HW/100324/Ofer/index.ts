@@ -1,6 +1,6 @@
 interface visitInterface {
     url: string;
-    timeVisited: number;
+    timeVisited: Date;
     errorCount: number;
     clicksCount: number;
     loginsCount: number;
@@ -11,7 +11,7 @@ const visitObjHistory: visitInterface[] = [];
 
 const visitObj: visitInterface = {
     url: "www.google.com",
-    timeVisited: 60,
+    timeVisited: new Date,
     errorCount: 3,
     clicksCount: 200,
     loginsCount: 2,
@@ -19,7 +19,7 @@ const visitObj: visitInterface = {
 };
 addToHistory(visitObj);
 
-visitObj.timeVisited = 61;
+visitObj.timeVisited = new Date;
 
 addToHistory(visitObj);
 
