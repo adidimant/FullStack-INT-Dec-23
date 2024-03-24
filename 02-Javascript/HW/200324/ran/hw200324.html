@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Timer Example</title>
+<style>
+  #timer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="timer">0</div>
+
+<script>
+let time = 0;
+let timerInterval;
+const timerDisplay = document.getElementById('timer');
+
+function startTimer() {
+  if (timerInterval) return; 
+  timerInterval = setInterval(() => {
+    time++;
+    timerDisplay.textContent = time;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function resetInactivityTimeout() {
+  clearTimeout(inactivityTimeout);
+  inactivityTimeout = setTimeout(() => {
+    stopTimer();
+  }, 30000); 
+}
+
+let inactivityTimeout = setTimeout(() => {
+  stopTimer();
+}, 30000);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  startTimer();
+});
+
+document.addEventListener('mousemove', () => {
+  if (!timerInterval) startTimer(); 
+  resetInactivityTimeout();
+});
+
+document.addEventListener('keydown', () => {
+  if (!timerInterval) startTimer();
+  resetInactivityTimeout();
+});
+
+document.addEventListener('keyup', () => {
+  if (!timerInterval) startTimer();
+  resetInactivityTimeout();
+});
+</script>
+</body>
+</html>
