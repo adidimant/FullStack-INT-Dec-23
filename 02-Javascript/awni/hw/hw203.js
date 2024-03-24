@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Update the timer display
     function updateDisplay() {
-        document.getElementById('timer').textContent = `Timer: ${activityTimer} seconds`;
+        if(activityTimer >= activityThreshold) {
+            document.getElementById('timer').textContent = `Timer: ${activityTimer} seconds - User is not here`;
+        } else {
+            document.getElementById('timer').textContent = `Timer: ${activityTimer} seconds - User is here`;
+        }
     }
 
     // Reset the activity timer
@@ -56,5 +60,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('keyup', onActivity);
     window.addEventListener('scroll', onActivity); 
 
-    updateDisplay(); // Initialize timer display
+    updateDisplay(); 
 });
