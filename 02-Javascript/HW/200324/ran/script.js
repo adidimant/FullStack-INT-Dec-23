@@ -6,8 +6,13 @@ function updateTimer() {
   timerDisplay.textContent = time;
 }
 
+function resetTimer() {
+  time = 0; // איפוס הטיימר
+  updateTimer();
+}
+
 function startTimer() {
-  if (timerInterval) return; 
+  if (timerInterval) clearInterval(timerInterval); // אם הטיימר כבר פועל, אפס אותו
   timerInterval = setInterval(() => {
     time++;
     updateTimer();
@@ -19,31 +24,35 @@ function stopTimer() {
   timerInterval = null;
 }
 
+function showInactivityAlert() {
+  alert("לא נרשמה תזוזה במשך 30 שניות!");
+}
+
 function resetInactivityTimeout() {
   clearTimeout(inactivityTimeout);
+  resetTimer(); // איפוס הטיימר בכל פעם שהמשתמש מזיז את העכבר
   inactivityTimeout = setTimeout(() => {
     stopTimer();
-  }, 30000); 
+    showInactivityAlert(); // הצגת התראה לאחר 30 שניות של אי תזוזה
+  }, 30000); // 30 שניות של אי פעילות
 }
 
 let inactivityTimeout = setTimeout(() => {
   stopTimer();
+  showInactivityAlert();
 }, 30000);
 
 document.addEventListener('mousemove', () => {
-  if (!timerInterval) startTimer();
   resetInactivityTimeout();
 });
 
 document.addEventListener('keydown', () => {
-  if (!timerInterval) startTimer();
   resetInactivityTimeout();
 });
 
 document.addEventListener('keyup', () => {
-  if (!timerInterval) startTimer();
   resetInactivityTimeout();
 });
 
-
+// התחל את הטיימר מיד כשהדף נטען
 startTimer();
