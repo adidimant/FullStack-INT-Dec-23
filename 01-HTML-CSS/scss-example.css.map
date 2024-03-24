@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["scss-example.scss"],"names":[],"mappings":"AAGA;EACE;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA,kBAZY;;AAcd;EACE,kBAdc","file":"scss-example.css"}
+{"version":3,"sources":["scss-example.scss","scss-example.css"],"names":[],"mappings":"AAGA;EACE,cAAA;EACA,kBAAA;EACA,8BAAA;EACA,kBAAA;EACA,+BAAA;ACFF;ADIE;EACE,iBAAA;EACA,yBAZY;ACUhB;ADIE;EACE,yBAdc;ACYlB","file":"scss-example.css"}
