@@ -1,70 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
 <meta charset="UTF-8">
-<title>Timer Example</title>
+<title>דוגמה לאתר עם טיימר</title>
 <style>
   #timer {
     position: fixed;
-    top: 0;
-    left: 0;
-    background-color: black;
+    top: 20px;
+    right: 20px;
+    background-color: navy;
     color: white;
     padding: 10px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
   }
 </style>
 </head>
 <body>
 
+<h1>ברוכים הבאים לאתר שלנו!</h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit eaque beatae ex quasi vitae, voluptas eligendi sed itaque quo temporibus perspiciatis at deleniti, unde excepturi nihil officia earum. Fugiat.</p>
+<ul>
+  <li>פריט ראשון</li>
+  <li>פריט שני</li>
+  <li>פריט שלישי</li>
+</ul>
+
 <div id="timer">0</div>
 
-<script>
-let time = 0;
-let timerInterval;
-const timerDisplay = document.getElementById('timer');
-
-function startTimer() {
-  if (timerInterval) return; 
-  timerInterval = setInterval(() => {
-    time++;
-    timerDisplay.textContent = time;
-  }, 1000);
-}
-
-function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-}
-
-function resetInactivityTimeout() {
-  clearTimeout(inactivityTimeout);
-  inactivityTimeout = setTimeout(() => {
-    stopTimer();
-  }, 30000); 
-}
-
-let inactivityTimeout = setTimeout(() => {
-  stopTimer();
-}, 30000);
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  startTimer();
-});
-
-document.addEventListener('mousemove', () => {
-  if (!timerInterval) startTimer(); 
-  resetInactivityTimeout();
-});
-
-document.addEventListener('keydown', () => {
-  if (!timerInterval) startTimer();
-  resetInactivityTimeout();
-});
-
-document.addEventListener('keyup', () => {
-  if (!timerInterval) startTimer();
-  resetInactivityTimeout();
-});
-</script>
+<script src="script.js"></script>
 </body>
 </html>
