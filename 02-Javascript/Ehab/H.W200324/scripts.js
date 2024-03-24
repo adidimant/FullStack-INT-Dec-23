@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded",() => {
 document.addEventListener("mousemove", () => {
     isHere = true;
     clearTimeout(timer); //clearTimeout(timeoutID)
-    timer = setInterval(stopTime,30000);
+    timer = setTimeout(stopTime,30000);
 });
 document.addEventListener("keydown", () => {
     isHere = true;
     clearTimeout(timer);  
-    timer = setInterval(stopTime,30000);
+    timer = setTimeout(stopTime,30000);
 });
 function stopTime(){
     isHere = false;
