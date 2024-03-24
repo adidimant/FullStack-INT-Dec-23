@@ -4,10 +4,25 @@ body {
     background-size: cover;
     font-family: "Nunito Sans", sans-serif;
 }
+.top-div {
+    background-color: #333;
+    text-align: center;
+    margin-top: -10px;
+    height: 150px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
 
+.li-nav img {
+    margin-bottom: 0px; 
+}
+
+.li-nav p {
+    margin-top: 0px; 
+}
 .header-div {
     text-align: center;
-    margin-top: -10px ; 
+    margin-top: -0px ; 
 }
 
 .ul-nav {
@@ -36,11 +51,12 @@ body {
 
 .li-nav:hover {
     text-decoration: underline 1px white;   
-    background-color: #585858;
+    background-color: #404040;
     padding: 5px 10px;
     border-radius: 35px;
-    border-left: 4px solid white;
-    border-right: 4px solid white;
+    border-left: 4px solid rgb(255, 81, 249);
+    border-right: 4px solid rgb(255, 81, 249);
+    box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
 }
 .li-nav {
     background-color: #202020;
@@ -109,11 +125,14 @@ body {
     /* Adjustments for responsiveness */
     @media screen and (max-width: 768px) {
         .carousel-container {
-            width: 90%; /* Adjust width for smaller screens */
+            width: 90%; 
         }
     }
     .carousel-nav button:hover {
         background-color: #333;
+        border-left: 4px solid rgb(255, 81, 249);
+        border-right: 4px solid rgb(255, 81, 249);
+        box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
     }
 
 .company-img {
@@ -166,8 +185,9 @@ body {
     color: #b3b3b3;
     padding: 5px 15px;
     border-radius: 15px;
-    border-left: #f0f0f0 4px solid;
-    border-right: #f0f0f0 4px solid;
+    border-left: 4px solid rgb(255, 81, 249);
+    border-right: 4px solid rgb(255, 81, 249);
+    box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
     
 }
 

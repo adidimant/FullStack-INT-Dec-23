@@ -28,28 +28,32 @@ const visitObj1 = {
     timeVisited: "12-03-2024", 
     errorsCount: 0, 
     clicksCount: 5, 
-    loginsCount: 1 
+    loginsCount: 1,
+    googleUser : 'ehab@gmail.com'
 };
 const visitObj4 = { 
     url: "https://example.com/page1", 
     timeVisited: "13-03-2024", 
     errorsCount: 3, 
     clicksCount: 10, 
-    loginsCount: 10 
+    loginsCount: 10,
+    googleUser : 'ehab@gmail.com'
 };
 const visitObj2 = { 
     url: "https://example.com/page2", 
     timeVisited: "11-03-2024", 
     errorsCount: 2, 
     clicksCount: 8, 
-    loginsCount: 2 
+    loginsCount: 2,
+    googleUser : 'ehab@gmail.com'
 };
 const visitObj3 = { 
     url: "https://example.com/page3", 
     timeVisited: "10-03-2024", 
     errorsCount: 1, 
     clicksCount: 3, 
-    loginsCount: 0 
+    loginsCount: 0,
+    googleUser : 'ehab@gmail.com'
 };
 
 
