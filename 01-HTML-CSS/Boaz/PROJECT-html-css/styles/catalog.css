@@ -1,8 +1,16 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+:root {
+    --color-background: #121212;
+    --color-text: #FFFFFF;
+    --color-accent: #FFD700; 
 }
 
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 .navbarWrapper {
     display: flex;
     justify-content: space-between;
@@ -45,6 +53,26 @@ body {
     gap: 20px;
     padding: 20px;
 }
+.catalog-container a {
+    display: block;
+    text-decoration: none;
+    color: inherit; 
+}
+
+.catalog-container .car-container a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.catalog-container .car-container a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%; 
+    height: auto; 
+}
+
 
 .car-container {
     width: 300px;
@@ -93,14 +121,14 @@ footer {
 }
 .navbarWrapper {
     display: flex;
-    justify-content: space-between; /* Logo on the left, menu items on the right */
+    justify-content: space-between;
     align-items: center;
     background-color: #333;
     padding: 0.5em 1em;
 }
 
 .homelogo {
-    width: 50px; /* Adjust the size as needed */
+    width: 50px; 
     height: auto;
 }
 .catalog-container {
@@ -112,11 +140,20 @@ footer {
 }
 
 .car-container {
-    flex-basis: calc(33.333% - 40px); /* Subtract the gap from the width */
-    max-width: calc(33.333% - 40px); /* Ensure the container doesn't exceed its calculated width */
+    flex-basis: calc(33.333% - 40px);
+    max-width: calc(33.333% - 40px);
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 20px; /* Add some space between the rows */
+    margin-bottom: 20px; 
+}
+.car-img img {
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.car-img:hover img {
+    transform: scale(1.05);
+    border: 2px solid #025517;
 }

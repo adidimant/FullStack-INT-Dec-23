@@ -4,10 +4,25 @@ body {
     background-size: cover;
     font-family: "Nunito Sans", sans-serif;
 }
+.top-div {
+    background-color: #333;
+    text-align: center;
+    margin-top: -10px;
+    height: 150px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
 
+.li-nav img {
+    margin-bottom: 0px; 
+}
+
+.li-nav p {
+    margin-top: 0px; 
+}
 .header-div {
     text-align: center;
-    margin-top: -10px; 
+    margin-top: -0px ; 
 }
 
 .ul-nav {
@@ -36,11 +51,12 @@ body {
 
 .li-nav:hover {
     text-decoration: underline 1px white;   
-    background-color: #585858;
+    background-color: #404040;
     padding: 5px 10px;
     border-radius: 35px;
-    border-left: 4px solid white;
-    border-right: 4px solid white;
+    border-left: 4px solid rgb(255, 81, 249);
+    border-right: 4px solid rgb(255, 81, 249);
+    box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
 }
 .li-nav {
     background-color: #202020;
@@ -55,17 +71,17 @@ body {
     
 }
 
-       /* CSS styles for the carousel container */
+       
    
        .carousel-container {
-        width: 650px; /* Adjust the width as needed */
+        width: 650px; 
         overflow: hidden;
-        margin: 0 auto; /* Center-align the container */
+        margin: 0 auto; 
         position: relative;
-        text-align: center; /* Center-align images within container */
-        background-color: #333; /* Set background color */
-        border-radius: 35px; /* Add border-radius for rounded corners */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+        text-align: center; 
+        background-color: #333; 
+        border-radius: 35px; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         border-left: #5e5e5e 15px solid;
         border-right: #5e5e5e 15px solid;
         border-top: #5e5e5e 8px solid;
@@ -74,15 +90,15 @@ body {
     
     .carousel {
         display: flex;
-        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
-        justify-content: flex-start; /* Align images to the left */
-        width: 100%; /* Ensure full width of carousel */
+        transition: transform 0.5s ease; 
+        justify-content: flex-start; 
+        width: 100%; 
     }
     
     .carousel-item {
         flex: 0 0 auto;
         width: 100%;
-        transition: transform 0.5s ease; /* Smooth transition for sliding effect */
+        transition: transform 0.5s ease; 
     }
 
    
@@ -109,11 +125,14 @@ body {
     /* Adjustments for responsiveness */
     @media screen and (max-width: 768px) {
         .carousel-container {
-            width: 90%; /* Adjust width for smaller screens */
+            width: 90%; 
         }
     }
     .carousel-nav button:hover {
         background-color: #333;
+        border-left: 4px solid rgb(255, 81, 249);
+        border-right: 4px solid rgb(255, 81, 249);
+        box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
     }
 
 .company-img {
@@ -128,7 +147,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
+    align-items: center; 
 
  
 }
@@ -166,8 +185,9 @@ body {
     color: #b3b3b3;
     padding: 5px 15px;
     border-radius: 15px;
-    border-left: #f0f0f0 4px solid;
-    border-right: #f0f0f0 4px solid;
+    border-left: 4px solid rgb(255, 81, 249);
+    border-right: 4px solid rgb(255, 81, 249);
+    box-shadow: 0 0 10px rgba(255, 105, 237, 0.3);
     
 }
 
