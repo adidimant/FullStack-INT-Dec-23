@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Statements</h2>
+
+<p>JavaScript code blocks are written between { and }</p>
+
+<button type="button" onclick="myFunction()">Click Me!</button>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const specialArr = [];
+const specialObj = {};
+let c = 8; // global variable (on the root block)
+var n1 = 9;
+f1();
+function f1() {
+  let a;
+  const b = ['item1','item2'];
+  function myFunction() {
+    if (b.length > 0) {
+      specialArr.push(b[0]);
+    }
+    a = 7; // here you can access a, since it's defined in the outer block
+    let d = 'inner-block-variable';
+    n2 = 'inner-var-with-var';
+    console.log('n1', n1);
+    document.getElementById("demo1").innerHTML = "Hello Dolly!";
+    document.getElementById("demo2").innerHTML = "How are you?";
+  }
+  myFunction();
+  console.log(a);
+  try {
+      console.log(d); // this console.log will throw an error, since d is defined in the inner block
+  } catch(error) {
+  console.log(error);
+}
+
+  console.log('b', b);
+  console.log('n2', n2);
+
+  /** 
+   * Function return + usage example:
+  */
+
+  function calcSum(a, b){
+    return a + b;
+  }
+  
+  let h = calcSum(38, 43); // h = 81
+}
+
+let carName = 'BMW';
+let x = "John" + " " + "Doe";
+
+
+</script>
+
+</body>
+</html>

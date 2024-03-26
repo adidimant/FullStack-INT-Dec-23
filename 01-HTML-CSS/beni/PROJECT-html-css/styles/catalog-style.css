@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: none;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background: rgb(175, 175, 175);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(216, 216, 216);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(156, 156, 156);
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  font-feature-settings: "liga" 1;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center bottom, #1b1b1b, #000);
+}
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px;
+  overflow-y: scroll;
+}
+
+.top .title {
+  width: 100%;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 2.8rem;
+  color: #d2bd7f;
+  margin: 0 0 20px 0;
+  animation: downwards 0.5s ease-out;
+  -webkit-animation: downwards 0.5s ease-out;
+}
+
+.catalog-container {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  min-width: 300px;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.car-container {
+  opacity: 0;
+  filter: brightness(70%);
+  -webkit-filter: brightness(70%);
+  text-decoration: none;
+  height: 230px;
+  width: calc(25% - 8px);
+  min-width: 280px;
+  border-radius: 3px;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 55px;
+  padding: 30px 0;
+  transition: 0.2s;
+  animation: upwards 0.5s ease-out forwards;
+  -webkit-animation: upwards 0.5s ease-out forwards;
+}
+
+.car-container:hover {
+  filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+}
+
+.car-img {
+  height: 50%;
+}
+
+.car-img img {
+  height: 100%;
+}
+
+.car-info {
+  width: 100%;
+  flex: 1;
+  padding: 0 20px;
+  color: #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-info .name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.model-name {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.price .text {
+  text-align: end;
+  font-size: 14px;
+}
+
+.price .number {
+  text-align: end;
+  font-size: 24px;
+  font-weight: 600;
+  color: #d2bd7f;
+}
+
+@media screen and (max-width: 1500px) {
+  .car-container {
+    width: calc(33.33% - 7px);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .car-container {
+    width: calc(50% - 5px);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .car-container {
+    width: 100%;
+  }
+}
+
+@keyframes downwards {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes downwards {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@keyframes upwards {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes upwards {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}

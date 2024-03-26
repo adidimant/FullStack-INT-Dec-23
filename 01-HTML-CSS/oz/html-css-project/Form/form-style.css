@@ -1,0 +1,114 @@
+body {
+    margin: 30px auto;
+}
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+    text-align: center;
+    background-color: beige;
+    height: 50px;
+    width: 800px;
+    align-items: center;
+    border-radius: 15px;
+    padding: 5px 4px;
+    font-size: 18px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #333;
+}
+.head-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.nav-item {
+    text-decoration: none;
+    color: #333;
+}
+.nav-item:hover {
+    text-decoration: underline;
+}
+h1 {
+    text-align: center;
+    font-size: 55px;
+    margin-top:50px ;
+    margin-bottom: 50px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    gap: 40px;
+    text-align: center;
+    width: 500px;
+    height:680px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: beige;
+}
+.select1{
+    height: 55px;
+    width: 165px;
+    border-radius: 25px;
+    border-color: #5f5c5c;
+    border-style: solid;
+    border-width: 8px;
+    font-size: 15px; 
+    font-family: "Roboto Condensed", sans-serif;
+}
+.select2 {
+    height: 55px;
+    width: 165px;
+    border-radius: 25px;
+    border-color: #5f5c5c;
+    border-style: solid;
+    border-width: 8px; 
+    font-size: 15px; 
+    font-family: "Roboto Condensed", sans-serif;
+     
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.sbmt-btn {
+    height: 40px;
+    font-size: 20px;
+    border-radius: 25px;
+    width: 100px;
+    border-width: 5px;
+}
+.checkbox {
+    height: 50px;
+    width: 15px;
+    vertical-align: baseline;
+}
+.select-date {
+    height: 55px;
+    width: 200px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-family: "Roboto Condensed", sans-serif;
+    border-width: 10px;
+}
+.label {
+    font-size: 25px;
+    font-family: "Roboto Condensed", sans-serif;
+}
+.seperator {
+    border: 6px solid black;
+    border-radius: 20px;
+    margin: 50px 50px 100px;
+}
+.logo-div {
+    text-align: center;
+}

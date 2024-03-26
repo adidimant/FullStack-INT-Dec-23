@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+    
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        nav a {
+            display: flex;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    
+        nav a:hover {
+            background-color: #dddddd27;
+            color: gold;
+            transform: scale(1.1);
+        }
+    
+        h2 {
+            color: red;
+            text-align: center;
+        }
+    
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+    
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+        }
+    
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    
+      
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <a href="https://www.google.com/">Google</a>
+        <a href="https://www.youtube.com/">YouTube</a>
+        <a href="https://www.github.com/">GitHub</a>
+        <a href="https://lms.int-college.co.il/my/">Int college</a>
+    </nav>
+    <h2>Registration</h2>
+    <form action="/action_page.php">
+
+    <label for="first_name">First name:</label>
+    <input type="text" id="first_name" name="first_name" required>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required>
+
+    <label for="birthdate">Birthdate:</label>
+    <input type="date" id="birthdate" name="birthdate" required>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    </select>
+    
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+  
+    <label for="school">School:</label>
+    <input type="text" id="school" name="school">
+
+    <label for="food_preference">Food Preference:</label>
+    <input type="text" id="food_preference" name="food_preference">
+  
+  
+    <input type="submit" value="Register">
+    
+      
+        
+    </form>
+   
+    
+</body>
+</html>

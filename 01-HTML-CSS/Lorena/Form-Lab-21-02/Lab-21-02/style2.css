@@ -1,0 +1,74 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'rubik', sans-serif;
+}
+
+body
+{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color:#84889C;
+  font-family: 'rubik';
+}
+
+.container1{
+  max-width: 800px;
+  width: 100%;
+  background-color: #F7ECEB;
+  padding: 25px 30px;
+  border-radius: 12px;
+}
+
+.container1 .title
+{
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.user-details
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-box
+{
+  width: calc(100% / 2 - 20px);
+}
+
+/* Style tab links */
+.tablink {
+    background: transparent;
+    border: 0;
+    position: relative;
+  color: white;
+  justify-items: center;  
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+  border-radius: 30px;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color:#545871;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  border-radius: 30px;  
+}

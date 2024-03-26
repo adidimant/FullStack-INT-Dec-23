@@ -1,0 +1,174 @@
+.body {
+    margin: 0px;
+
+}
+
+.body {
+    background-image: url(https://www.bmw.co.il/he/index/_jcr_content/root/maincontent/contentblueprint/contentblue_copy_cop_1503516009/backgroundmedia/image.coreimg.jpeg/1706538551406/131497-ay-1680-%C3%97-756-new.jpeg);
+    background-size: cover; /* מתאים את גודל התמונה לגודל המסך */
+    background-repeat: no-repeat; /* מונע השקפות מרובות של התמונה */
+    background-attachment: fixed; /* מקבע את התמונה במקום גם כאשר המשתמש גולל */
+}
+
+
+.div-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1%;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* צל לאלמנט */
+    height: 50px;
+    background-color: black;
+}
+
+
+.button-home {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.button-about-us {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+
+.button-catalog {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+
+}
+
+.button-car-rentel {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+
+
+}
+
+
+.img-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 50px;
+}
+
+/*כותרת*/
+.h1-title {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.ol-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding-left: 0;
+    list-style-type: none; /* מוסיף סגנון ריק לספרים שברירת המחדל */
+    padding-top: 1px;
+    
+
+}
+
+.li-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ממוקם צמוד לחלק העליון */
+    border-radius: 90px;
+    width: 700px;
+    right: 10px;
+    border:2px solid rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* צל לאלמנט */
+    background-color: rgba(255, 255, 255, 0.485);
+    
+
+}
+
+.li-h1 {
+  text-align: center;
+  text-decoration: underline;
+  font-family: EricaSansFOT, GillSans;
+}
+
+.p {
+  text-align: center;
+  font-size: 17px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  font-family: EricaSansFOT, GillSans;
+  
+}
+
+
+.p-right {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 1px;
+    font-size: small;
+}
+
+
+.mui-style-1t8xeec {
+    margin: 20px;
+    margin-left: 70%;
+    font-family: EricaSansFOT, GillSans;
+    line-height: 1.5;
+    color: rgb(0, 0, 0);
+    background-color: #F3E07F;
+    padding: 4px 16px;
+    border-radius: 34px 34px 34px 34px;
+    font-size: 14px;   
+}
+
+.whatsapp {
+    position: fixed;
+    max-width: 80px;
+    max-height: 80px;
+    bottom: 5px;
+    left: 10px;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .li-container {
+        flex-flow: column;
+        gap: 25px;
+        margin: 0 auto; /* תמיד במרכז האופקי של הדף */
+        max-width: 500px; /* רוחב מקסימלי עבור הקבצים */
+    }
+
+    .p {
+        padding: 0 60px;
+    }
+
+    .img-size {
+        width: 400px;
+    }
+}

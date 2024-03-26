@@ -1,0 +1,33 @@
+.navBar {
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  height: 5rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.2em;
+}
+.navBar i {
+  font-size: x-large;
+  cursor: pointer;
+}
+.navBar .navBar-logo {
+  height: 5rem;
+}
+.navBar .navBar-logo img {
+  height: 100%;
+}
+.navBar a {
+  text-decoration: none;
+  color: black;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.navBar a:hover {
+  color: green;
+}

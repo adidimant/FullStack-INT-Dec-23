@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>pepe net</title>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="material-icons close">cancel</div>
+      <img src="https://www.freeiconspng.com/uploads/pepe-designs-png-3.png" />
+      <div class="text">
+        Did you know? I still don't have a job as a fullstack developer.
+      </div>
+    </div>
+    <div class="header">
+      <img
+        src="https://www.freeiconspng.com/uploads/pepe-transparent-png-13.png"
+        class="pepe-img"
+      />
+      <div class="text">
+        <div class="title">net</div>
+        <div class="sub-title">ידיעות אחרונות</div>
+      </div>
+    </div>
+    <section class="main">
+      <h1 class="title">
+        Cosmic Chaos and the Infinite Nacho Quest: A Wild Journey into the
+        Absurd
+      </h1>
+      <div class="author">
+        <div class="pfp">
+          <img
+            src="https://i.pinimg.com/564x/01/96/17/0196175e8432ab18f67439840be9dd1c.jpg"
+          />
+        </div>
+        <div class="details">
+          <div class="name">Written by <u>Cool Pepe</u>, PepeNET</div>
+          <div class="date">
+            <span class="material-icons">schedule</span> 12:00 AM EST, Sat
+            February 17, 2024
+          </div>
+        </div>
+      </div>
+      <div class="article">
+        <p class="article-content">
+          Strap yourselves in because I'm about to spill the extraterrestrial
+          tea on the craziest adventure ever, and let me tell you, it was
+          weirder than a cat wearing sunglasses riding a unicycle.
+          <br />
+          <br />
+          So, picture this: it was a regular Friday night, or at least, it
+          started that way. My buddies and I decided to embark on a journey to
+          the farthest reaches of the universe (or maybe it was just the local
+          24-hour taco joint; details are a bit hazy).
+          <br />
+          <br />
+          First things first, we decked ourselves out in spacesuits made from
+          aluminum foil, convinced that it would protect us from alien mind
+          probes. Genius, right? We were like the space-age fashionistas of the
+          galaxy.
+          <br />
+          <br />
+          As we stumbled our way through the cosmic neighborhood, we encountered
+          beings from other dimensions - or maybe they were just people in
+          costumes, hard to tell. One dude had tentacles for arms, and he
+          challenged us to a dance-off. Naturally, we accepted, because who can
+          resist a dance-off with a tentacle guy?
+          <br />
+          <br />
+          Fast forward to what felt like light years later, we found ourselves
+          at the Intergalactic Nacho Nebula. Yep, you heard that right, a whole
+          nebula made of nachos. We had to navigate through molten cheese rivers
+          and dodge jalapeño asteroids just to get a snack. It was like a
+          nacho-lover's paradise, and we were the fearless nacho-nauts.
+          <br />
+          <br />
+          Suddenly, a rogue UFO swooped in, piloted by a squad of
+          interdimensional llamas wearing sombreros. They challenged us to a
+          game of interstellar hopscotch, and let me tell you, those llamas were
+          pros. It was a close match, but we managed to secure victory and earn
+          the respect of the sombrero-wearing llama overlords.
+          <br />
+          <br />
+          As the night blurred into a kaleidoscope of weirdness, we found
+          ourselves back on Earth, or at least what we assumed was Earth. We may
+          have accidentally taken a detour through the psychedelic dimension,
+          but hey, no regrets.
+          <br />
+          <br />
+          So, there you have it - a mind-bending, nacho-filled, dance-off
+          extravaganza that transcended space and time. If you ever find
+          yourself craving adventure, just remember to don your aluminum foil
+          spacesuit and embrace the cosmic chaos. Until next time, stay weird,
+          my fellow Earthlings.
+        </p>
+      </div>
+    </section>
+  </body>
+  <script>
+    const closeBtn = document.querySelector(".container .close");
+    const overlay = document.querySelector(".overlay");
+    const container = document.querySelector(".container");
+    let prevScroll = 0;
+
+    function popUp() {
+      const totalHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const triggerPosition = (totalHeight - windowHeight) * 0.4;
+      if (
+        !overlay.classList.contains("closed") &&
+        window.scrollY >= triggerPosition &&
+        !overlay.classList.contains("active") &&
+        window.pageYOffset > prevScroll
+      ) {
+        prevScroll = window.pageYOffset;
+        overlay.style.display = "block";
+        setTimeout(() => {
+          overlay.classList.add("active");
+          container.classList.add("active");
+        }, 100);
+      }
+      prevScroll = window.pageYOffset;
+    }
+
+    function closePopUp() {
+      overlay.classList.remove("active");
+      overlay.classList.add("closed");
+      container.classList.remove("active");
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 500);
+    }
+
+    closeBtn.addEventListener("click", closePopUp);
+    document.addEventListener("scroll", popUp);
+  </script>
+</html>

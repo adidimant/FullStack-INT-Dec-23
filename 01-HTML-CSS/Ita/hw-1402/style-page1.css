@@ -1,0 +1,220 @@
+body {
+    background-color: rgb(169, 180, 189);
+    width: 90%;
+    margin-left: 5%;
+    box-shadow: 0 0 10px 0;
+    
+}
+
+header {
+    background-color: rgb(144, 209, 113);
+    height: 130px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    font-size: 70px;
+    font-family: monospace;
+    padding-top: 20px;
+    border: 3px solid black;
+}
+
+
+section {
+    display: flex; /*מציג אלמנטים כמיכלים גמישים*/
+}
+
+aside {
+    background-color: rgb(151, 0, 106);
+    width: 20%;
+    height: auto;
+    margin-top: none;
+    border: 3px solid black;
+}
+
+aside ul {
+    list-style-type: none; /*רשימה ללא נקודות או מספרים*/
+
+
+}
+
+
+
+aside ul li  {
+    margin-top: 12px;
+    padding: 25px;
+    font-size: 20px;
+    font-family: monospace;
+     
+}
+
+aside ul li a {
+    color: #fff;
+}
+a:link {
+    padding: 20px;
+    color: white; /*צבע טקסט*/
+    text-decoration-line: none;
+    
+a:active { /*מה קורה שלוחצים על הלינק*/
+    color: rgb(255, 180, 249);
+}
+
+a:visited {
+    color: rgb(255, 180, 249);
+}
+    
+}
+
+aside ul li:hover{
+    background-color: aliceblue;
+    color: black;
+}
+
+li a:hover{
+    color: black;
+}
+
+
+
+article {
+    background-color: #fff;
+    width: 80%;
+    border: 3px solid black;
+    
+}
+
+article h1 {
+    font-size: 60px;
+    font-family: "Protest Strike", sans-serif;
+    margin-left: 180px;
+    color: rgb(0, 0, 109);
+}
+
+article img {
+    width: 60%;
+    margin-left: 180px;
+    box-shadow: 0 0 7px 0;
+}
+
+article p {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    width: 60%;
+    margin-left: 180px;
+    line-height: 1.5; /*מרחק בין שורות*/
+}
+
+article h2 {
+    font-family: "Protest Strike", sans-serif; 
+    font-size: 30px;
+    margin-left: 180px;
+    color: rgb(0, 0, 92);
+}
+
+article ul {
+    width: 60%;
+    margin-left: 180px;
+    line-height: 1.5;
+}
+
+article ul li {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
+iframe {
+    width: 70%;
+    margin-left: 180px;
+    height: 500px;
+}
+
+footer  {
+    height: 100px;
+    background-color: rgb(144, 209, 113);
+    border: 3px solid black;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.controlWindow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 10px #555;
+    background: rgba(0, 0, 0, .45); /* חצי שקוף */
+    display: none; /*גלוי/מוסתר */
+    z-index: 990; /* ensure it's above other content */
+}
+
+.controlWindowContent {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; 
+    padding: 20px;
+    z-index: 999;
+    padding: 30px 20px 30px 20px;
+    width: 400px;
+    min-height: 200px;
+    box-shadow: 0px 0px 10px #555;
+    border-radius: 10px;
+    
+}
+
+.textcontrolh2 {
+    font-size: 35px;
+    font-family: "Protest Strike", sans-serif;
+    text-align: center;
+
+}
+
+.textcontrolp {
+    font-size: 20px;
+    font-family: "Protest Strike", sans-serif;
+    text-align: center;
+}
+
+.imgincontrol {
+    width: 200px;
+    height: auto;
+    margin-left: 100px;
+    
+}
+
+button {
+    background-color: rgb(255, 155, 118);
+    width: 50px;
+    height: 50px;
+    margin-left: 170px;
+    border-radius: 90px;
+    box-shadow: 0 0 5px 0 rgb(255, 221, 209);
+
+}
+
+#controlWindow {
+    display: block; /*גלוי/מוסתר */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,177 @@
+<!--
+  Build an html website, that contains unordered list of your weekly todos (your goals for the week)
+  1) define the basic css styiling for this list & list items
+  2) On every item hover - the text of the item should be bold & colored in another color & add some border and background to it 
+  3) On todo click - make a line over the text (search on the internet how to do it)
+  [hint - you'll need a javascript code for that, and also knowing the index/id of each list item]
+  4) [Bonus] - Add an input option for adding more todos & add it to the list
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="this is a website for a lesson">
+    <meta name="keywords" content="website lesson, fullstack, list website, list">
+    <title>list website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+        h1 { 
+           color: #ffffff; 
+           font-family: 'impact', Arial; 
+           font-size: 50px; 
+           font-weight: normal; 
+           line-height: 78px; 
+           text-align: center;
+           text-shadow: 1px 1px 2px #ffffff;
+           background-color: #3f3f3f;
+           border-radius: 20px;
+        }
+        h2 {    
+            color: #ffffff; 
+          font-family: 'Montserrat', sans-serif; 
+           font-size: smaller; 
+           font-weight: lighter; 
+           text-align: center;
+           background-color: rgb(87, 87, 87); 
+           border-radius: 20px;
+           position: relative;
+           bottom: 0;
+           left: 0;
+           width: 100%;
+          
+           
+        
+           
+        }
+        body {
+            background-image: url(/01-HTML-CSS/michael/homepage-background.png);
+        }
+
+        .p1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #171717;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .p2 {
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: smaller;
+        }
+
+        #liadd { 
+           color: #ffffff;
+           font-family: 'Montserrat', sans-serif;
+           font-size: 25px;
+          
+      
+        }
+        li {
+            border-bottom: 1px solid #ffffff;
+            background-color: rgb(57, 57, 57);
+            border-radius: 25px;
+            list-style: none;
+            margin: 5px 0px;
+        }
+        .div1 {
+            text-align: center;
+            padding: 20px 45px;
+            margin: 0px 400px;
+            background-color: #c0c0c0;
+            border-radius: 25px;
+            
+            
+        }
+        .bDiv {
+            text-align: center;
+        }
+        .button1 {
+            padding: 12px 26px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            border-bottom-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-color: #d8d8d8;
+            cursor: pointer;
+            
+        }
+        .button1:hover {
+            box-shadow: 2px 2px 2px rgb(101, 255, 170);
+            background-color: #00dd63;
+            color: #ffffff;
+
+        }
+        li:hover {
+            background-color: rgb(100, 255, 154);
+            cursor: pointer;
+            border: 3px rgb(255, 255, 255) solid;
+            padding: 0.5%;     
+            border-top-left-radius: 20px;   
+            border-bottom-right-radius: 20px;   
+        }
+        .completed {
+          text-decoration: line-through red;
+        }
+        
+    </style>
+    <script> // function that adds list items to the ul with "liadd" id when clicking on a button.
+       function listadd() {
+    var ul = document.getElementById("liadd");
+    var li = document.createElement("li");
+    var userInput = prompt("What do you want to add to the to-do list?", "");
+    if (userInput !== null && userInput.trim() !== "") {
+        li.textContent = userInput.trim();
+        li.setAttribute("onclick", "striket(this)");
+        ul.appendChild(li);
+    }
+}
+
+           function striket(element) {
+            element.classList.toggle('completed');
+                        } 
+
+           function deleteTask() {
+            var selected = document.querySelector("#liadd li.completed");
+            if (selected) {
+                selected.remove();
+            } else {
+                alert("No task selected!");
+            }
+        }
+             
+
+    </script>
+</head>
+<body>
+    <h1>welcome to my list website</h1>
+    <p class="p1">in this section you can see, add and manage your "to do list" </p>
+     <!--section 1--> <div class="div1">
+                       
+                         <ul id="liadd">
+                            
+                         </ul> </br>
+          
+                     </div>
+                    </br>
+ </br>
+            <!--button div section 3-->  <div class="bDiv">    <button class="button1" onclick="listadd()">add task</button> 
+              <p class="p2"> with this button you can add new tasks</p>
+              <button class="button1" onclick="deleteTask()">delete selected task</button>
+              <p class="p2"> with this button you can delete selected tasks</p>
+            </div>
+</body>
+
+<footer>
+        <!--section 4-->  <div>
+
+           
+            <h2>this is the end of the website</h2>
+        
+        </div>
+</footer>
+</html>

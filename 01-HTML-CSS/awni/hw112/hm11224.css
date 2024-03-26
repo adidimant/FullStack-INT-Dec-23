@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+}
+
+.header {
+    color: #FFFFFF;
+    padding: 20px 0;
+    text-align: center;
+    background-image: linear-gradient(to right, #004D98, #A50044); /* שיפוע מכחול לנופך */
+    border-bottom: 4px solid #FFD700; /* גבול זהב להוספת מגע של אלגנטיות */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out; /* מעבר חלק לאפקטים של ריחוף */
+    position: relative; /* עבור מיקום פסאודו-אלמנט */
+    overflow: hidden; /* מבטיח שאלמנטים פסאודו לא יגלשו */
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, #FFD700, #A50044, #004D98); /* A dynamic, moving gradient */
+    transition: all 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.header:hover::before {
+    left: 100%;
+}
+
+.header:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+    color: #FFD700; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+}
+nav{
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+}
+nav, a{
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 10px;  
+    
+}
+nav, a:hover{
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: gold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in-out; 
+}
+
+.content {
+    padding: 20px;
+    background: #ffffff; 
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+    border-radius: 8px; 
+}
+
+.info-section h2 {
+    color: #A50044; 
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 1.5rem; 
+    text-shadow: 2px 2px 5px blue;
+}
+
+.titles {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.titles th, .titles td {
+    border: 2px solid #004D98; 
+    padding: 10px;
+    text-align: center;
+}
+
+.titles th {
+    background-color: #A50044; 
+    color: #FFFFFF; 
+    font-size: 1.1rem;
+}
+
+.titles td:hover {
+    background-color: #004D98; 
+    color: gold; 
+    cursor: pointer; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in-out; 
+}
+
+p {
+    transition: all 0.5s ease; 
+    padding: 10px; 
+    margin: 10px 0; 
+    border-radius: 5px; 
+    text-indent: 20px;
+    font-size: 20px;
+}
+
+p:hover {
+    color: #FFFFFF; 
+    cursor: pointer;
+    background-color: #A50044; 
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); 
+    transform: scale(1.02); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+.l1{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+img {
+    display: block;
+    margin: 20px auto; 
+    width: 50%; 
+    border-radius: 8px; 
+}
+iframe{
+    width: 100%;
+    height: 600px;
+}
+.social-links {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+.social-links p {
+    font-size: 20px;
+    margin-bottom: 15px; 
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+
+
+}
+.social-links p:hover{
+    text-shadow: 2px 2px 5px gold;
+}
+
+.social-links ul {
+    list-style-type: none; 
+    padding: 0; 
+    display: inline-block; 
+}
+
+.social-links li {
+    margin: 10px 20px; 
+    display: inline; 
+}
+
+.social-links a {
+    color: #004D98; 
+    text-decoration: none;
+    font-weight: bold; 
+}
+.social-links a:hover {
+    color: gold; 
+    text-decoration: underline;
+    transform: scale(1.02); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); 
+    transition: all 0.5s ease; 
+    
+}
+.browsers {
+    margin: 0;
+    padding: 5px;
+    background-color: lightgray;
+}
+hr {
+    border: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, #A50044, #004D98); 
+    margin: 20px 0;
+}
+ul, ol {
+    margin-bottom: 20px; 
+}

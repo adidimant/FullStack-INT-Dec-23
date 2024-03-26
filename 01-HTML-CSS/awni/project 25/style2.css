@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+:root {
+    --color-primary: #fff;
+    --color-sec: #ffd000;
+    --color-tertiary: #777;
+    --color-bg: #eeefee9e;
+    --color-text: #111;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-1: -1rem 1rem 1.2rem 0 rgba(157, 157, 157, 0.5);
+    --transition: all 0.4s ease;
+
+    --width-lg: 80%;
+    --width-md: 90%;
+    --width-sm: 95%;
+}
+
+.title {
+    text-align: center;
+}
+
+.title h4 {
+    display: inline-block;
+    font-size: 20px;
+    padding-bottom: 16px;
+    position: relative;
+}
+
+.title h4::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: -48px;
+    height: 3px;
+    width: 32px;
+    background: var(--color-sec);
+}
+
+.title h4::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: -48px;
+    height: 3px;
+    width: 32px;
+    background: var(--color-sec);
+}
+
+.title h2 {
+    padding: 15px 0;
+    text-shadow: var(--shadow);
+}
+
+.carrental {
+    padding: 20px 0;
+    margin: 20px 10px;
+
+}
+
+.carrental-container {
+    width: 100%;
+    height: auto;
+}
+
+.rental-group,
+.rental_payment {
+    border-radius: 6px;
+    padding: 10px;
+    background: #d6cccc41;
+    box-shadow: var(--shadow);
+
+}
+
+.rental-group .input-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 0;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    font-weight: 1000;
+    font-size: 17px;
+}
+
+.input-group label {
+    padding: 5px 0;
+}
+
+.input-group input {
+    width: 300px;
+    background: #a89a9a2a;
+    border: none;
+    padding: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.input-group input:hover {
+    background: #a89a9a67;
+} 
+
+
+input[type=checkbox] {
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 22px;
+}
+
+input[type=submit] {
+    margin: 10px 0;
+    width: 300px;
+    padding: 7px;
+    border-radius: 8px;
+    border: none;
+    background: var(--color-sec);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--color-text);
+}
+
+input[type=submit]:hover {
+    background: var(--color-primary);
+    color: var(--color-sec);
+    transition: var(--transition);
+}
+
+hr {
+    padding: 5px 0;
+    background-color: var(--color-sec);
+}
+
+h2 {
+    font-weight: 1000;
+    text-transform: uppercase;
+    padding: 40px 0 0;
+    text-shadow: var(--shadow);
+}
+
+i {
+    padding: 0 3px;
+}
+
+input:not([type=submit]):valid {
+    background: rgba(0, 128, 0, 0.402);
+}
+
+input:not([type=submit]):focus:invalid {
+    background: rgba(255, 0, 0, 0.322);
+}
+input[type=file]:hover:invalid {
+    background: rgba(255, 0, 0, 0.322);
+}
+.custom-label::before {
+    content: '* ';
+    color: red;
+}

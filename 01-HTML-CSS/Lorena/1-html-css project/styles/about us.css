@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Rubik", sans-serif;
+}
+body{
+    position: relative;
+    margin: 0;
+    height: 100vh;
+    transition: 0.2s;
+    background: #F5F7F3;
+    font-family: "Rubik", sans-serif;
+}
+
+:root{
+--main-color: #37736C;
+--second-color: #EF8550;
+--text-color: #272F28;
+--gradient: linear-gradient(#EF8550,#eb9728)
+}
+
+html::-webkit-scrollbar{
+width: 0.5rem;
+}
+
+html::-webkit-scrollbar-track{
+background: transparent;
+    }
+
+html::-webkit-scrollbar-thumb{
+        background: var(--second-color);
+        border-radius: 5rem ;
+        }
+
+section{
+    padding: 50px 100px;
+}
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F5F7F3;
+    padding: 15px 100px;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.navbar
+{
+    display: flex;
+}
+.navbar li{
+    position: relative;
+}
+.navbar a{
+    font-size: 1rem;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 100;
+}
+
+.navbar a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: var(--gradient);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.5s;
+}
+
+.navbar a:hover::after{
+    width: 100%;
+}
+
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+.header-btn a{
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 100;
+}
+
+.header-btn .sign-in{
+    background:#EF8550 ;
+    color: #fff;
+    border-radius: 30px ;
+}
+.header-btn .sign-in:hover{
+    background: var(--main-color);
+}
+
+
+.container {
+  padding-top: 30px;
+max-width: 900px;
+margin: 0 auto;
+padding: 0 3rem;
+margin-top: 4rem;
+text-align: center;
+}
+
+h1{
+  width: 100%;
+  font-family: "Rubik", serif;
+  font-weight: 500;
+  font-size: 2.8rem;
+  color: var(--main-color);
+  margin: 0 0 20px 0;
+}
+h2{
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}

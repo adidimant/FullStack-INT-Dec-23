@@ -1,0 +1,107 @@
+body{
+    overflow-y: scroll;
+    overflow:auto;
+    background-color: #f0f0f0;
+}
+.container{
+    margin: 0 auto;
+    width: 90%;
+    height: 97vh;
+    padding: 5px 50px; 
+}
+.container .topdiv{
+    width: 99%;
+    float:left;
+    border: 2px solid #858484;
+}
+.container .topdiv .logo{
+    float:left;
+    width: 100px;
+    height: 100px;
+}
+.container .topdiv .rightlogo{
+    float:right;
+    width: 100px;
+    height: 100px;
+}
+.container .topdiv .welcome {
+    margin-top: 30px;
+    text-align: center;
+}
+.articles{
+    clear: both;
+    margin-top: 6.5%;
+    width: 99%;
+    text-align: right;
+}
+.articles p{
+    font-size: 36px;  
+    direction: rtl; 
+    text-align: right;
+    line-height: 1.5
+}
+.articleClose{
+    height: 210px; 
+    overflow: hidden;
+    cursor: pointer;
+}
+.articleClose:hover{
+    color: blue;
+}
+.articleClose h1{
+    direction: rtl;
+}
+.articles img{
+    width: 700px; 
+    height: 700px; 
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+.articleOpen{
+    height: fit-content;
+    cursor: pointer;
+}
+.articleOpen h1{
+    direction: rtl;
+}
+.divider{
+    width: auto; 
+    height: 150px ;
+    background-repeat: no-repeat; 
+    margin: 0 250px; 
+    background-image: url('../Images/divider.png');
+}
+.spacer{
+    height: 100px;
+}
+.control-window{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius:10%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none; /* Initially hidden */
+    z-index: 1; /* Ensure it's above other content */
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+.control-window-show {
+    display: block;
+    animation: control-window-slide 0.5s ease;
+}
+@keyframes control-window-slide {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+body.freeze-scrolling {
+    overflow-y: hidden;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+
+
+</head>
+
+<body>
+    <nav>
+        <div class="nt-container">
+            <div class="container">
+                <div class="nav-top">
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>California, USA</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>24/7 Open</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>0123456789</span>
+                    </div>
+                    <div class="social-icons">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="n1-container">
+            <div class="container">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="">
+                </div>
+                <ul class="navlist">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="cars-list.html">Cars</a></li>
+                    <li><a href="about-services.html">About Us & Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="home" id="home">
+        <div class="container home-container">
+            <div class="info" data-aos="zoom-in" data-aos-duration="3000">
+                <h1>Rent a Car is within your finger tips</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus vero enim mollitia quisquam libero
+                    repellat, ducimus vel porro nihil quia. Earum, porro!</p>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <h5>Select Car:</h5>
+                        <select name="Car" id="">
+                            <option value="">Select</option>
+                            <option value="audi">Audi</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="suzuki">Suzuki</option>
+                            <option value="hyundai">Hyundai</option>
+                            <option value="kia">Kia</option>
+
+                        </select>
+                        <h5>Select Model:</h5>
+                        <select name="Car Model" id="">
+                            <option value="">Select</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <h5>Pick up:</h5>
+                        <input type="date" name="Pick Up" placeholder="Pick up">
+                        <h5>Drop off:</h5>
+                        <input type="date" name="Drop off" placeholder="Drop off">
+                    </div>
+                    <div class="form-group">
+                        <h5>Time:</h5>
+                        <input type="time" id="appt" name="appt" min="09:00" max="18:00">
+                        
+                    </div>
+                </form>
+                
+                <button class="btn" id="book-btn">Book</button>
+            </div>
+        </div>
+    </header>
+    <!--   WORKS   -->
+    <section class="works">
+        <div class="title">
+            <h3>How it works ?</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem explicabo culpa qui corporis vel natus
+                voluptatum quis?</p>
+        </div>
+        <div class="container works-container">
+            <div class="step" data-aos="slide-down" data-aos-duration="2000">
+                <span class="number"><span>01</span></span>
+                <span class="caption">Select Car</span>
+            </div>
+            <div class="step" data-aos="slide-up" data-aos-duration="3000">
+                <span class="number"><span>02</span></span>
+                <span class="caption">Time</span>
+            </div>
+            <div class="step" data-aos="slide-down" data-aos-duration="3000">
+                <span class="number"><span>03</span></span>
+                <span class="caption">Pick & Drop</span>
+            </div>
+            <div class="step" data-aos="slide-up" data-aos-duration="3000">
+                <span class="number"><span>04</span></span>
+                <span class="caption">Check out</span>
+            </div>
+            <div class="step" data-aos="slide-down" data-aos-duration="2000">
+                <span class="number"><span>05</span></span>
+                <span class="caption">Done</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CAR BRANDS -->
+
+    <section class="carbrands" id="carbrands" data-aos="fade-up" data-aos-duration="2000">
+        <div class="title">
+            <h4><i class="fa-solid fa-car"></i></h4>
+            <h2>Cars</h2>
+        </div>
+        <div class="carbrands-container">
+            <div class="slideshow-container">
+                <img id="slideshow" src="" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!--  brands  -->
+
+    <section class="carusela" id="carusela" data-aos="fade-up" data-aos-duration="2000">
+        <div class="title">
+            <h4><i class="fa-solid fa-car"></i></h4>
+            <h2>Biggest Brands</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, accusantium quia. Vero in laborum numquam.</p>
+        </div>
+        <div class="brands">
+            <img src="./img/./avis.png" alt="">
+            <img src="./img/./budjet.png" alt="">
+            <img src="./img/./carla.png" alt="">
+            <img src="./img/./rent a car.png" alt="">
+            <img src="./img/./cuerin.png" alt="">
+            <img src="./img/./alamo.png" alt="">
+        </div>
+
+
+    </section>
+
+
+    <!--     FOOTER    -->
+    <footer data-aos="fade-up" data-aos-duration="2000">
+        <div class="container footer-container">
+            <div class="row-1">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="">
+                </div>
+                <p>Lorem, ipsum dolor sit amet consectetur
+                    adipisicing elit. Magni, voluptatem?</p>
+            </div>
+            <div class="row-2">
+                <ul class="quick-links">
+                    <h4>Quick Links</h4>
+                    <li><a href="about-services.html">About</a></li>
+                    <li><a href="about-services.html">Services</a></li>
+                    <li><a href="cars-list.html">Cars</a></li>
+                </ul>
+            </div>
+            <div class="row-3">
+                <ul class="explore">
+                    <h4>Support</h4>
+                    <li><a href="">Help</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Terms & Conditions</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="row-4">
+                <h4>Contact Us</h4>
+                <p>0123456789</p>
+                <p>xyz@gmail.com</p>
+                <ul class="footer-social">
+                    <li><i class="fa-brands fa-facebook"></i></li>
+                    <li><i class="fa-brands fa-instagram"></i></li>
+                    <li> <i class="fa-brands fa-twitter"></i></li>
+                    <li><i class="fa-brands fa-linkedin-in"></i></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
+    <div class="top-btn">
+        <a href=""><img src="./img/car-topbtn.webp" alt=""></a>
+    </div>
+    <script src="script1.js"></script>
+
+</body>
+
+</html>

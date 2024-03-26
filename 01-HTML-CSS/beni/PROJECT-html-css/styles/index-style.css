@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  font-feature-settings: "liga" 1;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+}
+
+#header {
+  position: fixed;
+  background: transparent;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.logo {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 30px;
+  font-family: "Playfair Display", serif;
+}
+
+.logo:after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  content: "";
+  background: #fff;
+  height: 2px;
+  width: 8px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-item {
+  transition: 0.3s;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #ccc;
+  font-size: 18px;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-item:hover .nav-link {
+  color: #fff;
+}
+
+.nav-link:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  border-bottom: 1px solid #d2bd7f;
+  width: 0;
+  transition: 0.3s;
+}
+
+.nav-link.active:after {
+  width: 100%;
+}
+
+.nav-item:hover .nav-link:after {
+  width: 100%;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+}
+
+iframe {
+  flex: 1;
+  border: none;
+}

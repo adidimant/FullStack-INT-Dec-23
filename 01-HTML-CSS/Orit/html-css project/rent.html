@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent a car</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/injectData.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <nav class="page-nav">
+            <ul class="nav-container">
+                <li class="nav-item" data-nav="home"><a href="home.html">Home</a></li>
+                <li class="nav-item" data-nav="rent"><a href="rent.html">Rent a car!</a></li>
+                <li class="nav-item" data-nav="catalogue"><a href="catalogue.html">Catalogue</a></li>
+                <li class="nav-item" data-nav="about"><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div class="rent-form-container">
+                <h2 class="title">Rent a car:</h2>
+                <form action="">
+                    <div class="typeSection">
+                        <label for="companies" class="required">Company:</label>
+                        <select name="companies" id="companies" class="carsInput" required>
+                            <option value="">Select Company</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Chery">Chery</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="Kia">Kia</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Mitsubishi">Mitsubishi</option>
+                            <option value="Opel">Opel</option>
+                            <option value="Suzuki">Suzuki</option>
+                        </select>
+                        <br>
+                        <label for="model" class="required">Model:</label>
+                        <select name="model" id="model" class="carsInput" required>
+                            <option value="">Select Model</option>
+                            <!-- Options for Kia -->
+                            <optgroup label="Kia Models" id="kia-models" style="display: none;">
+                                <option value="Picanto">Picanto</option>
+                                <option value="Niro">Niro</option><img src="images/cars/" alt="">
+                            </optgroup>
+                            <!-- Options for Hyundai -->
+                            <optgroup label="Hyundai Models" id="hyundai-models" style="display: none;">
+                                <option value="i20">i20</option>
+                                <option value="IONIQ">IONIQ</option>
+                            </optgroup>
+                            <!-- Options for Mazda -->
+                            <optgroup label="Mazda Models" id="mazda-models" style="display: none;">
+                                <option value="2">2</option>
+                                <option value="CX-30">CX-30</option>
+                            </optgroup>
+                            <!-- Options for Mitsubishi -->
+                            <optgroup label="Mitsubishi Models" id="mitsubishi-models" style="display: none;">
+                                <option value="Spark">Spark</option>
+                            </optgroup>
+                            <!-- Options for BMW -->
+                            <optgroup label="BMW Models" id="bmw-models" style="display: none;">
+                                <option value="318i">318i</option>
+                            </optgroup>
+                            <!-- Options for Chery -->
+                            <optgroup label="Chery Models" id="chery-models" style="display: none;">
+                                <option value="Tiggo">Tiggo</option>
+                            </optgroup>
+                            <!-- Options for Opel -->
+                            <optgroup label="Opel Models" id="opel-models" style="display: none;">
+                                <option value="Astra">Astra</option>
+                            </optgroup>
+                            <!-- Options for Suzuki -->
+                            <optgroup label="Suzuki Models" id="suzuki-models" style="display: none;">
+                                <option value="Crossover">Crossover</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="datesSection">
+                        <label for="pickUp" class="required">Pick-up:</label>
+                        <input type="date" id="pickUp" name="pickup" min="2024-03-14" class="carsInput"required>
+                        <label for="return" class="required">Return:</label>
+                        <input type="date" id="return" name="return" min="2024-03-15" class="carsInput" required>
+                    </div>
+                    <div class="insuranceSection">
+                        <input type="checkbox" id="extraInsurance" name="extraInsurance" value="extraInsurance">
+                        <label for="extraInsurance">I would like to purchase extra insurance.</label>
+                    </div>
+                    <div class="buttonSection">
+                        <input type="submit" value="Submit"  onclick="alertInput();">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <label>Your input: </label>
+        <p><span id='display'></span></p>
+    <script>
+        hideDisplayModels();
+    </script>
+</body>
+</html>

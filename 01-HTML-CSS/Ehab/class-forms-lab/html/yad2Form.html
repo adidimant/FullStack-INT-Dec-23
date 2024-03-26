@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="../css/yad2Form/style.css">
+    <script src="../js/yad2Form/scripts.js"></script>
+</head>
+<body onload="selectOption()">
+    <div class="container ">
+        <div class="top" style="text-align: center;">
+            <h1>פרסום ביד 2</h1>
+        </div>
+        <div class="category">
+            <select id="category" onchange="selectOption()" dir="rtl">
+                <option value="" disabled selected>בחר קטגוריה</option>
+                <option value="Vehicles" selected>רכבים</option>
+                <option value="real estate">נדל"ן</option>
+            </select>
+        </div>
+        <div id="subcategory" class="subcategory">
+            
+        </div>
+        
+        <div class="form" id="productDiv" >
+            <form id="Yad2product" enctype="multipart/form-data" onsubmit="createSummaryTable(fileInput.files);return false ">
+                <label class="labelStyle">קטגוריה: </label>
+                <input type="text" id="formCategory" required><br>
+                <label class="labelStyle">תת קטגוריה: </label>
+                <input type="text" id="formSubcategory" required><br>
+                <label class="labelStyle">שם מלא: </label>
+                <input type="text" id="formName" required><br>
+                <label class="labelStyle">תיאור: </label>
+                <textarea id="formDescription" required></textarea><br>
+                <label class="labelStyle"> כתובת: </label>
+                <input type="text" id="formAddress" required><br>
+                <label for="condition"  class="labelStyle" >מצב:</label>
+                <input type="radio" id="brandNew" value="brandNew" name="condition" required>
+                <label for="none" class="labelStyle" style="display: inline;">חדש לגמרי</label><br>
+                <input type="radio" id="likeNew" value="likeNew" name="condition" required>
+                <label for="none" class="labelStyle" style="display: inline;">כמו חדש</label><br>
+                <input type="radio" id="used" value="used" name="condition" required>
+                <label for="none" class="labelStyle" style="display: inline;">משומש</label><br>
+                <input type="radio" id="badCondition" value="badCondition" name="condition" required>
+                <label for="none" class="labelStyle" style="display: inline;">מצב גרוע</label><br>
+                <label class="labelStyle">העלאת תמונות :</label>
+                <input type="file" id="fileInput" name="images" accept="image/*" multiple accept="image/*" required><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="summarytable" class="summarytable">
+            <h2 style="text-align: center;">טבלת סיכום:</h2>
+            <div style="background-color: azure; ">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">קטגוריה:</span>
+                <span class="dataDiv answer" id="summarytableCategory"></span>
+            </div>
+            <div  style="background-color: rgb(225, 247, 251);">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">תת קטגוריה:</span>
+                <span class="dataDiv answer" id="summarytableSubategory"></span>
+            </div>
+            <div style="background-color: azure;">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">שם מלא:</span>
+                <span class="dataDiv answer" id="summarytableName"></span>
+            </div>
+            <div style="background-color: rgb(225, 247, 251);">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">תיאור:</span>
+                <span class="dataDiv answer" id="summarytableDescription"></span>
+            </div>
+            <div style="background-color: azure;">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">כתובת:</span>
+                <span class="dataDiv answer" id="summarytableAddress"></span>
+            </div>
+            <div style="background-color: rgb(225, 247, 251);">
+                <span class="dataDiv" style="font-size: 20px; font-weight: bold;">מצב:</span>
+                <span class="dataDiv answer" id="summarytablCondition"></span>
+            </div>
+            <br>
+            <div id="imagesDiv" >
+
+            </div>
+            <br>
+            <div style="display: flex; flex-direction: row; font-weight: bold;">
+                <input type="checkbox" name="updates">
+                <label for="updates"> אני מעוניין לקבל עדכונים במייל עבור מוצר זה</label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

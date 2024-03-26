@@ -1,0 +1,135 @@
+#navBar {
+  width: 100%;
+  overflow: hidden;
+  height: 6rem;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.title {
+  width: 30%;
+  margin: 0 auto;
+}
+.title h1 {
+  text-align: center;
+  font-style: italic;
+}
+
+.carWrapper {
+  margin: 0 auto;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.carWrapper .carsItems {
+  height: 20rem;
+  width: 30%;
+}
+.carWrapper .carsItems img {
+  height: 90%;
+  width: 100%;
+  transition: height 750ms ease-in-out, box-shadow 750ms ease-in-out;
+}
+.carWrapper .carsItems img:hover {
+  animation-name: grow;
+  animation-duration: 750ms;
+  animation-fill-mode: forwards;
+  border-radius: 5px;
+}
+@keyframes grow {
+  100% {
+    height: 100%;
+    box-shadow: 0 0 1rem gray;
+  }
+}
+.carWrapper .carsItems p {
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+#contactUs {
+  width: 100%;
+  overflow: hidden;
+  height: 44rem;
+  margin-top: 2rem;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+}
+
+#popupForm {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #c8c1b8;
+  padding: 20px;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 5px;
+  z-index: 1000;
+}
+#popupForm h2 {
+  font-style: italic;
+  text-align: center;
+}
+#popupForm form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+#popupForm form input {
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#confirm {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-style: normal;
+  display: none;
+  height: 18rem;
+  border-radius: 5px;
+  width: 20rem;
+  padding: 0.2rem;
+  background-image: url("https://i.pinimg.com/736x/8d/73/02/8d730284d6da8657bfc12192782d8115.jpg");
+  background-size: cover;
+}
+#confirm .end {
+  transform: translateY(110%);
+}
+#confirm .end input {
+  font-family: "Playfair Display", serif;
+}
+#confirm .end button {
+  font-family: "Playfair Display", serif;
+  margin-left: 2rem;
+}

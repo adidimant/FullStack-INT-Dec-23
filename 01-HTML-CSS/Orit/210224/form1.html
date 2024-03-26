@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script src="js/script.js"></script>
+    <nav class="myNav">
+        <a href="www.google.com">Google</a> |
+        <a href="https://www.w3schools.com/html/html_forms.asp">w3schools</a> |
+    </nav>
+
+    <div class="form-container">
+        <h1>Please fill in your details:</h1>
+        <form>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" required>
+            <br>
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" required>
+            <br>
+            <label for="bday">Birthday:</label>
+            <input type="date" id="bday" name="bday" required>
+            <br>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="genders" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="None">Don't want to say</option>
+            </select>
+            <br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <br>
+            
+            Food preference:
+            <input type="radio" id="food1" name="food" value="None" required>
+            <label for="food1">None</label><br>
+            <input type="radio" id="food2" name="food" value="Vegeterian">
+            <label for="food2">Vegeterian</label><br>
+            <input type="radio" id="food3" name="food" value="Vegan">
+            <label for="food3">Vegan</label><br>
+            <input type="radio" id="food4" name="food" value="Kosher">
+            <label for="food4">Kosher</label><br>
+            <br>
+            <input type="submit" value="Submit">
+          </form> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+let divDesc = "<div class='after-press' style='color: red;'>my color</div>";
+</script>
+<style>
+ .after-press {
+ background-color: green;
+ }
+ 
+</style>
+</head>
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+
+<p class="demo">JavaScript can change HTML content.</p>
+
+<p class="demo">JavaScript can change HTML content #2.</p>
+
+<button type="button" onclick='document.getElementsByClassName("demo")[1].innerHTML = divDesc'>Click Me!</button>
+
+</body>
+</html>

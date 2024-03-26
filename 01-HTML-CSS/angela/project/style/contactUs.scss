@@ -1,0 +1,101 @@
+$primary-color:#c8c1b8;
+
+.footer{
+    width: 80%;
+    height: fit-content;
+    background-color:$primary-color;
+    margin: auto;
+    border-radius: 10rem 10rem 0 0;
+    padding-bottom: 1rem;
+    h2{
+      text-align: center;
+   }
+   .footer-brands{
+       width: 50%;
+       height: fit-content;
+       display: flex;
+       margin: auto;
+       justify-content: space-around;
+       flex-wrap: wrap;
+       column-gap: 2rem;
+       row-gap: 2rem;
+      
+       img{
+          border-radius: 50%;
+          height: 7rem
+       }
+    }
+    
+    .footer-end{
+        height: fit-content;
+        padding-bottom: 2rem;
+        margin: auto;
+       
+    }
+    .footer-end-socials{
+       width: 30%;
+       height: 20%;
+       margin: auto;
+       display: flex;
+       justify-content: space-between;
+    
+       i{
+          font-size: 3rem;
+          cursor: pointer;
+       }
+    }
+    #facebook:hover{
+       color: blue;
+       transition: ease 1s;
+    }
+    #insta:hover{
+       color: rgb(179, 37, 214);
+       transition: ease 1s;
+    }
+    #whatsapp:hover{
+       color: rgb(4, 100, 30);
+       transition: ease 1s;
+    }
+    #message{
+       display: none;
+       color: rgb(234, 21, 13);
+       font-size: 1.2em;
+       margin-top: 0.2rem;
+       position: relative;
+       left: 35%;
+       top: 2rem;
+       
+    }
+    .container-form{
+       font-family: "Nothing You Could Do", cursive;
+      font-weight: 600;
+      font-style: normal;
+      transform: translateY(2rem);
+       display: flex;
+       justify-content: center;
+       height: fit-content;
+       padding: 2rem 0 2rem 0;
+       width: 20%;
+       border: 2px solid #b9935b;
+       margin: auto;
+       font-size: 1.3em;
+       border-radius: 25px;
+       background-color: #c3ae9283;
+       
+       label{
+          display: block;
+          align-items: center;
+       }
+       
+       span{
+          color: red;
+       }
+       button{
+          display: block;
+          position: relative;
+          left: 3rem;
+          top: 1rem;
+          
+       }
+    }
+}

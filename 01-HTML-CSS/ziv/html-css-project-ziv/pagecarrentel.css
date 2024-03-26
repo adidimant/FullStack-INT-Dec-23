@@ -1,0 +1,250 @@
+.body {
+    margin: 0px;
+}
+
+.body {
+    background-image: url(https://www.bmw.co.il/he/index/_jcr_content/root/maincontent/contentblueprint/contentblue_copy_cop_1503516009/backgroundmedia/image.coreimg.jpeg/1706538551406/131497-ay-1680-%C3%97-756-new.jpeg);
+    background-size: cover; /* מתאים את גודל התמונה לגודל המסך */
+    background-repeat: no-repeat; /* מונע השקפות מרובות של התמונה */
+    background-attachment: fixed; /* מקבע את התמונה במקום גם כאשר המשתמש גולל */
+}
+
+.div-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1%;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* צל לאלמנט */
+    height: 50px;
+    background-color: black;
+}
+
+
+.button-home {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.button-about-us {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+
+.button-catalog {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.button-car-rentel {
+    width: 100px;
+    height: auto;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: white;
+
+
+}
+
+
+.img-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 50px;
+}
+
+.form-model {
+
+    /* color: rgb(202, 202, 202) ; צבע הטקסט */
+    position: absolute; /* מיקום יחסי לאב קרוב */
+    width: 40%; /* רוחב הפורם */
+    padding: 20px; /* מרחק פנימי */
+    border: 1px solid #ccc; /* מסגרת וצבע מסגרת */
+    border-radius: 5px; /* עיגול פינות */
+    background-color: transparent; /* צבע רקע */
+    top: 50%; /* פיקוד למרכז האנכי */
+    left: 50%; /* פיקוד למרכז האופקי */
+    transform: translate(-50%, -50%); /* תיקוני סרגל הנגיעה */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.3); /* צל לאלמנט */
+    margin-top: 1%;
+    
+}
+
+.form-bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #ffffffbb;
+    z-index: -1;
+}
+
+.img-logo-title {
+    position: absolute;
+    left: 42%;
+    width: 100px;
+    height: 50px;
+}
+
+.h3-title {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+.input-name {
+    width: 185px;
+    padding: 8px;
+    border-radius: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.select-rentel-company {
+    width: 205px;
+    padding: 8px;
+    border-radius: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+    border: 1px solid;
+    
+}
+
+.select-rentel-company:hover {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+
+.select-company {
+    width: 205px;
+    padding: 8px;
+    border-radius: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.select-company:hover {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+
+.select-car-model {
+    width: 205px;
+    padding: 8px;
+    border-radius: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.select-car-model:hover {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+
+.label-select {
+    display: inline-block;
+    margin-left: 16%;
+    width: 200px;
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+}
+
+.option-value {
+    text-align: left;
+    font-size: 15px;
+}
+
+.input-date{
+    width: 188px;
+    padding: 8px;
+    border-radius: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.input-date:hover {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+
+.input-radio {
+    margin-top: 6px;
+    cursor: pointer;
+    margin-left: 3%;
+    color: rgb(0, 0, 0);
+
+}
+
+.input-submit {
+    width: 150px;
+    padding: 7px;
+    border-radius: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: 1px solid;
+    margin-left: 38%;
+    background-color: black;
+    color: white;
+}
+
+.input-submit:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* צל לאלמנט */
+}
+
+.whatsapp {
+    position: fixed;
+    max-width: 80px;
+    max-height: 80px;
+    bottom: 5px;
+    left: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    .form-model {
+    width: 70%;
+    }
+
+
+    .form-items {
+    width: 200px;
+    margin-left: 16%;
+    }
+        
+
+    .input-submit {
+    margin-left: 25%;  
+    }
+}  

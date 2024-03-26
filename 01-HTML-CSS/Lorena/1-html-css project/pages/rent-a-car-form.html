@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles/rent-a-car-form.css"  />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog</title>
+    <link rel="icon" type="logo-web" href="../pages/home.html" />
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  </head>
+  <body>
+    <header>
+        <a href="#" class="logo"><img src="../css-images/logo car .svg" alt=""></a> 
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="../pages/home.html">Home</a></li>
+            <li><a href="../pages/rent-a-car-form.html">Rent A Car</a></li>
+            <li><a href="../pages/catalog.html">Catalog</a></li>
+            <li><a href="../pages/about-us.html">About Us</a></li>
+        </ul>
+        <div class="header-btn">
+            <a href="#" class="sign-up">Sign Up</a>
+            <a href="#" class="sign-in">Sign In</a>
+        </div>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Rent a Car</h1>
+      <form class="rent-form" onsubmit="submitForm(event)" method="get">
+        <div class="form-top">
+          <div class="form-item">
+            <label for="brand">Brand</label>
+            <div class="brand input-container active">
+              <select
+                class="active"
+                id="brand"
+                name="brand"
+                onchange="showBrandModels()"
+                required
+              >
+                <option value="" hidden disabled selected>
+                  Choose car brand
+                </option>
+                <option value="Toyota">Toyota</option>
+                <option value="MG">MG</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Tesla">Tesla</option>
+                <option value="Ford">Ford</option>
+                <option value="Audi">Audi</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="model">Model</label>
+            <div class="model input-container">
+              <select
+                id="model"
+                name="model"
+                onchange="updatePrice()"
+                disabled
+                required
+              >
+                <option value="" hidden disabled selected>
+                  Choose car model
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="pickup-date">Pick-up date:</label>
+            <div class="date input-container">
+              <input
+                type="date"
+                id="pickup-date"
+                name="pickup-date"
+                onchange="limitDropoffDate()"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="dropoff-date">Drop-off date</label>
+            <div class="date input-container">
+              <input
+                type="date"
+                id="dropoff-date"
+                name="dropoff-date"
+                required
+              />
+            </div>
+          </div>
+          <div class="submit input-container">
+            <input type="submit" value="Rent" />
+          </div>
+        </div>
+        <div class="form-bottom">
+          <div class="insurance input-container">
+            <input
+              type="checkbox"
+              id="insurance"
+              name="insurance"
+              value="insurance"
+            />
+            <label for="insurance">Add insurance</label>
+          </div>
+          <div class="price">
+            <div class="price-text"></div>
+            <div class="price-num"></div>
+          </div>
+        </div>
+      </form>
+      <div class="loading-bar">
+        <div class="loading-index"></div>
+      </div>
+      <h1 class="msg-title">Order Confirmation</h1>
+      <div class="car-details-container">
+        <div class="name-details"></div>
+        <div class="price-details"></div>
+        <div class="date-details"></div>
+        <div class="insurance-detail"></div>
+      </div>
+      <p class="msg-content">
+        Your request has been processed and the confirmed details have been sent
+        to your email.
+    </div>
+  </body>
+  <script src="../script/rent-a-car-form.js"></script>
+</html>

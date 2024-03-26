@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Information</title>
+<link rel="stylesheet" href="./CSS/project.css">
+<script>
+    function changeImage(txtContent,newImageUrl) {
+            var image = document.getElementById('imageurl') ;
+            image.src = newImageUrl;
+            var labels = document.getElementsByTagName('label');
+            for (var i = 0; i < labels.length; i++){
+                if(txtContent.localeCompare(labels[i].textContent) == 0)
+                    labels[i].classList.toggle("focus");
+                else
+                    labels[i].classList.remove("focus");
+            }
+            var iframe = document.getElementById('iframe').src = './HTML/deatils.html?tab='+txtContent;
+        }
+</script>
+</head>
+<body id="index_body" onload="changeImage('Computers','https://media.currys.biz/i/currysprod/laptop-desktop');">
+    <div class="left_side">
+        <h2 class="menu_header">Information</h2>
+        <label class="menu_link" onclick='changeImage("Computers","https://media.currys.biz/i/currysprod/laptop-desktop")'>Computers</label>
+        <label class="menu_link" onclick='changeImage("Smart Phones","https://as1.ftcdn.net/v2/jpg/05/78/64/62/1000_F_578646267_MiQ46UKB3JbGtdAN279jhLoaVAs6Te9Y.jpg")'>Smart Phones</label>
+        <label class="menu_link" onclick='changeImage("Cars","	https://clipground.com/images/car-sales-in-clipart-1.jpg")'>Cars</label>
+    </div>
+    <div class="right_side">
+        <img src="" class="image" id="imageurl" />
+        <iframe id="iframe" ></iframe>
+    </div>
+</body>
+</html>

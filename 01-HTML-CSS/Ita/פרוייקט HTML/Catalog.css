@@ -1,0 +1,95 @@
+
+
+.catalog-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 45px;
+    width: 80%;
+    margin: 150px auto 0 auto;
+
+}
+
+.item-catalog {
+    box-shadow: 0 0 10px 0 #6c8b66;
+    border: 0.3px solid #6c8b66;
+    border-radius: 3px;
+    width: 310px;
+    height: 480px;
+    background-color: #fff;
+    
+    
+}
+
+.tytle-item {
+    font-size: 30px;
+    text-align: center;
+    font-family: Rubik;
+}
+
+.img-car {
+    height: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Details-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 4px;
+    margin-top: 8px;
+    
+}
+
+
+.img-item-Details {
+    width: 40px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p-item-Details {
+    font-size: 14px;
+    font-family: Rubik;
+    color: #003D20;
+    text-align: center;
+    margin-top: 0;
+    font-weight: bold;
+}
+.p-item-Details1 {
+    font-size: 14px;
+    font-family: Rubik;
+    color: #003D20;
+    text-align: center;
+    margin-top: 0;
+}
+
+.button-Click-to-order {
+    width: 80%;
+    color: #00703a;
+    background-color: #fff;
+    border: 3px dashed #00703a;
+    font-size: 30px;
+    font-family: Rubik;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 15px auto 0 auto; 
+    
+}
+
+.button-Click-to-order a {
+    text-decoration-line: none;
+    color: #00703a;
+}
+
+.button-Click-to-order:hover {
+    background-color: #91caaf;
+   
+}
+

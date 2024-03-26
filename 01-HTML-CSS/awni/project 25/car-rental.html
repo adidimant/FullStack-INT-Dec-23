@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</head>
+
+<body>
+    <section class="carrental" id="carrental">
+        <div class="title">
+            <h4><i class="fa-solid fa-car"></i></h4>
+            <h2>Rent a car</h2>
+        </div>
+        <h2>personal information :</h2>
+        <div class="carrental-contaier">
+            <form class="rental-forms" id="rental-forms">
+                <div class="rental-group">
+                    <div class="input-group">
+                        <label class="custom-label">Email:</label>
+                        <input type="email" required>
+
+                        <label class="custom-label">First Name:</label>
+                        <input type="text" required>
+
+                        <label class="custom-label">Last Name:</label>
+                        <input type="text" required>
+
+                        <label class="custom-label">Phone Num:</label>
+                        <input type="tel" name="phone" pattern="[0-9]{10}" required />
+                    </div>
+                    <div class="input-group">
+                        <label class="custom-label" for="Driving-license">Driving license:</label>
+                        <input type="file" id="" name="" accept="image/*" multiple required>
+
+                        <label class="custom-label">Pick Up:</label>
+                        <input type="date" required>
+
+                        <label class="custom-label">Drop Off:</label>
+                        <input type="date" required>
+
+                        <label class="custom-label">Time:</label>
+                        <input type="time" required>
+                    </div>
+
+                </div>
+                <hr>
+                <h2>payment method :</h2>
+
+                <div class="rental_payment">
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-regular fa-credit-card"></i>
+                    <div class="input-group">
+                        <label class="custom-label" for="">Name of the Cardholder :</label>
+                        <input type="text" name="" id="" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="custom-label" for="">Card Number</label>
+                        <input type="tel" inputmode="numeric" maxlength="16" minlength="10" placeholder="xxxx xxxx xxxx xxxx" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="custom-label" for="">Expiry Date</label>
+                        <input type="text" maxlength="4" placeholder="MM/YY" minlength="4" required>
+
+                        <label class="custom-label" for="">CVV Code</label>
+                        <input type="tel" min="3" max="3" required>
+                    </div>
+
+
+                    <label>
+                        <input type="checkbox" name="" id="">
+                        Add insurance?</label>
+                    <label>
+                        <input type="checkbox" name="" id="">
+                        Would you like to receive the invoice by email?</label>
+                    <label for="">
+                        <input type="checkbox" name="" id="">
+                        Would you like to receive discounts and other car rental offers, which will save you more money
+                        in the future?</label>
+                    <div>
+                        <input type="submit" value="Book Now">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+
+
+    <script src="./script1.js"></script>
+</body>
+
+</html>

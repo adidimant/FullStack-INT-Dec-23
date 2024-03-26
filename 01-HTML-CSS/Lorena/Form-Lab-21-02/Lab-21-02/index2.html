@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style2.css">
+
+</head>
+<body>
+<div class="container1">
+    <div class="button-box">
+        <div id="btn"></div>
+<button class="tablink" onclick="openPage('Register')" id="defaultOpen">Register</button>
+<button class="tablink" onclick="openPage('Add-new-post')" id="defaultOpen">Add new post</button>
+
+<div id="Register" class="tabcontent">
+    <form action="/action_page.php">
+      <div class="container">
+          <h1>Register</h1>
+          <p>Please fill in this form to create an account.</p>
+          <div class="user-details"></div>
+          <div class="input-box">
+              <span class="details">Full Name</span>
+              <input type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+              <span class="details">Last name</span>
+              <input type="text" placeholder="Enter your  last name" required>
+          </div>
+          <div class="input-box">
+              <span class="details">Address</span>
+              <input type="text" placeholder="Enter your address" required>
+          </div>
+          <div class="Date"> 
+            <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth">
+          </div>
+          </div>
+          <br>
+          <form action="/action_page.php">
+            <p>Please select your favorite Food</p>
+            <input type="radio" id="None" name="fav_language" value="None">
+            <label for="None">None</label><br>
+            <input type="radio" id="Vegan" name="fav_language" value="Vegan">
+            <label for="Vegan">Vegan</label><br>
+            <input type="radio" id="Vegeterian" name="fav_language" value="Vegeterian">
+            <label for="Vegeterian">Vegeterian</label>
+            <input type="radio" id="Kosher" name="fav_language" value="Kosher">
+            <label for="Kosher">Kosher</label> 
+        </div>
+      <br>
+      <form action="/action_page.php">
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender">
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+        <br><br>
+         
+          <button type="submit" class="registerbtn">Register</button>
+        </div>
+        
+      </form>
+</div>
+</div>
+<div id="Add-new-post" class="tabcontent">
+  <div class="container2">
+    <h1>Add new post</h1>
+    <p>Please fill in this form.</p>
+    <div class="user-details"></div>
+    <div class="input-box">
+        <span class="details">Full Name</span>
+        <input type="text" placeholder="Enter your name" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Last name</span>
+        <input type="text" placeholder="Enter your  last name" required>
+    </div>
+    <div class="input-box">
+        <span class="details">Address</span>
+        <input type="text" placeholder="Enter your address" required>
+    </div>
+    <div class="Date"> 
+      <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth">
+    </div>
+    </div>
+    <br>
+    <form action="/action_page.php">
+      <p>Please select your favorite Food</p>
+      <input type="radio" id="None" name="fav_language" value="None">
+      <label for="None">None</label><br>
+      <input type="radio" id="Vegan" name="fav_language" value="Vegan">
+      <label for="Vegan">Vegan</label><br>
+      <input type="radio" id="Vegeterian" name="fav_language" value="Vegeterian">
+      <label for="Vegeterian">Vegeterian</label>
+      <input type="radio" id="Kosher" name="fav_language" value="Kosher">
+      <label for="Kosher">Kosher</label>
+  </div>
+<br>
+<form action="/action_page.php">
+  <label for="gender">Gender</label>
+  <select name="gender" id="gender">
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+  </select>
+  <br><br>
+   
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+  
+</form>
+</div>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 

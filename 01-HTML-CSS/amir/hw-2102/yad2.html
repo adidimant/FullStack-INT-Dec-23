@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <link rel="stylesheet" href="yad2.css">
+ <script src="yad2.js" defer>
+
+
+ </script>
+
+ <title>Register</title>
+</head>
+<body>
+  
+ <div class="container">
+
+ <form action="" id="form" oninput="Nameout.value=(Name.value); Priceout.value=(Price.value);">
+ <h1>Add product</h1>
+ <div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: column;">
+ <div class="input-group">
+ <label for="Name">Product Name</label>
+ <input type="text" id="Name" name="Name">
+ <div class="error"></div>
+ </div>
+
+ <div class="input-group">
+ <label for="Price">Price (₪)</label>
+ <input type="number" id="Price"  name="Price" >
+ <div class="error"></div>
+ </div>
+
+ <div class="input-group">
+ <label for="description">description</label>
+ <input type="text" id="description" name="description">
+ <div class="error"></div>
+
+ </div>
+ <div class="input-group">
+    <label for="Address">Address</label>
+    <input type="text" id="Address" name="Address">
+    <div class="error"></div>
+   
+    </div>
+ 
+</div>
+
+<div style="display: flex; flex-direction: column ; margin-left: 30px;">
+    
+        
+ <div  id="Food" class="food">
+    <label>Condition:</label>
+
+<div style="margin-bottom: 5px; margin-top: 10px;">
+    <input checked type="radio" id="new" name="fav" value="new">
+    <label  for="new">new</label>
+</div>
+    <div style="margin-bottom: 5px;">
+    <input type="radio" id="like new" name="fav" value="like new">
+    <label for="like new">like new</label>
+</div>
+<div style="margin-bottom: 5px;">
+    <input type="radio" id="used" name="fav" value="used">
+    <label for="used">used</label>
+</div>
+<div>
+      <input type="radio" id="bad condition" name="fav" value="bad condition">
+      <label for="bad">bad condition</label><br>
+    </div>
+    </div>
+<div>
+<label>Upload images: </label><br><br>
+<label class="photos">
+    <input id="photos" style="padding: 10px;" type="file">
+
+</label>
+</div>
+</div>
+<br>
+
+
+</div>
+<br>
+<div style="margin-left: 8px;">
+<input multiple type="checkbox" id="myFile" name="filename">
+<label style="font-weight: bold;">I would like to recieve an updates to my mail about this product</label>
+<br>
+</div>
+
+ <button type="submit" style="width: 50%; justify-content: center; display: flex; margin: 0 auto; margin-top: 20px;">Preview</button>
+ 
+ </form>
+ <!-- <div class="output">
+    <output form="form" id="Nameout" name="Nameout" for="Name"></output> 
+    <output form="form" id="Priceout" name="Priceout" for="Price"></output> 
+
+   </div> -->
+ </div>
+</body>
+</html>

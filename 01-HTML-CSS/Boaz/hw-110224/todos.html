@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Todos</title>
+  <style>
+    /* CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .todo-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #6e4be3;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* hover */
+    li:hover {
+      font-weight: bold;
+      color: #fff;
+      background-color: #6e4be3;
+      border-left: 3px solid #52349e;
+    }
+
+    /* line-through on click */
+    li.completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    /* Input styling */
+    input[type="text"] {
+      padding: 10px;
+      width: calc(100%);
+      border: 1px solid #ddd;
+      border-radius: 5px 0 0 5px;
+      text-align: center;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #6e4be3;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #5c3ea3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="todo-container">
+    <h1>Weekly Todos</h1>
+
+    <ul id="todoList">
+      <li onclick="toggleCompletion(0)">Learn JavaScript</li>
+      <li onclick="toggleCompletion(1)">Exercise for 30 minutes daily</li>
+      <li onclick="toggleCompletion(2)">Complete project deadline</li>
+      <li onclick="toggleCompletion(3)">learn more css</li>
+    </ul>
+
+    <!-- Adding more todo -->
+    <form onsubmit="addTodo(); return false;">
+      <input type="text" id="todoInput" placeholder="Add more :)">
+      <input type="submit" value="Add">
+    </form>
+  </div>
+
+  <script>
+    function toggleCompletion(index) {
+      var todoItem = document.getElementById("todoList").getElementsByTagName("li")[index];
+      todoItem.classList.toggle("completed");
+    }
+
+    function addTodo() {
+      var inputField = document.getElementById("todoInput");
+      var todoText = inputField.value;
+      var todoList = document.getElementById("todoList");
+      var newTodoItem = document.createElement("li");
+      newTodoItem.textContent = todoText;
+      newTodoItem.onclick = function () {
+        toggleCompletion(todoList.children.length - 1);
+      };
+      todoList.appendChild(newTodoItem);
+      inputField.value = ""; // clear the input field  - empty
+    }
+  </script>
+
+</body>
+
+</html>

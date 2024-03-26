@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html dir="rtl" >
+    <head>
+        <link rel="stylesheet" href="./forms yd2.css"/>
+    </head>
+    <body>
+
+        <header>
+            
+        </header>
+        
+        
+        <form>
+            <p>המוצר אותו אני רוצה למכור</p>
+            <label for="category">קטגוריה*</label><br>
+            <select required id="category" name="category" value="בחר">
+                <option value="Furniture">ריהוט</option>
+                <option value="craftsmanship">אומנות</option>
+                <option value="Musical Instruments">כלי נגינה</option>
+                <option value="babies">מוצרי תינוקות</option>
+                <option value="garden">לגינה</option>
+                <option value="home">לבית</option>
+                <option value="computer">מחשב ואביזריו</option>
+                <option value="traveling">למטייל</option>
+                <option value="Judaica">מוצרי תינוקות</option><br>
+            </select><br><br>
+
+            <label for="Product status">מצב המוצר*</label><br>
+            <select required id="status" name="status">
+                <option value="New">חדש</option>
+                <option value="like New">כמו חדש</option>
+                <option value="being used">משומש</option><br>
+            </select><br><br>
+
+            <label for="name">*שם המוצר:</label><br>
+            <input readonly type="text" id="name" name="name"><br><br>
+
+            
+            <label for="City">*יישוב:</label><br>
+            <input readonly type="text" id="City" name="City"><br><br>
+
+            <label for="area">*יישוב:</label><br>
+            <input readonly type="text" id="area" name="area"><br><br>
+
+            <label for="textarea">טקסט חופשי</label><br>
+            <p class="p-free-text">ממלצים לך בחום להוסיף טקסט חופשי</p>
+            <textarea name="free-text" class="free-text"></textarea><br><br>
+
+            <div class="container">
+                <div>
+                <input type="file" name="file" id="file" class="inputimg" />
+                <label for="file">הוסף תמונה</label>
+                <img id="preview-image" src="#" alt="example image"/>
+                </div>
+                <div>
+                <input type="file" name="file" id="file1" class="inputimg" />
+                <label for="file">הוסף תמונה</label>
+                </div>
+                <div>
+                <input type="file" name="file" id="file2" class="inputimg" />
+                <label for="file">הוסף תמונה</label>
+                </div>
+                <div>
+                <input type="file" name="file" id="file3" class="inputimg" />
+                <label for="file">הוסף תמונה</label>
+                </div>
+                <div>
+                <input type="file" name="file" id="file4" class="inputimg" />
+                <label for="file">הוסף תמונה</label>
+                </div>
+            </div>
+
+            <br>
+
+            <input type="submit" value="שלח">
+
+        </form>
+
+        <script>
+            const fileInput = document.getElementById('file');
+
+            const previewImage = document.getElementById('preview-image');
+
+            fileInput.addEventListener('change', event => {
+            if (event.target.files.length > 0) {
+             previewImage.src = URL.createObjectURL(
+              event.target.files[0],
+              );
+
+            previewImage.style.display = 'block';
+            }
+
+             // 👇️ reset file input once you're done
+             fileInput.value = null;
+            });
+        </script>
+    </body>
+</html>
