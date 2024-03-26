@@ -54,7 +54,11 @@ const soccerPlayers = [
     { name: 'adi', age: 27 },
     { name: 'zaher', age: 17 },
 ];
+const newPlayer = { name: 'samh', age: 26 };
+soccerPlayers.push(newPlayer);
+console.log(soccerPlayers);
 
+// pop , shift , unshift , push 
 let playerAge = soccerPlayers.every(el => el.age > 15)
 console.log(playerAge);
 
