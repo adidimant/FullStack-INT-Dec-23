@@ -1,4 +1,14 @@
-// Write a function that accepts an array and returns a filtered array with only the odd numbers
+
+function getOddNumbers(array) {
+    return array.filter(function (number) {
+        return number % 2 === 1;
+    });
+}
+
+
+const myArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const oddNumbers = getOddNumbers(myArr);
+console.log(oddNumbers);
 
 const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 54, 123, 234, 124, 111, 400, 533, 1092];
 let secArray = myArray.filter(num => num % 2 !== 1);
@@ -10,11 +20,17 @@ console.log(trdArray);
 // Write a funciton that accepts an array and checks if exists an item that is "object" in the array (using .some() method)
 
 
-const firstArr = [1, "hello", { name: "John", age: 30 }, [1, 2, 3], null, undefined, { car: 'bmw', color: 'red', model: 2024 }, [12, 45, 66], function helloWorld() {
-    return 'hello';
-}];
+const firstArr = [1, "hello", { name: "John", age: 30 }, [1, 2, 3], null, undefined, { car: 'bmw', color: 'red', model: 2024 },
+    [12, 45, 66], function helloWorld() {
+        return 'hello';
+    }];
 let secArr = firstArr.some(element => typeof element === 'object');
 console.log(secArr);
+
+function getObj(element){
+    return element.some(element => typeof element === 'object');
+}
+console.log(getObj(firstArr))
 
 
 
@@ -42,6 +58,9 @@ let resultNum2 = numbers.reduce(function (prevValue, currentValue) {
     return prevValue + currentValue;
 })
 console.log(resultNum2);
+
+// Find
+
 let findNum = numbers.find(el => el > 1);
 console.log(findNum);
 
@@ -58,9 +77,12 @@ const soccerPlayers = [
 ];
 const newPlayer = { name: 'samh', age: 26 };
 soccerPlayers.push(newPlayer);
+soccerPlayers.unshift({ name: 'soaad', age: 30 });
 console.log(soccerPlayers);
 
-// pop , shift , unshift , push 
+
+
+// pop && shift :remove the last/first one , unshift && push add to the start/end of the object ! 
 
 // EVERY
 
@@ -113,8 +135,8 @@ const footballPlayers = [
 
 // });
 footballPlayers.forEach((el, idx) => {
-    el.foot = (idx === 1 || idx === 4 || idx === 7) ? 'left' 
-    : 'right';
+    el.foot = (idx === 1 || idx === 4 || idx === 7) ? 'left'
+        : 'right';
 });
 
 
