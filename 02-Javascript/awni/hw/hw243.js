@@ -17,6 +17,8 @@ let secArr = firstArr.some(element => typeof element === 'object');
 console.log(secArr);
 
 
+
+
 // ForEach
 
 let trdArr = firstArr.forEach(function (element, idx) {
@@ -59,8 +61,67 @@ soccerPlayers.push(newPlayer);
 console.log(soccerPlayers);
 
 // pop , shift , unshift , push 
+
+// EVERY
+
 let playerAge = soccerPlayers.every(el => el.age > 15)
 console.log(playerAge);
+
+
+
+
+// const footballPlayers = [
+//     {name:'samer', age:20},
+//     {name:'ali', age:22},
+//     {name:'zahe', age:25},
+//     {name:'jamal', age:18},
+//     {name:'mona', age:16},
+//     {name:'adi', age:31},
+//     {name:'ihab', age:33},
+//     {name:'soha', age:19},
+// ]
+// let newOption = footballPlayers.forEach((el , idx) => {
+//     el.team = 'Team A';
+
+// });
+// console.log(newOption);
+
+const footballPlayers = [
+    { name: 'samer', age: 20 },
+    { name: 'ali', age: 22 },
+    { name: 'zahe', age: 25 },
+    { name: 'jamal', age: 18 },
+    { name: 'mona', age: 16 },
+    { name: 'adi', age: 31 },
+    { name: 'ihab', age: 33 },
+    { name: 'soha', age: 19 },
+];
+
+// footballPlayers.forEach((el, idx) => {
+//     if (idx % 2 !== 1) {
+//         return (el.foot = 'right');
+//     }
+//     return (el.foot = 'left');
+
+// });
+
+// footballPlayers.forEach((el, idx) => {
+//     if (idx == [1] || idx == [4] || idx == [7]) {
+//         return (el.foot = 'left');
+//     }
+//     return (el.foot = 'right');
+
+// });
+footballPlayers.forEach((el, idx) => {
+    el.foot = (idx === 1 || idx === 4 || idx === 7) ? 'left' 
+    : 'right';
+});
+
+
+
+
+console.log(footballPlayers);
+
 
 
 
