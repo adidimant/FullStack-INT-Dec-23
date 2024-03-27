@@ -81,4 +81,107 @@ const isAllBoys = soccerGardenChildrens.every((child) => {
   return false;
  }); // returns an array of all women
 
- 
+// returns the first item that fulfills the condition of the function
+const firstMale = soccerGardenChildrens.find((child) => {
+  if (child.gender == "Male") {
+      return true;
+  }
+  return false;
+ });
+
+ const isExistMale = !!firstMale;
+
+ // find the index of the first element in the array that fulfilles the condition. if not found - returns -1
+ const firstMaleIndex = soccerGardenChildrens.findIndex((child) => {
+  if (child.gender == "Male") {
+      return true;
+  }
+  return false;
+ });
+
+// swap between arr[2] arr[8]:
+const temp = arr[2];
+arr[2] = arr[8];
+arr[8] = temp;
+
+const simpleArr = [5, 6, 7, 14, 15, 9, 10, 9, 13];
+
+// forEach:
+// print all items+1 with their indexes
+simpleArr.forEach((item, index) => {
+  console.log(index, item + 1);
+});
+
+// increment by 1 all array items:
+
+simpleArr.forEach((index) => {
+  simpleArr[index]++;
+});
+
+simpleArr.includes(7) // true
+
+const complexArr = [[12, 35], [78,66], [5,6]];
+// check if one of the sub-arrays contains 123
+complexArr.some((item) => item.includes(123));
+
+simpleArr.indexOf(7); // 2
+
+// returns true/false if is array
+Array.isArray(simpleArr);
+
+const stringRepresentation = '(' + simpleArr.join('),(') + ')'; // '(5),(6),(7),(14),(15),(9),(10),(9),(13)'
+
+const registeredStudents = ['Moshe', 'Eyal', 'Ita', 'Lorena', 'Awni', 'Adi'];
+const lastStudent = registeredStudents.pop(); // remove the last item in the array (and return in)
+const summary = "The registered students are: " + registeredStudents.join(',') + ' and ' + lastStudent; // 'The regsitered students are: Moshe, Eyal, Ita, ... and Adi'
+
+// running from the end to the beginning
+for (let i =arr.length -1; i >= 0; i--) {
+
+}
+// running from the beginning to the end
+for (let i =0; i< arr.length; i++) {
+    console.log(i);
+}
+
+// or (same to the for loop above):
+for (const i of simpleArr.keys()) {
+  console.log(i);
+}
+
+const simpleArr2 = [5, 6, 7, 14, 15, 9, 10, 9, 13, 7];
+simpleArr2.indexOf(7); // 2
+simpleArr2.lastIndexOf(7); // 9
+
+
+// map:
+// map all items to their value + 100:
+const increasedArray = simpleArr.map((value) => {
+  return value + 100;
+}); // [105, 106, 107, 114, 115, 109, 110, 109, 113, 107]
+
+// map the array to oddEvenAnswers (each cell contains true if odd, otherwise false):
+const oddEvenAnswers = simpleArr.map((value) => value % 2 == 1); // [true, false, true, false, true, true, false, true, true, true]
+
+simpleArr.reverse(); // [7, 13, 9, 10, 9, 15, 14, 7, 6, 5]
+
+simpleArr.shift(); // removes the first element and returns it (returns 7)
+
+const simpleArr3 = [6, 7, 14, 15, 9, 10, 9, 13, 7];
+simpleArr3.slice(0,4); // [6, 7, 14, 15]
+
+simpleArr.slice(2,4); // [14,5] - get the third and fourth items
+
+[1,2,3,4,5,89,10, 3,6,1,0].sort((a,b) => a-b); // [0, 1, 1, 2, 3, 3, 4, 5, 6, 10, 89]
+
+let simpleArr4 = [10, 13, 14, 15, 6, 7, 7, 9, 9];
+simpleArr.splice(1) // returns [13, 14, 15, 6, 7, 7, 9, 9], but simpleArr becomes [10]
+
+simpleArr.splice(3, 1) // returns 15, but simpleArr = [10, 13, 14, 6, 7, 7, 9, 9]
+
+// pushing an item the beginning of the array:
+simpleArr.unshift(1); // simpleArr = [1, 10, 13, 14, 6, 7, 7, 9, 9]
+
+
+
+
