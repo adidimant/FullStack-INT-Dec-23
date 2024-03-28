@@ -8,8 +8,8 @@ const arr2 = ["check", {key: "value"}, 123, false, undefined];
 function filterOdd(arr: number[]) {
     return arr.filter((item) => item % 2 != 0);
 }
-function checkIfObjExist(arr) {
-    return arr.some((item) => typeof item == "object");
+function checkIfObjExist(arr:any) {
+    return arr.some((item: any) => typeof item == "object");
 }
 
 console.log(filterOdd(arr));
