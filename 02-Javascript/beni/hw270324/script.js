@@ -123,14 +123,16 @@ console.log("find checkNum in nums:", find);
  * inside the map method i will create a function that checks if the current person element that is being processed has a name longer than 6 letters,
  * example: <-- array.map(person => { if (person.name.length > 6) { return {...person, hasLongName: true} }); <-- else same but with false.
  * i then return the new array in the main function <-- function checkName(array) { const newArr = map-fn{..}; return newArr; }
+ * UPDATE:
+ * i can just return the map method instead of creating a new array and returning it at the end, since the map already returns a new array.
+ * so i just need to delete the 'const newArr = ' and return the entire 'array.map()' function <-- return array.map(all-the-code-i-wrote).
  */
 function checkName(array) {
-  const newArr = array.map((person) => {
+  return array.map((person) => {
     if (person.name.length > 6) {
       return { ...person, hasLongName: true };
     } else return { ...person, hasLongName: false };
   });
-  return newArr;
 }
 const people = [
   { name: "Adi", age: 30 },
