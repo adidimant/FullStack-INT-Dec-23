@@ -25,12 +25,23 @@ console.log(oddNumbers)
  // Write a funciton that accepts an array and checks if exists an item that is "object" in the array (using .some() method) //
 
   const myArray = [{number:1}, "ziv", {boolean:true}];
+
   function hasObject(array) {
     return array.some(
       function(item) {
         return typeof item === 'object';
     });
-}
+  }
+
+  // or:
+
+  function isObject(item) {
+    return typeof item === 'object';
+  }
+
+  function hasObject2(array) {
+    return array.some(isObject);
+  }
 
   console.log(hasObject(myArray)); 
 
@@ -67,4 +78,5 @@ const isAllnumbersOdd = scorenumbers.filter((child) => {
   }
   return false;
 });
+
 
