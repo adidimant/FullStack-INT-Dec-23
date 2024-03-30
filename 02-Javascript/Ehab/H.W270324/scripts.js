@@ -25,7 +25,6 @@ function reverse(arr) {
 }
 console.log('Ex2:\nThe array is: '+arr+'\nThe reverse array is: ' +reverse(arr));
 
-
 /* Ex3: 
     using reduce, implement a function that accepts an array and returns 
     an object that each key:value in the object is the index:value from array 
@@ -46,7 +45,6 @@ console.log('Ex3:\nArray To Object:\nArray: ' +arrEx3+'\nObject:',arrayToObject(
     - Finally, we return the obj, which contains the desired object with key-value pairs where 
       keys are the indexes of the array and values are the elements of the array.
 */
-
 
 /*  Ex4
     implement the function find() (that accepts an array and a condition function) - using reduce.
