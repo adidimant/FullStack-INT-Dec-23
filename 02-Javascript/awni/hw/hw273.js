@@ -82,6 +82,6 @@ const people = [
 ];
 
 const updatedPeople = addHasLongNameKey(people);
-console.log(updatedPeople);
+console.log(updatedPeople); ////////
 
 
