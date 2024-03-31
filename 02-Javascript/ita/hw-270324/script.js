@@ -38,16 +38,18 @@ const peopleDetails = [
 ];
 
 
-function NameLength() {
+function nameLength() {
     return peopleDetails.map((obj) => {
         if (obj.firstname.length >= 6) {
             return ({...obj, hasLongName: true});
-        } else {
-            return ({...obj, hasLongName: false});
         }
+        return ({...obj, hasLongName: false});
     }) 
 } 
 
+function nameLengthV2() {
+    return peopleDetails.map((obj) => ({...obj, hasLongName: obj.firstname.length >= 6}));
+} 
 
 
 

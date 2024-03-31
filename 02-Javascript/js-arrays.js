@@ -121,8 +121,14 @@ simpleArr.forEach((index) => {
 simpleArr.includes(7) // true
 
 const complexArr = [[12, 35], [78,66], [5,6]];
-// check if one of the sub-arrays contains 123
-complexArr.some((item) => item.includes(123));
+complexArr.flat();
+
+const complexArr2 = [[12, [35]], [78,66], [5,6]];
+complexArr2.flat(2); // needs two levels of flatting in order to create the proper array
+
+const complexArr3 = [[12, 35], [78,66], [5,6]];
+// check if one of the mini-arrays contains 123
+complexArr3.some((miniArr) => miniArr.includes(123));
 
 simpleArr.indexOf(7); // 2
 
@@ -153,7 +159,6 @@ const simpleArr2 = [5, 6, 7, 14, 15, 9, 10, 9, 13, 7];
 simpleArr2.indexOf(7); // 2
 simpleArr2.lastIndexOf(7); // 9
 
-
 // map:
 // map all items to their value + 100:
 const increasedArray = simpleArr.map((value) => {
@@ -176,11 +181,37 @@ simpleArr.slice(2,4); // [14,5] - get the third and fourth items
 
 let simpleArr4 = [10, 13, 14, 15, 6, 7, 7, 9, 9];
 simpleArr.splice(1) // returns [13, 14, 15, 6, 7, 7, 9, 9], but simpleArr becomes [10]
-
+// assuming we didn't run the simpleArr.splice(1) before:
 simpleArr.splice(3, 1) // returns 15, but simpleArr = [10, 13, 14, 6, 7, 7, 9, 9]
 
 // pushing an item the beginning of the array:
 simpleArr.unshift(1); // simpleArr = [1, 10, 13, 14, 6, 7, 7, 9, 9]
+
+// reduce example:
+const numbers = [15.5, 2.3, 1.1, 4.7];
+document.getElementById("demo").innerHTML = numbers.reduce(getSum, 0);
+
+// total is the accumolator value (the first reduce inner function parameter):
+function getSum(total, num) {
+  return total + Math.round(num);
+}
+
+// Additional lesson material:
+
+const result = arr1.every((value, index) => value.category == 'goodCategory');
+const result2 = arr1.some((value, index) => value.category == 'goodCategory');
+
+const hasHighSalary = (person, average) => person.salary > average;
+
+// function that filters all the high-salary persons (high-salary is bigger than the company/industry average)
+const INDUSTRY_AVERAGE = 20000;
+const result3 = arr1.filter((person) => {
+  if (person) {
+    return hasHighSalary(person, INDUSTRY_AVERAGE);
+  }
+  return false;
+});
+
 
 
 
