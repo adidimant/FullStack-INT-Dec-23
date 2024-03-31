@@ -2,8 +2,8 @@
 1) for / while
 2) object functions
 3) setTimeout / setInterval
-4) js browser
-5) fetch
+4) fetch
+5) js browser
 6) promises - intro
 */
 
@@ -109,3 +109,6 @@ setTimeout(() => {
 setInterval(() => {
   console.log('hey! interval reached!');
 }, 3000);
+
+const response = await fetch("https://randomuser.me/api/?results=5");
+const data = await response.json();

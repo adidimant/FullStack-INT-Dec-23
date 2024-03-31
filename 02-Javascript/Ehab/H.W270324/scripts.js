@@ -57,10 +57,10 @@ function find(arr,condition){
             found=true;
         }
         return result;
-    },result=undefined);
+    },undefined);
 }
 const numbers = [1, 9, 13, 4, 20, 6];
-const isEven = num => num % 2 === 0;
+const isEven = (num) => num % 2 === 0;
 console.log('Ex4:\nThe first element that met the condition is: '+find(numbers,isEven));
 /*
     - found => A boolean variable is initialized to false.
