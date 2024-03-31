@@ -62,7 +62,7 @@ console.log(foundNumber);
 
 function addHasLongNameKey(people) {
     return people.map(person => ({
-        ...person,  hasLongName: person.name.length > 6
+        person,  "hasLongName": person.name.length > 6
     }));
 }
 
