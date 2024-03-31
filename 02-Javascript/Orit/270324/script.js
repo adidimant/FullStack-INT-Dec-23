@@ -53,24 +53,3 @@ function ex4() {
 /* implement the function find() 
 (that accepts an array and a condition function) - using reduce */
 
-function customFind(array, predicate) {
-    return array.reduce((foundItem, currentItem) => {
-      // If the predicate returns true for the current item, return it
-      if (predicate(currentItem)) {
-        return currentItem;
-      }
-      // Otherwise, return the previously found item
-      return foundItem;
-    }, undefined); // Initialize foundItem to undefined
-  }
-  
-  // Example usage:
-  const numbers = [1, 2, 3, 4, 5];
-  
-  // Find the first even number
-  const firstEven = customFind(numbers, num => num % 2 === 0);
-  console.log(firstEven); // Output: 2
-  
-  // Find the first number greater than 3
-  const greaterThanThree = customFind(numbers, num => num > 3);
-  console.log(greaterThanThree); // Output: 4
