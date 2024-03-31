@@ -17,7 +17,7 @@ console.log(convertFahrenheitToCelsius(temperatures3)); // פלט: [-17.77777777
 console.log(convertFahrenheitToCelsius(temperatures4)); // פלט: [20, 25, 30]
 console.log(convertFahrenheitToCelsius(temperatures5)); // פלט: [50, 55, 60]
 
-// 2.הגדרת הפונקציה reverse
+// 2.הגדרת הפונקציה reverse//
 function reverse(array) {
   return array.reduce((accumulator, currentValue) => {
     accumulator.unshift(currentValue);
@@ -32,7 +32,7 @@ const reversedArray = reverse(originalArray);
 console.log("מערך מקורי:", originalArray); // פלט: מערך מקורי: [1, 2, 3, 4, 5]
 console.log("מערך הפוך:", reversedArray); // פלט: מערך הפוך: [5, 4, 3, 2, 1]
 
-3.
+//3.//
 function arrayToObject(array) {
     return array.reduce((obj, current, index) => {
       obj[index] = current;
@@ -60,3 +60,40 @@ function arrayToObject(array) {
   const objectsArray = [{name: 'John'}, {age: 30}, {isStudent: false}];
   console.log(arrayToObject(objectsArray)); // פלט: {0: {name: 'John'}, 1: {age: 30}, 2: {isStudent: false}}
   
+  //4.//
+  // הגדרת הפונקציה find
+function find(array, condition) {
+    return array.reduce((acc, item, index) => {
+      if (acc !== undefined) return acc;
+      if (condition(item, index, array)) return item;
+      return undefined; // המשך החיפוש אם לא נמצא איבר שעומד בתנאי
+    }, undefined); // הערך ההתחלתי הוא undefined כיוון שעדיין לא מצאנו איבר שעומד בתנאי
+  }
+  
+  // דוגמה לשימוש בפונקציה:
+  const numbersforfind = [5, 12, 8, 130, 44];
+  
+  // פונקציית תנאי שבודקת אם המספר גדול מ-10
+  const found = find(numbersforfind, function(number) {
+    return number > 10;
+  });
+  
+  console.log(found); // הדפסת המספר הראשון שגדול מ-10, שבמקרה זה הוא 12
+  
+  //5.//
+  function addHasLongNameProperty(people) {
+    return people.map(person => ({
+      ...person,
+      hasLongName: person.name.length > 6
+    }));
+  }
+  
+  // דוגמה לשימוש בפונקציה:
+  const people = [
+    { name: 'Adi', age: 30 },
+    { name: 'Anastasia', age: 29 }
+  ];
+  
+  const peopleWithLongNameInfo = addHasLongNameProperty(people);
+  
+  console.log(peopleWithLongNameInfo);
