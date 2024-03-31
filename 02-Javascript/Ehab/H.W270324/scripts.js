@@ -57,7 +57,7 @@ function find(arr,condition){
             found=true;
         }
         return result;
-    },result=undefined);
+    },result);
 }
 const numbers = [1, 9, 13, 4, 20, 6];
 const isEven = num => num % 2 === 0;
