@@ -128,6 +128,8 @@ function usersWithComplexPassword(data) {
 console.log(usersWithComplexPassword(data));
 function youngestPeople(data, howMuchPeople) {
     const fullNameAndAge = [];
+    if (howMuchPeople >= data.results.length + 1)
+        throw new Error(`The number of "howMuchPeople" is higher then the data length, please select a number under ${data.results.length + 1} `);
     try {
         data.results.forEach((item) => {
             fullNameAndAge.push({
@@ -142,4 +144,4 @@ function youngestPeople(data, howMuchPeople) {
         console.error(`error has been occurred: \n ${error}`);
     }
 }
-console.log(youngestPeople(data, 10));
+console.log(youngestPeople(data, 40));
