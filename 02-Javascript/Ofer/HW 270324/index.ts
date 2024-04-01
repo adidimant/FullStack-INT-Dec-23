@@ -7,44 +7,49 @@ function convertArrOfFarenToCels(arr: number[]): number[] {
 console.log(convertArrOfFarenToCels(farenDegrees));
 
 //HW Q2
-// function reverseArrUsingReduce(arr:number[]):number[]{
-//     return
-// }
+const arrToReverse = [1, 2, 14, 2, 4, 32, 52, 31, 1, 5423, 123];
+
+function reverseArrUsingReduce(array: number[]) {
+    return array.reduce(
+        (accumulator, item) => (accumulator.unshift(item), accumulator),// return accumulator
+        [] as number[]
+    );
+}
+console.log(reverseArrUsingReduce(arrToReverse));
 
 //HW Q3
-interface numberDictionary {
-    [index: string]: number;
+interface indexSignature {
+    [index: string]: number|string;
 }
+const arrToObj = [1, 2, 14, 2, 4, 32, 52, 31, 1, 5423, 123,"walla"];
 
-// function returnObj(arr: number[]): numberDictionary {
-//     let key1= -1;
-//     // return arr.reduce((accumulator, currentValue) => , {});
-// }
-// console.log(returnObj(farenDegrees))
-
-
-
-
-
+function getArrReturnObj(arr:(string|number)[] ) {
+    return arr.reduce(
+        (accumulator, item, index) => (accumulator[index] = item, accumulator),// return accumulator)
+        {} as indexSignature
+    );
+}
+console.log(getArrReturnObj(arrToObj));
 
 //HW Q4
-// function findUsingReduce(arr: number[],) {
-//     const initialValue = 0
-//     return arr.reduce((accumulator, currentValue)=> ,initialValue)
-// }
 
-const peopleObj: Person[]=  [{ name: 'Adi', age: 30}, { name: 'Anastasia', age: 29}, { name: 'Ofer', age: 25}, { name: 'kakasdkasdk', age: 102}]
 //HW Q5
-interface Person{
+interface Person {
     name: string;
     age: number;
     hasLongName?: boolean;
 }
-function checkIfOver6Characters(arr:Person[]){
-    return arr.map(person => {
-        if(person.name.length > 6)
-        return {...person, hasLongName:true};
-        return {...person, hasLongName:false};
-    })
+
+const peopleObj: Person[] = [
+    { name: "Adi", age: 30 },
+    { name: "Anastasia", age: 29 },
+    { name: "Ofer", age: 25 },
+    { name: "kakasdkasdk", age: 102 },
+];
+function checkIfOver6Characters(arr: Person[]) {
+    return arr.map((person) => ({
+        ...person,
+        hasLongName: person.name.length > 6,
+    }));
 }
-console.log(checkIfOver6Characters(peopleObj))
+console.log(checkIfOver6Characters(peopleObj));

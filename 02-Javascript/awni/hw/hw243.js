@@ -27,7 +27,7 @@ const firstArr = [1, "hello", { name: "John", age: 30 }, [1, 2, 3], null, undefi
 let secArr = firstArr.some(element => typeof element === 'object');
 console.log(secArr);
 
-function getObj(element){
+function getObj(element) {
     return element.some(element => typeof element === 'object');
 }
 console.log(getObj(firstArr))
@@ -119,6 +119,15 @@ const footballPlayers = [
     { name: 'soha', age: 19 },
 ];
 
+
+footballPlayers.forEach((el, idx) => {
+    el.foot = (idx === 1 || idx === 4 || idx === 7) ? 'left'
+        : 'right';
+});
+
+
+console.log(footballPlayers);
+
 // footballPlayers.forEach((el, idx) => {
 //     if (idx % 2 !== 1) {
 //         return (el.foot = 'right');
@@ -134,17 +143,6 @@ const footballPlayers = [
 //     return (el.foot = 'right');
 
 // });
-footballPlayers.forEach((el, idx) => {
-    el.foot = (idx === 1 || idx === 4 || idx === 7) ? 'left'
-        : 'right';
-});
-
-
-
-
-console.log(footballPlayers);
-
-
 
 
 
