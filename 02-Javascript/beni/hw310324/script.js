@@ -3,8 +3,8 @@
  *
  * first, ill create a function that takes an array of objects as a param <-- function filetrLargeObj(arr);
  * the function will return an array. so instead of creating a new variable i can jsut use <-- return arr.filter();
- * inside the filter method, i will create a function to filter any object that has more than 5 keys:
- * (obj) => Object.keys(obj).length > 5;
+ * inside the filter method, i will create a function to filter any object that has at least 5 keys:
+ * (obj) => Object.keys(obj).length >= 5;
  * ^^ this function will call the 'Object.keys()' function, with the 'obj' that is being itterated on used as
  * it's parameter. it will return an array filled with the keys of the 'obj'. if that array's length is
  * bigger than 5, it means it has more than 5 keys!
@@ -12,7 +12,7 @@
  * obj that returns 'true' with more than 5 keys will be sent to the filtered array!
  */
 function filterLargeObj(arr) {
-  return arr.filter((obj) => Object.keys(obj).length > 5);
+  return arr.filter((obj) => Object.keys(obj).length >= 5);
 }
 const people = [
   {
