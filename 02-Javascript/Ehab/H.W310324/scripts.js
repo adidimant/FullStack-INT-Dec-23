@@ -14,20 +14,26 @@ console.log(FiveKeys(arr));
 
 //2
 async function getData(url){
-    const response = await fetch(url);
-    const data = await response.json();
-    return  data;
+    try{
+        const response = await fetch(url);
+        const data = await response.json();
+        return  data;
+    }catch (e){
+        console.error(e);
+    }
 }
 
 //2.1 return an array objects from the shape of: [{ fullName, id }]
 async function objData() {
     const data = await getData('https://randomuser.me/api/?results=10');
     console.log('\nEx2.1\n')
-    return await data.results.map(user => {
-        const fullName = `${user.name.first} ${user.name.last}`;
-        const id = user.id.value;
-        return { fullName, id };
-    });
+    if(data.results.length >0){
+        return await data.results.map(user => {
+            const fullName = `${user.name.first} ${user.name.last}`;
+            const id = user.id.value;
+            return { fullName, id };
+        });
+    }else{return 'Fetch error, The array is empty';}
 }
 objData().then(result => console.log(result)); 
 
@@ -40,7 +46,9 @@ async function complexPasswords(){
     const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;;
     const data = await getData('https://randomuser.me/api/?results=500');
     console.log('\nEx2.2 \n')
-    return await data.results.filter(user => user.login.password.length > 6 && specialChars.test(user.login.password));
+    if(data.results.length >0){
+        return await data.results.filter(user => user.login.password.length > 6 && specialChars.test(user.login.password));
+    }else{return 'Fetch error, The array is empty';}
 }
 complexPasswords().then(result => console.log(result)); 
 
@@ -50,15 +58,16 @@ get the youngest people from the data.
 async function youngestPeople(){
     const response = await fetch("https://randomuser.me/api/?results=10");
     const data = await response.json();
-    
-    // sort array by age
-    data.results.sort((a, b) => {
-        const ageA = a.dob.age;
-        const ageB = b.dob.age;
-        return ageA - ageB;
-    });
     console.log('\nEx2.3 \n')
-    return data.results.filter((person,index) => index < 3);
+    if(data.results.length >0){
+        // sort array by age
+        data.results.sort((a, b) => {
+            const ageA = a.dob.age;
+            const ageB = b.dob.age;
+            return ageA - ageB;
+        });
+        return data.results.filter((person,index) => index < 3);
+    }else{return 'Fetch error, The array is empty';}
 }
 youngestPeople().then(result => console.log(result));
 
