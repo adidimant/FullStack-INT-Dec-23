@@ -1,6 +1,0 @@
-/* Additional CSS for the input field */
-.add-reminder-input {
-    flex-direction: column;
-    align-self: flex-start;
-    margin-top: 10px; /* Add some space between input field and previous reminder */
-}
