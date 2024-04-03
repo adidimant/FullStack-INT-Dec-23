@@ -100,9 +100,3 @@ function ex2(x) {
     
 }
 
-/*
-2) consider the following example:
-const response = await fetch("https://randomuser.me/api/?results=10");
-const data = await response.json();
-
-2.3) get the youngest people from the data.*/
