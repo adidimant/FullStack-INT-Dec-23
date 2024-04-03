@@ -1,5 +1,5 @@
-function filterObjectsWithAtLeastSevenKeys(objectsArray) {
-  return objectsArray.filter(object => Object.keys(object).length >= 7);
+function filterObjectsWithAtLeastFiveKeys(objectsArray) {
+  return objectsArray.filter(object => Object.keys(object).length >= 5);
 }
 
 
@@ -10,7 +10,7 @@ const objectsArray = [
   { name: 'Mike', age: 35, city: 'Houston', occupation: 'Architect', email: 'mike@example.com', phone: '987-654-3210', hobby: 'Cycling', nationality: 'American' }
 ];
 
-const filteredObjects = filterObjectsWithAtLeastSevenKeys(objectsArray);
+const filteredObjects = filterObjectsWithAtLeastFiveKeys(objectsArray);
 
 console.log(filteredObjects);
 

@@ -66,7 +66,7 @@ async function youngestPeople(){
             const ageB = b.dob.age;
             return ageA - ageB;
         });
-        return data.results.filter((person,index) => index < 3);
+        return data.results[0];
     }else{return 'Fetch error, The array is empty';}
 }
 youngestPeople().then(result => console.log(result));
