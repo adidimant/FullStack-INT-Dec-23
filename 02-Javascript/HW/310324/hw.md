@@ -5,6 +5,13 @@ const response = await fetch("https://randomuser.me/api/?results=10");
 const data = await response.json();
 2.1) return an array objects from the shape of: [{ fullName, id }]
 2.2) filter all the users with complex passwords (passwords that is at least 6 chars and contain special chars)
+
+you can use the following special char function:
+const specialChars = ["$", "!", "^",...];
+function hasSpecialChars(str) {
+    return specialChars.some((specialChar) => str.includes(specialChar));
+}
+
 2.3) get the youngest people from the data.
 
 You are invited to create your own data manipulation / extraction / filter functions as you want and present them in class.
