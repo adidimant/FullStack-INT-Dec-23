@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles/rent-form-style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Rent a Car</h1>
+      <form class="rent-form" onsubmit="submitForm(event)" method="get">
+        <div class="form-top">
+          <div class="form-item">
+            <label for="brand">Brand:</label>
+            <div class="brand input-container active">
+              <select
+                class="active"
+                id="brand"
+                name="brand"
+                onchange="showBrandModels()"
+                required
+              >
+                <option value="" hidden disabled selected>
+                  Choose car brand
+                </option>
+                <option value="Rolls Royce">Rolls Royce</option>
+                <option value="Alfa Romeo">Alfa Romeo</option>
+                <option value="Aston Martin">Aston Martin</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="BMW">BMW</option>
+                <option value="Bicycle">Bicycle</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="model">Model:</label>
+            <div class="model input-container">
+              <select
+                id="model"
+                name="model"
+                onchange="updatePrice()"
+                disabled
+                required
+              >
+                <option value="" hidden disabled selected>
+                  Choose car model
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="pickup-date">Pick-up date:</label>
+            <div class="date input-container">
+              <input
+                type="date"
+                id="pickup-date"
+                name="pickup-date"
+                onchange="limitDropoffDate()"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="dropoff-date">Drop-off date:</label>
+            <div class="date input-container">
+              <input
+                type="date"
+                id="dropoff-date"
+                name="dropoff-date"
+                required
+              />
+            </div>
+          </div>
+          <div class="submit input-container">
+            <input type="submit" value="Rent" />
+          </div>
+        </div>
+        <div class="form-bottom">
+          <div class="insurance input-container">
+            <input
+              type="checkbox"
+              id="insurance"
+              name="insurance"
+              value="insurance"
+              onchange="updatePrice()"
+            />
+            <label for="insurance">I wish to add insurance</label>
+          </div>
+          <div class="price">
+            <div class="price-text"></div>
+            <div class="price-num"></div>
+          </div>
+        </div>
+      </form>
+      <div class="car-img-container">
+        <img class="car-img" src="" />
+      </div>
+      <div class="loading-bar">
+        <div class="loading-index"></div>
+      </div>
+      <h1 class="msg-title">Order Confirmation</h1>
+      <div class="car-details-container">
+        <div class="left">
+          <div class="name-details"></div>
+          <div class="price-details"></div>
+          <div class="date-details"></div>
+          <div class="insurance-detail"></div>
+        </div>
+        <div class="right">
+          <img src="" />
+        </div>
+      </div>
+      <p class="msg-content">
+        Your request has been processed and the confirmed details have been sent
+        to your email.
+        <br />
+        <br />
+        We take pride in delivering unparalleled service, and we assure you that
+        your upcoming driving experience will reflect the utmost in
+        sophistication and convenience.
+        <br />
+        <br />
+        If you have any inquiries or require further assistance, please feel
+        free to reach out to our dedicated team.
+      </p>
+    </div>
+  </body>
+  <script src="../scripts/rent-form-script.js"></script>
+</html>

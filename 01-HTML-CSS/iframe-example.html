@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Custom Iframe Border</h2>
+<p>With CSS, you can also change the size, style and color of the iframe's border:</p>
+
+<iframe src="./table-example.html" width="800" height="500" id="my-iframe" style="border:2px solid red;" title="Iframe Example"></iframe>
+
+	<script>
+    	var myFrame = document.getElementById("my-iframe");
+        
+      myFrame.onload = function() {
+        let body = myFrame.contentDocument.body;
+        body.style.fontSize = '10px';
+        body.style.fontFamily = 'Tahoma';
+
+        // removing the content of the h2 from the other website:
+        let h2_list = myFrame.contentDocument.getElementsByTagName('h2');
+        h2_list[0].style.display = 'none';
+      };
+  </script>
+
+</body>
+</html>

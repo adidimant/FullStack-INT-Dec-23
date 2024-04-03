@@ -1,0 +1,141 @@
+:root {
+    --color-background: #333;
+    --color-text: #333;
+    --color-accent: #FFD700; 
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.about-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.about-section div {
+    flex-basis: 30%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.about-section h2 {
+    color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.navbarWrapper {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: #333;
+    padding: 0.5em 1em;
+}
+
+.homelogo {
+    width: 50px; 
+    height: auto;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    padding: 0.5em;
+}
+
+.navbar a {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5em 1em;
+}
+
+.navbar a:hover, .navbar a.active {
+    background-color: var(--color-accent);
+    color: #000;
+}
+
+
+.navbar a {
+    color: #fff; 
+    padding: 0.5em 1em;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: #000;
+}
+
+
+main {
+    padding: 20px;
+}
+
+.about-section {
+    margin: 20px 0;
+}
+
+.motto, .history, .mission {
+    margin-bottom: 20px;
+}
+
+
+footer {
+    background-color: #2f2f2f;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.logo-list-container {
+  display: flex; 
+  justify-content: center; /* Center the content horizontally */
+  margin-top: 20px;
+}
+
+.logo-list-container ul {
+  list-style: none; /* Removes default list bullets */
+  padding: 0;
+  margin: 0; 
+  display: flex;
+  justify-content: center;
+}
+
+.logo-list-container li {
+  display: inline-block; 
+  margin-right: 10px; 
+  padding: 50px;}
+  footer {
+    display: block;
+  }

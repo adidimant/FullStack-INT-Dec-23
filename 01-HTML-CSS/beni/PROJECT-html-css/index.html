@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles/index-style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aristeiā</title>
+    <link rel="icon" type="image/x-icon" href="./images/logo.png" />
+  </head>
+  <body>
+    <header id="header">
+      <a
+        class="logo"
+        href="./pages/home.html"
+        target="site"
+        onclick="toggleNavItem(this)"
+        >ARISTEIA</a
+      >
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a
+              href="./pages/home.html"
+              class="nav-link active"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./pages/rent-form.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Rent</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./pages/catalog.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >Catalog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="./pages/about-us.html"
+              class="nav-link"
+              target="site"
+              onclick="toggleNavItem(this)"
+              >About Us</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <iframe src="./pages/home.html" name="site"></iframe>
+    </main>
+  </body>
+  <script src="./scripts/index-script.js"></script>
+</html>

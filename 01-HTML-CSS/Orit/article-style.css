@@ -1,0 +1,38 @@
+body {
+    direction: rtl;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+.my-article .article-header {
+    font-size: 30px;
+}
+.h3  {
+    font-size: 20px;
+}
+.ingredients {
+    display: flex;
+    justify-content: flex-start;
+}
+.my-article ol span {
+    font-weight: 800;
+}
+.ingredients > div {
+    margin-left: 20px;
+}
+.my-article p.bona {
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+}
+#overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+    z-index: 1;
+}

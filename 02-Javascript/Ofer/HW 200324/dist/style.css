@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding: 100px;
+  border-radius: 10px;
+  background-color: #696262;
+  color: white;
+  font-size: 30px;
+}
