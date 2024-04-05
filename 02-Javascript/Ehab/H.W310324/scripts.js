@@ -28,7 +28,7 @@ async function objData() {
     const data = await getData('https://randomuser.me/api/?results=10');
     console.log('\nEx2.1\n')
     if(data.results.length >0){
-        return await data.results.map(user => {
+        return data.results.map(user => {
             const fullName = `${user.name.first} ${user.name.last}`;
             const id = user.id.value;
             return { fullName, id };
@@ -47,7 +47,7 @@ async function complexPasswords(){
     const data = await getData('https://randomuser.me/api/?results=500');
     console.log('\nEx2.2 \n')
     if(data.results.length >0){
-        return await data.results.filter(user => user.login.password.length > 6 && specialChars.test(user.login.password));
+        return data.results.filter(user => user.login.password.length > 6 && specialChars.test(user.login.password));
     }else{return 'Fetch error, The array is empty';}
 }
 complexPasswords().then(result => console.log(result)); 
@@ -66,7 +66,7 @@ async function youngestPeople(){
             const ageB = b.dob.age;
             return ageA - ageB;
         });
-        return data.results.filter((person,index) => index < 3);
+        return data.results[0];
     }else{return 'Fetch error, The array is empty';}
 }
 youngestPeople().then(result => console.log(result));
