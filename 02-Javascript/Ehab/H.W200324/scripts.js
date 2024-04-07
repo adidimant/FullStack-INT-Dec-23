@@ -1,6 +1,6 @@
 let isHere = false;
 let timer;
-let dev 
+let dev;
 document.addEventListener("DOMContentLoaded",() => {
     dev = document.querySelector('div');
     dev.style.font = "36px sans-serif";
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded",() => {
 
 document.addEventListener("mousemove", () => {
     isHere = true;
-    clearTimeout(timer);
-    timer = setInterval(stopTime,30000);
+    clearTimeout(timer); //clearTimeout(timeoutID)
+    timer = setTimeout(stopTime,30000);
 });
 document.addEventListener("keydown", () => {
     isHere = true;
     clearTimeout(timer);  
-    timer = setInterval(stopTime,30000);
+    timer = setTimeout(stopTime,30000);
 });
 function stopTime(){
     isHere = false;
