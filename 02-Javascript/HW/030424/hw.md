@@ -6,3 +6,5 @@ Read the following articles:
   d) What are all the functions on the promise class?
   example: Promise.any() is one of them
 2) async/await - https://www.w3schools.com/js/js_async.asp
+
+
