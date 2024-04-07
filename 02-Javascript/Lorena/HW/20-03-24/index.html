@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מערכת טיימר</title>
+<style>
+  #timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div id="timer">טיימר: <span id="timerValue">0</span> שניות</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let timerValue = 0;
+    let timerInterval;
+    
+    const timerDisplay = document.getElementById('timerValue');
+    
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            timerValue++;
+            timerDisplay.textContent = timerValue;
+        }, 1000);
+    }
+    
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+    
+    startTimer();
+    
+    let mouseMoved = false;
+    
+    function resetTimer() {
+        if (!mouseMoved) {
+            stopTimer();
+            timerValue = 0;
+            timerDisplay.textContent = timerValue;
+            startTimer();
+        }
+    }
+    
+    document.addEventListener('mousemove', function() {
+        mouseMoved = true;
+        resetTimer();
+    });
+    
+    document.addEventListener('keydown', function() {
+        mouseMoved = true;
+        resetTimer();
+    });
+    
+    document.addEventListener('keyup', function() {
+        mouseMoved = true;
+        resetTimer();
+    });
+    
+    document.addEventListener('mouseleave', function() {
+        mouseMoved = false;
+        resetTimer();
+    });
+});
+</script>
+</body>
+</html>
