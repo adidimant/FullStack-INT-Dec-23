@@ -75,5 +75,5 @@ function getPromiseWithStatus(promise) {
 }
 
 const p = new Promise((res,rej)=>{res();});
-p.then(console.log('p state: ',getPromiseWithStatus(p)));
+p.then(console.log('p status: ',getPromiseWithStatus(p)));
 
