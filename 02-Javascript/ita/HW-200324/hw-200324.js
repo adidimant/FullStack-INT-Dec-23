@@ -17,7 +17,7 @@ function stoptimer() {
 
 function stayUser() {
   isHere = true;
-  clearTimeout(timer;)
+  clearTimeout(timer)
   
 }
 

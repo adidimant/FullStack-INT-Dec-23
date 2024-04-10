@@ -38,7 +38,6 @@ let myPromise2 = new Promise(function(resolve, reject) {
 myPromise.then(
   function(value) {myDisplayer(value);},
   function(error) {myDisplayer(error);}
-);
 
 // Or you can also:
 myPromise.then(
@@ -70,3 +69,27 @@ const promiseStatus = await promise2;
 console.log('status', promiseStatus);
 console.log("finished");
 
+const myAsyncFun = async () => {
+  const a = 7;
+  const response = await fetch("https://our-server.com");
+  const data = await response.json();
+  document.getElementById("user-data-el").innerHTML = data;
+  return data;
+};
+
+const data = await myAsyncFun();
+// waiting until myAsyncFun() promise is resolved
+console.log("asd");
+
+// the same implementation as a promise (that's what javascript is doing for us in async function)
+const promise4 = new Promise(async (res, rej) => {
+  try {
+    const a = 7;
+    const response = await fetch("https://our-server.com");
+    const data = await response.json();
+    document.getElementById("user-data-el").innerHTML = data;
+    res(data);
+  } catch(err) {
+    rej(err);
+  }
+});

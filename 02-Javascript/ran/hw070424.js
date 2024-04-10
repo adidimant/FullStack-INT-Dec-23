@@ -62,6 +62,47 @@ firstPromise
   .catch(error => console.error(`An error occurred: ${error}`));
 
 
+  function getPromiseWithStatus(promise) {
+    let status = 'pending';
+    let result;
+    let error;
+  
+    const resultPromise = promise.then(
+      value => {
+        status = 'fulfilled';
+        result = value;
+        return value; 
+      },
+      err => {
+        status = 'rejected';
+        error = err;
+        throw err; 
+      }
+    );
+  
+    return {
+      promise: resultPromise,
+      getStatus: () => status,
+      getResult: () => {
+        if (status === 'pending') {
+          throw new Error('The promise is still pending.');
+        } else if (status === 'rejected') {
+          throw new Error('The promise was rejected. Use getError to get the reason.');
+        }
+        return result;
+      },
+      getError: () => {
+        if (status === 'pending') {
+          throw new Error('The promise is still pending.');
+        } else if (status === 'fulfilled') {
+          throw new Error('The promise was fulfilled. Use getResult to get the value.');
+        }
+        return error;
+      }
+    };
+  }
+  
+
 
 
 
