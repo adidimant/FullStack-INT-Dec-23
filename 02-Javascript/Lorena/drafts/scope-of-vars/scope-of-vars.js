@@ -8,7 +8,7 @@ console.log(x,y);
 
 
 document.getElementById("btn1").onclick = function(){
-    let x = 'hedgehog';
+    let x = 'luli';
     if(true) {
         let x = 13;
         console.log(x);
