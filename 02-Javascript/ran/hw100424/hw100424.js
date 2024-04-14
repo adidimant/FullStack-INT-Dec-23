@@ -50,27 +50,28 @@ Promise.any([fetchUserData(user.id), loadImage(user.profileImageUrl)])
     });
 
 
-    const fetchData = () => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await fetch("https://our-server.com");
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                resolve(data);
-            } catch (error) {
-                reject(error);
-            }
+    const a = 7; 
+
+    function fetchData(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => resolve(data))
+                .catch(error => reject(error));
         });
-    };
+    }
     
-    fetchData()
+    fetchData("https://our-server.com")
         .then(data => {
             document.getElementById("user-data-el").innerHTML = JSON.stringify(data);
         })
         .catch(error => {
-            console.error('Failed to fetch data:', error);
-            document.getElementById("user-data-el").innerHTML = "Error fetching data.";
+            console.error('Failed to load data:', error);
+            document.getElementById("user-data-el").innerHTML = 'Error loading data.';
         });
     
