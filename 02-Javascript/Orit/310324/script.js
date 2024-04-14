@@ -1,72 +1,58 @@
 function ex1() {
+    function printName() {
+        document.getElementById('orit').innerText += 'Orit ';
+    }
+    let myPromise = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            printName();
+            resolve(); // Resolve the promise after printName is executed
+          }, 3000)
+      });
     
+      myPromise.then(function() {
+        console.log("Promise resolved");
+      }).catch(function() {
+        console.log("Promise rejected");
+      });
 }
 
-function ex2(x) {
-    // Fetch data from the API
-    fetch('https://randomuser.me/api/?results=10')
-    .then(response => {
-    // Check if the response is successful
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+function ex2() {
+    /*async function printFullName() {
+        setTimeout(function() {
+            document.getElementById('full').innerText += 'Orit Frank';
+            resolve(); // Resolve the promise after printName is executed
+          }, 5000)
+        document.getElementById('full').innerText += 'Orit Frank';
+        return 'My name is Orit Frank.'; 
     }
-    // Parse JSON response
-    return response.json();
-    })
-    .then(data => {
-    // Extract results from the response
-    const results = data.results;
-
-    // Process the results as needed
-    console.log(results);
-
-    // Now you can work with the 'results' variable containing the fetched data
-
-    if (x==1) {
-        console.log('hello');
-        function one(data) {
-            //console.log('123');
-            const shortenData = data.map(item => ({
-                fullName: `${item.name.title} ${item.name.first} ${item.name.last}`,
-                id: `${item.id.name} ${item.id.value}`
-              }));
-              
-              console.log(shortenData);
-        };
-        one(results);
-    } else if (x==2) {
-        function two(data) {
-            const usersWithComplexPasswords = data.filter(user => {
-                const password = user.login.password;
-                // Check if password is at least 6 characters long and contains special characters
-                return password.length >= 6 /*&& /[!@#$%^&*(),.?":{}|<>]/.test(password)*/;
-              });
-          
-              // Log users with complex passwords
-              console.log(usersWithComplexPasswords);
-        }
-        two(results);
-    } else if (x==3) {
-        function three(data) {
-            console.log('hello');
-            const youngestResult = data.reduce((youngest, current) => {
-                // Compare the 'dob.age' property of each object
-                if (youngest) {
-                    return current.dob.age < youngest.dob.age ? current : youngest;
-                } 
-                return current;                
-              });
-              
-              console.log(youngestResult);
-        }
-        three(results);
-    }
-    })
-    .catch(error => {
-    // Handle errors
-    console.error('There was a problem with the fetch operation:', error);
-    });
     
+    // Call the async function
+    printFullName()
+        .then(data => {
+            console.log('My full name is: ', data);
+        })
+        .catch(error => {
+            console.error('Error fetching name:', error);
+        });*/
+
+    async function printFullName() {
+        return new Promise((resolve, reject) => {
+            setTimeout(function() {
+                document.getElementById('full').innerText += 'Orit Frank';
+                resolve('My name is Orit Frank.'); // Resolve the promise after printName is executed
+            }, 3000);
+        });
+    }
+    
+    // Call the async function
+    (async () => {
+        try {
+            const fullName = await printFullName();
+            console.log('My full name is:', fullName);
+        } catch (error) {
+            console.error('Error fetching name:', error);
+        }
+    })();
 }
 
 /*
