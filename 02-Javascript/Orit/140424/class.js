@@ -6,7 +6,7 @@ function ex1() {
     }
     //const promise3 = new Promise((resolve) => setTimeout(resolve, 500, 'slow'));
 
-    promise2.then((value) => {
+    promise.then((value) => {
         console.log('Promise resolved with value:', value);
       }).catch((error) => {
         console.error('Promise rejected with error:', error);
