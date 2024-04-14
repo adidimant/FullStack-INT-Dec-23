@@ -7,7 +7,7 @@ when the promise is resolved.
 
 const fs = require('fs');
 let readFromFile = new Promise((res,rej)=>{
-    fs.readFile('.\\file.txt', 'utf8', (err, data) => {
+    fs.readFile('.\\02-Javascript\\Ehab\\H.W070424\\file.txt', 'utf8', (err, data) => {
         if (err) {
             rej(err);
         } else {
@@ -16,11 +16,9 @@ let readFromFile = new Promise((res,rej)=>{
     });
 });
 
-
-
 async function readFromFile2(){
     try{
-        return await fs.promises.readFile('.\\file.txt', 'utf8');
+        return await fs.promises.readFile('.\\02-Javascript\\Ehab\\H.W070424\\file.txt', 'utf8');
     }catch(err){
         return err;
     }
@@ -69,11 +67,44 @@ promise1.then(() => {
 with an extra field with its `status`: "pending"/"fulfilled"/"rejected"
 hint: use the .then,.catch functions on the received promise
 */
+/**
+ * @param {*} promise - a promise to check
+ * @returns a promise with `status` field, that says the status of the promise (at the moment the function called)
+ */
 function getPromiseWithStatus(promise) {
-    const t = {};
-    return Promise.race([promise,t]).then(v => (v===t)? "pending" : "fulfilled", () => "rejected");
+    let isPending = true;
+    let isFulfilled = false;
+    let isRejected = false;
+    promise.status = 'pending';
+  
+    const outerPromise = new Promise((res) => {
+      promise.then(() => {
+        isPending = false;
+        isFulfilled = true;
+        console.log('entered .then');
+        res();
+      }).catch(() => {
+        isPending = false;
+        isRejected = true;
+        console.log('entered .catch');
+        res();
+      }).finally(() => {
+        res();
+      });
+    });
+  
+    outerPromise.then(() => {
+      if (isFulfilled) {
+        promise.status = 'fulfilled';
+        console.log('entered fulfilled');
+      } else { // isRejected == true
+        promise.status = 'rejected';
+        console.log('entered rejected');
+      }
+    });
+    return promise;
 }
 
-const p = new Promise((res,rej)=>{res();});
-p.then(console.log('p status: ',getPromiseWithStatus(p)));
+
+console.log(getPromiseWithStatus(promise1));
 
