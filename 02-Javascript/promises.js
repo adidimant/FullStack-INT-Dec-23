@@ -37,7 +37,7 @@ let myPromise2 = new Promise(function(resolve, reject) {
 
 myPromise.then(
   function(value) {myDisplayer(value);},
-  function(error) {myDisplayer(error);}
+  function(error) {myDisplayer(error);});
 
 // Or you can also:
 myPromise.then(
@@ -77,9 +77,20 @@ const myAsyncFun = async () => {
   return data;
 };
 
+const myAsyncFun2 = async () => {
+  console.log('hey!');
+  undefined.firstName;
+};
+
+myAsyncFun2().then((value) => console.log('fulfilled')).catch((error) => console.log(error));
+
 const data = await myAsyncFun();
 // waiting until myAsyncFun() promise is resolved
 console.log("asd");
+
+const a = 6;
+let b = calculateSomething(); // 2s
+let taxRefund = calcTaxRefund(); // 1.5s
 
 // the same implementation as a promise (that's what javascript is doing for us in async function)
 const promise4 = new Promise(async (res, rej) => {
@@ -93,3 +104,19 @@ const promise4 = new Promise(async (res, rej) => {
     rej(err);
   }
 });
+
+promise4.then((value) => {
+
+}).catch((error) => {
+
+}).finally((valueOrError) => {
+
+});
+
+async function refreshDataFromServer() {
+  const newData = await fetch('yourserver.com/api/posts');
+  return await newData.json();
+}
+
+const value = refreshDataFromServer(); // value is promise!!! this is not the data
+const resolvedData = await value;
