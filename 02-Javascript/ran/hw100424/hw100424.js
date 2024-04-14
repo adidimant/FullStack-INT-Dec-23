@@ -48,3 +48,29 @@ Promise.any([fetchUserData(user.id), loadImage(user.profileImageUrl)])
     .catch(error => {
         console.log('שגיאה ב-Promise.any:', error);
     });
+
+
+    const fetchData = () => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await fetch("https://our-server.com");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                resolve(data);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
+    
+    fetchData()
+        .then(data => {
+            document.getElementById("user-data-el").innerHTML = JSON.stringify(data);
+        })
+        .catch(error => {
+            console.error('Failed to fetch data:', error);
+            document.getElementById("user-data-el").innerHTML = "Error fetching data.";
+        });
+    
