@@ -32,3 +32,5 @@ b) As long the users-view table is not in edit-mode: the table should refresh it
 (to test it - open a new tab with your application - in one chrome tab you should create a user, and in the second chrome tab watch the users-view table being updated after up to 30s with the new user).
 
 You are invited to expand your project more as you wish.
+
+[Bonus points] - implement "Undo" button with a moving bar for a user deletion (after confirming the deletion, the user is deleted but there's a moving bar for 6 seconds with "Undo" text, when the user press the "Undo" button - the user is coming back and not being deleted)
