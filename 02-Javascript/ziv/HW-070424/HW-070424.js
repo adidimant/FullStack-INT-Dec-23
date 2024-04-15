@@ -216,10 +216,3 @@ The function utilizes the `.then()` and `.catch()` functions on the original pro
 5. Use `resolve()` or `reject()` to return the new promise with the updated status.
 
 This approach allows for tracking the status of the promise while it's being processed asynchronously, providing more insight into its state during execution.*/
-
-
-
-
-
-
-
