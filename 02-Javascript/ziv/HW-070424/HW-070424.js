@@ -13,7 +13,6 @@ try {
 
 myPromise.then(() => console.log("timer finished!"));
 
-
 //Explain for me//
  /* 
  promise is created using the Promise constructor. Inside the constructor, 
