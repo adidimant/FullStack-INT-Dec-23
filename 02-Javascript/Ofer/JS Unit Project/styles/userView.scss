@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: "Rubik", sans-serif;
+  }
+
+.container {
+    border-radius: 10px;
+    margin: auto;
+    width: 70%;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: rgb(51, 55, 65);
+    color: white;
+    font-size: 30px;
+
+
+    .title {
+        text-align: center;
+    }
+
+    .menu-btn {
+        font-size: larger;
+        padding: 20px;
+        text-decoration: none;
+        margin: 25px auto;
+        background-color: rgb(41, 39, 39);
+        color: white;
+        border-radius: 5px;
+        border-style: none;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:active {
+            background-color: beige;
+            color: black;
+        }
+
+    }
+    .Table{
+        border-collapse: collapse;
+        width: 100%;
+        padding: 1rem;
+        font-size: large;
+
+        th,td{
+            padding: 1rem;
+            text-align: left;
+        }
+        th{
+            background-color: hsl(0  0% 0% / 0.5);
+        }
+        tr:nth-of-type(2n){
+            background-color: hsl(0  0% 0% / 0.1);
+        }
+    }
+    .btns {
+        display: block;
+        width: fit-content;
+        font-size: larger;
+        padding: 10px;
+        text-decoration: none;
+        background-color: rgb(41, 39, 39);
+        color: white;
+        border-radius: 5px;
+        border-style: none;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:active {
+            background-color: beige;
+            color: black;
+          }
+          &:hover{
+            box-shadow: 5px 5px 10px rgba(rgb(248, 248, 248), 0.2) ;
+          }
+    }
+}
