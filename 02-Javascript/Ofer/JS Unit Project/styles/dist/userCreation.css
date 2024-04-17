@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  width: 70%;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #333741;
+  color: white;
+  font-size: 30px;
+}
+.container .title {
+  text-align: center;
+}
+.container form {
+  width: 50%;
+  margin: auto;
+}
+.container form .labels {
+  font-size: large;
+}
+.container form .required-label::after {
+  content: "*";
+  color: red;
+  font-size: smaller;
+}
+.container form .inputs {
+  width: 100%;
+  padding: 5px 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 17px;
+  border-radius: 10px;
+}
+.container .btns {
+  display: block;
+  width: fit-content;
+  font-size: larger;
+  padding: 10px;
+  text-decoration: none;
+  margin-top: 40px;
+  background-color: #292727;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container .btns:active {
+  background-color: beige;
+  color: black;
+}
+.container .btns:hover {
+  box-shadow: 5px 5px 10px rgba(248, 248, 248, 0.2);
+  cursor: pointer;
+}
