@@ -12,7 +12,7 @@
  */
 function promAll(arr) {
   return new Promise((res, rej) => {
-    const results = [];
+    const results = new Array(arr.length);
     let count = 0;
 
     arr.forEach((prom, index) => {
@@ -117,7 +117,7 @@ const prom3 = Promise.reject("prom3 is rejected!");
 
 const proms = [prom1, prom2, prom3];
 
-const all = promAll(proms);
+const results = await promAll(proms);
 const all2 = Promise.all(proms);
 const any = promAny(proms);
 const any2 = Promise.any(proms);
