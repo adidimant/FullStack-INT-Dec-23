@@ -47,9 +47,8 @@ function ex2() {
     };
     const promise5 = async () => {
         throw new Error("promise5 rejected by async throw new Error()!");
-      };
-      
-      const promise6 = Promise.reject(new Error('Promise6 Rejected!'));
+    };
+    const promise6 = Promise.reject(new Error('Promise6 Rejected!'));
 
     let promises1 = [promise1, promise2, promise3, promise4()];
     let promises = [promise2, promise5(), promise6];
@@ -79,7 +78,7 @@ function ex2() {
     
     implementAny(promises)
         .then((results) => {
-            document.getElementById('orit').innerHTML = '<p>The promise resolved is:' + results + '</p>';
+            document.getElementById('orit2').innerHTML = '<p>The promise resolved is:' + results + '</p>';
             console.log('The promise resolved is:', results);
         })
         .catch((error) => {
@@ -88,8 +87,39 @@ function ex2() {
         });
 }
 
+function ex3() {
+    const promise1 = new Promise((resolve) => setTimeout(resolve, 90, 'promise1')); // Has a timeout so won't resolve first
+    const promise2 = new Promise((resolve, reject) => setTimeout(reject, 100, 'promise2'));
+    const promise3 = Promise.resolve("promise3 resolved by Promise.resolve()!");
+    const promise4 = async () => {
+        return "promise4 resolved by async function return statement!";
+    };
+    const promise5 = async () => {
+        throw new Error("promise5 rejected by async throw new Error()!");
+    };
+    //const promise6 = Promise.reject(new Error('Promise6 Rejected!'));
+
+    let promises = [promise1, promise2, promise3, promise4()];
+
+    function implementRace(promisesArray) {
+        return new Promise((resolve, reject) => {
+            promises.forEach(promise => {
+                // If a promise resolves or rejects, resolve or reject the race promise
+                promise.then(resolve).catch(reject);
+            });
+        });
+    }
+    
+    implementRace(promises)
+        .then((value) => {
+            console.log('Resolved:', value); // This will log 'resolved1' because it's the first promise to resolve
+        })
+        .catch((reason) => {
+            console.error('Rejected:', reason); 
+        });
+}
+
 
 /* 14/04/24 homework:
-3) [Bonus] - Implement "race" function, recieves an array of promises, and returns a resolved promise, that resolves the item that was resolved in the first success promise. if one of the promises failed - the returned promise is rejected with the rejected value.
 4) implement Promise.resolve function and Promise.reject function (call them promiseResolve() and promiseReject()).
  */
