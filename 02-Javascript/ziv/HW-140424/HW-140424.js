@@ -61,7 +61,7 @@ first([
         reject("my error");
     }),
     new Promise((resolve, reject) => {
-        resolve("test123");
+        resolve("first resolveed");
     }),
     new Promise((resolve, reject) => {
         resolve(5);
@@ -70,28 +70,8 @@ first([
     console.log(result);
 }).catch(err => {
     console.error(err);
-});
+});                                                 
 
-// function any(promises) {
-//     return new Promise((resolve, reject) => {
-//         const errors = [];
-//         let resolved = false;
-
-//         promises.forEach((promise) => {
-//             promise.then((value) => {
-//                 if (!resolved) {
-//                     resolved = true;
-//                     resolve(value);
-//                 }
-//             }).catch((error) => {
-//                 errors.push(error);
-//                 if (errors.length === promises.length) {
-//                     reject(errors);
-//                 }
-//             });
-//         });
-//     });
-// }
 
   //explanation//
   /*This function takes an array of promises, iterates over them, 
@@ -125,17 +105,23 @@ If the first settled promise rejects, the returned promise is rejected with the 
 
 /*4) implement Promise.resolve function and Promise.reject function (call them promiseResolve() and promiseReject()). */
 
+
+
+const promise = Promise.resolve("success");
 function promiseResolve(value) {
     return new Promise((resolve) => {
         resolve(value);
     });
 }
 
+const promise1 = Promise.reject("error");
 function promiseReject(reason) {
     return new Promise((resolve, reject) => {
         reject(reason);
     });
 }
+
+
 
 /* These functions create and return promises that are immediately settled. 
 promiseResolve returns a promise that is resolved with the provided value,
