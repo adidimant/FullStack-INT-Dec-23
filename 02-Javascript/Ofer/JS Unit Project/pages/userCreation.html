@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>User Managment System</title>
-        <script src=".../TS/dist/index.js" type="module"></script>
+        <script src="../TS/dist/userView.js" type="module"></script>
         <link rel="stylesheet" href="../styles/dist/userCreation.css" />
         <link rel="icon" type="image/x-icon" href="../images/icon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +18,7 @@
         <div class="container">
             <h3 class="title"><strong>Create your Account</strong></h3>
             <br />
-            <form>
+            <form id="myForm" onsubmit="submitForm(event);{event.preventDefault()}">
                 <label class="required-label labels" for="userName"
                     >User name:</label
                 >
@@ -28,7 +28,6 @@
                     id="userName"
                     name="userName"
                     required
-                    minlength="8"
                     maxlength="15"
                 /><br />
                 <label class="required-label labels" for="email">Email:</label>

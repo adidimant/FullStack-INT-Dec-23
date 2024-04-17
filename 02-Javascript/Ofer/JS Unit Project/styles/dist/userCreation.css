@@ -20,6 +20,7 @@ body {
   justify-content: center;
   height: 100vh;
   font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 .container {
@@ -43,6 +44,11 @@ body {
 .container form .labels {
   font-size: large;
 }
+.container form .required-label::after {
+  content: "*";
+  color: red;
+  font-size: smaller;
+}
 .container form .inputs {
   width: 100%;
   padding: 5px 12px;
@@ -50,11 +56,6 @@ body {
   box-sizing: border-box;
   font-size: 17px;
   border-radius: 10px;
-}
-.container form .required-label::after {
-  content: "*";
-  color: red;
-  font-size: smaller;
 }
 .container .btns {
   display: block;
