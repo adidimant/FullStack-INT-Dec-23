@@ -52,20 +52,31 @@ function submitForm(event: SubmitEvent) {
     };
 
     const usersIDArrayFromDB = getUserIDFromLocalStorage();
-    const userFromDB = getuserDBFromLocalStorage();
+    const usersFromDB = getUserDBFromLocalStorage();
 
     if (checkIfUserInDB(usersIDArrayFromDB, userDetails.userName)) {
         alert(
             `Username "${userDetails.userName}" is already taken, please select a different username`
         );
-    } else {
-        pushUserIDToLocalStorage(usersIDArrayFromDB,userDetails.userName )
-        pushUserDBToLocalStorage(userFromDB, userDetails)
+    }else if(checkIfEmailInDB(usersFromDB,userDetails) ){
+        alert(
+            `Email "${userDetails.email}" is already taken, please select a different Email`
+        );
     }
+     else {
+         pushUserIDToLocalStorage(usersIDArrayFromDB,userDetails.userName )
+         pushUserDBToLocalStorage(usersFromDB, userDetails)
+         alert(`user "${userDetails.userName}" Created succesfully!`)
+         history.back()
+    }
+
 }
 
 function checkIfUserInDB(usersIDArrayFromDB:string[], newUserID:string){
     return usersIDArrayFromDB.some((user: string) => user == newUserID)
+}
+function checkIfEmailInDB(usersArrayFromDB:userDetails[], newUser:userDetails){
+    return usersArrayFromDB.some((user:userDetails) => user.email === newUser.email)
 }
 
 function getUserIDFromLocalStorage() {
@@ -74,7 +85,7 @@ function getUserIDFromLocalStorage() {
     return users;
 }
 
-function getuserDBFromLocalStorage() {
+function getUserDBFromLocalStorage() {
     const usersBefore = localStorage.getItem("userDB") ?? "";
     const users = JSON.parse(usersBefore);
     return users;

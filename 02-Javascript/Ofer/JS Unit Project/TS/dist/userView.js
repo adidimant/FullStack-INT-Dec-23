@@ -23,17 +23,25 @@ function submitForm(event) {
         updatedDate: String(Date.now())
     };
     var usersIDArrayFromDB = getUserIDFromLocalStorage();
-    var userFromDB = getuserDBFromLocalStorage();
+    var usersFromDB = getUserDBFromLocalStorage();
     if (checkIfUserInDB(usersIDArrayFromDB, userDetails.userName)) {
         alert("Username \"" + userDetails.userName + "\" is already taken, please select a different username");
     }
+    else if (checkIfEmailInDB(usersFromDB, userDetails)) {
+        alert("Email \"" + userDetails.email + "\" is already taken, please select a different Email");
+    }
     else {
         pushUserIDToLocalStorage(usersIDArrayFromDB, userDetails.userName);
-        pushUserDBToLocalStorage(userFromDB, userDetails);
+        pushUserDBToLocalStorage(usersFromDB, userDetails);
+        alert("user \"" + userDetails.userName + "\" Created succesfully!");
+        history.back();
     }
 }
 function checkIfUserInDB(usersIDArrayFromDB, newUserID) {
     return usersIDArrayFromDB.some(function (user) { return user == newUserID; });
+}
+function checkIfEmailInDB(usersArrayFromDB, newUser) {
+    return usersArrayFromDB.some(function (user) { return user.email === newUser.email; });
 }
 function getUserIDFromLocalStorage() {
     var _a;
@@ -41,7 +49,7 @@ function getUserIDFromLocalStorage() {
     var users = JSON.parse(usersBefore);
     return users;
 }
-function getuserDBFromLocalStorage() {
+function getUserDBFromLocalStorage() {
     var _a;
     var usersBefore = (_a = localStorage.getItem("userDB")) !== null && _a !== void 0 ? _a : "";
     var users = JSON.parse(usersBefore);
