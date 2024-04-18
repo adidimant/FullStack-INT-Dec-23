@@ -9,6 +9,8 @@ On the form submit / button click - you have to create a user object, contains a
 If the username and email has not being used before - the user is created (stored in the local database)
 You'll have to learn use the JSON.stringify(object) to convert the object to a string representation for storing the data in the db
 and use JSON.parse(<string-object>) - for converting the string object to a javascript object.
+the key of each user should be the userId
+Recommended - manage another key in the localStorage that stores all the userIds
 2) Second tab - for a users view - a table contains all the existing created users and their full data
 Above the table - you'll need to implement filters section:
 1) username filter

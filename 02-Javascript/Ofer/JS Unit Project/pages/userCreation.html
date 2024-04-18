@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>User Managment System</title>
-        <script src="../TS/dist/userView.js" type="module"></script>
+        <script src="../TS/dist/userView.js" defer></script>
         <link rel="stylesheet" href="../styles/dist/userCreation.css" />
         <link rel="icon" type="image/x-icon" href="../images/icon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +18,7 @@
         <div class="container">
             <h3 class="title"><strong>Create your Account</strong></h3>
             <br />
-            <form id="myForm" onsubmit="submitForm(event);{event.preventDefault()}">
+            <form id="myForm" onsubmit="submitForm(event)">
                 <label class="required-label labels" for="userName"
                     >User name:</label
                 >
@@ -50,41 +50,41 @@
                     minlength="8"
                     maxlength="20"
                 /><br />
-                <label class="required-label labels" for="phone-number"
+                <label class="required-label labels" for="phoneNumber"
                     >Phone Number:</label
                 >
                 <input
                     class="inputs"
                     type="tel"
-                    id="phone-number"
-                    name="phone-number"
+                    id="phoneNumber"
+                    name="phoneNumber"
                     required
                     maxlength="12"
                 /><br />
-                <label class="required-label labels" for="fname"
+                <label class="required-label labels" for="firstName"
                     >First name:</label
                 >
                 <input
                     class="inputs"
                     type="text"
-                    id="fname"
-                    name="fname"
+                    id="firstName"
+                    name="firstName"
                     required
                 /><br />
-                <label class="required-label labels" for="lname"
+                <label class="required-label labels" for="lastName"
                     >Last name:</label
                 >
                 <input
                     class="inputs"
                     type="text"
-                    id="lname"
-                    name="lname"
+                    id="lastName"
+                    name="lastName"
                     required
                 /><br />
                 <label class="required-label labels" for="country"
                     >Country</label
                 ><br />
-                <select class="inputs" id="country" name="country">
+                <select class="inputs" id="countryList" name="country">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
