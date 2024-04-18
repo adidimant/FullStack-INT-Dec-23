@@ -9,12 +9,14 @@ function all(promises){
         for(let i=0;i < promises.length;i++){
             await promises[i].then(()=>{
                 counter++;
-            }).catch(()=> {});
+            }).catch(()=> {
+                rej('rejected');
+            });
         }
         if(counter === promises.length){
             res('resolved');
         }
-        rej('rejected');
+        
     });
 }
 const promise1 = Promise.resolve(111);
