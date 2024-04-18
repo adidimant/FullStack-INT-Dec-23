@@ -64,17 +64,12 @@ if one of the promises failed - the returned promise is rejected with the reject
 */
 
 function race(promises){
-    return new Promise(async(res, rej) => {
+    return new Promise((res, rej) => {
         let resolvedValue;
         let counter = 0;
-        let flag =false;
         for (let i = 0; i < promises.length; i++) {
-            await promises[i].then((value) => {
-                counter++;
-                if(!flag){
-                    resolvedValue = value;
-                    flag=true;
-                }
+            promises[i].then(value => {
+                res(value); 
             }).catch(error => {
                 rej('rejected: '+error);
                 return;
@@ -93,7 +88,7 @@ race([promise9, promise10,promise11]).then(value => console.log(value)).catch(er
 /*
 4) implement Promise.resolve function and Promise.reject function (call them promiseResolve() and promiseReject()).
 */
-
+// Promise.resolve
 function promiseResolve(value){
     return new Promise((res,rej) => res(value));
 }
