@@ -57,6 +57,9 @@ body {
   font-size: 17px;
   border-radius: 10px;
 }
+.container form .inputs:invalid:focus {
+  background-color: #dd9292;
+}
 .container .btns {
   display: block;
   width: fit-content;
