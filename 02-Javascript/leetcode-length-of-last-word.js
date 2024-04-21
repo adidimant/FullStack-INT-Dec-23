@@ -40,3 +40,6 @@ var lengthOfLastWordNoJSFuncs = function(s) {
 
     return count;
 };
+
+// Exercise TWO:
+// https://leetcode.com/problems/ransom-note/?envType=study-plan-v2&envId=top-interview-150
