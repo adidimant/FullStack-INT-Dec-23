@@ -40,6 +40,9 @@
       box-sizing: border-box;
       font-size: 17px;
       border-radius: 10px;
+      &:invalid:focus{
+        background-color: rgb(221, 146, 146);
+      }
     }
 
 
