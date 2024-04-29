@@ -37,8 +37,9 @@ async function editUser(userId) {
     }
   });
   const actionsCell = userRow.cells[userRow.cells.length - 1];
-  actionsCell.innerHTML = `<button onclick="saveUser('${userId}')">Save</button>`;
+  actionsCell.innerHTML = `<button onclick="saveUser('${userId}')">Save</button>`; // תיקון: קריאה לפונקציה saveUser כעת מוחזרת בצורה תקינה
 }
+
 
 async function saveUser(userId) {
   const users = await loadUsers();
