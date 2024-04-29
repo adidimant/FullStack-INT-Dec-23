@@ -1,45 +1,18 @@
 const userTableBody = document.getElementById('userTableBody');
-
-
 const usernameFilterInput = document.getElementById('usernameFilter');
-const emailFilterInput = document.getElementById('emailFilter');   
-
-
-
-let users = [
-  { 
-    userId: '1', 
-    username: 'eli123', 
-    email:'eli@comtel.co.il', 
-    phone: '050-1234567', 
-    firstName: 'אלי', 
-    lastName:'כהן',  
-    street: 'רחוב העצמאות 3',
-    city: 'תל אביב',
-    state: 'מרכז',
-    country: 'ישראל',
-    zipcode: '61000',
-    registeredDate: '2020-01-15', 
-    updatedDate: '2024-04-27' 
-  },
-
-];
-
-
+const emailFilterInput = document.getElementById('emailFilter');
 
 function loadUsers() {
   const usersData = localStorage.getItem('users') || '[]';
-  return JSON.parse(usersData);
+  users = JSON.parse(usersData);
 }
 
-function saveUsers(users) {
+function saveUsers() {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-
-
 function displayUsers(filteredUsers = null) {
-  const usersToDisplay = filteredUsers || loadUsers();  
+  const usersToDisplay = filteredUsers || users;  
 
   userTableBody.innerHTML = ''; 
 
@@ -54,130 +27,113 @@ function displayUsers(filteredUsers = null) {
 
     const actionsCell = row.insertCell();
     actionsCell.innerHTML = `
-      <button onclick="editEmployee('${user.userId}')">Edit</button> 
+      <button onclick="editUser('${user.userId}')">Edit</button> 
       <button onclick="prepareDelete('${user.userId}')">Delete</button>
     `;
   });
 }
 
-
-
-function editEmployee(userId) {
-  const user = users.find(user => user.userId === userId);
-  const userRow = document.getElementById(`user-${userId}`);  
-
+function editUser(userId) {
+  const user = users.find(u => u.userId === userId);
+  const userRow = document.getElementById(`user-${userId}`);
   Object.keys(user).forEach((key, index) => {
     const cell = userRow.cells[index];
-    cell.innerHTML = `<input type="text" value="${user[key]}">`;
+    cell.innerHTML = `<input type="text" value="${user[key]}" name="${key}">`;
   });
-
   const actionsCell = userRow.cells[userRow.cells.length - 1];
-  actionsCell.innerHTML = `<button onclick="saveEmployee('${userId}')">Save</button>`;
+  actionsCell.innerHTML = `<button onclick="saveUser('${userId}')">Save</button>`;
 }
 
-function saveEmployee(userId) {
+function saveUser(userId) {
   const userRow = document.getElementById(`user-${userId}`);
-  const updatedUser = {};
+  const inputs = userRow.querySelectorAll('input');
+  const updatedUser = users.find(u => u.userId === userId);
+  inputs.forEach(input => {
+    updatedUser[input.name] = input.value;
+  });
+  updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
+  saveUsers();
+  displayUsers();
+}
 
-  userRow.cells.forEach((cell, index) => {
-    const input = cell.querySelector('input');
-    if (input) {
-      const key = Object.keys(users[0])[index];
-      updatedUser[key] = input.value;
+function prepareDelete(userId) {
+  const confirmDelete = confirm('Are you sure you want to delete this user?');
+  if (confirmDelete) {
+    deleteUser(userId)
+      .then(() => {
+        alert('User deleted successfully. Click undo to revert.');
+        setTimeout(() => {
+          removeUndoOption(userId);
+        }, 6000);
+        displayUndoButton(userId);
+      })
+      .catch(err => {
+        alert('Error deleting user: ' + err);
+      });
+  }
+}
+
+function deleteUser(userId) {
+  return new Promise((resolve, reject) => {
+    const index = users.findIndex(u => u.userId === userId);
+    if (index !== -1) {
+      users.splice(index, 1);
+      saveUsers()
+        .then(() => {
+          displayUsers();
+          resolve();
+        })
+        .catch(err => reject(err));
+    } else {
+      reject('User not found');
     }
   });
-
-  updatedUser.userId = userId;
-  updatedUser.updatedDate = new Date().toISOString().split('T')[0]; 
-
-  const userIndex = users.findIndex(user => user.userId === userId);
-  users[userIndex] = updatedUser; 
-
-  saveUsers(users); 
-  displayUsers(); 
 }
 
+function displayUndoButton(userId) {
+  const undoButton = document.createElement('button');
+  undoButton.textContent = 'Undo';
+  undoButton.onclick = () => undoDelete(userId);
+  document.body.appendChild(undoButton);
+}
 
+function undoDelete(userId) {
+  loadUsers();
+  const userToRestore = usersDeleted.find(u => u.userId === userId);
+  if (userToRestore) {
+    users.push(userToRestore);
+    saveUsers();
+    displayUsers();
+    alert('User deletion undone.');
+  }
+}
 
+function removeUndoOption(userId) {
+  const undoButton = document.querySelector('button');
+  if (undoButton) undoButton.remove();
+}
 
 function filterUsers() {
-  const usernameFilter = usernameFilterInput.value.toLowerCase();
-  const emailFilter = emailFilterInput.value.toLowerCase();
- 
-
-  const filteredUsers = users.filter(user => {
-    return user.username.toLowerCase().includes(usernameFilter) &&
-           user.email.toLowerCase().includes(emailFilter)
-  });
-
-  displayUsers(filteredUsers); 
+  const username = usernameFilterInput.value.toLowerCase();
+  const email = emailFilterInput.value.toLowerCase();
+  const filteredUsers = users.filter(user =>
+    user.username.toLowerCase().includes(username) && user.email.toLowerCase().includes(email)
+  );
+  displayUsers(filteredUsers);
 }
 
+usernameFilterInput.addEventListener('keyup', debounce(filterUsers, 300));
+emailFilterInput.addEventListener('keyup', debounce(filterUsers, 300));
+window.addEventListener('DOMContentLoaded', () => {
+  loadUsers();
+  displayUsers();
+});
 
-usernameFilterInput.addEventListener('keyup', filterUsers); 
-emailFilterInput.addEventListener('keyup', filterUsers); 
-window.addEventListener('DOMContentLoaded', displayUsers); 
-
-
-function showTab(tabId) {
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    document.getElementById(tabId).classList.add('active');
-    if (tabId === 'viewUsers') {
-      loadUsers();
-    }
-  }
-  
-  
-  function createUser() {
-    const user = {
-      username: document.getElementById('username').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      street: document.getElementById('street').value,
-      city: document.getElementById('city').value,
-      state: document.getElementById('state').value,
-      country: document.getElementById('country').value,
-      zipcode: document.getElementById('zipcode').value,
-      registeredDate: document.getElementById('registeredDate').value,
-      updatedDate: document.getElementById('updatedDate').value
-    };
-  
-    const users = JSON.parse(localStorage.getItem('users')) || {};
-    if (!users[user.username]) {
-      users[user.username] = user;
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('User created successfully!');
-      showTab('viewUsers');
-      loadUsers();
-    } else {
-      alert('Username already exists!');
-    }
-  }
-  
-  
-  
-  function filterUsers() {
-    const filters = {
-      username: document.getElementById('filterUsername').value.toLowerCase(),
-      email: document.getElementById('filterEmail').value.toLowerCase(),
-      phone: document.getElementById('filterPhone').value.toLowerCase(),
-      fullName: document.getElementById('filterFullName').value.toLowerCase(),
-      country: document.getElementById('filterCountry').value.toLowerCase(),
-      city: document.getElementById('filterCity').value.toLowerCase(),
-      registeredDate: document.getElementById('filterRegisteredDate').value,
-      updatedDate: document.getElementById('filterUpdatedDate').value
-    };
-  
-    const users = JSON.parse(localStorage.getItem('users')) || {};
-    const filteredUsers = Object.values(users).filter(user =>
-      (!filters.username || user.username.toLowerCase().includes(filters.username)) &&
-      (!filters.email || user.email.toLowerCase().includes(filters.email)) &&
-      (!filters.phone || user.phone.toLowerCase().includes(filters.phone)) &&
-      (!filters.fullName ||
-       (user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase()).includes(filters.fullName)) &&
-      (!filters.country || user.country.toLowerCase().includes
-  
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
