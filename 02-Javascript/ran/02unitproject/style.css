@@ -11,6 +11,7 @@ body {
   line-height: 1.7;
   background: #f8f9fa;
   color: #333;
+  text-align: center; /* ממרכז את כל התוכן בעמוד */
 }
 
 /* עיצוב הכותרת */
@@ -19,6 +20,7 @@ header {
   color: #fff;
   padding: 15px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center; /* ממרכז את הכותרת */
 }
 
 /* עיצוב הניווט */
@@ -26,10 +28,11 @@ nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex; /* שונה ל-flex כדי לאפשר סידור צדדי */
+  justify-content: flex-end; /* מניח את הניווט בצד ימין */
 }
 
 nav ul li {
-  display: inline-block;
   margin-right: 20px;
 }
 
@@ -39,6 +42,26 @@ nav ul li a {
   padding: 5px 0;
   transition: color 0.3s ease;
 }
+
+/* ... שאר הסגנונות נשארים ללא שינוי ... */
+
+/* Flexbox באיזור התוכן */
+.content {
+  display: flex;
+  justify-content: center; /* ממרכז את התוכן */
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px;
+}
+
 
 nav ul li a:hover {
   color: #e9e9e9;
