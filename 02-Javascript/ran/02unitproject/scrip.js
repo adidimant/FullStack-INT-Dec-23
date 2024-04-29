@@ -1,3 +1,5 @@
+// מיקום: script.js
+
 const userTableBody = document.getElementById('userTableBody');
 const usernameFilterInput = document.getElementById('usernameFilter');
 const emailFilterInput = document.getElementById('emailFilter');
