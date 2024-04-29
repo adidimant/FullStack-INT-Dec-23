@@ -71,7 +71,7 @@
 
     <div id="createUser" class="tab" style="display: none;"> 
       <h2>יצירת משתמש</h2>
-      <form id="userForm">
+      <form id="userForm" onsubmit="saveUser(); return false;">
         <label for="username">שם משתמש:</label>
         <input type="text" id="username" name="username" required><br>
         <label for="email">אימייל:</label>
