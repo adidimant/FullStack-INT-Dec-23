@@ -19,34 +19,68 @@
   </header>
 
   <section>
-    <h2>רשימת משתמשים</h2> 
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Street</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Country</th>
-          <th>Zipcode</th>
-          <th>Registered Date</th>
-          <th>Updated Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="userTableBody">
-        </tbody>
-    </table>
-  </section>
+    <ul class="tabs">
+      <li onclick="showTab('viewUsers')" class="tab active">הצגת משתמשים</li>
+      <li onclick="showTab('createUser')" class="tab">יצירת משתמש</li>
+    </ul>
 
-  <footer>
-    <p>&copy; 2024 ComTel, כל הזכויות שמורות.</p>
-  </footer>
+    <div id="viewUsers" class="tab active"> 
+      <h2>רשימת משתמשים</h2>
+      <div id="filters"> 
+        <label for="filterUsername">שם משתמש:</label>
+        <input type="text" id="filterUsername" placeholder="הזן שם משתמש">
+        <label for="filterEmail">אימייל:</label>
+        <input type="text" id="filterEmail" placeholder="הזן אימייל">
+        <label for="filterPhone">מספר טלפון:</label>
+        <input type="text" id="filterPhone" placeholder="הזן מספר טלפון">
+        <label for="filterFullName">שם מלא:</label>
+        <input type="text" id="filterFullName" placeholder="הזן שם מלא">
+        <label for="filterCountry">מדינה:</label>
+        <input type="text" id="filterCountry" placeholder="הזן מדינה">
+        <label for="filterCity">עיר:</label>
+        <input type="text" id="filterCity" placeholder="הזן עיר">
+        <label for="filterRegisteredDate">תאריך רישום:</label>
+        <input type="date" id="filterRegisteredDate">
+        <label for="filterUpdatedDate">תאריך עדכון:</label>
+        <input type="date" id="filterUpdatedDate">
+        <button onclick="filterUsers()">החל מסננים</button>
+      </div>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>שם משתמש</th>
+            <th>אימייל</th>
+            <th>מספר טלפון</th>
+            <th>שם פרטי</th>
+            <th>שם משפחה</th>
+            <th>רחוב</th>
+            <th>עיר</th>
+            <th>מדינה</th>
+            <th>קוד דואר</th>
+            <th>תאריך רישום</th>
+            <th>תאריך עדכון</th>
+            <th>פעולות</th>
+          </tr>
+        </thead>
+        <tbody> </tbody>
+      </table>
+    </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <div id="createUser" class="tab" style="display: none;"> 
+      <h2>יצירת משתמש</h2>
+      <form id="userForm">
+        <label for="username">שם משתמש:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">אימייל:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">מספר טלפון:</label>
+        <input type="text" id="phone" name="phone">
+        <label for="firstName">שם פרטי:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName">שם משפחה:</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <label for="street">רחוב:</label>
+        <input type="text" id="street" name="street">
+        <label for="city">עיר:</label>
+        <input type="text" id="city" name="city">
+        <

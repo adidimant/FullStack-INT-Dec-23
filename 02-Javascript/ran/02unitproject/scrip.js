@@ -117,3 +117,67 @@ function filterUsers() {
 usernameFilterInput.addEventListener('keyup', filterUsers); 
 emailFilterInput.addEventListener('keyup', filterUsers); 
 window.addEventListener('DOMContentLoaded', displayUsers); 
+
+
+function showTab(tabId) {
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+    if (tabId === 'viewUsers') {
+      loadUsers();
+    }
+  }
+  
+  
+  function createUser() {
+    const user = {
+      username: document.getElementById('username').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      street: document.getElementById('street').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      country: document.getElementById('country').value,
+      zipcode: document.getElementById('zipcode').value,
+      registeredDate: document.getElementById('registeredDate').value,
+      updatedDate: document.getElementById('updatedDate').value
+    };
+  
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    if (!users[user.username]) {
+      users[user.username] = user;
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('User created successfully!');
+      showTab('viewUsers');
+      loadUsers();
+    } else {
+      alert('Username already exists!');
+    }
+  }
+  
+  
+  
+  function filterUsers() {
+    const filters = {
+      username: document.getElementById('filterUsername').value.toLowerCase(),
+      email: document.getElementById('filterEmail').value.toLowerCase(),
+      phone: document.getElementById('filterPhone').value.toLowerCase(),
+      fullName: document.getElementById('filterFullName').value.toLowerCase(),
+      country: document.getElementById('filterCountry').value.toLowerCase(),
+      city: document.getElementById('filterCity').value.toLowerCase(),
+      registeredDate: document.getElementById('filterRegisteredDate').value,
+      updatedDate: document.getElementById('filterUpdatedDate').value
+    };
+  
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    const filteredUsers = Object.values(users).filter(user =>
+      (!filters.username || user.username.toLowerCase().includes(filters.username)) &&
+      (!filters.email || user.email.toLowerCase().includes(filters.email)) &&
+      (!filters.phone || user.phone.toLowerCase().includes(filters.phone)) &&
+      (!filters.fullName ||
+       (user.firstName.toLowerCase() + ' ' + user.lastName.toLowerCase()).includes(filters.fullName)) &&
+      (!filters.country || user.country.toLowerCase().includes
+  

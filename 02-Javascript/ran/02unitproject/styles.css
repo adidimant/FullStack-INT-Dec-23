@@ -80,3 +80,48 @@ button {
 button:hover {
   background-color: #0056b3;
 } 
+
+
+
+.tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; 
+    overflow: hidden;
+  }
+  
+  .tabs li {
+    display: inline-block;
+    background: #eee;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabs li.active {
+    background: #fff;
+  }
+  
+  .tab {
+    display: none; 
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+  
+  .tab.active {
+    display: block;
+  }
+  
+  #undoBar {
+    background-color: #ffe0e0; 
+    padding: 8px;
+    text-align: center;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+
+  
