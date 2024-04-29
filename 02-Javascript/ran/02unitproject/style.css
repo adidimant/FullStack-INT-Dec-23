@@ -162,17 +162,20 @@ button:hover {
 /* Flexbox באיזור התוכן */
 .content {
   display: flex;
+  flex-direction: row-reverse; /* שינוי כיוון הרכיבים לימין */
 }
 
 .sidebar {
   flex: 1;
   background-color: #f2f2f2;
   padding: 20px;
+  order: 2; /* שינוי סדר ה- flex items, כדי שה-sidebar יופיע מימין */
 }
 
 .main-content {
   flex: 3;
   padding: 20px;
+  order: 1; /* שינוי סדר ה- flex items, כדי שה-main-content יופיע משמאל */
 }
 
 /* עיצוב רספונסיבי */
