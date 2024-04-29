@@ -1,52 +1,47 @@
-// מיקום: script.js
-
 const userTableBody = document.getElementById('userTableBody');
-const usernameFilterInput = document.getElementById('usernameFilter');
-const emailFilterInput = document.getElementById('emailFilter');
+const filters = document.querySelectorAll('.filter');
 
-function loadUsers() {
-  const usersData = localStorage.getItem('users') || '[]';
-  users = JSON.parse(usersData);
+async function loadUsers() {
+  const usersData = await localStorage.getItem('users') || '[]';
+  return JSON.parse(usersData);
 }
 
-function saveUsers() {
-  localStorage.setItem('users', JSON.stringify(users));
+async function saveUsers(users) {
+  await localStorage.setItem('users', JSON.stringify(users));
 }
 
-function displayUsers(filteredUsers = null) {
-  const usersToDisplay = filteredUsers || users;  
-
-  userTableBody.innerHTML = ''; 
-
-  usersToDisplay.forEach(user => {
+function displayUsers(users) {
+  userTableBody.innerHTML = '';
+  users.forEach(user => {
     const row = userTableBody.insertRow();
-    row.id = `user-${user.userId}`; 
-
-    Object.values(user).forEach(text => {
+    row.id = `user-${user.userId}`;
+    Object.entries(user).forEach(([key, value]) => {
       const cell = row.insertCell();
-      cell.textContent = text;
+      cell.textContent = value;
+      if (key === 'actions') {
+        cell.innerHTML = `<button onclick="editUser('${user.userId}')">Edit</button>
+                          <button onclick="prepareDelete('${user.userId}')">Delete</button>`;
+      }
     });
-
-    const actionsCell = row.insertCell();
-    actionsCell.innerHTML = `
-      <button onclick="editUser('${user.userId}')">Edit</button> 
-      <button onclick="prepareDelete('${user.userId}')">Delete</button>
-    `;
   });
 }
 
-function editUser(userId) {
+async function editUser(userId) {
+  const users = await loadUsers();
   const user = users.find(u => u.userId === userId);
   const userRow = document.getElementById(`user-${userId}`);
   Object.keys(user).forEach((key, index) => {
     const cell = userRow.cells[index];
-    cell.innerHTML = `<input type="text" value="${user[key]}" name="${key}">`;
+    if (key !== 'actions') {
+      cell.innerHTML = `<input type="text" value="${user[key]}" name="${key}">`;
+    }
   });
   const actionsCell = userRow.cells[userRow.cells.length - 1];
   actionsCell.innerHTML = `<button onclick="saveUser('${userId}')">Save</button>`;
 }
 
-function saveUser(userId) {
+async function saveUser(userId) {
+  const users = await loadUsers();
   const userRow = document.getElementById(`user-${userId}`);
   const inputs = userRow.querySelectorAll('input');
   const updatedUser = users.find(u => u.userId === userId);
@@ -54,41 +49,47 @@ function saveUser(userId) {
     updatedUser[input.name] = input.value;
   });
   updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
-  saveUsers();
-  displayUsers();
+  await saveUsers(users);
+  displayUsers(users);
 }
 
-function prepareDelete(userId) {
+async function prepareDelete(userId) {
   const confirmDelete = confirm('Are you sure you want to delete this user?');
   if (confirmDelete) {
-    deleteUser(userId)
-      .then(() => {
-        alert('User deleted successfully. Click undo to revert.');
-        setTimeout(() => {
-          removeUndoOption(userId);
-        }, 6000);
-        displayUndoButton(userId);
-      })
-      .catch(err => {
-        alert('Error deleting user: ' + err);
-      });
+    try {
+      await deleteUser(userId);
+      alert('User deleted successfully. Click undo to revert.');
+      setTimeout(() => {
+        removeUndoOption(userId);
+      }, 6000);
+      displayUndoButton(userId);
+    } catch (err) {
+      alert('Error deleting user: ' + err);
+    }
   }
 }
 
-function deleteUser(userId) {
-  return new Promise((resolve, reject) => {
-    const index = users.findIndex(u => u.userId === userId);
-    if (index !== -1) {
-      users.splice(index, 1);
-      saveUsers()
-        .then(() => {
-          displayUsers();
-          resolve();
-        })
-        .catch(err => reject(err));
-    } else {
-      reject('User not found');
-    }
+async function deleteUser(userId) {
+  const users = await loadUsers();
+  const index = users.findIndex(u => u.userId === userId);
+  if (index !== -1) {
+    users.splice(index, 1);
+    await saveUsers(users);
+    displayUsers(users);
+  } else {
+    throw new Error('User not found');
+  }
+}
+
+function filterUsers() {
+  loadUsers().then(users => {
+    const filteredUsers = users.filter(user => {
+      return [...filters].every(filter => {
+        const key = filter.id.replace('filter', '').toLowerCase();
+        return user[key].toLowerCase().includes(filter.value.toLowerCase());
+      });
+    });
+    displayUsers(filteredUsers);
   });
 }
 
@@ -99,43 +100,33 @@ function displayUndoButton(userId) {
   document.body.appendChild(undoButton);
 }
 
-function undoDelete(userId) {
-  loadUsers();
+async function undoDelete(userId) {
+  const users = await loadUsers();
   const userToRestore = usersDeleted.find(u => u.userId === userId);
   if (userToRestore) {
     users.push(userToRestore);
-    saveUsers();
-    displayUsers();
+    await saveUsers(users);
+    displayUsers(users);
     alert('User deletion undone.');
   }
+  removeUndoOption(userId);
 }
 
 function removeUndoOption(userId) {
-  const undoButton = document.querySelector('button');
+  const undoButton = document.querySelector(`button[onclick*='${userId}']`);
   if (undoButton) undoButton.remove();
 }
 
-function filterUsers() {
-  const username = usernameFilterInput.value.toLowerCase();
-  const email = emailFilterInput.value.toLowerCase();
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(username) && user.email.toLowerCase().includes(email)
-  );
-  displayUsers(filteredUsers);
-}
-
-usernameFilterInput.addEventListener('keyup', debounce(filterUsers, 300));
-emailFilterInput.addEventListener('keyup', debounce(filterUsers, 300));
-window.addEventListener('DOMContentLoaded', () => {
-  loadUsers();
-  displayUsers();
+document.addEventListener('DOMContentLoaded', async () => {
+  const users = await loadUsers();
+  displayUsers(users);
+  filters.forEach(filter => filter.addEventListener('keyup', debounce(filterUsers, 300)));
 });
 
 function debounce(func, wait) {
   let timeout;
   return function() {
-    const context = this, args = arguments;
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
+    timeout = setTimeout(() => func.apply(this, arguments), wait);
   };
 }
