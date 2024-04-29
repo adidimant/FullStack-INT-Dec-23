@@ -50,8 +50,9 @@ async function saveUser(userId) {
   });
   updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
   await saveUsers(users);
-  displayUsers(users);
+  displayUsers(users); // הוספת קריאה לפונקציה לתצוגת המשתמשים לאחר שמתבצע עדכון הנתונים
 }
+
 
 async function prepareDelete(userId) {
   const confirmDelete = confirm('Are you sure you want to delete this user?');
