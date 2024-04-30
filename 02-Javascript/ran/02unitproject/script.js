@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
   displayUsers(users);
+
+  // טיפול במסננים
+  const filters = document.querySelectorAll('.filter'); // וודא שזו השורה הנכונה לאחר שה-DOM נטען
   filters.forEach(filter => filter.addEventListener('keyup', debounce(filterUsers, 300)));
-  document.querySelector('#userTable').after(createSaveButton()); // יצירת והוספת כפתור שמירה בתחתית הטבלה
+
+  // הוספת כפתור שמירת משתמשים
+  const saveButton = createSaveButton();
+  document.querySelector('#userTable').after(saveButton); // הוספת הכפתור מתחת לטבלה
 });
 
 function createSaveButton() {
@@ -14,9 +20,9 @@ function createSaveButton() {
 }
 
 async function saveAllUsers() {
-  const users = await loadUsers(); // טעינת המשתמשים הנוכחיים
-  await saveUsers(users); // שמירה ב-localStorage
-  console.log('נתונים נשמרו ב-localStorage'); // הדפסה לקונסול לוודא שהפעולה בוצעה
+  const users = await loadUsers();
+  await saveUsers(users);
+  console.log('נתונים נשמרו ב-localStorage');
   alert('כל המשתמשים נשמרו בהצלחה');
 }
 
@@ -30,6 +36,7 @@ async function saveUsers(users) {
 }
 
 function displayUsers(users) {
+  const userTableBody = document.getElementById('userTableBody');
   userTableBody.innerHTML = '';
   users.forEach(user => {
     const row = userTableBody.insertRow();
@@ -47,8 +54,9 @@ function displayUsers(users) {
 
 function filterUsers() {
   loadUsers().then(users => {
+    const filters = document.querySelectorAll('.filter'); // מחדש את הגדרת filters
     const filteredUsers = users.filter(user => {
-      return [...filters].every(filter => {
+      return Array.from(filters).every(filter => {
         const key = filter.id.replace('filter', '').toLowerCase();
         return user[key].toLowerCase().includes(filter.value.toLowerCase());
       });
