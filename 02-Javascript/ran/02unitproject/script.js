@@ -111,6 +111,20 @@ async function editUser(userId) {
   }
 }
 
+function filterUsersAndSave() {
+  const usernameFilter = document.getElementById('filterUsername').value.toLowerCase();
+  const emailFilter = document.getElementById('filterEmail').value.toLowerCase();
+  // ניתן להוסיף עוד סינונים כאן
+
+  const filteredUsers = users.filter(user => {
+      return user.username.toLowerCase().includes(usernameFilter) &&
+             user.email.toLowerCase().includes(emailFilter);
+      // ואת כל התנאים האחרים
+  });
+
+  populateUserTable(filteredUsers);
+}
+
 async function deleteUser(userId) {
   const users = await loadUsers();
   const updatedUsers = users.filter(user => user.id !== userId);
