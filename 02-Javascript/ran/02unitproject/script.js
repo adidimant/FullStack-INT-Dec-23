@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
-  displayUsers(users);
+  populateUserTable(users);
 
   const tabsContainer = document.querySelector('.tabs');
   tabsContainer.addEventListener('click', function(event) {
@@ -74,20 +74,30 @@ async function saveUsers(users) {
   await localStorage.setItem('users', JSON.stringify(users));
 }
 
-function displayUsers(users) {
+function populateUserTable(users) {
   const userTableBody = document.getElementById('userTableBody');
   userTableBody.innerHTML = '';
+
   users.forEach(user => {
-    const row = userTableBody.insertRow();
-    row.id = `user-${user.userId}`;
-    Object.entries(user).forEach(([key, value]) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-      if (key === 'actions') {
-        cell.innerHTML = `<button onclick="editUser('${user.userId}')">ערוך</button>
-                          <button onclick="prepareDelete('${user.userId}')">מחק</button>`;
-      }
-    });
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${user.username}</td>
+      <td>${user.email}</td>
+      <td>${user.phone}</td>
+      <td>${user.firstName}</td>
+      <td>${user.lastName}</td>
+      <td>${user.street}</td>
+      <td>${user.city}</td>
+      <td>${user.country}</td>
+      <td>${user.postalCode}</td>
+      <td>${user.registeredDate}</td>
+      <td>${user.updatedDate}</td>
+      <td>
+        <button onclick="editUser(${user.id})">ערוך</button>
+        <button onclick="deleteUser(${user.id})">מחק</button>
+      </td>
+    `;
+    userTableBody.appendChild(row);
   });
 }
 
@@ -100,7 +110,7 @@ function saveUser(event) {
     users.push(userData);
     saveUsers(users).then(() => {
       alert('משתמש נוצר בהצלחה.');
-      displayUsers(users);
+      populateUserTable(users);
       userForm.reset();
     });
   });
@@ -140,7 +150,7 @@ function filterUsers() {
         return user[key].toLowerCase().includes(filter.value.toLowerCase());
       });
     });
-    displayUsers(filteredUsers);
+    populateUserTable(filteredUsers);
   });
 }
 
@@ -148,6 +158,6 @@ function editUser(userId) {
   // Implement the edit user functionality here
 }
 
-function prepareDelete(userId) {
+function deleteUser(userId) {
   // Implement the delete user functionality here
 }
