@@ -93,26 +93,99 @@ function populateUserTable(users) {
       <td>${user.registeredDate}</td>
       <td>${user.updatedDate}</td>
       <td>
-        <button onclick="editUser(${user.id})">ערוך</button>
-        <button onclick="deleteUser(${user.id})">מחק</button>
+        <button onclick="editUser(${user.userId})">ערוך</button>
+        <button onclick="prepareDelete(${user.userId})">מחק</button>
       </td>
     `;
     userTableBody.appendChild(row);
   });
 }
 
-function saveUser(event) {
-  event.preventDefault();
-  const userForm = document.getElementById('userForm');
-  const formData = new FormData(userForm);
-  const userData = Object.fromEntries(formData.entries());
+function editUser(userId) {
+  const user = findUserById(userId);
+  if (!user) {
+    alert('משתמש לא נמצא');
+    return;
+  }
+
+  const editForm = document.createElement('form');
+  editForm.innerHTML = `
+    <label for="editUsername">שם משתמש:</label>
+    <input type="text" id="editUsername" name="editUsername" value="${user.username}" required><br>
+    <label for="editEmail">אימייל:</label>
+    <input type="email" id="editEmail" name="editEmail" value="${user.email}" required><br>
+    <label for="editPhone">מספר טלפון:</label>
+    <input type="tel" id="editPhone" name="editPhone" value="${user.phone}"><br>
+    <label for="editFirstName">שם פרטי:</label>
+    <input type="text" id="editFirstName" name="editFirstName" value="${user.firstName}" required><br>
+    <label for="editLastName">שם משפחה:</label>
+    <input type="text" id="editLastName" name="editLastName" value="${user.lastName}" required><br>
+    <label for="editStreet">רחוב:</label>
+    <input type="text" id="editStreet" name="editStreet" value="${user.street}"><br>
+    <label for="editCity">עיר:</label>
+    <input type="text" id="editCity" name="editCity" value="${user.city}"><br>
+    <label for="editCountry">מדינה:</label>
+    <input type="text" id="editCountry" name="editCountry" value="${user.country}"><br>
+    <label for="editPostalCode">קוד דואר:</label>
+    <input type="text" id="editPostalCode" name="editPostalCode" value="${user.postalCode}"><br>
+    <label for="editRegisteredDate">תאריך רישום:</label>
+    <input type="date" id="editRegisteredDate" name="editRegisteredDate" value="${user.registeredDate}"><br>
+    <button type="button" onclick="saveEditedUser(${userId})">שמור שינויים</button>
+  `;
+
+  const editContainer = document.getElementById('editContainer');
+  editContainer.innerHTML = '';
+  editContainer.appendChild(editForm);
+}
+
+function saveEditedUser(userId) {
+  const editedUser = {
+    userId: userId,
+    username: document.getElementById('editUsername').value,
+    email: document.getElementById('editEmail').value,
+    phone: document.getElementById('editPhone').value,
+    firstName: document.getElementById('editFirstName').value,
+    lastName: document.getElementById('editLastName').value,
+    street: document.getElementById('editStreet').value,
+    city: document.getElementById('editCity').value,
+    country: document.getElementById('editCountry').value,
+    postalCode: document.getElementById('editPostalCode').value,
+    registeredDate: document.getElementById('editRegisteredDate').value
+  };
+
   loadUsers().then(users => {
-    users.push(userData);
-    saveUsers(users).then(() => {
-      alert('משתמש נוצר בהצלחה.');
-      populateUserTable(users);
-      userForm.reset();
-    });
+    const index = users.findIndex(user => user.userId === userId);
+    if (index !== -1) {
+      users[index] = editedUser;
+      saveUsers(users).then(() => {
+        alert('המשתמש עודכן בהצלחה.');
+        populateUserTable(users);
+      });
+    } else {
+      alert('משתמש לא נמצא');
+    }
+  });
+}
+
+function prepareDelete(userId) {
+  const confirmation = confirm('האם אתה בטוח שברצונך למחוק משתמש זה?');
+  if (confirmation) {
+    deleteUser(userId);
+  }
+}
+
+function deleteUser(userId) {
+  loadUsers().then(users => {
+    const index = users.findIndex(user => user.userId === userId);
+    if (index !== -1) {
+      users.splice(index, 1);
+      saveUsers(users).then(() => {
+        alert('המשתמש נמחק בהצלחה.');
+        populateUserTable(users);
+      });
+    } else {
+      alert('משתמש לא נמצא');
+    }
   });
 }
 
@@ -152,12 +225,4 @@ function filterUsers() {
     });
     populateUserTable(filteredUsers);
   });
-}
-
-function editUser(userId) {
-  // Implement the edit user functionality here
-}
-
-function deleteUser(userId) {
-  // Implement the delete user functionality here
 }
