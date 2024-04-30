@@ -123,3 +123,41 @@ async function deleteUser(userId) {
   await saveUsers(updatedUsers);
   populateUserTable(updatedUsers);
 }
+
+function populateUserTable(users) {
+  const userTableBody = document.getElementById('userTableBody');
+  if (!userTableBody || !users || users.length === 0) {
+    console.error('Either userTableBody is not defined or users array is empty.');
+    return;
+  }
+
+  userTableBody.innerHTML = '';
+  users.forEach(user => {
+    const row = document.createElement('tr');
+    row.dataset.userId = user.id;
+    row.innerHTML = `
+        <td>
+            <button>עריכה</button>
+            <button>מחיקה</button>
+        </td>
+        ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
+    `;
+    userTableBody.appendChild(row);
+  });
+}
+
+function showTab(tabName) {
+  const tab = document.getElementById(tabName);
+  if (!tab) {
+    console.error(`Tab with name ${tabName} does not exist.`);
+    return;
+  }
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => content.style.display = 'none');
+
+  tab.style.display = 'block';
+  tab.classList.add('active');
+}
