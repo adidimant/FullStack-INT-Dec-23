@@ -131,6 +131,7 @@ function filterUsers() {
       });
     });
     populateUserTable(filteredUsers);
+    saveUsers(filteredUsers); // שמירת המשתמשים שעברו סינון ב-localStorage
   });
 }
 
