@@ -25,31 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   userForm.addEventListener('submit', saveUser);
 });
 
-function showTab(tabName) {
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach(tab => {
-    tab.classList.remove('active');
-  });
-
-  const allContents = document.querySelectorAll('.tab-content');
-  allContents.forEach(content => {
-    content.style.display = 'none';
-  });
-
-  const selectedTab = document.querySelector(`.tab[onclick*="showTab('${tabName}')"]`);
-  const selectedContent = document.getElementById(tabName);
-  if (selectedTab) {
-    selectedTab.classList.add('active');
-  }
-  if (selectedContent) {
-    selectedContent.style.display = 'block';
-  }
-
-  if (tabName === 'viewUsers') {
-    displaySavedUsers();
-  }
-}
-
 function createSaveButton() {
   const button = document.createElement('button');
   button.textContent = 'שמור את כל המשתמשים';
@@ -66,14 +41,8 @@ async function saveAllUsers() {
   displaySavedUsers();
 }
 
-async function saveNewUser(newUser) {
-  const users = await loadUsers();
-  users.push(newUser);
-  await saveUsers(users);
-}
-
 async function saveUser(event) {
-  event.preventDefault(); // מניעת התנהגות ברירת מחדל של הטופס
+  event.preventDefault();
 
   const newUser = {
     username: document.getElementById('username').value,
@@ -85,60 +54,62 @@ async function saveUser(event) {
     city: document.getElementById('city').value,
     country: document.getElementById('country').value,
     postalCode: document.getElementById('postalCode').value,
-    registeredDate: new Date().toLocaleDateString() // תאריך רישום חדש הוא תאריך נוכחי
+    registeredDate: new Date().toLocaleDateString()
   };
 
   await saveNewUser(newUser);
 }
 
-async function loadUsers() {
-  const usersData = await localStorage.getItem('users') || '[]';
-  return JSON.parse(usersData);
+async function editUser(userId) {
+  const users = await loadUsers();
+  const index = users.findIndex(user => user.id === userId);
+  if (index !== -1) {
+    const user = users[index];
+    const userRow = document.getElementById(`user-${user.id}`);
+    userRow.querySelectorAll('input, select').forEach(input => input.disabled = false);
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'שמור';
+    saveButton.onclick = () => saveEditedUser(user, userRow);
+    userRow.appendChild(saveButton);
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'ביטול';
+    cancelButton.onclick = () => cancelEdit(userRow);
+    userRow.appendChild(cancelButton);
+  } else {
+    console.error('משתמש עם המזהה הנתון לא נמצא');
+  }
 }
 
-async function saveUsers(users) {
-  await localStorage.setItem('users', JSON.stringify(users));
+async function saveEditedUser(user, userRow) {
+  const editedUser = {
+    id: user.id,
+    username: userRow.querySelector('#username').value,
+    email: userRow.querySelector('#email').value,
+    phone: userRow.querySelector('#phone').value,
+    firstName: userRow.querySelector('#firstName').value,
+    lastName: userRow.querySelector('#lastName').value,
+    street: userRow.querySelector('#street').value,
+    city: userRow.querySelector('#city').value,
+    country: userRow.querySelector('#country').value,
+    postalCode: userRow.querySelector('#postalCode').value,
+    registeredDate: user.registeredDate,
+    updatedDate: new Date().toLocaleDateString()
+  };
+  const users = await loadUsers();
+  const userIndex = users.findIndex(u => u.id === editedUser.id);
+  users[userIndex] = editedUser;
+  await saveUsers(users);
+  resetUserRow(userRow);
+  alert('נתוני המשתמש עודכנו בהצלחה');
 }
 
-function populateUserTable(users) {
-  const userTableBody = document.getElementById('userTableBody');
-  userTableBody.innerHTML = '';
-  users.forEach(user => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <!-- כאן אתה יכול להוסיף קוד HTML עבור כל שורה בטבלה -->
-    `;
-    userTableBody.appendChild(row);
-  });
+function cancelEdit(userRow) {
+  resetUserRow(userRow);
 }
 
-function displaySavedUsers() {
-  const savedUsers = JSON.parse(localStorage.getItem('users') || '[]');
-  const savedUsersTable = document.getElementById('savedUsersTable');
-  const savedUserTableBody = document.getElementById('savedUserTableBody');
-  savedUserTableBody.innerHTML = '';
-  savedUsers.forEach(user => {
-    const row = savedUserTableBody.insertRow();
-    Object.entries(user).forEach(([key, value]) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-    });
-  });
-  savedUsersTable.style.display = 'block';
-}
-
-function filterUsers() {
-  loadUsers().then(users => {
-    const filters = document.querySelectorAll('.filter');
-    const filteredUsers = users.filter(user => {
-      return Array.from(filters).every(filter => {
-        const key = filter.id.replace('filter', '').toLowerCase();
-        return user[key].toLowerCase().includes(filter.value.toLowerCase());
-      });
-    });
-    populateUserTable(filteredUsers);
-    saveUsers(filteredUsers); // שמירת המשתמשים שעברו סינון ב-localStorage
-  });
+function resetUserRow(userRow) {
+  userRow.querySelectorAll('input, select').forEach(input => input.disabled = true);
+  userRow.querySelectorAll('button').forEach(button => button.remove());
 }
 
 function debounce(func, wait) {
@@ -149,61 +120,4 @@ function debounce(func, wait) {
       func.apply(this, arguments);
     }, wait);
   };
-}
-
-async function deleteUser(userId) {
-  if (confirm('האם אתה בטוח שברצונך למחוק משתמש זה?')) {
-    let users = await loadUsers();
-    users = users.filter(user => user.id !== userId);
-    await saveUsers(users);
-  }
-}
-async function editUser(userId) {
-  const users = await loadUsers();
-  const index = users.findIndex(user => user.id === userId);
-  if (index !== -1) {
-    const user = users[index];
-    // כאן תוכל לממש את הלוגיקה לעריכת המשתמש ולעדכון הנתונים בזיכרון
-    // לדוגמה: הצגת טופס עריכה ועדכון המשתמש
-  } else {
-    console.error('משתמש עם המזהה הנתון לא נמצא');
-  }
-}
-function populateUserTable(users) {
-  const userTableBody = document.getElementById('userTableBody');
-  userTableBody.innerHTML = '';
-  users.forEach(user => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <!-- כאן אתה יכול להוסיף תאים נוספים עבור כפתורי עריכה ומחיקה -->
-      <th>
-        <button onclick="editUser('${user.id}')">עריכה</button>
-        <button onclick="prepareDelete('${user.id}')">מחיקה</button>
-      </th>
-      <th>${user.updatedDate}</th>
-      <th>${user.registeredDate}</th>
-      <th>${user.postalCode}</th>
-      <th>${user.country}</th>
-      <th>${user.city}</th>
-      <th>${user.street}</th>
-      <th>${user.lastName}</th>
-      <th>${user.firstName}</th>
-      <th>${user.phone}</th>
-      <th>${user.email}</th>
-      <th>${user.username}</th>
-    `;
-    userTableBody.appendChild(row);
-  });
-}
-async function deleteUser(userId) {
-  if (confirm('האם אתה בטוח שברצונך למחוק משתמש זה?')) {
-    let users = await loadUsers();
-    users = users.filter(user => user.id !== userId);
-    await saveUsers(users);
-    displaySavedUsers();  // ריענון הטבלה לאחר מחיקה
-  }
-}function prepareDelete(userId) {
-  if (confirm('האם אתה בטוח שברצונך למחוק משתמש זה?')) {
-    deleteUser(userId);
-  }
 }
