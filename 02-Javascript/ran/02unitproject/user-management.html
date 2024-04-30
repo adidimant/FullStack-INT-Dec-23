@@ -24,15 +24,15 @@
       <li onclick="showTab('createUser')" class="tab">יצירת משתמש</li>
     </ul>
 
-    <div id="viewUsers" class="tab active"> 
+    <div id="viewUsers" class="tab active">
       <h2>רשימת משתמשים</h2>
-      <div id="filters"> 
+      <div id="filters">
         <label for="filterUsername">שם משתמש:</label>
         <input type="text" id="filterUsername" class="filter" placeholder="הזן שם משתמש">
         <label for="filterEmail">אימייל:</label>
-        <input type="text" id="filterEmail" class="filter" placeholder="הזן אימייל">
+        <input type="email" id="filterEmail" class="filter" placeholder="הזן אימייל">
         <label for="filterPhone">מספר טלפון:</label>
-        <input type="text" id="filterPhone" class="filter" placeholder="הזן מספר טלפון">
+        <input type="tel" id="filterPhone" class="filter" placeholder="הזן מספר טלפון">
         <label for="filterFullName">שם מלא:</label>
         <input type="text" id="filterFullName" class="filter" placeholder="הזן שם מלא">
         <label for="filterCountry">מדינה:</label>
@@ -62,11 +62,10 @@
             <th>פעולות</th>
           </tr>
         </thead>
-        <tbody id="userTableBody"> </tbody>
+        <tbody id="userTableBody"></tbody>
       </table>
-      <!-- טבלה נוספת למשתמשים שנשמרו -->
       <h3>משתמשים שנשמרו</h3>
-      <table id="savedUsersTable" style="display:none;">
+      <table id="savedUsersTable" style="display: none;">
         <thead>
           <tr>
             <th>שם משתמש</th>
@@ -76,8 +75,7 @@
             <th>שם משפחה</th>
             <th>רחוב</th>
             <th>עיר</th>
-            <th>מדינה</th>
-            <th>קוד דואר</th>
+            <th>ואר</th>
             <th>תאריך רישום</th>
             <th>תאריך עדכון</th>
             <th>פעולות</th>
@@ -87,28 +85,34 @@
       </table>
     </div>
 
-    <div id="createUser" class="tab" style="display: none;"> 
+    <div id="createUser" class="tab" style="display: none;">
       <h2>יצירת משתמש</h2>
       <form id="userForm" onsubmit="return saveUser();">
         <label for="username">שם משתמש:</label>
-        <input type="text" id="username" name="username" required><br>
+        <input type="text" id="username" name="username" required autocomplete="username"><br>
         <label for="email">אימייל:</label>
-        <input type="email" id="email" name="email" required><br>
+        <input type="email" id="email" name="email" required autocomplete="email"><br>
         <label for="phone">מספר טלפון:</label>
-        <input type="text" id="phone" name="phone"><br>
+        <input type="tel" id="phone" name="phone" autocomplete="tel"><br>
         <label for="firstName">שם פרטי:</label>
         <input type="text" id="firstName" name="firstName" required><br>
-        <label for="lastName">שם משפחה:</label
+        <label for="lastName">שם משפחה:</label>
         <input type="text" id="lastName" name="lastName" required><br>
         <label for="street">רחוב:</label>
         <input type="text" id="street" name="street"><br>
         <label for="city">עיר:</label>
         <input type="text" id="city" name="city"><br>
+        <label for="country">מדינה:</label>
+        <input type="text" id="country" name="country"><br>
+        <label for="postalCode">קוד דואר:</label>
+        <input type="text" id="postalCode" name="postalCode"><br>
+        <label for="registeredDate">תאריך רישום:</label>
+        <input type="date" id="registeredDate" name="registeredDate"><br>
         <button type="submit">שמור משתמש</button>
       </form>
     </div>
   </section>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
