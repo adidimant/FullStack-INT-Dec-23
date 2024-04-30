@@ -136,3 +136,73 @@ function filterUsersAndSave() {
   console.log('Filter and save logic goes here.');
   // Implementation needed
 }
+
+// קוד ה- JavaScript לניהול משתמשים
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const users = await loadUsers();
+    populateUserTable(users);
+  } catch (error) {
+    console.error("Error loading users:", error);
+  }
+
+  // פונקציה לטעינת המשתמשים מהLocalStorage
+  async function loadUsers() {
+    return JSON.parse(localStorage.getItem('users') || '[]');
+  }
+
+  // פונקציה להצגת המשתמשים בטבלה
+  function populateUserTable(users) {
+    const userTableBody = document.getElementById('userTableBody');
+    userTableBody.innerHTML = '';
+    users.forEach(user => {
+      const row = document.createElement('tr');
+      row.dataset.userId = user.id;
+      row.innerHTML = `
+        <td>
+          <button>עריכה</button>
+          <button>מחיקה</button>
+        </td>
+        ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
+      `;
+      userTableBody.appendChild(row);
+    });
+  }
+
+  // פונקציה לעריכת משתמש
+  async function editUser(userId) {
+    const users = await loadUsers();
+    const user = users.find(u => u.id === userId);
+    if (user) {
+      const form = document.getElementById('userForm');
+      Object.keys(user).forEach(key => {
+        if (form.elements[key]) form.elements[key].value = user[key];
+      });
+      form.scrollIntoView();
+    }
+  }
+
+  // פונקציה לשמירת המשתמשים בLocalStorage
+  async function saveUsers(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  // פונקציה לשמירת משתמש חדש
+  async function saveUser(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const newUser = Object.fromEntries(formData.entries());
+    const users = await loadUsers();
+    users.push(newUser);
+    await saveUsers(users);
+    populateUserTable(users);
+  }
+
+  // אירוע של שמירת משתמש בלחיצה על הכפתור
+  const userForm = document.getElementById('userForm');
+  if (userForm) {
+    userForm.addEventListener('submit', saveUser);
+  }
+});
+
