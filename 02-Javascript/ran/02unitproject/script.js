@@ -66,6 +66,12 @@ async function saveAllUsers() {
   displaySavedUsers();
 }
 
+async function saveNewUser(newUser) {
+  const users = await loadUsers();
+  users.push(newUser);
+  await saveUsers(users);
+}
+
 async function saveUser(event) {
   event.preventDefault(); // מניעת התנהגות ברירת מחדל של הטופס
 
