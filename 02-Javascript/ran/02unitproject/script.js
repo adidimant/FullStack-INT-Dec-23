@@ -105,3 +105,49 @@ function saveUser(event) {
     });
   });
 }
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, arguments);
+    }, wait);
+  };
+}
+
+function displaySavedUsers() {
+  const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+  const savedUsersTable = document.getElementById('savedUsersTable');
+  const savedUserTableBody = document.getElementById('savedUserTableBody');
+  savedUserTableBody.innerHTML = '';
+  savedUsers.forEach(user => {
+    const row = savedUserTableBody.insertRow();
+    Object.entries(user).forEach(([key, value]) => {
+      const cell = row.insertCell();
+      cell.textContent = value;
+    });
+  });
+  savedUsersTable.style.display = 'block';
+}
+
+function filterUsers() {
+  loadUsers().then(users => {
+    const filters = document.querySelectorAll('.filter');
+    const filteredUsers = users.filter(user => {
+      return Array.from(filters).every(filter => {
+        const key = filter.id.replace('filter', '').toLowerCase();
+        return user[key].toLowerCase().includes(filter.value.toLowerCase());
+      });
+    });
+    displayUsers(filteredUsers);
+  });
+}
+
+function editUser(userId) {
+  // Implement the edit user functionality here
+}
+
+function prepareDelete(userId) {
+  // Implement the delete user functionality here
+}
