@@ -40,31 +40,41 @@ async function editUser(userId) {
   actionsCell.innerHTML = `<button onclick="saveUser('${userId}')">Save</button>`; // תיקון: קריאה לפונקציה saveUser כעת מוחזרת בצורה תקינה
 }
 
-
-async function saveUser(userId) {
+async function saveUser(userId = null) {
   const users = await loadUsers();
-  const userRow = document.getElementById(`user-${userId}`);
-  const inputs = userRow.querySelectorAll('input');
-  const updatedUser = users.find(u => u.userId === userId);
-  inputs.forEach(input => {
-    updatedUser[input.name] = input.value;
-  });
-  updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
+  let updatedUser;
+  if (userId) {
+    const userRow = document.getElementById(`user-${userId}`);
+    const inputs = userRow.querySelectorAll('input');
+    updatedUser = users.find(u => u.userId === userId);
+    inputs.forEach(input => {
+      updatedUser[input.name] = input.value;
+    });
+    updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
+  } else {
+    const form = document.getElementById('userForm');
+    const formData = new FormData(form);
+    updatedUser = {};
+    formData.forEach((value, key) => {
+      updatedUser[key] = value;
+    });
+    updatedUser.registeredDate = new Date().toISOString().slice(0, 10);
+    updatedUser.updatedDate = new Date().toISOString().slice(0, 10);
+    users.push(updatedUser);
+    form.reset();
+  }
   await saveUsers(users);
-  displayUsers(users); // הוספת קריאה לפונקציה לתצוגת המשתמשים לאחר שמתבצע עדכון הנתונים
+  displayUsers(users);
+  return false; // Prevent form from submitting
 }
-
 
 async function prepareDelete(userId) {
   const confirmDelete = confirm('Are you sure you want to delete this user?');
   if (confirmDelete) {
     try {
       await deleteUser(userId);
-      alert('User deleted successfully. Click undo to revert.');
-      setTimeout(() => {
-        removeUndoOption(userId);
-      }, 6000);
-      displayUndoButton(userId);
+      alert('User deleted successfully.');
+      displayUsers(users);
     } catch (err) {
       alert('Error deleting user: ' + err);
     }
@@ -93,30 +103,6 @@ function filterUsers() {
     });
     displayUsers(filteredUsers);
   });
-}
-
-function displayUndoButton(userId) {
-  const undoButton = document.createElement('button');
-  undoButton.textContent = 'Undo';
-  undoButton.onclick = () => undoDelete(userId);
-  document.body.appendChild(undoButton);
-}
-
-async function undoDelete(userId) {
-  const users = await loadUsers();
-  const userToRestore = usersDeleted.find(u => u.userId === userId);
-  if (userToRestore) {
-    users.push(userToRestore);
-    await saveUsers(users);
-    displayUsers(users);
-    alert('User deletion undone.');
-  }
-  removeUndoOption(userId);
-}
-
-function removeUndoOption(userId) {
-  const undoButton = document.querySelector(`button[onclick*='${userId}']`);
-  if (undoButton) undoButton.remove();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
