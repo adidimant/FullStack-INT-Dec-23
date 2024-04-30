@@ -9,13 +9,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   const userTableBody = document.getElementById('userTableBody');
   if (userTableBody) {
       userTableBody.addEventListener('click', event => {
-          const userId = event.target.closest('tr').dataset.userId;
-          if (event.target.className.includes('edit')) {
-              editUser(userId);
-          } else if (event.target.className.includes('delete')) {
-              deleteUser(userId);
+          if (event.target.tagName === 'BUTTON') {
+              const userId = event.target.closest('tr').dataset.userId;
+              if (event.target.textContent.includes('עריכה')) {
+                  editUser(userId);
+              } else if (event.target.textContent.includes('מחיקה')) {
+                  deleteUser(userId);
+              }
           }
       });
+  }
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+      tab.addEventListener('click', () => showTab(tab.dataset.tabname));
+  });
+
+  const filterButton = document.getElementById('filterUsersButton');
+  if (filterButton) {
+      filterButton.addEventListener('click', filterUsersAndSave);
   }
 
   const userForm = document.getElementById('userForm');
@@ -36,6 +48,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
       });
   }
+
+  setInterval(loadUsersIntoTable, 30000);  // Refresh the user table every 30 seconds
 });
 
 async function loadUsers() {
@@ -49,20 +63,11 @@ function populateUserTable(users) {
       const row = document.createElement('tr');
       row.dataset.userId = user.id;
       row.innerHTML = `
-          <td>${user.username}</td>
-          <td>${user.email}</td>
-          <td>${user.phone}</td>
-          <td>${user.firstName}</td>
-          <td>${user.lastName}</td>
-          <td>${user.street}</td>
-          <td>${user.city}</td>
-          <td>${user.state}</td>
-          <td>${user.country}</td>
-          <td>${user.zipcode}</td>
-          <td>${user.registeredDate}</td>
-          <td>${user.updatedDate}</td>
-          <td><button class="edit">Edit</button></td>
-          <td><button class="delete">Delete</button></td>
+          <td>
+              <button>עריכה</button>
+              <button>מחיקה</button>
+          </td>
+          ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
       `;
       userTableBody.appendChild(row);
   });
@@ -79,6 +84,21 @@ async function saveUsers(users) {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
+function showTab(tabName) {
+  const tabs = document.querySelectorAll('.tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabContents.forEach(content => content.style.display = 'none');
+  
+  document.querySelector(`#${tabName}`).style.display = 'block';
+  document.querySelector(`.tab[data-tabname='${tabName}']`).classList.add('active');
+}
+
+async function validateNewUser(newUser) {
+  const users = await loadUsers();
+  return !users.some(user => user.username === newUser.username || user.email === newUser.email);
+}
+
 async function editUser(userId) {
   const users = await loadUsers();
   const user = users.find(u => u.id === userId);
@@ -87,23 +107,18 @@ async function editUser(userId) {
       Object.keys(user).forEach(key => {
           if (form.elements[key]) form.elements[key].value = user[key];
       });
-      document.querySelector('.tabs .tab-button[data-tabname="create"]').click();
-      user.updatedDate = new Date().toISOString().split('T')[0];  // Update the date on edit
+      form.scrollIntoView();
   }
 }
 
 async function deleteUser(userId) {
-  if (confirm('Are you sure you want to delete this user?')) {
-      const users = await loadUsers();
-      const updatedUsers = users.filter(user => user.id !== userId);
-      await saveUsers(updatedUsers);
-      populateUserTable(updatedUsers);
-  }
+  const users = await loadUsers();
+  const updatedUsers = users.filter(user => user.id !== userId);
+  await saveUsers(updatedUsers);
+  populateUserTable(updatedUsers);
 }
 
-function validateNewUser(newUser) {
-  const users = loadUsers();
-  return users.then(existingUsers => {
-      return !existingUsers.some(user => user.username === newUser.username || user.email === newUser.email);
-  });
+function filterUsersAndSave() {
+  console.log('Filter and save logic goes here.');
+  // Implementation needed
 }
