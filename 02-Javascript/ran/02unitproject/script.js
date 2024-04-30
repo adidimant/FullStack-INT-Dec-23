@@ -65,7 +65,7 @@ async function editUser(userId) {
   const index = users.findIndex(user => user.id === userId);
   if (index !== -1) {
     const user = users[index];
-    const userRow = document.getElementById(`user-${user.id}`);
+    
     userRow.querySelectorAll('input, select').forEach(input => input.disabled = false);
     const saveButton = document.createElement('button');
     saveButton.textContent = 'שמור';
