@@ -107,6 +107,21 @@ function populateUserTable(users) {
     const row = document.createElement('tr');
     row.innerHTML = `
       <!-- כאן אתה יכול להוסיף קוד HTML עבור כל שורה בטבלה -->
+      <td>
+        <button onclick="editUser('${user.id}')">עריכה</button>
+        <button onclick="prepareDelete('${user.id}')">מחיקה</button> <!-- שיניתי את הקריאה לפונקציה -->
+      </td>
+      <td>${user.updatedDate}</td>
+      <td>${user.registeredDate}</td>
+      <td>${user.postalCode}</td>
+      <td>${user.country}</td>
+      <td>${user.city}</td>
+      <td>${user.street}</td>
+      <td>${user.lastName}</td>
+      <td>${user.firstName}</td>
+      <td>${user.phone}</td>
+      <td>${user.email}</td>
+      <td>${user.username}</td>
     `;
     userTableBody.appendChild(row);
   });
@@ -167,32 +182,7 @@ async function editUser(userId) {
     console.error('משתמש עם המזהה הנתון לא נמצא');
   }
 }
-function populateUserTable(users) {
-  const userTableBody = document.getElementById('userTableBody');
-  userTableBody.innerHTML = '';
-  users.forEach(user => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <!-- כאן אתה יכול להוסיף תאים נוספים עבור כפתורי עריכה ומחיקה -->
-      <td>
-        <button onclick="editUser('${user.id}')">עריכה</button>
-        <button onclick="deleteUser('${user.id}')">מחיקה</button>
-      </td>
-      <td>${user.updatedDate}</td>
-      <td>${user.registeredDate}</td>
-      <td>${user.postalCode}</td>
-      <td>${user.country}</td>
-      <td>${user.city}</td>
-      <td>${user.street}</td>
-      <td>${user.lastName}</td>
-      <td>${user.firstName}</td>
-      <td>${user.phone}</td>
-      <td>${user.email}</td>
-      <td>${user.username}</td>
-    `;
-    userTableBody.appendChild(row);
-  });
-}
+
 // איתור האלמנט המתאים בטבלה לפי מזהה משתמש והפעלת פונקציית עריכה
 function editUser(userId) {
   // לוגיקת עריכת המשתמש
