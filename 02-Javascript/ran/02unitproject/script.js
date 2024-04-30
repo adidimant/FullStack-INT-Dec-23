@@ -1,4 +1,30 @@
-// פונקציה שמרכזת את כל הלוגיקה הנדרשת עבור הצגת הלשוניות
+document.addEventListener('DOMContentLoaded', async () => {
+  const users = await loadUsers();
+  populateUserTable(users);
+
+  const tabsContainer = document.querySelector('.tabs');
+  tabsContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('tab')) {
+      const onclickAttribute = event.target.getAttribute('onclick');
+      if (onclickAttribute) {
+        const tabName = onclickAttribute.match(/showTab\('(\w+)'\)/);
+        if (tabName && tabName[1]) {
+          showTab(tabName[1]);
+        }
+      }
+    }
+  });
+
+  const filters = document.querySelectorAll('.filter');
+  filters.forEach(filter => filter.addEventListener('keyup', debounce(filterUsers, 300)));
+
+  const saveButton = createSaveButton();
+  document.querySelector('#userTable').after(saveButton);
+
+  const userForm = document.getElementById('userForm');
+  userForm.addEventListener('submit', saveUser);
+});
+
 function showTab(tabName) {
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => {
@@ -24,7 +50,14 @@ function showTab(tabName) {
   }
 }
 
-// פונקציה ששומרת את כל המשתמשים
+function createSaveButton() {
+  const button = document.createElement('button');
+  button.textContent = 'שמור את כל המשתמשים';
+  button.style.cssText = "display:block; margin-left:auto; margin-right:auto;";
+  button.onclick = saveAllUsers;
+  return button;
+}
+
 async function saveAllUsers() {
   const users = await loadUsers();
   await saveUsers(users);
@@ -33,28 +66,37 @@ async function saveAllUsers() {
   displaySavedUsers();
 }
 
-// פונקציה ששומרת את המשתמש הנוכחי
-function saveUser(event) {
+async function saveUser(event) {
   event.preventDefault(); // מניעת התנהגות ברירת מחדל של הטופס
-  // לוגיקת שמירת המשתמש
+
+  const newUser = {
+    username: document.getElementById('username').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    street: document.getElementById('street').value,
+    city: document.getElementById('city').value,
+    country: document.getElementById('country').value,
+    postalCode: document.getElementById('postalCode').value,
+    registeredDate: new Date().toLocaleDateString() // תאריך רישום חדש הוא תאריך נוכחי
+  };
+
+  await saveNewUser(newUser);
 }
 
-// פונקציה שמקבלת את כל המשתמשים מה-localStorage
 async function loadUsers() {
   const usersData = await localStorage.getItem('users') || '[]';
   return JSON.parse(usersData);
 }
 
-// פונקציה ששומרת את כל המשתמשים ב-localStorage
 async function saveUsers(users) {
   await localStorage.setItem('users', JSON.stringify(users));
 }
 
-// פונקציה שמציגה את כל המשתמשים בטבלה
 function populateUserTable(users) {
   const userTableBody = document.getElementById('userTableBody');
   userTableBody.innerHTML = '';
-
   users.forEach(user => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -62,13 +104,10 @@ function populateUserTable(users) {
     `;
     userTableBody.appendChild(row);
   });
-
-  displaySavedUsers(); // הצגת המשתמשים בטבלה
 }
 
-// פונקציה שמציגה את המשתמשים שנשמרו בטבלה נפרדת
 function displaySavedUsers() {
-  const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+  const savedUsers = JSON.parse(localStorage.getItem('users') || '[]');
   const savedUsersTable = document.getElementById('savedUsersTable');
   const savedUserTableBody = document.getElementById('savedUserTableBody');
   savedUserTableBody.innerHTML = '';
@@ -82,12 +121,19 @@ function displaySavedUsers() {
   savedUsersTable.style.display = 'block';
 }
 
-// פונקציה זו משמשת לסינון המשתמשים בטבלה בהתאם לפילטרים
 function filterUsers() {
-  // לוגיקת סינון המשתמשים
+  loadUsers().then(users => {
+    const filters = document.querySelectorAll('.filter');
+    const filteredUsers = users.filter(user => {
+      return Array.from(filters).every(filter => {
+        const key = filter.id.replace('filter', '').toLowerCase();
+        return user[key].toLowerCase().includes(filter.value.toLowerCase());
+      });
+    });
+    populateUserTable(filteredUsers);
+  });
 }
 
-// פונקציה שמפעילה debounce על פונקציה נתונה
 function debounce(func, wait) {
   let timeout;
   return function executedFunction() {
@@ -98,17 +144,14 @@ function debounce(func, wait) {
   };
 }
 
-// איתור האלמנט המתאים בטבלה לפי מזהה משתמש ועריכתו
 function editUser(userId) {
   // לוגיקת עריכת המשתמש
 }
 
-// הכנת המשתמש למחיקה
 function prepareDelete(userId) {
   // לוגיקת מחיקת המשתמש
 }
 
-// מחיקת משתמש
 function deleteUser(userId) {
   // לוגיקת מחיקת המשתמש
 }
