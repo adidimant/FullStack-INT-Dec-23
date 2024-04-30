@@ -41,6 +41,11 @@ function showTab(tabName) {
   if (selectedContent) {
     selectedContent.style.display = 'block';
   }
+
+  // טען והצג את הנתונים של המשתמשים השמורים
+  if (tabName === 'viewUsers') {
+    displaySavedUsers();
+  }
 }
 
 function createSaveButton() {
@@ -95,13 +100,6 @@ function displaySavedUsers() {
       cell.textContent = value;
     });
   });
-}
-
-if (tabName === 'viewUsers') {
-  savedUsersTable.style.display = 'table'; // הצג את הטבלה
-  displaySavedUsers(); // טען והצג את הנתונים של המשתמשים השמורים
-} else {
-  savedUsersTable.style.display = 'none'; // הסתר את הטבלה
 }
 
 function filterUsers() {
