@@ -132,5 +132,36 @@ function editUser(userId) {
 }
 
 function prepareDelete(userId) {
-  // כאן תוכל להוסיף קוד להכנת המשתמש למחיקה
+  // הוסף את הפונקציה שמתחילה טיימר למחיקת המשתמש עם אופציה לביטול
+  const userChoice = confirm('המשתמש ימחק תוך 6 שניות. לחץ Cancel לביטול.');
+
+  if (userChoice) {
+    // מתחיל טיימר למחיקת המשתמש אחרי 6 שניות
+    deleteTimeout = setTimeout(() => {
+      deleteUser(userId);
+    }, 6000);
+    // מציג כפתור לביטול פעולת המחיקה
+    showUndoButton(userId);
+  }
+}
+
+function showUndoButton(userId) {
+  // יצירת כפתור לביטול
+  const undoButton = document.createElement('button');
+  undoButton.textContent = 'ביטול מחיקה';
+  undoButton.onclick = () => cancelDelete(userId);
+  document.body.appendChild(undoButton);
+  
+  // הוסף טיימר על הכפתור לביטול
+  setTimeout(() => {
+    undoButton.remove();
+  }, 6000);
+}
+
+function cancelDelete(userId) {
+  // ביטול הטיימר שהוגדר למחיקת המשתמש
+  clearTimeout(deleteTimeout);
+  console.log(`Deletion of user with ID: ${userId} has been cancelled.`);
+  // הסר את הכפתור מהמסך
+  document.querySelector('button[onclick*="cancelDelete"]').remove();
 }
