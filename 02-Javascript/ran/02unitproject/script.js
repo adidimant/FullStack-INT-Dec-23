@@ -124,3 +124,11 @@ function debounce(func, wait) {
     }, wait);
   };
 }
+
+function editUser(userId) {
+  // כאן תוכל להוסיף קוד לעריכת משתמש
+}
+
+function prepareDelete(userId) {
+  // כאן תוכל להוסיף קוד להכנת המשתמש למחיקה
+}
