@@ -30,6 +30,7 @@ async function saveAllUsers() {
   await saveUsers(users);
   console.log('נתונים נשמרו ב-localStorage');
   alert('כל המשתמשים נשמרו בהצלחה');
+  displaySavedUsers();
 }
 
 // פונקציה ששומרת את המשתמש הנוכחי
@@ -61,6 +62,8 @@ function populateUserTable(users) {
     `;
     userTableBody.appendChild(row);
   });
+
+  displaySavedUsers(); // הצגת המשתמשים בטבלה
 }
 
 // פונקציה שמציגה את המשתמשים שנשמרו בטבלה נפרדת
