@@ -84,6 +84,26 @@ function displayUsers(users) {
   });
 }
 
+function displaySavedUsers() {
+  const savedUserTableBody = document.getElementById('savedUserTableBody');
+  const usersData = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+  savedUserTableBody.innerHTML = '';
+  usersData.forEach(user => {
+    const row = savedUserTableBody.insertRow();
+    Object.entries(user).forEach(([key, value]) => {
+      const cell = row.insertCell();
+      cell.textContent = value;
+    });
+  });
+}
+
+if (tabName === 'viewUsers') {
+  savedUsersTable.style.display = 'table'; // הצג את הטבלה
+  displaySavedUsers(); // טען והצג את הנתונים של המשתמשים השמורים
+} else {
+  savedUsersTable.style.display = 'none'; // הסתר את הטבלה
+}
+
 function filterUsers() {
   loadUsers().then(users => {
     const filters = document.querySelectorAll('.filter');
