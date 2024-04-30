@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const users = await loadUsers();
-  populateUserTable(users);
+  try {
+    const users = await loadUsers();
+    populateUserTable(users);
+  } catch (error) {
+    console.error("Error loading users:", error);
+  }
 
-  const userTable = document.getElementById('userTable');
-  userTable.addEventListener('click', event => {
+  const userTableBody = document.getElementById('userTableBody');
+  userTableBody.addEventListener('click', event => {
     if (event.target.tagName === 'BUTTON') {
       const userId = event.target.closest('tr').dataset.userId;
       if (event.target.textContent.includes('עריכה')) {
@@ -14,24 +18,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  const userForm = document.getElementById('userForm');
-  userForm.addEventListener('submit', async event => {
-    event.preventDefault();
-    const formData = new FormData(userForm);
-    const newUser = Object.fromEntries(formData.entries());
-    newUser.registeredDate = new Date(newUser.registeredDate).toLocaleDateString();
-    await saveNewUser(newUser);
-    userForm.reset();
-    alert('משתמש נשמר בהצלחה');
-    const users = await loadUsers();
-    populateUserTable(users);
+  document.querySelector('.tabs').addEventListener('click', function(event) {
+    if (event.target.classList.contains('tab')) {
+      showTab(event.target.getAttribute('data-tabname'));
+    }
   });
+
+  document.getElementById('filterUsersButton').addEventListener('click', filterUsersAndSave);
+
+  const userForm = document.getElementById('userForm');
+  userForm.addEventListener('submit', saveUser);
 });
 
-async function saveNewUser(user) {
-  const users = await loadUsers();
-  users.push(user);
-  await saveUsers(users);
+async function loadUsers() {
+  return JSON.parse(localStorage.getItem('users') || '[]');
 }
 
 function populateUserTable(users) {
@@ -45,32 +45,50 @@ function populateUserTable(users) {
         <button>עריכה</button>
         <button>מחיקה</button>
       </td>
-      <td>${user.username}</td>
-      <td>${user.email}</td>
-      <td>${user.phone}</td>
-      <td>${user.firstName}</td>
-      <td>${user.lastName}</td>
-      <td>${user.street}</td>
-      <td>${user.city}</td>
-      <td>${user.country}</td>
-      <td>${user.postalCode}</td>
-      <td>${user.registeredDate}</td>
+      ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
     `;
     userTableBody.appendChild(row);
   });
 }
 
+async function saveUser(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const newUser = Object.fromEntries(formData.entries());
+  const users = await loadUsers();
+  users.push(newUser);
+  await saveUsers(users);
+  populateUserTable(users);
+}
+
+async function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+function showTab(tabName) {
+  const tabs = document.querySelectorAll('.tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabContents.forEach(content => content.style.display = 'none');
+  
+  document.querySelector(`#${tabName}`).style.display = 'block';
+  document.querySelector(`.tab[data-tabname='${tabName}']`).classList.add('active');
+}
+
+function filterUsersAndSave() {
+  // Placeholder for filtering logic
+  console.log('Filter and save logic goes here.');
+}
+
 async function editUser(userId) {
   const users = await loadUsers();
-  const user = users.find(user => user.id === userId);
+  const user = users.find(u => u.id === userId);
   if (user) {
     const form = document.getElementById('userForm');
     Object.keys(user).forEach(key => {
-      if (form[key]) {
-        form[key].value = user[key];
-      }
+      if (form.elements[key]) form.elements[key].value = user[key];
     });
-    window.scrollTo(0, 0);
+    form.scrollIntoView();
   }
 }
 
