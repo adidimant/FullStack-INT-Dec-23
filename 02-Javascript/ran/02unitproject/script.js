@@ -1,3 +1,12 @@
+async function loadUsersIntoTable() {
+  try {
+    const users = await loadUsers();
+    populateUserTable(users);
+  } catch (error) {
+    console.error("Error loading users:", error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   try {
       const users = await loadUsers();
