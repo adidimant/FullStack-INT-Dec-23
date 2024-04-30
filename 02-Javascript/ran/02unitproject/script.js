@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const saveButton = createSaveButton();
   document.querySelector('#userTable').after(saveButton);
+
+  const userForm = document.getElementById('userForm');
+  userForm.addEventListener('submit', saveUser);
 });
 
 function showTab(tabName) {
@@ -194,6 +197,32 @@ async function saveEditedUser(userId) {
 
   // חזור להצגת המשתמשים
   showTab('viewUsers');
+
+  return false; // מנע טעינה מחדש של הדף
+}
+
+function saveUser() {
+  const userForm = document.getElementById('userForm');
+  const formData = new FormData(userForm);
+  const userData = Object.fromEntries(formData.entries());
+
+  // טען את כל המשתמשים מ־localStorage
+  const users = loadUsers();
+
+  // הוסף את המשתמש החדש למערך המשתמשים
+  users.push(userData);
+
+  // שמור את המשתמשים ב־localStorage
+  saveUsers(users);
+
+  // הצג הודעת אישור למשתמש
+  alert('משתמש נוצר בהצלחה.');
+
+  // נקה את טופס המשתמש
+  userForm.reset();
+
+  // הצג מחדש את רשימת המשתמשים
+  displayUsers(users);
 
   return false; // מנע טעינה מחדש של הדף
 }
