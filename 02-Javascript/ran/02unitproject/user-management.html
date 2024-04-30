@@ -28,21 +28,21 @@
       <h2>רשימת משתמשים</h2>
       <div id="filters"> 
         <label for="filterUsername">שם משתמש:</label>
-        <input type="text" id="filterUsername" placeholder="הזן שם משתמש">
+        <input type="text" id="filterUsername" class="filter" placeholder="הזן שם משתמש">
         <label for="filterEmail">אימייל:</label>
-        <input type="text" id="filterEmail" placeholder="הזן אימייל">
+        <input type="text" id="filterEmail" class="filter" placeholder="הזן אימייל">
         <label for="filterPhone">מספר טלפון:</label>
-        <input type="text" id="filterPhone" placeholder="הזן מספר טלפון">
+        <input type="text" id="filterPhone" class="filter" placeholder="הזן מספר טלפון">
         <label for="filterFullName">שם מלא:</label>
-        <input type="text" id="filterFullName" placeholder="הזן שם מלא">
-        <label for="filterCountry">מדינה:</label>
-        <input type="text" id="filterCountry" placeholder="הזן מדינה">
+        <input type="text" id="filterFullName" class="filter" placeholder="הזן שם מלא">
+        <label for="filterCountry">מדינה:</label
+        <input type="text" id="filterCountry" class="filter" placeholder="הזן מדינה">
         <label for="filterCity">עיר:</label>
-        <input type="text" id="filterCity" placeholder="הזן עיר">
+        <input type="text" id="filterCity" class="filter" placeholder="הזן עיר">
         <label for="filterRegisteredDate">תאריך רישום:</label>
-        <input type="date" id="filterRegisteredDate">
+        <input type="date" id="filterRegisteredDate" class="filter">
         <label for="filterUpdatedDate">תאריך עדכון:</label>
-        <input type="date" id="filterUpdatedDate">
+        <input type="date" id="filterUpdatedDate" class="filter">
         <button onclick="filterUsers()">החל מסננים</button>
       </div>
       <table id="userTable">
@@ -52,7 +52,7 @@
             <th>אימייל</th>
             <th>מספר טלפון</th>
             <th>שם פרטי</th>
-            <th>שם משפחה</th>
+            <th>שם משפחה</th
             <th>רחוב</th>
             <th>עיר</th>
             <th>מדינה</th>
@@ -81,7 +81,7 @@
         <input type="text" id="lastName" name="lastName" required><br>
         <label for="street">רחוב:</label>
         <input type="text" id="street" name="street"><br>
-        <label for="city">עיר:</label
+        <label for="city">עיר:</label>
         <input type="text" id="city" name="city"><br>
         <button type="submit">שמור משתמש</button>
       </form>
