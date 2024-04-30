@@ -176,21 +176,21 @@ function populateUserTable(users) {
     const row = document.createElement('tr');
     row.innerHTML = `
       <!-- כאן אתה יכול להוסיף תאים נוספים עבור כפתורי עריכה ומחיקה -->
-      <td>
+      <th>
         <button onclick="editUser('${user.id}')">עריכה</button>
         <button onclick="prepareDelete('${user.id}')">מחיקה</button>
-      </td>
-      <td>${user.updatedDate}</td>
-      <td>${user.registeredDate}</td>
-      <td>${user.postalCode}</td>
-      <td>${user.country}</td>
-      <td>${user.city}</td>
-      <td>${user.street}</td>
-      <td>${user.lastName}</td>
-      <td>${user.firstName}</td>
-      <td>${user.phone}</td>
-      <td>${user.email}</td>
-      <td>${user.username}</td>
+      </th>
+      <th>${user.updatedDate}</th>
+      <th>${user.registeredDate}</th>
+      <th>${user.postalCode}</th>
+      <th>${user.country}</th>
+      <th>${user.city}</th>
+      <th>${user.street}</th>
+      <th>${user.lastName}</th>
+      <th>${user.firstName}</th>
+      <th>${user.phone}</th>
+      <th>${user.email}</th>
+      <th>${user.username}</th>
     `;
     userTableBody.appendChild(row);
   });
