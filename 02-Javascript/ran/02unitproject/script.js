@@ -151,14 +151,19 @@ function debounce(func, wait) {
   };
 }
 
-function editUser(userId) {
-  // לוגיקת עריכת המשתמש
+async function deleteUser(userId) {
+  let users = await loadUsers();
+  users = users.filter(user => user.id !== userId);
+  await saveUsers(users);
 }
-
-function prepareDelete(userId) {
-  // לוגיקת מחיקת המשתמש
-}
-
-function deleteUser(userId) {
-  // לוגיקת מחיקת המשתמש
+async function editUser(userId) {
+  const users = await loadUsers();
+  const index = users.findIndex(user => user.id === userId);
+  if (index !== -1) {
+    const user = users[index];
+    // כאן תוכל לממש את הלוגיקה לעריכת המשתמש ולעדכון הנתונים בזיכרון
+    // לדוגמה: הצגת טופס עריכה ועדכון המשתמש
+  } else {
+    console.error('משתמש עם המזהה הנתון לא נמצא');
+  }
 }
