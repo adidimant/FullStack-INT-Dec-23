@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    
+</head>
+
+<body>
+    <div class="btnTabs">
+        <button class="userCreateTab" id="userCreateTab">Create User</button>
+        <button class="userViewTab" id="userViewTab">Users View</button>
+    </div>
+    <div class="tabContent1" id="createUserContent">
+        <h2>Create User</h2>
+        <form class="userCreateContainer" id="userCreateContainer">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="tel" id="phone" pattern="[0-9]{10}" placeholder="Phone" required>
+            <input type="text" id="firstname" placeholder="Firs Name" required>
+            <input type="text" id="lastname" placeholder="Last Name" required>
+            <input type="text" id="street" placeholder="Street" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="state" placeholder="State" required>
+            <input type="text" id="country" placeholder="Country" required>
+            <input type="text" id="zipcode" placeholder="Zipcode" required>
+            <button type="submit">Create User</button>
+        </form>
+    </div>
+    <div class="tabContent2" id="userViewContainer">
+        <h2>User View</h2>
+        <div class="filters">
+            <input type="text" id="usernameFilter" placeholder="Username">
+            <input type="email" id="emailFilter" placeholder="Email">
+            <input type="tel" pattern="[0-9]{10}" id="phoneFilter" placeholder="Phone">
+            <input type="text" id="fullnameFilter" placeholder="Full Name">
+            <input type="text" id="countryFilter" placeholder="Country">
+            <input type="text" id="cityFilter" placeholder="city">
+            <input type="text" id="registeredDateFilter" placeholder="Registered Date">
+            <input type="text" id="updatedDateFilter" placeholder="Updated Date">
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Full Name</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Registered Date</th>
+                    <th>Updated Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="tbodyTable">
+    
+            </tbody>
+        </table>
+    </div>
+
+    <div id="undoContainer">
+        <span>Click to undo last delete:</span>
+        <button id="undoButton">Undo</button>
+        <div id="undoProgress"></div>
+    </div>
+    
+    
+
+    <script src="./js.js"></script>
+</body>
+
+</html>

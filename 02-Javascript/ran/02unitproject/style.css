@@ -1,0 +1,209 @@
+/* Reset כללי */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* עיצוב גוף האתר */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7;
+  background: #f8f9fa;
+  color: #333;
+  text-align: center; /* ממרכז את כל התוכן בעמוד */
+}
+
+/* עיצוב הכותרת */
+header {
+  background: linear-gradient(to right, #0056b3, #008ba3);
+  color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center; /* ממרכז את הכותרת */
+}
+
+/* עיצוב הניווט */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* שונה ל-flex כדי לאפשר סידור צדדי */
+  justify-content: flex-end; /* מניח את הניווט בצד ימין */
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* ... שאר הסגנונות נשארים ללא שינוי ... */
+
+/* Flexbox באיזור התוכן */
+.content {
+  display: flex;
+  justify-content: center; /* ממרכז את התוכן */
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px;
+}
+
+
+nav ul li a:hover {
+  color: #e9e9e9;
+}
+
+/* עיצוב התוכן */
+section {
+  padding: 30px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* עיצוב תחתית העמוד */
+footer {
+  text-align: center;
+  padding: 15px 20px;
+  background: #222;
+  color: white;
+}
+
+/* עיצוב טבלאות */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+/* עיצוב כפתורים */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* עיצוב כרטיסיות */
+.tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.tabs li {
+  display: inline-block;
+  background: #eee;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabs li.active {
+  background: #fff;
+}
+
+.tab {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* עיצוב פופאפים */
+#undoBar {
+  background-color: #ffe0e0;
+  padding: 8px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Flexbox כללי */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Flexbox בראש העמוד */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Flexbox באיזור התפריט */
+.menu {
+  display: flex;
+  list-style-type: none;
+}
+
+.menu-item {
+  margin-right: 20px;
+}
+
+/* Flexbox באיזור התוכן */
+.content {
+  display: flex;
+  flex-direction: row-reverse; /* שינוי כיוון הרכיבים לימין */
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #f2f2f2;
+  padding: 20px;
+  order: 2; /* שינוי סדר ה- flex items, כדי שה-sidebar יופיע מימין */
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px;
+  order: 1; /* שינוי סדר ה- flex items, כדי שה-main-content יופיע משמאל */
+}
+
+/* עיצוב רספונסיבי */
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}

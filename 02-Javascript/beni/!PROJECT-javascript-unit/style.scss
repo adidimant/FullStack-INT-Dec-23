@@ -1,0 +1,507 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+$main-header-height: 150px;
+$table-nav-height: 90px;
+$tab-btn: #000000;
+$tab-btn-hover: #424242;
+$tab-btn-active: #000000;
+* {
+  font-family: "IBM Plex Mono", monospace;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+  button,
+  input[type="submit"] {
+    border-top: 3px solid #eee;
+    border-left: 3px solid #eee;
+    border-bottom: 3px solid #777;
+    border-right: 3px solid #777;
+  }
+}
+body {
+  min-width: 650px;
+  background-color: #fff;
+}
+.top-header {
+  position: relative;
+  height: $main-header-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .top-header-top {
+    flex: 1;
+    .top-header-title {
+      padding-top: 20px;
+      padding-left: 20px;
+      font-weight: 500;
+      font-size: 17px;
+    }
+  }
+  .top-header-middle {
+    position: relative;
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 100px;
+    .form-tab-btn,
+    .table-tab-btn {
+      color: #000;
+      background-color: #ccc;
+      height: 40px;
+      width: 120px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      &.active {
+        background-color: $tab-btn;
+        color: #fff;
+      }
+      &:hover {
+        color: #fff;
+        background-color: $tab-btn-hover;
+      }
+      &:active {
+        transform: scale(0.93);
+        color: #fff;
+        background-color: $tab-btn-active;
+      }
+    }
+    &:before {
+      content: "24";
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      position: absolute;
+      top: 25%;
+      left: 20px;
+      cursor: default;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50px;
+      transform: translateY(-50%);
+      height: 70%;
+      border-left: 2px solid #000;
+      cursor: default;
+    }
+    .deleting-user-text {
+      display: none;
+      font-weight: 700;
+      font-size: 14px;
+      color: #ce9000;
+      .first-dot {
+        animation: firstDot 1s infinite reverse;
+      }
+      .second-dot {
+        animation: secondDot 1s infinite reverse;
+      }
+    }
+  }
+  .top-header-bottom {
+    flex: 1;
+    padding-left: 50px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+@keyframes firstDot {
+  0% {
+    opacity: 1;
+  }
+  79% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes secondDot {
+  0% {
+    opacity: 1;
+  }
+  19% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#main {
+  padding-bottom: 20px;
+  height: calc(100vh - $main-header-height);
+  #table-section {
+    display: none;
+    &.active {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .table-nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: auto;
+        margin: 0 auto;
+        width: 97%;
+        height: $table-nav-height;
+        flex-shrink: 0;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+        padding: 10px 10px;
+        .table-nav-title {
+          width: 80px;
+          font-size: 12px;
+          font-weight: 700;
+        }
+        .filter-inputs-wrapper {
+          min-width: 1000px;
+          display: flex;
+          gap: 10px;
+          .filter-input-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2px;
+            width: 50%;
+            label {
+              font-size: 13px;
+            }
+            input {
+              color: #111;
+              font-size: 12px;
+              font-weight: 500;
+              height: 24px;
+              width: 100%;
+              border-top: 3px solid #777;
+              border-left: 3px solid #777;
+              border-bottom: 3px solid #ccc;
+              border-right: 3px solid #ccc;
+              outline: none;
+              padding: 0 5px;
+              &:focus {
+                background-color: #eee;
+                border-top: 3px solid #333;
+                border-left: 3px solid #333;
+                border-bottom: 3px solid #888;
+                border-right: 3px solid #888;
+              }
+            }
+          }
+        }
+      }
+      .undo-btn-container {
+        visibility: hidden;
+        padding: 15px 0 0 50px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .undo-btn {
+          background-color: #000;
+          font-weight: 600;
+          color: #fff;
+          width: 50px;
+          height: 25px;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.93);
+          }
+        }
+        .undo-counter-container {
+          display: flex;
+          gap: 2px;
+          padding: 2px;
+          width: 80px;
+          height: 20px;
+          border: 2px solid #000;
+          .undo-counter-bar {
+            flex: 1;
+            background: #1740c7;
+          }
+        }
+      }
+      .table-main {
+        overflow: auto;
+        padding: 0 50px;
+        .popup-container {
+          display: none;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #ddd;
+          border-top: 3px solid #bbb;
+          border-left: 3px solid #bbb;
+          border-bottom: 3px solid #111;
+          border-right: 3px solid #111;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          height: 250px;
+          width: 420px;
+          .popup-title {
+            background: #051f91;
+            width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #eee;
+          }
+          .text-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px;
+            .popup-warning-icon {
+              background-color: #e10000;
+              flex: 0 0 auto;
+              height: 100px;
+              width: 100px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 60px;
+              font-weight: 700;
+              color: #fff;
+              border: 10px solid #9c0909;
+            }
+            .popup-text {
+              font-size: 16px;
+              font-weight: 500;
+              color: #000;
+              .yes-text {
+                color: #e10000;
+              }
+            }
+          }
+          .popup-btn-container {
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            button {
+              height: 32px;
+              width: 60px;
+              font-size: 16px;
+              font-weight: 600;
+              color: #000;
+              background-color: #ddd;
+              cursor: pointer;
+              &:active {
+                transform: scale(0.97);
+              }
+            }
+            .popup-confirm-btn {
+              color: #e10000;
+            }
+          }
+        }
+        #users-table {
+          width: 100%;
+          border-collapse: collapse;
+          .del-row-btn,
+          .edit-row-btn {
+            font-weight: 600;
+            background: none;
+            padding: 1px 5px;
+            cursor: pointer;
+            &:active {
+              transform: scale(0.93);
+            }
+            &:disabled {
+              filter: brightness(0.7);
+              -webkit-filter: brightness(0.7);
+            }
+          }
+          .del-row-btn {
+            background-color: #e10000;
+            color: #fff;
+          }
+          tr {
+            border-top: 1px solid #ddd;
+            height: 50px;
+          }
+          thead tr {
+            border: none;
+            th {
+              color: #000;
+              padding: 0 7px;
+              text-align: start;
+              font-weight: 600;
+              &:first-child {
+                width: 135px;
+                min-width: 135px;
+              }
+              &:nth-child(2) {
+                width: 200px;
+                min-width: 200px;
+              }
+              &:nth-child(3) {
+                width: 120px;
+                min-width: 120px;
+              }
+              &:nth-child(4) {
+                width: 200px;
+                min-width: 200px;
+              }
+              &:nth-child(5) {
+                width: 100px;
+                min-width: 100px;
+              }
+              &:nth-child(6) {
+                width: 130px;
+                min-width: 130px;
+              }
+              &:nth-child(7) {
+                width: 130px;
+                max-width: 130px;
+              }
+              &:nth-last-child(-n + 2) {
+                width: 115px;
+                min-width: 115px;
+              }
+            }
+          }
+          tbody tr:hover {
+            background-color: #e8e8e8;
+          }
+          td {
+            padding: 0 7px;
+            font-weight: 500;
+            font-size: 14px;
+            height: 40px;
+            color: #333;
+            .edit-input {
+              width: 90%;
+              padding: 0 7px;
+              border-top: 3px solid #777;
+              border-left: 3px solid #777;
+              border-bottom: 3px solid #ccc;
+              border-right: 3px solid #ccc;
+              color: #111;
+              font-weight: 600;
+              font-size: 14px;
+              height: 30px;
+              &:focus {
+                outline: none;
+                border-top: 3px solid #333;
+                border-left: 3px solid #333;
+                border-bottom: 3px solid #888;
+                border-right: 3px solid #888;
+                background-color: #eee;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #form-section {
+    display: none;
+    &.active {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      .user-form-error {
+        visibility: hidden;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #e10000;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      #create-user-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border: 3px solid #555;
+        background-color: #aaa;
+        padding: 38px;
+        .input-container {
+          display: flex;
+          gap: 20px;
+          .left,
+          .right {
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+          label {
+            font-weight: 600;
+            font-size: 18px;
+          }
+          input:not([type="submit"]) {
+            font-size: 14px;
+            font-weight: 500;
+            height: 35px;
+            padding: 0 5px;
+            border-top: 3px solid #777;
+            border-left: 3px solid #777;
+            border-bottom: 3px solid #ccc;
+            border-right: 3px solid #ccc;
+            &:focus {
+              outline: none;
+              border-top: 3px solid #333;
+              border-left: 3px solid #333;
+              border-bottom: 3px solid #888;
+              border-right: 3px solid #888;
+              background-color: #ddd;
+            }
+            &:disabled {
+              background-color: #aaa;
+            }
+          }
+        }
+        .submit-form-btn {
+          align-self: center;
+          width: 170px;
+          height: 45px;
+          font-size: 18px;
+          font-weight: 600;
+          background: #111;
+          color: #fff;
+          cursor: pointer;
+          &:active {
+            transform: scale(0.97);
+          }
+          &.inactive {
+            background-color: #aaa;
+            cursor: default;
+            &:active {
+              transform: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1055px) {
+  #main #table-section.active .table-nav {
+    height: 100px;
+  }
+}
