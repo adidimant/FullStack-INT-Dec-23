@@ -202,4 +202,8 @@ async function deleteUser(userId) {
     await saveUsers(users);
     displaySavedUsers();  // ריענון הטבלה לאחר מחיקה
   }
+}function prepareDelete(userId) {
+  if (confirm('האם אתה בטוח שברצונך למחוק משתמש זה?')) {
+    deleteUser(userId);
+  }
 }
