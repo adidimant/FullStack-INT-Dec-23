@@ -1,0 +1,42 @@
+
+@import "_config";
+@import "./body";
+
+.container {
+  border-radius: 10px;
+  margin: auto;
+  width: 70%;
+  padding: 30px;
+  background-color: rgb(51, 55, 65);
+  color: white;
+  font-size: 30px;
+  box-shadow: 5px 20px 100px rgba(black, 0.8) ;
+
+  .title{
+    text-align: center;
+  }
+  .actionsdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .menu-btn{
+    font-size: larger;
+    padding: 20px;
+    text-decoration: none;
+    margin: 25px auto;
+    background-color: rgb(41, 39, 39);
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    &:active {
+      background-color: beige;
+      color: black;
+    }
+    &:hover{
+      box-shadow: 5px 5px 10px rgba(rgb(248, 248, 248), 0.2) ;
+    }
+  }
+}

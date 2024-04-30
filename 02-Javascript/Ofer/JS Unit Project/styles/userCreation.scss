@@ -1,0 +1,75 @@
+@import "_config";
+@import "./body";
+
+.container {
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  width: 70%;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgb(51, 55, 65);
+  color: white;
+  font-size: 30px;
+
+
+  .title {
+    text-align: center;
+  }
+
+  form {
+    width: 50%;
+    margin: auto;
+
+    .labels {
+      font-size: large;
+    }
+
+    .required-label {
+      &::after {
+        content: '*';
+        color: red;
+        font-size: smaller;
+      }
+    }
+
+    .inputs {
+      width: 100%;
+      padding: 5px 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      font-size: 17px;
+      border-radius: 10px;
+      &:invalid:focus{
+        background-color: rgb(221, 146, 146);
+      }
+    }
+
+
+
+  }
+
+  .btns {
+    display: block;
+    width: fit-content;
+    font-size: larger;
+    padding: 10px;
+    text-decoration: none;
+    margin-top: 40px;
+    background-color: rgb(41, 39, 39);
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:active {
+      background-color: beige;
+      color: black;
+    }
+
+    &:hover {
+      box-shadow: 5px 5px 10px rgba(rgb(248, 248, 248), 0.2);
+      cursor: pointer;
+    }
+  }
+}
