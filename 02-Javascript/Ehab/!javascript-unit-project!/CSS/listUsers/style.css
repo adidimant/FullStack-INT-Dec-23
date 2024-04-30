@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.filterContainer, .filterContainer h2{
+    display: inline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    padding-top: 10px;
+    overflow: hidden;
+}
+.container .tableHeader{
+    background-color: #D4D4D4;
+}
+.container .tableHeader div{
+    width: 150px; 
+    height: 26px; 
+    border: 1px solid gray; 
+    font-weight: bold; 
+    padding-top: 8px;
+}
+.container .tableHeader, .tableRow{
+    display: flex;
+    flex-direction: row;
+}
+.container .tableRow div .fullSize{
+    background-color: #F0F2F5;
+    width: 93%;
+    height: 65%;
+    padding: 5px;
+    border: none;
+}
+.filterContainer .hideFilter{
+    display: none;
+}
+.filterContainer .showFilter{
+    display: inline;
+}
+.filterContainer div{
+    display: inline;
+}
+.customFontSize{
+    font-size: 130%;
+}
+#FilterIcon, .fa-trash-alt, .fa-edit, .fa-save {
+    cursor: pointer;
+}
+.filterInput{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 150px;
+    position: absolute;
+    border-radius: 25px;
+}
+.filterInputHide{
+    display: none;
+}
+.filterInput input[type='text']{
+    max-width: 100%;
+    height: 30px;
+    background-color: #D4D4D4;
+    border: 1px solid gray;
+    outline: none;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 0;
+}
+.filterInput input[type='button']{
+    background-color: #D4D4D4;
+    border: 1px solid gray;
+    border-top: none;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.undo-container {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 600px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #F0F2F5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.undo-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.progress-bar {
+    border-radius: 25px;
+    height: 35px;
+    background-color: #cccccc;
+    width: 522px;
+    position: relative;
+}
