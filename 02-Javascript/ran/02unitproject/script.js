@@ -25,19 +25,36 @@ document.addEventListener('DOMContentLoaded', async () => {
       tab.addEventListener('click', () => showTab(tab.dataset.tabname));
   });
 
+  const filterButton = document.getElementById('filterUsersButton');
+  if (filterButton) {
+      filterButton.addEventListener('click', filterUsersAndSave);
+  }
+
   const userForm = document.getElementById('userForm');
   if (userForm) {
       userForm.addEventListener('submit', async event => {
           event.preventDefault();
-          await saveUser();
+          const formData = new FormData(userForm);
+          const newUser = Object.fromEntries(formData.entries());
+          newUser.registeredDate = new Date().toISOString().split('T')[0];
+          newUser.updatedDate = newUser.registeredDate;
+
+          if (await validateNewUser(newUser)) {
+              await saveNewUser(newUser);
+              userForm.reset();
+              alert('User created successfully');
+          } else {
+              alert('Username or email already exists.');
+          }
       });
   }
 
-  setInterval(loadUsersIntoTable, 30000);  // Refresh the user table every 30 seconds
+  setInterval(loadUsers, 30000);  // Refresh the user table every 30 seconds
 });
 
 async function loadUsers() {
-  return JSON.parse(localStorage.getItem('users') || '[]');
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  populateUserTable(users);
 }
 
 function populateUserTable(users) {
@@ -57,35 +74,8 @@ function populateUserTable(users) {
   });
 }
 
-async function saveUser() {
-  const formData = new FormData(document.getElementById('userForm'));
-  const newUser = Object.fromEntries(formData.entries());
-  newUser.registeredDate = new Date().toISOString().split('T')[0];
-  newUser.updatedDate = newUser.registeredDate;
-
-  if (await validateNewUser(newUser)) {
-      await saveNewUser(newUser);
-      document.getElementById('userForm').reset();
-      alert('User created successfully');
-  } else {
-      alert('Username or email already exists.');
-  }
-}
-
-async function editUser(userId) {
-  const users = await loadUsers();
-  const user = users.find(u => u.id === userId);
-  if (user) {
-      const form = document.getElementById('userForm');
-      Object.keys(user).forEach(key => {
-          if (form.elements[key]) form.elements[key].value = user[key];
-      });
-      form.scrollIntoView();
-  }
-}
-
 async function saveNewUser(user) {
-  const users = await loadUsers();
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
   users.push(user);
   await saveUsers(users);
   populateUserTable(users);
@@ -97,22 +87,38 @@ async function saveUsers(users) {
 
 function showTab(tabName) {
   const tabs = document.querySelectorAll('.tab');
-  tabs.forEach(tab => {
-      const tabContent = document.getElementById(tab.dataset.tabname);
-      if (tabContent) {
-          tabContent.style.display = tab.dataset.tabname === tabName ? 'block' : 'none';
-          tab.classList.toggle('active', tab.dataset.tabname === tabName);
-      }
-  });
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabContents.forEach(content => content.style.display = 'none');
+  
+  document.querySelector(`#${tabName}`).style.display = 'block';
+  document.querySelector(`.tab[data-tabname='${tabName}']`).classList.add('active');
 }
 
 async function validateNewUser(newUser) {
-  const users = await loadUsers();
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
   return !users.some(user => user.username === newUser.username || user.email === newUser.email);
 }
 
+async function editUser(userId) {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const user = users.find(u => u.id === userId);
+  if (user) {
+      const form = document.getElementById('userForm');
+      Object.keys(user).forEach(key => {
+          if (form.elements[key]) form.elements[key].value = user[key];
+      });
+      form.scrollIntoView();
+  }
+}
+
+function filterUsersAndSave() {
+  console.log('Filter and save logic goes here.');
+  // Implementation needed
+}
+
 async function deleteUser(userId) {
-  const users = await loadUsers();
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
   const updatedUsers = users.filter(user => user.id !== userId);
   await saveUsers(updatedUsers);
   populateUserTable(updatedUsers);
