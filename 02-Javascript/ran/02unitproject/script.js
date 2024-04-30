@@ -90,6 +90,8 @@ function displayUsers(users) {
 }
 
 function displaySavedUsers() {
+  const savedUsersTable = document.getElementById('savedUsersTable');
+  savedUsersTable.style.display = 'block';  // ודא שהטבלה תוצג כאשר הלשונית נבחרת
   const savedUserTableBody = document.getElementById('savedUserTableBody');
   const usersData = JSON.parse(localStorage.getItem('savedUsers') || '[]');
   savedUserTableBody.innerHTML = '';
