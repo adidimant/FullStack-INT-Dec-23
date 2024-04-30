@@ -35,7 +35,7 @@
         <input type="text" id="filterPhone" class="filter" placeholder="הזן מספר טלפון">
         <label for="filterFullName">שם מלא:</label>
         <input type="text" id="filterFullName" class="filter" placeholder="הזן שם מלא">
-        <label for="filterCountry">מדינה:</label
+        <label for="filterCountry">מדינה:</label>
         <input type="text" id="filterCountry" class="filter" placeholder="הזן מדינה">
         <label for="filterCity">עיר:</label>
         <input type="text" id="filterCity" class="filter" placeholder="הזן עיר">
@@ -52,7 +52,7 @@
             <th>אימייל</th>
             <th>מספר טלפון</th>
             <th>שם פרטי</th>
-            <th>שם משפחה</th
+            <th>שם משפחה</th>
             <th>רחוב</th>
             <th>עיר</th>
             <th>מדינה</th>
@@ -63,6 +63,27 @@
           </tr>
         </thead>
         <tbody id="userTableBody"> </tbody>
+      </table>
+      <!-- טבלה נוספת למשתמשים שנשמרו -->
+      <h3>משתמשים שנשמרו</h3>
+      <table id="savedUsersTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>שם משתמש</th>
+            <th>אימייל</th>
+            <th>מספר טלפון</th>
+            <th>שם פרטי</th>
+            <th>שם משפחה</th>
+            <th>רחוב</th>
+            <th>עיר</th>
+            <th>מדינה</th>
+            <th>קוד דואר</th>
+            <th>תאריך רישום</th>
+            <th>תאריך עדכון</th>
+            <th>פעולות</th>
+          </tr>
+        </thead>
+        <tbody id="savedUserTableBody"></tbody>
       </table>
     </div>
 
@@ -77,7 +98,7 @@
         <input type="text" id="phone" name="phone"><br>
         <label for="firstName">שם פרטי:</label>
         <input type="text" id="firstName" name="firstName" required><br>
-        <label for="lastName">שם משפחה:</label>
+        <label for="lastName">שם משפחה:</label
         <input type="text" id="lastName" name="lastName" required><br>
         <label for="street">רחוב:</label>
         <input type="text" id="street" name="street"><br>
