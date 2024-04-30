@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
   populateUserTable(users);
+  showTab('viewUsers'); // תצוגת המשתמשים תתחיל ברשימת המשתמשים
 
   const tabsContainer = document.querySelector('.tabs');
   tabsContainer.addEventListener('click', function(event) {
