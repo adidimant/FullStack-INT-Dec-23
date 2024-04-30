@@ -195,3 +195,11 @@ function populateUserTable(users) {
     userTableBody.appendChild(row);
   });
 }
+async function deleteUser(userId) {
+  if (confirm('האם אתה בטוח שברצונך למחוק משתמש זה?')) {
+    let users = await loadUsers();
+    users = users.filter(user => user.id !== userId);
+    await saveUsers(users);
+    displaySavedUsers();  // ריענון הטבלה לאחר מחיקה
+  }
+}
