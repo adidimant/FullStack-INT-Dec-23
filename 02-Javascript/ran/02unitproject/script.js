@@ -1,26 +1,3 @@
-function showTab(tabName) {
-  // מסתיר את כל הטאבים
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach(tab => {
-    const tabContent = document.getElementById(tab.getAttribute('onclick').replace("showTab('", "").replace("')", ""));
-    if (tabContent) {
-      tabContent.style.display = 'none';
-    }
-    tab.classList.remove('active');
-  });
-
-  // מציג את הטאב הנבחר
-  const selectedTab = document.getElementById(tabName);
-  if (selectedTab) {
-    selectedTab.style.display = 'block';
-  }
-  const selectedTabButton = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
-  if (selectedTabButton) {
-    selectedTabButton.classList.add('active');
-  }
-}
-
-
 document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
   displayUsers(users);
@@ -33,6 +10,35 @@ document.addEventListener('DOMContentLoaded', async () => {
   const saveButton = createSaveButton();
   document.querySelector('#userTable').after(saveButton); // הוספת הכפתור מתחת לטבלה
 });
+
+function showTab(tabName) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    const tabContent = document.getElementById(tab.getAttribute('onclick').replace("showTab('", "").replace("')", ""));
+    if (tabContent) {
+      tabContent.style.display = 'none';
+    }
+    tab.classList.remove('active');
+  });
+
+  const selectedTab = document.getElementById(tabName);
+  if (selectedTab) {
+    selectedTab.style.display = 'block';
+  }
+  const selectedTabButton = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
+  if (selectedTabButton) {
+    selectedTabButton.classList.add('active');
+  }
+
+  // הצג או הסתר את טבלת המשתמשים השמורים בהתאם לטאב
+  const savedUsersTable = document.getElementById('savedUsersTable');
+  if (tabName === 'viewUsers') {
+    savedUsersTable.style.display = 'table'; // הצג את הטבלה
+    displaySavedUsers(); // טען והצג את הנתונים של המשתמשים השמורים
+  } else {
+    savedUsersTable.style.display = 'none'; // הסתר את הטבלה
+  }
+}
 
 function createSaveButton() {
   const button = document.createElement('button');
@@ -71,6 +77,19 @@ function displayUsers(users) {
         cell.innerHTML = `<button onclick="editUser('${user.userId}')">ערוך</button>
                           <button onclick="prepareDelete('${user.userId}')">מחק</button>`;
       }
+    });
+  });
+}
+
+function displaySavedUsers() {
+  const savedUserTableBody = document.getElementById('savedUserTableBody');
+  const usersData = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+  savedUserTableBody.innerHTML = '';
+  usersData.forEach(user => {
+    const row = savedUserTableBody.insertRow();
+    Object.entries(user).forEach(([key, value]) => {
+      const cell = row.insertCell();
+      cell.textContent = value;
     });
   });
 }
