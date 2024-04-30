@@ -3,18 +3,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   displayUsers(users);
 
   // טיפול במסננים
-  const filters = document.querySelectorAll('.filter'); // וודא שזו השורה הנכונה לאחר שה-DOM נטען
+  const filters = document.querySelectorAll('.filter');
   filters.forEach(filter => filter.addEventListener('keyup', debounce(filterUsers, 300)));
 
   // הוספת כפתור שמירת משתמשים
   const saveButton = createSaveButton();
-  document.querySelector('#userTable').after(saveButton); // הוספת הכפתור מתחת לטבלה
+  document.querySelector('#userTable').after(saveButton);
+
+  // Event delegation for dynamically added tab buttons
+  document.querySelector('.tabs').addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI' && event.target.hasAttribute('onclick')) {
+      const tabName = event.target.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+      showTab(tabName);
+    }
+  });
 });
 
 function showTab(tabName) {
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => {
-    const tabContent = document.getElementById(tab.getAttribute('onclick').replace("showTab('", "").replace("')", ""));
+    const tabContentId = tab.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+    const tabContent = document.getElementById(tabContentId);
     if (tabContent) {
       tabContent.style.display = 'none';
     }
@@ -25,25 +34,24 @@ function showTab(tabName) {
   if (selectedTab) {
     selectedTab.style.display = 'block';
   }
-  const selectedTabButton = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
+  const selectedTabButton = document.querySelector(`.tab[onclick*='${tabName}']`);
   if (selectedTabButton) {
     selectedTabButton.classList.add('active');
   }
 
-  // הצג או הסתר את טבלת המשתמשים השמורים בהתאם לטאב
   const savedUsersTable = document.getElementById('savedUsersTable');
   if (tabName === 'viewUsers') {
-    savedUsersTable.style.display = 'table'; // הצג את הטבלה
-    displaySavedUsers(); // טען והצג את הנתונים של המשתמשים השמורים
+    savedUsersTable.style.display = 'table';
+    displaySavedUsers();
   } else {
-    savedUsersTable.style.display = 'none'; // הסתר את הטבלה
+    savedUsersTable.style.display = 'none';
   }
 }
 
 function createSaveButton() {
   const button = document.createElement('button');
   button.textContent = 'שמור את כל המשתמשים';
-  button.style.cssText = "display:block; margin-left:auto; margin-right:auto;"; // ממקם את הכפתור במרכז בתחתית הטבלה
+  button.style.cssText = "display:block; margin-left:auto; margin-right:auto;";
   button.onclick = saveAllUsers;
   return button;
 }
@@ -96,7 +104,7 @@ function displaySavedUsers() {
 
 function filterUsers() {
   loadUsers().then(users => {
-    const filters = document.querySelectorAll('.filter'); // מחדש את הגדרת filters
+    const filters = document.querySelectorAll('.filter');
     const filteredUsers = users.filter(user => {
       return Array.from(filters).every(filter => {
         const key = filter.id.replace('filter', '').toLowerCase();
