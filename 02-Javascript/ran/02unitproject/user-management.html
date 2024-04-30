@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ניהול משתמשים - ComTel</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-  
-  </style>
 </head>
 <body>
   <header>
@@ -71,7 +68,7 @@
 
     <div id="createUser" class="tab" style="display: none;"> 
       <h2>יצירת משתמש</h2>
-      <form id="userForm" onsubmit="saveUser(); return false;">
+      <form id="userForm" onsubmit="return saveUser();">
         <label for="username">שם משתמש:</label>
         <input type="text" id="username" name="username" required><br>
         <label for="email">אימייל:</label>
@@ -84,9 +81,9 @@
         <input type="text" id="lastName" name="lastName" required><br>
         <label for="street">רחוב:</label>
         <input type="text" id="street" name="street"><br>
-        <label for="city">עיר:</label>
+        <label for="city">עיר:</label
         <input type="text" id="city" name="city"><br>
-        <button onclick="saveUser()">שמור משתמש</button>
+        <button type="submit">שמור משתמש</button>
       </form>
     </div>
   </section>
