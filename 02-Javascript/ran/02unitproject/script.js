@@ -193,3 +193,17 @@ function populateUserTable(users) {
     userTableBody.appendChild(row);
   });
 }
+// איתור האלמנט המתאים בטבלה לפי מזהה משתמש והפעלת פונקציית עריכה
+function editUser(userId) {
+  // לוגיקת עריכת המשתמש
+}
+
+// הכנת המשתמש למחיקה
+function prepareDelete(userId) {
+  // לוגיקת מחיקת המשתמש
+}
+
+// מחיקת משתמש
+function deleteUser(userId) {
+  // לוגיקת מחיקת המשתמש
+}
