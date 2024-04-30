@@ -1,3 +1,26 @@
+function showTab(tabName) {
+  // מסתיר את כל הטאבים
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    const tabContent = document.getElementById(tab.getAttribute('onclick').replace("showTab('", "").replace("')", ""));
+    if (tabContent) {
+      tabContent.style.display = 'none';
+    }
+    tab.classList.remove('active');
+  });
+
+  // מציג את הטאב הנבחר
+  const selectedTab = document.getElementById(tabName);
+  if (selectedTab) {
+    selectedTab.style.display = 'block';
+  }
+  const selectedTabButton = document.querySelector(`.tab[onclick="showTab('${tabName}')"]`);
+  if (selectedTabButton) {
+    selectedTabButton.classList.add('active');
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
   displayUsers(users);
