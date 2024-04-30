@@ -2,61 +2,36 @@ document.addEventListener('DOMContentLoaded', async () => {
   const users = await loadUsers();
   populateUserTable(users);
 
-  const userTableBody = document.getElementById('userTableBody');
-  userTableBody.addEventListener('click', function(event) {
-    const userId = event.target.closest('tr').dataset.userId;
-    if (event.target.textContent === 'עריכה') {
-      editUser(userId);
-    } else if (event.target.textContent === 'מחיקה') {
-      deleteUser(userId);
+  const userTable = document.getElementById('userTable');
+  userTable.addEventListener('click', event => {
+    if (event.target.tagName === 'BUTTON') {
+      const userId = event.target.closest('tr').dataset.userId;
+      if (event.target.textContent.includes('עריכה')) {
+        editUser(userId);
+      } else if (event.target.textContent.includes('מחיקה')) {
+        deleteUser(userId);
+      }
     }
   });
 
-  const saveButton = createSaveButton();
-  document.querySelector('#userTable').after(saveButton);
-
   const userForm = document.getElementById('userForm');
-  userForm.addEventListener('submit', saveUser);
+  userForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const formData = new FormData(userForm);
+    const newUser = Object.fromEntries(formData.entries());
+    newUser.registeredDate = new Date(newUser.registeredDate).toLocaleDateString();
+    await saveNewUser(newUser);
+    userForm.reset();
+    alert('משתמש נשמר בהצלחה');
+    const users = await loadUsers();
+    populateUserTable(users);
+  });
 });
 
-function createSaveButton() {
-  const button = document.createElement('button');
-  button.textContent = 'שמור את כל המשתמשים';
-  button.onclick = saveAllUsers;
-  return button;
-}
-
-async function saveAllUsers() {
+async function saveNewUser(user) {
   const users = await loadUsers();
+  users.push(user);
   await saveUsers(users);
-  alert('כל המשתמשים נשמרו בהצלחה');
-  displaySavedUsers();
-}
-
-async function saveUser(event) {
-  event.preventDefault();
-  const form = event.target;
-  const newUser = {
-    username: form.username.value,
-    email: form.email.value,
-    phone: form.phone.value,
-    firstName: form.firstName.value,
-    lastName: form.lastName.value,
-    street: form.street.value,
-    city: form.city.value,
-    country: form.country.value,
-    postalCode: form.postalCode.value,
-    registeredDate: new Date().toLocaleDateString()
-  };
-  await saveNewUser(newUser);
-}
-
-async function loadUsers() {
-  return JSON.parse(localStorage.getItem('users') || '[]');
-}
-
-async function saveUsers(users) {
-  localStorage.setItem('users', JSON.stringify(users));
 }
 
 function populateUserTable(users) {
@@ -85,41 +60,23 @@ function populateUserTable(users) {
   });
 }
 
-async function deleteUser(userId) {
-  const users = await loadUsers();
-  const filteredUsers = users.filter(user => user.id !== userId);
-  await saveUsers(filteredUsers);
-  populateUserTable(filteredUsers);
-}
-
 async function editUser(userId) {
   const users = await loadUsers();
   const user = users.find(user => user.id === userId);
   if (user) {
     const form = document.getElementById('userForm');
-    form.username.value = user.username;
-    form.email.value = user.email;
-    form.phone.value = user.phone;
-    form.firstName.value = user.firstName;
-    form.lastName.value = user.lastName;
-    form.street.value = user.street;
-    form.city.value = user.city;
-    form.country.value = user.country;
-    form.postalCode.value = user.postalCode;
-    form.querySelector('button[type="submit"]').textContent = 'עדכן משתמש';
+    Object.keys(user).forEach(key => {
+      if (form[key]) {
+        form[key].value = user[key];
+      }
+    });
     window.scrollTo(0, 0);
   }
 }
 
-async function saveNewUser(user) {
+async function deleteUser(userId) {
   const users = await loadUsers();
-  const index = users.findIndex(u => u.id === user.id);
-  if (index !== -1) {
-    users[index] = user;
-  } else {
-    user.id = Date.now().toString();
-    users.push(user);
-  }
-  await saveUsers(users);
-  populateUserTable(users);
+  const updatedUsers = users.filter(user => user.id !== userId);
+  await saveUsers(updatedUsers);
+  populateUserTable(updatedUsers);
 }
