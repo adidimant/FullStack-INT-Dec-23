@@ -76,7 +76,7 @@ function showTab(tabName) {
 }
 
 function filterUsersAndSave() {
-  // Placeholder for filtering logic
+  // פונקציית סינון משתמשים ושמירתם. יש להשלים את הלוגיקה על פי הצורך.
   console.log('Filter and save logic goes here.');
 }
 
