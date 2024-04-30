@@ -128,7 +128,74 @@ function debounce(func, wait) {
 }
 
 function editUser(userId) {
-  // כאן תוכל להוסיף קוד לעריכת משתמש
+  const userRow = document.getElementById(`user-${userId}`);
+  const userCells = userRow.getElementsByTagName('td');
+  let userData = {};
+
+  // קבל את הנתונים של המשתמש מתוך השורה
+  for (let i = 0; i < userCells.length - 1; i++) {
+    const key = userCells[i].parentNode.cells[i].textContent;
+    const value = userCells[i].textContent;
+    userData[key] = value;
+  }
+
+  // הצג טופס לעריכת המשתמש
+  const editForm = document.createElement('form');
+  editForm.id = 'editForm';
+  editForm.onsubmit = () => saveEditedUser(userId);
+  
+  // יצירת כל שדה המידע כקלט בטופס
+  Object.entries(userData).forEach(([key, value]) => {
+    const label = document.createElement('label');
+    label.textContent = key;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = value;
+    input.name = key.replace(/\s+/g, '-').toLowerCase();
+    editForm.appendChild(label);
+    editForm.appendChild(input);
+    editForm.appendChild(document.createElement('br'));
+  });
+
+  const saveButton = document.createElement('button');
+  saveButton.type = 'submit';
+  saveButton.textContent = 'שמור שינויים';
+  editForm.appendChild(saveButton);
+
+  // החלף את השורה בטופס העריכה
+  userRow.innerHTML = '';
+  const cell = userRow.insertCell();
+  cell.colSpan = userCells.length;
+  cell.appendChild(editForm);
+}
+
+async function saveEditedUser(userId) {
+  const editForm = document.getElementById('editForm');
+  const formData = new FormData(editForm);
+  const editedUserData = Object.fromEntries(formData.entries());
+
+  // טען את כל המשתמשים מ־localStorage
+  const users = await loadUsers();
+
+  // עדכן את נתוני המשתמש במערך המשתמשים
+  const editedIndex = users.findIndex(user => user.userId === userId);
+  if (editedIndex !== -1) {
+    users[editedIndex] = { ...users[editedIndex], ...editedUserData };
+  }
+
+  // שמור את המשתמשים ב־localStorage
+  await saveUsers(users);
+
+  // עדכן את התצוגה של הטבלה
+  displayUsers(users);
+
+  // הצג הודעת אישור למשתמש
+  alert('נתוני המשתמש עודכנו בהצלחה.');
+
+  // חזור להצגת המשתמשים
+  showTab('viewUsers');
+
+  return false; // מנע טעינה מחדש של הדף
 }
 
 function prepareDelete(userId) {
