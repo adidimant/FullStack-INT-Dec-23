@@ -6,28 +6,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Error loading users:", error);
   }
 
+  // תיקון לבעיית האלמנט שלא נמצא
   const userTableBody = document.getElementById('userTableBody');
-  userTableBody.addEventListener('click', event => {
-    if (event.target.tagName === 'BUTTON') {
-      const userId = event.target.closest('tr').dataset.userId;
-      if (event.target.textContent.includes('עריכה')) {
-        editUser(userId);
-      } else if (event.target.textContent.includes('מחיקה')) {
-        deleteUser(userId);
+  if (userTableBody) {
+    userTableBody.addEventListener('click', event => {
+      if (event.target.tagName === 'BUTTON') {
+        const userId = event.target.closest('tr').dataset.userId;
+        if (event.target.textContent.includes('עריכה')) {
+          editUser(userId);
+        } else if (event.target.textContent.includes('מחיקה')) {
+          deleteUser(userId);
+        }
       }
-    }
+    });
+  }
+
+  // מקשר את הטאבים בהתאם לקיום הכיתה
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => showTab(tab.dataset.tabname));
   });
 
-  document.querySelector('.tabs').addEventListener('click', function(event) {
-    if (event.target.classList.contains('tab')) {
-      showTab(event.target.getAttribute('data-tabname'));
-    }
-  });
+  // אם יש כפתור לסינון, מוסיף לו אירוע
+  const filterButton = document.getElementById('filterUsersButton');
+  if (filterButton) {
+    filterButton.addEventListener('click', filterUsersAndSave);
+  }
 
-  document.getElementById('filterUsersButton').addEventListener('click', filterUsersAndSave);
-
+  // פונקציית טיפול בטופס
   const userForm = document.getElementById('userForm');
-  userForm.addEventListener('submit', saveUser);
+  if (userForm) {
+    userForm.addEventListener('submit', saveUser);
+  }
 });
 
 async function loadUsers() {
@@ -76,7 +86,6 @@ function showTab(tabName) {
 }
 
 function filterUsersAndSave() {
-  // פונקציית סינון משתמשים ושמירתם. יש להשלים את הלוגיקה על פי הצורך.
   console.log('Filter and save logic goes here.');
 }
 
