@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Page</title>
+    <link rel="stylesheet" href="/02-Javascript/michael/js-projct/css/manage-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rye&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/02-Javascript/michael/js-projct/photos/favicon.ico">
+
+</head>
+<body>
+    <div class="navdiv">
+        <img src="/02-Javascript/michael/menuicon.png" alt="MENU ICON" height="35px" width="40px" style="margin-top: 20px; margin-left: 25px;">
+        <nav>
+            <ul class="navul">
+                <li class="navli" title="our home page"> <a class="nava" href="/02-Javascript/michael/js-projct/html/homepage.html">home 🏠</a></li>
+                <li class="navli2" title="what this site is able to do?"><a class="nava" href="/02-Javascript/michael/js-projct/html/info.html">info ℹ️</a> </li>
+                <li class="navli" title="register your user information to the local storage"> <a class="nava" href="/02-Javascript/michael/js-projct/html/register.html">register 📝</a> </li>    
+                <li class="navli" title="manage your info"> <a class="nava" href="/02-Javascript/michael/js-projct/html/manage.html">manage 📊</a> </li>
+            </ul>
+        </nav>
+        <p style="color: white; margin-top: 25px; margin-left: 20px; font-size: larger;">- JavaScript - P r o j e c t - U s e r s - M a n a g e m e n t - W e b s i t e - </p>
+    </div>
+
+    <div>
+        <p style="text-align: right; margin-right: 20px; color: white;" id="lastUpdatedText" class="pUpdated">Last Updated: -</p>
+    </div>
+
+    
+    <div class="filter-section">
+        <h4>Filter your search</h4>
+        <form id="filterForm">
+            <label for="filterKey">Filter By:</label>
+            <select id="filterKey" name="filterKey">
+                <option value="Username">Username</option>
+                <option value="Email">Email</option>
+                <option value="First Name">First Name</option>
+                <option value="Last Name">Last Name</option>
+                <option value="Phone">Phone</option>
+                <option value="Street">Street</option>
+                <option value="City">City</option>
+                <option value="State">State</option>
+                <option value="Country">Country</option>
+                <option value="Zipcode">Zipcode</option>
+            </select>
+            <label for="searchInput">Search:</label>
+            <input type="text" id="searchInput" name="searchInput">
+            <button class="searchB" type="button" onclick="filterTable()" style="margin: 0px 15px;">Search 🔍</button>
+            <button class="searchBA" type="button" onclick="resetFilter()">Reset Filters ♻️</button>
+        </form>
+    </div>
+
+    <div class="tableContainer">
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Zipcode</th>
+                    <th>Register Date</th>
+                </tr>
+            </thead>
+            <tbody id="resID">
+            
+            </tbody>
+        </table>
+        <br><br>
+        <p style="color: white; text-align: center;">WARNING! if you press "clear table" it will delete all data from the local storage!</p>
+        <button class="buttonEdit" onclick="resetTable()">Clear Table 🗑️</button>
+
+       
+    </div>
+<script src="/02-Javascript/michael/js-projct/js/manage.js"></script>
+</body>
+</html>
