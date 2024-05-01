@@ -206,4 +206,8 @@ button:hover {
   .container {
     padding: 10px;
   }
+  
+  nav ul {
+    display: none;
+  }
 }

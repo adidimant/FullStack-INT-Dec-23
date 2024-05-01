@@ -1,153 +1,172 @@
+async function loadUsersIntoTable() {
+  try {
+    const users = await loadUsers();
+    populateUserTable(users);
+  } catch (error) {
+    console.error("Error loading users:", error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const users = await loadUsers();
-  displayUsers(users);
+  try {
+      const users = await loadUsers();
+      populateUserTable(users);
+  } catch (error) {
+      console.error("Error loading users:", error);
+  }
 
-  const tabsContainer = document.querySelector('.tabs');
-  tabsContainer.addEventListener('click', function(event) {
-    if (event.target.classList.contains('tab')) {
-      const onclickAttribute = event.target.getAttribute('onclick');
-      if (onclickAttribute) {
-        const tabName = onclickAttribute.match(/showTab\('(\w+)'\)/);
-        if (tabName && tabName[1]) {
-          showTab(tabName[1]);
-        }
-      }
-    }
-  });
+  const userTableBody = document.getElementById('userTableBody');
+  if (userTableBody) {
+      userTableBody.addEventListener('click', event => {
+          if (event.target.tagName === 'BUTTON') {
+              const userId = event.target.closest('tr').dataset.userId;
+              if (event.target.textContent.includes('עריכה')) {
+                  editUser(userId);
+              } else if (event.target.textContent.includes('מחיקה')) {
+                  deleteUser(userId);
+              }
+          }
+      });
+  }
 
-  const filters = document.querySelectorAll('.filter');
-  filters.forEach(filter => filter.addEventListener('keyup', debounce(filterUsers, 300)));
-
-  const saveButton = createSaveButton();
-  document.querySelector('#userTable').after(saveButton);
-
-  const userForm = document.getElementById('userForm');
-  userForm.addEventListener('submit', saveUser);
-});
-
-function showTab(tabName) {
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => {
-    tab.classList.remove('active');
+      tab.addEventListener('click', () => showTab(tab.dataset.tabname));
   });
 
-  const allContents = document.querySelectorAll('.tab-content');
-  allContents.forEach(content => {
-    content.style.display = 'none';
-  });
-
-  const selectedTab = document.querySelector(`.tab[onclick*="showTab('${tabName}')"]`);
-  const selectedContent = document.getElementById(tabName);
-  if (selectedTab) {
-    selectedTab.classList.add('active');
-  }
-  if (selectedContent) {
-    selectedContent.style.display = 'block';
+  const filterButton = document.getElementById('filterUsersButton');
+  if (filterButton) {
+      filterButton.addEventListener('click', filterUsersAndSave);
   }
 
-  if (tabName === 'viewUsers') {
-    displaySavedUsers();
+  const userForm = document.getElementById('userForm');
+  if (userForm) {
+      userForm.addEventListener('submit', async event => {
+          event.preventDefault();
+          const formData = new FormData(userForm);
+          const newUser = Object.fromEntries(formData.entries());
+          newUser.registeredDate = new Date().toISOString().split('T')[0];
+          newUser.updatedDate = newUser.registeredDate;
+
+          if (await validateNewUser(newUser)) {
+              await saveNewUser(newUser);
+              userForm.reset();
+              alert('User created successfully');
+          } else {
+              alert('Username or email already exists.');
+          }
+      });
   }
-}
 
-function createSaveButton() {
-  const button = document.createElement('button');
-  button.textContent = 'שמור את כל המשתמשים';
-  button.style.cssText = "display:block; margin-left:auto; margin-right:auto;";
-  button.onclick = saveAllUsers;
-  return button;
-}
-
-async function saveAllUsers() {
-  const users = await loadUsers();
-  await saveUsers(users);
-  console.log('נתונים נשמרו ב-localStorage');
-  alert('כל המשתמשים נשמרו בהצלחה');
-}
+  setInterval(loadUsers, 30000);  // Refresh the user table every 30 seconds
+});
 
 async function loadUsers() {
-  const usersData = await localStorage.getItem('users') || '[]';
-  return JSON.parse(usersData);
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  populateUserTable(users);
 }
 
-async function saveUsers(users) {
-  await localStorage.setItem('users', JSON.stringify(users));
-}
-
-function displayUsers(users) {
+function populateUserTable(users) {
   const userTableBody = document.getElementById('userTableBody');
   userTableBody.innerHTML = '';
   users.forEach(user => {
-    const row = userTableBody.insertRow();
-    row.id = `user-${user.userId}`;
-    Object.entries(user).forEach(([key, value]) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-      if (key === 'actions') {
-        cell.innerHTML = `<button onclick="editUser('${user.userId}')">ערוך</button>
-                          <button onclick="prepareDelete('${user.userId}')">מחק</button>`;
-      }
-    });
+      const row = document.createElement('tr');
+      row.dataset.userId = user.id;
+      row.innerHTML = `
+          <td>
+              <button>עריכה</button>
+              <button>מחיקה</button>
+          </td>
+          ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
+      `;
+      userTableBody.appendChild(row);
   });
 }
 
-function saveUser(event) {
-  event.preventDefault();
-  const userForm = document.getElementById('userForm');
-  const formData = new FormData(userForm);
-  const userData = Object.fromEntries(formData.entries());
-  loadUsers().then(users => {
-    users.push(userData);
-    saveUsers(users).then(() => {
-      alert('משתמש נוצר בהצלחה.');
-      displayUsers(users);
-      userForm.reset();
-    });
-  });
+async function saveNewUser(user) {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  users.push(user);
+  await saveUsers(users);
+  populateUserTable(users);
 }
 
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction() {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      func.apply(this, arguments);
-    }, wait);
-  };
+async function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
 }
 
-function displaySavedUsers() {
-  const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
-  const savedUsersTable = document.getElementById('savedUsersTable');
-  const savedUserTableBody = document.getElementById('savedUserTableBody');
-  savedUserTableBody.innerHTML = '';
-  savedUsers.forEach(user => {
-    const row = savedUserTableBody.insertRow();
-    Object.entries(user).forEach(([key, value]) => {
-      const cell = row.insertCell();
-      cell.textContent = value;
-    });
-  });
-  savedUsersTable.style.display = 'block';
+function showTab(tabName) {
+  const tabs = document.querySelectorAll('.tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabContents.forEach(content => content.style.display = 'none');
+  
+  document.querySelector(`#${tabName}`).style.display = 'block';
+  document.querySelector(`.tab[data-tabname='${tabName}']`).classList.add('active');
 }
 
-function filterUsers() {
-  loadUsers().then(users => {
-    const filters = document.querySelectorAll('.filter');
-    const filteredUsers = users.filter(user => {
-      return Array.from(filters).every(filter => {
-        const key = filter.id.replace('filter', '').toLowerCase();
-        return user[key].toLowerCase().includes(filter.value.toLowerCase());
+async function validateNewUser(newUser) {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  return !users.some(user => user.username === newUser.username || user.email === newUser.email);
+}
+
+async function editUser(userId) {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const user = users.find(u => u.id === userId);
+  if (user) {
+      const form = document.getElementById('userForm');
+      Object.keys(user).forEach(key => {
+          if (form.elements[key]) form.elements[key].value = user[key];
       });
-    });
-    displayUsers(filteredUsers);
+      form.scrollIntoView();
+  }
+}
+
+function filterUsersAndSave() {
+  console.log('Filter and save logic goes here.');
+  // Implementation needed
+}
+
+async function deleteUser(userId) {
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const updatedUsers = users.filter(user => user.id !== userId);
+  await saveUsers(updatedUsers);
+  populateUserTable(updatedUsers);
+}
+
+function populateUserTable(users) {
+  const userTableBody = document.getElementById('userTableBody');
+  if (!userTableBody || !users || users.length === 0) {
+    console.error('Either userTableBody is not defined or users array is empty.');
+    return;
+  }
+
+  userTableBody.innerHTML = '';
+  users.forEach(user => {
+    const row = document.createElement('tr');
+    row.dataset.userId = user.id;
+    row.innerHTML = `
+        <td>
+            <button>עריכה</button>
+            <button>מחיקה</button>
+        </td>
+        ${Object.values(user).map(value => `<td>${value}</td>`).join('')}
+    `;
+    userTableBody.appendChild(row);
   });
 }
 
-function editUser(userId) {
-  // Implement the edit user functionality here
-}
+function showTab(tabName) {
+  const tab = document.getElementById(tabName);
+  if (!tab) {
+    console.error(`Tab with name ${tabName} does not exist.`);
+    return;
+  }
 
-function prepareDelete(userId) {
-  // Implement the delete user functionality here
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => content.style.display = 'none');
+
+  tab.style.display = 'block';
+  tab.classList.add('active');
 }

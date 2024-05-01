@@ -60,8 +60,8 @@ body {
 }
 .container .Table th,
 .container .Table td {
-  padding: 15px 3px;
-  text-align: left;
+  padding: 7px 3px;
+  text-align: center;
 }
 .container .Table th .filterBar,
 .container .Table td .filterBar {
@@ -69,8 +69,25 @@ body {
   width: 90%;
   padding: 7px;
   font-size: medium;
-  border-radius: 10px;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: aliceblue;
+  background: none;
+  color: white;
+}
+.container .Table th .filterBar:focus,
+.container .Table td .filterBar:focus {
+  outline-style: ridge;
+  outline-width: 0 0 2px 0;
+  outline-color: white;
+}
+.container .Table th .filterBarDate,
+.container .Table td .filterBarDate {
+  margin: 1px 1px;
+  padding: 3px 0px;
+  border-radius: 5px;
   border: none;
+  font-size: small;
 }
 .container .Table th {
   background-color: rgba(0, 0, 0, 0.5);
@@ -97,15 +114,65 @@ body {
 .container .btns:hover {
   box-shadow: 5px 5px 10px rgba(248, 248, 248, 0.2);
 }
-.container .editBtn {
+.container .img {
   margin: auto;
-  padding: 5px;
-  background-image: url("../images/edit.png");
+  padding: 3px;
   cursor: pointer;
   border: none;
+  border-radius: 30%;
+  width: 80%;
+  height: 80%;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
 }
-.container .flexedCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.container .img:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+.container .img:active {
+  background-color: #414040;
+  color: white;
+}
+.container .deleteImg {
+  margin: auto;
+  padding: 3px;
+  cursor: pointer;
+  border: none;
+  border-radius: 30%;
+  width: 80%;
+  height: 80%;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+}
+.container .deleteImg:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+.container .deleteImg:active {
+  background-color: #414040;
+  color: white;
+}
+.container #deleteSelected {
+  margin: auto;
+  color: white;
+  font-weight: bolder;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 9px;
+  background: #f74b4b;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+}
+.container #deleteSelected:hover {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+.container #deleteSelected:active {
+  background-color: #414040;
+  color: white;
+}
+.container .editMode {
+  background-color: #776f6f !important;
+}
+.container .darkImg {
+  filter: brightness(50%);
+}
+.container .invisable {
+  background-color: transparent;
+  border: none;
 }

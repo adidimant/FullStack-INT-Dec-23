@@ -11,9 +11,9 @@
     <h1>ניהול משתמשים - ComTel</h1>
     <nav>
       <ul>
-        <li><a href="index.html">דף הבית</a></li>
-        <li><a href="about.html">אודות</a></li>
         <li><a href="user-management.html">ניהול משתמשים</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="index.html">דף הבית</a></li>
       </ul>
     </nav>
   </header>
@@ -43,24 +43,23 @@
         <input type="date" id="filterRegisteredDate" class="filter">
         <label for="filterUpdatedDate">תאריך עדכון:</label>
         <input type="date" id="filterUpdatedDate" class="filter">
-        <button onclick="filterUsers()">החל מסננים</button>
-        <button onclick="saveAllUsers()">שמור את כל המשתמשים</button> <!-- כפתור שמירת כל המשתמשים -->
+        <button onclick="filterUsersAndSave()">החל מסננים ושמור את כל המשתמשים</button> <!-- כפתור שמירת כל המשתמשים -->
       </div>
       <table id="userTable">
         <thead>
           <tr>
-            <th>שם משתמש</th>
-            <th>אימייל</th>
-            <th>מספר טלפון</th>
-            <th>שם פרטי</th>
-            <th>שם משפחה</th>
-            <th>רחוב</th>
-            <th>עיר</th>
-            <th>מדינה</th>
-            <th>קוד דואר</th>
-            <th>תאריך רישום</th>
+            <th>פעולות</th> <!-- כותרת התאים של הפעולות -->
             <th>תאריך עדכון</th>
-            <th>פעולות</th>
+            <th>תאריך רישום</th>
+            <th>קוד דואר</th>
+            <th>מדינה</th>
+            <th>עיר</th>
+            <th>רחוב</th>
+            <th>שם משפחה</th>
+            <th>שם פרטי</th>
+            <th>מספר טלפון</th>
+            <th>אימייל</th>
+            <th>שם משתמש</th>
           </tr>
         </thead>
         <tbody id="userTableBody"></tbody>
@@ -69,17 +68,17 @@
       <table id="savedUsersTable" style="display: none;">
         <thead>
           <tr>
-            <th>שם משתמש</th>
-            <th>אימייל</th>
-            <th>מספר טלפון</th>
-            <th>שם פרטי</th>
-            <th>שם משפחה</th>
-            <th>רחוב</th>
-            <th>עיר</th>
-            <th>ואר</th>
-            <th>תאריך רישום</th>
+            <th>פעולות</th> <!-- כותרת התאים של הפעולות -->
             <th>תאריך עדכון</th>
-            <th>פעולות</th>
+            <th>תאריך רישום</th>
+            <th>ואר</th>
+            <th>עיר</th>
+            <th>רחוב</th>
+            <th>שם משפחה</th>
+            <th>שם פרטי</th>
+            <th>מספר טלפון</th>
+            <th>אימייל</th>
+            <th>שם משתמש</th>
           </tr>
         </thead>
         <tbody id="savedUserTableBody"></tbody>

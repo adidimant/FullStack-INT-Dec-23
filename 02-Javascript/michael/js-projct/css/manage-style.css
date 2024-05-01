@@ -1,0 +1,208 @@
+body {
+    font-family: "Poppins", sans-serif;
+    zoom: 0.9;
+    background-color: black;
+    
+}
+
+.navdiv {
+    display: flex;
+    flex-direction: row; 
+    background-color: hsl(0, 0%, 0%);  
+    margin: -15px -15px;
+    padding: 0px 11.5px;   
+    width: 100% ;
+  
+    
+}
+
+.navul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-right: 35px;
+    gap:25px;
+    margin-top: 15px;
+    
+}
+
+.nava {
+    text-decoration: none;
+    color: white;
+}
+
+.navli {
+    border: #333 1.5px solid;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.navli2 {
+    border: #333 1.5px solid;
+    padding: 5px 30px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.navli:hover {
+   border: #dadada 1.5px solid;
+   box-shadow: 0px 0 25px rgba(120, 219, 255, 0.856);
+   transition: 0.9s;
+   
+}
+
+.navli2:hover {
+    border: #dadada 1.5px solid;
+    box-shadow: 0px 0 25px rgba(120, 219, 255, 0.856);
+    transition: 0.9s;
+    
+ }
+
+ table{
+    color: white;
+    margin-top: 150px;
+  
+
+ }
+ td {
+    border: white 1px solid;
+ }
+ th {
+    border: white 1px solid;
+    gap: 15px;
+    padding: 4px 25px;
+ }
+
+ .tableContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+ .pencil-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonEdit {
+    background-color: black;
+    border-radius: 18px;
+    border: rgb(69, 69, 69) 1px solid;
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    padding: 3px 15px;
+    width: 150px;
+    justify-content: center;
+    margin-left: 750px; 
+    transition: 0.9s;
+  }
+  .buttonEdit:hover {
+    border: white 1px solid;
+    box-shadow: 0 0 53px rgba(57, 235, 255, 0.586);
+   
+  }
+
+  #userTable {
+    border-collapse: collapse;
+}
+
+#userTable td, #userTable th {
+    padding: 8px; 
+    text-align: left; 
+}
+
+#userTable tr {
+    border-bottom: 1px solid #ddd;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+   
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000000; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #5be9ff; 
+    box-shadow: 0 0 53px rgba(255, 255, 255, 0.586);
+    transition: 0.9s;
+  }
+
+  .pUpdated {
+    position: absolute;
+    left: 1400px;
+    top: 150px;
+  }
+
+  .filter-section {
+    color: white;
+    position: absolute;
+    top: 90px;
+    left: 25px;
+  }
+
+  .searchB {
+    background-color: black;
+    border-radius: 18px;
+    border: rgb(69, 69, 69) 1px solid;
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    padding: 3px 25px;
+    width: 130px;
+    transition: 0.9s;
+
+  }
+  .searchB:hover {
+    border: white 1px solid;
+    box-shadow: 0 0 53px rgba(57, 235, 255, 0.586);
+    cursor: pointer;
+  }
+
+  .searchBA {
+    background-color: black;
+    border-radius: 18px;
+    border: rgb(69, 69, 69) 1px solid;
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    padding: 3px 25px;
+    width: 160px;
+    transition: 0.9s;
+  }
+
+  .searchBA:hover {
+    border: white 1px solid;
+    box-shadow: 0 0 53px rgba(57, 235, 255, 0.586);
+    cursor: pointer;
+
+  }
+
+  #filterKey {
+    background-color: #333;
+    color:white;
+    margin: 0px 5px;
+    border-radius: 5px;
+  }
+
+  #searchInput {
+    background: #333;
+    border: 0.4px solid rgb(88, 88, 88);
+    color: white;
+    border-radius: 5px;
+  }
