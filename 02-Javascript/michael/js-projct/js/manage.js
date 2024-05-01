@@ -6,6 +6,7 @@
            document.getElementById('resID').innerHTML = '';
            localStorage.removeItem('userData');
            renderTable();
+           location.reload()
        }
 
        function renderTable() {
