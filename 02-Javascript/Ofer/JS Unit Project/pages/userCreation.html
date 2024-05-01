@@ -3,22 +3,23 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>User Managment System</title>
-        <script src=".../TS/dist/index.js" type="module"></script>
+        <title>User Management System</title>
+
         <link rel="stylesheet" href="../styles/dist/userCreation.css" />
         <link rel="icon" type="image/x-icon" href="../images/icon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-            rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet"
         />
+        <script src="../TS/dist/userCreation.js" defer></script>
     </head>
     <body>
         <div class="container">
             <h3 class="title"><strong>Create your Account</strong></h3>
             <br />
-            <form>
+            <form id="myForm" onsubmit="submitForm(event)">
                 <label class="required-label labels" for="userName"
                     >User name:</label
                 >
@@ -28,7 +29,6 @@
                     id="userName"
                     name="userName"
                     required
-                    minlength="8"
                     maxlength="15"
                 /><br />
                 <label class="required-label labels" for="email">Email:</label>
@@ -37,6 +37,7 @@
                     type="email"
                     id="email"
                     name="email"
+                    maxlength="30"
                     required
                 /><br />
                 <label class="required-label labels" for="password"
@@ -48,44 +49,42 @@
                     id="password"
                     name="password"
                     required
-                    minlength="8"
+                    minlength="6"
                     maxlength="20"
                 /><br />
-                <label class="required-label labels" for="phone-number"
+                <label class="required-label labels" for="phoneNumber"
                     >Phone Number:</label
                 >
                 <input
                     class="inputs"
                     type="tel"
-                    id="phone-number"
-                    name="phone-number"
+                    id="phoneNumber"
+                    name="phoneNumber"
                     required
                     maxlength="12"
                 /><br />
-                <label class="required-label labels" for="fname"
+                <label class="required-label labels" for="firstName"
                     >First name:</label
                 >
                 <input
                     class="inputs"
                     type="text"
-                    id="fname"
-                    name="fname"
+                    id="firstName"
+                    name="firstName"
                     required
                 /><br />
-                <label class="required-label labels" for="lname"
+                <label class="required-label labels" for="lastName"
                     >Last name:</label
                 >
                 <input
                     class="inputs"
                     type="text"
-                    id="lname"
-                    name="lname"
+                    id="lastName"
+                    name="lastName"
                     required
                 /><br />
-                <label class="required-label labels" for="country"
-                    >Country</label
-                ><br />
-                <select class="inputs" id="country" name="country">
+                <label class="required-label labels" for="country">Country</label><br />
+                <select class="inputs" id="countryList" name="country">
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Åland Islands">Åland Islands</option>
                     <option value="Albania">Albania</option>
@@ -407,14 +406,14 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option></select
                 ><br />
-                <label class="labels" for="state">State:</label>
-                <input class="inputs" type="text" id="country" name="country" />
-                <label class="labels" for="zip-code">Zip Code:</label>
+                <label class="labels" for="city">City:</label>
+                <input class="inputs" type="text" id="city" name="city" />
+                <label class="labels" for="zipCode">Zip Code:</label>
                 <input
                     class="inputs"
                     type="text"
-                    id="zip-code"
-                    name="zip-code"
+                    id="zipCode"
+                    name="zipCode"
                 /><br />
                 <input class="btns" type="submit" value="Submit" />
             </form>

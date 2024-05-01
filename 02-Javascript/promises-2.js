@@ -148,3 +148,71 @@ const result5 = await Promise.race([
 const result6 = await Promise.any([prom6, prom2, prom5()]).catch((errors) => {
   console.warn("Promise.any on only rejected promises, errors: ", errors);
 });
+
+
+async function myFunc() {
+  await Promise.all([
+    new Promise((res) => {
+      console.log("timer started");
+      setTimeout(() => {
+          console.log("calling resolve!");
+          res();
+      }, 4000);
+      console.log("timer finished");
+    })
+  ]);
+  console.log("promises finished!");
+}
+
+myFunc();
+console.log("finished all!");
+
+/*
+The prints order:
+
+timer started
+timer finished
+finished all!
+calling resolve!
+promises finished!
+*/
+
+Promise.reject("t"); // returns a promise that is rejected
+
+// implementation:
+function promiseReject(something) {
+  return new Promise((res, rej) => {
+    rej(something);
+  });
+}
+
+// Extract the rejected content from a promise (two ways):
+
+const n = promiseReject("err");
+let y;
+n.catch((value) => {
+  y = value;
+});
+
+// Or (using the second parameter of .then()):
+let h;
+n.then(() => {}, (value) => {
+  h = value;
+});
+
+const p = Promise.resolve("ok");
+// implementation:
+function promiseResolve(something) {
+  return new Promise((res) => {
+    res(something);
+  });
+}
+
+// Extract the resolved content from a promise (two ways):
+const a = await p;
+
+// Or:
+let z;
+p.then((value) => {
+    z = value;
+});

@@ -9,6 +9,7 @@ function ex1() {
           }, 3000)
       });
     
+<<<<<<< HEAD
       myPromise.then(function() {
         console.log("Promise resolved");
       }).catch(function() {
@@ -72,3 +73,6 @@ function getPromiseWithStatus(promise) {
 }
 ```
 */
+=======
+}
+>>>>>>> d08b494145962d4857ecc2599f719f0d1426444f

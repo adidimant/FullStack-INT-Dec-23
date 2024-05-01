@@ -20,12 +20,13 @@ body {
   justify-content: center;
   height: 100vh;
   font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 .container {
   border-radius: 10px;
   margin: auto;
-  width: 70%;
+  width: 97%;
   padding: 50px;
   border-radius: 10px;
   background-color: #333741;
@@ -53,18 +54,29 @@ body {
 .container .Table {
   border-collapse: collapse;
   width: 100%;
-  padding: 1rem;
-  font-size: large;
+  padding: 3px;
+  margin-bottom: 10px;
+  font-size: medium;
 }
-.container .Table th, .container .Table td {
-  padding: 1rem;
+.container .Table th,
+.container .Table td {
+  padding: 15px 3px;
   text-align: left;
+}
+.container .Table th .filterBar,
+.container .Table td .filterBar {
+  margin: 1px 3px;
+  width: 90%;
+  padding: 7px;
+  font-size: medium;
+  border-radius: 10px;
+  border: none;
 }
 .container .Table th {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .container .Table tr:nth-of-type(2n) {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .container .btns {
   display: block;
@@ -84,4 +96,16 @@ body {
 }
 .container .btns:hover {
   box-shadow: 5px 5px 10px rgba(248, 248, 248, 0.2);
+}
+.container .editBtn {
+  margin: auto;
+  padding: 5px;
+  background-image: url("../images/edit.png");
+  cursor: pointer;
+  border: none;
+}
+.container .flexedCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

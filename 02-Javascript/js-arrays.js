@@ -165,6 +165,30 @@ const increasedArray = simpleArr.map((value) => {
   return value + 100;
 }); // [105, 106, 107, 114, 115, 109, 110, 109, 113, 107]
 
+function calculateMedian(values) {
+  if (values.length === 0) {
+    throw new Error('Input array is empty');
+  }
+
+  // Sorting values, preventing original array
+  // from being mutated.
+  values = [...values].sort((a, b) => a - b);
+
+  const half = Math.floor(values.length / 2);
+
+  return (values.length % 2
+    ? values[half]
+    : (values[half - 1] + values[half]) / 2
+  );
+}
+
+
+// Writing a function for the teacher - that gets an array of exam grades, and adds a factor that is 0.05 * the median grade (חציון). use array .map
+const factorGrades = (grades) => {
+  const median = calculateMedian(grades);
+  return grades.map((grade) => grade + median * 0.05);
+};
+
 // map the array to oddEvenAnswers (each cell contains true if odd, otherwise false):
 const oddEvenAnswers = simpleArr.map((value) => value % 2 == 1); // [true, false, true, false, true, true, false, true, true, true]
 
