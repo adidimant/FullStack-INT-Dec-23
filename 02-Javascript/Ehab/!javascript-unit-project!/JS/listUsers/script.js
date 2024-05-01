@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         usersList = data;
         // show data in table.
         displayData(data);
+        hidePassword();
     }).catch((error)=> alert(error));
     
     const filterInput = document.getElementById('filterInput');
@@ -160,6 +161,7 @@ function applyFilters(){
     // Has filtering been performed?
     if(areAllValuesEmpty(filters)){
         displayData(usersList);
+        hidePassword();
     }else
     {
         // username filter
@@ -259,6 +261,7 @@ function applyFilters(){
         // The variable "result" combines all the results of the filter arrays into one array and leaves one instance of each value that appears more than once
         let result = [...new Set([...resUsername, ...resEmail, ...resPhone, ...resFullName, ...resCountry, ...resCity, ...resRegisteredDate, ...resUpdatedDate])];
         displayData(result);
+        hidePassword();
     } 
 }
 
@@ -276,7 +279,7 @@ function displayData(data){
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + fullname + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].userid + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].username + '" readonly></div>';
-        htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].password + '" readonly></div>';
+        htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize hidePassword" value="' + data[dataRow].password + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 300px;"><input type="text" class="fullSize" style="width: 97%" value="' + data[dataRow].email + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].phone + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].state + '" readonly></div>';
@@ -315,6 +318,7 @@ function deleteUser(user){
                     usersList = data;
                     // show data in table.
                     displayData(data);
+                    hidePassword();
                 }).catch((error)=> alert(error));
                 // Show moving bar for 6 seconds with "undo" button.
                 totalPercentage =0;
@@ -476,6 +480,7 @@ async function editUser(user,event){
                     usersList = data;
                     // show data in table.
                     displayData(data);
+                    hidePassword();
                 }).catch((error)=> alert(error));
             }).catch((error)=> alert(error));
         }else{
@@ -538,6 +543,7 @@ function refresh(){
             usersList = data;
             // show data in table.
             displayData(data);
+            hidePassword();
         }).catch((error)=> alert(error));
     }
 }
@@ -596,4 +602,13 @@ async function undo(){
     }).catch(()=>{
         console.error('The user cannot be restored');
     });
+}
+
+function hidePassword(){
+    let passwordInputs = document.querySelectorAll('.hidePassword');
+    for(let i=0; i<passwordInputs.length;i++){
+        let inputVal  = passwordInputs[i].value;
+        let asterisks  = '*'.repeat(inputVal.length);
+        passwordInputs[i].value = asterisks;
+    }
 }

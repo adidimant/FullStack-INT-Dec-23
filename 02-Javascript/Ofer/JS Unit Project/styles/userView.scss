@@ -43,15 +43,30 @@
 
         th,
         td {
-            padding: 15px 3px;
-            text-align: left;
+            padding: 7px 3px;
+            text-align: center;
             .filterBar{
                 margin: 1px 3px;
                 width:90%;
                 padding: 7px;
                 font-size: medium;
-                border-radius: 10px;
+                border-width: 0 0 2px 0;
+                border-style: solid;
+                border-color: aliceblue;
+                background: none;
+                color: white;
+                &:focus{
+                    outline-style:ridge;
+                    outline-width: 0 0 2px 0;
+                    outline-color: white;
+                }
+            }
+            .filterBarDate{
+                margin: 1px 1px;
+                padding: 3px 0px;
+                border-radius: 5px;
                 border: none;
+                font-size: small;
             }
         }
 
@@ -87,18 +102,69 @@
         }
     }
 
-    .editBtn {
+    .img {
         margin: auto;
-        padding: 5px;
-        background-image: url('../images/edit.png');
+        padding: 3px;
         cursor: pointer;
         border: none;
+        border-radius: 30%;
+        width: 80%;
+        height: 80%;
+        // background: rgb(223, 178, 178);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 5px 5px 10px rgba(black, 0.7) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
     }
-
-    .flexedCenter{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .deleteImg{
+        margin: auto;
+        padding: 3px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30%;
+        width: 80%;
+        height: 80%;
+        // background: rgb(223, 178, 178);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 5px 5px 10px rgba(black, 0.7) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
+    }
+    #deleteSelected{
+        margin: auto;
+        color: white;
+        font-weight: bolder;
+        padding: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 9px;
+        background: rgb(247, 75, 75);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 3px 3px 10px rgba(black, 0.5) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
+    }
+    .editMode{
+        background-color: rgb(119, 111, 111) !important;
+    }
+    .darkImg{
+        filter: brightness(50%)
+    }
+    .invisable{
+        background-color: transparent;
+        border: none;
     }
 
 }
