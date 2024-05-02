@@ -26,3 +26,14 @@ let x = toCelsius(77);
 let text = "The temperature is " + x + " Celsius";
 // or do:
 text = "The temperature is " + toCelsius(77) + " Celsius";
+
+// Passing function as a parameter:
+function f1 (param1, param2) {
+  param2(param1);
+}
+
+function f2(valueToPrint) {
+  console.log(valueToPrint);
+}
+
+f1("hey!!!", f2);
