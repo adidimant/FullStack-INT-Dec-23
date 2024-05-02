@@ -31,22 +31,28 @@ document.addEventListener("DOMContentLoaded", () => {
         element.addEventListener('click',(event)=>{
             filterInputText.value = '';
             filterBy = element.parentElement.innerText;
-            setLastFilter(filterBy); // The function adds the last value typed to the filter field according to the filter type.
-            if(!isDisplayed){
+            if(filterBy=== 'E-mail'){
+                filterInput.style.width = '280px';
+                filterInput.style.left = (event.clientX-270) + 'px';
+                filterInput.style.top = (event.clientY+ 25)  + 'px';
+            }else{
+                filterInput.style.width = '150px';
                 filterInput.style.left = (event.clientX-140) + 'px';
                 filterInput.style.top = (event.clientY+ 25)  + 'px';
+            }
+            setLastFilter(filterBy); // The function adds the last value typed to the filter field according to the filter type.
+            if(!isDisplayed){
                 filterInput.style.display = "flex";
                 isDisplayed = true;
                 filterInputText.focus();
             }
             else{
+                isDisplayed = false;
                 filterInputText.blur();
                 filterInput.style.display = "none";
-                filterInput.style.left = (event.clientX-140) + 'px';
-                filterInput.style.top = (event.clientY+ 25)  + 'px';
                 filterInput.style.display = "flex";
                 filterInputText.focus();
-                isDisplayed = false;
+                
             }
         });
     });

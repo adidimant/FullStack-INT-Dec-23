@@ -34,7 +34,7 @@
     <!-- This 'div' shows when the filter icon is pressed -->
     <div id="filterInput" class="filterInputHide filterInput">
         <input type="text" placeholder="type to filter results"  id="filterInputText" />
-        <label class="fas fa-times" style="position: relative; left: 90%;" onclick="document.getElementById('filterInput').style.display = 'none';"></label>
+        <label class="fas fa-times" style="position: relative; left: 90%;" onclick="document.getElementById('filterInput').style.display = 'none'; this.style.color = 'black'" onmouseover="this.style.color = 'red'"></label>
     </div>
     <br>
     <!-- This 'div' appears for 6 seconds when a user is deleted, it uses the undo action -->
