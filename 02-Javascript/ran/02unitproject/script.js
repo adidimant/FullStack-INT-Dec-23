@@ -10,12 +10,8 @@ const undoContainer = document.getElementById('undoContainer');
 const undoBar = document.getElementById('undoBar');
 const undoButton = document.getElementById('undoButton');
 
-// Initialize localStorage
-const usersData = localStorage.getItem('users') || '{}';
-const users = JSON.parse(usersData);
-const userIds = Object.keys(users);
-
-// Dummy user data
+// Initialize localStorage and dummy users
+let users = JSON.parse(localStorage.getItem('users') || '{}');
 const dummyUsers = [
   {
     username: 'johnsmith',
@@ -47,196 +43,69 @@ const dummyUsers = [
   }
 ];
 
-// Add dummy users to localStorage
-dummyUsers.forEach((user, index) => {
-  const userId = `user-${index + 1}`;
-  users[userId] = user;
-});
-localStorage.setItem('users', JSON.stringify(users));
-
-// Function to create a user object
-function createUserObject(username, email, phone, firstName, lastName, street, city, state, country, zipcode) {
-  const registeredDate = new Date().toISOString().slice(0, 10);
-  const updatedDate = registeredDate;
-  return {
-    username,
-    email,
-    phone,
-    firstName,
-    lastName,
-    street,
-    city,
-    state,
-    country,
-    zipcode,
-    registeredDate,
-    updatedDate
-  };
-}
-
-// Function to validate form fields
-function validateFormFields(username, email, phone, firstName, lastName, street, city, state, country, zipcode) {
-  // Regular expressions for validation
-  const usernameRegex = /^[a-zA-Z0-9_]+$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-  const zipcodeRegex = /^\d{5}$/;
-
-  // Check if username and email are already in use
-  const existingUsernames = Object.values(users).map(user => user.username);
-  const existingEmails = Object.values(users).map(user => user.email);
-
-  // Perform validations
-  if (!usernameRegex.test(username)) {
-    alert('Invalid username. Only letters, numbers, and underscores are allowed.');
-    return false;
-  }
-
-  if (!emailRegex.test(email)) {
-    alert('Invalid email address.');
-    return false;
-  }
-
-  if (!phoneRegex.test(phone)) {
-    alert('Invalid phone number. Use the format "xxx-xxx-xx
-
-    // Get references to DOM elements
-const createUserTab = document.getElementById('createUserTab');
-const viewUsersTab = document.getElementById('viewUsersTab');
-const createUserSection = document.getElementById('createUserSection');
-const viewUsersSection = document.getElementById('viewUsersSection');
-const createUserForm = document.getElementById('createUserForm');
-const usersTable = document.getElementById('usersTable');
-const filtersContainer = document.getElementById('filtersContainer');
-const undoContainer = document.getElementById('undoContainer');
-const undoBar = document.getElementById('undoBar');
-const undoButton = document.getElementById('undoButton');
-
-// Initialize localStorage
-const usersData = localStorage.getItem('users') || '{}';
-const users = JSON.parse(usersData);
-const userIds = Object.keys(users);
-
-// Dummy user data
-const dummyUsers = [
-  // ... (dummy data omitted for brevity)
-];
-
-// Add dummy users to localStorage
-dummyUsers.forEach((user, index) => {
-  const userId = `user-${index + 1}`;
-  users[userId] = user;
-});
-localStorage.setItem('users', JSON.stringify(users));
-
-// Function to create a user object
-function createUserObject(username, email, phone, firstName, lastName, street, city, state, country, zipcode) {
-  // ... (existing code omitted for brevity)
-}
-
-// Function to validate form fields
-function validateFormFields(username, email, phone, firstName, lastName, street, city, state, country, zipcode) {
-  // ... (existing code omitted for brevity)
-}
-
-// Event listener for creating a new user
-createUserTab.addEventListener('click', () => {
-  // ... (existing code omitted for brevity)
-
-  // Add event listener for form submission
-  createUserForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Get form field values
-    const username = document.getElementById('usernameInput').value;
-    const email = document.getElementById('emailInput').value;
-    // ... (other form fields omitted for brevity)
-
-    // Validate form fields
-    if (validateFormFields(username, email, phone, firstName, lastName, street, city, state, country, zipcode)) {
-      // Check if username and email are not already in use
-      const existingUsernames = Object.values(users).map(user => user.username);
-      const existingEmails = Object.values(users).map(user => user.email);
-
-      if (!existingUsernames.includes(username) && !existingEmails.includes(email)) {
-        // Create a new user object
-        const newUser = createUserObject(username, email, phone, firstName, lastName, street, city, state, country, zipcode);
-
-        // Generate a new userId
-        const newUserId = `user-${Date.now()}`;
-
-        // Add the new user to the users object
-        users[newUserId] = newUser;
-
-        // Save the user to localStorage
-        localStorage.setItem('users', JSON.stringify(users));
-
-        // Clear the form fields
-        createUserForm.reset();
-
-        // Render the user table
-        renderUserTable();
-
-        alert('User created successfully!');
-      } else {
-        alert('Username or email is already in use!');
-      }
-    }
+// Add dummy users to localStorage if not already populated
+if (Object.keys(users).length === 0) {
+  dummyUsers.forEach((user, index) => {
+    const userId = `user-${index + 1}`;
+    users[userId] = user;
   });
-});
+  localStorage.setItem('users', JSON.stringify(users));
+}
 
-// Event listener for viewing users
-viewUsersTab.addEventListener('click', () => {
-  // ... (existing code omitted for brevity)
-
-  // Render filters
-  renderFilters();
-
-  // Render the user table
+document.addEventListener('DOMContentLoaded', function () {
+  setupTabs();
+  setupFilters();
   renderUserTable();
-
-  // Start refreshing the table every 30 seconds
   startTableRefresh();
 });
 
-// Function to render filters
-function renderFilters() {
-  const filterHTML = `
-    <label>
-      Username:
-      <input type="text" id="usernameFilter" placeholder="Filter by username">
-    </label>
-    <!-- ... (other filter inputs omitted for brevity) -->
-  `;
-  filtersContainer.innerHTML = filterHTML;
+function setupTabs() {
+  createUserTab.addEventListener('click', function () {
+    createUserSection.style.display = 'block';
+    viewUsersSection.style.display = 'none';
+  });
 
-  // Add event listeners for filters
-  const filterInputs = filtersContainer.querySelectorAll('input');
-  filterInputs.forEach(input => {
-    input.addEventListener('input', debounce(filterUsers, 300));
+  viewUsersTab.addEventListener('click', function () {
+    createUserSection.style.display = 'none';
+    viewUsersSection.style.display = 'block';
+    renderUserTable();
   });
 }
 
-// Function to filter users
-function filterUsers() {
-  const usernameFilter = document.getElementById('usernameFilter').value.toLowerCase();
-  // ... (other filter values omitted for brevity)
+function setupFilters() {
+  // Example for setting up filters
+  const usernameFilter = document.createElement('input');
+  usernameFilter.id = 'usernameFilter';
+  usernameFilter.className = 'filter-input';
+  usernameFilter.placeholder = 'Filter by username';
+  filtersContainer.appendChild(usernameFilter);
 
-  const filteredUserIds = userIds.filter(userId => {
+  const countryFilter = document.createElement('input');
+  countryFilter.id = 'countryFilter';
+  countryFilter.className = 'filter-input';
+  countryFilter.placeholder = 'Filter by country';
+  filtersContainer.appendChild(countryFilter);
+
+  usernameFilter.addEventListener('input', debounce(filterUsers, 300));
+  countryFilter.addEventListener('input', debounce(filterUsers, 300));
+}
+
+function filterUsers() {
+  const usernameFilterValue = document.getElementById('usernameFilter').value.toLowerCase();
+  const countryFilterValue = document.getElementById('countryFilter').value.toLowerCase();
+
+  const filteredUserIds = Object.keys(users).filter(userId => {
     const user = users[userId];
-    return (
-      user.username.toLowerCase().includes(usernameFilter) &&
-      // ... (other filter conditions omitted for brevity)
-    );
+    return user.username.toLowerCase().includes(usernameFilterValue) &&
+           user.country.toLowerCase().includes(countryFilterValue);
   });
 
   renderUserTable(filteredUserIds);
 }
 
-// Debounce function
 function debounce(func, delay) {
   let timeoutId;
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       func.apply(this, args);
@@ -244,74 +113,51 @@ function debounce(func, delay) {
   };
 }
 
-// Function to render the user table
-function renderUserTable(userIdsToRender = userIds) {
+function renderUserTable(userIdsToRender = Object.keys(users)) {
   const tableBody = usersTable.getElementsByTagName('tbody')[0];
-  tableBody.innerHTML = '';
+  tableBody.innerHTML = ''; // Clear the table first
 
   userIdsToRender.forEach(userId => {
     const user = users[userId];
     const row = document.createElement('tr');
+    row.setAttribute('data-user-id', userId);
+    Object.keys(user).forEach(key => {
+      const cell = document.createElement('td');
+      cell.textContent = user[key];
+      row.appendChild(cell);
+    });
 
-    // ... (existing code for creating table cells omitted for brevity)
-
-    // Add edit and delete buttons
+    // Create actions cell (edit and delete)
     const actionsCell = document.createElement('td');
     const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.addEventListener('click', () => editUser(userId));
+    editButton.innerHTML = 'Edit'; // Edit icon
+    editButton.onclick = () => editUser(userId);
     actionsCell.appendChild(editButton);
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', () => deleteUser(userId));
+    deleteButton.innerHTML = 'Delete'; // Delete icon
+    deleteButton.onclick = () => deleteUser(userId);
     actionsCell.appendChild(deleteButton);
-    row.appendChild(actionsCell);
 
+    row.appendChild(actionsCell);
     tableBody.appendChild(row);
   });
 }
 
-// Function to edit a user
 function editUser(userId) {
-  // ... (code for editing a user omitted for brevity)
+  // Implementation for editing user
 }
-
-// Function to delete a user
-let deletedUserId;
 
 function deleteUser(userId) {
   if (confirm('Are you sure you want to delete this user?')) {
-    deletedUserId = userId;
     delete users[userId];
     localStorage.setItem('users', JSON.stringify(users));
     renderUserTable();
-
-    // Show the undo bar
-    undoContainer.style.display = 'flex';
-    undoBar.style.animation = 'undoBarAnimation 6s linear forwards';
-    setTimeout(() => {
-      undoContainer.style.display = 'none';
-      deletedUserId = null;
-    }, 6000);
   }
 }
 
-// Event listener for undo button
-undoButton.addEventListener('click', () => {
-  if (deletedUserId) {
-    users[deletedUserId] = users[deletedUserId];
-    localStorage.setItem('users', JSON.stringify(users));
-    renderUserTable();
-    undoContainer.style.display = 'none';
-    deletedUserId = null;
-  }
-});
-
-// Function to start refreshing the table every 30 seconds
 function startTableRefresh() {
-  setInterval(renderUserTable, 30000);
+  setInterval(() => {
+    renderUserTable();
+  }, 30000);
 }
-
-// Render the user table initially
-renderUserTable();
