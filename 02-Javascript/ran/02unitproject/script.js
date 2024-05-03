@@ -161,3 +161,35 @@ function startTableRefresh() {
     renderUserTable();
   }, 30000);
 }
+
+function setupTabs() {
+  createUserTab.addEventListener('click', function () {
+    createUserSection.style.display = 'block';
+    viewUsersSection.style.display = 'none';
+  });
+
+  viewUsersTab.addEventListener('click', function () {
+    createUserSection.style.display = 'none';
+    viewUsersSection.style.display = 'block';
+    renderUserTable();
+  });
+}
+
+createUserForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const username = document.getElementById('usernameInput').value;
+  const email = document.getElementById('emailInput').value;
+  // Add similar lines for other form inputs
+
+  const newUser = createUserObject(username, email, /* other input values */);
+  const newUserId = `user-${Date.now()}`;
+
+  users[newUserId] = newUser;
+  localStorage.setItem('users', JSON.stringify(users));
+
+  createUserForm.reset();
+  renderUserTable();
+
+  alert('User created successfully!');
+});
