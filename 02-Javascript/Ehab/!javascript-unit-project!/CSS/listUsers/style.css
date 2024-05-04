@@ -56,7 +56,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 150px;
+    /*width: 150px;*/
     position: absolute;
     border-radius: 25px;
 }
@@ -64,7 +64,7 @@ body {
     display: none;
 }
 .filterInput input[type='text']{
-    max-width: 100%;
+    width: 100%;
     height: 30px;
     background-color: #D4D4D4;
     border: 1px solid gray;

@@ -618,3 +618,45 @@ function hidePassword(){
         passwordInputs[i].value = asterisks;
     }
 }
+const exampleUser = {
+    userid: "jsmith1",
+    username: "johnsmith",
+    password: "password123",  // Note: Storing plain text passwords is not recommended for production
+    firstName: "John",
+    lastName: "Smith",
+    email: "john.smith@example.com",
+    phone: "123-456-7890",
+    state: "New York",
+    country: "USA",
+    city: "New York",
+    street: "123 Elm Street",
+    zipcode: "10001",
+    registeredDate: "01/01/2022",
+    updatedDate: "01/01/2022"
+};
+
+
+function initializeExampleUser() {
+    let users = JSON.parse(localStorage.getItem("users"));
+    if (!users) {
+        users = {};  // Initialize if there are no users
+    }
+
+    // Check if the example user already exists to avoid overwriting
+    if (!users['jsmith1']) {
+        users['jsmith1'] = exampleUser;
+        localStorage.setItem("users", JSON.stringify(users));
+
+        // Also update the userIds to manage user tracking
+        let userIds = JSON.parse(localStorage.getItem("userIds"));
+        if (!userIds) {
+            userIds = { allusersids: [] };
+        }
+        if (!userIds.allusersids.includes("jsmith1")) {
+            userIds.allusersids.push("jsmith1");
+            localStorage.setItem("userIds", JSON.stringify(userIds));
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", initializeExampleUser);
