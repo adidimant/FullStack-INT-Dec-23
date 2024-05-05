@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user management</title>
+    <style>
+        #app{
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .btn{
+            font-size: 20px;
+            background-color: blanchedalmond;
+            border-radius: 5px;
+            border-color: white;
+        }
+
+        .btnSubmit{
+            background-color: blanchedalmond;
+            font-size: 15px;
+            border-radius: 5px;
+            border-color: white;
+        }
+
+        #table{
+            width: 100%;
+            text-align: center;
+            background-color: blanchedalmond;
+            border: 2px solid cadetblue;
+            border-radius: 8px;
+        }
+
+        .input{
+            background-color: blanchedalmond;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 style="color: cadetblue;"><b>User management</b></h1>
+        <div id="tabs">
+            <button onclick="showFormTab()" class="btn">Create User</button>
+            <button onclick="showUsersTab()" class="btn">View Users</button>
+        </div>
+        <div id="formTab" style="display: block;">
+            <h3 style="color: cadetblue;">Create User</h3>
+            <form>
+                <label for="uName">Username</label><br>
+                <input type="text" id="uName" name="uName" placeholder="Enter a username" class="input"><br>
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter a email" onclick="checkUsername()" class="input"><br>
+                <label for="phone">Phone number</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="Enter a phone number" class="input"><br>
+                <label for="firstName">First name</label><br>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter a first name" onclick="checkPhoneNumber()" class="input"><br>
+                <label for="lastName">Last name</label><br>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter a last name" class="input"><br>
+                <label for="address">Address</label><br>
+                <input type="text" id="address" name="address" placeholder="Enter a address" class="input"><br>
+                <label for="city">City</label><br>
+                <input type="text" id="city" name="city" placeholder="Enter a city" class="input"><br>
+                <label for="country">Country</label><br>
+                <input type="text" id="country" name="country" placeholder="Enter country" class="input"><br>
+                <label for="postalCode">Postal Code</label><br>
+                <input type="text" id="postalCode" name="postalCode" placeholder="Enter zip code" class="input"><br>
+                <label for="dateOfRegistration">Date of registration</label><br>
+                <input type="date" id="dateOfRegistration" name="dateOfRegistration" class="input"><br>
+                <script>document.getElementById("dateOfRegistration").valueAsDate=new Date()</script>
+                <label for="updateDate">Update date</label><br>
+                <input type="date" id="updateDate" name="updateDate" class="input"><br><br>
+                <script>document.getElementById('updateDate').valueAsDate=new Date()</script>
+                <button id="submit"class="btnSubmit" onclick="saveUserDetails()">Submit</button>
+            </form>
+        </div>
+        <div id="usersTab" style="display: none;">
+            <h3 style="color: cadetblue;">User list</h3>
+            <h3 style="color: cadetblue;">User search</h3>
+
+            <div>
+                <label for="searchUsername">Username</label>
+                <input type="text" id="searchUsername" name="searchUsername" class="input">
+                <label for="searchEmail">Email</label>
+                <input type="email" id="searchEmail" name="searchEmail" class="input">
+                <label for="searchPhoneNumber">Phone number</label>
+                <input type="tel" id="searchPhoneNumber" name="searchPhoneNumber" class="input">
+                <label for="searchFullName">Full name</label>
+                <input type="text" id="searchFullName" name="searchFullName" class="input">
+                <label for="searchCity">City</label>
+                <input type="text" id="searchCity" name="searchCity" class="input">
+                <label for="searchCountry">Country</label>
+                <input type="text" id="searchCountry" name="searchCountry" class="input"><br><br>
+                <label for="searchDateOfRegistration">Date of registration</label>
+                <input type="date" id="searchDateOfRegistration" name="searchDateOfRegistration" class="input">
+                <label for="searchUpdateDate">Update date</label>
+                <input type="date" id="searchUpdateDate" name="searchUpdateDate" class="input">
+            </div>
+            <br>
+            <h3 style="color: cadetblue;">User table</h3>
+            <div>
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>phone number</th>
+                            <th>Full name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Postal Code</th>
+                            <th>Date of registration</th>
+                            <th>Update date</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablee">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th><button onclick="editUser()"></button></th>
+                            <th><button onclick="deleteUser()"></button></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="editFormContainer" style="display: none;">
+            <h3 style="color: cadetblue;">User edit</h3>
+            <br>
+            <form id="editForm">
+                <label for="editUsername">Username</label><br>
+                <input type="text" id="editUsername" name="editUsername" required class="input"><br>
+                <label for="editEmail">Email</label><br>
+                <input type="email" id="editEmail" name="editEmail" required  class="input"><br>
+                <label for="editPhone">phone number</label><br>
+                <input type="tel" id="editPhone" name="editPhone" required class="input"><br>
+                <label for="editFullName">Full name</label><br>
+                <input type="text" id="editFullName" name="editFullName" required class="input"><br>
+                <label for="editAddress">Address</label><br>
+                <input type="text" id="editAddress" name="editAddress" required class="input"><br>
+                <label for="editCity">City</label><br>
+                <input type="text" id="editCity" name="editCity" required class="input"><br>
+                <label for="editCountry">Country</label><br>
+                <input type="text" id="editCountry" name="editCountry" required class="input"><br>
+                <label for="editPostalCode">Postal Code</label><br>
+                <input type="text" id="editPostalCode" name="editPostalCode" required class="input"><br>
+                <label for="editUpdateDate">Update date</label><br>
+                <input type="date" id="editUpdateDate" name="editUpdateDate" required class="input"><br><br>
+                <script>document.getElementById('updateDate').valueAsDate=new Date()</script>
+                <button id="saveEditButton" class="btnSubmit" onclick="saveEditButton()">Save changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="user_management.js"></script>
+</body>
+</html>
