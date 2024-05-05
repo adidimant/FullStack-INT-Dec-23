@@ -1,0 +1,62 @@
+body {
+    background-color: #333; /* Dark background */
+    color: #fff; /* Light text color for contrast */
+    font-family: Arial, sans-serif; /* Optional: Defines a font-family */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Maximum width of the form container */
+    background-color: #444; /* Slightly lighter background for the form area */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Adds shadow for depth */
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+.form_container div {
+    margin-bottom: 10px; /* Space between form fields */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="button"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+input[type="button"] {
+    background-color: #5C7AEA; /* Light blue button */
+    color: white;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #4058D4; /* Darker blue on hover */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border: 2px solid #5C7AEA; /* Highlight focused element */
+}
+
+label {
+    color: #ccc; /* Light grey label for better readability */
+}

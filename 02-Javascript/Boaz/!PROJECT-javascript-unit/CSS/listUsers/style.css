@@ -1,0 +1,212 @@
+body {
+    background-color: #333; /* Dark background */
+    color: #fff; /* Light text color for contrast */
+    font-family: Arial, sans-serif; /* Optional: Defines a font-family */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    width: 100%; /* Responsive width */
+
+    background-color: #444; /* Slightly lighter background for the form area */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Adds shadow for depth */
+}
+
+.filterContainer, .filterContainer h2{
+    display: inline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    padding-top: 10px;
+    overflow: hidden;
+}
+.container .tableHeader{
+    background-color: #ffffff;
+}
+.container .tableHeader div{
+    width: 150px; 
+    height: 26px; 
+    border: 1px solid rgb(207, 204, 204); 
+    font-weight: bold; 
+    padding-top: 8px;
+}
+.container .tableHeader, .tableRow{
+    display: flex;
+    flex-direction: row;
+}
+.container .tableRow div .fullSize{
+    background-color: #F0F2F5;
+    width: 93%;
+    height: 65%;
+    padding: 5px;
+    border: none;
+}
+.filterContainer .hideFilter{
+    display: none;
+}
+.filterContainer .showFilter{
+    display: inline;
+}
+.filterContainer div{
+    display: inline;
+}
+.customFontSize{
+    font-size: 130%;
+}
+#FilterIcon, .fa-trash-alt, .fa-edit, .fa-save {
+    cursor: pointer;
+
+}
+/* Enhances visibility and interactivity of edit and delete icons */
+.fa-edit, .fa-trash-alt {
+    font-size: 16px; /* Increase the size of the icons */
+    color: #0056b3; /* Change to a more visible color */
+    cursor: pointer; /* Cursor changes to pointer to indicate clickable */
+    padding: 5px; /* Adds padding around the icon */
+    border-radius: 50%; /* Makes the background round if background is added */
+
+}
+/* Active state effects for icons to indicate a press action, with increased specificity */
+.fa-edit:active, .fa-trash-alt:active, .fa-save:active {
+    color: black !important; /* Force black color for the icon when pressed */
+    background-color: #ff5722 !important; /* Ensure the background color is also applied */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3) !important; /* Inset shadow for a "pressed" effect */
+}
+
+.fa-edit:hover, .fa-trash-alt:hover {
+    color: #28120c; /* Change color on hover for better visibility */
+    background-color: #c2c2c2; /* Light grey background on hover */
+}
+
+.fa-edit, .fa-save {
+    color: #0056b3; /* Blue color for visibility */
+    cursor: pointer; /* Indicates clickable */
+   
+}
+
+
+/* Optional: Add a subtle shadow for depth on hover */
+.fa-edit:hover, .fa-trash-alt:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filterInput{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /*width: 150px;*/
+    position: absolute;
+    border-radius: 25px;
+}
+.filterInputHide{
+    display: none;
+}
+.filterInput input[type='text']{
+    width: 100%;
+    height: 30px;
+    background-color: #D4D4D4;
+    border: 1px solid whitesmoke;
+    outline: none;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 0;
+}
+.filterInput input[type='button']{
+    background-color: #D4D4D4;
+    border: 1px solid whitesmokey;
+    border-top: none;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+  
+.tableHeader {
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark grey text */
+    text-align: left;
+    padding-bottom: 5vh;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.tableRow {
+    background-color: #fff; /* White background for rows */
+    border-bottom: 1px solid #eee; /* Light grey border for separation */
+}
+
+.container {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow around the table */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures the border radius clips the content */
+   
+}
+
+.tableRow:hover {
+    background-color: #f9f9f9; /* Lighter grey when hovering over a row */
+}
+
+.fa-filter, .fa-edit, .fa-trash-alt {
+    cursor: pointer; /* Indicates that these icons are clickable */
+}
+
+.fa-filter:hover, .fa-edit:hover, .fa-trash-alt:hover {
+    color: #0056b3; /* Change color on hover for emphasis */
+    body {
+    font-family: 'Arial', sans-serif; /* Clean, readable font */
+    color: #333; /* Slightly softer than black for text */
+}
+}
+
+/* Container for filter input, initially hidden */
+.filterInput {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position relative to nearest positioned ancestor */
+    z-index: 10; /* Ensures it appears above other content */
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light grey border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    
+    width: 200px; /* Default width, adjust as needed */
+    border-radius: 4px; /* Slightly rounded corners for a softer look */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition for showing the popup */
+}
+
+/* Shows the filter input when it's active */
+.filterInputShow {
+    display: block; /* Show the element */
+    opacity: 1; /* Fully visible */
+}
+
+/* Styles for the input element within the popup */
+#filterInputText {
+    width: 100%; /* Full width of the popup */
+    
+    border: 1px solid #000000; /* Subtle border */
+    border-radius: 4px; /* Rounded corners for the input field */
+    box-sizing: border-box; /* Includes padding and border in the width */
+}
+
+/* Close icon styling */
+.filterInput .fa-times {
+    cursor: pointer; /* Indicates the element is clickable */
+    float: right; /* Position to the right */
+    color: #888; /* Grey color for the icon */
+    margin-left: 5px; /* Space between icon and text/input */
+}
+
+.filterInput .fa-times:hover {
+    color: #333; /* Darker grey on hover for better visibility */
+}
