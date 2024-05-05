@@ -40,11 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
     phone.addEventListener('focus',(element)=>{setBorderColor(element,"red");});
     phone.addEventListener('blur',(element)=>{setBorderColor(element,"gray");});
     phone.addEventListener('input',(element)=>{
-        let inputValue = element.target.value; 
-        let isValid = /^[0-9()+-]+$/.test(inputValue); 
-        if (!isValid) {
-            element.target.value = String(element.target.value).slice(0,-1);
+        let result ='';
+        for (var i = 0; i < element.target.value.length; i++) {
+            let char = element.target.value.charAt(i);
+            if (!isNaN(char) && char !== " " || char ==="+") {
+                if(char === "+" && i === 0){
+                    result += char;
+                }else if(char != "+"){
+                    result += char;
+                }
+            }
         }
+        element.target.value = result;
     });
     
     state = document.getElementById('state');
@@ -67,11 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
     zipcode.addEventListener('focus',(element)=>{setBorderColor(element,"red");});
     zipcode.addEventListener('blur',(element)=>{setBorderColor(element,"gray");});
     zipcode.addEventListener('input',(element)=>{
-        let inputValue = element.target.value;
-        let isValid = /^\d{0,10}$/.test(inputValue); 
-        if (!isValid) {
-            element.target.value = String(element.target.value).slice(0,-1);
+        let result = "";
+        for (var i = 0; i < element.target.value.length; i++) {
+            let char = element.target.value.charAt(i);
+            if (!isNaN(char) && char !== " "){
+                result += char;
+            }
         }
+        element.target.value = result;
     });
     document.getElementById('button').addEventListener('mouseover',(element) =>{setBorderColor(element,"red");});
     document.getElementById('button').addEventListener('mouseout',(element) =>{setBorderColor(element,"gray");});
