@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/listUsers/style.css">
+    <script src="../JS/listUsers/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <br>
+    <div class="container" id="mainContainer">
+        <div class="tableHeader">
+            <div style="width: 55px;"></div>
+            <div><span style="padding: 5px;">Full Name</span><label class="fas fa-filter" title="Filter"
+                    style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div><span style="padding: 5px;">User ID</span></div>
+            <div><span style="padding: 5px;">Username</span><label class="fas fa-filter" title="Filter"
+                    style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div><span style="padding: 5px;">Password</span></div>
+            <div style="width: 300px;"><span style="padding: 5px;">E-mail</span><label class="fas fa-filter"
+                    title="Filter" style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div><span style="padding: 5px;">Phone</span><label class="fas fa-filter" title="Filter"
+                    style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div><span style="padding: 5px;">State</span></div>
+            <div><span style="padding: 5px;">Country</span><label class="fas fa-filter" title="Filter"
+                    style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div><span style="padding: 5px;">City</span><label class="fas fa-filter" title="Filter"
+                    style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div style="width: 170px;"><span style="padding: 5px;">Street</span></div>
+            <div style="width: 100px;"><span style="padding: 5px;">Zip Code</span></div>
+            <div style="width: 170px;"><span style="padding: 5px;">Registered Date</span><label class="fas fa-filter"
+                    title="Filter" style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+            <div style="width: 170px;"><span style="padding: 5px;">Updated Date</span><label class="fas fa-filter"
+                    title="Filter" style="float: right; padding-right: 5px; padding-top: 2px;"></label></div>
+        </div>
+        <!-- The list of users that is fetched from the DB is displayed in this 'div' -->
+        <div id="tableRow">
+
+        </div>
+    </div>
+    <!-- This 'div' shows when the filter icon is pressed -->
+    <div id="filterInput" class="filterInputHide filterInput">
+        <input type="text" placeholder="type to filter results" id="filterInputText" />
+        <label class="fas fa-times" style="position: relative; left: 90%;"
+            onclick="document.getElementById('filterInput').style.display = 'none'; this.style.color = 'black'"
+            onmouseover="this.style.color = 'red'"></label>
+    </div>
+    <br>
+
+    </div>
+</body>
+
+</html>

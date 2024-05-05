@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create a new user</title>
+        <link rel="stylesheet" href="createauser.css">   
+    </head>
+    <body class="body">
+        <div class="bg-body"></div>
+    <div class="top-container">
+      <div class="div-button">
+        <button class="button-create-user" onclick="goToPageOne()">Create user</button>
+        <button class="button-data-table" onclick="goToPageTwo()">Data table</button>
+      </div>
+    </div>
+    
+        <h1 class="first-h1"> Welcome to our Website!</h1> 
+             <!-- <p class ="first-paragraph">We provide an advanced data management and analysis platform designed to help you make data-driven decisions. Through our content, you will be able to access a wide range of tools and methods for data analysis, for building advanced reports, and receive professional support from our team. With wide options for data sharing and collaboration, joining our community will allow you to experience our advanced capabilities and achieve significant results in your work.</P> -->
+                <p class="first-paragraph"> You have arrived at our user management website</p>
+                <p class="second-paragraph"> Don't miss the opportunity to join and register today!</p>
+
+     <div class="form-container">
+        <form id="create-user-form" method="post"> 
+            <div class="title">
+                <h2>Create a new user</h2>
+            </div>
+
+            <div class="input-box">
+               
+                <label for="username"></label>
+                <input class="form-input" type="text" id="username" name="username" placeholder="Username" required pattern="[a-zA-Z.!@1-0]+" title="Please enter letters and the special characters . ! @">
+
+                <label abel for="email"></label>
+                <input class="form-input" type="text" id="email" name="email" placeholder="email" required pattern=".*@.*\.com" title="Please enter a valid email address (e.g., example@example.com)">               
+
+                <label for="phone"></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="Phone" required pattern="\d+" title="Please enter numbers only (0123456789)">
+               
+                <label for="fname"></label>
+                <input class="form-input" type="text" id="fname" name="fname" placeholder="First name" required>
+
+                <label for="lname"></label>
+                <input class="form-input" type="text" id="lname" name="lname" placeholder="Last name" required>
+
+                <label for="statee"></label>
+                <input class="form-input" type="text" id="state" name="state" placeholder="state" required>
+
+                <label for="country"></label>
+                <input class="form-input" type="text" id="country" name="country" placeholder="Country" required>
+
+                <label for="street"></label>
+                <input class="form-input" type="text" id="street" name="street" placeholder="Street" required>
+
+                <label  for="zipcode"></label>
+                <input class="form-input" type="text" id="zipcode" name="zipcode" placeholder="Zip code" required>
+
+                <input type="text" id="registerDateTime"  readonly>
+
+                <button class="form-submit" type="submit" >send</button>
+            </div>
+        </form>
+    </div>
+    </body>
+    <script src="createauser.js"> </script>
+</html>

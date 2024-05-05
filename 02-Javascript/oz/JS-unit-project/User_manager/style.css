@@ -1,0 +1,72 @@
+body {
+    margin: 0px auto;
+    font-family: "Jersey 15", sans-serif;
+    text-align: center;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    border-radius: 8px;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 30px;
+
+}
+
+li {
+    color: #ffffff;
+    padding: 5px 10px;
+    background-color: #00ff88;
+    transition: 0.5s;
+}
+
+li:hover {
+    background-color: #39ff6b;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a {
+    text-decoration: none;
+}
+
+button { 
+    color: rgb(255, 255, 255);
+    background-color: #39ff6b;
+    border: 0.8px solid white;
+    padding: 5px 10px; 
+    font-family: "Jersey 15", sans-serif;
+    transition: 0.9s;
+}
+
+button:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.user-table {
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#userDataBody td {
+    padding: 5px 2px;
+} 
+
+
