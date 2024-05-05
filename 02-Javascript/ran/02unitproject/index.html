@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ComTel - דף הבית</title>
+  <title>User Management</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>ברוכים הבאים ל-ComTel</h1>
     <nav>
       <ul>
-        <li><a href="user-management.html">ניהול משתמשים</a></li>
-        <li><a href="about.html">אודות</a></li>
-        <li><a href="index.html">דף הבית</a></li>
+        <li><a href="#" id="createUserTab">Create User</a></li>
+        <li><a href="#" id="viewUsersTab">View Users</a></li>
       </ul>
     </nav>
   </header>
 
-  <section>
-    <h2>חדשות ועדכונים</h2>
-    <p>הישארו מעודכנים עם החידושים האחרונים בעולם התקשורת והטכנולוגיה.</p>
-  </section>
+  <main>
+    <section id="createUserSection">
+      <h2>Create User</h2>
+      <form id="createUserForm">
+        <!-- שדות הטופס ליצירת משתמש חדש יוכנסו כאן -->
+      </form>
+    </section>
 
-  <section>
-    <h2>מי אנחנו</h2>
-    <p>ComTel היא חברת תקשורת מובילה שמספקת מגוון רחב של שירותים ופתרונות חדשניים בתחום הטלקומוניקציה. עם ניסיון של למעלה מ-20 שנה, אנו מתמחים בפיתוח והטמעת מערכות תקשורת חכמות המותאמות לעסקים, חברות ולקוחות פרטיים בישראל וברחבי העולם.</p>
-    <p>המומחיות שלנו כוללת טכנולוגיות תקשורת קווית ואלחוטית, פתרונות תשתיות נתונים, טכנולוגיות ענן, ובניית רשתות תקשורת אופטיות. אנו מתחייבים לספק ללקוחותינו את הטכנולוגיה המתקדמת ביותר, תוך שמירה על רמות גבוהות של שירות ותמיכה.</p>
-    <p>ב-ComTel, אנו מאמינים בחדשנות ובשירות אישי, ועובדים קשה להבטיח שכל לקוח יקבל את הפתרון המותאם ביותר לצרכיו. הצוות שלנו מורכב ממהנדסים מנוסים, מומחי תקשורת ותומכי לקוחות שמחויבים לספק פתרונות יעילים וחדשניים שיעזרו ללקוחותינו להשיג את התוצאות הטובות ביותר.</p>
-  </section>
+    <section id="viewUsersSection" style="display: none;">
+      <h2>View Users</h2>
+      <div id="filtersContainer">
+        <!-- סינונים לטבלת המשתמשים יוכנסו כאן -->
+      </div>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Registered Date</th>
+            <th>Updated Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- שורות המשתמשים יוכנסו כאן באופן דינמי -->
+        </tbody>
+      </table>
+      <div id="undoContainer" style="display: none;">
+        <div id="undoBar"></div>
+        <button id="undoButton">Undo</button>
+      </div>
+    </section>
+  </main>
 
-  <footer>
-    <p>&copy; 2024 ComTel, כל הזכויות שמורות.</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>

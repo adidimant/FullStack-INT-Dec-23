@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/02-Javascript/oz/JS-unit-project/Form/style.css">
+    <link rel="scriptsheet" href="/02-Javascript/oz/JS-unit-project/Form/script.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <ul class="nav-menu">
+            <a href="/02-Javascript/oz/JS-unit-project/Form/index.html"> <li>Create User</li> </a>
+            <a href="/02-Javascript/oz/JS-unit-project/User_manager/index.html"> <li>Manage Users</li> </a>
+            </ul>   
+        </nav>  
+    <h1>-Javascript-project-site-</h1>  
+    </div>
+
+<div class="container1">
+    <form id="UserObject" method="get" class="form-container">
+        <label for="username">Username:</label> <input id="username" name="username" required type="text">
+        <label for="email">Email:</label> <input id="email" name="email" required type="text">
+        <label for="phone number">Phone number:</label> <input id="pnumber" name="phone number" required type="text">
+        <label for="first name">First name:</label> <input id="fname" name="first name" required type="text">
+        <label for="last name">Last name:</label> <input id="lname" name="last name" required type="text">
+        <label for="state">State:</label> <input id="state" name="state" required type="text">
+        <label for="city">City:</label> <input id="city" name="city" required type="text">
+        <label for="street">Street:</label> <input id="street" name="street" required type="text">
+        <label for="zipcode">Zipcode:</label> <input id="zipcode" name="zipcode" required type="text">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('UserObject');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const userObject = {};
+
+        formData.forEach((value, key) => {
+            userObject[key] = value;
+        });
+
+        const UserId = uuid();
+
+        const currentDate = new Date();
+        userObject['registeredDate'] = currentDate.toLocaleString();
+        const json = JSON.stringify(userObject);
+
+        localStorage.setItem(UserId, json);
+        localStorage.setItem('UserId', UserId);
+
+        //change the location
+        window.location.href = "/02-Javascript/oz/JS-unit-project/User_manager/index.html";
+    });
+});
+
+function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx' .replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+    </script>
+</body>
+</html>
