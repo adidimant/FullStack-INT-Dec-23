@@ -194,6 +194,22 @@ createUserForm.addEventListener('submit', function (event) {
     registeredDate,
     updatedDate: new Date().toISOString()
   };
+  // Validations
+if (!username || !email || !firstName || !lastName) {
+  alert('Please fill in all required fields');
+  return;
+}
+
+if (!validateEmail(email)) {
+  alert('Please enter a valid email address');
+  return;
+}
+
+// Helper function to validate email format
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
 
   const newUserId = `user-${Date.now()}`;
 
