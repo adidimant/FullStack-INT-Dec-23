@@ -70,6 +70,17 @@ function filterTable() {
     const registeredFilterValue = registeredFilterInput.value.toLowerCase();
     const updatedFilterValue = updatedFilterInput.value.toLowerCase();
 
+    function convertDateFormat(inputDate) {
+        if (!inputDate) {
+            return ""; // Return an empty string if inputDate is undefined
+        }
+        const [year, month, day] = inputDate.split('-'); // Split date into year, month, and day
+        return `${day}/${month}/${year}`; // Return the date in dd/mm/yyyy format
+    }
+
+    const convertedRegisteredFilterValue = convertDateFormat(registeredFilterValue);
+    const convertedUpdatedFilterValue = convertDateFormat(updatedFilterValue);
+
     // Filter the data based on the input values
     const filteredData = {};
     for (const userId in userData) {
@@ -82,8 +93,8 @@ function filterTable() {
             user.last_name.toLowerCase().includes(fullnameFilterValue)) &&
             user.country.toLowerCase().includes(countryFilterValue) &&
             user.city.toLowerCase().includes(cityFilterValue) &&
-            user.registeredDate.toLowerCase().includes(registeredFilterValue) &&
-            user.updatedDate.toLowerCase().includes(updatedFilterValue)
+            user.registeredDate.includes(convertedRegisteredFilterValue) &&
+            user.updatedDate.includes(convertedUpdatedFilterValue)
         ) {
             filteredData[userId] = user;
         }
@@ -100,13 +111,24 @@ function filterTable() {
 function clearFilters() {
     // Clear the filter inputs
     const filterInputs = document.getElementById('input-filters').querySelectorAll('input');
-    /*const inputFields = filterInputs.querySelectorAll('input');*/
 
-    // Iterate over each input element and set its value to an empty string
+    // Iterate over each input element
     filterInputs.forEach(input => {
-        input.value = '';
+        // Check if the input type is 'date'
+        if (input.type === 'date') {
+            // For date inputs, set the value to null otherwise the browser does not clear
+            input.value = null;
+        } else {
+            // For other input types, set the value to an empty string
+            input.value = '';
+        }
     });
 
+    const filterInputs2 = document.getElementById('input-filters').querySelectorAll('input');
+    console.log(filterInputs2);
+
+    //refresh table, and then resume automatic refresh
+    refreshTable();
     // Resume the automatic refresh
     startAutomaticRefresh();
 }
