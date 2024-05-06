@@ -206,10 +206,11 @@ createUserForm.addEventListener('submit', function (event) {
   alert('User created successfully!');
 });
 
-document.addEventListener('DOMContentLoaded', init);
 function init() {
   setupTabs();
   setupFilters(); 
   renderUserTable();
   startTableRefresh();
 }
+
+document.addEventListener('DOMContentLoaded', init);
