@@ -174,15 +174,34 @@ function setupTabs() {
     renderUserTable();
   });
 }
-
 createUserForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const username = document.getElementById('usernameInput').value;
-  const email = document.getElementById('emailInput').value;
-  // Add similar lines for other form inputs
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const street = document.getElementById('street').value;
+  const city = document.getElementById('city').value;
+  const country = document.getElementById('country').value;
+  const postalCode = document.getElementById('postalCode').value;
+  const registeredDate = document.getElementById('registeredDate').value;
 
-  const newUser = createUserObject(username, email, /* other input values */);
+  const newUser = {
+    username,
+    email,
+    phone,
+    firstName,
+    lastName,
+    street,
+    city,
+    country,
+    postalCode,
+    registeredDate,
+    updatedDate: new Date().toISOString()
+  };
+
   const newUserId = `user-${Date.now()}`;
 
   users[newUserId] = newUser;
