@@ -12,6 +12,9 @@ const undoButton = document.getElementById('undoButton');
 
 // Initialize localStorage and dummy users
 let users = JSON.parse(localStorage.getItem('users') || '{}');
+let userIds = JSON.parse(localStorage.getItem('userIds') || '[]');
+let deletedUser = null;
+
 const dummyUsers = [
   {
     username: 'johnsmith',
@@ -66,31 +69,35 @@ function setupTabs() {
 }
 
 function setupFilters() {
-  // Example for setting up filters
-  const usernameFilter = document.createElement('input');
-  usernameFilter.id = 'usernameFilter';
-  usernameFilter.className = 'filter-input';
-  usernameFilter.placeholder = 'Filter by username';
-  filtersContainer.appendChild(usernameFilter);
-
-  const countryFilter = document.createElement('input');
-  countryFilter.id = 'countryFilter';
-  countryFilter.className = 'filter-input';
-  countryFilter.placeholder = 'Filter by country';
-  filtersContainer.appendChild(countryFilter);
-
-  usernameFilter.addEventListener('input', debounce(filterUsers, 300));
-  countryFilter.addEventListener('input', debounce(filterUsers, 300));
+  const filterInputs = document.querySelectorAll('.filter');
+  
+  filterInputs.forEach(input => {
+    input.addEventListener('input', debounce(filterUsers, 300));
+  });
 }
 
 function filterUsers() {
-  const usernameFilterValue = document.getElementById('usernameFilter').value.toLowerCase();
-  const countryFilterValue = document.getElementById('countryFilter').value.toLowerCase();
+  const filters = {
+    username: document.getElementById('filterUsername').value.toLowerCase(),
+    email: document.getElementById('filterEmail').value.toLowerCase(),
+    phone: document.getElementById('filterPhone').value.toLowerCase(),
+    fullName: document.getElementById('filterFullName').value.toLowerCase(),
+    country: document.getElementById('filterCountry').value.toLowerCase(),
+    city: document.getElementById('filterCity').value.toLowerCase(),
+    registeredDate: document.getElementById('filterRegisteredDate').value,
+    updatedDate: document.getElementById('filterUpdatedDate').value
+  };
 
   const filteredUserIds = Object.keys(users).filter(userId => {
     const user = users[userId];
-    return user.username.toLowerCase().includes(usernameFilterValue) &&
-           user.country.toLowerCase().includes(countryFilterValue);
+    return Object.keys(filters).every(key => {
+      if (!filters[key]) return true;
+      if (key === 'fullName') {
+        const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+        return fullName.includes(filters[key]);
+      }
+      return user[key].toLowerCase().includes(filters[key]);
+    });
   });
 
   renderUserTable(filteredUserIds);
@@ -138,30 +145,55 @@ function renderUserTable(userIdsToRender = Object.keys(users)) {
 }
 
 function editUser(userId) {
-  // Implementation for editing user
+  const row = document.querySelector(`tr[data-user-id="${userId}"]`);
+  const user = users[userId];
+
+  // Replace user data with input fields
+  row.innerHTML = `
+    <td>
+      <button onclick="saveUser('${userId}')">Save</button>
+      <button onclick="cancelEdit('${userId}')">Cancel</button>
+    </td>
+    <td><input type="text" id="editUpdatedDate-${userId}" value="${user.updatedDate}"></td>
+    <td><input type="text" id="editRegisteredDate-${userId}" value="${user.registeredDate}"></td>
+    <td><input type="text" id="editZipcode-${userId}" value="${user.zipcode}"></td>
+    <td><input type="text" id="editCountry-${userId}" value="${user.country}"></td>
+    <td><input type="text" id="editCity-${userId}" value="${user.city}"></td>
+    <td><input type="text" id="editStreet-${userId}" value="${user.street}"></td>
+    <td><input type="text" id="editLastName-${userId}" value="${user.lastName}"></td>
+    <td><input type="text" id="editFirstName-${userId}" value="${user.firstName}"></td>
+    <td><input type="text" id="editPhone-${userId}" value="${user.phone}"></td>
+    <td><input type="text" id="editEmail-${userId}" value="${user.email}"></td>
+    <td><input type="text" id="editUsername-${userId}" value="${user.username}"></td>
+  `;
 }
 
-function deleteUser(userId) {
-  if (confirm('Are you sure you want to delete this user?')) {
-    delete users[userId];
+function cancelEdit(userId) {
+  renderUserTable();
+}
+
+function saveUser(userId) {
+  if (userId) {
+    // Editing existing user
+    const updatedUser = {
+      username: document.getElementById(`editUsername-${userId}`).value,
+      email: document.getElementById(`editEmail-${userId}`).value,
+      phone: document.getElementById(`editPhone-${userId}`).value,
+      firstName: document.getElementById(`editFirstName-${userId}`).value,
+      lastName: document.getElementById(`editLastName-${userId}`).value,
+      street: document.getElementById(`editStreet-${userId}`).value,
+      city: document.getElementById(`editCity-${userId}`).value,
+      country: document.getElementById(`editCountry-${userId}`).value,
+      zipcode: document.getElementById(`editZipcode-${userId}`).value,
+      registeredDate: document.getElementById(`editRegisteredDate-${userId}`).value,
+      updatedDate: new Date().toISOString()
+    };
+
+    users[userId] = updatedUser;
     localStorage.setItem('users', JSON.stringify(users));
     renderUserTable();
-  }
-}
-
-function startTableRefresh() {
-  setInterval(() => {
-    renderUserTable();
-  }, 30000);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  setupTabs();
-  setupFilters();
-  renderUserTable();
-  startTableRefresh();
-
-  function saveUser(event) {
+  } else {
+    // Creating new user
     event.preventDefault();
 
     const username = document.getElementById('username').value;
@@ -174,6 +206,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const country = document.getElementById('country').value;
     const postalCode = document.getElementById('postalCode').value;
     const registeredDate = document.getElementById('registeredDate').value;
+
+    // Validations
+    if (!username || !email || !firstName || !lastName) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
+    // Check if username or email already exists
+    if (Object.values(users).some(user => user.username === username || user.email === email)) {
+      alert('Username or email already exists');
+      return;
+    }
 
     const newUser = {
       username,
@@ -192,13 +241,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const newUserId = `user-${Date.now()}`;
 
     users[newUserId] = newUser;
+    userIds.push(newUserId);
     localStorage.setItem('users', JSON.stringify(users));
-    renderUserTable();
+    localStorage.setItem('userIds', JSON.stringify(userIds));
 
     document.getElementById('userForm').reset();
+    renderUserTable();
 
     alert('User created successfully!');
   }
+}
 
-  createUserForm.addEventListener('submit', saveUser);
+function deleteUser(userId) {
+  if (confirm('Are you sure you want to delete this user?')) {
+    deletedUser = users[userId];
+    delete users[userId];
+    localStorage.setItem('users', JSON.stringify(users));
+    renderUserTable();
+    showUndoBar();
+  }
+}
+
+function showUndoBar() {
+  undoContainer.style.display = 'flex';
+  undoBar.style.animation = 'undoBarAnimation 6s linear forwards';
+  setTimeout(() => {
+    undoContainer.style.display = 'none';
+    deletedUser = null;
+  }, 6000);
+}
+
+undoButton.addEventListener('click', function() {
+  if (deletedUser) {
+    users[deletedUser.id] = deletedUser;
+    localStorage.setItem('users', JSON.stringify(users));
+    renderUserTable();
+    undoContainer.style.display = 'none';
+    deletedUser = null;
+  }
+});
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+function startTableRefresh() {
+  setInterval(() => {
+    renderUserTable();
+  }, 30000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setupTabs();
+  setupFilters();
+  renderUserTable();
+  startTableRefresh();
+
+  createUserForm.addEventListener('submit', function(event) {
+    saveUser();
+  });
 });
