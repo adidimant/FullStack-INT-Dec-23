@@ -159,7 +159,11 @@ function cancelEdit(userId) {
   renderUserTable();
 }
 
-function saveUser(userId) {
+function saveUser(event) {
+  if (event) {
+    event.preventDefault();
+  }
+  
   if (userId) {
     // Editing existing user
     const updatedUser = {
@@ -181,8 +185,6 @@ function saveUser(userId) {
     renderUserTable();
   } else {
     // Creating new user
-    event.preventDefault();
-
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -238,6 +240,9 @@ function saveUser(userId) {
     alert('User created successfully!');
   }
 }
+
+
+
 
 function deleteUser(userId) {
   if (confirm('Are you sure you want to delete this user?')) {
