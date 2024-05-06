@@ -335,13 +335,13 @@ function deleteUser(user){
                     if (counter > 6) {
                         clearInterval(interval); // Stop the interval after 6 iterations.
                         document.getElementById('undoContainer').style.display= 'none';
-                        editButtonsStatus('auto');  
-                        deleteButtonsStatus('auto');
+                        editButtonsPointerEvents('auto');  // Enable editing for all users after saving user data.
+                        deleteButtonsPointerEvents('auto'); // Enable delete for all users after saving user data.
                         deletedUser=[]; // Reset the array that contains the data for the deleted user.
                     }
                     else{
-                        editButtonsStatus('none');
-                        deleteButtonsStatus('none');
+                        editButtonsPointerEvents('none');
+                        deleteButtonsPointerEvents('none');
                         updateProgressBar();
                         counter++;
                     }
@@ -450,7 +450,8 @@ async function editUser(user,event){
             }
         }
         event.target.classList.value = 'fas fa-save';
-        editButtonsStatus('none'); // Disable editing for other users in list.
+        editButtonsPointerEvents('none'); // Disable editing for other users in list.
+        deleteButtonsPointerEvents('none');
     }else{
         // When saving after editing
         
@@ -473,7 +474,8 @@ async function editUser(user,event){
         }
         const emailInUse = await isUsedEmail(user.email);
         if(areInputsNotEmpty(user) && isValidEmail(user.email) && !emailInUse){    
-            editButtonsStatus('auto'); // Enable editing for all users after saving user data.
+            editButtonsPointerEvents('auto'); // Enable editing for all users after saving user data.
+            deleteButtonsPointerEvents('auto'); // Enable delete for all users after saving user data.
             editMode = false;
             for(let i=0; i<allRowData.length;i++){
                 allRowData[i].style.backgroundColor = '';
@@ -524,7 +526,7 @@ async function editUser(user,event){
 }
 
 // A function to Enables / disables respond to clicking the edit button
-function editButtonsStatus(status){
+function editButtonsPointerEvents(status){
     const elements = document.querySelectorAll('.fa-edit');
     elements.forEach((element) =>{
         element.style.pointerEvents = status;
@@ -532,7 +534,7 @@ function editButtonsStatus(status){
 }
 
 // A function to Enables / disables respond to clicking the delete button
-function deleteButtonsStatus(status){
+function deleteButtonsPointerEvents(status){
     const elements = document.querySelectorAll('.fa-trash-alt');
     elements.forEach((element) =>{
         element.style.pointerEvents = status;
@@ -633,7 +635,6 @@ async function undo(){
     Promise.all([saveToUsers,saveToUserIds]).then(()=>{
         refresh();
         document.getElementById('undoContainer').style.display = 'none';
-        alert('The delete operation has been cancelled, \nthe user has been restored ');
     }).catch(()=>{
         console.error('The user cannot be restored');
     });
