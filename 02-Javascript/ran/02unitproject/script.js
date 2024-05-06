@@ -1,3 +1,4 @@
+let userIds = JSON.parse(localStorage.getItem('userIds') || '[]');
 // Get references to DOM elements
 const createUserTab = document.getElementById('createUserTab');
 const viewUsersTab = document.getElementById('viewUsersTab');
@@ -221,6 +222,11 @@ function validateEmail(email) {
 
   alert('User created successfully!');
 });
+// Check if username or email already exists
+if (Object.values(users).some(user => user.username === username || user.email === email)) {
+  alert('Username or email already exists');
+  return;
+}
 
 document.addEventListener('DOMContentLoaded', init);
 function init() {
