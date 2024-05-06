@@ -1,4 +1,4 @@
-// קבלת הפניות לרכיבי DOM
+// Get references to DOM elements
 const createUserTab = document.getElementById('createUserTab');
 const viewUsersTab = document.getElementById('viewUsersTab');
 const createUserSection = document.getElementById('createUserSection');
@@ -10,7 +10,7 @@ const undoContainer = document.getElementById('undoContainer');
 const undoBar = document.getElementById('undoBar');
 const undoButton = document.getElementById('undoButton');
 
-// איתחול localStorage והמשתמשים הדמה
+// Initialize localStorage and dummy users
 let users = JSON.parse(localStorage.getItem('users') || '{}');
 let userIds = JSON.parse(localStorage.getItem('userIds') || '[]');
 let deletedUser = null;
@@ -46,7 +46,7 @@ const dummyUsers = [
   }
 ];
 
-// הוספת משתמשי דמה ל-localStorage אם אין כבר נתונים
+// Add dummy users to localStorage if not already populated
 if (Object.keys(users).length === 0) {
   dummyUsers.forEach((user, index) => {
     const userId = `user-${index + 1}`;
@@ -102,7 +102,7 @@ function debounce(func, delay) {
 
 function renderUserTable(userIdsToRender = Object.keys(users)) {
   const tableBody = usersTable.getElementsByTagName('tbody')[0];
-  tableBody.innerHTML = ''; // ניקוי הטבלה
+  tableBody.innerHTML = ''; // Clear the table first
 
   userIdsToRender.forEach(userId => {
     const user = users[userId];
@@ -114,15 +114,15 @@ function renderUserTable(userIdsToRender = Object.keys(users)) {
       row.appendChild(cell);
     });
 
-    // יצירת עמודת פעולות (עריכה ומחיקה)
+    // Create actions cell (edit and delete)
     const actionsCell = document.createElement('td');
     const editButton = document.createElement('button');
-    editButton.innerHTML = 'Edit'; // כפתור עריכה
+    editButton.innerHTML = 'Edit'; // Edit icon
     editButton.onclick = () => editUser(userId);
     actionsCell.appendChild(editButton);
 
     const deleteButton = document.createElement('button');
-    deleteButton.innerHTML = 'Delete'; // כפתור מחיקה
+    deleteButton.innerHTML = 'Delete'; // Delete icon
     deleteButton.onclick = () => deleteUser(userId);
     actionsCell.appendChild(deleteButton);
 
@@ -135,7 +135,7 @@ function editUser(userId) {
   const row = document.querySelector(`tr[data-user-id="${userId}"]`);
   const user = users[userId];
 
-  // החלפת הנתונים לשדות קלט
+  // Replace user data with input fields
   row.innerHTML = `
     <td>
       <button onclick="saveUser('${userId}')">Save</button>
@@ -159,13 +159,13 @@ function cancelEdit(userId) {
   renderUserTable();
 }
 
-function saveUser(event, userId = null) {
+function saveUser(event) {
   if (event) {
     event.preventDefault();
   }
   
   if (userId) {
-    // עדכון משתמש קיים
+    // Editing existing user
     const updatedUser = {
       username: document.getElementById(`editUsername-${userId}`).value,
       email: document.getElementById(`editEmail-${userId}`).value,
@@ -184,7 +184,7 @@ function saveUser(event, userId = null) {
     localStorage.setItem('users', JSON.stringify(users));
     renderUserTable();
   } else {
-    // יצירת משתמש חדש
+    // Creating new user
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -196,20 +196,20 @@ function saveUser(event, userId = null) {
     const postalCode = document.getElementById('postalCode').value;
     const registeredDate = document.getElementById('registeredDate').value;
 
-    // ולידציות
+    // Validations
     if (!username || !email || !firstName || !lastName) {
-      alert('אנא מלא את כל השדות הנדרשים');
+      alert('Please fill in all required fields');
       return;
     }
 
     if (!validateEmail(email)) {
-      alert('אנא הזן כתובת אימייל חוקית');
+      alert('Please enter a valid email address');
       return;
     }
 
-    // בדוק אם שם המשתמש או האימייל קיימים כבר
+    // Check if username or email already exists
     if (Object.values(users).some(user => user.username === username || user.email === email)) {
-      alert('שם משתמש או אימייל כבר קיימים');
+      alert('Username or email already exists');
       return;
     }
 
@@ -237,12 +237,15 @@ function saveUser(event, userId = null) {
     document.getElementById('userForm').reset();
     renderUserTable();
 
-    alert('המשתמש נוצר בהצלחה!');
+    alert('User created successfully!');
   }
 }
 
+
+
+
 function deleteUser(userId) {
-  if (confirm('האם אתה בטוח שברצונך למחוק את המשתמש הזה?')) {
+  if (confirm('Are you sure you want to delete this user?')) {
     deletedUser = users[userId];
     delete users[userId];
     localStorage.setItem('users', JSON.stringify(users));
@@ -262,8 +265,7 @@ function showUndoBar() {
 
 undoButton.addEventListener('click', function() {
   if (deletedUser) {
-    const newUserId = `user-${Date.now()}`;
-    users[newUserId] = deletedUser;
+    users[deletedUser.id] = deletedUser;
     localStorage.setItem('users', JSON.stringify(users));
     renderUserTable();
     undoContainer.style.display = 'none';
@@ -283,15 +285,14 @@ function startTableRefresh() {
 }
 
 function showTab(tabId) {
-  // הסתרת כל הכרטיסיות
+  // Hide all tabs
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => tab.style.display = 'none');
 
-  // הצגת הכרטיסיה הנבחרת
+  // Show the selected tab
   const selectedTab = document.getElementById(tabId);
   selectedTab.style.display = 'block';
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   setupFilters();
   renderUserTable();
