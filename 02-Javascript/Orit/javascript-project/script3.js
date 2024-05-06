@@ -124,9 +124,6 @@ function clearFilters() {
         }
     });
 
-    const filterInputs2 = document.getElementById('input-filters').querySelectorAll('input');
-    console.log(filterInputs2);
-
     //refresh table, and then resume automatic refresh
     refreshTable();
 
