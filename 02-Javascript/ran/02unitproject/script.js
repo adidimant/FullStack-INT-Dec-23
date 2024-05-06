@@ -55,7 +55,7 @@ if (Object.keys(users).length === 0) {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-function setupFilters() {
+async function setupFilters() {
   const filterInputs = document.querySelectorAll('.filter');
   
   filterInputs.forEach(input => {
@@ -63,7 +63,7 @@ function setupFilters() {
   });
 }
 
-function filterUsers() {
+async function filterUsers() {
   const filters = {
     username: document.getElementById('filterUsername').value.toLowerCase(),
     email: document.getElementById('filterEmail').value.toLowerCase(),
@@ -87,7 +87,7 @@ function filterUsers() {
     });
   });
 
-  renderUserTable(filteredUserIds);
+  await renderUserTable(filteredUserIds);
 }
 
 function debounce(func, delay) {
@@ -100,7 +100,7 @@ function debounce(func, delay) {
   };
 }
 
-function renderUserTable(userIdsToRender = Object.keys(users)) {
+async function renderUserTable(userIdsToRender = Object.keys(users)) {
   const tableBody = usersTable.getElementsByTagName('tbody')[0];
   tableBody.innerHTML = ''; // ניקוי הטבלה
 
@@ -131,7 +131,7 @@ function renderUserTable(userIdsToRender = Object.keys(users)) {
   });
 }
 
-function editUser(userId) {
+async function editUser(userId) {
   const row = document.querySelector(`tr[data-user-id="${userId}"]`);
   const user = users[userId];
 
@@ -155,11 +155,11 @@ function editUser(userId) {
   `;
 }
 
-function cancelEdit(userId) {
-  renderUserTable();
+async function cancelEdit(userId) {
+  await renderUserTable();
 }
 
-function saveUser(event, userId = null) {
+async function saveUser(event, userId = null) {
   if (event) {
     event.preventDefault();
   }
@@ -182,7 +182,7 @@ function saveUser(event, userId = null) {
 
     users[userId] = updatedUser;
     localStorage.setItem('users', JSON.stringify(users));
-    renderUserTable();
+    await renderUserTable();
   } else {
     // יצירת משתמש חדש
     const username = document.getElementById('username').value;
@@ -235,18 +235,18 @@ function saveUser(event, userId = null) {
     localStorage.setItem('userIds', JSON.stringify(userIds));
 
     document.getElementById('userForm').reset();
-    renderUserTable();
+    await renderUserTable();
 
     alert('המשתמש נוצר בהצלחה!');
   }
 }
 
-function deleteUser(userId) {
+async function deleteUser(userId) {
   if (confirm('האם אתה בטוח שברצונך למחוק את המשתמש הזה?')) {
     deletedUser = users[userId];
     delete users[userId];
     localStorage.setItem('users', JSON.stringify(users));
-    renderUserTable();
+    await renderUserTable();
     showUndoBar();
   }
 }
@@ -260,12 +260,12 @@ function showUndoBar() {
   }, 6000);
 }
 
-undoButton.addEventListener('click', function() {
+undoButton.addEventListener('click', async function() {
   if (deletedUser) {
     const newUserId = `user-${Date.now()}`;
     users[newUserId] = deletedUser;
     localStorage.setItem('users', JSON.stringify(users));
-    renderUserTable();
+    await renderUserTable();
     undoContainer.style.display = 'none';
     deletedUser = null;
   }
@@ -276,13 +276,13 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-function startTableRefresh() {
-  setInterval(() => {
-    renderUserTable();
+async function startTableRefresh() {
+  setInterval(async () => {
+    await renderUserTable();
   }, 30000);
 }
 
-function showTab(tabId) {
+async function showTab(tabId) {
   // הסתרת כל הכרטיסיות
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => tab.style.display = 'none');
@@ -292,14 +292,14 @@ function showTab(tabId) {
   selectedTab.style.display = 'block';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  setupFilters();
-  renderUserTable();
-  startTableRefresh();
+document.addEventListener('DOMContentLoaded', async function() {
+  await setupFilters();
+  await renderUserTable();
+  await startTableRefresh();
 
   if (createUserForm) {
-    createUserForm.addEventListener('submit', function(event) {
-      saveUser(event);
+    createUserForm.addEventListener('submit', async function(event) {
+      await saveUser(event);
     });
   }
 });
