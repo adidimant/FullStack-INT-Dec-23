@@ -293,13 +293,14 @@ function showTab(tabId) {
   const selectedTab = document.getElementById(tabId);
   selectedTab.style.display = 'block';
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   setupFilters();
   renderUserTable();
   startTableRefresh();
 
-  createUserForm.addEventListener('submit', function(event) {
-    saveUser();
-  });
+  if (createUserForm) {
+    createUserForm.addEventListener('submit', function(event) {
+      saveUser(event);
+    });
+  }
 });
