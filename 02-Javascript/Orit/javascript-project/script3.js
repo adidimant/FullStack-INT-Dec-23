@@ -129,6 +129,7 @@ function clearFilters() {
 
     //refresh table, and then resume automatic refresh
     refreshTable();
+
     // Resume the automatic refresh
     startAutomaticRefresh();
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>check</title>
+    <link rel="stylesheet" href="datatable.css">
+    <script src="datatable.js"></script>
+</head>
+<body class="body">
+    <div class="container-buttons">
+        <div class="div-button">
+            <button class="button-create-user" onclick="goToPageOne()">Create user</button>
+            <button class="button-data-table" onclick="goToPageTwo()">Data table</button>
+        </div>
+</div>
+<div>
+    <label for="username-email-filter"></label>
+                    <input class="username-email-filter" type="text" id="Search" onkeyup="filterTable()" placeholder="Search">
+</div>
+    <table class="users-table" id="user-table">
+        <thead>
+            <tr id="title-table">
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Street</th>
+                <th>Zip code</th>
+                <th>Registered Date</th>
+                <th>Updated Date</th>
+               
+            </tr>
+        </thead>
+    </table>
+   
+
+</body>
+</html>
