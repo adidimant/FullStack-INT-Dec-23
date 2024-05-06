@@ -1,4 +1,4 @@
-let userIds = JSON.parse(localStorage.getItem('userIds') || '[]');
+
 // Get references to DOM elements
 const createUserTab = document.getElementById('createUserTab');
 const viewUsersTab = document.getElementById('viewUsersTab');
