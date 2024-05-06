@@ -1,4 +1,3 @@
-
 // Get references to DOM elements
 const createUserTab = document.getElementById('createUserTab');
 const viewUsersTab = document.getElementById('viewUsersTab');
@@ -156,82 +155,50 @@ function startTableRefresh() {
   }, 30000);
 }
 
-function setupTabs() {
-  createUserTab.addEventListener('click', function () {
-    createUserSection.style.display = 'block';
-    viewUsersSection.style.display = 'none';
-  });
-
-  viewUsersTab.addEventListener('click', function () {
-    createUserSection.style.display = 'none';
-    viewUsersSection.style.display = 'block';
-    renderUserTable();
-  });
-}
-createUserForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
-  const street = document.getElementById('street').value;
-  const city = document.getElementById('city').value;
-  const country = document.getElementById('country').value;
-  const postalCode = document.getElementById('postalCode').value;
-  const registeredDate = document.getElementById('registeredDate').value;
-
-  const newUser = {
-    username,
-    email,
-    phone,
-    firstName,
-    lastName,
-    street,
-    city,
-    country,
-    postalCode,
-    registeredDate,
-    updatedDate: new Date().toISOString()
-  };
-  // Validations
-if (!username || !email || !firstName || !lastName) {
-  alert('Please fill in all required fields');
-  return;
-}
-
-if (!validateEmail(email)) {
-  alert('Please enter a valid email address');
-  return;
-}
-
-// Helper function to validate email format
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
-
-  const newUserId = `user-${Date.now()}`;
-
-  users[newUserId] = newUser;
-  localStorage.setItem('users', JSON.stringify(users));
-
-  createUserForm.reset();
-  renderUserTable();
-
-  alert('User created successfully!');
-});
-// Check if username or email already exists
-if (Object.values(users).some(user => user.username === username || user.email === email)) {
-  alert('Username or email already exists');
-  return;
-}
-
-document.addEventListener('DOMContentLoaded', init);
-function init() {
+document.addEventListener('DOMContentLoaded', function() {
   setupTabs();
-  setupFilters(); 
+  setupFilters();
   renderUserTable();
   startTableRefresh();
-}
+
+  function saveUser(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const street = document.getElementById('street').value;
+    const city = document.getElementById('city').value;
+    const country = document.getElementById('country').value;
+    const postalCode = document.getElementById('postalCode').value;
+    const registeredDate = document.getElementById('registeredDate').value;
+
+    const newUser = {
+      username,
+      email,
+      phone,
+      firstName,
+      lastName,
+      street,
+      city,
+      country,
+      postalCode,
+      registeredDate,
+      updatedDate: new Date().toISOString()
+    };
+
+    const newUserId = `user-${Date.now()}`;
+
+    users[newUserId] = newUser;
+    localStorage.setItem('users', JSON.stringify(users));
+    renderUserTable();
+
+    document.getElementById('userForm').reset();
+
+    alert('User created successfully!');
+  }
+
+  createUserForm.addEventListener('submit', saveUser);
+});
