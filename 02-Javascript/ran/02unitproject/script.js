@@ -3,9 +3,9 @@ const createUserTab = document.getElementById('createUserTab');
 const viewUsersTab = document.getElementById('viewUsersTab');
 const createUserSection = document.getElementById('createUserSection');
 const viewUsersSection = document.getElementById('viewUsersSection');
-const createUserForm = document.getElementById('createUserForm');
-const usersTable = document.getElementById('usersTable');
-const filtersContainer = document.getElementById('filtersContainer');
+const createUserForm = document.getElementById('userForm');
+const usersTable = document.getElementById('userTable');
+const filtersContainer = document.getElementById('filters');
 const undoContainer = document.getElementById('undoContainer');
 const undoBar = document.getElementById('undoBar');
 const undoButton = document.getElementById('undoButton');
@@ -53,19 +53,6 @@ if (Object.keys(users).length === 0) {
     users[userId] = user;
   });
   localStorage.setItem('users', JSON.stringify(users));
-}
-
-function setupTabs() {
-  createUserTab.addEventListener('click', function () {
-    createUserSection.style.display = 'block';
-    viewUsersSection.style.display = 'none';
-  });
-
-  viewUsersTab.addEventListener('click', function () {
-    createUserSection.style.display = 'none';
-    viewUsersSection.style.display = 'block';
-    renderUserTable();
-  });
 }
 
 function setupFilters() {
@@ -292,8 +279,17 @@ function startTableRefresh() {
   }, 30000);
 }
 
+function showTab(tabId) {
+  // Hide all tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.style.display = 'none');
+
+  // Show the selected tab
+  const selectedTab = document.getElementById(tabId);
+  selectedTab.style.display = 'block';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  setupTabs();
   setupFilters();
   renderUserTable();
   startTableRefresh();
