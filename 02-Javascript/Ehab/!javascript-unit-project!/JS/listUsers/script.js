@@ -309,11 +309,15 @@ function areAllValuesEmpty(obj) {
     return true;
 }
 
+let counter=1;
 let deletedUser; // A variable that will hold a pointer to an array that contains the deleted user's data
 function deleteUser(user){
     deletedUser = saveDeletedUser(user); // save the user information to use for undo..
     let msg = confirm("Are you sure you want to delete the user: "+ deletedUser[0]+" "+deletedUser[1]+" ?");
     if(msg){
+        counter = 1;
+        totalPercentage =0;
+        document.getElementById('progressBar').style.background = '#cccccc';
         let json = JSON.parse(localStorage.getItem('users'));
         delete json[deletedUser[2]];
         updetUserIds(deletedUser[2]).then(()=>{ // Deleting the userid from the DB.
@@ -326,8 +330,6 @@ function deleteUser(user){
                     hidePassword();
                 }).catch((error)=> alert(error));
                 // Show moving bar for 6 seconds with "undo" button.
-                totalPercentage =0;
-                let counter = 1;
                 document.getElementById('undoContainer').style.display= 'flex';
                 const interval = setInterval(() => {
                     if (counter > 6) {
@@ -350,12 +352,12 @@ function deleteUser(user){
 }
 
 // A function to update the progress in the moving bar
-let totalPercentage =0;
+let totalPercentage;
 function updateProgressBar(){
     let div = document.getElementById('progressBar');
-    let sixteenPercentWidth = div.offsetWidth * 0.166;
-    totalPercentage += sixteenPercentWidth;
-    div.style.background = 'linear-gradient(to right, #65C728 ' + totalPercentage + 'px, #cccccc ' + sixteenPercentWidth + 'px)';
+    let percentWidth = div.offsetWidth * 0.166;
+    totalPercentage += percentWidth;
+    div.style.background = 'linear-gradient(to right, #65C728 ' + totalPercentage + 'px, #cccccc' + percentWidth + 'px)';
 }
 
 // Deleting the userid from the DB.
@@ -582,6 +584,7 @@ function refresh(){
 
 // A function to restore a deleted user
 async function undo(){
+    counter =7;
     const user = {
         firstName: deletedUser[0],
         lastName: deletedUser[1].trim(),
