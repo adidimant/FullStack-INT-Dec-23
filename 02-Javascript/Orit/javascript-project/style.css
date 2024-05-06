@@ -1,3 +1,16 @@
+body {
+    padding: 25px;
+    max-width: 100vw;
+}
+.hide {
+    display: none;
+}
+
+.active-button{
+    background: gray !important;
+    color: white !important;
+}
+
 /* CSS for header */
 .tab-button {
     width: 100px;
@@ -9,6 +22,11 @@
     display: inline-block;
     text-align: center;
     margin: 20px 10px 20px 20px;
+}
+
+.tab-button:hover {
+    background: #c2bebe;
+    color: white;
 }
 
 .form-style-9{
@@ -37,6 +55,7 @@
 	padding: 8px;
 	outline: none;
 	border: 1px solid #B0CFE0;
+    transition: all 0.30s ease-in-out;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
 	-ms-transition: all 0.30s ease-in-out;
@@ -66,7 +85,8 @@
 	height: 100px;
 }
 .form-style-9 ul li input[type="button"], 
-.form-style-9 ul li input[type="submit"] {
+.form-style-9 ul li input[type="submit"],
+.form-style-9 ul li button {
 	-moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
 	box-shadow: inset 0px 1px 0px 0px #3985B1;
@@ -84,11 +104,39 @@
 	background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
 	background-color: #28739E;
 }
+/* CSS for the table section */
+section#all-users {
+    /*max-width: 1200px;*/
+    max-height: 60vh;
+}
+
+/* CSS for the filter bar */
+#input-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+#clearInputs {
+    margin-bottom: 20px;
+}
+
+.error {
+    background-color: #ef7676;
+}
 
 /* CSS for the HTML table */
+.table-container {
+    overflow-x: scroll;
+    max-height: inherit;
+}
+
 #users-table {
     width: 100%;
     border-collapse: collapse;
+    border-collapse: separate;
     /*display: block;*/
     overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
@@ -96,10 +144,37 @@
   /* CSS for the table header */
 #users-table thead {
     background-color: #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+table thead th:first-child, table tbody td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+table tbody tr:nth-child(even) td:first-child {
+    background-color: #f2f2f2;
+}
+table tbody tr:nth-child(odd) td:first-child {
+    background-color: white;
+}
+
+table tbody th {
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 1;
+}
+table tbody th {
+    position: relative;
 }
 
 #editDeleteColumn {
-    min-width: 120px;
+    min-width: 150px;
+    background: #f0f0f0;
 }
 
 .editDeleteCell {
@@ -110,20 +185,24 @@ td.editDeleteCell button {
     cursor: pointer;
 }
   
-  /* CSS for the table body */
-  #users-table tbody {
+/* CSS for the table body */
+#users-table tbody {
     /*display: block;*/
     overflow-y: auto; /* Enable vertical scrolling if needed */
     max-height: 200px; /* Set a maximum height for tbody to avoid excessive height */
-  }
+}
   
-  /* CSS for table cells */
-  #users-table td, #users-table th {
+/* CSS for table cells */
+#users-table td, #users-table th {
     padding: 8px;
     border: 1px solid #ddd;
-  }
-  
-  /* CSS for alternating row colors */
-  #users-table tbody tr:nth-child(even) {
+}
+
+/* CSS for alternating row colors */
+#users-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
+}
+
+td.editDeleteCell button {
+    margin: 3px;
+}

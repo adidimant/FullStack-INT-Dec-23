@@ -304,33 +304,22 @@ function saveToStorage() {
     //console.log(users);
 }
 
-function submitForm(event) {
+async function submitForm(event) {
     event.preventDefault(); // Prevent default form submission
 
     console.log('entered submit');
     // Run validation once more before submitting, validateForm returns true/false
-    //const hasErrors = await validateForm();
-
-    validateForm();
+    const hasErrors = await validateForm();
 
     // Check if there are any error messages:
-    let a = document.getElementById('emailError');
-    let b = document.getElementById('usernameError');
-    let c = document.getElementById('fnameError');
-    let d = document.getElementById('lnameError');
-    let e = document.getElementById('streetError');
-    let f = document.getElementById('cityError');
-    let g = document.getElementById('countryError');
-    let h = document.getElementById('phoneError');
-    let i = document.getElementById('zipcodeError');
-
-    if (a.textContent || b.textContent || c.textContent || d.textContent || e.textContent || f.textContent || g.textContent || h.textContent || i.textContent) {
-    //if (hasErrors) {
+    if (hasErrors) {
         // If there are error messages, prevent form submission
-        alert('Please fix the errors before submitting the form.');
+        //alert('Please fix the errors before submitting the form.');
+        document.getElementById('afterSubmit').textContent = 'Please fix the errors before submitting the form.';
     } else {
         // If there are no errors, proceed with form submission
-        alert('New user added successfully!');
+        //alert('New user added successfully!');
+        document.getElementById('afterSubmit').textContent = 'New user added successfully!';
         // saveToStorage();
     }
 }

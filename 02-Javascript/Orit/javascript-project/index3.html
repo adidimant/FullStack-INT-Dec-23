@@ -9,72 +9,88 @@
     <section class="title">
         <h1>User Management</h1>
         <div class="tabs">
-            <div class="tab-button" onclick="fillTable()">All users</div>
-            <div class="tab-button">Add new user</div>
+            <div class="tab-button active-button" id="allUsersTab">All users</div>
+            <div class="tab-button" id="newUserTab">Add new user</div>
         </div>
     </section>
     <section id="all-users">
-        <table id="users-table">
-            <thead>
-                <tr>
-                    <th scope="col" id="editDeleteColumn">Edit/Delete</th>
-                    <th scope="col">UserId</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Street</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Zipcode</th>
-                    <th scope="col">Phone no.</th>
-                    <th scope="col">Registered date</th>
-                    <th scope="col">Updated date</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
+        <div id="input-filters">
+            <input type="text" id="usernameFilter" placeholder="Username">
+            <input type="text" id="emailFilter" placeholder="Email">
+            <input type="text" id="phoneFilter" placeholder="Phone">
+            <input type="text" id="fullnameFilter" placeholder="Full name">
+            <input type="text" id="countryFilter" placeholder="Country">
+            <input type="text" id="cityFilter" placeholder="City">
+            <input type="text" id="registeredFilter" placeholder="Registered date">
+            <input type="text" id="updatedFilter" placeholder="Updated date">
+        </div>
+        <div id="clearInputs" class="tab-button" style="display: block;" onclick="clearFilters()">Clear filters</div>
+        <div class="table-container">
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th scope="col" id="editDeleteColumn">Edit/Delete</th>
+                        <th scope="col">UserId</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Street</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Zipcode</th>
+                        <th scope="col">Phone no.</th>
+                        <th scope="col">Registered date</th>
+                        <th scope="col">Updated date</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
 
-            </tbody>
-          </table>
+                </tbody>
+        </table>
+        <span id="deleteConfirmed" style="color: blue; font-weight: bold;"></span>
+    </div>
     </section>
-    <section id="add-user">
+    <section id="add-user" class="hide">
         <div class="add-user-form">
-            <form class="form-style-9">
+            <form class="form-style-9" id="form-add-user">
                 <ul>
                     <li>
-                        <input type="text" id="username" class="field-style field-split align-left" placeholder="Username" required onkeyup="validateInput(this)"/>
-                        <input type="email" id="email" class="field-style field-split align-right" placeholder="Email" required onkeyup="validateInput(this)"/>
+                        <input type="text" id="username" class="field-style field-split align-left" placeholder="Username" required onkeyup="validateFormInput(this)"/>
+                        <input type="email" id="email" class="field-style field-split align-right" placeholder="Email" required onkeyup="validateFormInput(this)"/>
                         <span id="emailError" style="color: red;"></span>
                         <span id="emailExistsError" style="color: red;"></span>
                         <span id="usernameExistsError" style="color: red;"></span>
-                        <span id="usernameError" style="color: red;"></span>
+                        <span id="usernameError" style="color: red"></span>
                     </li>
                     <li>
-                        <input type="text" id="fname" class="field-style field-split align-left" placeholder="First name" required onkeyup="validateInput(this)"/>
-                        <input type="text" id="lname" class="field-style field-split align-right" placeholder="Last name" required onkeyup="validateInput(this)"/>
+                        <input type="text" id="fname" class="field-style field-split align-left" placeholder="First name" required onkeyup="validateFormInput(this)"/>
+                        <input type="text" id="lname" class="field-style field-split align-right" placeholder="Last name" required onkeyup="validateFormInput(this)"/>
                         <span id="fnameError" style="color: red;"></span>
                         <span id="lnameError" style="color: red;"></span>
                     </li>
                     <li>
-                        <input type="text" id="street" class="field-style field-split align-left" placeholder="Street" required onkeyup="validateInput(this)"/>
-                        <input type="text" id="city" class="field-style field-split align-right" placeholder="City" required onkeyup="validateInput(this)"/>
+                        <input type="text" id="street" class="field-style field-split align-left" placeholder="Street" required onkeyup="validateFormInput(this)"/>
+                        <input type="text" id="city" class="field-style field-split align-right" placeholder="City" required onkeyup="validateFormInput(this)"/>
                         <span id="streetError" style="color: red;"></span>
                         <span id="cityError" style="color: red;"></span>
                     </li>
                     <li>
-                        <input type="text" id="country" class="field-style field-split align-left" placeholder="Country" required onkeyup="validateInput(this)"/>
-                        <input type="text" id="zipcode" class="field-style field-split align-right" placeholder="Zipcode" required onkeyup="validateInput(this)"/>
+                        <input type="text" id="country" class="field-style field-split align-left" placeholder="Country" required onkeyup="validateFormInput(this)"/>
+                        <input type="text" id="zipcode" class="field-style field-split align-right" placeholder="Zipcode" required onkeyup="validateFormInput(this)"/>
                         <!--zipcode is text as other countries have zipcodes containing number and text-->
                         <span id="countryError" style="color: red;"></span>
                         <span id="zipcodeError" style="color: red;"></span>
                     </li>
                     <li>
-                        <input type="tel" id="phone" class="field-style field-full align-none" placeholder="Phone no." minlength="9" required onkeyup="validateInput(this)"/>
+                        <input type="tel" id="phone" class="field-style field-full align-none" placeholder="Phone no." minlength="9" required onkeyup="validateFormInput(this)"/>
                         <!--I did not use pattern="[0-9]{10}" as phone numbers in different countries can be longer than 10, and land lines in Israel are 9 digits.-->
                         <span id="phoneError" style="color: red;"></span>
                     </li>
                     <li class="submit-row">
-                        <input type="submit" class="field-style" value="Add new user" onclick="submitForm()" />
+                        <!--<input type="submit" class="field-style" value="Add new user" onsubmit="submitForm(event)" />-->
+                        <button class="field-style" value="Add new user" onclick="submitForm(event)">Add new user</button>
+                        <span id="afterSubmit" style="color: blue; font-weight: bold; display: block;"></span>
                     </li>
                 </ul>
             </form>
