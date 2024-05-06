@@ -52,13 +52,6 @@ if (Object.keys(users).length === 0) {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  setupTabs();
-  setupFilters();
-  renderUserTable();
-  startTableRefresh();
-});
-
 function setupTabs() {
   createUserTab.addEventListener('click', function () {
     createUserSection.style.display = 'block';
@@ -212,3 +205,11 @@ createUserForm.addEventListener('submit', function (event) {
 
   alert('User created successfully!');
 });
+
+document.addEventListener('DOMContentLoaded', init);
+function init() {
+  setupTabs();
+  setupFilters(); 
+  renderUserTable();
+  startTableRefresh();
+}
