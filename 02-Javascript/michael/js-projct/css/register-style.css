@@ -1,0 +1,189 @@
+body {
+    font-family: "Poppins", sans-serif;
+    zoom: 0.9;
+    background-color: black;
+    
+}
+
+.navdiv {
+    display: flex;
+    flex-direction: row; 
+    background-color: hsl(0, 0%, 0%);  
+    margin: -15px -15px;
+    padding: 0px 11.5px;   
+    width: 100% ;
+    border-bottom: #b0b0b0 1px solid;
+    
+}
+
+.navul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-right: 35px;
+    gap:25px;
+    margin-top: 15px;
+    
+}
+
+.nava {
+    text-decoration: none;
+    color: white;
+}
+
+.navli {
+    border: #333 1.5px solid;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: 0.6s;
+  }
+
+.navli2 {
+    border: #333 1.5px solid;
+    padding: 5px 30px;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: 0.6s;
+}
+
+.navli:hover {
+   border: #dadada 1.5px solid;
+   box-shadow: 0px 0 25px rgba(120, 219, 255, 0.856);
+   
+   
+}
+
+.navli2:hover {
+    border: #dadada 1.5px solid;
+    box-shadow: 0px 0 25px rgba(120, 219, 255, 0.856);
+    
+    
+ }
+
+ .formDiv {
+    margin-top: 12px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    background-color: black;
+    margin-left: -15px;
+    padding: 15px 11.5px;   
+    width: 100% ;
+    padding-top: 140px;
+ }
+
+ .formDiv input {
+    border-radius: 25px;
+    padding: 5px 5px;
+    color: rgb(25, 0, 255);
+    font-weight: bolder;
+    text-align: center;
+    
+ }
+ #userForm {
+    background-color: #121212;
+    width: 450px;
+    text-align: center;
+    margin-left: 620px;
+    padding: 25px 0px;
+    border-radius: 15px;
+    transition: 0.9s;
+   
+ }
+ 
+ #userForm:hover {
+    box-shadow: 0 0 53px rgba(57, 235, 255, 0.586);
+    
+ }
+
+.headerText {
+  font-weight: 100px;
+  margin-top: 25px;
+  
+
+}
+
+.containerHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  gap: 15px;
+
+  
+}
+
+.containerFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  gap: 15px;
+  margin-top: 150px;
+  padding-bottom: 50px;
+}
+
+.textFooter {
+  font-weight: 100px;
+  margin-top: 25px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+   
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000000; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #5be9ff; 
+    box-shadow: 0 0 53px rgba(255, 255, 255, 0.586);
+    transition: 0.9s;
+  }
+
+  button {
+    background-color: black;
+    border-radius: 18px;
+    border: rgb(69, 69, 69) 1px solid;
+    color: white;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    padding: 3px 15px;
+    transition: 0.7s;
+  }
+  button:hover {
+    border: white 1px solid;
+    box-shadow: 0 0 53px rgba(57, 235, 255, 0.586);
+   
+  }
+
+  table{
+    color: white;
+    margin-top: 150px;
+  
+
+ }
+ td {
+    border: white 1px solid;
+ }
+ th {
+    border: white 1px solid;
+    gap: 15px;
+    padding: 4px 25px;
+ }
+
+ .tableContainer {
+    display: flex;
+    justify-content: center;
+ }
+
+ 

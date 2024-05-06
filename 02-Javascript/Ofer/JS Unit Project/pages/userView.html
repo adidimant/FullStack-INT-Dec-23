@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>User Managment System</title>
+        <title>User Management</title>
         <script src="../TS/dist/userView.js" defer></script>
         <link rel="stylesheet" href="../styles/dist/userView.css" />
         <link rel="icon" type="image/x-icon" href="../images/icon.svg" />
@@ -31,17 +31,25 @@
                     <th>Delete</th>
                 </tr>
                 <tr>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
-                    <td><input class="filterBar" type="search" name="" id=""></td>
+                    <td><input class="filterBar" type="search"  id="userNameFilter"></td>
+                    <td><input class="filterBar" type="search"  id="emailFilter"></td>
+                    <td></td>
+                    <td><input class="filterBar" type="search"  id="phoneNumberFilter"></td>
+                    <td><input class="filterBar" type="search"  id="firstNameFilter"></td>
+                    <td><input class="filterBar" type="search"  id="lastNameFilter"></td>
+                    <td><input class="filterBar" type="search"  id="countryFilter"></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input class="filterBarDate" type="date" id="registeredFilterStart">
+                        <br>To <br>
+                        <input class="filterBarDate" type="date" id="registeredFilterEnd">
+                    </td>
+                    <td>
+                        <input class="filterBarDate" type="date" id="updatedFilterStart" >
+                        <br>To <br>
+                        <input class="filterBarDate" type="date" id="updatedFilterEnd" >
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
