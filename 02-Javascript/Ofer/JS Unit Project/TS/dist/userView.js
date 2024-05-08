@@ -85,36 +85,22 @@ function inputsFilter(e) {
         currentlyShowedUsers = __spreadArrays(usersFromDB);
         switch (e.target.id) {
             case "userNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             case "emailFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             case "phoneNumberFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.phoneNumber
-                        .toLocaleLowerCase()
-                        .includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.phoneNumber.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             case "firstNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             case "lastNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             case "countryFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) {
-                    return user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase());
-                });
+                newUsers = currentlyShowedUsers.filter(function (user) { return user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
                 break;
             default:
                 console.log("Something went wrong!");
@@ -150,55 +136,7 @@ function loadTableFromUsersArray(users) {
         // editImg.setAttribute();
         editImg.setAttribute("src", "../images/edit1.svg");
         buttonWrapper.appendChild(editImg);
-        buttonWrapper.addEventListener("click", function (e) {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-            if (!inEditMode) {
-                var closestTr = (_a = e.target) === null || _a === void 0 ? void 0 : _a.closest("tr");
-                if (closestTr) {
-                    var tds = closestTr.querySelectorAll("td");
-                    var tdsDetails = [
-                        tds[userEnum.userName],
-                        tds[userEnum.email],
-                        tds[userEnum.password],
-                        tds[userEnum.phoneNumber],
-                        tds[userEnum.firstName],
-                        tds[userEnum.lastName],
-                        tds[userEnum.country],
-                        tds[userEnum.city],
-                        tds[userEnum.zipCode],
-                    ];
-                    var saveImg = closestTr.querySelector("img");
-                    closestTr === null || closestTr === void 0 ? void 0 : closestTr.classList.toggle("editMode");
-                    if (!closestTr.querySelector("input")) {
-                        tdsDetails.forEach(function (element) {
-                            var elementText = element.textContent;
-                            var editInput = document.createElement("input");
-                            editInput.value = elementText !== null && elementText !== void 0 ? elementText : "";
-                            editInput.classList.add("filterBar");
-                            element.textContent = "";
-                            element.appendChild(editInput);
-                        });
-                    }
-                    else {
-                        // console.log(tdsDetails[userEnum.userName].querySelector("input")!.value ?? "")
-                        user.userName = (_b = tdsDetails[userEnum.userName].querySelector("input").value) !== null && _b !== void 0 ? _b : "";
-                        user.email = (_c = tdsDetails[userEnum.email].querySelector("input").value) !== null && _c !== void 0 ? _c : "";
-                        user.password = (_d = tdsDetails[userEnum.password].querySelector("input").value) !== null && _d !== void 0 ? _d : "";
-                        user.phoneNumber = (_e = tdsDetails[userEnum.phoneNumber].querySelector("input").value) !== null && _e !== void 0 ? _e : "";
-                        user.firstName = (_f = tdsDetails[userEnum.firstName].querySelector("input").value) !== null && _f !== void 0 ? _f : "";
-                        user.lastName = (_g = tdsDetails[userEnum.lastName].querySelector("input").value) !== null && _g !== void 0 ? _g : "";
-                        user.country = (_h = tdsDetails[userEnum.country].querySelector("input").value) !== null && _h !== void 0 ? _h : "";
-                        user.city = (_j = tdsDetails[userEnum.city].querySelector("input").value) !== null && _j !== void 0 ? _j : "";
-                        user.zipCode = (_k = tdsDetails[userEnum.zipCode].querySelector("input").value) !== null && _k !== void 0 ? _k : "";
-                        console.log(user);
-                        deleteUsersFromTable();
-                        loadTableFromUsersArray(users);
-                        pushUserDBToLocalStoragewithoutExtraUser(users);
-                    }
-                    toggleSaveEdit(saveImg);
-                }
-            }
-        });
+        buttonWrapper.addEventListener("click", function (e) { return editUser(e, users, user); });
         editbtntd.appendChild(buttonWrapper);
         var deleteButtonWrapper = document.createElement("button");
         deleteButtonWrapper.classList.add("invisable");
@@ -237,6 +175,75 @@ function loadTableFromUsersArray(users) {
         newRow.appendChild(deletetd);
         table.appendChild(newRow);
     });
+}
+function editUser(e, users, user) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    var closestTr = (_a = e.target) === null || _a === void 0 ? void 0 : _a.closest("tr");
+    if (closestTr) {
+        var tds = closestTr.querySelectorAll("td");
+        var tdsDetails = [
+            tds[userEnum.userName],
+            tds[userEnum.email],
+            tds[userEnum.password],
+            tds[userEnum.phoneNumber],
+            tds[userEnum.firstName],
+            tds[userEnum.lastName],
+            tds[userEnum.country],
+            tds[userEnum.city],
+            tds[userEnum.zipCode],
+        ];
+        var saveImg = closestTr.querySelector("img");
+        toggleSaveEdit(saveImg);
+        closestTr === null || closestTr === void 0 ? void 0 : closestTr.classList.toggle("editMode");
+        if (!closestTr.querySelector("input")) {
+            tdsDetails.forEach(function (element) {
+                var elementText = element.textContent;
+                var editInput = document.createElement("input");
+                editInput.value = elementText !== null && elementText !== void 0 ? elementText : "";
+                editInput.classList.add("filterBar");
+                element.textContent = "";
+                element.appendChild(editInput);
+            });
+        }
+        else {
+            var newUser = {
+                userName: (_b = tdsDetails[userEnum.userName].querySelector("input").value) !== null && _b !== void 0 ? _b : "",
+                email: (_c = tdsDetails[userEnum.email].querySelector("input").value) !== null && _c !== void 0 ? _c : "",
+                password: (_d = tdsDetails[userEnum.password].querySelector("input").value) !== null && _d !== void 0 ? _d : "",
+                phoneNumber: (_e = tdsDetails[userEnum.phoneNumber].querySelector("input").value) !== null && _e !== void 0 ? _e : "",
+                firstName: (_f = tdsDetails[userEnum.firstName].querySelector("input").value) !== null && _f !== void 0 ? _f : "",
+                lastName: (_g = tdsDetails[userEnum.lastName].querySelector("input").value) !== null && _g !== void 0 ? _g : "",
+                country: (_h = tdsDetails[userEnum.country].querySelector("input").value) !== null && _h !== void 0 ? _h : "",
+                city: (_j = tdsDetails[userEnum.city].querySelector("input").value) !== null && _j !== void 0 ? _j : "",
+                zipCode: (_k = tdsDetails[userEnum.zipCode].querySelector("input").value) !== null && _k !== void 0 ? _k : "",
+                registeredDate: user.registeredDate,
+                updatedDate: user.updatedDate
+            };
+            if (newUser.userName != user.userName ||
+                newUser.email != user.email ||
+                newUser.password != user.password ||
+                newUser.phoneNumber != user.phoneNumber ||
+                newUser.firstName != user.firstName ||
+                newUser.lastName != user.lastName ||
+                newUser.country != user.country ||
+                newUser.city != user.city ||
+                newUser.zipCode != user.zipCode) {
+                user.updatedDate = String(Date.now());
+            }
+            user.userName = newUser.userName;
+            user.email = newUser.email;
+            user.password = newUser.password;
+            user.phoneNumber = newUser.phoneNumber;
+            user.firstName = newUser.firstName;
+            user.lastName = newUser.lastName;
+            user.country = newUser.country;
+            user.city = newUser.city;
+            user.zipCode = newUser.zipCode;
+            deleteUsersFromTable();
+            pushUserDBToLocalStoragewithoutExtraUser(users);
+            loadTableFromUsersArray(users);
+        }
+    }
 }
 function toggleSaveEdit(saveImg) {
     if (saveImg.src.includes("edit1")) {
