@@ -19,7 +19,6 @@ var userEnum;
 })(userEnum || (userEnum = {}));
 var usersIDArrayFromDB = getUserIDFromLocalStorage();
 var usersFromDB = getUserDBFromLocalStorage();
-var currentlyShowedUsers = __spreadArrays(usersFromDB);
 var container = document.querySelector(".container");
 var registeredFilterStart = document.querySelector("#registeredFilterStart");
 var registeredFilterEnd = document.querySelector("#registeredFilterEnd");
@@ -33,13 +32,13 @@ registeredFilterEnd.addEventListener("change", dateFilterChangeEnd);
 updatedFilterStart.addEventListener("change", dateFilterChangeStart);
 updatedFilterEnd.addEventListener("change", dateFilterChangeEnd);
 allFilters.forEach(function (input) {
-    input.addEventListener("input", inputsFilter);
+    input.addEventListener("input", function (e) { return inputsFilter(e); });
 });
 function dateFilterChangeStart(e) {
     var _a;
     var input = (_a = e.target.value) !== null && _a !== void 0 ? _a : "";
     var timeStampDate = new Date(input).getTime();
-    var newUsers = currentlyShowedUsers.filter(function (user) { return Number(user.registeredDate) >= timeStampDate; });
+    var newUsers = usersFromDB.filter(function (user) { return Number(user.registeredDate) >= timeStampDate; });
     deleteUsersFromTable();
     loadTableFromUsersArray(newUsers);
 }
@@ -81,26 +80,26 @@ function inputsFilter(e) {
     setTimeout(function () {
         var _a;
         var input = (_a = e.target.value) !== null && _a !== void 0 ? _a : "";
+        console.log(input);
         var newUsers = [];
-        currentlyShowedUsers = __spreadArrays(usersFromDB);
         switch (e.target.id) {
             case "userNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.userName ? user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             case "emailFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.email ? user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             case "phoneNumberFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.phoneNumber.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.phoneNumber ? user.phoneNumber.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             case "firstNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.firstName ? user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             case "lastNameFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.lastName ? user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             case "countryFilter":
-                newUsers = currentlyShowedUsers.filter(function (user) { return user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase()); });
+                newUsers = usersFromDB.filter(function (user) { return user.country ? user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : ""; });
                 break;
             default:
                 console.log("Something went wrong!");

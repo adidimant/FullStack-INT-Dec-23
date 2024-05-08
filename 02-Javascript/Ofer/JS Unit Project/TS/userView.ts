@@ -25,7 +25,6 @@ enum userEnum {
 }
 const usersIDArrayFromDB = getUserIDFromLocalStorage();
 const usersFromDB = getUserDBFromLocalStorage();
-let currentlyShowedUsers: userDetails[] = [...usersFromDB];
 const container = document.querySelector(".container");
 const registeredFilterStart = document.querySelector("#registeredFilterStart") as HTMLInputElement;
 const registeredFilterEnd = document.querySelector("#registeredFilterEnd") as HTMLInputElement;
@@ -42,13 +41,13 @@ updatedFilterStart.addEventListener("change", dateFilterChangeStart);
 updatedFilterEnd.addEventListener("change", dateFilterChangeEnd);
 
 allFilters.forEach((input) => {
-	input.addEventListener("input", inputsFilter);
+	input.addEventListener("input", (e) => inputsFilter(e));
 });
 
 function dateFilterChangeStart(e: Event) {
 	const input: Date = (e.target as HTMLFormElement).value ?? "";
 	const timeStampDate = new Date(input).getTime();
-	const newUsers = currentlyShowedUsers.filter((user: userDetails) => Number(user.registeredDate) >= timeStampDate);
+	const newUsers = usersFromDB.filter((user: userDetails) => Number(user.registeredDate) >= timeStampDate);
 	deleteUsersFromTable();
 	loadTableFromUsersArray(newUsers);
 }
@@ -90,27 +89,27 @@ function getUserDBFromLocalStorage(): userDetails[] {
 function inputsFilter(e: Event) {
 	setTimeout(() => {
 		const input = (e.target as HTMLFormElement).value ?? "";
+    console.log(input)
 		let newUsers: userDetails[] = [];
-		currentlyShowedUsers = [...usersFromDB];
+
 		switch ((e.target as HTMLInputElement).id) {
 			case "userNameFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+				newUsers = usersFromDB.filter((user: userDetails) => user.userName ? user.userName.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : "");
 				break;
 			case "emailFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+				newUsers = usersFromDB.filter((user: userDetails) => user.email ? user.email.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : "") ;
 				break;
 			case "phoneNumberFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.phoneNumber.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+				newUsers = usersFromDB.filter((user: userDetails) => user.phoneNumber?  user.phoneNumber.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : "");
 				break;
 			case "firstNameFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
-
+				newUsers = usersFromDB.filter((user: userDetails) => user.firstName ? user.firstName.toLocaleLowerCase().includes(input.toLocaleLowerCase())  : "");
 				break;
 			case "lastNameFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+				newUsers = usersFromDB.filter((user: userDetails) => user.lastName ? user.lastName.toLocaleLowerCase().includes(input.toLocaleLowerCase())  : "");
 				break;
 			case "countryFilter":
-				newUsers = currentlyShowedUsers.filter((user: userDetails) => user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+				newUsers = usersFromDB.filter((user: userDetails) => user.country ? user.country.toLocaleLowerCase().includes(input.toLocaleLowerCase()) : "");
 				break;
 			default:
 				console.log(`Something went wrong!`);
