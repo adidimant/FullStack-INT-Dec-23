@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../CSS/createUser/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../JS/createUser/script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <form class="form_container">
+            <div>
+                <label class="fas fa-user"></label>
+                <input type="text" id="firstName" name="firstName" placeholder="first name" required>
+            </div>
+            <div>
+                <label class="fas fa-user"></label>
+                <input type="text" id="lastName" name="lastName" placeholder="last name" required><br>
+            </div>
+            <div>
+                <label class="fas fa-id-badge"></label>
+                <input type="text" id="userId" name="userId" placeholder="user id" required><br>
+            </div>
+            <div>
+                <label class="fas fa-user"></label>
+                <input type="text" id="username" name="username" placeholder="username" required>
+            </div>
+            <div>
+                <label class="fas fa-lock"></label>
+                <input type="password" id="password" name="password" placeholder="password" required>
+            </div>
+            <div>
+                <label class="fas fa-envelope"></label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div>
+                <label class="fas fa-phone"></label>
+                <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+            </div>
+            <div>
+                <label class="fas fa-landmark"></label>
+                <input type="text" id="state" name="state" placeholder="state" required>
+            </div>
+            <div>
+                <label class="fas fa-globe"></label>
+                <input type="text" id="country" name="country" placeholder="country" required>
+            </div>
+            <div>
+                <label class="fas fa-city"></label>
+                <input type="text" id="city" name="city" placeholder="city" required>
+            </div>
+            <div>
+                <label class="fas fa-road"></label>
+                <input type="text" id="street" name="street" placeholder="street" required>
+            </div>
+            <div>
+                <label class="fas fa-map-pin"></label>
+                <input type="text" id="zipcode" name="zipcode" placeholder="zip code" required>
+            </div>
+            <div><input type="button" value="Save" id="button" onclick="createUser()"></div>
+        </form>
+        <br>
+    </div>
+</body>
+
+</html>

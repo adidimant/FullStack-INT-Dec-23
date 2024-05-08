@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html air="rtl" lang="heb">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>User Management System</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">דף הבית</a></li>
+            <li><a href="about.html">אודות</a></li>
+            <li><a href="users.html">ניהול משתמשים</a></li>
+        </ul>
+    </nav>
+    <main>
+    <div class="container">
+        <div class="tabs">
+            <button id="createTab" onclick="openTab('createUserForm')">Create User</button>
+            <button id="viewTab" onclick="openTab('userList')">View Users</button>
+        </div>
+        <div id="createUserForm" class="tab-content">
+            <h2>Create User</h2>
+            <form id="userForm">
+                <label for="username">Username:</label><input type="text" id="username" required>
+                <label for="email">Email:</label><input type="email" id="email" required>
+                <label for="phone">Phone:</label><input type="text" id="phone">
+                <label for="firstName">First Name:</label><input type="text" id="firstName">
+                <label for="lastName">Last Name:</label><input type="text" id="lastName">
+                <label for="street">Street:</label><input type="text" id="street">
+                <label for="city">City:</label><input type="text" id="city">
+                <label for="state">State:</label><input type="text" id="state">
+                <label for="country">Country:</label><input type="text" id="country">
+                <label for="zipcode">Zipcode:</label><input type="text" id="zipcode">
+                <button type="button" onclick="createUser()">Create User</button>
+            </form>
+        </div>
+        <div id="userList" class="tab-content">
+            <h2>Users</h2>
+            <div class="filters">
+                <input type="text" id="usernameFilter" placeholder="Filter by Username" onkeyup="debounceFilter()">
+                <input type="text" id="emailFilter" placeholder="Filter by Email" onkeyup="debounceFilter()">
+                <input type="text" id="phoneFilter" placeholder="Filter by Phone" onkeyup="debounceFilter()">
+                <input type="text" id="fullNameFilter" placeholder="Filter by Full Name" onkeyup="debounceFilter()">
+                <input type="text" id="countryFilter" placeholder="Filter by Country" onkeyup="debounceFilter()">
+                <input type="text" id="cityFilter" placeholder="Filter by City" onkeyup="debounceFilter()">
+                <input type="date" id="registeredDateFilter" onchange="debounceFilter()">
+                <input type="date" id="updatedDateFilter" onchange="debounceFilter()">
+            </div>
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Full Name</th>
+                        <th>Address</th>
+                        <th>Registered Date</th>
+                        <th>Updated Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="undoBar" style="display: none;">
+            <button onclick="undoDeletion()">Undo</button>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <p> כל הזכויות שמורות &copy; 2024 </p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

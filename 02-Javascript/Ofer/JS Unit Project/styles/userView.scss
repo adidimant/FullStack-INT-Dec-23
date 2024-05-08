@@ -1,31 +1,10 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: "Rubik", sans-serif;
-  }
+@import "_config";
+@import "./body";
 
 .container {
     border-radius: 10px;
     margin: auto;
-    width: 70%;
+    width: 97%;
     padding: 50px;
     border-radius: 10px;
     background-color: rgb(51, 55, 65);
@@ -54,23 +33,53 @@ body {
         }
 
     }
-    .Table{
+
+    .Table {
         border-collapse: collapse;
         width: 100%;
-        padding: 1rem;
-        font-size: large;
+        padding: 3px;
+        margin-bottom: 10px;
+        font-size: medium;
 
-        th,td{
-            padding: 1rem;
-            text-align: left;
+        th,
+        td {
+            padding: 7px 3px;
+            text-align: center;
+            .filterBar{
+                margin: 1px 3px;
+                width:90%;
+                padding: 7px;
+                font-size: medium;
+                border-width: 0 0 2px 0;
+                border-style: solid;
+                border-color: aliceblue;
+                background: none;
+                color: white;
+                &:focus{
+                    outline-style:ridge;
+                    outline-width: 0 0 2px 0;
+                    outline-color: white;
+                }
+            }
+            .filterBarDate{
+                margin: 1px 1px;
+                padding: 3px 0px;
+                border-radius: 5px;
+                border: none;
+                font-size: small;
+            }
         }
-        th{
-            background-color: hsl(0  0% 0% / 0.5);
+
+        th {
+            background-color: hsl(0 0% 0% / 0.5);
         }
-        tr:nth-of-type(2n){
-            background-color: hsl(0  0% 0% / 0.1);
+
+        tr:nth-of-type(2n) {
+            background-color: hsl(0 0% 0% / 0.25);
         }
+
     }
+
     .btns {
         display: block;
         width: fit-content;
@@ -86,9 +95,76 @@ body {
         &:active {
             background-color: beige;
             color: black;
-          }
-          &:hover{
-            box-shadow: 5px 5px 10px rgba(rgb(248, 248, 248), 0.2) ;
-          }
+        }
+
+        &:hover {
+            box-shadow: 5px 5px 10px rgba(rgb(248, 248, 248), 0.2);
+        }
     }
+
+    .img {
+        margin: auto;
+        padding: 3px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30%;
+        width: 80%;
+        height: 80%;
+        // background: rgb(223, 178, 178);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 5px 5px 10px rgba(black, 0.7) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
+    }
+    .deleteImg{
+        margin: auto;
+        padding: 3px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30%;
+        width: 80%;
+        height: 80%;
+        // background: rgb(223, 178, 178);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 5px 5px 10px rgba(black, 0.7) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
+    }
+    #deleteSelected{
+        margin: auto;
+        color: white;
+        font-weight: bolder;
+        padding: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 9px;
+        background: rgb(247, 75, 75);
+        transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+        &:hover{
+            box-shadow: 3px 3px 10px rgba(black, 0.5) ;
+        }
+        &:active{
+            background-color: rgb(65, 64, 64);
+            color: white;
+        }
+    }
+    .editMode{
+        background-color: rgb(119, 111, 111) !important;
+    }
+    .darkImg{
+        filter: brightness(50%)
+    }
+    .invisable{
+        background-color: transparent;
+        border: none;
+    }
+
 }

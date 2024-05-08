@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Users</title>
+        <link rel="stylesheet" href="/02-Javascript/oz/JS-unit-project/User_manager/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/02-Javascript/oz/JS-unit-project/Form/index.html">Create User</a></li>
+                    <li><a href="/02-Javascript/oz/JS-unit-project/User_manager/index.html">Manage Users</a></li>
+                </ul>
+            </nav>
+            <h1>-Javascript-project-site-</h1>
+        </div>
+        <div class="filters-container">
+            <label for="username">Username:</label>
+            <input type="text" id="username" class="filter" placeholder="Filter by username">
+    
+            <label for="email">Email:</label>
+            <input type="text" id="email" class="filter" placeholder="Filter by email">
+    
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" class="filter" placeholder="Filter by phone">
+    
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" class="filter" placeholder="Filter by full name">
+    
+            <label for="country">Country:</label>
+            <input type="text" id="country" class="filter" placeholder="Filter by country">
+    
+            <label for="city">City:</label>
+            <input type="text" id="city" class="filter" placeholder="Filter by city">
+    
+            <label for="registeredDate">Registered Date:</label>
+            <input type="text" id="registeredDate" class="filter" placeholder="Filter by registered date">
+    
+            <label for="updatedDate">Updated Date:</label>
+            <input type="text" id="updatedDate" class="filter" placeholder="Filter by updated date">
+        </div>
+
+        <table border="1" class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Street</th>
+                    <th>Zipcode</th>
+                    <th>Registered date</th>
+                    <th>Updated date</th>
+                </tr>
+            </thead>
+            <tbody id="userDataBody"></tbody>
+        </table>
+
+        <script>
+       document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('userDataBody');
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const userId = localStorage.key(i);
+                if (userId !== 'UserId') {
+                    const userDataJson = localStorage.getItem(userId);
+                    const userData = JSON.parse(userDataJson);
+
+                    const row = document.createElement('tr');
+                    for (const key in userData) {
+                        if (userData.hasOwnProperty(key)) {
+                            const cell = document.createElement('td');
+                            const cellContent = document.createElement('span');
+                            cellContent.textContent = userData[key];
+                            cell.appendChild(cellContent);
+
+                            const editButton = document.createElement('button');
+                            editButton.textContent = 'Edit';
+                            editButton.onclick = function() {
+                                const newValue = prompt('Enter new value:');
+
+                                
+                                if (newValue !== null) {
+                                    cellContent.textContent = newValue;
+                                    
+                                    userData[key] = newValue;
+                                    localStorage.setItem(userId, JSON.stringify(userData));
+
+                                  
+                                    const currentDate = new Date();
+                                    const formattedDate = currentDate.toLocaleString();
+                                    const updatedDateCell = row.lastElementChild;
+                                    updatedDateCell.textContent = formattedDate;
+
+                                    location.reload();
+                                }
+                            };
+                            cell.appendChild(editButton);
+
+                            row.appendChild(cell);
+                        }
+                    }
+                    const registeredDateCell = document.createElement('td');
+                    registeredDateCell.textContent = userData['registeredDate'];
+                    row.appendChild(registeredDateCell);
+
+                    const deleteButtonCell = document.createElement('td');
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = function() {
+                        // Remove the row from the table
+                        row.remove();
+                        // Remove data from localStorage
+                        localStorage.removeItem(userId);
+                    };
+                    deleteButtonCell.appendChild(deleteButton);
+                    row.appendChild(deleteButtonCell);
+
+                    tableBody.appendChild(row);
+                }
+            }
+        });
+                
+            const filters = document.querySelectorAll('.filter');
+
+            function debounce(func, delay) {
+                let timer;
+                return function() {
+                    clearTimeout(timer);
+                    timer = setTimeout(func, delay);
+                };
+            }
+
+            function filterUsers() {
+                const username = document.getElementById('username').value.toLowerCase();
+                const email = document.getElementById('email').value.toLowerCase();
+                const phone = document.getElementById('phone').value.toLowerCase();
+                const fullname = document.getElementById('fullname').value.toLowerCase();
+                const country = document.getElementById('country').value.toLowerCase();
+                const city = document.getElementById('city').value.toLowerCase();
+                const registeredDate = document.getElementById('registeredDate').value.toLowerCase();
+                const updatedDate = document.getElementById('updatedDate').value.toLowerCase();
+
+                const rows = document.querySelectorAll('#userDataBody tr');
+                rows.forEach(row => {
+                    const rowData = row.textContent.toLowerCase();
+                    if (rowData.includes(username) && rowData.includes(email) && rowData.includes(phone) &&
+                        rowData.includes(fullname) && rowData.includes(country) && rowData.includes(city) &&
+                        rowData.includes(registeredDate) && rowData.includes(updatedDate)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            filters.forEach(filter => {
+                filter.addEventListener('input', debounce(filterUsers, 300));
+            });
+        </script>
+    </body>
+    </html>

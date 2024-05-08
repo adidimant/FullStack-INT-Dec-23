@@ -1,0 +1,151 @@
+<!-- 
+  For this project, i decided the UI to be industrial-retro.
+  The header contains some text to enhance the industrial-retro style:
+  The number 24 - my age.
+  The numbers in the curly brackets { 23-12 } - my birth day.
+  The number in the square brackets [1999] - year i was born.
+  The 'industrial-retro' text is just the name of the style.
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./icon.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>User Management</title>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="top-header-top">
+        <h5 class="top-header-title">User-Management System: "Operational";</h5>
+      </div>
+      <div class="top-header-middle">
+        <button class="table-tab-btn active">Show Users</button>
+        <button class="form-tab-btn">Add User</button>
+        <div class="deleting-user-text">Please stand by<span class="first-dot">.</span><span class="second-dot">.</span></div>
+      </div>
+      <div class="top-header-bottom">^ Stylesheet Version: { 23.12 } --root: [1999] => ('Industrial-Retro');</div>
+    </header>
+    <main id="main">
+      <section id="table-section" class="active">
+        <nav class="table-nav">
+          <div class="table-nav-title">Filters ></div>
+          <div class="filter-inputs-wrapper">
+            <div class="filter-input-container">
+              <label for="fname-filter">First Name:</label>
+              <input type="text" name="fname-filter" id="fname-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="username-filter">Username:</label>
+              <input type="text" name="username-filter" id="username-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="email-filter">Email:</label>
+              <input type="text" name="email-filter" id="email-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="phone-filter">Phone:</label>
+              <input type="number" name="phone-filter" id="phone-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="country-filter">Country:</label>
+              <input type="text" name="country-filter" id="country-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="city-filter">City:</label>
+              <input type="text" name="city-filter" id="city-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="registered-filter">Registered:</label>
+              <input type="date" name="registered-filter" id="registered-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+            <div class="filter-input-container">
+              <label for="last-update-filter">Last Updated:</label>
+              <input type="date" name="last-update-filter" id="last-update-filter" class="filter-input" oninput="filterInputs()" />
+            </div>
+          </div>
+        </nav>
+        <div class="undo-btn-container">
+          <button class="undo-btn">UNDO</button>
+          <div class="undo-counter-container">
+            <div class="undo-counter-bar"></div>
+            <div class="undo-counter-bar"></div>
+            <div class="undo-counter-bar"></div>
+            <div class="undo-counter-bar"></div>
+            <div class="undo-counter-bar"></div>
+            <div class="undo-counter-bar"></div>
+          </div>
+        </div>
+        <main class="table-main">
+          <div class="popup-container">
+            <div class="popup-title">Warning</div>
+            <div class="text-container">
+              <div class="popup-warning-icon">!</div>
+              <div class="popup-text">This action will permanently delete the user. Press <span class="yes-text">'YES'</span> to delete.</div>
+            </div>
+            <div class="popup-btn-container">
+              <button class="popup-cancel-btn" onclick="cancelPopup()">NO</button>
+              <button class="popup-confirm-btn" onclick="confirmPopup()">YES</button>
+            </div>
+          </div>
+          <table id="users-table">
+            <thead>
+              <tr>
+                <th>Edit</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Registered</th>
+                <th>Updated</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </main>
+      </section>
+      <section id="form-section">
+        <main class="form-main">
+          <div class="user-form-error"></div>
+          <form id="create-user-form" method="get" onsubmit="submitForm(event)">
+            <div class="input-container">
+              <div class="left">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required />
+              </div>
+              <div class="right">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required />
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="left">
+                <label for="fname">Full Name:</label>
+                <input type="text" name="fname" id="fname" required />
+              </div>
+              <div class="right">
+                <label for="phone">Phone:</label>
+                <input type="number" name="phone" id="phone" required />
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="left">
+                <label for="country">Country:</label>
+                <input type="text" name="country" id="country" required />
+              </div>
+              <div class="right">
+                <label for="city">City:</label>
+                <input type="text" name="city" id="city" required />
+              </div>
+            </div>
+            <input type="submit" value="Create User" class="submit-form-btn inactive" disabled />
+          </form>
+        </main>
+      </section>
+    </main>
+  </body>
+  <script src="./script.js"></script>
+</html>

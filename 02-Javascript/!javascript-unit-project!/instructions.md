@@ -4,11 +4,13 @@ On the menu:
 1) One tab opens a form for user creation.
 The relevant user details:
 username, email, phone, firstName, lastName, street, city, state, country, zipcode, registeredDate, updatedDate
-You have to do validations on the form inputs
+You have to do validations on the form inputsv
 On the form submit / button click - you have to create a user object, contains all these relevant field
 If the username and email has not being used before - the user is created (stored in the local database)
 You'll have to learn use the JSON.stringify(object) to convert the object to a string representation for storing the data in the db
 and use JSON.parse(<string-object>) - for converting the string object to a javascript object.
+the key of each user should be the userId
+Recommended - manage another key in the localStorage that stores all the userIds
 2) Second tab - for a users view - a table contains all the existing created users and their full data
 Above the table - you'll need to implement filters section:
 1) username filter
