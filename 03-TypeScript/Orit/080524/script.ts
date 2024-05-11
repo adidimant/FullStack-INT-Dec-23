@@ -17,22 +17,22 @@ async function delay(ms: number): Promise<void> {
 async function changeLight() {
     while (true) {
         if (redLight && orangeLight && greenLight && redLight.classList.contains('red') ) {
-            await delay(2000);
+            await delay(5000);
             addColor(orangeLight, trafficColor.REDORANGE);
             /*await new Promise((res, rej) => {
                 setTimeout(res,2000);
             });*/
-            await delay(2000);
+            await delay(5000);
             addColor(greenLight, trafficColor.GREEN);
             removeColor(redLight, trafficColor.RED)
             removeColor(orangeLight, trafficColor.REDORANGE)
-            await delay(2000);
+            await delay(5000);
             removeColor(greenLight, trafficColor.GREEN);
             addColor(orangeLight, trafficColor.ORANGE);
-            await delay(2000);
+            await delay(5000);
             removeColor(orangeLight, trafficColor.ORANGE);
             addColor(redLight, trafficColor.RED);
-            await delay(2000);
+            await delay(5000);
         }
     }
 }
