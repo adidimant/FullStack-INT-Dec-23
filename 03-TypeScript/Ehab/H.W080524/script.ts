@@ -18,7 +18,6 @@ enum TrafficLightColors {
     RED_ORANGE = 'RED_ORANGE'
 }
 
-let currentLight: TrafficLightColors = TrafficLightColors.RED; // Initial light is red
 
 function updateLight(color : TrafficLightColors): void {
     const redLightElement = document.getElementById("red");

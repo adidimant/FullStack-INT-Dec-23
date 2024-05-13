@@ -68,7 +68,7 @@ var TrafficLightColors;
     TrafficLightColors["GREEN"] = "GREEN";
     TrafficLightColors["RED_ORANGE"] = "RED_ORANGE";
 })(TrafficLightColors || (TrafficLightColors = {}));
-var currentLight = TrafficLightColors.RED; // Initial light is red
+//let currentLight: TrafficLightColors = TrafficLightColors.RED; // Initial light is red
 function updateLight(color) {
     var redLightElement = document.getElementById("red");
     var orangeLightElement = document.getElementById('orange');
