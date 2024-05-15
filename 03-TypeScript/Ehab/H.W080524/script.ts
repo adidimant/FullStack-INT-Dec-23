@@ -20,28 +20,28 @@ enum TrafficLightColors {
 
 
 function updateLight(color : TrafficLightColors): void {
-    const redLightElement = document.getElementById("red");
-    const orangeLightElement = document.getElementById('orange');
-    const greenLightElemnt = document.getElementById('green');
+    const redLightElement = <HTMLElement>document.getElementById("red");
+    const orangeLightElement = <HTMLElement>document.getElementById('orange');
+    const greenLightElemnt = <HTMLElement>document.getElementById('green');
     switch (color) {
         case 'RED':
-            (<HTMLElement>redLightElement).style.background = TrafficLightColors.RED.toLocaleLowerCase();
+            (<HTMLElement>redLightElement).style.background = TrafficLightColors.RED.toLowerCase();
             (<HTMLElement>orangeLightElement).style.background = 'none';
             (<HTMLElement>greenLightElemnt).style.background = 'none';
             break;
         case 'RED_ORANGE':
-            (<HTMLElement>redLightElement).style.background = TrafficLightColors.RED.toLocaleLowerCase();
-            (<HTMLElement>orangeLightElement).style.background = TrafficLightColors.ORANGE.toLocaleLowerCase();
+            (<HTMLElement>redLightElement).style.background = TrafficLightColors.RED.toLowerCase();
+            (<HTMLElement>orangeLightElement).style.background = TrafficLightColors.ORANGE.toLowerCase();
             (<HTMLElement>greenLightElemnt).style.background = 'none';
             break;
         case 'GREEN':
             (<HTMLElement>redLightElement).style.background = 'none';
             (<HTMLElement>orangeLightElement).style.background = 'none';
-            (<HTMLElement>greenLightElemnt).style.background = TrafficLightColors.GREEN.toLocaleLowerCase();
+            (<HTMLElement>greenLightElemnt).style.background = TrafficLightColors.GREEN.toLowerCase();
             break;
         case 'ORANGE':
             (<HTMLElement>redLightElement).style.background = 'none';
-            (<HTMLElement>orangeLightElement).style.background = TrafficLightColors.ORANGE.toLocaleLowerCase();
+            (<HTMLElement>orangeLightElement).style.background = TrafficLightColors.ORANGE.toLowerCase();
             (<HTMLElement>greenLightElemnt).style.background = 'none';
             break;
         default:
