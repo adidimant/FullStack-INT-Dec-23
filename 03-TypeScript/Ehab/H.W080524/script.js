@@ -68,7 +68,6 @@ var TrafficLightColors;
     TrafficLightColors["GREEN"] = "GREEN";
     TrafficLightColors["RED_ORANGE"] = "RED_ORANGE";
 })(TrafficLightColors || (TrafficLightColors = {}));
-//let currentLight: TrafficLightColors = TrafficLightColors.RED; // Initial light is red
 function updateLight(color) {
     var redLightElement = document.getElementById("red");
     var orangeLightElement = document.getElementById('orange');
@@ -98,11 +97,11 @@ function updateLight(color) {
             break;
     }
 }
-function wait(interval) {
+function wait(milliseconds) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (res, rej) {
-                    setTimeout(res, interval);
+                    setTimeout(res, milliseconds);
                 })];
         });
     });

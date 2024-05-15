@@ -50,8 +50,8 @@ function updateLight(color : TrafficLightColors): void {
     
 }
 
-async function wait(interval :number): Promise<void> {
+async function wait(milliseconds :number): Promise<void> {
     return new Promise((res,rej) => {
-        setTimeout(res,interval);
+        setTimeout(res,milliseconds);
     })
 }
