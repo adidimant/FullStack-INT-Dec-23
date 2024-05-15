@@ -20,9 +20,9 @@ enum TrafficLightColors {
 
 
 function updateLight(color : TrafficLightColors): void {
-    const redLightElement = document.getElementById("red");
-    const orangeLightElement = document.getElementById('orange');
-    const greenLightElemnt = document.getElementById('green');
+    const redLightElement = <HTMLElement>document.getElementById("red");
+    const orangeLightElement = <HTMLElement>document.getElementById('orange');
+    const greenLightElemnt = <HTMLElement>document.getElementById('green');
     switch (color) {
         case 'RED':
             (<HTMLElement>redLightElement).style.background = TrafficLightColors.RED.toLocaleLowerCase();
