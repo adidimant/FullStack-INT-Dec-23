@@ -43,11 +43,12 @@
         <input type="date" id="filterRegisteredDate" class="filter">
         <label for="filterUpdatedDate">תאריך עדכון:</label>
         <input type="date" id="filterUpdatedDate" class="filter">
+        <button onclick="filterUsersAndSave()">החל מסננים ושמור את כל המשתמשים</button> <!-- כפתור שמירת כל המשתמשים -->
       </div>
       <table id="userTable">
         <thead>
           <tr>
-            <th>פעולות</th>
+            <th>פעולות</th> <!-- כותרת התאים של הפעולות -->
             <th>תאריך עדכון</th>
             <th>תאריך רישום</th>
             <th>קוד דואר</th>
@@ -67,7 +68,7 @@
       <table id="savedUsersTable" style="display: none;">
         <thead>
           <tr>
-            <th>פעולות</th>
+            <th>פעולות</th> <!-- כותרת התאים של הפעולות -->
             <th>תאריך עדכון</th>
             <th>תאריך רישום</th>
             <th>ואר</th>
@@ -86,7 +87,7 @@
 
     <div id="createUser" class="tab" style="display: none;">
       <h2>יצירת משתמש</h2>
-      <form id="userForm" onsubmit="saveUser(event); return false;">
+      <form id="userForm" onsubmit="return saveUser();">
         <label for="username">שם משתמש:</label>
         <input type="text" id="username" name="username" required autocomplete="username"><br>
         <label for="email">אימייל:</label>
@@ -107,11 +108,9 @@
         <input type="text" id="postalCode" name="postalCode"><br>
         <label for="registeredDate">תאריך רישום:</label>
         <input type="date" id="registeredDate" name="registeredDate"><br>
-        <button type="submit">שמור משתמש</button>
+        <button type="submit">שמור משתמש</button> <!-- כפתור שמירת משתמש -->
       </form>
     </div>
-
-
   </section>
 
   <script src="script.js"></script>
