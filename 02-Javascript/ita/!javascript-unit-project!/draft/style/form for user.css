@@ -1,0 +1,76 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: rgb(104, 104, 104);
+    background-color: rgb(172, 236, 231);
+  }
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px 30px;
+    width: 70%;
+    padding: 20px;
+    margin-left: 15%;
+    margin-top: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.full-label {
+    width: 200px;
+    margin: 15px 10px;
+    
+}
+
+.full-label input {
+    width: 100%;
+    margin-top: 0;
+    padding: 0.5em;
+    border: 0;
+    border-bottom: 2px solid gray;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+  }
+
+.full-label input:focus {
+    outline: 0;
+}
+
+.full-label.success input {
+    color: #09c372;
+    border-bottom: 2px solid #09c372;
+}
+
+.full-label.error input {
+    color: #ff3860;
+    border-bottom: 2px solid #ff3860;
+}
+
+
+.form-span {
+    width: 100%;
+    padding: 0.5em;
+}
+
+
+
+.full-label .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+.save-button{
+    background-color: #000;
+    border-radius: 6px;
+    color: #fff;
+    margin: 10px;
+    cursor: pointer;
+    padding: 6px 24px;
+    text-decoration: none;
+}
+
