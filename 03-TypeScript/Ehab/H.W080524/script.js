@@ -68,41 +68,40 @@ var TrafficLightColors;
     TrafficLightColors["GREEN"] = "GREEN";
     TrafficLightColors["RED_ORANGE"] = "RED_ORANGE";
 })(TrafficLightColors || (TrafficLightColors = {}));
-//let currentLight: TrafficLightColors = TrafficLightColors.RED; // Initial light is red
 function updateLight(color) {
     var redLightElement = document.getElementById("red");
     var orangeLightElement = document.getElementById('orange');
     var greenLightElemnt = document.getElementById('green');
     switch (color) {
         case 'RED':
-            redLightElement.style.background = TrafficLightColors.RED.toLocaleLowerCase();
+            redLightElement.style.background = TrafficLightColors.RED.toLowerCase();
             orangeLightElement.style.background = 'none';
             greenLightElemnt.style.background = 'none';
             break;
         case 'RED_ORANGE':
-            redLightElement.style.background = TrafficLightColors.RED.toLocaleLowerCase();
-            orangeLightElement.style.background = TrafficLightColors.ORANGE.toLocaleLowerCase();
+            redLightElement.style.background = TrafficLightColors.RED.toLowerCase();
+            orangeLightElement.style.background = TrafficLightColors.ORANGE.toLowerCase();
             greenLightElemnt.style.background = 'none';
             break;
         case 'GREEN':
             redLightElement.style.background = 'none';
             orangeLightElement.style.background = 'none';
-            greenLightElemnt.style.background = TrafficLightColors.GREEN.toLocaleLowerCase();
+            greenLightElemnt.style.background = TrafficLightColors.GREEN.toLowerCase();
             break;
         case 'ORANGE':
             redLightElement.style.background = 'none';
-            orangeLightElement.style.background = TrafficLightColors.ORANGE.toLocaleLowerCase();
+            orangeLightElement.style.background = TrafficLightColors.ORANGE.toLowerCase();
             greenLightElemnt.style.background = 'none';
             break;
         default:
             break;
     }
 }
-function wait(interval) {
+function wait(milliseconds) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (res, rej) {
-                    setTimeout(res, interval);
+                    setTimeout(res, milliseconds);
                 })];
         });
     });
