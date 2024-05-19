@@ -52,8 +52,15 @@ class PT {
         //     return Math.sqrt((this.x-x) **2 + (this.y-y) **2)
         // }
 
-        calculateDistance(p1: PT): number {
-            return Math.sqrt((this.x - p1.x) **2 + (this.y-p1.y) **2)
+        calculateDistance(xOrPT: number | PT, y?: number): number {
+            if (xOrPT instanceof PT) {
+                return Math.sqrt((this.x - xOrPT.getX()) **2 + (this.y-p1.getY()) **2);
+            }
+            // reaching here in case xOrPT is a number
+            if (y == undefined) {
+                throw new Error("y 2nd parameter must be provided if x was provided!");
+            }
+            return Math.sqrt((this.x-xOrPT) **2 + (this.y-y) **2);
         }
 
         //TODO the funciton should be able to get x,y OR another point p2 - and return the incline between our point to the other point
@@ -61,8 +68,14 @@ class PT {
         //     return (this.x - x) / (this.y - y)
         // }
 
-        calculateIncline(p: PT): number {
-            return (this.x - p.x) / (this.y - p.y)
+        calculateIncline(xOrPT: number | PT, y?: number): number {
+            if (xOrPT instanceof PT) {
+                return (this.x - xOrPT.getX()) / (this.y - xOrPT.getY());
+            }
+            if (y == undefined) {
+                throw new Error("y 2nd parameter must be provided if x was provided!");
+            }
+            return (this.x - xOrPT) / (this.y - y);
         }
 
         //TODO - the function should be able to get x,y OR another point p2 - and returns the middle Point
