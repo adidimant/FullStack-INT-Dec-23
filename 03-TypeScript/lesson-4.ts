@@ -120,8 +120,20 @@ class PT {
   }
 
   //TODO - the function returns the quadrant (רביע) of the current point
-  getQuadrant() {
-    
+  /**
+   * @returns Quadrant in case the point in some quadrant, if no point data or the point in the center of the axes - returns null
+   */
+  getQuadrant(): Quadrant | null {
+    if(this.x >0 && this.y > 0){
+      return Quadrant.I;
+    }else if(this.x <0 && this.y >0){
+      return Quadrant.II;
+    }else if(this.x < 0 && this.y < 0){
+      return Quadrant.III;
+    }else if(this.x >0 && this.y < 0){
+      return Quadrant.IV;
+    }
+    return null;
   }
 
   // Gets another x, y. returns the distance between our current point to the gives point x,y
@@ -140,8 +152,13 @@ class PT {
   }
 
   //TODO - the function should be able to get x,y OR another point p2 - and returns the middle Point
-  calculateMiddlePoint() {
-
+  calculateMiddlePoint(xOrPT: number | PT, y?: number): PT {
+    if (xOrPT instanceof PT) {
+      return new PT((xOrPT.getX()+ this.x)/2,(xOrPT.getY()+ this.y)/2);
+    } else { 
+      if (y === undefined){throw new Error('Second coordinate (y) is required when using numbers.');}
+      return new PT((xOrPT+this.x)/2,(y+this.y)/2);
+    }
   }
 
 
