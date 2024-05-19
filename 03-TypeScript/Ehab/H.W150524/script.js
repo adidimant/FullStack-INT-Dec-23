@@ -99,10 +99,10 @@ var p3 = new PT(-6, -2);
 var p4 = new PT(2, -5);
 // getQuadrant()
 console.log('getQuadrant');
-console.log('The point is in the quadrant:', p1.getQuadrant());
-console.log('The point is in the quadrant:', p2.getQuadrant());
-console.log('The point is in the quadrant:', p3.getQuadrant());
-console.log('The point is in the quadrant:', p4.getQuadrant());
+console.log('The point ' + p1.toString() + ' is in the quadrant:', p1.getQuadrant());
+console.log('The point ' + p2.toString() + ' is in the quadrant:', p2.getQuadrant());
+console.log('The point ' + p3.toString() + ' is in the quadrant:', p3.getQuadrant());
+console.log('The point ' + p4.toString() + ' is in the quadrant:', p4.getQuadrant());
 // calculateDistance(xOrPT: number | PT, y?: number): number
 console.log('\ncalculateDistance');
 console.log('The distance between point ' + p1.toString() + ' and point ' + p2.toString() + ' is:', p1.calculateDistance(p2));
