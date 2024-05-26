@@ -276,6 +276,7 @@ printerMachine2.createTestPrint();
  * 3) static classes & static methods (like Date.now(); , Math.pow(5, 3);)
  * 4) types manipulation - https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
  * 5) small additions from TS documentation
+ * 6) import/export modules, export vs export default
  */
 
 
