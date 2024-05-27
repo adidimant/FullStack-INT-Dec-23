@@ -10,5 +10,5 @@ interface MachineInterface {
   warnLevel: 0 | 1 | 2 | 3;
   owner: string;
 }
-Implement this interface in any machine that we have created
+Implement this interface in any machine that we have created (lesson 5-6 ts file)
 5) Understand the recursive solution we have implemented in class - calculateObjDeep
