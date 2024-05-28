@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100;200;300;400&display=swap');
+
+:root{
+    --white: #ffffff;
+    --green: #0de79a;
+    --red: #ff5257;
+    --purple: #7d52ff;
+    --dark1: #212529;
+    --dark2: #424549;
+    --dark3: #9c9c9c;
+    --dark4: #dae0e7;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background:var(--dark4);
+}
+.container{
+  padding: 20px;
+    box-shadow: 3px 3px 20px var(--dark1);
+    background: var(--white);
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 50px;
+}
+
+.container .addMemberBtn {
+  margin-bottom: 15px;
+}
+
+
+.filters input {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 8px;
+  border: 1px solid var(--dark2);
+  color: var(--dark2);
+  background: var(--white);
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.submitBtn button{
+  padding: 9px;
+  color: var(--white);
+  background: var(--green);
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
+  border-radius: 30px;
+  outline: none;
+
+}
+.submitBtn{
+  padding: 9px 14px;
+  color: var(--white);
+  background: var(--green);
+  font-size: 16px;
+}
+
+.addMemberBtn button, .viewMembersBtn button , .table td button {
+  margin-top: 20px;
+  justify-content: flex-end;
+  padding: 9px 14px;
+  color: var(--white);
+  background: var(--green);
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
+  border-radius: 30px;
+  outline: none;
+
+}
+
+.filter label{
+  color: var(--green);
+  margin-right: 5px;
+}
+
+
+.filter input:focus{
+  border-color: var(--dark1);
+}
+
+.user-form{
+  border-radius: 5px;
+    box-shadow: 3px 3px 20px rgba(0,0,0,0.3);
+    background: var(--dark6);
+    transition: 0.4s;
+    user-select: none;
+    transform: scale(0.7);
+    opacity: 0;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th{
+  height: 50px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  background-color: var(--dark1);
+  color: var(--white);
+}
+
+td{
+height: 20px;
+text-align: left;
+}
+
+th, td{
+padding: 10px;
+}
+
+
+a{
+  margin-right: 55px;
+}
+
+.inputField{
+    width: 200px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+ 
+
+#undo-popup {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  display: none;
+}
