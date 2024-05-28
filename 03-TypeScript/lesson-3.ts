@@ -95,7 +95,7 @@ enum RgbColor {
 };
 
 // function that receives an element (param1), and ab rgb color (param2) - and fills its background color with this color
-function drawColorInElement(el: HTMLElement | null, color: RgbColor) {
+function drawColorInElement(el: HTMLElement | null, color: RgbColor): void {
   if (el) {
     el.style.backgroundColor = color.toLowerCase();
   }
@@ -108,4 +108,25 @@ enum Direction {
   Down,
   Left,
   Right,
+}
+
+type Player = {
+  name: string;
+  birthday: Date;
+  email: string;
+  elementId: string;
+  gender: 'M' | 'F';
+}
+
+function movePlayer(player: Player, direction: Direction, pixelsToMove: number) {
+  const playerElement = document.getElementById(player.elementId) as HTMLElement;
+  if (direction == Direction.Up) {
+    playerElement.style.marginBottom += pixelsToMove;
+  } else if (direction == Direction.Left) {
+    playerElement.style.marginRight += pixelsToMove;
+  } else if (direction == Direction.Right) {
+    playerElement.style.marginLeft += pixelsToMove;
+  } else if (direction == Direction.Down) {
+    playerElement.style.marginTop += pixelsToMove;
+  }
 }

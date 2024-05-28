@@ -137,26 +137,123 @@ person1.setHeight(171);
 // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
 // in the API response - there's a boolean field called 'seen', you need to filter according to it
 
-class User {
-  // dateCreated: string;
-  // birthday: string;
-  // isVegan?: boolean;
+const todayDate = new Date().getDate();
+const todayMonth = new Date().getMonth();
 
-  constructor() {}
 
-  getBirthday() {
+
+
+class User extends Person {
+    userName: string;
+    dateCreated: string;
+    email: string;
+    phone: string | number;
+    userMode: boolean;
+    logins: number;
+    isVegan?: boolean;
+    
+
+
+
+  
+
+  constructor(id: string, firstName: string, lastName: string, birthday: Date, gender: Gender, height: number, weight: number, address: Address, userName: string, dateCreated: string, email: string, phone: string | number, userMode: boolean, logins: number, isVegan?: boolean) {
+    super(id, firstName, lastName, birthday, gender, height, weight, address)
+    this.userName = userName
+    this.dateCreated = dateCreated;
+    this.email = email;
+    this.phone = phone;
+    this.userMode = userMode;
+    this.logins = logins;
+    this.isVegan = isVegan;
   }
 
-  setBirthday(birthday: string) {
+  getUserName(): string {
+    return this.userName
   }
 
-  getIsVegan() {
+  setUserName(userName: string) {
+    this.userName = userName;
+  }
+
+  getDateCreated(): string{
+    return this.dateCreated;
+  }
+
+  setDateCreated(dateCreated: string) {
+    this.dateCreated = dateCreated;
+  }
+
+  getEmail():string {
+    return this.email;
+  }
+
+  setEmail(email: string) {
+    this.email = email;
+  }
+
+  getPhone(): string | number {
+    return this.phone;
+  }
+
+  setPhone(phone: string | number) {
+    this.phone = phone;
+  }
+
+  getUserMode(): boolean {
+    return this.userMode;
+  }
+
+  setUserMode(userMode: boolean) {
+    this.userMode = userMode;
+  } 
+
+  getLogins(): number {
+    return this.logins;
+  }
+
+  setLogins(logins: number) {
+    this.logins = logins
+  }
+ 
+  getIsVegan(): boolean | undefined {
+    if(this.isVegan !== undefined) {
+        return this.isVegan
+    }
   }
 
   setIsVegan(isVegan: boolean) {
+    this.isVegan = isVegan;
   }
 
-  private async getRecommendedNetflixMovies() {
+  NumberOfLoginsOfActiveUsers(users: User[]): User[] {
+    return users.filter((user) => {
+        if (user.userMode == true) {
+            return user.getLogins()
+        }
+    })
+  }
+
+  SendingBirthdayWish(users: User[], email: User, phone: User) {
+    const UsersCelebratingBirthdayToday: User[] = users.filter((user) => {
+        if (user.getBirthday().getDate() == todayDate && user.getBirthday().getMonth() == todayMonth) {
+            return true;
+        }
+    })
+    return UsersCelebratingBirthdayToday.map((user) => {
+        
+    })
+  }
+
+
+
+
+
+
+  private async getRecommendedNetflixMovies(): Promise<void> {
+    await fetch("'https://netflix.com/getRecommendedMovies?userId=<>'");
+
+
   }
 
   public async getNotSeenRecommendedMovies() {
