@@ -79,9 +79,13 @@ const filterArticles2 = (articles: Article[]): Article[] =>
 
 // Create a type by removing specific fields from another type - using Omit
 
+type ArticleWithHeight = Article & {
+  height: number;
+}
+
 type ArticleWithoutImage = Omit<Article, 'imgSrc'>;
 let articleImageless: ArticleWithoutImage | {} = {};
-(articleImageless as ArticleWithoutImage).content = 'Very rich content';
 (articleImageless as ArticleWithoutImage).title = 'The best article in town';
-
-
+(articleImageless as ArticleWithoutImage).content = 'Very rich content';
+// Or:
+(<ArticleWithoutImage>articleImageless).content = 'Very rich content';

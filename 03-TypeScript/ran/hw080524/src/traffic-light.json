@@ -1,0 +1,8 @@
+{
+    "TrafficLight": {
+        "RED": "red",
+        "ORANGE": "orange",
+        "GREEN": "green",
+        "RED_ORANGE": "red-orange"
+    }
+}

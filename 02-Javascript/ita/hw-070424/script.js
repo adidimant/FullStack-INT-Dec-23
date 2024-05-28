@@ -84,3 +84,42 @@ function getPromiseWithStatus(promise) {
 }
 
 
+////////////////////////////////////////
+
+
+const promise = new promise((res, rej) => {
+    setTimeout(res, 3000)
+})
+
+async function getPromiseWithStatus(promise) {
+    let isPending = true;
+    let isFulfilled = false;
+    let isRejected = false;
+  
+    let result = await promise.then(() => {
+      isPending = false;
+      isFulfilled = true;
+      console.log('entered .then');
+      return;
+    }).catch(() => {
+      isPending = false;
+      isRejected = true;
+      console.log('entered .catch');
+      return;
+    });
+  
+    if (isPending) {
+      result.status = 'pending';
+      console.log('entered pending');
+    } else if (isFulfilled) {
+      result.status = 'fulfilled';
+      console.log('entered fulfilled');
+    } else { // isRejected == true
+      result.status = 'rejected';
+      console.log('entered rejected');
+    }
+  
+    return result;
+  }
+
+
