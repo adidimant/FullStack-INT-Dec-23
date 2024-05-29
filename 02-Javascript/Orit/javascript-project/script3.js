@@ -58,6 +58,7 @@ function debounceThenFilter() {
 function filterTable() {
     // First set isFiltering to true and stop refresh
     isFiltering = true;
+    refreshTable();
     stopAutomaticRefresh();
 
     // Get the input values from filter input fields 
@@ -270,6 +271,7 @@ function refreshTable() {
 function fillTable() {
     const users = JSON.parse(localStorage.getItem('users')) || {};
     // Call the function to populate the table initially
+    Object.assign(userData, users);
     populateUserTable(users);
 }
 
@@ -484,6 +486,7 @@ function saveToStorage() {
         newUserTab.classList.remove('active-button');
         addUserSection.classList.add('hide');
         allUsersSection.classList.remove('hide');
+        refreshTable();
     }, 3000);
 }
 
