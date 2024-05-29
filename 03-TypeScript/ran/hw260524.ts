@@ -38,7 +38,6 @@ function handleGenerics<T, K>(value: T, alternative: K): T | K {
     }
   }
   
-  // דוגמה ליצירת מכונה:
   const myMachine = new Machine('Admin', 2, 'John Doe');
   myMachine.turnOn();
   myMachine.turnOff();
@@ -58,7 +57,6 @@ function calculateObjDeep(obj: AnyObject): number {
   return depth;
 }
 
-// דוגמה לשימוש בפונקציה:
 const exampleObj = {
   level1: {
     level2: {
