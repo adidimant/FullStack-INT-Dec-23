@@ -171,10 +171,12 @@ function calculateObjDeep<T>(obj: T) {
 
 // implement a function, that deals with a generic type of object (T), and returns the object T + deep: number
 function addObjectDeep<T>(obj: T): T & { deep: number } {
-  const deep = calculateObjDeep(obj);
+  const deep = calculateObjDeep<T>(obj);
   const sameObj: T = identity(obj);
   return {
     ...obj,
     deep,
   };
 }
+
+
