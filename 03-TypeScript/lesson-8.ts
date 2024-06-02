@@ -209,10 +209,10 @@ function loggingIdentity<Type>(arg: Array<Type>): Array<Type> {
   return arg;
 }
 
-function identity<Type>(arg: Type): Type {
+function identity2<Type>(arg: Type): Type {
   return arg;
 }
-let myIdentity: { <Type>(arg: Type): Type } = identity;
+let myIdentity: { <Type>(arg: Type): Type } = identity2;
 
 // generic interfaces:
 interface GenericIdentityFn<Type> {
@@ -230,23 +230,48 @@ let myIdentity2: GenericIdentityFn<number> = identity;
 class GenericNumber<NumType> {
   zeroValue: NumType;
   add: (x: NumType, y: NumType) => NumType;
+
+  constructor(zeroValue: NumType, add: (x: NumType, y: NumType) => NumType) {
+    this.zeroValue = zeroValue;
+    this.add = add;
+  }
 }
  
-let myGenericNumber = new GenericNumber<number>();
-myGenericNumber.zeroValue = 0;
-myGenericNumber.add = function (x, y) {
+let myGenericNumber = new GenericNumber<number>(0, function (x, y) {
   return x + y;
-};
+});
 
 // use this generic class with a string:
-let stringNumeric = new GenericNumber<string>();
-stringNumeric.zeroValue = "";
-stringNumeric.add = function (x, y) {
+let stringNumeric = new GenericNumber<string>("", function (x, y) {
   return x + y;
-};
+});
  
-console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
+console.log(stringNumeric.add(stringNumeric.zeroValue, "test")); // "" + "test" => "test"
 
+function loggingIdentity2<Type>(arg: Type): Type {
+  console.log(arg.length); // Property 'length' does not exist on type 'Type'.
+  return arg;
+}
+
+// to fix this:
+interface TypeWithLength {
+  length: number;
+}
+
+function loggingIdentity3<Type extends TypeWithLength>(arg: Type): Type {
+  console.log(arg.length); // Property 'length' does not exist on type 'Type'.
+  return arg;
+}
+
+// or using type:
+type TypeWithLengthV2 = {
+  length: number;
+}
+
+function loggingIdentity4<Type>(arg: Type & TypeWithLengthV2): Type & TypeWithLengthV2 {
+  console.log(arg.length); // Property 'length' does not exist on type 'Type'.
+  return arg;
+}
 
 /**
 Using Type Parameters in Generic Constraints
@@ -260,5 +285,152 @@ function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
  
 let x = { a: 1, b: 2, c: 3, d: 4 };
  
-getProperty(x, "a");
-getProperty(x, "m");
+getProperty(x, "a"); // 1
+getProperty(x, "m"); // typescript error
+
+// write the function getLongestKey, that recieves an object and needs to return it's longest 1st level key, and retruns the longest key
+// your goals is to it in the most accurate way in TS (generic, and exactly what you expect to return - not just "string")
+function getLongestKey<T>(obj: T): keyof T | null {
+  if (!obj || typeof obj != 'object' || Object.keys(obj).length == 0) {
+    return null;
+  }
+
+  let longestKey: string = '';
+
+  const keys = Object.keys(obj);
+  keys.forEach((key: string) => {
+    if (key.length > longestKey.length) {
+      longestKey = key;
+    }
+  });
+
+  return longestKey as keyof T;
+}
+
+function getLongestKey2<T>(obj: T): keyof T | null {
+  if (!obj || typeof obj != 'object' || Object.keys(obj).length == 0) {
+    return null;
+  }
+
+  let longestKey: keyof T | '' = '';
+  for (const key in obj) {
+      if (key.length > (longestKey as string).length) {
+          longestKey = key;
+      }
+  }
+  return longestKey as keyof T;
+}
+
+
+class ObjectAnalyser<T> {
+  private obj: T;
+
+  constructor(obj: T) {
+    this.obj = obj;
+  }
+
+  // getters/setters
+
+  calculateObjDeep() {
+    if (this.obj && typeof this.obj == 'object') {
+      const values = Object.values(this.obj as object);
+      return 1 + Math.max(...values.map((value) => calculateObjDeep(value)));
+    }
+    return 0;
+  }
+
+  getLongestKey(): keyof T | null {
+    if (!this.obj || typeof this.obj != 'object' || Object.keys(this.obj).length == 0) {
+      return null;
+    }
+  
+    let longestKey: keyof T | '' = '';
+    for (const key in this.obj) {
+        if (key.length > (longestKey as string).length) {
+            longestKey = key;
+        }
+    }
+    return longestKey as keyof T;
+  }
+
+  /**
+   @returns boolean indicating that all the values have the same type, if received empty value or non-object - returns null
+   */
+  isValuesConsistent(): boolean | null {
+    if (this.obj && typeof this.obj == 'object') {
+      let type;
+
+      const values = Object.values(this.obj);
+      for (let i = 0; i < values.length; i++) {
+        const value = values[i];
+        let currentType: typeof value | 'null' | 'array' = typeof value;
+        if (value == null) {
+          currentType = 'null';
+        }
+
+        if (Array.isArray(value)) {
+          currentType = 'array';
+        }
+
+        if (i == 0) {
+          type = currentType;
+        } else if (type != currentType) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return null;
+  }
+}
+
+type Student = {
+  id: string;
+  fullName: string;
+  birthday: Date;
+  class: string;
+}
+
+type StudentInClassTrip = {
+  isPayed: boolean;
+  preferedFood: string;
+} & Student;
+
+const studentInClass = {
+  id: '23423423',
+  fullName: 'Ofer B',
+  birthday: new Date(),
+  class: 'H-2',
+  isPayed: true,
+  preferedFood: 'regular',
+}
+
+const objectAnalyzer = new ObjectAnalyser<StudentInClassTrip>(studentInClass);
+const longestObjKey = objectAnalyzer.getLongestKey();
+const objDepth = objectAnalyzer.calculateObjDeep();
+const isAllValuesSameType = objectAnalyzer.isValuesConsistent();
+
+// static functions as we know so far:
+Math.min
+Date.now()
+Promise.resolve()
+
+/**
+ next lesson:
+ * static classes & functions
+ * declare
+ * last parts from TS docs
+ * import/export of modules
+ */
+
+/**
+ * links:
+ * https://www.typescriptlang.org/docs/handbook/2/basic-types.html
+ * https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
+ * https://www.typescriptlang.org/docs/handbook/2/functions.html
+ * https://www.typescriptlang.org/docs/handbook/2/objects.html
+ * https://www.typescriptlang.org/docs/handbook/2/generics.html
+ * https://www.typescriptlang.org/docs/handbook/2/keyof-types.html
+ * https://www.typescriptlang.org/docs/handbook/2/typeof-types.html
+ * https://www.typescriptlang.org/docs/handbook/2/classes.html
+ */
