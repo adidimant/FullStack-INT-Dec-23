@@ -1,4 +1,4 @@
-function isPalindrome(num: number){
+function isPalindrome(num: number): boolean{
     if(num < 0){
         num = num * (-1);
     }
@@ -16,10 +16,7 @@ console.log(isPalindrome(12321)); // true
 console.log(isPalindrome(12325)); // false
 
 
-function findMaxOrMin(arr: number[], index: number , findMax: boolean){
-    if(arr[0] == undefined){
-        return;
-    }
+function findMaxOrMin(arr: number[], index: number , findMax: boolean): number{
     if(index === arr.length-1){
         return arr[index];
     }
@@ -39,7 +36,7 @@ console.log(findMaxOrMin([1,2,5,6,3,-8,4,1,-3],0,true)); // 6
 console.log(findMaxOrMin([1,2,5,6,3,-8,4,1,-3],0,false)) // -8
 
 
-function copy(str: string){
+function copy(str: string): string{
     if(str.length == 1) {
         return str[0];
     }else {
