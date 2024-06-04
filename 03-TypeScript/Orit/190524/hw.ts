@@ -138,90 +138,58 @@ person1.setHeight(171);
 // in the API response - there's a boolean field called 'seen', you need to filter according to it
 
 class User extends Person {
-    private dateCreated: Date;
-    private username: string;
-    private email: string;
-    private phoneNumber: string; 
-    private isVegan?: boolean; // טבעוני
+  private dateCreated: Date;
+  private username: string;
+  //private userBirthday: string;
+  private isVegan?: boolean;
 
-    constructor(id: string, firstName: string, lastName: string, birthday: Date, gender: Gender, height: number, weight: number, address: Address, username: string, email: string,phoneNumber: string, isVegan?: boolean) {
-        super(id,firstName,lastName,birthday,gender,height,weight,address);
-        this.dateCreated = new Date();
-        this.username=username;
-        this.phoneNumber = phoneNumber;
+  constructor( //the constructor contains the variables that we expect to recieve from the user. dateCreted is a variable we will set for him.
+        id: string,
+        firstName: string,
+        lastName: string,
+        birthday: Date, 
+        gender: Gender,
+        height: number,
+        weight: number,
+        address: Address,
+        username: string,
+        isVegan: boolean
+  ) {
+    super(id, firstName, lastName, birthday, gender, height, weight, address); 
+    this.dateCreated = new Date();
+    this.username = username;
+    if (isVegan) {
         this.isVegan = isVegan;
     }
+  }
 
-    getDateCreated(): Date{
-        return this.dateCreated;
-    }
-    getUsername(): string{
-        return this.username;
-    }
-    getEmail(): string{
-        return this.email;
-    }
-    getPhoneNumber(): string{
-        return this.phoneNumber;
-    }
-    getIsVegan(): boolean | undefined {
+  getUserBirthday(): Date {
+    return this.getBirthday();
+  }
+
+  setUserBirthday(birthday: Date) {
+    this.setBirthday(birthday);
+  }
+
+  getIsVegan() {
+    if (this.isVegan) {
         return this.isVegan;
     }
-    getBirthday() {
-        return super.getBirthday();
-    }
+  }
 
-    setUsername(username: string){
-        this.username = username;
-    }
-    setEmail(email: string){
-        this.email = email;
-    }
-    setPhoneNumber(phoneNumber: string){
-        this.phoneNumber = phoneNumber;
-    }
-    setBirthday(birthday: Date) {
-        super.setBirthday(birthday);
-    }
-    setIsVegan(isVegan: boolean) {
-        this.isVegan = isVegan;
-    }
-    
-    
-    //Add 2 more functions for the User class, that uses both fields from Person & User (be creative)
-    getUserInfo(): string{
-        return 'First name: '+super.getFirstName()+'\n'+
-        'Last name: '+ super.getLastName()+'\n'+
-        'Username: '+ this.username+'\n'+
-        'Email: '+this.email;
-    }
+  setIsVegan(isVegan: boolean) {
+    this.isVegan = isVegan;
+  }
 
-    timeToPension(): string{
-        if(super.isInPension()){
-            return 'The user is already in pension'
-        }
-        const birthdayInMs = super.getBirthday().getTime();
-        const currentTime = Date.now();
-        const ageInMs = currentTime - birthdayInMs;
-        const ageInYears = ageInMs / 1000 / 60 / 60 / 24 / 365;
-        if(super.getGender() == 'M'){
-            return String('Time left To Pension (in years):  '+(67 - ageInYears));
-        }
-        return String('Time left To Pension (in years):  '+(65 - ageInYears));
-    }
+  private async getRecommendedNetflixMovies() {
+  }
 
-
-    // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
-    // in the API response - there's a boolean field called 'seen', you need to filter according to it
-
-    private async getRecommendedNetflixMovies() {
-
-    }
-
-    public async getNotSeenRecommendedMovies() {
-    }
+  public async getNotSeenRecommendedMovies() {
+  }
 }
 
+const person2 = new Person('208776958', 'Ran', 'Nishli', new Date('05/11/1984'), 'M', 170, 60, 
+{ street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 });
 
-const person2 = new Person('208776958', 'Ran', 'Nishli', new Date('05/11/1984'), 'M', 170, 60, { street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 });
-const user2 = new User('123456','ehab','hassoun',new Date('23/09/1991'),'M',170,72,{ street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 },'ehabhassoun','ehab@gmail.com','052-3456789',false);
+const user1 = new User('039332465', 'Orit', 'Frank', 'F', 162, 61, 
+{ street: 'Shmorak', house: 5, apartment: 4, country: 'Israel', city: 'Jerusalem' }, '19/05/2024', 'OFrank', '04/11/84', false );

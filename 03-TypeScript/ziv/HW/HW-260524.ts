@@ -68,6 +68,7 @@ function mergeObjects<T extends object, K extends object>(obj8: T, obj9: K): T &
     return { ...obj1, ...obj2 };
   }
   
+  
 /* 3) Create a function that recieves some generic T and a duplicate number, and returns an array of (the same) T, with the length of the duplicate number needed */
 function duplicateArray<T>(item: T, duplicateNumber: number): T[] {
     return Array(duplicateNumber).fill(item);
@@ -84,7 +85,12 @@ function duplicateArray<T>(item: T, duplicateNumber: number): T[] {
   const objectArray = duplicateArray({ name: "Alice" }, 2);
   console.log(objectArray); // פלט: [{ name: "Alice" }, { name: "Alice" }]
 
-  
+  //Answer in class //
+  function duplicateArray1<T>(item: T, duplicateNumber: number): T[] {
+    return Array(duplicateNumber).fill(item);
+  }
+
+  //----------------------------------------------------------------//
 /* 4) Consider the following interface: 
 interface MachineInterface {
   turnOn: () => void;
