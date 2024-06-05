@@ -15,7 +15,7 @@ function f2<T,k>(obj1: T, obj2: k): T & k{
 //Create a function that recieves some generic T and a duplicate number, and returns an array of (the same) T, 
 //with the length of the duplicate number needed
 function f3<T>(arg: T, duplicate: number): T[]{
-    return Array(duplicate).fill(arg);
+    return new Array(duplicate).fill(arg);
 }
 
 //Consider the following interface:

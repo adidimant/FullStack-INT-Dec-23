@@ -1,11 +1,11 @@
 // HW 260524:
 // 1) implement a function that deals with two generics T,K, if T is an object it return T, otherwise - returns K
 
-function twoGenerics<T, K>(a: T): T | K{
-    if (typeof T == Object) {
-        return T
+function twoGenerics<T, K>(a: T, b: K): T | K{
+    if (typeof a == "object") {
+        return a;
     }
-    return K
+    return b
 }
 
 
@@ -91,3 +91,13 @@ interface MachineInterface {
 
 
 // 5) Understand the recursive solution we have implemented in class - calculateObjDeep
+
+
+
+
+function myLogger<T, K>(param1: T, param2: T, param3: K) {
+  console.log('param1 is: ', param1);
+  console.log('param2 is: ', param2);
+  console.log('param3 is: ', param3);
+}
+myLogger<string, number>("ita", "raskin", 58);
