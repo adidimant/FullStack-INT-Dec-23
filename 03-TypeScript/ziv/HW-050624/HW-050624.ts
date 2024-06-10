@@ -193,6 +193,9 @@ class Utils {
     }
 }
 
+
+// converts '1', 1, 'true', true, or any existing object/array/string/number to true; '0', 0, false, 'f', 'F', 'false' and others to false
+
 // דוגמאות לשימוש:
 console.log(Utils.convertToBool('1')); // true
 console.log(Utils.convertToBool(1)); // true
