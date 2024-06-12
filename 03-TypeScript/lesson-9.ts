@@ -102,47 +102,93 @@ const foo4 = new Foo();
  * create a Utils static class (all functions are static)
  */
 
-// converts '1', 1, 'true', true, or any existing object/array/string/number to true; '0', 0, false, 'f', 'F', 'false' and others to false
-function convertToBool(value: any): boolean {
+const FALSE_VALUES = [0, '0', false, 'false', 'FALSE', 'False', 'F', 'f', null, undefined];
 
+class Utils {
+  // returns an object that in the keys we have the name of the funcs, the values are the number of calls to that function.
+  // looks like: { cleanText: 6, convertToBool: 4 }
+  // make sure to initialize this statistics object in a static { } block, and that this object is not exposed outside as public
+  private static statistics: any;
+
+  static {
+    Utils.statistics = {};
+  }
+
+  private static incrementStatistic(funcName: string) {
+    if (Utils.statistics[funcName]) {
+      Utils.statistics[funcName]++;
+    } else {
+      Utils.statistics[funcName] = 1;
+    }
+  }
+
+  static getStatistics() {
+    return Utils.statistics;
+  }
+
+  static isObject(value: any): boolean {
+    Utils.incrementStatistic('isObject');
+    return value != null && typeof value == 'object';
+  }
+
+  // converts '1', 1, 'true', true, or any existing object/array/string/number to true; '0', 0, false, 'f', 'F', 'false' and others to false
+  static convertToBool(value: any): boolean {
+    Utils.incrementStatistic('convertToBool');
+    return !(FALSE_VALUES.includes(value) || Number.isNaN(value));
+  }
+
+  // prepares string for the newspaper: clean text from extra spaces, extra line breaks, extra redundant word boundaries (like: ',,', ';;', ',;')
+  static cleanText(paragraph: string): string {
+    Utils.incrementStatistic('cleanText');
+    let newParagraph = paragraph.trim(); // cleans spaces before and after text
+    // Missing:
+    // 1) replace extra duplicate spaces, remove tabs?
+    // 2) remove duplicate word bounderies - like ',,', ';;'
+    // 3) remove duplicate '/n' (line breaks)
+    return newParagraph;
+  }
+
+  // execute the received function on a safe way, it means that if we have an error in the function - it won't break the application - but still will do console.error with the detailed error
+  static executeSafe(func: () => any): void {
+    Utils.incrementStatistic('executeSafe');
+    try {
+      func();
+    } catch(err) {
+      console.error(`Error occured during function execution`, err);
+    }
+  }
+
+  // receives and objected and returns an exact copy (other) object
+  static deepClone(obj: object) {
+    Utils.incrementStatistic('deepClone');
+    return JSON.parse(JSON.stringify(obj));
+    // OR: return { ...obj };
+  }
+
+  // execute the received function with a little latency - according to the wait parameter
+  static debounce(func: () => any, wait: number) {
+    Utils.incrementStatistic('debounce');
+    setTimeout(func, wait);
+  }
+
+  // merges obj1 & obj2
+  static mergeObjects(obj1: object, obj2: object) {
+    return { ...obj1, ...obj2 };
+  }
 }
 
-// prepares string for the newspaper: clean text from extra spaces, extra line breaks, extra redundant word boundaries (like: ',,', ';;', ',;')
-function cleanText(paragraph: string): string {
+const originalObj = { key1: 6, key2: '7'};
 
-}
+const clonedObj = Utils.deepClone(originalObj);
+clonedObj.key3 = 9; // not changing the keys in the originalObj
 
-// returns an object that in the keys we have the name of the funcs, the values are the number of calls to that function.
-// looks like: { cleanText: 6, convertToBool: 4 }
-// make sure to initialize this statistics object in a static { } block, and that this object is not exposed outside as public
-function getStatistics() {
+const statistics = Utils.getStatistics(); // should return: { deepClone: 1 } .
 
-}
-
-// execute the received function on a safe way, it means that if we have an error in the function - it won't break the application - but still will do console.error with the detailed error
-function executeSafe(func) {
-
-}
-
-// receives and objected and returns an exact copy (other) object
-function deepClone(obj) {
-
-}
-
-// execute the received function with a little latency - according to the wait parameter
-function debounce(func, wait) {
-
-}
 
 // returns a throtteled function, that calling to that function is actually calling to 'func' function, but with the limitations of the amount & time
 // limit the number of the number of the calls to the function
 // hint - you can put things on the function object!
 function throttle(func, limitCalls, limitTime) {
-  
-}
-
-// merges obj1 & obj2
-function mergeObjects(obj1, obj2) {
   
 }
 
