@@ -30,7 +30,6 @@ foo1('happy string!', myUpdateFunc);
 
 
 const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
-
 let value;
 value = (document.getElementById("my-phone-input") as HTMLInputElement).value;
 // Or
