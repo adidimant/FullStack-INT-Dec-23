@@ -5,6 +5,8 @@
   }
  */
 
+// Reference - https://www.geeksforgeeks.org/analysis-algorithms-big-o-analysis/
+
 // Complexity = order of: number of operations
 // 1) When summing order of operations - the bigger one wins (O(n^2) + O(n) => O(n^2))
 //  If n>m, then: O(n+m) => O(n), because if n>m then O(n+n) > O(n+m), but O(n+n) = O(2n) => O(n). so: O(n+m) => O(n)
@@ -171,11 +173,13 @@ function findMaxInArrayV3 (arr: number[]): number | null {
 
 // HW - analyze the complexity of the following function:
 function printNested (arr: number[]) {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
+  for (let i = 0; i < arr.length; i++) { // O(n)
+    for (let j = 0; j < arr.length; j++) { // O(n)
       console.log(arr[i]);
     }
   }
+
+  // In total: O(n^2)
 }
 
 // HW - analyze the complexity of the following function:
@@ -192,16 +196,92 @@ function printNested2 (arr: number[]) {
 // HW - analyze the complexity of the following function:
 // n - arr1.length, k - arr2.length
 function printNested3 (arr1: number[], arr2: number[]) {
-  for (let i = 0; i < arr1.length; i++) {
-    for (let j = 0; j < arr2.length; j++) { 
-      for (let k = 0; k < arr1.length; k++) { 
-        console.log(arr1[i]);
-        console.log(arr2[j]);
-        console.log(arr1[k]);
+  for (let i = 0; i < arr1.length; i++) { // O(n)
+    for (let j = 0; j < arr2.length; j++) { // O(k)
+      for (let k = 0; k < arr1.length; k++) { // O(n)
+        console.log(arr1[i]); // O(1)
+        console.log(arr2[j]); // O(1)
+        console.log(arr1[k]); // O(1)
       }
     }
   }
+  // In total: O(n) * O(k) *  O(n) * O(3) => O(n*k*n*3) => O(n*k*n) => O(n^2 * k)
+}
+/**
+y = 2x
+y = 12
+x=3 => y =6
+x=18 => y =36
+
+y = O(n^2 * k) => n=10, k=6 => ~600
+
+*/
+
+/**
+ * O(1) - Best
+ * O(logn) - very good
+ * O(n) - good
+ * O(n*logn) - fair
+ * O(n^c) - bad
+ * O(c^n) or O(n!) - worst
+ */
+
+// next lesson - findMaxTenElements
+
+function findMaxTenElements(arr: number[]): number[] {
+   const sorted = arr.sort((a,b) => a-b); // O(n*logn)
+   return sorted.slice(arr.length-10, arr.length); // O(1)
+   // In total: O(n*logn)
 }
 
 
-// next lesson - findMaxTenElements
+//[1000,6,7,8,5,4,6,7]
+//[-7-,-9,-20,-11]
+
+function findMaxTenElementsV2(arr: number[]): number[] {
+  if (arr.length > 10) { // O(1)
+    const biggestIndexes: number[] = []; // the max size of this array is - 10   // O(1)
+    const maxItems: number[] = []; // O(1)
+    for (let i =0; i < 10; i++) { // O(10) => O(1)
+      let maximum = -Infinity;
+      let maximumIndex;
+      for (let j=0; j<arr.length; j++) { // O(n)
+        if (arr[j] > maximum && !biggestIndexes.includes(j)) { // O(1)
+          maximum = arr[j]; // O(1)
+          maximumIndex = j;
+        }
+      }
+      maxItems.push(maximum); // O(1)
+      biggestIndexes.push(maximumIndex); // O(1)
+    }
+    return maxItems;
+
+    // In total: O(1) + O(1) * O(n) * O(1) + O(1) => O(1) + O(n) => O(n)
+  } else {
+  return arr; // O(1)
+  }
+}
+
+// after class - paly
+
+const isPalyndrom = (str: string) => {
+  // n - length of the string
+  // abbba - palyndrom
+  // aca
+  // anan - not
+  // akc - not
+  // 'stttr' - not
+
+  for (let i =0; i< str.length / 2; i++) { // O(n/2)
+    let j = str.length-1-i; // O(1)
+    if (str.charAt(i) != str.charAt(j)) { // O(1)
+      return false;
+    }
+  }
+
+  return true; // O(1)
+
+  // In total: O(n/2) * O(1) => O(n/2) => O(n * 1/2) => O(n)
+};
+
+
