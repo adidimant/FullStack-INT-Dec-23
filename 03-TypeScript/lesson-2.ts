@@ -83,6 +83,15 @@ type ArticleWithHeight = Article & {
   height: number;
 }
 
+interface ArticleWithHeight2 extends Article {
+  height: number;
+}
+
+// create a function that accepts a generic object, which also must have another field called created_date, and returns true if the object has more than 6 keys
+const isComplexObject = <T>(obj: T & { created_date: Date }): boolean => {
+  return Object.keys(obj).length > 5;
+};
+
 type ArticleWithoutImage = Omit<Article, 'imgSrc'>;
 let articleImageless: ArticleWithoutImage | {} = {};
 (articleImageless as ArticleWithoutImage).title = 'The best article in town';
