@@ -1,4 +1,4 @@
-class ObjectAnalyser<T> {
+class ObjectAnalyser{
     // getters/setters
   
     static calculateObjDeep<T>(obj: T): number {
@@ -75,6 +75,6 @@ const studentInClass = {
 }
 
 //const objectAnalyzer = new ObjectAnalyser<StudentInClassTrip>(studentInClass);
-const longestObjKey = ObjectAnalyser.getLongestKey(studentInClass);
-const objDepth = ObjectAnalyser.calculateObjDeep(studentInClass);
-const isAllValuesSameType = ObjectAnalyser.isValuesConsistent(studentInClass);
+const longestObjKey = ObjectAnalyser.getLongestKey<StudentInClassTrip>(studentInClass);
+const objDepth = ObjectAnalyser.calculateObjDeep<StudentInClassTrip>(studentInClass);
+const isAllValuesSameType = ObjectAnalyser.isValuesConsistent<StudentInClassTrip>(studentInClass);
