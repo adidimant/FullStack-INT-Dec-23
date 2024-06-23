@@ -4,7 +4,7 @@ On the menu:
 1) One tab opens a form for user creation.
 The relevant user details:
 username, email, phone, firstName, lastName, street, city, state, country, zipcode, registeredDate, updatedDate
-You have to do validations on the form inputsv
+You have to do validations on the form inputs
 On the form submit / button click - you have to create a user object, contains all these relevant field
 If the username and email has not being used before - the user is created (stored in the local database)
 You'll have to learn use the JSON.stringify(object) to convert the object to a string representation for storing the data in the db

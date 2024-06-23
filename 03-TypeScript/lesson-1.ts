@@ -1,4 +1,4 @@
-const calculateSum = (a: number, b: number, c: undefined, d: number): number => {
+const calculateSum = (a: number, b: number, c: undefined, d?: number): number => {
   return a + b;
 };
 
