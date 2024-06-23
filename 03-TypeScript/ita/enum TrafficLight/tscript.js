@@ -1,3 +1,4 @@
+"use strict";
 var TrafficLight;
 (function (TrafficLight) {
     TrafficLight["RED"] = "red";
@@ -5,7 +6,7 @@ var TrafficLight;
     TrafficLight["GREEN"] = "green";
     TrafficLight["RED_ORANGE"] = "red-orange";
 })(TrafficLight || (TrafficLight = {}));
-var currentLight = TrafficLight.RED; // Initial state
+let currentLight = TrafficLight.RED; // מצב התחלה של הרמזור
 function changeLight() {
     switch (currentLight) {
         case TrafficLight.RED:
@@ -24,12 +25,11 @@ function changeLight() {
     updateLight();
 }
 function updateLight() {
-    var lightElement = document.getElementById("traffic-light");
+    const lightElement = document.getElementById("traffic-light");
     if (lightElement) {
         lightElement.style.backgroundColor = currentLight;
     }
 }
-// Initial update
 updateLight();
-// Change light every 5 seconds
+// שינוי הצבע כל 5 שניות
 setInterval(changeLight, 5000);

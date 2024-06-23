@@ -1,3 +1,4 @@
+"use strict";
 /**
  HW 08/05/24:
 Define the enum TrafficLight, values: RED, ORANGE, GREEN, RED-ORANGE
@@ -14,20 +15,26 @@ var TrafficLight;
     TrafficLight["RED_ORANGE"] = "rgb(255,106,0)";
 })(TrafficLight || (TrafficLight = {}));
 function createHTML() {
-    document.body.innerHTML = "\n    <div id=\"traffic-light\" >\n    <div id=\"top\" style=\"background-color: red;\"></div>\n    <div id=\"mid\"></div>\n    <div id=\"bottom\"></div>\n    </div>\n    ";
+    document.body.innerHTML = `
+    <div id="traffic-light" >
+    <div id="top" style="background-color: red;"></div>
+    <div id="mid"></div>
+    <div id="bottom"></div>
+    </div>
+    `;
 }
 document.addEventListener("DOMContentLoaded", createHTML);
-var topLight = true;
-var midLight = false;
-var bottomLight = false;
-var beforeRedLight = false;
+let topLight = true;
+let midLight = false;
+let bottomLight = false;
+let beforeRedLight = false;
 function changeLights() {
-    setInterval(function () {
-        var top = document.getElementById("top");
-        var mid = document.getElementById("mid");
-        var bottom = document.getElementById("bottom");
-        var trafficLight = [top, mid, bottom];
-        trafficLight.forEach(function (light) {
+    setInterval(() => {
+        const top = document.getElementById("top");
+        const mid = document.getElementById("mid");
+        const bottom = document.getElementById("bottom");
+        const trafficLight = [top, mid, bottom];
+        trafficLight.forEach((light) => {
             light.style.backgroundColor = "transparent";
         });
         if (topLight) {

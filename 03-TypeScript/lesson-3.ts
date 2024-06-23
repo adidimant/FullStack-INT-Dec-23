@@ -103,10 +103,15 @@ function drawColorInElement(el: HTMLElement | null, color: RgbColor): void {
 drawColorInElement(document.getElementById("my-id"), RgbColor.BLUE);
 
 enum Direction {
-  Up = 1,
-  Down,
-  Left,
-  Right,
+  Up = "Up",
+  Down = "Down",
+  Left = "Left",
+  Right = "Right",
+}
+
+const direction = {
+  "Up": "Up",
+  "Down": "Down",
 }
 
 type Player = {
