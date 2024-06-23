@@ -100,6 +100,32 @@ const platform = navigator.platform;
 const deviceMemory = navigator.deviceMemory || 'unknown';
 // hardware concurrency:
 const hardwareConcurrency = navigator.hardwareConcurrency;
+
+// example:
+
+class HardwareConcurrency implements Collector<number> {
+  public interval: number;
+  private data;
+
+  constructor(interval: number) {
+    this.interval = interval || DEFAULT_INTERVAL;
+  }
+
+  getData() {
+    return this.data;
+  }
+
+  startCollect() {
+    // setInterval for collecting
+    this.data = ...
+  }
+
+  finishCollect() {
+
+  }
+
+}
+
 // plugins:
 const plugins = Array.from(navigator.plugins).map(plugin => plugin.name);
 // get geolocation position:

@@ -9,6 +9,7 @@
  Reference - https://www.geeksforgeeks.org/introduction-to-data-structures/
 
 Stack:
+ - LIFO
  - in generally, for dealing with problems that require that the element that is getting out of the data-structure will be the last one to come in
  for example - bullets in a stack of a gun
   another one - we want to deal with alerts/emails and drop the latest
@@ -63,4 +64,5 @@ arr2.push(2);
 arr2.push(4);
 arr2.push(8);
 
+// next lesson - cover logn, sorting why is n*logn
 
