@@ -1,3 +1,4 @@
+
        const userDataString = localStorage.getItem('userData');
        const lastUpdatedDate = localStorage.getItem('lastUpdatedDate');
 
@@ -9,58 +10,45 @@
        }
 
        function renderTable() {
-        const tableBody = document.querySelector('#userTable tbody');
-    
-        if (userDataString) {
-            const userData = JSON.parse(userDataString);
-            
-            userData.forEach(user => {
-                const row = document.createElement('tr');
-    
-                for (const key in user) {
-                    if (user.hasOwnProperty(key)) {
-                        const cell = document.createElement('td');
-                        cell.textContent = user[key];
-                        cell.setAttribute('data-key', key.toLowerCase()); 
-                        row.appendChild(cell);
-    
-                        if (key !== 'Register Date') {
-                            const pencilButton = document.createElement('button');
-                            pencilButton.textContent = '✏️';
-                            pencilButton.classList.add('pencil-button'); 
-                            pencilButton.onclick = function() {
-                                const newEdit = prompt(`Enter new ${key}:`);
-                                if (newEdit !== null) {
-                                    cell.textContent = newEdit;
-                                    user[key] = newEdit;
-                                    localStorage.setItem('userData', JSON.stringify(userData));
-                                    updateLastUpdated();
-                                }
-                            };
-                            cell.appendChild(pencilButton);
-                        }
-                    }
-                }
+           const tableBody = document.querySelector('#userTable tbody');
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = '❌';
-                deleteButton.classList.add('delete-button');
-                deleteButton.onclick = function() {
-                    row.remove();
-                    const index = userData.indexOf(user);
-                    userData.splice(index, 1);
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                    updateLastUpdated();
-                };
-                const deleteCell = document.createElement('td');
-                deleteCell.appendChild(deleteButton);
-                row.appendChild(deleteCell);
-    
-                tableBody.appendChild(row);
-            });
-        }
-    }
-    
+          
+           if (userDataString) {
+               const userData = JSON.parse(userDataString);
+               
+               userData.forEach(user => {
+                   const row = document.createElement('tr');
+
+                   for (const key in user) {
+                       if (user.hasOwnProperty(key)) {
+                           const cell = document.createElement('td');
+                           cell.textContent = user[key];
+                           cell.setAttribute('data-key', key.toLowerCase()); 
+                           row.appendChild(cell);
+
+                           if (key !== 'Register Date') {
+                               const pencilButton = document.createElement('button');
+                               pencilButton.textContent = '✏️';
+                               pencilButton.classList.add('pencil-button'); 
+                               pencilButton.onclick = function() {
+                                   const newEdit = prompt(`Enter new ${key}:`);
+                                   if (newEdit !== null) {
+                                       cell.textContent = newEdit;
+                                       user[key] = newEdit;
+                                       localStorage.setItem('userData', JSON.stringify(userData));
+                                       location.reload()
+                                       updateLastUpdated();
+                                   }
+                               };
+                               cell.appendChild(pencilButton);
+                           }
+                       }
+                   }
+
+                   tableBody.appendChild(row);
+               });
+           }
+       }
 
        renderTable();
 
@@ -99,14 +87,11 @@
 
        function updateLastUpdated() {
            const currentDate = new Date().toLocaleString();
-           document.getElementById('lastUpdatedText').textContent = `Last Edited: ${currentDate}`;
+           document.getElementById('lastUpdatedText').textContent = `Last Updated: ${currentDate}`;
            localStorage.setItem('lastUpdatedDate', currentDate);
        }
 
        
        if (lastUpdatedDate) {
-           document.getElementById('lastUpdatedText').textContent = `Last Edited: ${lastUpdatedDate}`;
+           document.getElementById('lastUpdatedText').textContent = `Last Updated: ${lastUpdatedDate}`;
        }
-
-
-  

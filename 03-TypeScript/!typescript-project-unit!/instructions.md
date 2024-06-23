@@ -11,9 +11,12 @@ You should implement:
 - Fetch configuration every 1 minute from a remote server, by customerId (in the query-param) - in the main method - save it in the localStorage and read it when it's needed. You can assume the remote configuration will be received like this:
 { COLLECTORS_INTERVAL: 60000, DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10, SDK_ENABLED: true }
 the url - "https://acme-server.com/conf" - just write this as an example (in a comment) in a `getConfig` method, but actually return a constant json object.
+  - Recommended - manage a new class called EventsManager, that has two functions: `getConfig` (that handles the server configuration), `updateData` (gets the big object with all the data-points colleceted data, should be updated via a fetch POST request (the body of the request will be the data object))
+  - The data-object should look like: { screenWidth: 1748, screenHeight: 800, referrer: 'https://lighttricks.com' }
 - `Collector` generic interface, that deals with the collection of generic T or an array of type T, which contains:
-  - getData - returns the data of the collector
+  - getData() - returns the data of the collector
   - interval - time - decided by the remote configuration - under `COLLECTORS_INTERVAL` key. the interval tells you the frequency of the collect update.
+  - getKey() - returns the string name of the collector (for example 'screenWidth'), you should call this method to get the relevant key for the final object that you build from all the collectors, when you do a loop over all the Collectors.
   - startCollect() - method that starts collecting, basically you should start a setInterval that every `interval` time - update the data of the collector class.
   - finishCollect() - method that finish collecting, will be callsed in case of an emergency. in case of calling getData after calling the finishCollect - the getData should return `null`.
     - if SDK_ENABLED
@@ -97,6 +100,32 @@ const platform = navigator.platform;
 const deviceMemory = navigator.deviceMemory || 'unknown';
 // hardware concurrency:
 const hardwareConcurrency = navigator.hardwareConcurrency;
+
+// example:
+
+class HardwareConcurrency implements Collector<number> {
+  public interval: number;
+  private data;
+
+  constructor(interval: number) {
+    this.interval = interval || DEFAULT_INTERVAL;
+  }
+
+  getData() {
+    return this.data;
+  }
+
+  startCollect() {
+    // setInterval for collecting
+    this.data = ...
+  }
+
+  finishCollect() {
+
+  }
+
+}
+
 // plugins:
 const plugins = Array.from(navigator.plugins).map(plugin => plugin.name);
 // get geolocation position:

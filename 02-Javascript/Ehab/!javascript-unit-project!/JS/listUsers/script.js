@@ -210,6 +210,7 @@ function applyFilters(){
                 });
                 lName = lName.substring(1);
             }
+            //console.log(fName,lName);
             resFullName = myData.filter((user)=>{
                 if(lName.length>0){
                     return String(user.firstName).toLowerCase().includes(fName.toLowerCase()) || 
@@ -286,12 +287,12 @@ function displayData(data){
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].username + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize hidePassword" value="' + data[dataRow].password + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 300px;"><input type="text" class="fullSize" style="width: 97%" value="' + data[dataRow].email + '" readonly></div>';
-        htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].phone + '" readonly oninput="checkPhoneNumber(this)"></div>';
+        htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].phone + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].state + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].country + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 150px;"><input type="text" class="fullSize" value="' + data[dataRow].city + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 170px;"><input type="text" class="fullSize" value="' + data[dataRow].street + '" readonly></div>';
-        htmlString+= '<div style="border: 1px solid gray; width: 100px;"><input type="text" class="fullSize" value="' + data[dataRow].zipcode + '" readonly oninput="digitsOnly(this)"></div>';
+        htmlString+= '<div style="border: 1px solid gray; width: 100px;"><input type="text" class="fullSize" value="' + data[dataRow].zipcode + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 170px;"><input type="text" class="fullSize" value="' + data[dataRow].registeredDate + '" readonly></div>';
         htmlString+= '<div style="border: 1px solid gray; width: 170px;"><input type="text" class="fullSize" value="' + data[dataRow].updatedDate + '" readonly></div>';
         htmlString+= '</div>';
@@ -309,15 +310,11 @@ function areAllValuesEmpty(obj) {
     return true;
 }
 
-let counter=1;
 let deletedUser; // A variable that will hold a pointer to an array that contains the deleted user's data
 function deleteUser(user){
     deletedUser = saveDeletedUser(user); // save the user information to use for undo..
     let msg = confirm("Are you sure you want to delete the user: "+ deletedUser[0]+" "+deletedUser[1]+" ?");
     if(msg){
-        counter = 1;
-        totalPercentage =0;
-        document.getElementById('progressBar').style.background = '#cccccc';
         let json = JSON.parse(localStorage.getItem('users'));
         delete json[deletedUser[2]];
         updetUserIds(deletedUser[2]).then(()=>{ // Deleting the userid from the DB.
@@ -330,18 +327,20 @@ function deleteUser(user){
                     hidePassword();
                 }).catch((error)=> alert(error));
                 // Show moving bar for 6 seconds with "undo" button.
+                totalPercentage =0;
+                let counter = 1;
                 document.getElementById('undoContainer').style.display= 'flex';
                 const interval = setInterval(() => {
                     if (counter > 6) {
                         clearInterval(interval); // Stop the interval after 6 iterations.
                         document.getElementById('undoContainer').style.display= 'none';
-                        editButtonsPointerEvents('auto');  // Enable editing for all users after saving user data.
-                        deleteButtonsPointerEvents('auto'); // Enable delete for all users after saving user data.
+                        editButtonsStatus('auto');  
+                        deleteButtonsStatus('auto');
                         deletedUser=[]; // Reset the array that contains the data for the deleted user.
                     }
                     else{
-                        editButtonsPointerEvents('none');
-                        deleteButtonsPointerEvents('none');
+                        editButtonsStatus('none');
+                        deleteButtonsStatus('none');
                         updateProgressBar();
                         counter++;
                     }
@@ -352,12 +351,12 @@ function deleteUser(user){
 }
 
 // A function to update the progress in the moving bar
-let totalPercentage;
+let totalPercentage =0;
 function updateProgressBar(){
     let div = document.getElementById('progressBar');
-    let percentWidth = div.offsetWidth * 0.166;
-    totalPercentage += percentWidth;
-    div.style.background = 'linear-gradient(to right, #65C728 ' + totalPercentage + 'px, #cccccc' + percentWidth + 'px)';
+    let sixteenPercentWidth = div.offsetWidth * 0.166;
+    totalPercentage += sixteenPercentWidth;
+    div.style.background = 'linear-gradient(to right, #65C728 ' + totalPercentage + 'px, #cccccc ' + sixteenPercentWidth + 'px)';
 }
 
 // Deleting the userid from the DB.
@@ -402,9 +401,7 @@ async function updateUsersList(users){
 function saveDeletedUser(user){
     let deletedUser = [];
     let RowData = user.parentElement.parentElement;
-    let pass = RowData.querySelector('input[type="password"]');
-    pass.type = 'text';
-    let allRowData = RowData.querySelectorAll('input[type="text"]');
+    let allRowData = RowData.querySelectorAll('input[type="text"]')
     let tmp_fullname = allRowData[0].value.split(' ');
     let fName = tmp_fullname[0];
     tmp_fullname.shift();
@@ -414,7 +411,6 @@ function saveDeletedUser(user){
     for(let i=1; i<allRowData.length;i++){
         deletedUser.push(allRowData[i].value);
     }
-    pass.type = 'password';
     return deletedUser;
 }
 
@@ -422,16 +418,8 @@ let currentValues = []; // An array to store current user data after clicking th
 // A function that is invoked when the edit button is clicked
 async function editUser(user,event){
     let RowData = user.parentElement.parentElement;
-    // allow edit password. set password input type to text.
-    try{
-        let pass = RowData.querySelector('input[type="password"]');
-        pass.type = 'text';
-        pass.readOnly = false;
-        pass.style.backgroundColor = '#FDFDE7';
-    }catch(e){}
-    
-    let allRowData = RowData.querySelectorAll('input[type="text"]');
-    let tmp_fullname = allRowData[0].value.trim().split(' ');
+    let allRowData = RowData.querySelectorAll('input[type="text"]')
+    let tmp_fullname = allRowData[0].value.split(' ');
     let fName = tmp_fullname[0];
     tmp_fullname.shift();
     if(!event.target.classList.contains('fa-save')){
@@ -450,11 +438,15 @@ async function editUser(user,event){
             }
         }
         event.target.classList.value = 'fas fa-save';
-        editButtonsPointerEvents('none'); // Disable editing for other users in list.
-        deleteButtonsPointerEvents('none');
+        editButtonsStatus('none'); // Disable editing for other users
     }else{
         // When saving after editing
-        
+        editButtonsStatus('auto'); // Enable editing for all users after clicking the save button.
+        editMode = false;
+        for(let i=0; i<allRowData.length;i++){
+            allRowData[i].style.backgroundColor = '';
+            allRowData[i].readOnly = true;
+        }
         // An object containing the user's data after editing
         const user = {
             firstName: fName,
@@ -472,61 +464,39 @@ async function editUser(user,event){
             registeredDate: allRowData[11].value,
             updatedDate: String(getCurrentDateTime()),
         }
-        const emailInUse = await isUsedEmail(user.email);
-        if(areInputsNotEmpty(user) && isValidEmail(user.email) && !emailInUse){    
-            editButtonsPointerEvents('auto'); // Enable editing for all users after saving user data.
-            deleteButtonsPointerEvents('auto'); // Enable delete for all users after saving user data.
-            editMode = false;
-            for(let i=0; i<allRowData.length;i++){
-                allRowData[i].style.backgroundColor = '';
-                allRowData[i].readOnly = true;
-            }
-            
-            // Has there been a change in the user's data?
-            if(isChanged(currentValues,user)){ // isChanged(a,b) => function that compares the existing data with the data after editing.
-                new Promise((res,rej)=>{
-                    try{
-                        const jsonString  = window.localStorage.getItem("users");
-                        if(jsonString){
-                        const data = JSON.parse(jsonString );
-                        data[allRowData[1].value] = user;
-                        window.localStorage.setItem("users",JSON.stringify(data));
-                        res(allRowData[1].value);
-                    }
-                    }catch(error){
-                        rej(error);
-                    }
-                }).then((value) => {
-                    alert('User details for user: '+value+' have been successfully updated')
-                    event.target.classList.value = 'fas fa-edit'; // After saving, changes the button to an edit button
-                    // Get data from local storage.
-                    getUsers().then((data) => {
-                        usersList = data;
-                        // show data in table.
-                        displayData(data);
-                        hidePassword();
-                    }).catch((error)=> alert(error));
+        // Has there been a change in the user's data?
+        if(isChanged(currentValues,user)){ // isChanged(a,b) => function that compares the existing data with the data after editing.
+            new Promise((res,rej)=>{
+                try{
+                    const jsonString  = window.localStorage.getItem("users");
+                    if(jsonString){
+                    const data = JSON.parse(jsonString );
+                    data[allRowData[1].value] = user;
+                    window.localStorage.setItem("users",JSON.stringify(data));
+                    res(allRowData[1].value);
+                }
+                }catch(error){
+                    rej(error);
+                }
+            }).then((value) => {
+                alert('User details for user: '+value+' have been successfully updated')
+                event.target.classList.value = 'fas fa-edit'; // After saving, changes the button to an edit button
+                // Get data from local storage.
+                getUsers().then((data) => {
+                    usersList = data;
+                    // show data in table.
+                    displayData(data);
+                    hidePassword();
                 }).catch((error)=> alert(error));
-            }else{
-                event.target.classList.value = 'fas fa-edit';
-                hidePassword();
-            }
+            }).catch((error)=> alert(error));
         }else{
-            //alert...
-            if(emailInUse){
-                alert('email in use, try another email');
-            }
-            else if(!areInputsNotEmpty(user)){
-                alert('All fields must be filled in before saving');
-            }else if(!isValidEmail(user.email)){
-                alert('Invalid email, please correct and save again');
-            }
+            event.target.classList.value = 'fas fa-edit';
         }
     }
 }
 
 // A function to Enables / disables respond to clicking the edit button
-function editButtonsPointerEvents(status){
+function editButtonsStatus(status){
     const elements = document.querySelectorAll('.fa-edit');
     elements.forEach((element) =>{
         element.style.pointerEvents = status;
@@ -534,7 +504,7 @@ function editButtonsPointerEvents(status){
 }
 
 // A function to Enables / disables respond to clicking the delete button
-function deleteButtonsPointerEvents(status){
+function deleteButtonsStatus(status){
     const elements = document.querySelectorAll('.fa-trash-alt');
     elements.forEach((element) =>{
         element.style.pointerEvents = status;
@@ -586,7 +556,6 @@ function refresh(){
 
 // A function to restore a deleted user
 async function undo(){
-    counter =7;
     const user = {
         firstName: deletedUser[0],
         lastName: deletedUser[1].trim(),
@@ -635,69 +604,17 @@ async function undo(){
     Promise.all([saveToUsers,saveToUserIds]).then(()=>{
         refresh();
         document.getElementById('undoContainer').style.display = 'none';
+        alert('The delete operation has been cancelled, \nthe user has been restored ');
     }).catch(()=>{
         console.error('The user cannot be restored');
     });
 }
 
-
 function hidePassword(){
     let passwordInputs = document.querySelectorAll('.hidePassword');
     for(let i=0; i<passwordInputs.length;i++){
-        passwordInputs[i].type = 'password'
+        let inputVal  = passwordInputs[i].value;
+        let asterisks  = '*'.repeat(inputVal.length);
+        passwordInputs[i].value = asterisks;
     }
-}
-
-function areInputsNotEmpty(userObj){
-    const values = Object.values(userObj);
-    for(let i=0;i<values.length;i++){
-        if(values[i].trim() === ''){return false;}
-    }
-    return true;
-}
-
-function isValidEmail(email) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-        return (true)
-    }
-    return (false)
-}
-
-async function isUsedEmail(email){
-    jsonString  = window.localStorage.getItem("users");
-    if(jsonString){
-        const users = JSON.parse(jsonString);
-        for (let user in users){
-            if(String(email).trim() === String(currentValues[4]).trim()){return false;} // Email has not changed.
-            if(String(users[user].email).trim() === String(email).trim()){
-                return true;
-            }   
-        }
-    }
-    return false;
-}
-
-function digitsOnly(input){
-    let result = "";
-    for (var i = 0; i < input.value.length; i++) {
-        let char = input.value.charAt(i);
-        if (!isNaN(char) && char !== " "){
-            result += char;
-        }
-    }
-    input.value = result;
-}
-function checkPhoneNumber(input){
-    let result = "";
-    for (var i = 0; i < input.value.length; i++) {
-        let char = input.value.charAt(i);
-        if (!isNaN(char) && char !== " " || char ==="+") {
-            if(char === "+" && i === 0){
-                result += char;
-            }else if(char != "+"){
-                result += char;
-            }
-        }
-    }
-    input.value = result;
 }
