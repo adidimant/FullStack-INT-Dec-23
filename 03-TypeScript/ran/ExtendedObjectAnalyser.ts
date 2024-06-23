@@ -52,4 +52,4 @@ const minValue = extendedAnalyzer.getMinValue();
 
 console.log('Longest Key:', longestKey);
 console.log('Object Depth:', objDepth);
-console.log('Values Consistent:', isCons​⬤
+console.log('Values Consistent:', isConsistent);
