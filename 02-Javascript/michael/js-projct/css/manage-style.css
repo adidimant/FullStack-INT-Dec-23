@@ -206,10 +206,3 @@ body {
     color: white;
     border-radius: 5px;
   }
-
-  .delete-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: -5px;
-}
