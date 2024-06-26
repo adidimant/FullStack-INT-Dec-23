@@ -99,39 +99,50 @@ class List<T> {
 		}
 	} // O(n)
 
-  removeItem(index: number) {
+	removeItem(index: number) {
 		if (index < 0) return `index must be greater than 0`;
 		let currentNode: ListNodeFix<T> | null = this.head;
 		let counter = 0;
+		let prevNode: ListNodeFix<T> | null = null;
 		while (currentNode) {
 			if (counter == index) {
-        const nextNode = currentNode.getNext()
-        if(nextNode){
-          currentNode.setNext(nextNode.getNext())
-        }else {
-          currentNode.setNext(null)
-        }
-        return;
+				const nextNode = currentNode.getNext();
+				if (nextNode && prevNode) { // check that where not in the head / tail
+					prevNode.setNext(nextNode);
+					currentNode.setNext(null);
+				}
+				else if(prevNode){ // this case covers that the desired node to remove is the last
+					prevNode.setNext(null);
+					this.tail = prevNode;
+					return;
+				}
+				else { // this case covers that the desired node to remove is the first
+					this.head = currentNode.getNext();
+					currentNode.setNext(null);
+
+				}
+				return;
 			}
+			prevNode = currentNode;
 			currentNode = currentNode.getNext();
 			counter++;
 		}
 	} // O(n)
 
-  removeFrom(index: number) {
+	removeFrom(index: number) {
 		if (index < 0) return `index must be greater than 0`;
 		let currentNode: ListNodeFix<T> | null = this.head;
 		let counter = 0;
 		while (currentNode) {
 			if (counter == index) {
-        currentNode.setNext(null);
-        return;
+				currentNode.setNext(null);
+				this.tail = currentNode;
+				return;
 			}
 			currentNode = currentNode.getNext();
 			counter++;
 		}
 	} // O(n)
-
 }
 
 const linkedList = new List();
