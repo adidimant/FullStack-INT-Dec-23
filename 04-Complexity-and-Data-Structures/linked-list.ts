@@ -89,13 +89,12 @@ linkedList.insertItem(3);
 
 
 
-
 class DoublyListNode<T> {
   private data: T;
-  private next: ListNode<T> | null;
-  private prev: ListNode<T> | null;
+  private next: DoublyListNode<T> | null;
+  private prev: DoublyListNode<T> | null;
 
-  constructor(data: T, next: ListNode<T> | null, prev: ListNode<T> | null) {
+  constructor(data: T, next: DoublyListNode<T> | null, prev: DoublyListNode<T> | null) {
     this.data = data;
     this.next = next;
     this.prev = prev;
@@ -109,19 +108,91 @@ class DoublyListNode<T> {
     this.data = data;
   }
 
-  getNext(): ListNode<T> | null {
+  getNext(): DoublyListNode<T> | null {
     return this.next;
   }
 
-  setNext(next: ListNode<T> | null): void {
+  setNext(next: DoublyListNode<T> | null): void {
     this.next = next;
   }
 
-  getPrev(): ListNode<T> | null {
+  getPrev(): DoublyListNode<T> | null {
     return this.prev;
   }
 
-  setPrev(prev: ListNode<T> | null): void {
+  setPrev(prev: DoublyListNode<T> | null): void {
     this.prev = prev;
   }
+}
+
+class DoublyList<T> {
+  private head: DoublyListNode<T> | null;
+  private tail: DoublyListNode<T> | null;
+
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  insertItem(data: T) { // O(1)
+    // create a new node, with next - null (this is going to be the new last node)
+    // tail.setNext(newNode), then - tail = newNode
+    const newNode = new DoublyListNode<T>(data, null, this.tail);
+    if (this.tail) {
+      this.tail.setNext(newNode);
+    }
+
+    this.tail = newNode;
+  }
+
+  insertAt(data: T, index: number): boolean { // O(n)
+    let currentNode = this.head;
+    let counter = 0;
+
+    while(currentNode) {
+      if (counter == index) {
+        const nextNode = currentNode.getNext();
+        const newNode = new DoublyListNode<T>(data, nextNode, currentNode);
+        currentNode.setNext(newNode);
+        if (nextNode) {
+          nextNode.setPrev(newNode);
+        }
+        return true;
+      }
+      currentNode = currentNode.getNext();
+      counter++;
+    }
+    return false;
+  }
+
+  removeItem(index: number): boolean { // O(n)
+    let currentNode = this.head;
+    let counter = 0;
+
+    while (currentNode) {
+      if (counter == index) {
+        const prevNode = currentNode.getPrev();
+        const nextNode = currentNode.getNext();
+        prevNode?.setNext(nextNode);
+        nextNode?.setPrev(prevNode);
+
+        if(!nextNode) { // updating the tail in case currentNode was the last node (since nextNode is null)
+          this.tail = prevNode;
+        }
+
+        if (!prevNode) { // updating the hail in case currentNode was the first node (since prevNode is null)
+          this.head = nextNode;
+        }
+
+        currentNode.setNext(null);
+        currentNode.setPrev(null);
+        return true;
+      }
+
+      currentNode = currentNode.getNext();
+      counter++;
+    }
+    return false;
+  }
+  
 }
