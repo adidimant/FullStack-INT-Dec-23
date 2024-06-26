@@ -65,7 +65,7 @@ class List<T> {
   }
 
   searchItem(data: T): number { // returns the order of item in the list ("index")
-   let currentNode: ListNode<T> | null = this.head; 
+   let currentNode: ListNode<T> | null = this.head;
    let counter = 0;
 
    while(currentNode != null) { // i can write also just: `while(currentNode) {...}`
@@ -78,6 +78,66 @@ class List<T> {
 
    return -1;
   }
+  insertAt(data: T, index: number) {
+		if (index < 0) return `index must be greater than 0`;
+		const newNode = new ListNode<T>(data, null);
+		let currentNode: ListNode<T> | null = this.head;
+		let counter = 0;
+		while (currentNode) {
+			if (counter == index) {
+				newNode.setNext(currentNode.getNext());
+				currentNode.setNext(newNode);
+				return;
+			}
+			currentNode = currentNode.getNext();
+			counter++;
+		}
+	} // O(n)
+
+	removeItem(index: number) {
+		if (index < 0) return `index must be greater than 0`;
+		let currentNode: ListNode<T> | null = this.head;
+		let counter = 0;
+		let prevNode: ListNode<T> | null = null;
+		while (currentNode) {
+			if (counter == index) {
+				const nextNode = currentNode.getNext();
+				if (nextNode && prevNode) { // check that where not in the head / tail
+					prevNode.setNext(nextNode);
+					currentNode.setNext(null);
+				}
+				else if(prevNode){ // this case covers that the desired node to remove is the last
+					prevNode.setNext(null);
+					this.tail = prevNode;
+					return;
+				}
+				else { // this case covers that the desired node to remove is the first
+					this.head = currentNode.getNext();
+					currentNode.setNext(null);
+
+				}
+				return;
+			}
+			prevNode = currentNode;
+			currentNode = currentNode.getNext();
+			counter++;
+		}
+	} // O(n)
+
+	removeFrom(index: number) {
+		if (index < 0) return `index must be greater than 0`;
+		let currentNode: ListNode<T> | null = this.head;
+		let counter = 0;
+		while (currentNode) {
+			if (counter == index) {
+				currentNode.setNext(null);
+				this.tail = currentNode;
+				return;
+			}
+			currentNode = currentNode.getNext();
+			counter++;
+		}
+	} // O(n)
 
   // In total: O(1) + O(1) + O(n) => O(n)
 }
