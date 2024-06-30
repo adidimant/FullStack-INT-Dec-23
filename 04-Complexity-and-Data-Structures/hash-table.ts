@@ -3,9 +3,35 @@ const regularObj = {
   'fiu45nou4htngjntreoregrt': { name: 'Ofer', email: 'ofer@gmail.com' },
 }
 
+// the regular object way to save items:
+{ 
+  'kcjbni54jrleqf':  {
+     userId: 'kcjbni54jrleqf',
+     firstName: 'Adi',
+     lastName: 'Dimant',
+     email: 'adi@gmail.com',
+     phone: '+97258777777',
+     city: 'Raanana',
+     country: 'Germany',
+     zipcode: 69584,
+   },
+   'fonj54lkreln': {...}
+ }
+
+/*
+ Our conditions for a good hash function:
+ 1) Spread the elements fair & well between all the cells
+ 2) Random
+ 3) Persistent - same key, will reach the same cell (result) after the function
+ 4) Fixed length mapping (any length of input will result in a fixed length result)
+*/
+
+// md5('dfuhviufenvfujnbprfubnprgubnfgpibundfbjdfnbidfjnbpfgibjnfgjb') => dbjhb348yfg4einrfuvyt4onriufb4oren
+// sha256 - the most powerful & in most common use in the industry
+
 const hashTableExample = {
   '<this-is-hash-value-1>': [{ id: 3096587456, name: 'Adi', email: 'adi@gmail.com' }, { id: 3086587456, name: 'Yael', email: 'yael@gmail.com' }],
-  '<this-is-hash-value-2>': [{ id: 3106586456, name: 'Ofer', email: 'ofer@gmail.com' }],
+  '<this-is-hash-value-2>': [{ id: 3106586459, name: 'Ofer', email: 'ofer@gmail.com' }],
 }
 
 /*
@@ -24,30 +50,32 @@ class HashTable<HashType> {
     this.keyName = keyName;
   }
 
-  save(key: HashType, value: object) {
-    const hashedValue = this.hashFunction(key);
+  save(key: HashType, value: object) { // O(m), m is the number of elements in 1 cell, m is O(1) comparing to n => O(1)
+    const hashedValue = this.hashFunction(key); // O(1)
     // search if the cell is already
     if (!this.data[hashedValue]) {
       this.data[hashedValue] = [];
     }
     // search if user already exist:
-    const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key);
+    const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key); // ~O(1)
     if (existingValueIndex > -1) {
       this.data[hashedValue][existingValueIndex] = value;
     } else {
       this.data[hashedValue].push(value);
     }
+    // In total: ~O(1)
   }
 
-  get(key: HashType): object | null {
-    const hashedValue = this.hashFunction(key);
+  get(key: HashType): object | null { 
+    const hashedValue = this.hashFunction(key); // O(1)
     if (this.data[hashedValue]) {
-      const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key);
+      const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key); // ~O(1)
       if (existingValueIndex > -1) {
         return this.data[hashedValue][existingValueIndex];
       }
     }
     return null;
+    // In total: ~O(1)
   }
 }
 
@@ -91,18 +119,3 @@ const userData = {
 hashTable.save(userData.id, userData);
 
 const userValue = hashTable.get(userData.id);
-
-// the regular object way to save items:
-{ 
- 'kcjbni54jrleqf':  {
-    userId: 'kcjbni54jrleqf',
-    firstName: 'Adi',
-    lastName: 'Dimant',
-    email: 'adi@gmail.com',
-    phone: '+97258777777',
-    city: 'Raanana',
-    country: 'Germany',
-    zipcode: 69584,
-  },
-  'fonj54lkreln': {...}
-}
