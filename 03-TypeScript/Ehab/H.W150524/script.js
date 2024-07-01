@@ -1,3 +1,4 @@
+"use strict";
 var Quadrant;
 (function (Quadrant) {
     Quadrant["I"] = "Quadrant I";
@@ -7,26 +8,29 @@ var Quadrant;
 })(Quadrant || (Quadrant = {}));
 // Class - a factory for an objects with the same structure, that has fields, functions
 // PT = Point
-var PT = /** @class */ (function () {
-    function PT(x, y) {
+class PT {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.biggerValue = x > y ? x : y;
     }
-    PT.prototype.getX = function () {
+    getX() {
         return this.x;
-    };
-    PT.prototype.setX = function (x) {
+    }
+    setX(x) {
         this.x = x;
-    };
-    PT.prototype.getY = function () {
+    }
+    getY() {
         return this.y;
-    };
-    PT.prototype.setY = function (y) {
+    }
+    setY(y) {
         this.y = y;
-    };
+    }
     //TODO - the function returns the quadrant (רביע) of the current point
-    PT.prototype.getQuadrant = function () {
+    /**
+     * @returns Quadrant in case the point in some quadrant, if no point data or the point in the center of the axes - returns null
+     */
+    getQuadrant() {
         if (this.x > 0 && this.y > 0) {
             return Quadrant.I;
         }
@@ -39,15 +43,13 @@ var PT = /** @class */ (function () {
         else if (this.x > 0 && this.y < 0) {
             return Quadrant.IV;
         }
-        else {
-            return null;
-        }
-    };
+        return null;
+    }
     // Gets another x, y. returns the distance between our current point to the gives point x,y
     // distance = sqrt((x1-x2)^2 + (y1-y2)^2)
     //TODO - expand this function to be able to accept also a second point (receive p2: Point)
-    PT.prototype.calculateDistance = function (xOrPT, y) {
-        var distX, distY;
+    calculateDistance(xOrPT, y) {
+        let distX, distY;
         if (xOrPT instanceof PT) {
             distX = xOrPT.getX() - this.x;
             distY = xOrPT.getY() - this.y;
@@ -60,10 +62,10 @@ var PT = /** @class */ (function () {
             distY = y - this.y;
         }
         return Math.sqrt(distX * distX + distY * distY);
-    };
+    }
     //TODO the funciton should be able to get x,y OR another point p2 - and return the incline between our point to the other point
     // Incline = (y1-y2) / (x1 - x2)
-    PT.prototype.calculateIncline = function (xOrPT, y) {
+    calculateIncline(xOrPT, y) {
         if (xOrPT instanceof PT) {
             return (this.y - xOrPT.getY()) / (this.x - xOrPT.getX());
         }
@@ -73,10 +75,10 @@ var PT = /** @class */ (function () {
             }
             return (y - this.y) / (xOrPT - this.x);
         }
-    };
+    }
     //TODO - the function should be able to get x,y OR another point p2 - and returns the middle Point
     // middlePoint = (x1+x2) /2 , (y1+y2)/2
-    PT.prototype.calculateMiddlePoint = function (xOrPT, y) {
+    calculateMiddlePoint(xOrPT, y) {
         if (xOrPT instanceof PT) {
             return new PT((xOrPT.getX() + this.x) / 2, (xOrPT.getY() + this.y) / 2);
         }
@@ -86,17 +88,16 @@ var PT = /** @class */ (function () {
             }
             return new PT((xOrPT + this.x) / 2, (y + this.y) / 2);
         }
-    };
-    PT.prototype.toString = function () {
+    }
+    toString() {
         return '(' + this.x + ' , ' + this.y + ')';
-    };
-    return PT;
-}());
+    }
+}
 // instances (מופעים) of the clas PT
-var p1 = new PT(8, 4);
-var p2 = new PT(-5, 3);
-var p3 = new PT(-6, -2);
-var p4 = new PT(2, -5);
+const p1 = new PT(8, 4);
+const p2 = new PT(-5, 3);
+const p3 = new PT(-6, -2);
+const p4 = new PT(2, -5);
 // getQuadrant()
 console.log('getQuadrant');
 console.log('The point ' + p1.toString() + ' is in the quadrant:', p1.getQuadrant());

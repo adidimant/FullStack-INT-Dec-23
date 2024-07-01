@@ -58,26 +58,3 @@ body {
     transition: 0.9s;
     
  }
-/* width */
-::-webkit-scrollbar {
-    width: 12px;
-   
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #000000; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #ffffff; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #5be9ff; 
-    box-shadow: 0 0 53px rgba(255, 255, 255, 0.586);
-    transition: 0.9s;
-  }

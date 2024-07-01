@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,69 +8,103 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var _this = this;
-var calculateSum = function (a, b) {
+const calculateSum = (a, b, c, d) => {
     return a + b;
 };
-var getUserAge = function (user) {
+calculateSum(1, 2, undefined, 45);
+const getUserAge = (user) => {
     user.gender = 'F';
     return user.age;
 };
-var calculateAverageAge = function (users) {
-    var sum = 0;
-    for (var i = 0; i < users.length; i++) {
+const calculateAverageAge = (users) => {
+    let sum = 0;
+    for (let i = 0; i < users.length; i++) {
         sum += users[i].age;
     }
     return sum / users.length;
 };
-var calculateAverageAgeV2 = function (users) {
-    return (users.reduce(function (acc, user) {
+const calculateAverageAgeV2 = (users) => {
+    return (users.reduce((acc, user) => {
         return acc + user.age;
     }, 0)) / users.length;
 };
-var getUsersData = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("server.com/api/users")];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                calculateAverageAge(data); // no guarentee that the server really brings us array of User
-                return [2 /*return*/, data];
-        }
-    });
-}); };
+// pension age - >=65
+const filterPensionAgePeople = (users) => {
+    return users.filter((user) => user.age >= 65);
+};
+const notProtectingFunction = (users) => {
+    return users.filter((user) => user.age >= 65);
+};
+// an example - typescript isn't protecting me but my code will crash (since that users has no specific type in notProtectingFunction)
+notProtectingFunction(6);
+const getUsersData = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch("server.com/api/users");
+    const data = yield response.json();
+    calculateAverageAge(data); // no guarentee that the server really brings us array of User
+    return data;
+});
 //@ts-ignore - this line will fail, since we don't pass array of User
 calculateAverageAge([1, "d"]);
-function f1() {
+// anonymous functions:
+const names = ["Alice", "Bob", "Eve"];
+// Contextual typing for function - parameter s inferred to have type string
+names.forEach(function (s) {
+    console.log(s.toUpperCase());
+});
+// Contextual typing also applies to arrow functions
+names.forEach((s) => {
+    console.log(s.toUpperCase());
+});
+// object type:
+function printCoord(pt) {
+    console.log("The coordinate's x value is " + pt.x);
+    console.log("The coordinate's y value is " + pt.y);
+}
+printCoord({ x: 3, y: 7 });
+// Exactly the same as the earlier example
+function printCoord2(pt) {
+    console.log("The coordinate's x value is " + pt.x);
+    console.log("The coordinate's y value is " + pt.y);
+}
+printCoord2({ x: 100, y: 100 });
+// another object example:
+function printName(obj) {
+    // ...
+}
+// Both OK
+printName({ first: "Bob" });
+printName({ first: "Alice", last: "Alisson" });
+// Union types:
+function printId(id) {
+    console.log("Your ID is: " + id);
+}
+// OK
+printId(101);
+// OK
+printId("202");
+// Error
+printId({ myID: 22342 });
+function printId2(id) {
+    if (typeof id === "string") {
+        // In this branch, id is of type 'string'
+        console.log(id.toUpperCase());
+    }
+    else {
+        // Here, id is of type 'number'
+        console.log(id);
+    }
+}
+function welcomePeople(x) {
+    if (Array.isArray(x)) {
+        // x is array
+        console.log("Hello, " + x.join(" and "));
+    }
+    else {
+        // x is string
+        console.log("Welcome lone traveler " + x);
+    }
+}
+// both arrays and strings have the method slice
+function getFirstThree(x) {
+    return x.slice(0, 3);
 }
