@@ -35,6 +35,7 @@
                                     user[key] = newEdit;
                                     localStorage.setItem('userData', JSON.stringify(userData));
                                     updateLastUpdated();
+                                    location.reload();
                                 }
                             };
                             cell.appendChild(pencilButton);
