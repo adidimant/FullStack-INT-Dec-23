@@ -1,5 +1,5 @@
 export interface Collector<T> {
-  getData(state: string): T | T[] | null;
+  getData(): T | T[] | null;
   interval: number | undefined;
   startCollect(): void;
   finishCollect(): void;

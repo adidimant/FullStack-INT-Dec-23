@@ -1,4 +1,4 @@
-import * as Collector from "./collectors-classes.js";
+import * as Collector from "./regular-collector-classes.js";
 
 // 'main' - method that listens to the custom 'acme-sdk-loaded' event. It activates the sdk collection, and is the ONLY function that is outside a class.
 // THIS FUNCTION SHOULD BE IN THE END OF THE SCRIPT:
@@ -58,7 +58,16 @@ async function main(): Promise<any> {
 
   regularCollectors.forEach((c) => {
     c.startCollect();
+    c.getData();
   });
+
+  setInterval(() => {
+    regularCollectors.forEach((c) => {
+      c.startCollect();
+      c.getData();
+    });
+  }, 60000);
 }
 // start the function when custom event has finished loading
 window.addEventListener("sdkLoaded", main);
+main();

@@ -18,6 +18,7 @@ declare global {
     msDoNotTrack: string | null | undefined;
     getBattery(): Promise<any>;
     msMaxTouchPoints: number | undefined;
+    platform: string;
   }
 
   interface Window {

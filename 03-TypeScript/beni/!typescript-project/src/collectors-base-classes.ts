@@ -1,9 +1,9 @@
-import { Collector, ContinuousCollector } from "./collectors-interface.js";
+import { Collector, ContinuousCollector } from "./collector-interfaces.js";
 import Utils from "./utils.js";
 
 export abstract class RegularCollectorBaseClass<T> implements Collector<T> {
-  public abstract getData(state: string): T | null;
   public interval: number | undefined;
+  protected data: T | T[] | null;
   protected intervalFn: ReturnType<typeof setInterval> | undefined;
   protected async init() {
     try {
@@ -15,25 +15,20 @@ export abstract class RegularCollectorBaseClass<T> implements Collector<T> {
   }
 
   constructor() {
+    this.data = null;
     this.interval = 0;
     this.init();
   }
 
-  startCollect(): void {
-    if (this.interval == undefined) {
-      console.log("Interval is still being fetched, please try again.");
-    } else {
-      this.intervalFn = setInterval(() => {
-        this.getData("start"); // change this to something that REALLY gets the screen's width! (window.something probably)
-      }, this.interval);
-    }
+  getData(): T | T[] | null {
+    console.log(this.data);
+    return this.data;
   }
 
+  startCollect(): void {}
+
   finishCollect(): void {
-    if (this.intervalFn !== undefined) {
-      clearInterval(this.intervalFn);
-    }
-    this.getData("finish"); // needs to return null this time
+    this.data = null;
   }
 }
 
@@ -42,8 +37,8 @@ export abstract class ContinuousCollectorBaseClass<T>
 {
   public bufferSize?: number | undefined;
   public interval: number | undefined;
-  private intervalFn: ReturnType<typeof setInterval> | undefined;
-  public abstract getData(state: string): T | null;
+  protected data: T | T[] | null;
+  protected intervalFn: ReturnType<typeof setInterval> | undefined;
   private async init() {
     try {
       const config = await Utils.getConfig();
@@ -58,25 +53,20 @@ export abstract class ContinuousCollectorBaseClass<T>
   }
 
   constructor(bufferSize?: number) {
-    this.interval = 0;
     this.bufferSize = bufferSize;
+    this.interval = 0;
+    this.data = null;
     this.init();
   }
 
-  startCollect(): void {
-    if (this.interval == undefined) {
-      console.log("Interval is still being fetched, please try again.");
-    } else {
-      this.intervalFn = setInterval(() => {
-        this.getData("start"); // change this to something that REALLY gets the screen's width! (window.something probably)
-      }, this.interval);
-    }
+  getData(): T | T[] | null {
+    console.log(this.data);
+    return this.data;
   }
 
+  startCollect(): void {}
+
   finishCollect(): void {
-    if (this.intervalFn !== undefined) {
-      clearInterval(this.intervalFn);
-    }
-    this.getData("finish"); // needs to return null this time
+    this.data = null;
   }
 }

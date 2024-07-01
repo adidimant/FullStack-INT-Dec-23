@@ -8,6 +8,12 @@ export default class Utils {
     }
   }
 
+  static {
+    setInterval((): void => {});
+
+    // inside this static block i can make the logic to check when the 'getConfig' has done recieveing information and dispatch the event that main will listen to?
+  }
+
   static async getConfig() {
     return new Promise<{
       COLLECTORS_INTERVAL: number;
