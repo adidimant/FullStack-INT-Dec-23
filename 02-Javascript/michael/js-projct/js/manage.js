@@ -38,7 +38,8 @@
                                        localStorage.setItem('userData', JSON.stringify(userData));
                                        location.reload()
                                        updateLastUpdated();
-                                   }
+                                       location.reload();
+                                }
                                };
                                cell.appendChild(pencilButton);
                            }
