@@ -9,4 +9,4 @@ insertion sort - https://www.youtube.com/watch?v=JU767SDMDvA O(n^2)
 selection sort - https://www.youtube.com/watch?v=g-PGLbMth_g O(n^2)
 
 
-2) try to fix the removeItemFromBST method
+2) try to fix the `removeItemFromBST` method
