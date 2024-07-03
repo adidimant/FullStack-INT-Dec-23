@@ -58,6 +58,10 @@ const stringArray = duplicateArray("hello", 4);
 console.log(stringArray); // פלט: ["hello", "hello", "hello", "hello"]
 const objectArray = duplicateArray({ name: "Alice" }, 2);
 console.log(objectArray); // פלט: [{ name: "Alice" }, { name: "Alice" }]
+//Answer in class //
+function duplicateArray1(item, duplicateNumber) {
+    return Array(duplicateNumber).fill(item);
+}
 class Machine1 {
     constructor(reportTo, warnLevel, owner) {
         this.reportTo = reportTo;

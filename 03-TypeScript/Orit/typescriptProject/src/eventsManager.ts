@@ -1,5 +1,5 @@
 class EventsManager {
-    constructor(parameters) {
+    constructor() {
         
     }
     getConfig() {
