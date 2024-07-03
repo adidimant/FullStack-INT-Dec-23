@@ -17,6 +17,10 @@ function filterArticles(articles) {
 }
 // or in short:
 const filterArticles2 = (articles) => articles.filter((article) => article.content.length <= 350 && !!article.imgSrc);
+// create a function that accepts a generic object, which also must have another field called created_date, and returns true if the object has more than 6 keys
+const isComplexObject = (obj) => {
+    return Object.keys(obj).length > 5;
+};
 let articleImageless = {};
 articleImageless.title = 'The best article in town';
 articleImageless.content = 'Very rich content';

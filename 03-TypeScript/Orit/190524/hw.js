@@ -108,68 +108,29 @@ person1.setHeight(171);
 // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
 // in the API response - there's a boolean field called 'seen', you need to filter according to it
 class User extends Person {
-    constructor(id, firstName, lastName, birthday, gender, height, weight, address, username, email, phoneNumber, isVegan) {
+    constructor(//the constructor contains the variables that we expect to recieve from the user. dateCreted is a variable we will set for him.
+    id, firstName, lastName, birthday, gender, height, weight, address, username, isVegan) {
         super(id, firstName, lastName, birthday, gender, height, weight, address);
         this.dateCreated = new Date();
         this.username = username;
-        this.phoneNumber = phoneNumber;
-        this.isVegan = isVegan;
+        if (isVegan) {
+            this.isVegan = isVegan;
+        }
     }
-    getDateCreated() {
-        return this.dateCreated;
+    getUserBirthday() {
+        return this.getBirthday();
     }
-    getUsername() {
-        return this.username;
-    }
-    getEmail() {
-        return this.email;
-    }
-    getPhoneNumber() {
-        return this.phoneNumber;
+    setUserBirthday(birthday) {
+        this.setBirthday(birthday);
     }
     getIsVegan() {
-        return this.isVegan;
-    }
-    getBirthday() {
-        return super.getBirthday();
-    }
-    setUsername(username) {
-        this.username = username;
-    }
-    setEmail(email) {
-        this.email = email;
-    }
-    setPhoneNumber(phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    setBirthday(birthday) {
-        super.setBirthday(birthday);
+        if (this.isVegan) {
+            return this.isVegan;
+        }
     }
     setIsVegan(isVegan) {
         this.isVegan = isVegan;
     }
-    //Add 2 more functions for the User class, that uses both fields from Person & User (be creative)
-    getUserInfo() {
-        return 'First name: ' + super.getFirstName() + '\n' +
-            'Last name: ' + super.getLastName() + '\n' +
-            'Username: ' + this.username + '\n' +
-            'Email: ' + this.email;
-    }
-    timeToPension() {
-        if (super.isInPension()) {
-            return 'The user is already in pension';
-        }
-        const birthdayInMs = super.getBirthday().getTime();
-        const currentTime = Date.now();
-        const ageInMs = currentTime - birthdayInMs;
-        const ageInYears = ageInMs / 1000 / 60 / 60 / 24 / 365;
-        if (super.getGender() == 'M') {
-            return String('Time left To Pension (in years):  ' + (67 - ageInYears));
-        }
-        return String('Time left To Pension (in years):  ' + (65 - ageInYears));
-    }
-    // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
-    // in the API response - there's a boolean field called 'seen', you need to filter according to it
     getRecommendedNetflixMovies() {
         return __awaiter(this, void 0, void 0, function* () {
         });
@@ -180,4 +141,4 @@ class User extends Person {
     }
 }
 const person2 = new Person('208776958', 'Ran', 'Nishli', new Date('05/11/1984'), 'M', 170, 60, { street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 });
-const user2 = new User('123456', 'ehab', 'hassoun', new Date('23/09/1991'), 'M', 170, 72, { street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 }, 'ehabhassoun', 'ehab@gmail.com', '052-3456789', false);
+const user1 = new User('039332465', 'Orit', 'Frank', 'F', 162, 61, { street: 'Shmorak', house: 5, apartment: 4, country: 'Israel', city: 'Jerusalem' }, '19/05/2024', 'OFrank', '04/11/84', false);
