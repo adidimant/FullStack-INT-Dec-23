@@ -5,12 +5,13 @@ Once the script finish loaded - it should sent a custom event "acme-sdk-loaded" 
 When this event is being sent - the collectors should start collecting & sending events (objects) with data-points about the user, this enables your company to monitor the activity of the user and detect suspicious activity like bot activity or hackers.
 
 You should implement:
+
 - `main` method that listens to the custom "acme-sdk-loaded" event and activate the sdk collection.
   - except the `main` function - there shouldn't be any function that is outside a class.
 - `maintainLastXItems` generic function - a static function in Utils static class, that recieves an array, bufferSize: number, and new item - and making sure that the array has maximum of bufferSize length. if it's less - just push the item to the array, if there's bufferSize length or more - delete the first element and push the new one to the array.
 - Fetch configuration every 1 minute from a remote server, by customerId (in the query-param) - in the main method - save it in the localStorage and read it when it's needed. You can assume the remote configuration will be received like this:
-{ COLLECTORS_INTERVAL: 60000, DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10, SDK_ENABLED: true }
-the url - "https://acme-server.com/conf" - just write this as an example (in a comment) in a `getConfig` method, but actually return a constant json object.
+  { COLLECTORS_INTERVAL: 60000, DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10, SDK_ENABLED: true }
+  the url - "https://acme-server.com/conf" - just write this as an example (in a comment) in a `getConfig` method, but actually return a constant json object.
   - Recommended - manage a new class called EventsManager, that has two functions: `getConfig` (that handles the server configuration), `updateData` (gets the big object with all the data-points colleceted data, should be updated via a fetch POST request (the body of the request will be the data object))
   - The data-object should look like: { screenWidth: 1748, screenHeight: 800, referrer: 'https://lighttricks.com' }
 - `Collector` generic interface, that deals with the collection of generic T or an array of type T, which contains:
@@ -21,6 +22,7 @@ the url - "https://acme-server.com/conf" - just write this as an example (in a c
   - finishCollect() - method that finish collecting, will be callsed in case of an emergency. in case of calling getData after calling the finishCollect - the getData should return `null`.
     - if SDK_ENABLED
 - More then 20 different browser collectors, each collector is a class that implements this Collector interface.
+
   - You should put the relevant generic type T in the class, for example: `class ScreenWidthCollector implements Collector<number> { // class content here }`
   - There are two types of collectors - continuos collectors & regular collectors
     - Regular collector is a class that just implements Collector<T>
@@ -29,10 +31,11 @@ the url - "https://acme-server.com/conf" - just write this as an example (in a c
       - The bufferSize is an optional value, it means how many last data-snapshots from the data-points it should keep in the array.
   - You should understand the other types of each collector and use it (you might need to import the relevant type)
   - You might need to expand the type of Window/Navigator/Document if you'll get some typescript error under window.xxx key, we do that using `decalre global` (declare - tells the typescript that this thing exist outside our project [the browser] - and to trust us):
+
     ```javascript
         declare global { // this is global for all the project
         interface Navigator {
-          connection: 
+          connection:
           // non-recognized data-points by typescript here
         }
 
@@ -45,7 +48,9 @@ the url - "https://acme-server.com/conf" - just write this as an example (in a c
         }
       }
     ```
+
   - The datapoints of the regular collectors and the way to extract them from the browser:
+
 ```javascript
 // screen width:
 const screenWidth = screen.width;
@@ -80,7 +85,7 @@ const clipboard = navigator.clipboard;
 const connection = navigator.connection;
 // get browser info:
 const browserInfo = (function() {
-  const ua = navigator.userAgent, tem, 
+  const ua = navigator.userAgent, tem,
   M = ua.match(/(opera|chrome|safari|firefox|msie|trident\/?\s)(\d+)/i) || [];
   if (/trident/i.test(M[1])) {
     tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -153,6 +158,7 @@ const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 ||
 
 - Type list of data-points for the continous collectors and the way to extract them in the browser:
   - if bufferSize isn't provided - it should use the `DEFAULT_BUFFER_CONTINOUS_COLLECTORS` value from the configuration
+
 ```javascript:
 // extract mouse move:
 // bufferSize - 50 last items
@@ -188,9 +194,10 @@ function getDeviceOrientation() {
   });
 }
 ```
+
 - The main method should create all the instances of the collector classes, put them in array of collectors of type Collector[], and calling the startCollect() function of each one of them in a loop over the array.
 - The main method should perform server update every `COLLECTORS_INTERVAL`, for this - again iterate all the collectors in the array and call the `getData` method.
-- It's very recommended to not write everything in 1 file - create different files and use import/export. 
+- It's very recommended to not write everything in 1 file - create different files and use import/export.
 - You should build a test_page (very simple, with a few texts and a button to press) - and load your script (the javascript compiled script from your typescript project).
   - Reminder - you complie the code using `tsc` or by another typescript vscode extension
 - Bonus for a good error handling during one of the collectors - if one failed - it shouldn't harm the others and return null

@@ -19,13 +19,13 @@ class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
+        this.gender = gender;
         if (!(this.gender == 'M' || this.gender == 'F')) {
             throw new Error("Gender must me one of 'M' or 'F'!");
         }
-        this.gender = gender;
         this.height = height;
         this.weight = weight;
-        if (!address || !address.street || !address.house || address.house <= 0 || !address.apartment || address.apartment <= 0 || !address.city || !address.country) {
+        if (!address || !address.street || !address.house || address.house <= 0 || !address.city || !address.country) {
             throw new Error("Invalid address provided!");
         }
         this.address = address;
@@ -56,7 +56,7 @@ class Person {
         this.birthday = birthday;
     }
     getGender() {
-        return this.gender;
+        return this.gender == 'M' ? 'Male' : 'Female';
     }
     setGender(gender) {
         this.gender = gender;
@@ -108,68 +108,20 @@ person1.setHeight(171);
 // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
 // in the API response - there's a boolean field called 'seen', you need to filter according to it
 class User extends Person {
-    constructor(id, firstName, lastName, birthday, gender, height, weight, address, username, email, phoneNumber, isVegan) {
+    constructor(id, firstName, lastName, birthday, gender, height, weight, address, dateCreated, isVegan) {
         super(id, firstName, lastName, birthday, gender, height, weight, address);
-        this.dateCreated = new Date();
-        this.username = username;
-        this.phoneNumber = phoneNumber;
+        this.dateCreated = dateCreated;
         this.isVegan = isVegan;
-    }
-    getDateCreated() {
-        return this.dateCreated;
-    }
-    getUsername() {
-        return this.username;
-    }
-    getEmail() {
-        return this.email;
-    }
-    getPhoneNumber() {
-        return this.phoneNumber;
-    }
-    getIsVegan() {
-        return this.isVegan;
-    }
-    getBirthday() {
-        return super.getBirthday();
-    }
-    setUsername(username) {
-        this.username = username;
-    }
-    setEmail(email) {
-        this.email = email;
-    }
-    setPhoneNumber(phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
     setBirthday(birthday) {
-        super.setBirthday(birthday);
+        this.setBirthday(birthday);
+    }
+    getIsVegan() {
+        var _a;
+        return (_a = this.isVegan) !== null && _a !== void 0 ? _a : 'Not Specified';
     }
     setIsVegan(isVegan) {
-        this.isVegan = isVegan;
     }
-    //Add 2 more functions for the User class, that uses both fields from Person & User (be creative)
-    getUserInfo() {
-        return 'First name: ' + super.getFirstName() + '\n' +
-            'Last name: ' + super.getLastName() + '\n' +
-            'Username: ' + this.username + '\n' +
-            'Email: ' + this.email;
-    }
-    timeToPension() {
-        if (super.isInPension()) {
-            return 'The user is already in pension';
-        }
-        const birthdayInMs = super.getBirthday().getTime();
-        const currentTime = Date.now();
-        const ageInMs = currentTime - birthdayInMs;
-        const ageInYears = ageInMs / 1000 / 60 / 60 / 24 / 365;
-        if (super.getGender() == 'M') {
-            return String('Time left To Pension (in years):  ' + (67 - ageInYears));
-        }
-        return String('Time left To Pension (in years):  ' + (65 - ageInYears));
-    }
-    // implement the getRecommendedNetflixMovies & getNotSeenRecommendedMovies - you need to call the API - 'https://netflix.com/getRecommendedMovies?userId=<>'
-    // in the API response - there's a boolean field called 'seen', you need to filter according to it
     getRecommendedNetflixMovies() {
         return __awaiter(this, void 0, void 0, function* () {
         });
@@ -179,5 +131,13 @@ class User extends Person {
         });
     }
 }
-const person2 = new Person('208776958', 'Ran', 'Nishli', new Date('05/11/1984'), 'M', 170, 60, { street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 });
-const user2 = new User('123456', 'ehab', 'hassoun', new Date('23/09/1991'), 'M', 170, 72, { street: 'Alon', house: 67, country: 'Israel', state: 'Tel-Aviv', city: 'Tel-Aviv', apartment: 19 }, 'ehabhassoun', 'ehab@gmail.com', '052-3456789', false);
+const myAddress = {
+    street: 'hamerkava',
+    house: 20,
+    city: 'azur',
+    country: 'israel'
+};
+const user1 = new User("123123", 'ofer', 'ben Ami', new Date('1998-09-08'), 'M', 175, 80, myAddress, new Date(), false);
+const user2 = new User("123123", 'ofer', 'ben Ami', new Date('2002-10-18'), 'M', 175, 80, myAddress, new Date(), false);
+console.log(user1.getGender());
+console.log(user2.getBirthday());
