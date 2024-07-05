@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Utils } from '../utils/Utils';
-export class configuration {
+import { Utils } from '../utils/Utils.js';
+export class Configuration {
     constructor() {
         this.TEST_CONFIG = {
             COLLECTORS_INTERVAL: 60000,
@@ -29,18 +29,19 @@ export class configuration {
     saveConfig(configObj) {
         localStorage.setItem('sdkConfig', JSON.stringify(configObj));
     }
-    getConfigFromStorage() {
+    /*public async getConfigFromStorage(): Promise<ConfigResponse | void> {
         const config = localStorage.getItem('sdkConfig');
-        if (config) {
-            return JSON.parse(config);
+        if (!config) {
+            await this.fetchConfiguration();
+            return this.getConfigFromStorage(); // Recall to get the freshly fetched config
         }
-        return null;
-    }
+        return JSON.parse(config) as ConfigResponse;
+    }*/
     fetchConfiguration() {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.customerId) {
                 console.error('Customer ID not found');
-                return;
+                this.getOrGenerateCustomerId();
             }
             //encodeURIComponent() is needed for when the customer Id contains special characters.
             const url = `https://acme-server.com/conf?customerId=${encodeURIComponent(this.customerId)}`;
@@ -57,12 +58,14 @@ export class configuration {
                     throw new Error("Error fetching configuration. {$response.status}. {$response.statusText}");
                 }
                 const config: ConfigResponse = response.json();
-                this.saveConfig(config);
+                localStorage.setItem('sdkConfig', JSON.stringify(config));
                 return config;*/
                 if (!this.TEST_CONFIG) {
                     throw new Error("Error fetching configuration.");
                 }
-                this.saveConfig(this.TEST_CONFIG);
+                localStorage.setItem('sdkConfig', JSON.stringify(this.TEST_CONFIG));
+                //this.saveConfig(this.TEST_CONFIG);
+                console.log(this.TEST_CONFIG);
                 return this.TEST_CONFIG;
             }
             catch (error) {
