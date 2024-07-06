@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acme-Cyber SDK Test Page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Acme-Cyber SDK Test Page</h1>
+        <p>This page is used to test the Acme-Cyber SDK.</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="test.html">Test</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <div id="sdkStatus"></div>
+    </div>
+    <div class="laptop-animation"></div>
+    <script src="js/animations.js"></script>
+    <script src="../dist/acme-cyber-sdk.js"></script>
+    <script>
+        document.addEventListener('acme-sdk-loaded', function() {
+            document.getElementById('sdkStatus').textContent = 'SDK loaded and running!';
+        });
+    </script>
+</body>
+</html>
