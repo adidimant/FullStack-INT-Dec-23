@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "!typescript-project-unit!/global.d.ts",
+    "interfaces/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
