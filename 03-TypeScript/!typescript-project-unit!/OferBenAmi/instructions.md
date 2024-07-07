@@ -32,7 +32,7 @@ the url - "https://acme-server.com/conf" - just write this as an example (in a c
     ```javascript
         declare global { // this is global for all the project
         interface Navigator {
-          connection: 
+          connection:
           // non-recognized data-points by typescript here
         }
 
@@ -80,7 +80,7 @@ const clipboard = navigator.clipboard;
 const connection = navigator.connection;
 // get browser info:
 const browserInfo = (function() {
-  const ua = navigator.userAgent, tem, 
+  const ua = navigator.userAgent, tem,
   M = ua.match(/(opera|chrome|safari|firefox|msie|trident\/?\s)(\d+)/i) || [];
   if (/trident/i.test(M[1])) {
     tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -190,7 +190,7 @@ function getDeviceOrientation() {
 ```
 - The main method should create all the instances of the collector classes, put them in array of collectors of type Collector[], and calling the startCollect() function of each one of them in a loop over the array.
 - The main method should perform server update every `COLLECTORS_INTERVAL`, for this - again iterate all the collectors in the array and call the `getData` method.
-- It's very recommended to not write everything in 1 file - create different files and use import/export. 
+- It's very recommended to not write everything in 1 file - create different files and use import/export.
 - You should build a test_page (very simple, with a few texts and a button to press) - and load your script (the javascript compiled script from your typescript project).
   - Reminder - you complie the code using `tsc` or by another typescript vscode extension
 - Bonus for a good error handling during one of the collectors - if one failed - it shouldn't harm the others and return null

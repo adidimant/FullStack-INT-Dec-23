@@ -1,5 +1,5 @@
-import { Collector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { Collector, dataAndTime } from "../../interfaces";
+import { EventsManager } from "../../classes";
 
 export class ScreenWidth implements Collector<dataAndTime> {
 	public interval: number;
@@ -16,6 +16,8 @@ export class ScreenWidth implements Collector<dataAndTime> {
 	}
 	public startCollect() {
 		this.data.push([screen.width, Date.now()]);
+		(document.querySelector('#ScreenWidth-div') as HTMLDivElement).textContent = (String(screen.width)) ?? "";
+
 	}
 	public finishCollect() {}
 }

@@ -1,9 +1,8 @@
-import { Collector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { Collector, dataAndTime } from "../../interfaces";
+import { EventsManager } from "../../classes";
 
 export class TimeZone implements Collector<dataAndTime> {
 	public interval: number;
-	private intervalKey: any;
 	private data: dataAndTime[] = [];
 	constructor(interval?: number) {
 		this.interval = interval ?? EventsManager.getConfig().COLLECTORS_INTERVAL;
@@ -17,6 +16,8 @@ export class TimeZone implements Collector<dataAndTime> {
 	}
 	public startCollect() {
 			this.data.push([Intl.DateTimeFormat().resolvedOptions().timeZone, Date.now()]);
+			(document.querySelector('#TimeZone-div') as HTMLDivElement).textContent = Intl.DateTimeFormat().resolvedOptions().timeZone ?? ""
+
 	}
 	public finishCollect() {
 	}

@@ -1,9 +1,8 @@
-import { Collector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { Collector, dataAndTime } from "../../interfaces";
+import { EventsManager } from "../../classes";
 
 export class ScreenHeight implements Collector<dataAndTime> {
 	public interval: number;
-	private intervalKey: any;
 	private data: dataAndTime[] = [];
 	constructor(interval?: number) {
 		this.interval = interval ?? EventsManager.getConfig().COLLECTORS_INTERVAL;
@@ -17,6 +16,8 @@ export class ScreenHeight implements Collector<dataAndTime> {
 	}
 	public startCollect() {
 		this.data.push([screen.height, Date.now()]);
+		(document.querySelector('#ScreenHeight-div') as HTMLDivElement).textContent = (String(screen.height)) ?? "";
+
 	}
 	public finishCollect() {}
 }

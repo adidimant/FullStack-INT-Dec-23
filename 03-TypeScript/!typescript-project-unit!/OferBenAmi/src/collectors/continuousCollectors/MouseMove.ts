@@ -1,5 +1,5 @@
-import { ContinuousCollector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { ContinuousCollector, dataAndTime } from "../../interfaces";
+import { EventsManager,Utils } from "../../classes";
 
 export class MouseMove implements ContinuousCollector<dataAndTime> {
 	private eventKey: any;
@@ -18,17 +18,8 @@ export class MouseMove implements ContinuousCollector<dataAndTime> {
 		return `MouseMove`;
 	}
 	public startCollect() {
-		// this.intervalKey = setInterval(() => {
-		// 	if(this.data.length >= 50) {
-		// 		this.data.shift();
-		// 	}
-		// 	this.data.push([navigator.language || navigator.userLanguage , Date.now()]);
-		// }, this.interval);
 		this.eventKey = document.addEventListener("mousemove", (mousemoveEvent) => {
-			if (this.data.length >= 50) {
-				this.data.shift();
-			}
-			this.data.push([mousemoveEvent, Date.now()]);
+			Utils.maintainLastXItems(this.data,this.bufferSize ?? 0,[mousemoveEvent, Date.now()])
 		});
 	}
 	public finishCollect() {

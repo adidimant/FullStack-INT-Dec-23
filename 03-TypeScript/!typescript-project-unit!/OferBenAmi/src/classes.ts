@@ -6,6 +6,10 @@ declare global {
 		// non-recognized data-points by typescript here
 		userLanguage: string;
 		UserAgent: string;
+		javaEnabled: string | (() => any);
+		connection: object;
+		mozConnection: object | boolean;
+		webkitConnection: string;
 	}
 
 	interface Document {
@@ -15,7 +19,7 @@ declare global {
 	interface Window {
 		// non-recognized data-points by typescript here
 	}
-} 
+}
 
 export class Utils {
 	public static maintainLastXItems<T>(
@@ -68,7 +72,17 @@ export class EventsManager {
 
 	public static async updateData(data: object) {
 		try {
-			const response = await fetch("https://acme-server.com/conf", {
+			if (!localStorage.getItem("dataToLocalStorage")) { // saving the data on localStorage
+				localStorage.setItem("dataToLocalStorage", JSON.stringify([data]));
+				console.log(`localStorage initialized`)
+			}
+			else{
+				const dataFromLocalStorage =  JSON.parse(localStorage.getItem("dataToLocalStorage") ?? "");
+				dataFromLocalStorage.push(data);
+				localStorage.setItem("dataToLocalStorage", JSON.stringify(dataFromLocalStorage));
+				console.log(`data added to local storage! `)
+			}
+			const response = await fetch("https://acme-server.com/conf", { //faking post request to a server.
 				method: "POST",
 				body: JSON.stringify(data),
 			});

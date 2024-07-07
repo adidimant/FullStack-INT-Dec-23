@@ -1,5 +1,5 @@
-import { Collector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { Collector, dataAndTime } from "../../interfaces";
+import { EventsManager } from "../../classes";
 
 export class Language implements Collector<dataAndTime> {
 	public interval: number;
@@ -16,6 +16,7 @@ export class Language implements Collector<dataAndTime> {
 	}
 	public startCollect() {
 		this.data.push([navigator.language || navigator.userLanguage, Date.now()]);
+		(document.querySelector('#language-div') as HTMLDivElement).textContent = (navigator.language || navigator.userLanguage) ?? "";
 	}
 	public finishCollect() {
   }

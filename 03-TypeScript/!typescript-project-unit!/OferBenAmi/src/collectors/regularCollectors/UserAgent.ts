@@ -1,5 +1,5 @@
-import { Collector, dataAndTime } from "../interfaces";
-import { EventsManager } from "../classes";
+import { Collector, dataAndTime } from "../../interfaces";
+import { EventsManager } from "../../classes";
 
 export class UserAgent implements Collector<dataAndTime> {
 	public interval: number;
@@ -16,6 +16,8 @@ export class UserAgent implements Collector<dataAndTime> {
 	}
 	public startCollect() {
 		this.data.push([navigator.userAgent, Date.now()]);
+		(document.querySelector('#UserAgent-div') as HTMLDivElement).textContent = navigator.userAgent ?? ""
+
 	}
 	public finishCollect() {
 	}
