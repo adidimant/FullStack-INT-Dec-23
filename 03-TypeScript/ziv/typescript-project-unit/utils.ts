@@ -7,6 +7,7 @@ export class Utils {
     }
 }
 
+
 /*
 הפונקציה maintainLastXItems מקבלת שלושה פרמטרים:
 array - מערך של פריטים מהסוג הגנרי T.
