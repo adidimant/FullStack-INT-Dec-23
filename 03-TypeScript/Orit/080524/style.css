@@ -1,0 +1,38 @@
+.lights {
+    margin: auto;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    width: fit-content;
+    background: rgb(135 133 133);
+}
+.light {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 3px;
+    border-radius: 50%;
+    background: white;
+}
+.pole {
+    background: rgb(135 133 133);
+    margin: auto;
+    width: 15px;
+    height: 250px;
+}
+.red {
+    background-color: red;
+}
+.redorange {
+    background-color: rgb(255, 208, 0);
+}
+
+.orange {
+    background-color: rgb(255, 208, 0);
+}
+
+.green {
+    background-color: rgb(0, 255, 0);
+}

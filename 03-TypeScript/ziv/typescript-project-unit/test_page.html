@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDK Test Page</title>
+</head>
+<body>
+    <h1>Welcome to the SDK Test Page</h1>
+    <button id="testButton">Press me!</button>
+    <script src="path/to/your/compiled/sdk.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const event = new Event('acme-sdk-loaded');
+            window.dispatchEvent(event);
+        });
+    </script>
+</body>
+</html>

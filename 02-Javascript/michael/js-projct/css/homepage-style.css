@@ -1,0 +1,88 @@
+.shadow-button-set {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5vmin;
+}
+  
+  .shadow-button-set > li {
+    display: inline-flex;
+    background: rgb(255, 255, 255);
+  }
+  
+  .shadow-button-set > li:is(:hover, :focus-within) > button:not(:active) {
+      --distance: -10px;
+    }
+  
+  .shadow-button-set button {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: none;
+    font-size: 5vmin;
+    border: 3px solid rgb(255, 255, 255);
+    background: rgb(33, 33, 33);
+    
+    --distance: 0;
+    transform: translateX(var(--distance)) translateY(var(--distance));
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+  
+  .shadow-button-set button {
+      will-change: transform;
+      transition: transform .2s ease 
+  }
+    }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  block-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  font-family: system-ui, sans-serif;
+  background-color: black;
+  display: grid;
+  place-content: center;
+  color: white;
+}
+
+
+.imgDiv {
+  margin-bottom: -750px;
+  margin-left:-40px ;
+  z-index:-9;
+  padding-top: 50px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+ 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5be9ff; 
+  box-shadow: 0 0 53px rgba(255, 255, 255, 0.586);
+  transition: 0.9s;
+}

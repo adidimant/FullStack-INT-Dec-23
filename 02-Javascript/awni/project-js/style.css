@@ -1,0 +1,171 @@
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lora", serif;
+  animation: colorTransition 5s ease-in-out infinite alternate;
+}
+
+@keyframes colorTransition {
+  0% {
+    background-color: skyblue;
+  }
+
+  50% {
+    background-color: rgba(135, 207, 235, 0.603);
+  }
+
+  100% {
+    background-color: rgba(135, 207, 235, 0.26);
+  }
+} 
+
+
+.btnTabs {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btnTabs button{
+  margin: 10px;
+  padding: 10px 50px;
+  border: none;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  background-color: green;
+}
+
+.btnTabs button:hover{
+  scale: 1.08;
+  background-color: #05b105;
+}
+
+.button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.tabContent1 {
+  display: block;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tabContent2 {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+input[type="text"], input[type="email"], input[type="tel"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  border: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus{
+  scale: 1.01;
+}
+
+input::placeholder{
+  font-weight: 800;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  font-weight: 700;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 3px solid #000;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr button i{
+  padding: 5px;
+}
+
+.filters input{
+  width: 231px; 
+}
+
+button[type="submit"]{
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 200px;
+}
+
+button[type="submit"]:hover {
+  scale: 1.1;
+  background-color: #45a049;
+}
+
+#undoContainer {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+#undoProgress {
+  background-color: #4CAF50;
+  height: 20px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+#undoButton {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  border-radius: 10px;
+  margin: auto;
+  width: 70%;
+  padding: 30px;
+  background-color: #333741;
+  color: white;
+  font-size: 30px;
+  box-shadow: 5px 20px 100px rgba(0, 0, 0, 0.8);
+}
+.container .title {
+  text-align: center;
+}
+.container .actionsdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container .menu-btn {
+  font-size: larger;
+  padding: 20px;
+  text-decoration: none;
+  margin: 25px auto;
+  background-color: #292727;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.container .menu-btn:active {
+  background-color: beige;
+  color: black;
+}
+.container .menu-btn:hover {
+  box-shadow: 5px 5px 10px rgba(248, 248, 248, 0.2);
+}

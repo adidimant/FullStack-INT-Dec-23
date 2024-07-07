@@ -1,0 +1,178 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  border-radius: 10px;
+  margin: auto;
+  width: 97%;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: #333741;
+  color: white;
+  font-size: 30px;
+}
+.container .title {
+  text-align: center;
+}
+.container .menu-btn {
+  font-size: larger;
+  padding: 20px;
+  text-decoration: none;
+  margin: 25px auto;
+  background-color: #292727;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container .menu-btn:active {
+  background-color: beige;
+  color: black;
+}
+.container .Table {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 3px;
+  margin-bottom: 10px;
+  font-size: medium;
+}
+.container .Table th,
+.container .Table td {
+  padding: 7px 3px;
+  text-align: center;
+}
+.container .Table th .filterBar,
+.container .Table td .filterBar {
+  margin: 1px 3px;
+  width: 90%;
+  padding: 7px;
+  font-size: medium;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: aliceblue;
+  background: none;
+  color: white;
+}
+.container .Table th .filterBar:focus,
+.container .Table td .filterBar:focus {
+  outline-style: ridge;
+  outline-width: 0 0 2px 0;
+  outline-color: white;
+}
+.container .Table th .filterBarDate,
+.container .Table td .filterBarDate {
+  margin: 1px 1px;
+  padding: 3px 0px;
+  border-radius: 5px;
+  border: none;
+  font-size: small;
+}
+.container .Table th {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.container .Table tr:nth-of-type(2n) {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.container .btns {
+  display: block;
+  width: fit-content;
+  font-size: larger;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #292727;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container .btns:active {
+  background-color: beige;
+  color: black;
+}
+.container .btns:hover {
+  box-shadow: 5px 5px 10px rgba(248, 248, 248, 0.2);
+}
+.container .img {
+  margin: auto;
+  padding: 3px;
+  cursor: pointer;
+  border: none;
+  border-radius: 30%;
+  width: 80%;
+  height: 80%;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+}
+.container .img:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+.container .img:active {
+  background-color: #414040;
+  color: white;
+}
+.container .deleteImg {
+  margin: auto;
+  padding: 3px;
+  cursor: pointer;
+  border: none;
+  border-radius: 30%;
+  width: 80%;
+  height: 80%;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+}
+.container .deleteImg:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+.container .deleteImg:active {
+  background-color: #414040;
+  color: white;
+}
+.container #deleteSelected {
+  margin: auto;
+  color: white;
+  font-weight: bolder;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 9px;
+  background: #f74b4b;
+  transition: box-shadow 0.3s, background-color 0.1s, color 0.1s;
+}
+.container #deleteSelected:hover {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+.container #deleteSelected:active {
+  background-color: #414040;
+  color: white;
+}
+.container .editMode {
+  background-color: #776f6f !important;
+}
+.container .darkImg {
+  filter: brightness(50%);
+}
+.container .invisable {
+  background-color: transparent;
+  border: none;
+}

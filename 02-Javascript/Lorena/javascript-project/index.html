@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>User Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="tabs">
+      <div class="addMemberBtn">
+      <button id="create-user-tab">Add User</button>
+      <div class="viewMembersBtn">
+      <button id="view-users-tab">View Users</button>
+    </div>
+    <header>
+
+      <!--Popup Form-->
+  <div class="popup">
+  <div id="user-form-popup"> 
+    <header>
+      <h2 class="modalTitle">Fill the Form</h2>
+   </header>
+<div class="user-form"></div>
+    <form id="user-form">
+      <label for="user-username">Username:</label>
+      <input type="text" id="user-username" required>
+      <label for="user-email">Email:</label>
+      <input type="email" id="user-email" required>
+      <label for="user-phone">Phone:</label>
+      <input type="tel" id="user-phone" required>
+      <label for="user-firstname">First Name:</label>
+      <input type="text" id="user-firstname" required>
+      <label for="user-lastname">Last Name:</label>
+      <input type="text" id="user-lastname" required>
+      <label for="user-street">Street:</label>
+      <input type="text" id="user-street" required>
+      <label for="user-city">City:</label>
+      <input type="text" id="user-city" required>
+      <label for="user-state">State:</label>
+      <input type="text" id="user-state" required>
+      <label for="user-country">Country:</label>
+      <input type="text" id="user-country" required>
+      <label for="user-zipcode">Zip Code:</label>
+      <input type="text" id="user-zipcode" required>
+      <button type="submit" class="submitBtn">Create User</button>
+    </form>
+  </div>
+</div>
+
+  
+  <div id="users-view">
+    <div id="filters">
+      <div class="filters">
+      <input type="text" id="username-filter" placeholder="Filter by username">
+      <input type="text" id="email-filter" placeholder="Filter by email">
+      <input type="text" id="phone-filter" placeholder="Filter by phone">
+      <input type="text" id="fullname-filter" placeholder="Filter by full name">
+      <input type="text" id="country-filter" placeholder="Filter by country">
+      <input type="text" id="city-filter" placeholder="Filter by city">
+      <input type="date" id="registered-date-filter" placeholder="Filter by registered date">
+      <input type="date" id="updated-date-filter" placeholder="Filter by updated date">
+    </div>
+  </div>
+
+  <table>
+  <div class="table-container">
+    <table id="users-table">
+       <thead>
+        <tr class="heading"></tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Street</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Country</th>
+          <th>Zip Code</th>
+          <th>Registered Date</th>
+          <th>Updated Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody class="userInfo">
+        <!-- <tr>
+          <td>lorenabarlev</td>
+          <td>lorenabarlev@gmail.com</td>
+          <td>054-6274160</td>
+          <td>lorena</td>
+          <td>bar-lev</td>
+          <td>Teena</td>
+          <td>Harish</td>
+          <td>Haifa</td>
+          <td>Israel</td>
+          <td>546474</td>
+          <td>26-05-2024</td>
+          <td>26-05-2024</td>
+          <td>
+          <button><i class="fa-regular fa-pen-to-square">Edit</i></button>
+          <button><i class="fa-regular fa-trash-can"></i>Delite</button>
+
+          </td>
+          </tr>
+
+          <tr>
+            <td>lorenabarlev</td>
+            <td>lorenabarlev@gmail.com</td>
+            <td>054-6274160</td>
+            <td>Daniel</td>
+            <td>bar-lev</td>
+            <td>Teena</td>
+            <td>Harish</td>
+            <td>Haifa</td>
+            <td>Israel</td>
+            <td>546474</td>
+            <td>26-05-2024</td>
+            <td>26-05-2024</td>
+            <td>
+              <button><i class="fa-regular fa-pen-to-square"></i></button>
+              <button><i class="fa-regular fa-trash-can"></i></button>
+            </td>
+            </tr>  -->
+
+      </tbody> 
+    </table>
+  </div>
+</div>
+<div class="undo-popup">
+  <div id="undo-popup">
+    <span>User deleted. <button id="undo-btn">Undo</button></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
