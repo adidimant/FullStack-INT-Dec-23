@@ -1,17 +1,5 @@
 import { Collector } from './Collector';
 
-interface BatteryManager extends EventTarget {
-    level: number;
-    charging: boolean;
-    addEventListener(type: string, listener: (this: BatteryManager, ev: Event) => any, useCapture?: boolean): void;
-}
-
-declare global {
-    interface Navigator {
-        getBattery?: () => Promise<BatteryManager>;
-    }
-}
-
 export class BatteryInfoCollector implements Collector<{ level: string; charging: boolean }> {
     public interval: number;
     private data: { level: string; charging: boolean } | null;

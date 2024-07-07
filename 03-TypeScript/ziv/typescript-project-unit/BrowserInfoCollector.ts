@@ -32,18 +32,25 @@ export class BrowserInfoCollector implements Collector<string | null> {
 
             if (M && M[1] === 'Chrome') {
                 tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-                if (tem != null) {
+                if (tem) {
                     this.data = tem.slice(1).join(' ').replace('OPR', 'Opera');
                     return;
                 }
             }
 
-            M = M && M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-            tem = ua.match(/version\/(\d+)/i);
-            if (tem != null) {
-                M.splice(1, 1, tem[1]);
+            if (M) {
+                const versionMatch = ua.match(/version\/(\d+)/i);
+                const browserInfo: [string, string] | [string, string, string] = M[2]
+                    ? [M[1], M[2], '']
+                    : [(navigator as any).appName || 'Unknown', (navigator as any).appVersion || 'Unknown', '-?'];
+
+                if (versionMatch) {
+                    browserInfo.splice(1, 1, versionMatch[1]);
+                }
+                this.data = browserInfo.join(' ');
+            } else {
+                this.data = `${navigator.userAgent}`;
             }
-            this.data = M.join(' ');
         } catch (error) {
             console.error('Error collecting browser info data:', error);
             this.data = null;

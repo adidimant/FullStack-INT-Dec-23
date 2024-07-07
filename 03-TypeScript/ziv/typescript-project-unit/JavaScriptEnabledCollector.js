@@ -14,10 +14,10 @@ class JavaScriptEnabledCollector {
         return 'javaScriptEnabled';
     }
     startCollect() {
-        this.data = typeof navigator.javaEnabled === 'function' && navigator.javaEnabled();
+        this.data = true;
         this.intervalId = window.setInterval(() => {
             try {
-                this.data = typeof navigator.javaEnabled === 'function' && navigator.javaEnabled();
+                this.data = true;
             }
             catch (error) {
                 console.error('Error collecting JavaScript enabled data:', error);

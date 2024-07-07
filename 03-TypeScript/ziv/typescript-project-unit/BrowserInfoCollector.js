@@ -25,17 +25,24 @@ class BrowserInfoCollector {
             }
             if (M && M[1] === 'Chrome') {
                 tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-                if (tem != null) {
+                if (tem) {
                     this.data = tem.slice(1).join(' ').replace('OPR', 'Opera');
                     return;
                 }
             }
-            M = M && M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-            tem = ua.match(/version\/(\d+)/i);
-            if (tem != null) {
-                M.splice(1, 1, tem[1]);
+            if (M) {
+                const versionMatch = ua.match(/version\/(\d+)/i);
+                const browserInfo = M[2]
+                    ? [M[1], M[2], '']
+                    : [navigator.appName || 'Unknown', navigator.appVersion || 'Unknown', '-?'];
+                if (versionMatch) {
+                    browserInfo.splice(1, 1, versionMatch[1]);
+                }
+                this.data = browserInfo.join(' ');
             }
-            this.data = M.join(' ');
+            else {
+                this.data = `${navigator.userAgent}`;
+            }
         }
         catch (error) {
             console.error('Error collecting browser info data:', error);

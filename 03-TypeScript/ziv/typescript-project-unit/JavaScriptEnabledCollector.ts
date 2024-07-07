@@ -18,10 +18,10 @@ export class JavaScriptEnabledCollector implements Collector<boolean> {
     }
 
     startCollect(): void {
-        this.data = typeof navigator.javaEnabled === 'function' && navigator.javaEnabled();
+        this.data = true; 
         this.intervalId = window.setInterval(() => {
             try {
-                this.data = typeof navigator.javaEnabled === 'function' && navigator.javaEnabled();
+                this.data = true; 
             } catch (error) {
                 console.error('Error collecting JavaScript enabled data:', error);
                 this.data = null;
