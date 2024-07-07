@@ -2,44 +2,73 @@
  * class assignment:
  * create a Utils static class (all functions are static)
  */
+const FALSE_VALUES = [0, '0', false, 'false', 'FALSE', 'False', 'F', 'f', null, undefined];
 
 class Utils {
-    private static obj = {}
+
+    private static statistics: any;
+
+  static {
+    Utils.statistics = {};
+  }
+
+  // returns an object that in the keys we have the name of the funcs, the values are the number of calls to that function.
+    // looks like: { cleanText: 6, convertToBool: 4 }
+    // make sure to initialize this statistics object in a static { } block, and that this object is not exposed outside as public
+
+  private static incrementStatistic(funcName: string) {
+    if (Utils.statistics[funcName]) {
+      Utils.statistics[funcName]++;
+    } else {
+      Utils.statistics[funcName] = 1;
+    }
+  }
+
+  static getStatistics() {
+    return Utils.statistics;
+  }
+
+    
     // converts '1', 1, 'true', true, or any existing object/array/string/number to true; '0', 0, false, 'f', 'F', 'false' and others to false
     static convertToBool(value: any): boolean {
-        if (value typeof == 'object' | )
-    }
+        Utils.incrementStatistic('convertToBool');
+        return !(FALSE_VALUES.includes(value) || Number.isNaN(value));
+      }
+
 
     // prepares string for the newspaper: clean text from extra spaces, extra line breaks, extra redundant word boundaries (like: ',,', ';;', ',;')
     static cleanText(paragraph: string): string {
-
-    }
-
-    // returns an object that in the keys we have the name of the funcs, the values are the number of calls to that function.
-    // looks like: { cleanText: 6, convertToBool: 4 }
-    // make sure to initialize this statistics object in a static { } block, and that this object is not exposed outside as public
-    static getStatistics(func: Function): object {
-        let counter: number = 0; 
-        if (func()) {
-            counter++; 
-            return {funcName: func, call: counter}
-        }
-    }
+    Utils.incrementStatistic('cleanText');
+    let newParagraph = paragraph.trim(); // cleans spaces before and after text
+    // Missing:
+    // 1) replace extra duplicate spaces, remove tabs?
+    // 2) remove duplicate word bounderies - like ',,', ';;'
+    // 3) remove duplicate '/n' (line breaks)
+    return newParagraph;
+  }
+    
+    
 
     // execute the received function on a safe way, it means that if we have an error in the function - it won't break the application - but still will do console.error with the detailed error
-    static executeSafe(func) {
-
-    }
+    static executeSafe(func: () => any): void {
+        Utils.incrementStatistic('executeSafe');
+        try {
+          func();
+        } catch(err) {
+          console.error(`Error occured during function execution`, err);
+        }
+      }
 
     // receives and objected and returns an exact copy (other) object
-    static deepClone(obj) {
-
+    static deepClone(obj: object): object {
+        return { ...obj }
     }
 
     // execute the received function with a little latency - according to the wait parameter
-    static debounce(func, wait) {
-
-    }
+    static debounce(func: () => any, wait: number) {
+        Utils.incrementStatistic('debounce');
+        setTimeout(func, wait);
+      }
 
     // returns a throtteled function, that calling to that function is actually calling to 'func' function, but with the limitations of the amount & time
     // limit the number of the number of the calls to the function

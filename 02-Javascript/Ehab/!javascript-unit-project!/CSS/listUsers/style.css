@@ -91,7 +91,7 @@ body {
     padding: 10px;
     background-color: #F0F2F5;
     position: fixed;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

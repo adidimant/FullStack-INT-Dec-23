@@ -23,7 +23,7 @@ function magicalV2 (array: (number | string)[], obj: ObjBooleanValue) {
   return true;
 }
 
-const ODirection = {
+const Direction = {
   Up: 0,
   Down: 1,
   Left: 2,

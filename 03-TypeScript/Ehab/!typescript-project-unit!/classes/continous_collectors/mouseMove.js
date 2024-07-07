@@ -1,0 +1,76 @@
+import { Utils } from "../utils.js"
+import { EventsManager } from "../../classes/eventsManager.js"
+
+export class mouseMove {
+  constructor(bufferSize) {
+      const confInterval = EventsManager.getInterval()
+      this.interval = confInterval
+      this.data = null
+      if (bufferSize) {
+        this.bufferSize = bufferSize
+      } else {
+        this.bufferSize = EventsManager.getDefaultBufferContinousCcollectors()
+      }
+      this.collectorArray = new Array()
+      this.intervalId = 0
+  }
+
+  getData() {
+    if(this.collectorArray.length < 1){
+      return null;
+    }
+    return this.collectorArray
+  }
+
+  getKey() {
+    return "mouseMove"
+  }
+
+  collectData() {
+    document.addEventListener("mousemove", mousemoveEvent => {
+      if (mousemoveEvent) {
+        let temp = {
+          clientX: mousemoveEvent["clientX"],
+          clientY: mousemoveEvent["clientY"]
+        }
+        this.data = temp
+      }
+    })
+  }
+
+  startCollect() {
+    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+      try {
+        this.collectData()
+        this.intervalId = setInterval(() => {
+          if(!EventsManager.SDKENABLED()){
+            this.finishCollect();
+            return;
+          }
+          if (this.data) {
+            Utils.maintainLastXItems(
+              this.collectorArray,
+              this.bufferSize,
+              this.data
+            )
+            this.data = null
+          }
+        }, this.interval)
+      } catch (err) {
+        this.data = null
+      }
+    }
+  }
+
+  finishCollect() {
+    try {
+      if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+        clearInterval(this.intervalId)
+        this.data = null
+        this.collectorArray = []
+      }
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+}

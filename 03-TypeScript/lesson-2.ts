@@ -80,10 +80,21 @@ const filterArticles2 = (articles: Article[]): Article[] =>
 // Create a type by removing specific fields from another type - using Omit
 
 type ArticleWithHeight = Article & {
+  height: number
+};
+
+interface ArticleWithHeight2 extends Article {
   height: number;
 }
 
-type ArticleWithoutImage = Omit<Article, 'imgSrc'>;
+// create a function that accepts a generic object, which also must have another field called created_date, and returns true if the object has more than 6 keys
+const isComplexObject = <T>(obj: T & { created_date: Date }): boolean => {
+  return Object.keys(obj).length > 5;
+};
+
+interface V2 extends Omit<ArticleWithHeight2, 'height'> { created_date: string }
+
+type ArticleWithoutImage = Omit<Article, 'imgSrc'> & { created_date };
 let articleImageless: ArticleWithoutImage | {} = {};
 (articleImageless as ArticleWithoutImage).title = 'The best article in town';
 (articleImageless as ArticleWithoutImage).content = 'Very rich content';
