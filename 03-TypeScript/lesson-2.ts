@@ -80,8 +80,8 @@ const filterArticles2 = (articles: Article[]): Article[] =>
 // Create a type by removing specific fields from another type - using Omit
 
 type ArticleWithHeight = Article & {
-  height: number;
-}
+  height: number
+};
 
 interface ArticleWithHeight2 extends Article {
   height: number;
@@ -92,7 +92,9 @@ const isComplexObject = <T>(obj: T & { created_date: Date }): boolean => {
   return Object.keys(obj).length > 5;
 };
 
-type ArticleWithoutImage = Omit<Article, 'imgSrc'>;
+interface V2 extends Omit<ArticleWithHeight2, 'height'> { created_date: string }
+
+type ArticleWithoutImage = Omit<Article, 'imgSrc'> & { created_date };
 let articleImageless: ArticleWithoutImage | {} = {};
 (articleImageless as ArticleWithoutImage).title = 'The best article in town';
 (articleImageless as ArticleWithoutImage).content = 'Very rich content';
