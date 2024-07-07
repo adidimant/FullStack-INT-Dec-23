@@ -51,9 +51,7 @@ class PT {
                 return "The point lies between Q3 and Q4";
             }
         }
-        else {
-            return "The point is at the center of the axes";
-        }
+        return "The point is at the center of the axes";
     }
     // Gets another x, y. returns the distance between our current point to the gives point x,y
     calculateDistance(x, y) {
@@ -109,7 +107,7 @@ class PT {
             x2 = x.getX();
             y2 = x.getY();
         }
-        else if (typeof x === 'number' && typeof y === 'number') {
+        else if (typeof x === 'number' && y && typeof y === 'number') {
             x2 = x;
             y2 = y;
         }
