@@ -1,4 +1,5 @@
 import { configurationObj, collectors } from "../types/types"
+import { Collector } from "../interfaces/interfaces"
 export class EventsManager {
   static IsEnabled: Boolean = false;
   static async getConfig(customerId: string): Promise<object | null> {
@@ -67,19 +68,6 @@ export class EventsManager {
       return -1;
     }catch (error) {
         return -1;
-    }
-  }
-
-  static SDKENABLED(): boolean{
-    try {
-        let configuration: configurationObj | undefined = this.getConfiguration();
-        if(configuration){
-             return configuration['SDK_ENABLED'];
-        }else{
-            return false;
-        }
-      }catch (error) {
-        return false;
     }
   }
 

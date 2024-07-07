@@ -50,11 +50,11 @@ export class clicksPressing implements Collector<customClickEvent>, ContinuousCo
     }
 
     startCollect(){
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try{  
                 this.collectData();
                 this.intervalId = setInterval(() =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -71,7 +71,7 @@ export class clicksPressing implements Collector<customClickEvent>, ContinuousCo
 
     finishCollect(): void{
         try{
-            if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+            if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
                 clearInterval(this.intervalId);
                 this.data = null; 
                 this.collectorArray = [];

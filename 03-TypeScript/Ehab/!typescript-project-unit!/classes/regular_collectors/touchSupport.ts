@@ -23,11 +23,11 @@ export class touchSupport implements Collector<boolean>{
     }
 
     startCollect(): void{
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try{
                 this.data = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
                 this.intervalId = setInterval((): void =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -40,7 +40,7 @@ export class touchSupport implements Collector<boolean>{
     }
 
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

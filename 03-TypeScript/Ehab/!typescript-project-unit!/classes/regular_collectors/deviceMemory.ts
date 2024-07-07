@@ -23,11 +23,11 @@ export class deviceMemory implements Collector<number | null | 'unknown'>{
     }
 
     startCollect(): void{
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try{
                 this.data = navigator.deviceMemory || 'unknown';
                 this.intervalId = setInterval(() =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -40,7 +40,7 @@ export class deviceMemory implements Collector<number | null | 'unknown'>{
     }
     
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

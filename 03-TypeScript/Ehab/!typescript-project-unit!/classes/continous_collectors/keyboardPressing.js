@@ -1,3 +1,4 @@
+
 import { Utils } from "../utils.js"
 import { EventsManager } from "../../classes/eventsManager.js"
 
@@ -42,11 +43,11 @@ export class keyboardPressing {
   }
 
   startCollect() {
-    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+    if (EventsManager.IsEnabled) {
       try {
         this.collectData()
         this.intervalId = setInterval(() => {
-          if(!EventsManager.SDKENABLED()){
+          if(!EventsManager.IsEnabled){
             this.finishCollect();
             return;
           }
@@ -70,7 +71,7 @@ export class keyboardPressing {
       if (
         this.intervalId !== null &&
         this.intervalId !== undefined &&
-        !EventsManager.SDKENABLED()
+        !EventsManager.IsEnabled
       ) {
         clearInterval(this.intervalId)
         this.data = null

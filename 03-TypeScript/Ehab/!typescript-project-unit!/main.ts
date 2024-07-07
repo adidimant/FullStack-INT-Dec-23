@@ -3,8 +3,8 @@ import { screenWidth } from "./classes/regular_collectors/screenWidth"
 import { screenHeight } from "./classes/regular_collectors/screenHeight"
 import { language } from "./classes/regular_collectors/language"
 import { userAgent } from "./classes/regular_collectors/userAgent"
-import { timeZone } from "./classes/regular_collectors/timezone"
-import { cookiesEnabled } from "./classes/regular_collectors/CookiesEnabled"
+import { timeZone } from "./classes/regular_collectors/timeZone"
+import { cookiesEnabled } from "./classes/regular_collectors/cookiesEnabled"
 import { javaScriptEnabled } from "./classes/regular_collectors/javaScriptEnabled"
 import { onlineStatus } from "./classes/regular_collectors/onlineStatus"
 import { referrer } from "./classes/regular_collectors/referrer"
@@ -16,6 +16,7 @@ import { platform } from "./classes/regular_collectors/platform"
 import { deviceMemory } from "./classes/regular_collectors/deviceMemory"
 import { hardwareConcurrency } from "./classes/regular_collectors/hardwareConcurrency"
 import { plugins } from "./classes/regular_collectors/plugins"
+import { geolocation } from "./classes/regular_collectors/geolocation"
 import { doNotTrack } from "./classes/regular_collectors/doNotTrack"
 import { battery } from "./classes/regular_collectors/battery"
 import { currentUrl } from "./classes/regular_collectors/currentUrl"
@@ -109,6 +110,7 @@ async function main(): Promise<void>{
         new deviceMemory(),
         new hardwareConcurrency(),
         new plugins(),
+        new geolocation(),
         new doNotTrack(),
         new battery(),
         new currentUrl(),
@@ -169,22 +171,24 @@ async function main(): Promise<void>{
             (document.getElementById('hardwareConcurrency') as HTMLElement).innerHTML = 'Hardware concurrency: <span style="color: red">'+ data[collectors[15].getKey()] +'</span>';
             // plugins
             (document.getElementById('plugins') as HTMLElement).innerHTML = 'Plugins: <span style="color: red">'+ data[collectors[16].getKey()] +'</span>';
+            // geolocation
+            (document.getElementById('geolocation') as HTMLElement).innerHTML = 'geolocation: <span style="color: red">'+ data[collectors[17].getKey()] +'</span>';
             // doNotTrack
-            (document.getElementById('doNotTrack') as HTMLElement).innerHTML = 'Do not track: <span style="color: red">'+ data[collectors[17].getKey()] +'</span>';
+            (document.getElementById('doNotTrack') as HTMLElement).innerHTML = 'Do not track: <span style="color: red">'+ data[collectors[18].getKey()] +'</span>';
             // battery
-            (document.getElementById('battery') as HTMLElement).innerHTML = 'Battery: <span style="color: red">'+ data[collectors[18].getKey()] +'</span>';
+            (document.getElementById('battery') as HTMLElement).innerHTML = 'Battery: <span style="color: red">'+ data[collectors[19].getKey()] +'</span>';
             // currentUrl
-            (document.getElementById('currentUrl') as HTMLElement).innerHTML = 'Current Url: <span style="color: red">'+ data[collectors[19].getKey()] +'</span>';
+            (document.getElementById('currentUrl') as HTMLElement).innerHTML = 'Current Url: <span style="color: red">'+ data[collectors[20].getKey()] +'</span>';
             // historyLength
-            (document.getElementById('historyLength') as HTMLElement).innerHTML = 'History length: <span style="color: red">'+ data[collectors[20].getKey()] +'</span>';
+            (document.getElementById('historyLength') as HTMLElement).innerHTML = 'History length: <span style="color: red">'+ data[collectors[21].getKey()] +'</span>';
             // colorDepth
-            (document.getElementById('colorDepth') as HTMLElement).innerHTML = 'Color depth: <span style="color: red">'+ data[collectors[21].getKey()] +'</span>';
+            (document.getElementById('colorDepth') as HTMLElement).innerHTML = 'Color depth: <span style="color: red">'+ data[collectors[22].getKey()] +'</span>';
             // touchSupport
-            (document.getElementById('touchSupport') as HTMLElement).innerHTML = 'Touch support: <span style="color: red">'+ data[collectors[22].getKey()] +'</span>';
+            (document.getElementById('touchSupport') as HTMLElement).innerHTML = 'Touch support: <span style="color: red">'+ data[collectors[23].getKey()] +'</span>';
 
             // mouseMove
             let MouseMovements = ''
-            const mouseMoveData = collectors[23].getData();
+            const mouseMoveData = collectors[24].getData();
             if(Array.isArray(mouseMoveData) &&mouseMoveData !== null ){
                 mouseMoveData.forEach((obj ) => MouseMovements += '<br>'+JSON.stringify(obj) +',');
                 (document.getElementById('mouseMove') as HTMLElement).innerHTML = 'Mouse move: <span style="color: red">'+ MouseMovements +'</span>';
@@ -192,7 +196,7 @@ async function main(): Promise<void>{
             
             // keyboardPressing
             let keyboardPressing = '';
-            const keyboardPressingData = collectors[24].getData();
+            const keyboardPressingData = collectors[25].getData();
             if(Array.isArray(keyboardPressingData) &&keyboardPressingData !== null ){
                 keyboardPressingData.forEach((obj)=> {
                     console.log(typeof obj)
@@ -203,7 +207,7 @@ async function main(): Promise<void>{
             
             // clicksPressing
             let clicksPressing = '';
-            const clicksPressingData = collectors[25].getData();
+            const clicksPressingData = collectors[26].getData();
             if(Array.isArray(clicksPressingData) &&clicksPressingData !== null ){
                 clicksPressingData.forEach((obj)=> clicksPressing+= '<br>'+JSON.stringify(obj) +',');
                 (document.getElementById('clicksPressing') as HTMLElement).innerHTML = 'Clicks pressing: <span style="color: red">'+ clicksPressing +'</span>';
@@ -211,7 +215,7 @@ async function main(): Promise<void>{
             
             // deviceMotion
             let deviceMotion = '';
-            const deviceMotionData = collectors[26].getData();
+            const deviceMotionData = collectors[27].getData();
             if(Array.isArray(deviceMotionData) &&deviceMotionData !== null ){
                 deviceMotionData.forEach((obj)=> deviceMotion+= '<br>'+JSON.stringify(obj) +',');
                 (document.getElementById('deviceMotion') as HTMLElement).innerHTML = 'Device motion: <span style="color: red">'+ deviceMotion +'</span>';
@@ -220,7 +224,7 @@ async function main(): Promise<void>{
 
             // deviceOrientation
             let deviceOrientation= '';
-            const deviceOrientationData = collectors[27].getData();
+            const deviceOrientationData = collectors[28].getData();
             if(Array.isArray(deviceOrientationData) &&deviceOrientationData !== null ){
                 deviceOrientationData.forEach((obj)=> {
                     deviceOrientation+= '<br>'+JSON.stringify(obj) +','

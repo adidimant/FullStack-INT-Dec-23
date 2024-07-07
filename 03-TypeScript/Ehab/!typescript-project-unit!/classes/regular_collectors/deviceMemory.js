@@ -17,11 +17,11 @@ export class deviceMemory {
   }
 
   startCollect() {
-    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+    if (EventsManager.IsEnabled) {
       try {
         this.data = navigator.deviceMemory || "unknown"
         this.intervalId = setInterval(() => {
-          if(!EventsManager.SDKENABLED()){
+          if(!EventsManager.IsEnabled){
             this.finishCollect();
             return;
           }
@@ -34,7 +34,7 @@ export class deviceMemory {
   }
 
   finishCollect() {
-    if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+    if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
       clearInterval(this.intervalId)
       this.data = null
     }

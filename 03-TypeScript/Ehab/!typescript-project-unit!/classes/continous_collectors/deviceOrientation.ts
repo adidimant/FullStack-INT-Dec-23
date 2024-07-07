@@ -52,11 +52,11 @@ export class deviceOrientation implements Collector<customDeviceOrientation>, Co
     }
 
     startCollect():void {
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try {
                 this.collectData();
                 this.intervalId = setInterval(async (): Promise<void> => {
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -74,7 +74,7 @@ export class deviceOrientation implements Collector<customDeviceOrientation>, Co
 
     finishCollect(): void{
         try{
-            if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+            if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
                 clearInterval(this.intervalId);
                 this.data = null; 
                 this.collectorArray = [];

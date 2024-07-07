@@ -48,11 +48,11 @@ export class deviceOrientation {
   }
 
   startCollect() {
-    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+    if (EventsManager.IsEnabled) {
       try {
         this.collectData()
         this.intervalId = setInterval(async () => {
-          if(!EventsManager.SDKENABLED()){
+          if(!EventsManager.IsEnabled){
             this.finishCollect();
             return;
           }
@@ -76,7 +76,7 @@ export class deviceOrientation {
       if (
         this.intervalId !== null &&
         this.intervalId !== undefined &&
-        !EventsManager.SDKENABLED()
+        !EventsManager.IsEnabled
       ) {
         clearInterval(this.intervalId)
         this.data = null

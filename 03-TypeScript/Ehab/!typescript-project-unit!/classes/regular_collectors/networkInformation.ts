@@ -38,10 +38,10 @@ export class networkInformation implements Collector<object>{
     }
 
     async startCollect(): Promise<void>{
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             this.collectData();
             this.interval = setInterval(async()=>{
-                if(!EventsManager.SDKENABLED()){
+                if(!EventsManager.IsEnabled){
                     this.finishCollect();
                     return;
                 }
@@ -51,7 +51,7 @@ export class networkInformation implements Collector<object>{
     }
 
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

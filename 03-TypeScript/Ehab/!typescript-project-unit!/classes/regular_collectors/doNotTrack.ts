@@ -23,11 +23,11 @@ export class doNotTrack implements Collector<boolean>{
     }
 
     startCollect(): void{
-        if (this.interval > 0 && EventsManager.SDKENABLED()) {
+        if (EventsManager.IsEnabled) {
             try{
                 this.data = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.msDoNotTrack === "1"
                 this.intervalId = setInterval(() =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -40,7 +40,7 @@ export class doNotTrack implements Collector<boolean>{
     }
 
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

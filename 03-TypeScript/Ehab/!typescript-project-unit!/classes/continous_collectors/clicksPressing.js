@@ -42,11 +42,11 @@ export class clicksPressing {
   }
 
   startCollect() {
-    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+    if (EventsManager.IsEnabled) {
       try {
         this.collectData()
         this.intervalId = setInterval(() => {
-          if(!EventsManager.SDKENABLED()){
+          if(!EventsManager.IsEnabled){
             this.finishCollect();
             return;
           }
@@ -70,7 +70,7 @@ export class clicksPressing {
       if (
         this.intervalId !== null &&
         this.intervalId !== undefined &&
-        !EventsManager.SDKENABLED()
+        !EventsManager.IsEnabled
       ) {
         clearInterval(this.intervalId)
         this.data = null

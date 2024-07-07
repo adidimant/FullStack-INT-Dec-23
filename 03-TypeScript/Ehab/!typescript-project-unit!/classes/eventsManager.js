@@ -70,18 +70,6 @@ export class EventsManager {
     }
   }
 
-  static SDKENABLED() {
-    try {
-        let configuration = this.getConfiguration();
-        if (configuration) {
-            return configuration['SDK_ENABLED'];
-        } else {
-            return false;
-        }
-    } catch (error) {
-        return false;
-    }
-  }
   static getDefaultBufferContinousCcollectors() {
     try {
       let configuration = this.getConfiguration()

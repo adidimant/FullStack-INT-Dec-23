@@ -17,14 +17,14 @@ export class javaScriptEnabled {
     }
   
     startCollect() {
-      if (this.interval > 0 && EventsManager.SDKENABLED()) {
+      if (EventsManager.IsEnabled) {
         try {
           let result = typeof navigator.javaEnabled === 'function' && navigator.javaEnabled();
                 if (typeof result === 'boolean') {
                     this.data = result;
                 }
                 this.intervalId = setInterval(() => {
-                  if(!EventsManager.SDKENABLED()){
+                  if(!EventsManager.IsEnabled){
                     this.finishCollect();
                     return;
                   }
@@ -40,7 +40,7 @@ export class javaScriptEnabled {
     }
   
     finishCollect() {
-      if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+      if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
         clearInterval(this.intervalId)
         this.data = null
       }

@@ -25,11 +25,11 @@ export class referrer implements Collector<string>{
     }
 
     startCollect(): void{
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try{
                 this.data = document.referrer;
                 this.intervalId = setInterval(() =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -42,7 +42,7 @@ export class referrer implements Collector<string>{
     }
     
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

@@ -22,11 +22,11 @@ export class hardwareConcurrency implements Collector<number>{
     }
 
     startCollect(): void{
-        if(this.interval >0 && EventsManager.SDKENABLED()){
+        if(EventsManager.IsEnabled){
             try{
                 this.data = navigator.hardwareConcurrency
                 this.intervalId = setInterval(() =>{
-                    if(!EventsManager.SDKENABLED()){
+                    if(!EventsManager.IsEnabled){
                         this.finishCollect();
                         return;
                     }
@@ -39,7 +39,7 @@ export class hardwareConcurrency implements Collector<number>{
     }
 
     finishCollect(): void{
-        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.SDKENABLED()) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null; 
         }

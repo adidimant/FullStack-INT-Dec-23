@@ -59,11 +59,15 @@ export class deviceMotion {
   }
 
   startCollect() {
-    if (this.interval > 0 && EventsManager.SDKENABLED()) {
+    if (EventsManager.IsEnabled) {
       try {
         this.collectData()
         this.intervalId = setInterval(() => {
           if (this.data) {
+            if (!EventsManager.IsEnabled) {
+              this.finishCollect()
+              return
+            }
             Utils.maintainLastXItems(
               this.collectorArray,
               this.bufferSize,
@@ -83,7 +87,7 @@ export class deviceMotion {
       if (
         this.intervalId !== null &&
         this.intervalId !== undefined &&
-        !EventsManager.SDKENABLED()
+        !EventsManager.IsEnabled
       ) {
         clearInterval(this.intervalId)
         this.data = null
