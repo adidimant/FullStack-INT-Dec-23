@@ -1,4 +1,5 @@
 import * as Collector from "./regular-collector-classes.js";
+import EventsManager from "./EventsManager.js";
 
 // 'main' - method that listens to the custom 'acme-sdk-loaded' event. It activates the sdk collection, and is the ONLY function that is outside a class.
 // THIS FUNCTION SHOULD BE IN THE END OF THE SCRIPT:
@@ -55,6 +56,8 @@ async function main(): Promise<any> {
     ColorDepth,
     TouchSupport,
   ];
+
+  const config = await EventsManager.getConfig();
 
   regularCollectors.forEach((c) => {
     c.startCollect();
