@@ -1,4 +1,4 @@
-import { ConfigResponse } from '../interfaces/IConfigResponse';
+import { ConfigResponse } from '../interfaces/IConfigResponse.js';
 import { Utils } from '../utils/Utils.js';
 
 export class Configuration {
@@ -6,7 +6,7 @@ export class Configuration {
 
     private TEST_CONFIG: ConfigResponse = {
         COLLECTORS_INTERVAL: 60000,
-        DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10,
+        DEFAULT_BUFFER_CONTINUOUS_COLLECTORS: 10,
         SDK_ENABLED: true
     };
 
@@ -15,17 +15,13 @@ export class Configuration {
         this.startFetchingConfiguration();
     }
     
-    public getOrGenerateCustomerId(): string {
+    private getOrGenerateCustomerId(): string {
         let savedCustomerId = localStorage.getItem('customerId');
         if (!savedCustomerId) {
             savedCustomerId = Utils.generateUUID();
             localStorage.setItem('customerId', savedCustomerId);
         }
         return savedCustomerId;
-    }
-
-    private saveConfig(configObj: ConfigResponse): void {
-        localStorage.setItem('sdkConfig', JSON.stringify(configObj))
     }
 
     /*public async getConfigFromStorage(): Promise<ConfigResponse | void> {
@@ -37,10 +33,10 @@ export class Configuration {
         return JSON.parse(config) as ConfigResponse;
     }*/
 
-    public async fetchConfiguration(): Promise<ConfigResponse> {
+    private async fetchConfiguration(): Promise<ConfigResponse> {
         if (!this.customerId) {
             console.error('Customer ID not found');
-            this.getOrGenerateCustomerId();
+            this.getOrGenerateCustomerId(); // TODO: and then regenerate each time customer id not found?
         }
 
         //encodeURIComponent() is needed for when the customer Id contains special characters.
@@ -62,13 +58,14 @@ export class Configuration {
             localStorage.setItem('sdkConfig', JSON.stringify(config));
             return config;*/
 
-            if (!this.TEST_CONFIG) { 
+            // Use test_config
+            const config: ConfigResponse = this.TEST_CONFIG;
+            if (!config) { 
                 throw new Error("Error fetching configuration.");
             }
-            localStorage.setItem('sdkConfig', JSON.stringify(this.TEST_CONFIG));
-            //this.saveConfig(this.TEST_CONFIG);
-            //console.log(this.TEST_CONFIG);
-            return this.TEST_CONFIG;
+            localStorage.setItem('sdkConfig', JSON.stringify(config));
+            //console.log('saved configuration.');
+            return config;
         }
         catch(error) {
             console.error('Fetch configuration failed:', error);
@@ -76,7 +73,7 @@ export class Configuration {
         }
     }
 
-    private startFetchingConfiguration(){
+    public startFetchingConfiguration(){
         // Fetch configuration immediately and then every 1 minute
         this.fetchConfiguration();
         setInterval(() => {               //first is the function and then the interval

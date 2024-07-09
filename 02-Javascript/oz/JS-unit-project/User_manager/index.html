@@ -116,9 +116,9 @@
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
                     deleteButton.onclick = function() {
-                        // Remove the row from the table
+                        
                         row.remove();
-                        // Remove data from localStorage
+                        
                         localStorage.removeItem(userId);
                     };
                     deleteButtonCell.appendChild(deleteButton);

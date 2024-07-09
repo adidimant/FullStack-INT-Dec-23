@@ -1,0 +1,18 @@
+// ts-files/tsconfig.json
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "../dist", // Assuming you want output directory one level up in 'dist'
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "./**/*.ts" // Include all TypeScript files within ts-files directory and subdirectories
+  ],
+  "exclude": [
+    "node_modules",
+    "dist" // Exclude the output directory
+  ]
+}

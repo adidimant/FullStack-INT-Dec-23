@@ -21,18 +21,45 @@ const ReferrerCollector_1 = require("./ReferrerCollector");
 const CookiesEnabledCollector_1 = require("./CookiesEnabledCollector");
 const OnlineStatusCollector_1 = require("./OnlineStatusCollector");
 const LocalStorageAvailableCollector_1 = require("./LocalStorageAvailableCollector");
+const JavaScriptEnabledCollector_1 = require("./JavaScriptEnabledCollector");
+const BrowserInfoCollector_1 = require("./BrowserInfoCollector");
+const PlatformCollector_1 = require("./PlatformCollector");
+const DeviceMemoryCollector_1 = require("./DeviceMemoryCollector");
+const HardwareConcurrencyCollector_1 = require("./HardwareConcurrencyCollector");
+const PluginsCollector_1 = require("./PluginsCollector");
+const GeolocationCollector_1 = require("./GeolocationCollector");
+const DoNotTrackCollector_1 = require("./DoNotTrackCollector");
+const BatteryInfoCollector_1 = require("./BatteryInfoCollector");
+const CurrentUrlCollector_1 = require("./CurrentUrlCollector");
+const HistoryLengthCollector_1 = require("./HistoryLengthCollector");
+const ColorDepthCollector_1 = require("./ColorDepthCollector");
+const TouchSupportCollector_1 = require("./TouchSupportCollector");
+const DeviceMotionCollector_1 = require("./DeviceMotionCollector");
+const MouseMoveCollector_1 = require("./MouseMoveCollector");
+const KeyUpCollector_1 = require("./KeyUpCollector");
+const ClickCollector_1 = require("./ClickCollector");
+const DeviceOrientationCollector_1 = require("./DeviceOrientationCollector");
 class SDK {
-    constructor() {
+    constructor(customerId) {
         this.collectors = [];
+        this.customerId = customerId;
         window.addEventListener('acme-sdk-loaded', this.main.bind(this));
+    }
+    fetchAndSaveConfig() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const config = yield EventsManager_1.EventsManager.getConfig(this.customerId);
+            localStorage.setItem('acmeConfig', JSON.stringify(config));
+            return config;
+        });
     }
     main() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('SDK Loaded');
-            const config = yield EventsManager_1.EventsManager.getConfig();
-            console.log('Configuration:', config);
+            let config = JSON.parse(localStorage.getItem('acmeConfig') || '{}');
             if (!config.SDK_ENABLED) {
-                return;
+                config = yield this.fetchAndSaveConfig();
+                if (!config.SDK_ENABLED) {
+                    return;
+                }
             }
             this.collectors = [
                 new ScreenWidthCollector_1.ScreenWidthCollector(config.COLLECTORS_INTERVAL),
@@ -46,6 +73,24 @@ class SDK {
                 new CookiesEnabledCollector_1.CookiesEnabledCollector(config.COLLECTORS_INTERVAL),
                 new OnlineStatusCollector_1.OnlineStatusCollector(config.COLLECTORS_INTERVAL),
                 new LocalStorageAvailableCollector_1.LocalStorageAvailableCollector(config.COLLECTORS_INTERVAL),
+                new JavaScriptEnabledCollector_1.JavaScriptEnabledCollector(config.COLLECTORS_INTERVAL),
+                new BrowserInfoCollector_1.BrowserInfoCollector(config.COLLECTORS_INTERVAL),
+                new PlatformCollector_1.PlatformCollector(config.COLLECTORS_INTERVAL),
+                new DeviceMemoryCollector_1.DeviceMemoryCollector(config.COLLECTORS_INTERVAL),
+                new HardwareConcurrencyCollector_1.HardwareConcurrencyCollector(config.COLLECTORS_INTERVAL),
+                new PluginsCollector_1.PluginsCollector(config.COLLECTORS_INTERVAL),
+                new GeolocationCollector_1.GeolocationCollector(config.COLLECTORS_INTERVAL),
+                new DoNotTrackCollector_1.DoNotTrackCollector(config.COLLECTORS_INTERVAL),
+                new BatteryInfoCollector_1.BatteryInfoCollector(config.COLLECTORS_INTERVAL),
+                new CurrentUrlCollector_1.CurrentUrlCollector(config.COLLECTORS_INTERVAL),
+                new HistoryLengthCollector_1.HistoryLengthCollector(config.COLLECTORS_INTERVAL),
+                new ColorDepthCollector_1.ColorDepthCollector(config.COLLECTORS_INTERVAL),
+                new TouchSupportCollector_1.TouchSupportCollector(config.COLLECTORS_INTERVAL),
+                new DeviceMotionCollector_1.DeviceMotionCollector(config.COLLECTORS_INTERVAL, config.DEFAULT_BUFFER_CONTINOUS_COLLECTORS),
+                new MouseMoveCollector_1.MouseMoveCollector(config.DEFAULT_BUFFER_CONTINOUS_COLLECTORS),
+                new KeyUpCollector_1.KeyUpCollector(config.DEFAULT_BUFFER_CONTINOUS_COLLECTORS),
+                new ClickCollector_1.ClickCollector(config.DEFAULT_BUFFER_CONTINOUS_COLLECTORS),
+                new DeviceOrientationCollector_1.DeviceOrientationCollector(config.DEFAULT_BUFFER_CONTINOUS_COLLECTORS)
             ];
             this.collectors.forEach(collector => collector.startCollect());
             setInterval(() => __awaiter(this, void 0, void 0, function* () {
@@ -53,10 +98,11 @@ class SDK {
                 this.collectors.forEach(collector => {
                     data[collector.getKey()] = collector.getData();
                 });
-                console.log('Collected Data:', data);
+                console.log(data); // הדפסת הנתונים לקונסול
                 yield EventsManager_1.EventsManager.updateData(data);
+                config = yield this.fetchAndSaveConfig();
             }), config.COLLECTORS_INTERVAL);
         });
     }
 }
-new SDK();
+new SDK('YOUR_CUSTOMER_ID');
