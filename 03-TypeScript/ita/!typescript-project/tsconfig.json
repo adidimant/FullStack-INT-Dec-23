@@ -1,0 +1,15 @@
+{
+"compilerOptions": {
+      "target": "es6", // or any other target you need
+      //"target": "ES2015",
+      "lib": ["ES2016", "DOM", "es2017"],
+      "module": "es6", // or any other module system you use
+      "outDir": "./dist", // specify output directory
+      "rootDir": "./src", // specify input directory
+      "strict": true // enable all strict type-checking options
+    },
+    "include": [
+      "src",          // include source files
+      "global.d.ts"         // include the types directory
+    ]
+}
