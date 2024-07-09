@@ -4,11 +4,11 @@ export class Utils<T> {
     constructor() {
     }
 
-    static maintainLastXItems<T>(arr: T[], bufferSize: number, newItem: T): T[] {
-        if (arr.length >= bufferSize) {
-            arr.shift(); //Remove the first item
-        }
+    static maintainLastXItems<T>(arr: Array<T | null>, bufferSize: number, newItem: T | null): Array<T | null> {
         arr.push(newItem);
+        if (arr.length > bufferSize) {
+            arr.shift(); // Remove the oldest item
+        };
         return arr;
     }
 

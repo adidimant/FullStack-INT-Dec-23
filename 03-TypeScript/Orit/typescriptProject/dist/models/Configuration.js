@@ -12,7 +12,7 @@ export class Configuration {
     constructor() {
         this.TEST_CONFIG = {
             COLLECTORS_INTERVAL: 60000,
-            DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10,
+            DEFAULT_BUFFER_CONTINUOUS_COLLECTORS: 10,
             SDK_ENABLED: true
         };
         this.customerId = this.getOrGenerateCustomerId();
@@ -26,9 +26,6 @@ export class Configuration {
         }
         return savedCustomerId;
     }
-    saveConfig(configObj) {
-        localStorage.setItem('sdkConfig', JSON.stringify(configObj));
-    }
     /*public async getConfigFromStorage(): Promise<ConfigResponse | void> {
         const config = localStorage.getItem('sdkConfig');
         if (!config) {
@@ -41,7 +38,7 @@ export class Configuration {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.customerId) {
                 console.error('Customer ID not found');
-                this.getOrGenerateCustomerId();
+                this.getOrGenerateCustomerId(); // TODO: and then regenerate each time customer id not found?
             }
             //encodeURIComponent() is needed for when the customer Id contains special characters.
             const url = `https://acme-server.com/conf?customerId=${encodeURIComponent(this.customerId)}`;
@@ -60,13 +57,14 @@ export class Configuration {
                 const config: ConfigResponse = response.json();
                 localStorage.setItem('sdkConfig', JSON.stringify(config));
                 return config;*/
-                if (!this.TEST_CONFIG) {
+                // Use test_config
+                const config = this.TEST_CONFIG;
+                if (!config) {
                     throw new Error("Error fetching configuration.");
                 }
-                localStorage.setItem('sdkConfig', JSON.stringify(this.TEST_CONFIG));
-                //this.saveConfig(this.TEST_CONFIG);
-                console.log(this.TEST_CONFIG);
-                return this.TEST_CONFIG;
+                localStorage.setItem('sdkConfig', JSON.stringify(config));
+                //console.log('saved configuration.');
+                return config;
             }
             catch (error) {
                 console.error('Fetch configuration failed:', error);

@@ -73,7 +73,7 @@ const referrer = document.referrer;
 // is localStorage enabled:
 const localStorageAvailable = typeof(Storage) !== 'undefined';
 // network information:
-function getNetworkInformation() {
+function getNetworkInformation() {  - לא מומש
   return new Promise(resolve => {
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     resolve(connection);

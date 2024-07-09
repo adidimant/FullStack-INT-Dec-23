@@ -151,8 +151,25 @@ function insertIntoBST<T>(root: TreeNode<T> | null, value: T): boolean {
   // In total: logn
 }
 
+class Tree<T> {
+  private root: TreeNode<T> | null;
+
+  constructor(root: TreeNode<T> | null) {
+    this.root = root;
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+  setRoot(root: TreeNode<T> | null): void {
+    this.root = root;
+  }
+}
+
 // returns boolean indicates the removal success/failure. or the root, in case the value to be removed is the root - then we return the new root
-function removeFromBST<T>(root: TreeNode<T> | null, value: T): boolean {
+function removeItemFromBST<T>(tree: Tree<T>, value: T): boolean {
+  let root = tree.getRoot();
   if (!root) {
     return false;
   }
@@ -162,37 +179,74 @@ function removeFromBST<T>(root: TreeNode<T> | null, value: T): boolean {
   // 3) needs to delete a middle node - that has only 1 child (left or right)
   // 4) needs to delete a node that doesn't have any children nodes
 
-  if (root.getValue() == value) {
-    let right = root.getRight();
-    let left = root.getLeft();
+  let currentNode: TreeNode<T> | null = root;
+  let previousNode = root;
+  let isInRoot = true;
 
-    if (!right && !left) {
-      root = null;
-      return true;
-    }
-
-    if (right && left) {
-      const lowestNodeInRight = getLowestNodeInTree(right);
-      lowestNodeInRight?.setLeft(left);
-      root = right;
-      return true;
-    }
-
-    if (right) {
-      root = right;
-      return true;
-    }
-
-    if (left) {
-      root = left;
-      return true;
+  while (currentNode != null) {
+    if (currentNode.getValue() == value) {
+      let right = root.getRight();
+      let left = root.getLeft();
+  
+      if (!right && !left) {
+        if (isInRoot) {
+          tree.setRoot(null);
+        }
+        return true;
+      }
+  
+      if (right && left) {
+        const lowestNodeInRight = getLowestNodeInTree(right);
+        lowestNodeInRight?.setLeft(left);
+        if (isInRoot) {
+          tree.setRoot(right);
+        } else {
+          if (previousNode.getValue() > right.getValue()) {
+            previousNode?.setLeft(right);
+          } else {
+            previousNode?.setRight(right);
+          }
+        }
+        return true;
+      }
+  
+      if (right) {
+        if (isInRoot) {
+          tree.setRoot(right);
+        } else {
+          if (previousNode?.getValue() > right.getValue()) {
+            previousNode?.setLeft(right);
+          } else {
+            previousNode?.setRight(right);
+          }
+        }
+        return true;
+      }
+  
+      if (left) {
+        if (isInRoot) {
+          tree.setRoot(left);
+        } else {
+          if (previousNode?.getValue() > left.getValue()) {
+            previousNode?.setLeft(left);
+          } else {
+            previousNode?.setRight(left);
+          }
+        }
+        return true;
+      }
+    } else {
+      previousNode = currentNode;
+      if (currentNode.getValue() > value) {
+        currentNode = currentNode.getLeft();
+      } else {
+        currentNode = currentNode.getRight();
+      }
+      isInRoot = false;
     }
   }
 
-  if (root.getValue() > value) {
-    return removeFromBST<T>(root.getLeft(), value);
-  }
-  return removeFromBST<T>(root.getRight(), value);
+  return false;
 }
 
 // HW:
