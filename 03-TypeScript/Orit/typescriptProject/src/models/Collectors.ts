@@ -51,6 +51,7 @@ export class ScreenWidthCollector implements Collector<number> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -100,6 +101,7 @@ export class ScreenHeightCollector implements Collector<number> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -151,6 +153,7 @@ export class LanguageCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -200,6 +203,7 @@ export class UserAgentCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -249,6 +253,7 @@ export class TimeZoneCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -298,6 +303,7 @@ export class CookiesEnabledCollector implements Collector<boolean> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -348,6 +354,7 @@ export class JavascriptEnabledCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -391,6 +398,7 @@ export class OnlineStatusCollector implements Collector<boolean> {
         } catch(error: any) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -400,6 +408,7 @@ export class OnlineStatusCollector implements Collector<boolean> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -443,6 +452,7 @@ export class ReferrerCollector implements Collector<string> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -452,6 +462,7 @@ export class ReferrerCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -495,6 +506,7 @@ export class LocalStorageEnabledCollector implements Collector<boolean> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -504,6 +516,7 @@ export class LocalStorageEnabledCollector implements Collector<boolean> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -552,12 +565,13 @@ export class NetworkInformationCollector implements Collector<NetworkInformation
         getNetworkInformation()
             .then(connection => {
                 this.data = connection;
-                console.log('Initial collected data:', this.data);
+                //console.log('Initial collected data:', this.data);
                 EventsManager.addCollectorData2(this.getKey(), this.data);
             })
             .catch(error => {
                 console.error(`Error in ${this.constructor.name}.startCollect initial collection:`, error.message);
-                this.data = null; // Handle error by setting data to null or other appropriate action
+                this.data = null; // Handle error by setting data to null
+                EventsManager.addCollectorData2(this.getKey(), this.data);
             });
 
         // Set interval for subsequent collections
@@ -565,12 +579,13 @@ export class NetworkInformationCollector implements Collector<NetworkInformation
             getNetworkInformation()
                 .then(connection => {
                     this.data = connection;
-                    console.log('Updated collected data:', this.data);
-                    EventsManager.addCollectorData2(this.getKey(), this.data); // No Idea why console.log print correct data, but eventmanager saves empty object.
+                    //console.log('Updated collected data:', this.data);
+                    EventsManager.addCollectorData2(this.getKey(), this.data); 
                 })
                 .catch(error => {
                     console.error(`Error in ${this.constructor.name}.startCollect interval callback:`, error.message);
-                    this.data = null; // Handle error by setting data to null or other appropriate action
+                    this.data = null; // Handle error by setting data to null
+                    EventsManager.addCollectorData2(this.getKey(), this.data);
                 });
         }, this.interval);
     }
@@ -582,6 +597,7 @@ export class NetworkInformationCollector implements Collector<NetworkInformation
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -626,6 +642,7 @@ export class ClipboardCollector implements Collector<Clipboard> {
             } catch(error: any){
                 console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
                 this.data = null;
+                EventsManager.addCollectorData(this);
             }
         }
     }
@@ -636,6 +653,7 @@ export class ClipboardCollector implements Collector<Clipboard> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -699,6 +717,7 @@ export class BrowserInfoCollector implements Collector<string> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -708,6 +727,7 @@ export class BrowserInfoCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -752,6 +772,7 @@ export class HardwareConcurrencyCollector implements Collector<number> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 
     getKey(): string {
@@ -811,6 +832,7 @@ export class PlatformCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -858,6 +880,7 @@ export class DeviceMemoryCollector implements DeviceMemoryCollectorType<number> 
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -901,6 +924,7 @@ export class PluginsCollector implements Collector<string[]> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -910,6 +934,7 @@ export class PluginsCollector implements Collector<string[]> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -996,6 +1021,7 @@ export class GeolocationCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -1061,6 +1087,7 @@ export class DoNotTrackInfoCollector implements Collector<string> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -1070,6 +1097,7 @@ export class DoNotTrackInfoCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -1129,6 +1157,7 @@ export class DoNotTrackInfoCollector implements Collector<string> {
                 .catch(error => {
                     console.error(`Error in ${this.constructor.name}.startCollect data collection: ${error.message}`);
                     this.data = null;
+        EventsManager.addCollectorData(this);
                 });
         };
         // first collect data
@@ -1146,6 +1175,7 @@ export class DoNotTrackInfoCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }*/
 
@@ -1189,6 +1219,7 @@ export class CurrentURLCollector implements Collector<string> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -1198,6 +1229,7 @@ export class CurrentURLCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -1241,6 +1273,7 @@ export class HistoryLengthCollector implements Collector<number> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -1250,6 +1283,7 @@ export class HistoryLengthCollector implements Collector<number> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -1293,6 +1327,7 @@ export class ColorDepthCollector implements Collector<number> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -1302,6 +1337,7 @@ export class ColorDepthCollector implements Collector<number> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 
@@ -1346,6 +1382,7 @@ export class TouchSupportCollector implements Collector<string> {
         } catch(error: any){
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
 
@@ -1355,5 +1392,6 @@ export class TouchSupportCollector implements Collector<string> {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }

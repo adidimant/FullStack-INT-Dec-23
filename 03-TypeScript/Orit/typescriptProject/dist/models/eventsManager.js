@@ -40,7 +40,7 @@ export class EventsManager {
         return EventsManager.collectedData['ScreenWidthCollector'];
     }
     updateData() {
-        console.log('data object is: ' + JSON.stringify(EventsManager.collectedData));
+        console.log('data object is: ', EventsManager.collectedData);
         const url = `https://acme-server.com/data`;
         // Perform POST request to update the data
         fetch(url, {
