@@ -11,7 +11,7 @@ const config = EventsManager.getConfig();
 export class MouseMoveCollector implements Collector<MouseEvent>, ContinuousCollector<MouseEvent> {
     public interval: number;
     public key: string;
-    private data: Array<MouseEvent | null>;
+    private data: Array<MouseEvent | null> | null;
     public SDK_ENABLED: boolean;
     public bufferSize: number;
     private collectionInterval: number | null; // needed as an ID for the interval
@@ -29,7 +29,7 @@ export class MouseMoveCollector implements Collector<MouseEvent>, ContinuousColl
       return this.key;
     }
 
-    getData(): Array<MouseEvent | null> {
+    getData(): Array<MouseEvent | null> | null {
       return this.data;
     }
 
@@ -37,8 +37,12 @@ export class MouseMoveCollector implements Collector<MouseEvent>, ContinuousColl
       if (this.SDK_ENABLED) {
         document.addEventListener("mousemove", (mousemoveEvent) => {
           if (mousemoveEvent) {
-            this.data = Utils.maintainLastXItems(this.data, this.bufferSize, mousemoveEvent);
-            EventsManager.addCollectorData(this);
+            if (this.data !== null) {
+              this.data = Utils.maintainLastXItems(this.data, this.bufferSize, mousemoveEvent);
+              EventsManager.addCollectorData(this);
+            } else {
+                console.error('Data array is null. Cannot collect data'); //should never happen
+            }
           }
         });
         this.collectionInterval = window.setInterval(() => {
@@ -52,8 +56,7 @@ export class MouseMoveCollector implements Collector<MouseEvent>, ContinuousColl
         clearInterval(this.collectionInterval);
         this.collectionInterval = null;
       }
-      this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-      EventsManager.addCollectorData(this);
+      this.data = null;
     }
 }
 
@@ -62,7 +65,7 @@ export class MouseMoveCollector implements Collector<MouseEvent>, ContinuousColl
 export class KeyboardPressingCollector implements Collector<KeyboardEvent>, ContinuousCollector<KeyboardEvent> {
   public interval: number;
   public key: string;
-  private data: Array<KeyboardEvent | null>;
+  private data: Array<KeyboardEvent | null> | null;
   public SDK_ENABLED: boolean;
   public bufferSize: number;
   private collectionInterval: number | null; // needed as an ID for the interval
@@ -80,7 +83,7 @@ export class KeyboardPressingCollector implements Collector<KeyboardEvent>, Cont
     return this.key;
   }
 
-  getData(): Array<KeyboardEvent | null> {
+  getData(): Array<KeyboardEvent | null> | null {
     return this.data;
   }
 
@@ -88,8 +91,12 @@ export class KeyboardPressingCollector implements Collector<KeyboardEvent>, Cont
     if (this.SDK_ENABLED) {
       document.addEventListener("keyup", (keyupEvent) => {
         if (keyupEvent) {
-          this.data = Utils.maintainLastXItems(this.data, this.bufferSize, keyupEvent);
-          EventsManager.addCollectorData(this);
+          if (this.data !== null) {
+            this.data = Utils.maintainLastXItems(this.data, this.bufferSize, keyupEvent);
+            EventsManager.addCollectorData(this);
+          } else {
+              console.error('Data array is null. Cannot collect data'); //should never happen
+          }
         }
       });
       this.collectionInterval = window.setInterval(() => {
@@ -103,8 +110,7 @@ export class KeyboardPressingCollector implements Collector<KeyboardEvent>, Cont
       clearInterval(this.collectionInterval);
       this.collectionInterval = null;
     }
-    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-    EventsManager.addCollectorData(this);
+    this.data = null;
   }
 }
 
@@ -113,7 +119,7 @@ export class KeyboardPressingCollector implements Collector<KeyboardEvent>, Cont
 export class ClicksCollector implements Collector<MouseEvent>, ContinuousCollector<MouseEvent> {
   public interval: number;
   public key: string;
-  private data: Array<MouseEvent | null>;
+  private data: Array<MouseEvent | null> | null;
   public SDK_ENABLED: boolean;
   public bufferSize: number;
   private collectionInterval: number | null; // needed as an ID for the interval
@@ -131,7 +137,7 @@ export class ClicksCollector implements Collector<MouseEvent>, ContinuousCollect
     return this.key;
   }
 
-  getData(): Array<MouseEvent | null> {
+  getData(): Array<MouseEvent | null> |null {
     return this.data;
   }
 
@@ -139,8 +145,12 @@ export class ClicksCollector implements Collector<MouseEvent>, ContinuousCollect
     if (this.SDK_ENABLED) {
       document.addEventListener("click", (clickEvent) => {
         if (clickEvent) {
-          this.data = Utils.maintainLastXItems(this.data, this.bufferSize, clickEvent);
-          EventsManager.addCollectorData(this);
+          if (this.data !== null) {
+            this.data = Utils.maintainLastXItems(this.data, this.bufferSize, clickEvent);
+            EventsManager.addCollectorData(this);
+          } else {
+              console.error('Data array is null. Cannot collect data'); //should never happen
+          }
         }
       });
       this.collectionInterval = window.setInterval(() => {
@@ -154,8 +164,7 @@ export class ClicksCollector implements Collector<MouseEvent>, ContinuousCollect
       clearInterval(this.collectionInterval);
       this.collectionInterval = null;
     }
-    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-    EventsManager.addCollectorData(this);
+    this.data = null;
   }
 }
 
@@ -164,7 +173,7 @@ export class ClicksCollector implements Collector<MouseEvent>, ContinuousCollect
 export class DeviceMotionCollector implements Collector<DeviceMotionEvent>, ContinuousCollector<DeviceMotionEvent> {
   public interval: number;
   public key: string;
-  private data: Array<DeviceMotionEvent | null>;
+  private data: Array<DeviceMotionEvent | null> | null;
   public SDK_ENABLED: boolean;
   public bufferSize: number;
   private collectionInterval: number | null; // needed as an ID for the interval
@@ -182,7 +191,7 @@ export class DeviceMotionCollector implements Collector<DeviceMotionEvent>, Cont
     return this.key;
   }
 
-  getData(): Array<DeviceMotionEvent | null> {
+  getData(): Array<DeviceMotionEvent | null> | null{
     return this.data;
   }
 
@@ -209,8 +218,12 @@ startCollect(): void {
   if (this.SDK_ENABLED) {
     this.getDeviceMotion()
       .then(event => {
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-        EventsManager.addCollectorData(this);
+        if (this.data !== null) {
+          this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+          EventsManager.addCollectorData(this);
+        } else {
+            console.error('Data array is null. Cannot collect data'); //should never happen
+        }
       })
       .catch(error => {
         console.error('Error retrieving device motion data:', error.message);
@@ -219,8 +232,12 @@ startCollect(): void {
     this.collectionInterval = window.setInterval(() => {
       this.getDeviceMotion()
         .then(event => {
-          this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-          EventsManager.addCollectorData(this);
+          if (this.data !== null) {
+            this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+            EventsManager.addCollectorData(this);
+          } else {
+              console.error('Data array is null. Cannot collect data'); //should never happen
+          }
         })
         .catch(error => {
           console.error('Error retrieving device motion data:', error.message);
@@ -234,8 +251,7 @@ startCollect(): void {
       clearInterval(this.collectionInterval);
       this.collectionInterval = null;
     }
-    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-    EventsManager.addCollectorData(this);
+    this.data = null;
   }
 }
 
@@ -244,7 +260,7 @@ startCollect(): void {
 export class DeviceOrientationCollector implements Collector<DeviceOrientationEvent>, ContinuousCollector<DeviceOrientationEvent> {
   public interval: number;
   public key: string;
-  private data: Array<DeviceOrientationEvent | null>;
+  private data: Array<DeviceOrientationEvent | null> | null;
   public SDK_ENABLED: boolean;
   public bufferSize: number;
   private collectionInterval: number | null; // needed as an ID for the interval
@@ -262,7 +278,7 @@ export class DeviceOrientationCollector implements Collector<DeviceOrientationEv
     return this.key;
   }
 
-  getData(): Array<DeviceOrientationEvent | null> {
+  getData(): Array<DeviceOrientationEvent | null> | null {
     return this.data;
   }
 
@@ -286,10 +302,17 @@ private getDeviceOrientation(): Promise<DeviceOrientationEvent> {
 
 startCollect(): void {
   if (this.SDK_ENABLED) {
+    if (this.data === null) {
+      this.data = [];
+    }
     this.getDeviceOrientation()
       .then(event => {
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-        EventsManager.addCollectorData(this);
+        if (this.data !== null) {
+            this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+            EventsManager.addCollectorData(this);
+        } else {
+            console.error('Data array is null. Cannot collect device orientation data.'); //should never happen
+        }
       })
       .catch(error => {
         console.error('Error retrieving device motion data:', error.message);
@@ -298,9 +321,11 @@ startCollect(): void {
     this.collectionInterval = window.setInterval(() => {
       this.getDeviceOrientation()
         .then(event => {
-          this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-          EventsManager.addCollectorData(this);
-          console.log('Collected device motion data:', event);
+          if (this.data !== null) {
+              EventsManager.addCollectorData(this);
+          } else {
+              console.error('Data array is null. Cannot collect device orientation data.'); //should never happen
+          }
         })
         .catch(error => {
           console.error('Error retrieving device motion data:', error.message);
@@ -314,7 +339,6 @@ startCollect(): void {
       clearInterval(this.collectionInterval);
       this.collectionInterval = null;
     }
-    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-    EventsManager.addCollectorData(this);
+    this.data = null;
   }
 }

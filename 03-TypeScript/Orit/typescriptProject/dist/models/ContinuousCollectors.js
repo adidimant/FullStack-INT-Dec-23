@@ -22,8 +22,13 @@ export class MouseMoveCollector {
         if (this.SDK_ENABLED) {
             document.addEventListener("mousemove", (mousemoveEvent) => {
                 if (mousemoveEvent) {
-                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, mousemoveEvent);
-                    EventsManager.addCollectorData(this);
+                    if (this.data !== null) {
+                        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, mousemoveEvent);
+                        EventsManager.addCollectorData(this);
+                    }
+                    else {
+                        console.error('Data array is null. Cannot collect data'); //should never happen
+                    }
                 }
             });
             this.collectionInterval = window.setInterval(() => {
@@ -36,8 +41,7 @@ export class MouseMoveCollector {
             clearInterval(this.collectionInterval);
             this.collectionInterval = null;
         }
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-        EventsManager.addCollectorData(this);
+        this.data = null;
     }
 }
 // A class to monitor keyboard pressing:
@@ -61,8 +65,13 @@ export class KeyboardPressingCollector {
         if (this.SDK_ENABLED) {
             document.addEventListener("keyup", (keyupEvent) => {
                 if (keyupEvent) {
-                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, keyupEvent);
-                    EventsManager.addCollectorData(this);
+                    if (this.data !== null) {
+                        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, keyupEvent);
+                        EventsManager.addCollectorData(this);
+                    }
+                    else {
+                        console.error('Data array is null. Cannot collect data'); //should never happen
+                    }
                 }
             });
             this.collectionInterval = window.setInterval(() => {
@@ -75,8 +84,7 @@ export class KeyboardPressingCollector {
             clearInterval(this.collectionInterval);
             this.collectionInterval = null;
         }
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-        EventsManager.addCollectorData(this);
+        this.data = null;
     }
 }
 // A class to monitor clicks:
@@ -100,8 +108,13 @@ export class ClicksCollector {
         if (this.SDK_ENABLED) {
             document.addEventListener("click", (clickEvent) => {
                 if (clickEvent) {
-                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, clickEvent);
-                    EventsManager.addCollectorData(this);
+                    if (this.data !== null) {
+                        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, clickEvent);
+                        EventsManager.addCollectorData(this);
+                    }
+                    else {
+                        console.error('Data array is null. Cannot collect data'); //should never happen
+                    }
                 }
             });
             this.collectionInterval = window.setInterval(() => {
@@ -114,8 +127,7 @@ export class ClicksCollector {
             clearInterval(this.collectionInterval);
             this.collectionInterval = null;
         }
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-        EventsManager.addCollectorData(this);
+        this.data = null;
     }
 }
 // A class to monitor device motion - mobile (will success in browsers over mobile devices):
@@ -155,8 +167,13 @@ export class DeviceMotionCollector {
         if (this.SDK_ENABLED) {
             this.getDeviceMotion()
                 .then(event => {
-                this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-                EventsManager.addCollectorData(this);
+                if (this.data !== null) {
+                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+                    EventsManager.addCollectorData(this);
+                }
+                else {
+                    console.error('Data array is null. Cannot collect data'); //should never happen
+                }
             })
                 .catch(error => {
                 console.error('Error retrieving device motion data:', error.message);
@@ -164,8 +181,13 @@ export class DeviceMotionCollector {
             this.collectionInterval = window.setInterval(() => {
                 this.getDeviceMotion()
                     .then(event => {
-                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-                    EventsManager.addCollectorData(this);
+                    if (this.data !== null) {
+                        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+                        EventsManager.addCollectorData(this);
+                    }
+                    else {
+                        console.error('Data array is null. Cannot collect data'); //should never happen
+                    }
                 })
                     .catch(error => {
                     console.error('Error retrieving device motion data:', error.message);
@@ -178,8 +200,7 @@ export class DeviceMotionCollector {
             clearInterval(this.collectionInterval);
             this.collectionInterval = null;
         }
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-        EventsManager.addCollectorData(this);
+        this.data = null;
     }
 }
 // A class to monitor device orientation - mobile (will success in browsers over mobile devices):
@@ -217,10 +238,18 @@ export class DeviceOrientationCollector {
     }
     startCollect() {
         if (this.SDK_ENABLED) {
+            if (this.data === null) {
+                this.data = [];
+            }
             this.getDeviceOrientation()
                 .then(event => {
-                this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-                EventsManager.addCollectorData(this);
+                if (this.data !== null) {
+                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
+                    EventsManager.addCollectorData(this);
+                }
+                else {
+                    console.error('Data array is null. Cannot collect device orientation data.'); //should never happen
+                }
             })
                 .catch(error => {
                 console.error('Error retrieving device motion data:', error.message);
@@ -228,9 +257,12 @@ export class DeviceOrientationCollector {
             this.collectionInterval = window.setInterval(() => {
                 this.getDeviceOrientation()
                     .then(event => {
-                    this.data = Utils.maintainLastXItems(this.data, this.bufferSize, event);
-                    EventsManager.addCollectorData(this);
-                    console.log('Collected device motion data:', event);
+                    if (this.data !== null) {
+                        EventsManager.addCollectorData(this);
+                    }
+                    else {
+                        console.error('Data array is null. Cannot collect device orientation data.'); //should never happen
+                    }
                 })
                     .catch(error => {
                     console.error('Error retrieving device motion data:', error.message);
@@ -243,7 +275,6 @@ export class DeviceOrientationCollector {
             clearInterval(this.collectionInterval);
             this.collectionInterval = null;
         }
-        this.data = Utils.maintainLastXItems(this.data, this.bufferSize, null);
-        EventsManager.addCollectorData(this);
+        this.data = null;
     }
 }
