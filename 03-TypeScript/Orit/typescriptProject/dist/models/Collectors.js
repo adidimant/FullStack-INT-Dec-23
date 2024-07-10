@@ -37,6 +37,7 @@ export class ScreenWidthCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's screen height:
@@ -75,6 +76,7 @@ export class ScreenHeightCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's language:
@@ -115,6 +117,7 @@ export class LanguageCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's userAgent:
@@ -153,6 +156,7 @@ export class UserAgentCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's timeZone:
@@ -191,6 +195,7 @@ export class TimeZoneCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's cookiesEnabled setting:
@@ -229,6 +234,7 @@ export class CookiesEnabledCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's javascript enabled setting:
@@ -268,6 +274,7 @@ export class JavascriptEnabledCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's online status:
@@ -302,6 +309,7 @@ export class OnlineStatusCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -310,6 +318,7 @@ export class OnlineStatusCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's referrer:
@@ -344,6 +353,7 @@ export class ReferrerCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -352,6 +362,7 @@ export class ReferrerCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's localStorage enabled setting:
@@ -386,6 +397,7 @@ export class LocalStorageEnabledCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -394,6 +406,7 @@ export class LocalStorageEnabledCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's network information:
@@ -431,24 +444,26 @@ export class NetworkInformationCollector {
         getNetworkInformation()
             .then(connection => {
             this.data = connection;
-            console.log('Initial collected data:', this.data);
+            //console.log('Initial collected data:', this.data);
             EventsManager.addCollectorData2(this.getKey(), this.data);
         })
             .catch(error => {
             console.error(`Error in ${this.constructor.name}.startCollect initial collection:`, error.message);
-            this.data = null; // Handle error by setting data to null or other appropriate action
+            this.data = null; // Handle error by setting data to null
+            EventsManager.addCollectorData2(this.getKey(), this.data);
         });
         // Set interval for subsequent collections
         this.collectionInterval = window.setInterval(() => {
             getNetworkInformation()
                 .then(connection => {
                 this.data = connection;
-                console.log('Updated collected data:', this.data);
-                EventsManager.addCollectorData2(this.getKey(), this.data); // No Idea why console.log print correct data, but eventmanager saves empty object.
+                //console.log('Updated collected data:', this.data);
+                EventsManager.addCollectorData2(this.getKey(), this.data);
             })
                 .catch(error => {
                 console.error(`Error in ${this.constructor.name}.startCollect interval callback:`, error.message);
-                this.data = null; // Handle error by setting data to null or other appropriate action
+                this.data = null; // Handle error by setting data to null
+                EventsManager.addCollectorData2(this.getKey(), this.data);
             });
         }, this.interval);
     }
@@ -458,6 +473,7 @@ export class NetworkInformationCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's clipboard data:
@@ -493,6 +509,7 @@ export class ClipboardCollector {
             catch (error) {
                 console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
                 this.data = null;
+                EventsManager.addCollectorData(this);
             }
         }
     }
@@ -502,6 +519,7 @@ export class ClipboardCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's connection information: by const connection = navigator.connection, 
@@ -556,6 +574,7 @@ export class BrowserInfoCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -564,6 +583,7 @@ export class BrowserInfoCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the number of logical processor cores available on the user's device:
@@ -598,6 +618,7 @@ export class HardwareConcurrencyCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
     getKey() {
         return this.key;
@@ -647,6 +668,7 @@ export class PlatformCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the users device memory:
@@ -683,6 +705,7 @@ export class DeviceMemoryCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's plugins:
@@ -717,6 +740,7 @@ export class PluginsCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -725,6 +749,7 @@ export class PluginsCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's geolocation position:
@@ -793,6 +818,7 @@ export class GeolocationCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's do not track info
@@ -851,6 +877,7 @@ export class DoNotTrackInfoCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -859,6 +886,7 @@ export class DoNotTrackInfoCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's battery info: 
@@ -917,6 +945,7 @@ export class DoNotTrackInfoCollector {
                 .catch(error => {
                     console.error(`Error in ${this.constructor.name}.startCollect data collection: ${error.message}`);
                     this.data = null;
+        EventsManager.addCollectorData(this);
                 });
         };
         // first collect data
@@ -934,6 +963,7 @@ export class DoNotTrackInfoCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }*/
 // A class to monitor the user's current url:
@@ -968,6 +998,7 @@ export class CurrentURLCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -976,6 +1007,7 @@ export class CurrentURLCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's history length:
@@ -1010,6 +1042,7 @@ export class HistoryLengthCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -1018,6 +1051,7 @@ export class HistoryLengthCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's colorDepth:
@@ -1052,6 +1086,7 @@ export class ColorDepthCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -1060,6 +1095,7 @@ export class ColorDepthCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }
 // A class to monitor the user's touchSupport (for browsers running in mobile/tablets):
@@ -1096,6 +1132,7 @@ export class TouchSupportCollector {
         catch (error) {
             console.error(`Error in ${this.constructor.name}.startCollect interval callback: ${error.message}`);
             this.data = null;
+            EventsManager.addCollectorData(this);
         }
     }
     finishCollect() {
@@ -1104,5 +1141,6 @@ export class TouchSupportCollector {
             this.collectionInterval = null;
         }
         this.data = null;
+        EventsManager.addCollectorData(this);
     }
 }

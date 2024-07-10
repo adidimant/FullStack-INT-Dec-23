@@ -56,12 +56,13 @@ export class EventsManager {
         this.collectedData[key] = value;
         //console.log('data object2 is: ' + JSON.stringify(this.collectedData));
     }
+    
     static getWidth(): DataType {
         return EventsManager.collectedData['ScreenWidthCollector'];
     }
 
     public updateData(): void {
-        console.log('data object is: ' + JSON.stringify(EventsManager.collectedData));
+        console.log('data object is: ', EventsManager.collectedData);
 
         const url: string = `https://acme-server.com/data`;
         // Perform POST request to update the data
