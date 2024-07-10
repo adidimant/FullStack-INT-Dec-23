@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .App-logo {
   height: 40vmin;
@@ -37,11 +34,3 @@
   }
 }
 
-ul.student-list {
-  list-style-type: square;
-}
-
-ul li.student-list-item {
-  color: rgb(139, 139, 215);
-  text-align: left;
-}
