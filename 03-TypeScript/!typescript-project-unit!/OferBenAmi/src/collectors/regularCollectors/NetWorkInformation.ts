@@ -16,9 +16,8 @@ export class NetWorkInformation implements Collector<dataAndTime> {
 	}
 	public async startCollect() {
 		const networkInfo = await this.getNetworkInformation()
-		console.log(networkInfo)
 		this.data.push([networkInfo, Date.now()]);
-		(document.querySelector('#NetWorkInformation-div') as HTMLDivElement).textContent = JSON.stringify(networkInfo) ?? "";
+		(document.querySelector('#NetWorkInformation-div') as HTMLDivElement).textContent = JSON.stringify(networkInfo) ;
 	}
 	public finishCollect() {
   }

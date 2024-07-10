@@ -11,16 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventsManager = void 0;
 class EventsManager {
-    static getConfig() {
+    static getConfig(customerId) {
         return __awaiter(this, void 0, void 0, function* () {
             // חזרה של קונפיגורציה קבועה במקום fetch אמיתי
-            // const response = await fetch(`https://acme-server.com/conf?customerId=YOUR_CUSTOMER_ID`);
+            // const response = await fetch(`https://acme-server.com/conf?customerId=${customerId}`);
             // return response.json();
-            return {
+            const config = {
                 COLLECTORS_INTERVAL: 60000,
                 DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10,
                 SDK_ENABLED: true
             };
+            localStorage.setItem('acmeConfig', JSON.stringify(config));
+            return config;
         });
     }
     static updateData(data) {

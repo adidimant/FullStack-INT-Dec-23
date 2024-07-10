@@ -16,6 +16,7 @@ import { platform } from "./classes/regular_collectors/platform.js"
 import { deviceMemory } from "./classes/regular_collectors/deviceMemory.js"
 import { hardwareConcurrency } from "./classes/regular_collectors/hardwareConcurrency.js"
 import { plugins } from "./classes/regular_collectors/plugins.js"
+import { geolocation } from "./classes/regular_collectors/geolocation.js"
 import { doNotTrack } from "./classes/regular_collectors/doNotTrack.js"
 import { battery } from "./classes/regular_collectors/battery.js"
 import { currentUrl } from "./classes/regular_collectors/currentUrl.js"
@@ -35,9 +36,8 @@ async function main() {
   let collectors
   try {
     const currentConfig = window.localStorage.getItem("configuration");
-    let currentConfigData;
     if (currentConfig) {
-      currentConfigData = JSON.parse(currentConfig);
+      let currentConfigData = JSON.parse(currentConfig);
       if(currentConfigData['SDK_ENABLED']){
         EventsManager.IsEnabled = true;
         chBox.checked = true;
@@ -64,7 +64,7 @@ async function main() {
       console.error(error)
     }
   }
-
+  
   chBox.addEventListener('change',async ()=>{
     if(chBox.checked){
       EventsManager.IsEnabled = true;
@@ -80,41 +80,41 @@ async function main() {
       h3Text.innerText = 'Collect data disabled';
     }
   });
-  
   fetchConf()
   setInterval(async () => {
     fetchConf()
   }, 60000)
   await new Promise(resolve => setTimeout(resolve, 100));
   collectors = [
-    new screenWidth(),
-    new screenHeight(),
-    new language(),
-    new userAgent(),
-    new timeZone(),
-    new cookiesEnabled(),
-    new javaScriptEnabled(),
-    new onlineStatus(),
-    new referrer(),
-    new localStorageEnable(),
-    new networkInformation(),
-    new clipboard(),
-    new browserInfo(),
-    new platform(),
-    new deviceMemory(),
-    new hardwareConcurrency(),
-    new plugins(),
-    new doNotTrack(),
-    new battery(),
-    new currentUrl(),
-    new historyLength(),
-    new colorDepth(),
-    new touchSupport(),
-    new mouseMove(50),
-    new keyboardPressing(50),
-    new clicksPressing(10),
-    new deviceMotion(40),
-    new deviceOrientation(40)
+    new screenWidth(), //0
+    new screenHeight(), //1
+    new language(),  //2
+    new userAgent(), //3
+    new timeZone(), //4                    
+    new cookiesEnabled(), //5
+    new javaScriptEnabled(),  //6
+    new onlineStatus(), //7
+    new referrer(), //8
+    new localStorageEnable(), //9
+    new networkInformation(), //10
+    new clipboard(), //11
+    new browserInfo(), //12
+    new platform(), //13
+    new deviceMemory(), //14
+    new hardwareConcurrency(),  //15
+    new plugins(),  //16
+    new geolocation(), //17
+    new doNotTrack(), //18
+    new battery(), //20
+    new currentUrl(), //21
+    new historyLength(), //22
+    new colorDepth(), //23
+    new touchSupport(), //24
+    new mouseMove(50), //25
+    new keyboardPressing(50), //26
+    new clicksPressing(10), //27
+    new deviceMotion(40), //28
+    new deviceOrientation(40) //29
   ]
 
   document.addEventListener("acme-sdk-loaded", async () => {
@@ -211,40 +211,45 @@ async function main() {
         'Plugins: <span style="color: red">' +
         collectors[16].getData() +
         "</span>"
+      // geolocation
+      document.getElementById("geolocation").innerHTML =
+        'geolocation: <span style="color: red">' +
+        collectors[17].getData() +
+        "</span>"
       // doNotTrack
       document.getElementById("doNotTrack").innerHTML =
         'Do not track: <span style="color: red">' +
-        collectors[17].getData() +
+        collectors[18].getData() +
         "</span>"
       // battery
       document.getElementById("battery").innerHTML =
         'Battery: <span style="color: red">' +
-        collectors[18].getData() +
+        collectors[19].getData() +
         "</span>"
       // currentUrl
       document.getElementById("currentUrl").innerHTML =
         'Current Url: <span style="color: red">' +
-        collectors[19].getData() +
+        collectors[20].getData() +
         "</span>"
       // historyLength
       document.getElementById("historyLength").innerHTML =
         'History length: <span style="color: red">' +
-        collectors[20].getData() +
+        collectors[21].getData() +
         "</span>"
       // colorDepth
       document.getElementById("colorDepth").innerHTML =
         'Color depth: <span style="color: red">' +
-        collectors[21].getData() +
+        collectors[22].getData() +
         "</span>"
       // touchSupport
       document.getElementById("touchSupport").innerHTML =
         'Touch support: <span style="color: red">' +
-        collectors[22].getData() +
+        collectors[23].getData() +
         "</span>"
 
       // mouseMove
       let MouseMovements = ""
-      const mouseMoveData = collectors[23].getData()
+      const mouseMoveData = collectors[24].getData()
       if (Array.isArray(mouseMoveData) && mouseMoveData !== null) {
         mouseMoveData.forEach(
           obj => (MouseMovements += "<br>" + JSON.stringify(obj) + ",")
@@ -257,7 +262,7 @@ async function main() {
 
       // keyboardPressing
       let keyboardPressing = ""
-      const keyboardPressingData = collectors[24].getData()
+      const keyboardPressingData = collectors[25].getData()
       if (
         Array.isArray(keyboardPressingData) &&
         keyboardPressingData !== null
@@ -275,7 +280,7 @@ async function main() {
 
       // clicksPressing
       let clicksPressing = ""
-      const clicksPressingData = collectors[25].getData()
+      const clicksPressingData = collectors[26].getData()
       if (Array.isArray(clicksPressingData) && clicksPressingData !== null) {
         clicksPressingData.forEach(
           obj => (clicksPressing += "<br>" + JSON.stringify(obj) + ",")
@@ -291,7 +296,7 @@ async function main() {
 
       // deviceMotion
       let deviceMotion = ""
-      const deviceMotionData = collectors[26].getData()
+      const deviceMotionData = collectors[27].getData()
       if (Array.isArray(deviceMotionData) && deviceMotionData !== null) {
         deviceMotionData.forEach(
           obj => (deviceMotion += "<br>" + JSON.stringify(obj) + ",")
@@ -305,7 +310,7 @@ async function main() {
 
       // deviceOrientation
       let deviceOrientation = ""
-      const deviceOrientationData = collectors[27].getData()
+      const deviceOrientationData = collectors[28].getData()
       if (
         Array.isArray(deviceOrientationData) &&
         deviceOrientationData !== null

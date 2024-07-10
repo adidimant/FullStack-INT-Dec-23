@@ -6,7 +6,7 @@ declare global {
         deviceMemory?: number;
         hardwareConcurrency?: number;
         msDoNotTrack?: string;
-        clipboard?: any;
+        getBattery?: () => Promise<BatteryManager>;
     }
 
     interface NetworkInformation {
@@ -31,6 +31,12 @@ declare global {
         DeviceOrientationEvent?: any;
         DeviceMotionEvent?: any;
         TouchEvent?: any;
+    }
+
+    interface BatteryManager extends EventTarget {
+        level: number;
+        charging: boolean;
+        addEventListener(type: string, listener: (this: BatteryManager, ev: Event) => any, useCapture?: boolean): void;
     }
 }
 
