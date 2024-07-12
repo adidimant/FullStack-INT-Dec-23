@@ -5,7 +5,7 @@ import { ScreenHeightCollector, ScreenWidthCollector , LanguageCollector , UserA
 } 
 from './collectors/regular-collectors';
 import { Collector } from './collectors/interfaceCollectors';
-import {} from './collectors/continous- collectors';
+import {MouseMoveCollector, KeyboardPressCollector,ClickCollector, DeviceMotionCollector, DeviceOrientationCollector} from './collectors/continous-collectors';
 
 function main(customerId: string) {
     document.addEventListener("acme-sdk-loaded",()=>{
@@ -32,6 +32,11 @@ function main(customerId: string) {
                 new CurrentUrlCollector(config.COLLECTORS_INTERVAL),
                 new HistoryLengthCollector(config.COLLECTORS_INTERVAL),
                 new ColorDepthCollector(config.COLLECTORS_INTERVAL),
+                new MouseMoveCollector(config.COLLECTORS_INTERVAL),
+                new KeyboardPressCollector(config.COLLECTORS_INTERVAL),
+                new ClickCollector(config.COLLECTORS_INTERVAL),
+                new DeviceMotionCollector(config.COLLECTORS_INTERVAL),
+                new DeviceOrientationCollector(config.COLLECTORS_INTERVAL),
             ];
             collectors.forEach(collector => collector.startCollect());
 

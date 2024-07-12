@@ -66,9 +66,13 @@ function main() {
         }
     }, EventsManager.getConfig().COLLECTORS_INTERVAL);
     // Periodically update data to the server
+    eventManager.updateData();
     setInterval(() => {
         eventManager.updateData();
     }, EventsManager.getConfig().COLLECTORS_INTERVAL);
+    window.getCollectedData = () => {
+        return collectors[19].getData();
+    };
 }
 document.addEventListener('DOMContentLoaded', function () {
     const DataObject = EventsManager.getCollectedData();
@@ -76,6 +80,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const widthTextElement = document.getElementById('widthText');
     const getCurrentUrlBtn = document.getElementById('getCurrentUrlBtn');
     const currentUrlElement = document.getElementById('currentUrlText');
+    let getURL = '';
+    if (typeof window.getCollectedData === 'function') {
+        getURL = window.getCollectedData();
+        //console.log('Collected Data:', collectedData);
+    }
+    else {
+        console.error('getCollectedData function is not defined');
+    }
     if (getScreenWidthDataBtn && widthTextElement) {
         getScreenWidthDataBtn.addEventListener('click', () => {
             widthTextElement.textContent = `Screen Width: ${DataObject['ScreenWidthCollector']}`;
@@ -86,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (getCurrentUrlBtn && currentUrlElement) {
         getCurrentUrlBtn.addEventListener('click', () => {
-            currentUrlElement.textContent = `Current url: ${DataObject['CurrentURLCollector']}`;
+            currentUrlElement.textContent = 'Current url: ' + getURL;
         });
     }
     else {
