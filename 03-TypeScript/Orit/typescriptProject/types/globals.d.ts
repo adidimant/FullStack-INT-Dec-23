@@ -19,6 +19,7 @@ declare global { // this is global for all the project
 
     interface Window {
         doNotTrack?: string | null;
+        getCollectedData?: () => any[];
         // non-recognized data-points by typescript here
     }
 }

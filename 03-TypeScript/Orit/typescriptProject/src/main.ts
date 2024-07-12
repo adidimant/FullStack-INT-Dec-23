@@ -91,10 +91,14 @@ function main(): void {
     }, EventsManager.getConfig().COLLECTORS_INTERVAL);
 
     // Periodically update data to the server
+    eventManager.updateData();
     setInterval(() => {
         eventManager.updateData();
     }, EventsManager.getConfig().COLLECTORS_INTERVAL);
 
+    window.getCollectedData = (): any[] => {
+        return collectors[19].getData();
+    };
     
 }
 
@@ -104,6 +108,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const widthTextElement: HTMLElement | null = document.getElementById('widthText');
     const getCurrentUrlBtn: HTMLElement | null = document.getElementById('getCurrentUrlBtn');
     const currentUrlElement: HTMLElement | null = document.getElementById('currentUrlText');
+    let getURL: any[] | string = '';
+
+    if (typeof window.getCollectedData === 'function') {
+        getURL = window.getCollectedData();
+        //console.log('Collected Data:', collectedData);
+    } else {
+        console.error('getCollectedData function is not defined');
+    }    
     
 
     if (getScreenWidthDataBtn && widthTextElement) {
@@ -115,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (getCurrentUrlBtn && currentUrlElement) {
         getCurrentUrlBtn.addEventListener('click', () => {
-            currentUrlElement.textContent = `Current url: ${DataObject['CurrentURLCollector']}`;
+            currentUrlElement.textContent = 'Current url: ' + getURL;
         });
     } else {
         console.error('Button with ID "getScreenWidthDataBtn" or element with ID "widthText" not found.');
