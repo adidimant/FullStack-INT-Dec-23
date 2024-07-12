@@ -1,14 +1,22 @@
-function StudentListItem ({ value }){
+import logo from './logo.svg';
+import './App.css';
+
+function ListItem({ value }) {
+  return <li className='student-list-item'>{value}</li>;
+}
+
+export function StudentList({ students }) {
   return (
     <ul className='student-list'>
-    {
-      prop2.map((item) => (
-        <StudentListItem value={item} />
-      ))
-    }
-</ul>
-  )
+          {
+            students.map((item) => {
+              return <ListItem value={item}></ListItem>
+            })
+          }
+    </ul>
+  );
 }
+
 function App({ prop1, prop2, prop3 }) {
   const a1 = 7;
 
@@ -20,7 +28,6 @@ function App({ prop1, prop2, prop3 }) {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <ListComponent /> */}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -33,7 +40,7 @@ function App({ prop1, prop2, prop3 }) {
           Learn React with {prop1} & {prop2.join(', ')}
         </a>
         The random students for today are:
-      <StudentListItem students={prop2}/ >
+        <StudentList students={prop2} />
       </header>
     </div>
   );

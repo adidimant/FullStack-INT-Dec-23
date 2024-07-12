@@ -1,25 +1,5 @@
 import { Config } from "./interfaces";
 
-declare global {
-	// this is global for all the project
-	interface Navigator {
-		// non-recognized data-points by typescript here
-		userLanguage: string;
-		UserAgent: string;
-		javaEnabled: string | (() => any);
-		connection: object;
-		mozConnection: object | boolean;
-		webkitConnection: string;
-	}
-
-	interface Document {
-		// non-recognized data-points by typescript here
-	}
-
-	interface Window {
-		// non-recognized data-points by typescript here
-	}
-}
 
 export class Utils {
 	public static maintainLastXItems<T>(
