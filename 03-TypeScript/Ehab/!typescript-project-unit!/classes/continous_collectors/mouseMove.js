@@ -1,76 +1,73 @@
-import { Utils } from "../utils.js"
-import { EventsManager } from "../../classes/eventsManager.js"
-
-export class mouseMove {
-  constructor(bufferSize) {
-      const confInterval = EventsManager.getInterval()
-      this.interval = confInterval
-      this.data = null
-      if (bufferSize) {
-        this.bufferSize = bufferSize
-      } else {
-        this.bufferSize = EventsManager.getDefaultBufferContinousCcollectors()
-      }
-      this.collectorArray = new Array()
-      this.intervalId = 0
-  }
-
-  getData() {
-    if(this.collectorArray.length < 1){
-      return null;
-    }
-    return this.collectorArray
-  }
-
-  getKey() {
-    return "mouseMove"
-  }
-
-  collectData() {
-    document.addEventListener("mousemove", mousemoveEvent => {
-      if (mousemoveEvent) {
-        let temp = {
-          clientX: mousemoveEvent["clientX"],
-          clientY: mousemoveEvent["clientY"]
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.mouseMove = void 0;
+const utils_1 = require("../utils");
+const eventsManager_1 = require("../../classes/eventsManager");
+class mouseMove {
+    constructor(bufferSize) {
+        const confInterval = eventsManager_1.EventsManager.getInterval();
+        this.interval = confInterval;
+        this.data = null;
+        if (bufferSize) {
+            this.bufferSize = bufferSize;
         }
-        this.data = temp
-      }
-    })
-  }
-
-  startCollect() {
-    if (EventsManager.IsEnabled) {
-      try {
-        this.collectData()
-        this.intervalId = setInterval(() => {
-          if(!EventsManager.IsEnabled){
-            this.finishCollect();
-            return;
-          }
-          if (this.data) {
-            Utils.maintainLastXItems(
-              this.collectorArray,
-              this.bufferSize,
-              this.data
-            )
-            this.data = null
-          }
-        }, this.interval)
-      } catch (err) {
-        this.data = null
-      }
+        else {
+            this.bufferSize = eventsManager_1.EventsManager.getDefaultBufferContinousCcollectors();
+        }
+        this.collectorArray = new Array();
+        this.intervalId = 0;
     }
-  }
-
-  finishCollect() {
-    try {
-      if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
-        clearInterval(this.intervalId)
-        this.data = null
-        this.collectorArray = []
-      }
-    } catch (err) {
-      throw new Error(err)
+    getData() {
+        if (this.collectorArray.length < 1) {
+            return null;
+        }
+        return this.collectorArray;
     }
-  }
+    getKey() {
+        return 'mouseMove';
+    }
+    collectData() {
+        document.addEventListener("mousemove", (mousemoveEvent) => {
+            if (mousemoveEvent) {
+                let temp = {
+                    'clientX': mousemoveEvent['clientX'],
+                    'clientY': mousemoveEvent['clientY']
+                };
+                this.data = temp;
+            }
+        });
+    }
+    startCollect() {
+        if (eventsManager_1.EventsManager.IsEnabled) {
+            try {
+                this.collectData();
+                this.intervalId = setInterval(() => {
+                    if (!eventsManager_1.EventsManager.IsEnabled) {
+                        this.finishCollect();
+                        return;
+                    }
+                    if (this.data) {
+                        utils_1.Utils.maintainLastXItems(this.collectorArray, this.bufferSize, this.data);
+                        this.data = null;
+                    }
+                }, this.interval);
+            }
+            catch (err) {
+                this.data = null;
+            }
+        }
+    }
+    finishCollect() {
+        try {
+            if (this.intervalId !== null && this.intervalId !== undefined && !eventsManager_1.EventsManager.IsEnabled) {
+                clearInterval(this.intervalId);
+                this.data = null;
+                this.collectorArray = [];
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
 }
+exports.mouseMove = mouseMove;

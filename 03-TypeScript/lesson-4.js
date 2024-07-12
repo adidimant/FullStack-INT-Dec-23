@@ -17,7 +17,7 @@ function magicalV2(array, obj) {
     // do the same up here
     return true;
 }
-const ODirection = {
+const Direction = {
     Up: 0,
     Down: 1,
     Left: 2,
