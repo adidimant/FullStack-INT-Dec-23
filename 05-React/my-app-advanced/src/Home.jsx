@@ -37,7 +37,7 @@ function Home({ prop1, prop2 }) {
             Learn React with {prop1} & {prop2.join(', ')}
           </a>
           The random students for today are:
-          <StudentList students={prop2} />
+          <StudentList students={prop2}/>
           <div>
             <Link
               style={{ backgroundColor: 'red', color: 'white' }}
