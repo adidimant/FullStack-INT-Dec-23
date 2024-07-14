@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
-import Home from './Home';
+import HomePage from './HomePage';
 import Account from './Account';
 
 
@@ -21,7 +21,7 @@ function App() {
         </a>
         <BrowserRouter> 
                 <Routes> 
-                    <Route path="/" element={<Home/>} /> 
+                    <Route path="/" element={<HomePage/>} /> 
                     <Route path="/account" element={<Account/>} />
                 </Routes> 
         </BrowserRouter>
