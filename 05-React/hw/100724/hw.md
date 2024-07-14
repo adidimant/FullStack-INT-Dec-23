@@ -5,7 +5,7 @@ make in this app slight changes you would like
  a) different page components
  b) how to define routing between pages
  c) how to use Link component in order to route between pages
- d) how to import/export component from different modules (export default vs export)
- e) why we need sometimes <></>
+ d) how to import/export component from different modules (and what's the difference between export default vs export)
+ e) why we need sometimes <></> (note - we don't need it in any component, ite depends if the component has a single parent root or not)
  f) how to use css in react
  g) from previous lesson, make sure you know good about: component structure (props, js code, return statement)
