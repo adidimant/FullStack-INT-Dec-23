@@ -1,43 +1,43 @@
-import { EventsManager } from "../../classes/eventsManager.js";
-export class timeZone {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.timeZone = void 0;
+const eventsManager_1 = require("../../classes/eventsManager");
+class timeZone {
     constructor() {
-      const confInterval = EventsManager.getInterval();
-      this.interval = confInterval;
-      this.data = null;
-      this.intervalId = 0;
+        const confInterval = eventsManager_1.EventsManager.getInterval();
+        this.interval = confInterval;
+        this.data = null;
+        this.intervalId = 0;
     }
-  
     getData() {
-      return this.data
+        return this.data;
     }
-  
     getKey() {
-      return "timeZone"
+        return 'timeZone';
     }
-  
     startCollect() {
-      if (EventsManager.IsEnabled) {
-        try {
-          this.data = Intl.DateTimeFormat().resolvedOptions().timeZone
-          this.intervalId = 0
-          this.intervalId = setInterval(() => {
-            if(!EventsManager.IsEnabled){
-              this.finishCollect();
-              return;
+        if (eventsManager_1.EventsManager.IsEnabled) {
+            try {
+                this.data = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                this.intervalId = 0;
+                this.intervalId = setInterval(() => {
+                    if (!eventsManager_1.EventsManager.IsEnabled) {
+                        this.finishCollect();
+                        return;
+                    }
+                    this.data = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                }, this.interval);
             }
-            this.data = Intl.DateTimeFormat().resolvedOptions().timeZone
-          }, this.interval)
-        } catch (err) {
-          this.data = null
+            catch (err) {
+                this.data = null;
+            }
         }
-      }
     }
-  
     finishCollect() {
-      if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
-        clearInterval(this.intervalId)
-        this.data = null
-      }
+        if (this.intervalId !== null && this.intervalId !== undefined && !eventsManager_1.EventsManager.IsEnabled) {
+            clearInterval(this.intervalId);
+            this.data = null;
+        }
     }
-  }
-  
+}
+exports.timeZone = timeZone;

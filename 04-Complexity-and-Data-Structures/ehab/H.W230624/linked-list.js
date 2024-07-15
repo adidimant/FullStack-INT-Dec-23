@@ -96,7 +96,6 @@ class List_1 {
     // In total: O(n)
     // removeItem - removes an item in specific index
     removeItem(index) {
-        var _a;
         if (index < 0) {
             console.log('The index must be a number equal to or greater than zero');
             return;
@@ -108,7 +107,8 @@ class List_1 {
         let counter = 0;
         while (currentNode != null) {
             if (index == 0) {
-                this.head = (_a = this.head) === null || _a === void 0 ? void 0 : _a.getNext();
+                this.head = currentNode.getNext();
+                currentNode.setNext(null);
                 return;
             }
             let previous = currentNode;
@@ -116,7 +116,11 @@ class List_1 {
             counter++;
             if (counter == index && currentNode != null) {
                 previous.setNext(currentNode.getNext());
+                currentNode.setNext(null);
                 return;
+            }
+            else if (currentNode === null) {
+                previous.setNext(null);
             }
         }
         console.error('The index: ' + index + ' is greater than the number of nodes in the list');
@@ -146,6 +150,7 @@ class List_1 {
             }
             if (counter == index) {
                 previous.setNext(null);
+                this.tail = previous;
             }
         }
     }
@@ -180,12 +185,63 @@ class DoublyListNode_1 {
     }
 }
 // Implmenet class DoublyList - and inside this class implement: insertItem, removeItem
-class DoublyList {
+class DoublyList_01 {
     constructor() {
         this.head = null;
         this.tail = null;
     }
     insertItem(data) {
+        // create a new node, with next - null (this is going to be the new last node)
+        // tail.setNext(newNode), then - tail = newNode
+        const newNode = new DoublyListNode(data, null, this.tail);
+        if (this.tail) {
+            this.tail.setNext(newNode);
+        }
+        this.tail = newNode;
+    }
+    // O(1)
+    removeItem(index) {
+        let currentNode = this.head;
+        let counter = 0;
+        while (currentNode) {
+            if (counter == index) {
+                const prevNode = currentNode.getPrev();
+                const nextNode = currentNode.getNext();
+                prevNode === null || prevNode === void 0 ? void 0 : prevNode.setNext(nextNode);
+                nextNode === null || nextNode === void 0 ? void 0 : nextNode.setPrev(prevNode);
+                if (!nextNode) { // updating the tail in case currentNode was the last node (since nextNode is null)
+                    this.tail = prevNode;
+                }
+                if (!prevNode) { // updating the hail in case currentNode was the first node (since prevNode is null)
+                    this.head = nextNode;
+                }
+                currentNode.setNext(null);
+                currentNode.setPrev(null);
+                return true;
+            }
+            currentNode = currentNode.getNext();
+            counter++;
+        }
+        return false;
+    }
+    // O(n)
+    insertAt(data, index) {
+        let currentNode = this.head;
+        let counter = 0;
+        while (currentNode) {
+            if (counter == index) {
+                const nextNode = currentNode.getNext();
+                const newNode = new DoublyListNode(data, nextNode, currentNode);
+                currentNode.setNext(newNode);
+                if (nextNode) {
+                    nextNode.setPrev(newNode);
+                }
+                return true;
+            }
+            currentNode = currentNode.getNext();
+            counter++;
+        }
+        return false;
     }
 }
 // please cover all the edge cases

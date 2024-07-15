@@ -1,0 +1,9 @@
+.images{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+img{
+    border: 5px solid #beb2b2;
+    border-radius: 10px;
+}

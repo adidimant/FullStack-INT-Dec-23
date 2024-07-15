@@ -13,7 +13,7 @@ function StudentList({ students }) {
     <ul className='student-list'>
           {
             students.map((item) => {
-              return <ListItem value={item}></ListItem>
+              return <ListItem key={item} value={item}></ListItem>
             })
           }
     </ul>
@@ -37,9 +37,14 @@ function Home({ prop1, prop2 }) {
             Learn React with {prop1} & {prop2.join(', ')}
           </a>
           The random students for today are:
-          <StudentList students={prop2} />
+          <StudentList students={prop2}/>
           <div>
-            <Link style={ { backgroundColor: 'red', color: 'white' }} to={'/companies'} >Show me Nasdaq Companies!</Link>
+            <Link
+              style={{ backgroundColor: 'red', color: 'white' }}
+              to={'/companies'}
+            >
+              Show me Nasdaq Companies!
+            </Link>
           </div>
       </header>
     </>
