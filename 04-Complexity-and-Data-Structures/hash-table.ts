@@ -14,6 +14,12 @@ const regularObj = {
      city: 'Raanana',
      country: 'Germany',
      zipcode: 69584,
+     payments: {
+      '2020': true,
+      '2021': false,
+      '2022': false,
+      '2023': false,
+     }
    },
    'fonj54lkreln': {...}
  }
@@ -54,15 +60,17 @@ class HashTable<HashType> {
     const hashedValue = this.hashFunction(key); // O(1)
     // search if the cell is already
     if (!this.data[hashedValue]) {
-      this.data[hashedValue] = [];
-    }
-    // search if user already exist:
-    const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key); // ~O(1)
-    if (existingValueIndex > -1) {
-      this.data[hashedValue][existingValueIndex] = value;
+      this.data[hashedValue] = [value];
     } else {
-      this.data[hashedValue].push(value);
+      // search if user already exist:
+      const existingValueIndex = this.data[hashedValue].findIndex((entity: any) => entity[this.keyName] == key); // ~O(1)
+      if (existingValueIndex > -1) {
+        this.data[hashedValue][existingValueIndex] = value;
+      } else {
+        this.data[hashedValue].push(value);
+      }
     }
+    
     // In total: ~O(1)
   }
 

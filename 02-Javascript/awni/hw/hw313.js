@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 //  Write a function that receives an array of objects, and filters all the objects that has at least 5 keys
 
 function filterObj(array) {
@@ -63,3 +65,4 @@ const youngestUser = url.reduse((ele, curruser) => {
 
 console.log(youngestUser);
 ///
+>>>>>>> main
