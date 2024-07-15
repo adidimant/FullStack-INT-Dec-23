@@ -1,15 +1,13 @@
 import { ReactNode } from "react";
-import { Link } from 'react-router-dom';
+import NavBar from "../NavBar/NavBar";
 import './About.scss'
 
 export default function About():ReactNode {
     return(
         <>
+            <NavBar />
             <h1>This is the About Page</h1>
-            <div className="link-div">
-                <button><Link to='/'>Home</Link></button>
-                <button><Link to='/Companies'>Companies</Link></button>
-            </div>
+
         </>
     )
 }
