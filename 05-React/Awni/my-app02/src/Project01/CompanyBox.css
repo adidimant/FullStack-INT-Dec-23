@@ -1,0 +1,31 @@
+.company-item {
+    max-width: 600px;
+    border-radius: 20px;
+    padding: 4px;
+    box-shadow: 6px 6px 10px 0px #ccc;
+  }
+  .company-item .company-name {
+    font-weight: bold;
+  }
+  .company-item img {
+    width: 400px;
+    margin-top: 12px;
+  }
+  .company-item .company-field {
+    margin-bottom: 8px; 
+  }
+
+  @media screen and (max-width: 600px) {
+    .company-item img {
+      width: 100%;
+    }
+
+    .company-item {
+      max-width: 100%;
+    }
+
+    .company-item .company-name {
+      font-size: 1.5rem;
+    }
+
+  }

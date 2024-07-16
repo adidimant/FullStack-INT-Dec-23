@@ -1,0 +1,93 @@
+.container-home {
+    background-color: #fff;
+    height: auto;
+    box-shadow: 4px 4px 10px 0px #ccc;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.container-home h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #333;
+}
+
+.container-home img {
+    width: 100px;
+}
+
+.container-home p {
+    font-size: 1.5rem;
+    color: #000;
+    margin: 10px 0 0 10px;
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 0px #ccc;
+}
+
+.home-content h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #333;
+}
+
+
+.home-content img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.home-content p {
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0 0 10px;
+}
+
+.top-companies {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 0px #ccc;
+}
+
+.top-companies h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #333;
+}
+
+.top-companies table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.top-companies th {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.top-companies td {
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+
+}
