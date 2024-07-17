@@ -6,6 +6,7 @@
 }
 .company-item .company-name {
   font-weight: bold;
+  font-size: 26px;
 }
 .company-item img {
   width: 400px;
