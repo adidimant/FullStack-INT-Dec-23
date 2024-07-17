@@ -15,9 +15,6 @@ export default function MainCompanyDetails({relevantCompany}){
 				Stock Price: {relevantCompany.stockPrice}
 			</div>
 			<div className="company-field">
-				Location: {relevantCompany.location}
-			</div>
-			<div className="company-field">
 				Sectors: {relevantCompany.sectors.join(", ")}
 			</div>
 			<div className="company-field">
@@ -27,6 +24,16 @@ export default function MainCompanyDetails({relevantCompany}){
 				Number Of Employees: {relevantCompany.NumOfEmployees.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
 			</div>
 			<Top3Executives relevantCompany={relevantCompany}/>
+			<div className="company-field">
+				Location: {relevantCompany.location}
+			</div>
+			<iframe
+					src={relevantCompany.mapLocation}
+					width="1300px"
+					height="700"
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+				></iframe>
 			<LinkToCompanies/>
 		</div>
 	</>

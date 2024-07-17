@@ -10,11 +10,12 @@ export default function Amazon(): ReactNode {
 	);
 	if (relevantCompany) {
 		return (
-			<MainCompanyDetails relevantCompany={relevantCompany}/>
+			<>
+				<MainCompanyDetails relevantCompany={relevantCompany} />
+
+			</>
 		);
 	} else {
-		return (
-			<CompanyNotFound/>
-		);
+		return <CompanyNotFound />;
 	}
 }
