@@ -32,7 +32,7 @@ export default function MainCompanyDetails({relevantCompany}){
 					width="1300px"
 					height="700"
 					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
+					referrerPolicy="no-referrer-when-downgrade"
 				></iframe>
 			<LinkToCompanies/>
 		</div>
