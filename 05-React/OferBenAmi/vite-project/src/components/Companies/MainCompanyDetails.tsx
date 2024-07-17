@@ -1,0 +1,34 @@
+import NavBar from "../NavBar/NavBar"
+import Top3Executives from "./Top3Executives"
+import LinkToCompanies from "./LinkToCompanies"
+
+export default function MainCompanyDetails({relevantCompany}){
+	return (
+		<>
+		<NavBar />
+		<div className="container">
+			<img src={relevantCompany.logo} alt={relevantCompany.logo} />
+			<div className="company-field">
+				Establishment Year: {relevantCompany.establishYear}
+			</div>
+			<div className="company-field">
+				Stock Price: {relevantCompany.stockPrice}
+			</div>
+			<div className="company-field">
+				Location: {relevantCompany.location}
+			</div>
+			<div className="company-field">
+				Sectors: {relevantCompany.sectors.join(", ")}
+			</div>
+			<div className="company-field">
+				Description: {relevantCompany.description}
+			</div >
+			<div className="company-field">
+				Number Of Employees: {relevantCompany.NumOfEmployees.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+			</div>
+			<Top3Executives relevantCompany={relevantCompany}/>
+			<LinkToCompanies/>
+		</div>
+	</>
+	)
+}
