@@ -4,3 +4,9 @@ https://query1.finance.yahoo.com/v8/finance/chart/AMZN?period1=1721066400&period
 2) Implement NotFound component to be the default component for the entire app if the route wasn't found.
 
 3) Review today's material - CompanyDetails.jsx component & companyData.js import
+
+
+next lesson - answer:
+a) react component structure
+b) react component render process / life cycle
+c) when do we re-render a react component
