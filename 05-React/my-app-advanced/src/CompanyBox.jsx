@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import './CompanyBox.css';
 
 function CompanyBox({ data }) {
@@ -11,6 +12,7 @@ function CompanyBox({ data }) {
       <div className='company-field' >Location: {data.location}</div>
       <div className='company-field' >Sectors: {data.sectors.join(', ')}</div>
       <div className='company-field' >Description: {data.description}</div>
+      <Link to={'/companyDetails/' + data.name}><button className="company-btn">See more details</button></Link>
     </div>
   );
 };
