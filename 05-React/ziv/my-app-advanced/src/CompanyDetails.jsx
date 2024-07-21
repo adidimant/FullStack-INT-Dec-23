@@ -2,6 +2,9 @@ import './CompanyDetails.css';
 import companiesArray from './companyData';
 import ChartComponent from './ChartComponent';
 
+import NotFound from './NotFound';
+
+
 const NotFound = () => {
   return (
     <div style={{textAlign: 'center', fontSize: '24px', animation: 'spin 2s linear infinite'}}>
