@@ -1,8 +1,9 @@
 import NavBar from "../NavBar/NavBar"
 import Top3Executives from "./Top3Executives"
 import LinkToCompanies from "./LinkToCompanies"
+import { CompanyData } from "./Companies"
 
-export default function MainCompanyDetails({relevantCompany}){
+export default function MainCompanyDetails({relevantCompany}: {relevantCompany:CompanyData}){
 	return (
 		<>
 		<NavBar />
@@ -32,7 +33,7 @@ export default function MainCompanyDetails({relevantCompany}){
 					width="1300px"
 					height="700"
 					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
+					referrerPolicy="no-referrer-when-downgrade"
 				></iframe>
 			<LinkToCompanies/>
 		</div>
