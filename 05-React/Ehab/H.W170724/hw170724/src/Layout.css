@@ -1,0 +1,32 @@
+/* Styles for the navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between; /* Space between the items */
+    background-color: #333; /* Background color of the navbar */
+    padding: 1rem; /* Padding around the navbar */
+}
+
+/* Styles for the unordered list within the navbar */
+nav ul {
+    display: flex; /* Flexbox for the list */
+    list-style: none; /* Remove default list styling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Styles for each list item */
+nav ul li {
+    margin-right: 1rem; /* Space between each list item */
+}
+
+/* Styles for the links */
+nav ul li a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    padding: 0.5rem 1rem; /* Padding around the links */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+nav ul li a:hover {
+    background-color: #575757; /* Background color on hover */
+}

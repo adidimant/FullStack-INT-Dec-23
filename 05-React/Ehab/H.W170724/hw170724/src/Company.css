@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .company-logo {
+  padding: 10px;
+  width: 370px;
+  background-color: burlywood;
+  border: 1px solid rgb(118, 92, 58);
+  border-radius: 12px;
+}
+
+.container .company-field {
+  max-width: 370px;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.header .link a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url('./back-icon.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-left: 10px;
+}
+.container .graph-container{
+  border: 2px solid black;
+  width: 80%;
+}
