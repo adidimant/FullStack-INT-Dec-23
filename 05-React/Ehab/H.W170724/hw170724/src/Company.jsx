@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import NotFound from './NotFound';
 import companiesArray from './companyData';
 import Graph from './Grapg';
 import './Company.css';
@@ -8,6 +9,10 @@ function Company (){
   const pathParts = window.location.pathname.split('/');
   const companyName = pathParts[pathParts.length-1].toLowerCase();
   const relevantCompany = companiesArray.find((company) => company.name.toLowerCase() === companyName);
+  if (!relevantCompany) {
+    return <NotFound />;
+  }
+  
   return(
     <>
       {window.scroll(0,0)}
