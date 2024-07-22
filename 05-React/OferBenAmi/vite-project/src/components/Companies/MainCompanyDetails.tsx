@@ -1,8 +1,9 @@
 import NavBar from "../NavBar/NavBar"
 import Top3Executives from "./Top3Executives"
 import LinkToCompanies from "./LinkToCompanies"
+import { CompanyData } from "./Companies"
 
-export default function MainCompanyDetails({relevantCompany}){
+export default function MainCompanyDetails({relevantCompany}: {relevantCompany:CompanyData}){
 	return (
 		<>
 		<NavBar />

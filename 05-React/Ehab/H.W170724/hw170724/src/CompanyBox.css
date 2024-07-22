@@ -1,0 +1,33 @@
+.company-item {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  border: 1px solid rgb(35, 35, 60);
+  border-radius: 20px;
+  padding: 20px;
+  background-color: rgb(171, 171, 194);
+}
+.company-item .company-name {
+  font-size: 42px;
+  margin-top: 12px;
+  font-weight: bold;
+  align-self: center;
+  text-decoration: underline;
+}
+.company-item img {
+  width: 400px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.company-item .company-field {
+  margin-bottom: 8px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.company-item .company-link {
+  margin: auto auto 0 auto;
+}
+.company-item .company-link a {
+  text-decoration: none;
+  color: navy;
+}
+

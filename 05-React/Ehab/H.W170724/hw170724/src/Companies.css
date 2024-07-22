@@ -1,0 +1,40 @@
+.container {
+  font-size: 20px;
+}
+.container .companies-board .title {
+  text-align: center;
+  width: 100%;
+  font-size: 26px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.container .header {
+  width: 99%;
+}
+
+.container .header .back-link {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container .header .back-link a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url('./back-icon.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.container .companies-board{
+  max-width: 97%;
+}
+.container .companies-board .companies-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
