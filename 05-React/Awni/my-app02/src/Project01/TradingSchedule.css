@@ -1,0 +1,48 @@
+
+
+
+.Trading-schedule{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+.Trading-schedule h1{
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.Trading-schedule h2{
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0 0 10px;
+}
+
+.Trading-schedule p{
+    color: #000;
+    font-size: 1.2rem;
+    margin: 10px 0 15px 10px;
+}
+
+
+.Trading-schedule ul li{
+    display: inline;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+
+
+
+

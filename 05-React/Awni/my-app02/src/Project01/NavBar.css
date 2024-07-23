@@ -1,0 +1,28 @@
+.navbar {
+    background-color: #33333338;
+    color: white;
+    padding: 10px 20px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.navbar ul li {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    
+}
+
+
+.navbar ul li a {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar ul li a:hover {
+    scale: 1.1;
+    transition: all 0.3s;
+}
