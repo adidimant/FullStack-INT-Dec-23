@@ -1,6 +1,6 @@
 
 import logo from './logo.svg';
-import { React } from 'react';
+import { React, memo } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -8,7 +8,7 @@ function ListItem({ value }) {
   return <li className='student-list-item'>{value}</li>;
 }
 
-function StudentList({ students }) {
+function StudentList ({ students }) {
   return (
     <ul className='student-list'>
           {
@@ -18,7 +18,9 @@ function StudentList({ students }) {
           }
     </ul>
   );
-}
+};
+
+const MemorizedStudentList = memo(StudentList);
 
 function Home({ prop1, prop2 }) {
   return (
@@ -37,7 +39,7 @@ function Home({ prop1, prop2 }) {
             Learn React with {prop1} & {prop2.join(', ')}
           </a>
           The random students for today are:
-          <StudentList students={prop2}/>
+          <MemorizedStudentList students={prop2}/>
           <div>
             <Link
               style={{ backgroundColor: 'red', color: 'white' }}
