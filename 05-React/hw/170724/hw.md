@@ -9,4 +9,9 @@ https://query1.finance.yahoo.com/v8/finance/chart/AMZN?period1=1721066400&period
 next lesson - answer:
 a) react component structure
 b) react component render process / life cycle
-c) when do we re-render a react component
+c) when do we re-render a react component:
+  1) in any change of a component state
+  2) in any render of the parent component that is using this component
+  3) in any prop change
+  4) context change (useContext)
+  5) [In development] - <React.StrictMode> wrapper creates more unexpected re-renders (not happening in our actual website in production)

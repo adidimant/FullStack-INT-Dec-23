@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import './CompanyBox.css';
+import { memo } from 'react';
 
 function CompanyBox({ data }) {
   return (
@@ -17,7 +18,7 @@ function CompanyBox({ data }) {
   );
 };
 
-export default CompanyBox;
+export default memo(CompanyBox);
 
 /*
 name

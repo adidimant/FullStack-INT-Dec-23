@@ -1,0 +1,1 @@
+1) Develop the bottom part of instagram login page (below the navbar). make the components re-usable (form, button, links)

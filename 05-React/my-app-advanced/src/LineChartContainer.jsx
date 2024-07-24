@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import amazonStockData from './amazon-stock-data';
 
@@ -42,4 +42,4 @@ function LineChartContainer() {
     );
 }
 
-export default LineChartContainer;
+export default memo(LineChartContainer);
