@@ -1,0 +1,198 @@
+$font-fam:-apple-system,
+BlinkMacSystemFont,
+'Segoe UI',
+Roboto,
+Helvetica,
+Arial,
+sans-serif;
+
+@mixin disable-btn-style {
+  border: none;
+  background-color: white;
+}
+
+.login-page-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-top: 62px;
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  .login-div {
+    border: 0.5px rgb(219, 219, 219) solid;
+    width: 350px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.3rem;
+
+    .instagram-logo {
+      width: 200px;
+      margin: 30px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .login-username-password {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+
+      #login-btn {
+        @include disable-btn-style;
+        margin-top: 8px;
+        width: 250px;
+        background-color: #5db5f7;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 7px 15px;
+        border-radius: 8px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #2278ef;
+        }
+      }
+
+      .inputs {
+        font-family: $font-fam;
+        font-size: 12px;
+        background-color: #fafafa;
+        color: #0a0a0a;
+        width: 250px;
+        padding: 9px 10px;
+        border-radius: 2px;
+        border: 0.5px rgb(219, 219, 219) solid;
+
+        ::placeholder {
+          color: #a8a7a7;
+        }
+
+        &:focus {
+          outline: 0.5px rgb(219, 219, 219) solid;
+        }
+      }
+    }
+
+    .or-hr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgb(115, 115, 115);
+      font-family: $font-fam;
+
+      hr {
+        width: 105px;
+
+      }
+    }
+
+    .login-w-facebook {
+      // vertical-align:middle;
+
+
+      .facebook-btn {
+        border: none;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: rgb(56, 81, 133);
+        font-family: $font-fam;
+        font-weight: 600;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        img {
+          width: 15px;
+        }
+
+        .login-facebook-span {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .forgot-pass {
+      margin-bottom: 15px;
+
+      .forgot-pass-btn {
+        @include disable-btn-style;
+        color: rgb(0, 55, 107);
+        font-size: 11.5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .dont-have-acc-div {
+    border: 0.5px rgb(219, 219, 219) solid;
+    width: 350px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $font-fam;
+    font-size: 14px;
+
+    .signup-btn {
+      border: none;
+      color: #0095F6;
+      background-color: white;
+      font-weight: 500;
+      font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+      &:hover {
+        cursor: pointer;
+        color: rgb(19, 44, 77)
+      }
+    }
+  }
+
+  .get-the-app-div {
+    width: 350px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $font-fam;
+    font-size: 14px;
+
+    .get-apps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      .google-app-img{
+        width: 134px;
+      }
+      .microsoft-app-img{
+        width: 110px;
+      }
+    }
+
+  }
+}
