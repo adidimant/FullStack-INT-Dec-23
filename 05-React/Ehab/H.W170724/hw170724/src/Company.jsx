@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import NotFound from './NotFound';
 import companiesArray from './companyData';
-import Graph from './Grapg';
+import Graph from './Graph';
 import './Company.css';
 
 function Company (){
