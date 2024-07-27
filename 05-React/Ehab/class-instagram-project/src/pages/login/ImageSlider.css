@@ -1,0 +1,30 @@
+.frame {
+    position: relative;
+    width: 500px; /* Adjust based on your frame image size */
+    height: 700px; /* Adjust based on your frame image size */
+  }
+  
+  .frame-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .slider-container {
+    width: 55%; /* Adjust based on where you want the slider to be within the frame */
+    height: 60%; /* Adjust based on where you want the slider to be within the frame */
+    position: absolute;
+    top: 4%; /* Adjust based on where you want the slider to be within the frame */
+    left: 33%; /* Adjust based on where you want the slider to be within the frame */
+    z-index: 2;
+  }
+  
+  .slider-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+  }
+  
