@@ -91,7 +91,7 @@ body{
   transform:translateY(-125%);
 }
 
-.main .forms-container .box .form-login .input-container .label-forms:has-content {
+.main .forms-container .box .form-login .input-container .label-forms::placeholder {
   font-size: 8px;
   transform:translateY(-105%);
 }
