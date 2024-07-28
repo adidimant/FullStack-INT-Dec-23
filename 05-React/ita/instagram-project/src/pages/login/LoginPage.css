@@ -1,0 +1,213 @@
+body{ 
+  font-family: "Lato", sans-serif;;
+}
+.login-page-container {
+  width: 100%;
+}
+
+.login-page-container .login-page-navbar {
+  width: 100%;
+  height: 60px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+  gap: 800px;
+  position: fixed;
+  font-weight: bold;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.main{
+  margin-top: 70px;
+}
+
+.main .forms-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  width: 350px;
+}
+
+.main .forms-container .box{
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 10px;
+  padding: 10px 0;
+  position: relative;
+  
+}
+
+.main .forms-container .box .logo{
+  width: 175px;
+  padding: 10px 0;
+}
+
+.main .forms-container .box .form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 268px;
+  gap: 15px;
+}
+
+.main .forms-container .box .form-login .input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.main .forms-container .box .form-login .input-container .input-forms {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.main .forms-container .box .form-login .input-container .label-forms {
+  position: absolute;
+  left: 10px;
+  color: #ccc;
+  font-size: 12px;
+  transition: 0.2s;
+  pointer-events: none;
+}
+
+.main .forms-container .box .form-login .input-container .input-forms:focus{
+  outline: none;
+  border: 1px solid #a3a3a3;
+}
+.main .forms-container .box .form-login .input-container .input-forms:focus + .label-forms {
+  color: #a3a3a3;
+  font-size: 8px;
+  transform:translateY(-125%);
+}
+
+.main .forms-container .box .form-login .input-container .label-forms::placeholder {
+  font-size: 8px;
+  transform:translateY(-105%);
+}
+
+
+.main .forms-container .box .form-login .login-button {
+  height: 36px;
+  background-color: #5dc2fd;
+  border: 0px;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 16px;
+  letter-spacing: 1px;
+  
+}
+
+.main .forms-container .box .beyond-or {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 10px 0;
+}
+
+.or {
+  font-size: 14px ;
+}
+
+.main .forms-container .box .beyond-or .line {
+  width: 110px;
+  height: 1px;
+  background-color: #dbdbdb;
+  margin-top: 5px;
+}
+
+.main .forms-container .box .form-login .loginFacbook {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #fff;
+  border: 0;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+
+
+.main .forms-container .box .form-login .loginFacbook > img {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+
+
+.main .forms-container .box .form-login .loginFacbook .login-f {
+  color: #385185;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.main .forms-container .box .form-login .forget-password {
+  color: #385185;
+  font-size: 14px;
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+
+.main .forms-container .box2{
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  padding: 15px 0;
+  margin: 0 0 10px;
+  position: relative;
+  font-size: 15px;
+}
+
+.main .forms-container .box2 .Sing-Up {
+  color: #5dc2fd;
+  text-decoration: none;
+}
+
+.main .forms-container .box3{
+  align-items: center;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  position: relative;
+  font-size: 15px;
+}
+
+.main .forms-container .box3 .store-contaner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.main .forms-container .box3 .store-contaner .link-store {
+  height: 40px;
+}
+
+
+
+
+
+
+
+
+

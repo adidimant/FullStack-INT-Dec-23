@@ -1,0 +1,32 @@
+.carousel{
+    margin-top: 70px;
+
+    &-phone{
+        padding: 20px;
+        position: relative;
+        width: 500px;
+        height: 600px;
+        // background-size: contain;
+        background-image: url('./images/home-phones.png');
+        // background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat;
+
+        &-img{
+            width: 250px;
+            position: absolute;
+            right: 97px;
+            top:33px;
+          
+           
+          
+        }
+    }
+ 
+    
+
+
+
+
+
+}

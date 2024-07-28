@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@babel/plugin-transform-modules-commonjs": "^7.24.7",
     "core-js": "^3.37.1",
     "typescript": "^5.4.5",
@@ -19,5 +20,9 @@
     "ts-loader": "^9.5.1",
     "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
+=======
+    "@types/node": "^20.14.8",
+    "typescript": "^5.5.2"
+>>>>>>> f51c325 (save unfinished project)
   }
 }
