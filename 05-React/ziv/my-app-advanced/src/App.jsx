@@ -3,6 +3,7 @@ import Home from './Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Companies from './Companies';
 import CompanyDetails from './CompanyDetails';
+import NotFound from './NotFound'
 
 
 function App({ prop1, prop2, prop3 }) {
@@ -18,7 +19,9 @@ function App({ prop1, prop2, prop3 }) {
                 <Routes> 
                     <Route path="/" element={<Home prop1={prop1} prop2={prop2}/>} /> 
                     <Route path="/companies" element={<Companies />} /> 
-                    <Route path="/companyDetails/:companyName" element={<CompanyDetails />} /> 
+                    <Route path="/companyDetails/:companyName" element={<CompanyDetails />} />   
+                    <Route path="*" element={<NotFound />} /> 
+
                 </Routes> 
         </BrowserRouter> 
     </div>
