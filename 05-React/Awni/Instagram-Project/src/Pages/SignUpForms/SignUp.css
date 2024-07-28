@@ -1,0 +1,183 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    border: 1px solid #dbdbdb;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.signup-container .head-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.signup-container .head-container img {
+    width: 250px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+
+.signup-container .head-container p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+}
+
+
+.head-container .facebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    background-color: #0095f6;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.head-container .facebook button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    font-weight: bold;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.head-container .facebook span,
+button {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.head-container .facebook span {
+    margin-left: 30px;
+}
+
+.signup-container .signup-forms h1 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* .signup-container .signup-forms h1::before {
+
+    content: '';
+    display: block;
+    width: 100px;
+    position: relative;
+    height: 1px;
+    background-color: #dbdbdb;
+    margin: 0 auto;
+    margin-top: 10px;
+    top: 50%;
+}
+
+.signup-container .signup-forms h1::after{
+    content: '';
+    display: block;
+    width: 100px;
+    position: relative;
+    height: 1px;
+    background-color: #dbdbdb;
+    margin: 0 auto;
+    margin-top: 10px;
+    top: 50%;
+
+
+} */
+
+
+.signup-container .signup-forms form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+.signup-container .signup-forms input {
+    width: 300px;
+    height: 40px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.signup-container .signup-forms p{
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin: 20px 20px 5px 20px;
+}
+
+
+.signup-container .signup-forms button {
+    width: 300px;
+    height: 40px;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid #dbdbdb;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 90px;
+}
+
+ .login-button span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+.login-button button {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0095f6;
+    border: none;
+    background-color: white;
+    margin-left: 5px;
+}
+
