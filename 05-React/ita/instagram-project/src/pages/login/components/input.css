@@ -1,0 +1,29 @@
+.input-wrapper {
+    height: 36px;
+    position: relative;
+    display: flex;
+  }
+
+label.active {
+    font-size: 10px;
+    top: 30%;
+  }
+  
+label.active + input {
+    padding: 14px 8px 2px 8px;
+  }
+  
+input {
+    font-size: 12px;
+    padding: 0 8px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    background-color: #fafafa;
+    width: 100%;
+  }
+  
+input:focus {
+    border: 1px solid #999;
+  }
+  
