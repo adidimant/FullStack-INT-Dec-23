@@ -1,13 +1,15 @@
 import { ReactNode, memo } from "react";
+import LoginMain from "./components/LoginMain";
+import LoginFooter from "./components/LoginFooter";
+import LoginNavbar from "./components/LoginNavbar";
 import './LoginPage.css';
 
 function LoginPage(): ReactNode {
   return (
     <div className="login-page-container">
-      <div className="login-page-navbar">
-        <div className="logo">asd</div>
-        <div className="links"><button>Signup</button></div>
-      </div>
+      <LoginNavbar />
+      <LoginMain />
+      <LoginFooter />
     </div>
   );
 }
