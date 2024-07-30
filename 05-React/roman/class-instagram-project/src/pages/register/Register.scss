@@ -1,20 +1,35 @@
-.login-form {
+.register-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.register-form {
     border: 1px solid #dbdbdb;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     // height: 400px;
+    max-width: 350px;
+
+
+
 
     &-logo {
         background-image: url(https://static.cdninstagram.com/rsrc.php/v3/yM/r/8n91YnfPq0s.png);
         background-position: 0px -52px;
-        background-size: auto;
+        // background-size: auto;
         width: 175px;
         height: 51px;
+
         background-repeat: no-repeat;
-        // display: inline-block;
-        margin: 50px 80px;
+        // display: block;
+        margin: 40px 0 20px 0 ;
+        // padding:50px;
 
 
     }
@@ -26,9 +41,15 @@
         background-color: #49ADEE;
         border-radius: 10px;
         border: none;
-        margin: 12px 0;
+        margin-bottom: 35px;
         padding: 8px;
         cursor: pointer;
+    }
+    &-title{
+        font-weight: 600;
+        color: #737373;
+        width: 65%;
+        text-align: center;
     }
 
     input {
@@ -40,6 +61,23 @@
         border: 1px solid #dbdbdb;
         border-right-color: #000;
         padding-left: 10px;
+    }
+    &-text{
+        // max-width: 250px;
+        color:  #737373;
+        font-size: 12px;
+        text-align: center;
+        font-family: Helvetica, Arial, sans-serif;
+        margin: 5px 40px 10px ;
+
+        p{
+            margin-top: 10px;
+        }
+     
+        a{
+            font-size: 13px;
+            color:  #737373;
+        }
     }
 }
 
@@ -72,12 +110,12 @@
 .facebook-btn {
     background: none;
     border: none;
-    margin-top: 10px;
+    // margin: 100px;
     cursor: pointer;
 
     &-logo {
         vertical-align: middle;
-        background-image: url(./images/sprite.png);
+        background-image: url(../../assets/sprite.png);
         background-repeat: no-repeat;
         background-position: -414px -259px;
         height: 16px;
@@ -102,7 +140,8 @@
     color: #385185;
 }
 
-.login-sign-up {
+.register-sign-up {
+    width: 350px;
     text-align: center;
     margin-top: 10px;
     font-weight: lighter;
@@ -132,5 +171,27 @@
         height: 40px;
         margin: 5px;
 
+    }
+}
+
+.facebookLogIn {
+    margin: 20px;
+    width: 260px;
+    background-color: #0095f6;
+    color: #fafafa;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    
+    span {
+        margin-right: 5px;
+        background-repeat: no-repeat;
+        background-position: -414px -300px;
+        height: 16px;
+        width: 16px;
+        background-image: url(../../assets/sprite.png);
+        display: inline-block;
     }
 }
