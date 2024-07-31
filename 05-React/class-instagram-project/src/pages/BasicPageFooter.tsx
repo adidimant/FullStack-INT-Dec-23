@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-function LoginFooter() {
+function BasicPageFooter() {
   return (
     <>
       <footer className="login-footer">
@@ -30,4 +30,4 @@ function LoginFooter() {
   );
 }
 
-export default memo(LoginFooter);
+export default memo(BasicPageFooter);

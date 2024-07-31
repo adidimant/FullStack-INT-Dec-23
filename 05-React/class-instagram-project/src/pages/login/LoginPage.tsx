@@ -1,6 +1,6 @@
 import { ReactNode, memo } from "react";
 import LoginMain from "./components/LoginMain";
-import LoginFooter from "./components/LoginFooter";
+import BasicPageFooter from "../BasicPageFooter";
 import LoginNavbar from "./components/LoginNavbar";
 import './LoginPage.css';
 
@@ -9,7 +9,7 @@ function LoginPage(): ReactNode {
     <div className="login-page-container">
       <LoginNavbar />
       <LoginMain />
-      <LoginFooter />
+      <BasicPageFooter />
     </div>
   );
 }
