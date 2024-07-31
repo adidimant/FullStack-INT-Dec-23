@@ -1,0 +1,39 @@
+.sign-text {
+	text-align: center;
+	span {
+		color: rgb(115, 115, 115);
+		font-weight: 500;
+	}
+}
+
+.log-in-with-fb {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px;
+	.log-in-with-fb-btn {
+		height: 32px;
+        width: 100%;
+		background-color: #0095f6;
+		color: #ffffff;
+		font-size: 14px;
+		font-weight: 600;
+		border-radius: 8px;
+		border: none;
+		margin: auto;
+        /* vertical-align: middle; */
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(34, 120, 239);
+        }
+		.fb-logo {
+			width: 17px;
+			margin-right: 10px;
+            vertical-align: middle;
+
+		}
+	}
+}
+.or-text{
+	margin-bottom: 13px;
+}

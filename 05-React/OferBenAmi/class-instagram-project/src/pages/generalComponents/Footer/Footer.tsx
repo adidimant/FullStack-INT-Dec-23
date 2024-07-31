@@ -1,6 +1,7 @@
 import { memo } from "react";
 
 function Footer() {
+  console.log('footer')
   return (
     <>
       <footer className="login-footer">

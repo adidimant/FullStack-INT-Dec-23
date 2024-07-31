@@ -5,6 +5,7 @@ import Navbar from "../generalComponents/NavBar/Navbar";
 import './LoginPage.css';
 
 function LoginPage(): ReactNode {
+
   return (
     <div className="login-page-container">
       <Navbar />

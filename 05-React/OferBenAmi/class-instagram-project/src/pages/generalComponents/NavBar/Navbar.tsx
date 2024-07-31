@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/button/Button";
 
 function Navbar() {
+  console.log('navbar')
   return (
     <div className="login-page-navbar">
         <div className="left-logo">
