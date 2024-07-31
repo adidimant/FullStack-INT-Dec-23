@@ -31,7 +31,7 @@ function RegisterForms() {
               <div className="or-text">OR</div>
            </div>
            <div className="text-inputs-container">
-              <Input name="emailOrPhone"  text="Mobile number or email address" htmlFor="emailOrPhone" type="text" id="emailOrPhone"/>
+              <Input name="emailOrPhone"  text="Mobile number or email address" htmlFor="emailOrPhone" type="text" id="emailOrPhone" />
               <Input name="Full Name"  text="Full Name" htmlFor="Full Name" type="text" id="fullName"/>
               <Input name="Username"  text="Username" htmlFor="Username" type="text" id="username"/>
               <Input name="Password"  text="Password" htmlFor="Password" type="Password" id="password"/>
@@ -46,7 +46,9 @@ function RegisterForms() {
             <LittleLink text="Privacy Policy" to={""} /> and   
             <LittleLink text="Cookies Policy" to={""} />.</span>
            </p>
-          <Button text="Sign Up" 
+          <Button 
+            name="Sign Up"
+            text="Sign Up" 
             onClick={() => {}}
             className="bth-signup"/>
          </form>
