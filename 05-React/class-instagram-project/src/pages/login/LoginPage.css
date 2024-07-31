@@ -120,47 +120,6 @@
   gap: 6px;
 }
 
-.main .login-form .input-wrapper {
-  height: 36px;
-  position: relative;
-  display: flex;
-}
-
-.main .login-form label {
-  user-select: none;
-  position: absolute;
-  cursor: text;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #737373;
-  font-size: 12px;
-  transition: 0.1s ease-in-out;
-}
-
-.main .login-form label.active {
-  font-size: 10px;
-  top: 30%;
-}
-
-.main .login-form label.active + input {
-  padding: 14px 8px 2px 8px;
-}
-
-.main .login-form input {
-  font-size: 12px;
-  padding: 0 8px;
-  outline: none;
-  border-radius: 3px;
-  border: 1px solid #dbdbdb;
-  background-color: #fafafa;
-  width: 100%;
-}
-
-.main .login-form input:focus {
-  border: 1px solid #999;
-}
-
 .main .login-form .flex-item-wrapper {
   display: flex;
   justify-content: center;
@@ -169,6 +128,7 @@
 
 .main .login-form input[type="submit"] {
   height: 32px;
+  width: 120px;
   background-color: #0095f6;
   color: #ffffff;
   font-size: 14px;
