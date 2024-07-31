@@ -1,4 +1,5 @@
 import './LoginForm.scss'
+import { Link } from 'react-router-dom';
 function LoginForm() {
 
     return (
@@ -23,7 +24,7 @@ function LoginForm() {
             </div>
 
         </div>
-        <div className="login-sign-up">Don't have an account? <button>Sign up</button></div>
+        <div className="login-sign-up">Don't have an account? <Link to={'/register'} style={{ textDecoration: 'none'}}>Signup</Link></div>
         <div className="download-links">
         <div className="download-links-text">Get the app</div>
         <img src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png" alt="" className="download-links-google" />
