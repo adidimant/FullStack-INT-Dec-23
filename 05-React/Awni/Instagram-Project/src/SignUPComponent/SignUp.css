@@ -1,0 +1,184 @@
+* {
+    font-family: sans-serif;
+}
+
+
+.title-signup {
+    font-family: "Pacifico", cursive;
+    margin: 2rem 0rem;
+    font-size: 2.4rem;
+    color: rgb(52, 52, 52);
+}
+
+.p{
+    font-size: 1.1rem;
+    text-align: center;
+    color: gray;
+    margin-bottom: 3rem;
+    padding: 10px;
+}
+
+.info{
+    font-size: 13px;
+    text-align: center;
+    color: gray;
+    padding: .5rem;
+}
+
+.page-signup {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageone-signup {
+    margin-top: 4.2rem;
+
+}
+
+.first-container-signup {
+    border: 2px solid rgba(214, 214, 214, 0.728);
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.inpt-signup {
+    padding: 12px;
+    width: 15.4rem;
+    border-color: rgb(207, 207, 207);
+    margin-bottom: 16px;
+    outline: 1.2px solid rgb(193, 193, 193);
+    border: none;
+    background-color: rgba(233, 233, 233, 0.293);
+}
+
+.signupbtn-signup {
+    background-color: rgb(75, 153, 255);
+    border: none;
+    width: 15.4rem;
+    padding: 0.7rem;
+    font-size: .9rem;
+    color: white;
+    font-weight: bold;
+    border-radius: .4rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+}
+
+.or-signup {
+    color: rgb(78, 77, 77);
+    font-size: .8rem;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: -10px;
+    margin-top: 2rem;
+}
+
+.or-signup::before,
+.or-signup::after {
+    content: "";
+    display: inline-block;
+    width: 25%;
+    margin: 0 10px;
+    border-bottom: 1px solid rgba(78, 77, 77, 0.384);
+    position: relative;
+}
+
+.or-signup::before {
+    right: 0;
+}
+
+.or-signup::after {
+    left: 0;
+}
+
+
+
+.facebook-signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
+    background-color: rgb(75, 153, 255);
+    width: 15.4rem;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.fb-signup {
+    margin-right: .5rem;
+    width: 1.4rem;
+}
+
+.signup {
+    font-size: .9rem;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(75, 153, 255);
+    
+}
+
+.fb-signup,.signup{
+    background-color: rgb(75, 153, 255);
+}
+
+.pass-signup {
+    font-size: .7rem;
+    color: rgb(2, 0, 122);
+}
+
+.second-container-signup {
+    border: 2px solid rgba(214, 214, 214, 0.728);
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: .8rem;
+    font-size: .9rem;
+    color: gray;
+}
+
+.second-container-signup button {
+    color: rgb(12, 125, 255);
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+
+.third-container-signup {
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: .3rem;
+    font-size: .9rem;
+    color: gray;
+}
+
+.forth-container-signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.app-signup {
+    width: 8rem;
+    height: 2.7rem;
+}
+
+.appone-signup {
+    margin-right: .9rem;
+}

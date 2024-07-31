@@ -1,15 +1,12 @@
-import './App.css';
-import HomeLoginSigup from './Pages/HomeLogin-Sigup';
-
+import HomePage from "./HomePage/HomePage";
 
 
 function App() {
   return (
 
-    <div className="App"
-    >
-      <HomeLoginSigup />
-    </div>
+   <>
+       <HomePage />
+   </>
 
     
   );
