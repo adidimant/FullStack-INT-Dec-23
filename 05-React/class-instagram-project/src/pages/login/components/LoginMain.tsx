@@ -1,24 +1,27 @@
 import { memo, useState, useEffect, ChangeEvent } from "react";
-import InstagramTextLogo from "../assets/instagram-text-logo.png";
-import GooglePlay from "../assets/google-play.png";
-import Microsoft from "../assets/microsoft.png";
+import Input from "../../../components/input/Input";
+import InstagramTextLogo from "../../../assets/instagram-text-logo.png";
+import GooglePlay from "../../../assets/google-play.png";
+import Microsoft from "../../../assets/microsoft.png";
 import FacebookLogo from "../assets/Facebook-logo.png";
 import HomePhones from "../assets/home-phones.png";
 import Screenshot1 from "../assets/screenshot1.png";
 import Screenshot2 from "../assets/screenshot2.png";
 import Screenshot3 from "../assets/screenshot3.png";
 import Screenshot4 from "../assets/screenshot4.png";
+import { Link } from "react-router-dom";
+import Button from "../../../components/button/Button";
 
 function LoginMain() {
-  const [usernameValue, setUsernameValue] = useState<string>("");
-  const [pwdValue, setPwdValue] = useState<string>("");
+  // const [usernameValue, setUsernameValue] = useState<string>("");
+  // const [pwdValue, setPwdValue] = useState<string>("");
 
-  const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUsernameValue(event.target.value);
-  };
-  const handlePwdChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPwdValue(event.target.value);
-  };
+  // const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setUsernameValue(event.target.value);
+  // };
+  // const handlePwdChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setPwdValue(event.target.value);
+  // };
 
   const [prevScreenshot, setPrevScreenshot] = useState<string>(Screenshot1);
   const [nextScreenshot, setNextScreenshot] = useState<string>(Screenshot2);
@@ -74,21 +77,11 @@ function LoginMain() {
                 <img src={InstagramTextLogo} alt="instagram text logo" />
               </div>
               <div className="text-inputs-container">
-                <div className="input-wrapper">
-                  <label htmlFor="username" className={usernameValue ? "active" : ""}>
-                    Phone number, username or email
-                  </label>
-                  <input type="text" id="username" onChange={handleUsernameChange} />
-                </div>
-                <div className="input-wrapper">
-                  <label htmlFor="pwd" className={pwdValue ? "active" : ""}>
-                    Password
-                  </label>
-                  <input type="password" id="pwd" onChange={handlePwdChange} />
-                </div>
+              <Input type="text" id="username" name="username" text="Phone number, username or email" htmlFor="username" />
+              <Input type="password" id="pwd" name="pwd" text="Password" htmlFor="pwd" />
               </div>
               <div className="flex-item-wrapper">
-                <input type="submit" value="Log in" />
+                <Button text="Log in" name="login-submit" onClick={() => { /* implement login here */}} />
               </div>
               <div className="flex-item-wrapper">
                 <div className="or-text">OR</div>
@@ -101,7 +94,7 @@ function LoginMain() {
             </form>
             <div className="sign-up-section">
               <div className="create-account-text">
-                Don't have an account? <span className="sign-up-text">Sign up</span>
+              Don't have an account? <Link to="/register"> Sign up</Link>
               </div>
             </div>
             <div className="get-app-section">
