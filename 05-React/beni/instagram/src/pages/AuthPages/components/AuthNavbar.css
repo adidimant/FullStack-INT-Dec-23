@@ -1,0 +1,74 @@
+.auth-navbar {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 3px;
+  padding: 0 40px;
+  border-bottom: 1px solid #dbdbdb;
+  background-color: #fff;
+}
+
+.auth-navbar .navbar-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.auth-navbar .left-logo {
+  flex-shrink: 0;
+  width: 103px;
+  margin-top: 8px;
+}
+
+.auth-navbar .left-logo img {
+  width: 100%;
+}
+
+.auth-navbar .right-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.auth-navbar .right-actions .navbar-login-container,
+.auth-navbar .right-actions .navbar-signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 4px;
+  padding: 0;
+}
+
+.auth-navbar .right-actions .navbar-login-link {
+  color: #fff;
+  text-decoration: none;
+  height: 100%;
+  width: 70px;
+  text-align: center;
+  line-height: 2;
+}
+
+.auth-navbar .right-actions .navbar-signup-link {
+  text-decoration: none;
+  font-size: 14px;
+  color: #0095f6;
+  padding-bottom: 3px;
+}
+
+.auth-navbar .right-actions .navbar-signup-link:hover {
+  color: #1e5c85;
+}
+
+.auth-navbar .right-actions .navbar-signup-link:active {
+  color: #88cfff;
+}
