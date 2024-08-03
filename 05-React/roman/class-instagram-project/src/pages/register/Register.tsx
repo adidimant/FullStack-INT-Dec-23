@@ -28,7 +28,7 @@ function Register() {
                 <button className='register-form-btn'>Sign Up</button>
 
             </div>
-            <div className="register-sign-up">Have an account? <Link to={'/LogIn'} style={{ textDecoration: 'none'}}>Log In</Link></div>
+            <div className="register-sign-up">Have an account? <Link to={'/'} style={{ textDecoration: 'none'}}>Log In</Link></div>
             <div className="download-links">
                 <div className="download-links-text">Get the app</div>
                 <Link to=""><img src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png" alt="" className="download-links-google" /></Link>
