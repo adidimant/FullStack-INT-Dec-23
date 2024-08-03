@@ -8,6 +8,7 @@ type InputProps = {
   type: string;
   id: string;
   onBlur?: () => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void; // add onChange function to the props 
   validate?: (value: unknown) => boolean;
   children?: React.ReactNode;
 };
@@ -17,29 +18,32 @@ type ValidIcon = {
   classNameIcon: string;
 } | null;
 
-function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
+function Input({ name, text, htmlFor, type, id, validate, onChange }: InputProps) { // add validate and onChange to the props 
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-    };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    if (onChange) { // if onChange function exists - call it  
+      onChange(event); // call the onChange function with the event  
+    }
+  };
 
-    const handleValid = () => {
-      if (!inputValue) {
-        setValidIcon(null);
-        return;
-      } 
+  const handleValid = () => {
+    if (!inputValue) {
+      setValidIcon(null);
+      return;
+    }
 
-      if (validate) {
-        const isValid = validate(inputValue);
-        if (isValid) {
-          setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
-        } else {
-          setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
-        }
-        // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
+    if (validate) {
+      const isValid = validate(inputValue);
+      if (isValid) {
+        setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
+      } else {
+        setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
       }
+      // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
+    }
   };
 
   return (
@@ -48,9 +52,11 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
         {text}
       </label>
       <input name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
-      {validIcon &&  <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
+      {validIcon && (
+        <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
           {validIcon.icon}
-        </span>}
+        </span>
+      )}
     </div>
   );
 }
