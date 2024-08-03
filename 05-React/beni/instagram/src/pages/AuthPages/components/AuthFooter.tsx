@@ -1,10 +1,11 @@
 import { memo } from "react";
+import "./AuthFooter.css";
 
-function LoginFooter() {
+function AuthFooter() {
   return (
     <>
-      <footer className="login-footer">
-        <div className="login-footer-top">
+      <footer className="auth-footer">
+        <div className="auth-footer-top">
           <a href="">Meta</a>
           <a href="">About</a>
           <a href="">Blog</a>
@@ -19,7 +20,7 @@ function LoginFooter() {
           <a href="">Contact Uploading & Non-Users</a>
           <a href="">Meta Verified</a>
         </div>
-        <div className="login-footer-bottom">
+        <div className="auth-footer-bottom">
           <select name="lang" id="lang">
             <option value="en">English</option>
           </select>
@@ -30,4 +31,4 @@ function LoginFooter() {
   );
 }
 
-export default memo(LoginFooter);
+export default memo(AuthFooter);

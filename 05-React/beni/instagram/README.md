@@ -1,5 +1,9 @@
 # React + TypeScript + Vite
 
+How did we create this project:
+1) cd for the relevant folder you would like to create the project folder
+2) run `npm create vite@latest`, then follow the instructions & choose the preferences
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
