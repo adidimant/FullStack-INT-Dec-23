@@ -2,6 +2,7 @@ import './SignUp.css'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { memo, useState } from 'react';
 import LoginForms from '../components/LoginForms';
+import { Link } from 'react-router-dom';
 
 function SignUp() {
 
@@ -45,7 +46,7 @@ function SignUp() {
                         <button className='signupbtn-signup'>Sign up</button>
                     </div>
                     <div className="second-container-signup">
-                        <p className="login-signup">Have an account? <button onClick={HandleChange}>Log in</button></p>
+                        <p className="login-signup">Have an account? <button onClick={HandleChange}><Link to={'/login'}>Log in</Link></button></p>
                     </div>
 
                     <div className="third-container-signup">

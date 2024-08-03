@@ -140,11 +140,18 @@
     color: gray;
 }
 
-.second-container button {
+.second-container button  {
     color: rgb(12, 125, 255);
     font-weight: bold;
     cursor: pointer;
     border: none;
+}
+.second-container button a {
+    color: rgb(12, 125, 255);
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
 }
 
 

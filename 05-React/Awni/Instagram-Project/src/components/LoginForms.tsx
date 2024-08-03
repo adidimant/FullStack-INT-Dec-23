@@ -4,6 +4,7 @@ import instaImg from '../assets/instaImg.png';
 import instaImg1 from '../assets/instaImg1.png';
 import { memo, useState } from 'react';
 import SignUp from '../SignUPComponent/SignUp';
+import { Link } from 'react-router-dom';
 
 function LoginForms() {
 
@@ -39,7 +40,7 @@ function LoginForms() {
                         <p className="pass">Forgotten your password</p>
                     </div>
                     <div className="second-container">
-                        <p className="signup-login">Don't have an account? <button type='submit' onClick={HandleChange}>Sign up</button></p>
+                        <p className="signup-login">Don't have an account? <button type='submit' onClick={HandleChange}><Link to={'/register'}>Sign up</Link></button></p>
                     </div>
 
                     <div className="third-container">
