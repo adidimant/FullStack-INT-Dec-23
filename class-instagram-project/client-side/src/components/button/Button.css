@@ -1,0 +1,37 @@
+.general-btn {
+  font-size: 14px;
+  font-weight: 500;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  padding: 0 16px;
+  background-color: #0095f6;
+  color: #ffffff;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dark-theme-btn {
+  background-color: #2C2C2C;
+  color: #E0E0E0;
+}
+
+.light-theme-btn {
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.general-btn:hover {
+  background-color: #007ac1;
+}
+
+.general-btn:active {
+  background-color: #0095f6;
+  opacity: 0.8;
+}
+
+.general-btn img {
+  height: 16px;
+  width: 16px;
+  margin-top: 2px;
+}

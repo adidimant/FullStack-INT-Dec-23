@@ -1,0 +1,1 @@
+1) Develop the register (signup) page

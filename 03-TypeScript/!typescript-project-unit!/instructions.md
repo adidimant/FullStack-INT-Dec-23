@@ -1,6 +1,9 @@
 Unit project - Typescript, Object-Oriented programming, browser deep functionalities
 You are writing a web-sdk for a cyber company "Acme-Cyber", this sdk is a javascript code that is running on the customers websites.
 Each customer is doing on his website: `<script src="<THE-URL-FOR-YOUR-COMPANY-PUBLIC-SDK>" defer/>` and by this your script is loaded in his website.
+<script>
+  window.FACEBOOK_SDK.init();
+  </script>
 Once the script finish loaded - it should sent a custom event "acme-sdk-loaded" (you should dispatch a custom event at the end of the script).
 When this event is being sent - the collectors should start collecting & sending events (objects) with data-points about the user, this enables your company to monitor the activity of the user and detect suspicious activity like bot activity or hackers.
 

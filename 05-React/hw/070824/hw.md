@@ -1,0 +1,2 @@
+1) Implement useMemo in our project - find a variable that is calculated inside a component, and wrap it with useMemo with a dependency array. reference - https://www.w3schools.com/react/react_usememo.asp
+2) Implement post page (single post page), this page should be accessible via a link from the posts page (main page), note that you'll need to transfer the post data to this page somehow

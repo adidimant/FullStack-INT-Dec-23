@@ -1,0 +1,158 @@
+.register-container{
+    margin-top: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.register-container .register-form{
+    width: 350px;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #dbdbdb;
+    padding:  0 45px;
+    margin-bottom: 0px;
+}
+
+.register-container .register-form .register-logo-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+}
+
+.register-container .register-form .register-logo-text img{
+    width: 175px;
+    height: 51px;
+}
+
+.register-container .register-form .register-text{
+    font-weight: 600;
+    color: #737373;
+    width: 100%;
+    text-align: center;
+    
+}
+
+.register-container .register-form .register-btn-facebook button{
+    width: 100%;
+}
+
+.register-container .register-form .flex-item-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container .register-form .flex-item-wrapper .or-text{
+    position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    color: #737373;
+    width: 100%;
+    text-align: center;
+}
+
+.register-container .register-form .flex-item-wrapper .or-text::before,
+.register-container .register-form .flex-item-wrapper .or-text::after{
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    background-color: #dbdbdb;
+    top: 45%;
+}
+
+.register-container .register-form .flex-item-wrapper .or-text::before{
+    left: 0;
+}
+
+.register-container .register-form .flex-item-wrapper .or-text::after{
+    right: 0;
+}
+
+.register-container .register-form .register-text-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.register-container .register-form .register-text-p{
+    color:  #737373;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 5px 40px 10px ;
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 9px;
+    text-align: center;
+}
+
+.register-container .register-form .btn-signUp button{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.register-form-buttom{
+    width: 350px;
+    height: 63px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #dbdbdb;
+    padding:  0 45px;
+    text-align: center;
+    font-size: 14px;
+    margin: 15px;
+    color: rgb(var(--ig-primary-text));
+
+}
+.register-form-buttom a{
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #0095f6 ;
+}
+
+.get-app-section{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.get-app-text{
+    height: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.get-app-img-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.get-app-section .google-play img{
+    height: 40px;
+    width: 134.28px;
+}
+
+.get-app-section .microsoft img{
+    height: 40px;
+    width: 110.76px;
+}

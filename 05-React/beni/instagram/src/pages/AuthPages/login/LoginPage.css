@@ -1,0 +1,21 @@
+.login-page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page-main {
+  margin-top: 60px;
+  margin-bottom: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.login-page-main .left-container,
+.login-page-main .right-container {
+  margin-top: 9px;
+  min-height: 640px;
+}
