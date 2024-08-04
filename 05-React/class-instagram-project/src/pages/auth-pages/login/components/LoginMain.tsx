@@ -1,16 +1,17 @@
-import { memo, useState, useEffect, ChangeEvent } from "react";
-import Input from "../../../components/input/Input";
-import InstagramTextLogo from "../../../assets/instagram-text-logo.png";
-import GooglePlay from "../../../assets/google-play.png";
-import Microsoft from "../../../assets/microsoft.png";
-import FacebookLogo from "../assets/Facebook-logo.png";
-import HomePhones from "../assets/home-phones.png";
-import Screenshot1 from "../assets/screenshot1.png";
-import Screenshot2 from "../assets/screenshot2.png";
-import Screenshot3 from "../assets/screenshot3.png";
-import Screenshot4 from "../assets/screenshot4.png";
+import { memo, useState, useEffect } from "react";
+import Input from "../../../../components/input/Input";
+import InstagramTextLogo from "../../../../assets/instagram-text-logo.png";
+import GooglePlay from "../../../../assets/google-play.png";
+import Microsoft from "../../../../assets/microsoft.png";
+import FacebookLogo from "../../../../assets/Facebook-logo.png";
+import HomePhones from "../../../../assets/home-phones.png";
+import Screenshot1 from "../../../../assets/screenshot1.png";
+import Screenshot2 from "../../../../assets/screenshot2.png";
+import Screenshot3 from "../../../../assets/screenshot3.png";
+import Screenshot4 from "../../../../assets/screenshot4.png";
 import { Link } from "react-router-dom";
-import Button from "../../../components/button/Button";
+import Button from "../../../../components/button/Button";
+import LittleLink from "../../../../components/littleLink/LittleLink";
 
 function LoginMain() {
   // const [usernameValue, setUsernameValue] = useState<string>("");
@@ -90,7 +91,7 @@ function LoginMain() {
                 <img src={FacebookLogo} alt="facebook logo" />
                 Log in with Facebook
               </div>
-              <div className="forgot-password">Forgot password?</div>
+              <LittleLink to={'/forgot-password'} text="Forgot password?" />
             </form>
             <div className="sign-up-section">
               <div className="create-account-text">

@@ -1,12 +1,12 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import Input from '../../../components/input/Input';
-import Button from "../../../components/button/Button";
-import LittleLink from '../../../components/littleLink/LittleLink';
-import InstagramTextLogo from '../../../assets/instagram-text-logo.png';
-import WhiteFacebookLogo from "../assets/WhiteFacebookLogo.png";
-import GooglePlay from '../../../assets/google-play.png';
-import Microsoft from '../../../assets/microsoft.png';
+import Input from '../../../../components/input/Input';
+import Button from "../../../../components/button/Button";
+import LittleLink from '../../../../components/littleLink/LittleLink';
+import InstagramTextLogo from '../../../../assets/instagram-text-logo.png';
+import WhiteFacebookLogo from "../../../../assets/WhiteFacebookLogo.png";
+import GooglePlay from '../../../../assets/google-play.png';
+import Microsoft from '../../../../assets/microsoft.png';
 import "../Register.css";
 
 const validateUsername = (value: unknown): boolean => {
