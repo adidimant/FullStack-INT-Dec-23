@@ -1,0 +1,41 @@
+button.general-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-with {
+    background-image: url(./assets/various.png);
+    background-repeat: no-repeat;
+    background-position: -414px -300px;
+    height: 16px;
+    width: 16px;
+    border: 0;
+    display: inline-block;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    margin-right: 8px;
+    padding: 0;
+    position: relative;
+   /*top: 3px;*/
+    vertical-align: baseline;
+}
+.or-divider-container {
+    display: flex;
+    flex-direction: row;
+}
+.divider {
+    height: 1px;
+    background: rgb(219 219 219);
+    flex-shrink: 1;
+    width: 100%;
+    align-self: center;
+    box-sizing: border-box;
+}
+.or-divider {
+    flex-shrink: 0;
+    margin: 0 10px;
+    text-transform: uppercase;
+}
