@@ -1,7 +1,8 @@
 import { memo } from "react";
-import InstagramLogo from '../assets/instagram-text-logo.png';
+import InstagramLogo from '../../../assets/instagram-text-logo.png';
 import { Link } from "react-router-dom";
 import Button from "../../../components/button/Button";
+import "./LoginNavbar.css"
 
 function LoginNavbar() {
   return (
@@ -11,7 +12,7 @@ function LoginNavbar() {
         </div>
         <div className="right-actions">
           <Button name="login-btn" text="Log In" onClick={() => {}} />
-          <div className="navbar-signup-link"><Link to={'/register'} style={{ textDecoration: 'none'}}>Signup</Link></div>
+          <div className="navbar-signup-link"><Link to={'/register'}>Signup</Link></div>
         </div>
       </div>
   );

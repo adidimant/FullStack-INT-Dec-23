@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import "./littleLink.css"
+import "./LittleLink.css";
 
 function LittleLink({ text, to }: any): JSX.Element {
     return (
@@ -8,4 +8,4 @@ function LittleLink({ text, to }: any): JSX.Element {
     )
   }
 
-export default memo(LittleLink)
+export default memo(LittleLink);

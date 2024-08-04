@@ -16,6 +16,7 @@ body {
 
 a {
   border: none;
+  text-decoration: none;
   background: none;
   color: #0095f6;
   font-size: 14px;
@@ -26,6 +27,7 @@ a {
 
 a:hover {
   filter: brightness(0.3);
+  text-decoration: underline;
 }
 
 a:active {

@@ -1,5 +1,5 @@
 import { memo, useState, ChangeEvent } from "react";
-import "./input.css";
+import "./Input.css";
 
 type InputProps = {
   name: string;
@@ -8,6 +8,7 @@ type InputProps = {
   type: string;
   id: string;
   onBlur?: () => void;
+  validate?: (value: unknown) => boolean;
   children?: React.ReactNode;
 };
 
@@ -16,7 +17,7 @@ type ValidIcon = {
   classNameIcon: string;
 } | null;
 
-function Input({ name, text, htmlFor, type, id }: InputProps) {
+function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
 
@@ -27,15 +28,18 @@ function Input({ name, text, htmlFor, type, id }: InputProps) {
     const handleValid = () => {
       if (!inputValue) {
         setValidIcon(null);
-      } else if (name === "Username" && inputValue.length < 5) {
-        setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
-      } else if (inputValue.length < 5) {
-        setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
-      } else {
-        setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
-      }
+        return;
+      } 
 
-    
+      if (validate) {
+        const isValid = validate(inputValue);
+        if (isValid) {
+          setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
+        } else {
+          setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
+        }
+        // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
+      }
   };
 
   return (
