@@ -1,10 +1,14 @@
 .login-page-container {
   width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-page-container .login-page-navbar {
   width: 100%;
   height: 60px;
+  padding: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,213 +19,263 @@
   position: fixed;
   font-weight: bold;
   border-bottom: 1px solid #dbdbdb;
+  z-index: 1000;
 }
 
-.logo {
+.login-page-container .login-page-navbar .left-logo {
+  width: 103px;
   margin-top: 8px;
 }
-
-.login-page-container .links .btn_Login{
-  background-color: #3995F1;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 5px;
-}
-
-.login-page-container .links .btn_SignUp{
-  background-color: #FFFFFE;
-  color: #3995F1;
-  border: none;
-  border-radius: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 5px;
-  font-weight: bold
-}
-
-.login-page-container .login-page-content{
+.login-page-container .login-page-navbar .left-logo img {
   width: 100%;
-  margin-top: 50px;
-  position: fixed;
-  top: 65px;
-  left: 0;
+}
+
+.login-page-container .login-page-navbar .right-actions {
+
+}
+
+.login-page-container .login-page-navbar .right-actions .navbar-signup-link {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+.main {
+  margin-top: 60px;
+  margin-bottom: 44px;
   display: flex;
   justify-content: center;
-  flex-direction: row;
-}
-.login-page-container .login-page-content text{
-  margin-top: 50px;
-  margin-bottom: 50px;
+  align-items: center;
+  min-height: 100%;
+  flex-grow: 1;
 }
 
-.login-page-container .login-page-content .login-page-actions{
-  width: 400px;
-  height: 650px;
+.main .left-container,
+.main .right-container {
+  margin-top: 9px;
+}
+
+.main .container {
+  display: flex;
+}
+
+.main .left-container {
+  position: relative;
+}
+
+.main .left-container .gallery-container {
+  position: absolute;
+  top: 24px;
+  left: 157px;
+  height: 542px;
+  width: 248px;
+}
+
+.main .left-container .screenshot {
+  position: absolute;
+}
+
+.main .left-container .screenshot.prev.active {
+  opacity: 1;
+}
+
+.main .left-container .screenshot.prev.disabled {
+  transition: 2s ease-in-out;
+  opacity: 0;
+}
+
+.main .left-container .screenshot.next.active {
+  transition: 2s ease-in-out;
+  opacity: 1;
+}
+
+.main .left-container .screenshot.next.disabled {
+  opacity: 0;
+}
+
+.main .login-form {
+  width: 350px;
+  height: 410px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid #dbdbdb;
+  padding: 0px 40px;
+}
+
+.main .login-form .instagram-text-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+}
+
+.main .login-form .instagram-text-logo-container img {
+  width: 175px;
+  height: 51px;
+}
+
+.main .login-form .text-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.main .login-form .flex-item-wrapper {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login{
-  border: 1px solid #dbdbdb;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .input{
-  display: block;
-  margin: 5px;
-  padding: 8px;
-  width: 250px;
-  border: 1px solid #dbdbdb;
-  background-color: #FAFAFA;
-}
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .input input[type="text"], input[type="password"] {
-  border: none;
-  width: 100%;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .input input[type="password"]{
-  width: 210px;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .input .show{
-  cursor: pointer;
-  width: 50px;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .input input[type="text"], input[type="password"]:focus {
-  outline: none ;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-page-actions-login .form_container .btnLogIn{
-  margin: 10px 5px 0 5px;
-  padding: 8px;
-  width: 270px;
-  height: 35px;
-  border: none;
-  border-radius: 8px;
-  background-color: #4CB5F9; /* 0095F6 */
+.main .login-form input[type="submit"] {
+  height: 32px;
+  width: 120px;
+  background-color: #0095f6;
   color: #ffffff;
-}
-.login-page-container .login-page-content .login-page-actions .or-line{
-  width: 66%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.login-page-container .login-page-content .login-page-actions .or-line .line{
-  border-top: 1px solid #DBDBDB;
-  width: 35%;
-  margin: 10px 0;
-}
-
-.login-page-container .login-page-content .login-page-actions .or-line .or{
-  color: #737373;
-  padding-top: 5px;
-}
-.login-page-container .login-page-content .login-page-actions .login-with-facebook {
-  margin-top: 30px;
-}
-.login-page-container .login-page-content .login-page-actions .login-with-facebook .btn-facebook-login{
-   width: 200px;
-   height: 20px;
-   background-color: #ffffff;
-   border: none;
-   cursor: pointer;
-}
-
-.login-page-container .login-page-content .login-page-actions .login-with-facebook .facebook-icon {
-  color: white; /* Set icon color to white */
-  background-color: #3b5998; /* Facebook blue */
-  padding-left: 7px; /* Optional: Add padding */
-  padding-top: 2px;
-  padding-right: 2px;
-  margin-right: 5px;
-  width: 10px;
-  display: inline-flex; /* Center the icon */
-}
-
-.login-page-container .login-page-content .login-page-actions .forgot-pass{
-  padding: 30px;
-  cursor: pointer;
-}
-
-.login-page-container .login-page-content .login-page-actions .sign-up{
-  border: 1px solid #dbdbdb;
-  width: 400px;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-page-container .login-page-content .login-page-actions .sign-up .sign-up-link{
-  color: #0095F6;
-  cursor: pointer;
-}
-
-.login-page-container .login-page-content .login-page-actions .get-the-app{
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-}
-.login-page-container .login-page-content .login-page-actions .get-the-app .get-app-img{
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-}
-
-.login-page-container .login-page-content .login-page-actions .get-the-app .get-app-img img{
-  height: 40px;
-  margin-left: 20px;
-}
-
-.login-page-container .bottom-div{
-  position: fixed;
-  bottom: 0;
-  padding-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  padding: 0 370px 70px 0;
-  margin-bottom: 20px;
-}
-
-.login-page-container .bottom-div .bottom-div-links{
-  display: flex;
-}
-.login-page-container .bottom-div .bottom-div-links a{
-  padding-right: 10px;
-  padding-top: 5px;
-  text-decoration: none;
-  color:  black;
-  cursor: pointer;
-}
-
-.login-page-container .bottom-div .bottom-div-links2{
-  display: flex;
-  flex-direction: row;
-  margin-left: 10px;
-}
-.login-page-container .bottom-div .bottom-div-links2 span, select{
-  margin-left: 10px;
-  margin-top: 5px;
-}
-.login-page-container .bottom-div .bottom-div-links2 select{
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
   border: none;
+}
+
+.main .login-form .or-text {
+  position: relative;
+  font-size: 13px;
+  font-weight: 600;
+  color: #737373;
+  width: 100%;
+  text-align: center;
+}
+
+.main .login-form .or-text::before,
+.main .login-form .or-text::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 40%;
+  background-color: #dbdbdb;
+  top: 45%;
+}
+
+.main .login-form .or-text::before {
+  left: 0;
+}
+
+.main .login-form .or-text::after {
+  right: 0;
+}
+
+.main .login-form .login-with-fb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #385185;
+}
+
+.main .login-form .login-with-fb img {
+  height: 16px;
+  width: 16px;
+  margin-top: 2px;
+}
+
+.main .login-form .forgot-password {
+  text-align: center;
+  font-size: 12px;
+  color: #00367b;
+  font-weight: 400;
+}
+
+.main .sign-up-section {
+  margin: 10px 0;
+  width: 350px;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  font-size: 14px;
+}
+
+.main .sign-up-section .sign-up-text {
+  color: #0095f6;
+  font-weight: 600;
+}
+
+.main .get-app-section {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .get-app-text {
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.main .get-app-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.main .get-app-section .google-play img {
+  height: 40px;
+  width: 134.28px;
+}
+
+.main .get-app-section .microsoft img {
+  height: 40px;
+  width: 110.76px;
+}
+
+.login-footer {
+  height: 135px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #737373;
+}
+
+.login-footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.login-footer-top a {
+  text-decoration: none;
+  color: #737373;
+}
+
+.login-footer-top a:hover {
+  text-decoration: underline;
+}
+
+.login-footer-bottom {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.login-footer-bottom #lang {
+  border: none;
+  color: #737373;
+  margin-right: 16px;
+  font-size: 12px;
+  outline: none;
   cursor: pointer;
 }
