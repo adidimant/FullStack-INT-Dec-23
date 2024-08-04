@@ -1,14 +1,50 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import Input from "./input";
+import Input from '../../../components/input/Input';
 import Button from "../../../components/button/Button";
-import LittleLink from "./littleLink"
-import InstagramTextLogo from "../assets/instagram-text-logo.png"
-import WhiteFacebookLogo from "../assets/WhiteFacebookLogo.png"
-import GooglePlay from "../assets/google-play.png";
-import Microsoft from "../assets/microsoft.png";
+import LittleLink from '../../../components/littleLink/LittleLink';
+import InstagramTextLogo from '../../../assets/instagram-text-logo.png';
+import WhiteFacebookLogo from "../assets/WhiteFacebookLogo.png";
+import GooglePlay from '../../../assets/google-play.png';
+import Microsoft from '../../../assets/microsoft.png';
 import "../Register.css";
 
+const validateUsername = (value: unknown): boolean => {
+  if (typeof value == 'string' && value.length >= 4) {
+    return true;
+  }
+  return false;
+};
+
+function validatePassword(value: unknown): boolean {
+  if (typeof value == 'string') {
+    return /[A-Z]/.test(value) &&
+    /[a-z]/.test(value) &&
+    /[0-9]/.test(value) &&
+    /[^A-Za-z0-9]/.test(value) &&
+    value.length > 4;
+  }
+  return false;
+}
+
+const validateEmail = (value: unknown): boolean => {
+  if (typeof value == 'string') {
+    const isMatch = value
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    return !!isMatch;
+  }
+  return false;
+};
+
+const validateFullName = (value: unknown): boolean => {
+  if (typeof value == 'string' && value.includes(' ') && value.length >=5) {
+    return true;
+  }
+  return false;
+};
 
 function RegisterForms() {
     return (
@@ -31,10 +67,10 @@ function RegisterForms() {
               <div className="or-text">OR</div>
            </div>
            <div className="text-inputs-container">
-              <Input name="emailOrPhone"  text="Mobile number or email address" htmlFor="emailOrPhone" type="text" id="emailOrPhone" />
-              <Input name="Full Name"  text="Full Name" htmlFor="Full Name" type="text" id="fullName"/>
-              <Input name="Username"  text="Username" htmlFor="Username" type="text" id="username"/>
-              <Input name="Password"  text="Password" htmlFor="Password" type="Password" id="password"/>
+              <Input name="emailOrPhone" text="Mobile number or email address" htmlFor="emailOrPhone" type="text" id="emailOrPhone" validate={validateEmail} />
+              <Input name="Full Name" text="Full Name" htmlFor="Full Name" type="text" id="fullName" validate={validateFullName}/>
+              <Input name="Username" text="Username" htmlFor="Username" type="text" id="username" validate={validateUsername}/>
+              <Input name="Password" text="Password" htmlFor="Password" type="Password" id="password" validate={validatePassword}/>
            </div>
            <p className="Links-to-information">
             <span>People who use our service may have uploaded your contact information to Instagram. 
@@ -54,7 +90,7 @@ function RegisterForms() {
          </form>
          <div className="sign-up-section">
             <div className="create-account-text">
-            Have an account? <span className="navbar-signup-link"><Link to={''} style={{ textDecoration: 'none'}}>Log in</Link></span>
+            Have an account? <span className="navbar-signup-link"><Link to={'/login'} style={{ textDecoration: 'none'}}>Log in</Link></span>
             </div>
          </div>
          <div className="get-app-section">

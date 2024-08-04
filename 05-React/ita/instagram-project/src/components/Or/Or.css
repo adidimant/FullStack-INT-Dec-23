@@ -1,0 +1,35 @@
+.flex-item-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+.flex-item-wrapper .or-text {
+    position: relative;
+    font-size: 13px;
+    font-weight: 600;
+    color: #737373;
+    width: 100%;
+    text-align: center;
+  }
+  
+.flex-item-wrapper .or-text::before,
+.flex-item-wrapper .or-text::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    background-color: #dbdbdb;
+    top: 45%;
+  }
+  
+.flex-item-wrapper .or-text::before {
+    left: 0;
+  }
+  
+.flex-item-wrapper .or-text::after {
+    right: 0;
+  }
+
+  
