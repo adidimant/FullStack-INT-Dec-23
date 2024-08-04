@@ -1,0 +1,146 @@
+.left-logo{
+    border-bottom:  1px solid #dbdbdb;
+    padding-left: 398px;
+    padding-top: 18px;
+    padding-bottom: 8px;
+}
+
+.left-logo img{
+    width: 102px;
+    height: 29px;
+}
+
+.main {
+    margin-top: 48px;
+    margin-bottom: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    flex-grow: 1;
+}
+
+.main .reset-form{
+    width: 390px; 
+    height: 534px;
+    border:1px solid #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .reset-form .lockLogo{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 7px;
+    height: 100px;
+    width: 100%;
+}
+.main .reset-form .lockLogo span{
+    display: block;
+    background-image: url('https://static.cdninstagram.com/images/instagram/xig_legacy_spritesheets/sprite_core.png?__makehaste_cache_breaker=VftLCxPPZoi');
+    background-position: -130px 0;
+    background-repeat: no-repeat;
+    height: 96px;
+    width: 96px;
+}
+
+.main .reset-form .Troubleloggingin{
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+}
+
+
+.main .reset-form .input-lable{
+    margin: 0 44px;
+    text-align: center;
+    color: #737373;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.main .reset-form .input-field{
+    width: 300px;
+    margin-top: 11px;
+}
+.main .reset-form .input-field .input-wrapper label{
+    color: #AFAFAF;
+}
+
+#emailOrPhoneOrUsername{
+    height: 40px;
+    border: 1px solid #dbdbdb;
+}
+
+.main .reset-form .btn-send-container{
+    text-align: center;
+    margin-top: 20px;
+}
+.main .reset-form .btn-send-container button{
+    width: 300px;
+    opacity: 0.2;
+}
+.main .reset-form .cannotLogIn{
+    margin-top: 11px;
+}
+.main .reset-form .cannotLogIn a{
+    color: #00376B;
+    font-size: 12px;
+}
+
+.main .reset-form .orContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.main .reset-form .orContainer .or{
+    margin: 0 18px;
+    font-size: 14px;
+    color: #737373;
+    line-height: 1.1538;
+    font-weight: 600;
+}
+
+.main .reset-form .orContainer .orLeft,
+.main .reset-form .orContainer .orRight{
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 1px;
+    position: relative;
+    top: .45em;
+    background-color: #dbdbdb;
+    width: 120px;
+}
+.main .reset-form .new-account{
+    margin-top: 20px;
+}
+.main .reset-form .new-account a{
+    color: #262626;
+    text-decoration: none;
+}
+.main .reset-form .new-account a:hover{
+    opacity: 0.5;
+}
+
+.main .reset-form .login-page-link{
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+    width: 100%;
+    height: 44px;
+    border: 1px solid #dbdbdb;
+}
+
+.main .reset-form .login-page-link a{
+    color: #262626;
+    text-decoration: none;
+}
+.main .reset-form .login-page-link a:hover{
+    opacity: 0.5;
+}
