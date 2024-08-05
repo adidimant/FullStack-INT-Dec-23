@@ -1,10 +1,10 @@
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import './Button.css';
 
 type ButtonProps = {
   name: string;
   text: string;
-  span: Element;
+  span: ReactNode;
   onClick: () => void;
 }
 

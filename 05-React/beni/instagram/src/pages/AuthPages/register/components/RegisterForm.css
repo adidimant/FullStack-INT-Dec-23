@@ -1,0 +1,45 @@
+.register-form {
+  margin-top: 9px;
+}
+
+.register-form .description {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #737373;
+  font-weight: 500;
+}
+
+.register-form .login-with-fb-btn {
+  margin: 8px 0;
+}
+
+.register-form .form-seperator {
+  margin: 10px 0 18px 0;
+}
+
+.register-form .notice-container {
+  margin: 10px 0;
+  text-align: center;
+  color: #737373;
+  font-size: 12px;
+}
+
+.register-form .notice-container .learn-more-link,
+.register-form .notice-container .terms-link,
+.register-form .notice-container .privacy-policy-link,
+.register-form .notice-container .cookies-policy-link {
+  color: #00376b;
+  text-decoration: none;
+}
+
+.register-form .notice-container .learn-more-link:active,
+.register-form .notice-container .terms-link:active,
+.register-form .notice-container .privacy-policy-link:active,
+.register-form .notice-container .cookies-policy-link:active {
+  opacity: 0.7;
+}
+
+.register-form .submit-signup-btn {
+  margin: 8px 0;
+}

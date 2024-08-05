@@ -20,7 +20,7 @@ function LoginForm() {
                 <span className="facebook-btn-logo"></span>
                 <span className="facebook-btn-text">Log in with Facebook</span>
                 </button>
-                <button className='forgot-pass-btn'>Forgot password?</button>
+              <Link to="resetpass" className='forgot-pass-btn'>Forgot password?</Link>
             </div>
 
         </div>

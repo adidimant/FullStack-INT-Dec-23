@@ -1,0 +1,17 @@
+.auth-form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dbdbdb;
+  padding: 10px 40px 0 40px;
+}
+
+.auth-form .instagram-text-logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 36px 0 12px 0;
+}
+.auth-form .instagram-text-logo-container img {
+  width: 175px;
+  height: 51px;
+}
