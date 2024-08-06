@@ -3,6 +3,11 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.5",
+    "framer-motion": "^11.3.19",
     "react-router-dom": "^6.25.1",
     "recharts": "^2.12.7",
     "rimraf": "^6.0.1"

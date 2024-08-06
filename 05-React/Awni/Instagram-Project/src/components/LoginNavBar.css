@@ -1,0 +1,139 @@
+.login-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.login-container .insta-logo img{
+    width: 200px;
+    height: 60px;
+    margin-left: 380px;
+}
+
+.login-container .nav-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-right: 380px;
+
+}
+
+.login-container .nav-buttons .login{
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.login-container .nav-buttons .signup{
+    background-color: white;
+    color: #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+
+.login-container .nav-buttons .login{
+    margin-left: 60px;
+}
+
+ 
+
+@media screen and (max-width: 900px) {
+
+    .login-container .insta-logo img{
+        width: 150px;
+        height: 50px;
+        margin-left: 200px;
+    }
+
+    .login-container .nav-buttons{
+        width: 150px;
+        margin-right: 200px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 30px;
+    }
+
+    .login-container .nav-buttons .signup{
+        margin-right: 30px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 30px;
+    }
+
+
+}
+
+
+@media screen and (max-width: 1500px){
+    .login-container .insta-logo img{
+        width: 150px;
+        height: 50px;
+        margin-left: 200px;
+    }
+
+    .login-container .nav-buttons{
+        width: 150px;
+        margin-right: 200px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 30px;
+    }
+
+    .login-container .nav-buttons .signup{
+        margin-right: 30px;
+    }
+
+
+
+}
+
+
+
+@media screen and (max-width: 500px){
+    .login-container .insta-logo img{
+        width: 100px;
+        height: 30px;
+        margin-left: 50px;
+    
+    }
+
+    .login-container .nav-buttons{
+        width: 100px;
+        margin-right: 50px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 15px;
+    }
+
+    .login-container .nav-buttons .signup{
+        margin-right: 15px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 15px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 15px;
+    }
+
+    .login-container .nav-buttons .login{
+        margin-left: 15px;
+    }
+
+}
+
