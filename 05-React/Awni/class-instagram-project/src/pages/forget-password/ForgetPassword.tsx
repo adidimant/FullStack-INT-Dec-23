@@ -14,7 +14,7 @@ function ForgetPassword() {
 
 
     const isValidUsername = (value: unknown): boolean => {
-        if ((typeof value === 'string' && value.length > 4) || (typeof value === 'string' && value.includes('@')) || (typeof value === "number" && value.toString().length === 10)) {
+        if ((typeof value === 'string' && value.length > 4) || (typeof value === 'string' && value.includes('@')) || (typeof value === "number" && value.toString().length === 10)) { // x 
             return true;
         }
         return false;

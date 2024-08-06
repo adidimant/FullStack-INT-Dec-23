@@ -18,7 +18,7 @@ function Button({ name, text, onClick, width, height, img, altImg, className, bt
   const styleObj = {
     ...(width && { width }),
     ...(height && { height }),
-    ...(btnDisabled === true ? { backgroundColor: '#ADD8E6'} : { backgroundColor: '#0095f6', cursor: 'pointer' }),// if btnDisabled is true - set backgroundColor to light blue and cursor to normal, else set backgroundColor to blue and cursor to pointer 
+    ...(btnDisabled === true ? { backgroundColor: '#ADD8E6'} : { backgroundColor: '#0095f6', cursor: 'pointer' }),// if btnDisabled is true - set backgroundColor to light blue, else set backgroundColor to blue and cursor to pointer 
 
   };
 
