@@ -1,0 +1,29 @@
+section.navbar {
+    height: 100vh;
+    width: 244px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+}
+.navbar a {
+    color: black;
+}
+.navbar .logo-container {
+    height: 92px;
+    display: flex;
+    align-items: center;
+    padding: 25px 12px 19px;
+}
+.navbar .nav-rows-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.navbar .nav-rows-container.nav-rows-container-bottom {
+    flex: 1;
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+}
