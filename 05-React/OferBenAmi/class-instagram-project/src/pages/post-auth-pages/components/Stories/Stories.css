@@ -13,6 +13,8 @@
 		justify-content: center;
 		padding: 0px 6px;
 
+		/* user-select: none; */
+
 
 		img {
 			width: 65px;
@@ -22,6 +24,7 @@
 			border: solid 2px red;
 			padding: 2px;
 			border-radius: 50%;
+			user-select: none;
 
 
 		}
@@ -33,6 +36,7 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
+			margin-top: 3px;
 		}
 
 		&:hover {
