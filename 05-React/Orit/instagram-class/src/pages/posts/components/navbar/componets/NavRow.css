@@ -1,0 +1,45 @@
+.nav-row-container a {
+    text-decoration: none;
+}
+.nav-row-container .nav-row:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transition: background-color .3s;
+    border-radius: 10px;
+}
+.nav-row-container .nav-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 4px 0;
+    padding: 12px;
+    justify-content: space-between;
+}
+.nav-row-container .nav-row.active {
+    font-weight: bold; 
+    background-color: rgba(0, 0, 0, 0.05); 
+    border-radius: 10px;
+}
+.nav-row-container .nav-row .nav-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}  
+.nav-row-container:hover .nav-row .nav-icon {
+    transform: scale(1.1); 
+}
+.nav-row-container .nav-row .nav-icon img {
+    width: 100%;
+}
+.nav-row-container .nav-title {
+    font-size: 16px;
+    flex: 1;
+}
+.nav-row-container .nav-popout {
+    display: none;
+}
+.nav-row-container:hover .nav-row .nav-popout {
+    display: block;
+}
+.nav-row-container:hover .nav-row .nav-popout svg {
+    color: rgb(142, 142, 142);
+}
