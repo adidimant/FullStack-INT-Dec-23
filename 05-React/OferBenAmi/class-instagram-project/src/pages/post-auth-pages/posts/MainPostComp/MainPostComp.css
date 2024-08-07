@@ -1,7 +1,9 @@
-.MainPostComp{
-    margin-left: 336px;
-    margin-top: 16px;
-    width: calc(100vw - 358px);
-    display: flex;
-    justify-content: center;
+.MainPostComp {
+	margin-left: 336px;
+	margin-top: 16px;
+	width: calc(100vw - 358px);
+	display: flex;
+	justify-content: center;
+
+
 }

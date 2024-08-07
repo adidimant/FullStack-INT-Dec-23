@@ -1,15 +1,20 @@
 import { ReactNode, memo } from "react";
-import Stories from "../../components/Stories/Stories";
-import './MainPostComp.css';
-
+import Stories from "../components/Stories/Stories";
+import Suggested from "../components/Suggested/Suggested";
+import "./MainPostComp.css";
 
 function MainPostComp(): ReactNode {
-  return (
-    <div className="MainPostComp">
-      <Stories/>
+	return (
+		<div className="MainPostComp">
+			<div className="story-and-feed">
+				<Stories />
+			</div>
+			
+      <Suggested/>
 
-    </div>
-  );
+
+		</div>
+	);
 }
 
 export default memo(MainPostComp);
