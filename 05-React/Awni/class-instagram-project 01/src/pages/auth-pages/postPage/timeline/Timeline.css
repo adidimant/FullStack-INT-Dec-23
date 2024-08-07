@@ -1,0 +1,62 @@
+.timeline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.timeline__posts {
+    display: flex;
+    justify-content: center;
+    flex: 0.8;
+}
+
+.timeline__sugesstions{
+    flex: 0.2;
+}
+
+
+@media (max-width: 700px) {
+    .timeline {
+        flex-direction: column;
+    }
+    .timeline__posts {
+        flex: 1;
+    
+    }
+    .timeline__sugesstions {
+        display: none;
+    }
+}
+
+    
+
+
+@media (max-width: 800px), (max-width: 1100px){
+    .timeline{
+        flex-direction: column;
+    }
+    .timeline__posts{
+        flex: 1;
+    }
+    .timeline__sugesstions{
+        display: none;
+    }
+}
+
+@media(max-width: 1350){
+    .timeline__posts{
+        flex: 0.9;
+    }
+    .timeline__sugesstions{
+        flex: 0.1;
+    }
+}
+
+
+
+
+
+
+    
