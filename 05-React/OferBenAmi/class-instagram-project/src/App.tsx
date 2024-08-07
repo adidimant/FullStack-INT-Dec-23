@@ -20,7 +20,7 @@ function App() {
                     <Route path="/" element={<LoginPage/>} />
                     <Route path="/login" element={<LoginPage/>} />
                     <Route path="/register" element={<Register/>} />
-                    <Route path="/posts" element={<></>} />
+                    <Route path="/posts" element={<div style={{ marginLeft: '300px' }}>Logged out!</div>} />
                     <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
                     <Route path='*' element={<></>}  />
                 </Routes>

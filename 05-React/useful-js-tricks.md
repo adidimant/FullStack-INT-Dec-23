@@ -43,3 +43,7 @@ const value = a ? a : b;
 we can do:
 const value = a ?? b;
 
+9) Push all elements from 1 array to second array:
+postsCollection.push(...data.results);
+
+10) 
