@@ -9,7 +9,6 @@ function Stories() {
 	useEffect( () => {
 		fetch("https://randomuser.me/api/?results=7")
 		.then(response  => response.json())
-		// .then(predata  => JSON.stringify(predata))
 		.then(data => setUserData(data.results))
 	},[])
 
