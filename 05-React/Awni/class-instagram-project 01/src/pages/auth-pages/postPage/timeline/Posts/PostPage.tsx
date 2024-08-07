@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import Post from "./Post";
 import './PostPage.css';
 
@@ -58,25 +58,30 @@ type Posts = {
     
 }
 
+
+
 function PostsPage() {
     const [posts, setPosts] = useState<Posts[]>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
-    
-    useEffect(() => { // useEffect is a hook that runs a function when the component mounts and whenever the dependencies array changes.
-        fetchPosts(); // Fetch posts when the component mounts.
-    }, []);
-    
-    const fetchPosts = async () => {
+
+    const loadMorePosts = useCallback(async (amount: number) => {
         try {
-            const response = await fetch('https://randomuser.me/api/?results=50'); // Fetch posts from the API.
+            const response = await fetch('https://randomuser.me/api/?results=' + amount); // Fetch posts from the API.
             const data = await response.json(); // Parse the response as JSON.
-            setPosts(data.results); // Update the posts state variable with the fetched posts.
+            setPosts([...posts, ...data.results]); // Update the posts state variable with the fetched posts.
+            return data;
         } catch (error) {
             console.error('Error fetching posts:', error);
         }
-    };
+    }, [posts]);
+
+    useEffect(() => { // useEffect is a hook that runs a function when the component mounts and whenever the dependencies array changes.
+        if (posts.length < 50) {
+            loadMorePosts(2);
+        }
+    }, [posts]);
     
     const handleRefresh = () => { // Handle refresh button click. 
-        fetchPosts(); // Fetch posts again.
+        setPosts([]);
     };
     
     return (
