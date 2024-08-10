@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    max-height: 100vh;
+}
+
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    margin-right: 80px;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-header .username {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-header button {
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    background-color: #00000018;
+    color: #000;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-right: -5px;
+}
+
+.profile-header .profile-icon {
+    margin-left: 10px;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.profile-stats h3{
+    font-weight: 400;
+}
+
+.posts,
+.followers,
+.following {
+    font-weight: 900;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.posts p,
+.followers p,
+.following p {
+    margin-right: 2px;
+}
+
+.profile-bio {
+    margin-top: 10px;
+}
+
+.highlights {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-right: 170px;
+}
+
+.highlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 340px;
+    cursor: pointer;
+}
+
+.highlight svg {
+    font-size: 25px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #dbdbdb;
+    color: #0000008a;
+    padding: 5px ;
+    width: 100%;
+    height: 100%;
+}
+
+
+.highlight span {
+    font-weight: 700;
+    margin-top: 5px;
+    color: #0000008a;
+}
+
+.parent-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+
+.profile-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    border-top: 2px solid #dbdbdb;
+    width: 50%;
+}
+
+
+.profile-options button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+
+.posts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.posts-container .post-share {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.post-share>*{
+    margin-bottom: 5px;
+}
+
+.post-share span {
+    border: 2px solid #000;
+    padding: 16px 15px 10px 15px;
+    border-radius: 50%;
+}
+
+.post-share h1 {
+    font-weight: 900;
+}
+
+.post-share p {
+    color: #0000008a;
+    font-size: 16px;
+}
+
+.post-share button {
+    padding: 10px 20px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #87CEFA;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.footer-progile{
+   
+    margin-top: 100px;
+    
+}
+

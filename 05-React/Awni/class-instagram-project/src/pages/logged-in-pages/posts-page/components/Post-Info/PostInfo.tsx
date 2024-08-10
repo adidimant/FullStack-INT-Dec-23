@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import Post from "./Post";
-import './PostPage.css';
+import Post from "./Posts";
+import './PostInfo.css';
 
 export type Posts = {
     name: {
@@ -87,7 +87,7 @@ function PostsPage() {
     return (
 
         <div className="postpage-container">
-           
+
             <button className="postpage-btn" onClick={handleRefresh}>Refresh</button>
             {posts.map((post: { name: { first: string }, picture: { large: string }, registered: { date: string } }, index: number) => (
                 <Post user={post.name.first}

@@ -1,0 +1,76 @@
+.sidenav {
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    border-right: 1px solid #dbdbdb;
+}
+
+.sidenav__logo {
+    width: 120px;
+    margin: 25px;
+}
+
+.sidenav__buttons {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.sidenav__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000;
+    background: 0;
+    border: 0;
+    margin: 5px 10px 5px 10px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+
+.sidenav__button a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 700;
+    color: #000;
+    background: 0;
+    font-size: 17px;
+    border: 0;
+    padding: 6px;
+    border-radius: 15px;
+    width: 100%;
+    text-decoration: none;
+}
+
+.sidenav__button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.120);
+}
+
+.sidenav__button>span {
+    font-size: 18px;
+    font-weight: bolder;
+    margin-left: 10px;
+}
+
+.sidenav__more {
+    position: fixed;
+    bottom: 3px;
+}
+
+.profile-img {
+    width: 25px;
+}
+
+.avatar {
+    width: 5%;
+}
+
+@media (max-width: 700px) {
+    .sidenav {
+        display: none;
+    }
+}

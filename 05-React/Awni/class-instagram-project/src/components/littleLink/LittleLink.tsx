@@ -2,10 +2,7 @@ import { memo } from "react";
 import { Link } from "react-router-dom";
 import "./LittleLink.css";
 
-interface LittleLinkProps {
-  text: string;
-  to: string;
-}
+type LittleLinkProps = { text: string; to: string };
 
 function LittleLink({ text, to }: LittleLinkProps): JSX.Element {
     return (
