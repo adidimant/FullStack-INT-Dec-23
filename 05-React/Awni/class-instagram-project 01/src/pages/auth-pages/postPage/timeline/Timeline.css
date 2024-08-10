@@ -8,9 +8,12 @@
 
 .timeline__posts {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     flex: 0.8;
 }
+
 
 .timeline__sugesstions{
     flex: 0.2;
