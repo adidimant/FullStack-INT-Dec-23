@@ -1,18 +1,19 @@
 import { ReactNode, memo } from "react";
 import Stories from "../components/Stories/Stories";
 import Suggested from "../components/Suggested/Suggested";
-import "./MainPostsContainer.css";
+import PostsContainer from "../components/PostsContainer/PostsContainer";
+import "./PostsMainContent.css";
 
-function MainPostsContainer(): ReactNode {
+function PostsMainContent(): ReactNode {
 	return (
 		<div className="MainPostsContainer">
 			<div className="story-and-feed">
 				<Stories />
-				{/* Next lesson - inject Awni posts view */}
+				<PostsContainer />
 			</div>
       <Suggested/>
 		</div>
 	);
 }
 
-export default memo(MainPostsContainer);
+export default memo(PostsMainContent);
