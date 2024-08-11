@@ -75,14 +75,14 @@ function PostsPage() {
     }, [posts]);
 
     useEffect(() => { // useEffect is a hook that runs a function when the component mounts and whenever the dependencies array changes.
-        if (posts.length < 50) {
+        if (posts.length < 50) { // critical for avoiding endless re-renders!
             loadMorePosts(2);
         }
     }, [posts]);
 
-    const handleRefresh = () => { // Handle refresh button click. 
+    const handleRefresh = useCallback(() => { // Handle refresh button click. 
         setPosts([]);
-    };
+    }, []);
 
     return (
 
