@@ -8,7 +8,7 @@ function AuthPageNavbar() {
   return (
     <div className="auth-page-navbar">
         <div className="left-logo">
-          <Link to={'/posts'}><img src={InstagramLogo} alt="Instagram Logo" /></Link>
+          <Link to={'/'}><img src={InstagramLogo} alt="Instagram Logo" /></Link>
         </div>
         <div className="right-actions">
           <Link className="button-link" to={'/'} ><Button name="auth-btn" text="Log In" onClick={() => {}} /> </Link>
