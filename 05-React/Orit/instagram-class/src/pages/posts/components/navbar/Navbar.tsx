@@ -1,7 +1,7 @@
 import { ReactNode, memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavRow from "./componets/NavRow";
-import ProfileImg from "../../assets/profile.jpg";
+import ProfileImg from "../../../../assets/profile.jpg";
 import './Navbar.css';
 
 function Navbar(): ReactNode {
