@@ -1,5 +1,5 @@
 import { ReactNode, memo, useState } from "react";
-import DefaultAvatar from "../../assets/profile.jpg";
+import DefaultAvatar from "../../../../assets/profile.jpg";
 import './SinglePost.css';
 
 type PostProps = {
