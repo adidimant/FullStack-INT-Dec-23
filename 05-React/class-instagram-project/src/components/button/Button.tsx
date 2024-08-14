@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import './Button.css';
 
 type ButtonProps = {
@@ -14,10 +14,10 @@ type ButtonProps = {
 
 function Button({ name, text, onClick, width, height, img, altImg, className }: ButtonProps) {
   // create a style object - if provided width/height - it will be exist in the style object
-  const styleObj = {
+  const styleObj = useMemo(() => ({
     ...(width && { width }),
     ...(height && { height }),
-  };
+  }), [width, height]);
 
   return (
     <button name={name} className={`${className} general-btn`} style={styleObj} onClick={onClick}>
