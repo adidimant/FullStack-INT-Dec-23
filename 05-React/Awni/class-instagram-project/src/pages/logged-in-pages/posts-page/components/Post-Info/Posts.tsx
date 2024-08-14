@@ -1,4 +1,3 @@
-
 import { memo } from 'react';
 import './Posts.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -7,9 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-
-
-
+import { Link } from 'react-router-dom';
 
 type PostProps = {
     user: string;
@@ -23,10 +20,10 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
         <div className='post'>
             <div className="post__header">
                 <div className="post__headerAuthor">
-                    <AccountCircleIcon></AccountCircleIcon>
+                    <AccountCircleIcon />
                     {user} . <span>{timestamp}</span>
                 </div>
-                <MoreHorizIcon></MoreHorizIcon>
+                <MoreHorizIcon />
             </div>
             <div className="post__image">
                 <img src={postImage} alt="" />
@@ -34,9 +31,12 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
             <div className="post__footer">
                 <div className="post__footerIcons">
                     <div className="post__iconsMain">
-                        <FavoriteBorderIcon className='postIcon' />
-                        <ChatBubbleOutlineIcon className='postIcon' />
-                        <TelegramIcon className='postIcon' />
+                        {/* Use Link to navigate to the specific post page */}
+                        <Link to={`/posts/post/${user}`}>
+                            <FavoriteBorderIcon className='postIcon' />
+                            <ChatBubbleOutlineIcon className='postIcon' />
+                            <TelegramIcon className='postIcon' />
+                        </Link>
                     </div>
                     <div className="post_iconSave">
                         <BookmarkBorderIcon className='postIcon' />
@@ -47,6 +47,5 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
         </div>
     );
 }
+
 export default memo(Post);
-
-

@@ -1,7 +1,8 @@
-import { memo, useCallback, useEffect, useState } from "react";
-import Post from "./Posts";
 import './PostInfo.css';
-
+import { memo, useCallback, useEffect } from 'react';
+import Post from './Posts';
+import { usePostsContext } from '../../../PostsContext';
+import './PostInfo.css';
 export type Posts = {
     name: {
         title: string;
@@ -61,39 +62,40 @@ export type Posts = {
 
 
 function PostsPage() {
-    const [posts, setPosts] = useState<Posts[]>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
+    const { posts, setPosts } = usePostsContext(); // Get the posts state and setPosts function from the PostsContext 
 
     const loadMorePosts = useCallback(async (amount: number) => {
         try {
-            const response = await fetch('https://randomuser.me/api/?results=' + amount); // Fetch posts from the API.
-            const data = await response.json(); // Parse the response as JSON.
-            setPosts([...posts, ...data.results]); // Update the posts state variable with the fetched posts.
+            const response = await fetch('https://randomuser.me/api/?results=' + amount);
+            const data = await response.json();
+            setPosts([...posts, ...data.results]);
             return data;
         } catch (error) {
             console.error('Error fetching posts:', error);
         }
-    }, [posts]);
+    }, [posts, setPosts]);
 
-    useEffect(() => { // useEffect is a hook that runs a function when the component mounts and whenever the dependencies array changes.
+    useEffect(() => {
         if (posts.length < 50) {
             loadMorePosts(2);
         }
-    }, [posts]);
+    }, [posts, loadMorePosts]);
 
-    const handleRefresh = () => { // Handle refresh button click. 
+    const handleRefresh = () => {
         setPosts([]);
     };
 
     return (
-
         <div className="postpage-container">
-
             <button className="postpage-btn" onClick={handleRefresh}>Refresh</button>
-            {posts.map((post: { name: { first: string }, picture: { large: string }, registered: { date: string } }, index: number) => (
-                <Post user={post.name.first}
+            {posts.map((post, index) => (
+                <Post
+                    key={index}
+                    user={post.name.first}
                     postImage={post.picture.large}
                     likes={index * 10}
-                    timestamp={post.registered.date} />
+                    timestamp={post.registered.date}
+                />
             ))}
         </div>
     );
