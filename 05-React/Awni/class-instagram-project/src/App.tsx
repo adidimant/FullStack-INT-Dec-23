@@ -7,12 +7,19 @@ import { useState } from 'react';
 import AuthPageNavbar from './pages/auth-pages/components/auth-page-navbar/AuthPageNavbar';
 import PostsPage from './pages/logged-in-pages/posts-page/PostsPage';
 import Profile from './pages/logged-in-pages/profile/Profile';
+import { PostsContext } from './pages/logged-in-pages/PostsContext'; // Import the PostsContext
+import { Posts } from './pages/logged-in-pages/posts-page/components/Post-Info/PostInfo';
+import SinglePostPage from './pages/logged-in-pages/single-postpage/SinglePostPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [posts, setPosts] = useState<Posts[]>([]); // Manage posts state at the App level
+
   return (
     <>
-      <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn ? 'Out' : 'In'}!!!!!!</button>
+      <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        Log {isLoggedIn ? 'Out' : 'In'}!!!!!!
+      </button>
       <BrowserRouter>
         {!isLoggedIn ? (
           <>
@@ -21,25 +28,23 @@ function App() {
               <Route path="/" element={<LoginPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/posts" element={<></>} />
               <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-              <Route path='*' element={<></>} />
+              <Route path="*" element={<></>} />
             </Routes>
-          </>)
-          :
-          <>
+          </>
+        ) : (
+          <PostsContext.Provider value={{ posts, setPosts }}> {/* Provide the posts state and setPosts function to the PostsContext */}
             <Routes>
               <Route path="/posts" element={<PostsPage />} />
               <Route path="/posts/profile" element={<Profile />} />
-              <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>} />
+              <Route path="/posts/post/:postId" element={<SinglePostPage />} />
+              <Route path="*" element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>} />
             </Routes>
-
-          </>
-        }
-
+          </PostsContext.Provider>
+        )}
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
