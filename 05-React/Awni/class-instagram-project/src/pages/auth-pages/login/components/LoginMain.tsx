@@ -75,7 +75,7 @@ function LoginMain() {
           <div className="right-container">
             <form className="login-form">
               <div className="instagram-text-logo-container">
-                <img src={InstagramTextLogo} alt="instagram text logo" />
+                <img src={InstagramTextLogo} id="header-img" alt="instagram text logo" />
               </div>
               <div className="text-inputs-container">
               <Input type="text" id="username" name="username" text="Phone number, username or email" htmlFor="username" />

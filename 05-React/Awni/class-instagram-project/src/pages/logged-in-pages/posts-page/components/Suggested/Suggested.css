@@ -70,10 +70,11 @@
         }
 
         .switch-user{
-            background-color: white;
+            background-color: #ffffffe0;
+            border-radius: 4px;
             border: none;
             color: rgb(1, 149,246);
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             &:hover{

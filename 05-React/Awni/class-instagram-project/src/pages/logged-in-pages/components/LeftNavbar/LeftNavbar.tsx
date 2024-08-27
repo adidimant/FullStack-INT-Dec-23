@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 function Sidenav() {
 	return (
 		<div className='sidenav'>
-			<img className='sidenav__logo' src="https://logos-world.net/wp-content/uploads/2020/05/Instagram-Logo-2016-present.png" alt="Instagram Logo" />
+			<img className='sidenav__logo' src="https://logos-world.net/wp-content/uploads/2020/05/Instagram-Logo-2016-present.png" id="header-img" alt="Instagram Logo" />
 			<div className="sidenav__buttons">
 				<button className="sidenav__button">
 					<HomeIcon />

@@ -32,3 +32,90 @@ a:hover {
 a:active {
   opacity: 0.8;
 }
+
+.login-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px;
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 20000;
+}
+
+#light.App {
+  background-color: #fafafa;
+  color: #000;
+}
+
+#dark.App {
+  background-color: #000000;
+  color: #fff;
+  border: 1px solid #dbdbdb;
+
+  button {
+    color: #fff;
+  }
+
+  a {
+    color: #0095f6;
+  }
+
+  input {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .sidenav__button,
+  .sidenav__button a {
+    background-color: #000;
+    color: #fff;
+  }
+
+  img#header-img {
+    filter: invert(1);
+  }
+
+  .switch-user {
+    background-color: #000;
+    color: #0095f6;
+  }
+
+  .switch-user:hover {
+    color: #fff;
+    ;
+  }
+
+  .auth-footer-top a {
+    color: #fff;
+  }
+
+  .login-with-fb {
+    color: #fff;
+  }
+  .single-post-container{
+    color: #000;
+  }
+}
+
+
+#light .theme-btn {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100000000;
+  right: 5px;
+  top: 5px;
+  padding: 10px;
+}
+
+#dark .theme-btn {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100000000;
+  right: 5px;
+  top: 5px;
+  padding: 10px;
+}

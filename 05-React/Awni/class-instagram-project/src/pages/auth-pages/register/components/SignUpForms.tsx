@@ -52,7 +52,7 @@ function RegisterForms() {
         <div className="register-container">
          <form className="login-form register-form">
            <div className="instagram-text-logo-container">
-             <img src={InstagramTextLogo} alt="instagram text logo" />
+             <img src={InstagramTextLogo} id="header-img" alt="instagram text logo" />
            </div>
            <div className="short-explanation-container">
             <span>Sign up to see photos and videos from your friends.</span>

@@ -15,7 +15,7 @@ function AuthForm({ className, children, height }: AuthFormProps) {
   return (
     <form className={`auth-form ${className || ""}`} style={styleObj}>
       <div className="instagram-text-logo-container">
-        <img src={InstagramTextLogo} alt="instagram text logo" />
+        <img src={InstagramTextLogo} id="header-img" alt="instagram text logo" />
       </div>
       {children}
     </form>
