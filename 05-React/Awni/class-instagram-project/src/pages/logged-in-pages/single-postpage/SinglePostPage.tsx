@@ -7,12 +7,12 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import './SinglePostPage.css';
 
 function SinglePostPage() {
-    const { postId } = useParams<{ postId: string }>(); // Get the postId from the URL params using useParams hook from react router // useParams is a hook that returns an object of key/value pairs of URL parameters.
+    const { postId } = useParams<{ postId: string }>(); // Get the postId from the URL params using useParams hook from react router // url הוא הוק שמחזיר אובייקט של זוגות מפתח/ערך של פרמטרים של כתובת 
     const [post, setPost] = useState<Posts | null>(null); // State to manage the post data 
     const [comments, setComments] = useState<string[]>([]); // State to manage comments
     const [newComment, setNewComment] = useState<string>(""); // State for the new comment input
 
-    
+
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -44,6 +44,9 @@ function SinglePostPage() {
         return <div>Loading...</div>;
     }
 
+    const handleChange = () => {
+        window.history.back();
+    }
     return (
         <div className="single-post-container">
             <div className="single-post">
@@ -51,6 +54,7 @@ function SinglePostPage() {
                     <img src={post.picture.large} alt="Profile" />
                 </div>
                 <div className="post-details-container">
+                    <span className="close" onClick={handleChange}>X</span>
                     <h1>{post.name.title} {post.name.first} {post.name.last}</h1>
                     <div className="post-bio">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, inventore?</p>
