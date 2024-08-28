@@ -11,10 +11,12 @@ type Theme = 'light' | 'dark';
 
 type ThemeContextType = {
   theme: Theme,
-  dispatch: (theme: Theme) => void;
+  dispatch?: (theme: Theme) => void;
 }
 
-export const ThemeContext = createContext({});
+export const ThemeContext = createContext({
+  theme: 'light' as Theme,
+});
 
 function ThemeProvider ({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
@@ -34,7 +36,7 @@ function ThemeProvider ({ children }: { children: ReactNode }) {
 export default ThemeProvider;
 
 
-export const useThemeContext = () => {
+export const useThemeContext = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     // if there is no value the hook is not being called within a function component that is rendered within a `ThemeContext`
