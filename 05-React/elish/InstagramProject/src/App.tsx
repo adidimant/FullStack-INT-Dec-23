@@ -3,20 +3,23 @@ import LoginPage from './pages/login/LoginPage';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import Register from "./pages/register/Register"
 import PostsPage from './pages/postPage/PostsPage';
-import { useState } from 'react';
-import {useTheme} from './ThemeContext';
-//import NightlightIcon from '@mui/icons-material/Nightlight';
-//import LightModeIcon from '@mui/icons-material/LightMode';
+import { useState ,useEffect} from 'react';
+import ModeButton from './components/modeButton/ModeButton';
+import {useThemeContext} from './contexts/theme-context';
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { theme, ToggleTheme } = useTheme();
+  const {theme} = useThemeContext();
+
+  useEffect( ()=>{
+    document.body.className = theme;
+  },[theme]);
 
   return (
     <>
         <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn? 'Out' : 'In'}!!</button>
-        <button style={{ marginLeft:100} } onClick={ToggleTheme}>Mode</button>
+        <div className='modeButton'><ModeButton/></div>
         <BrowserRouter>
           {!isLoggedIn ? (
               <Routes>
