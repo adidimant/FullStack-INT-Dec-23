@@ -41,3 +41,14 @@ a:active {
   background-color: #fff;
   color: #333;
 }
+
+.dark input{
+  background-color: #333;
+  color: #fff;
+  
+}
+
+.modeButton{
+  margin-left: 97%;
+  margin-top: 1px;
+}
