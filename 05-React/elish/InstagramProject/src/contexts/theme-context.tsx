@@ -7,19 +7,19 @@ type ThemeContextType = {
   dispatch?: (theme: Theme) => void;
 }
 
-export const ThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
+export const ThemeContext = createContext({
+  theme: 'light' as Theme,
 });
 
 function ThemeProvider({ children }: { children: ReactNode }) {
-  // שימוש בנתון מה-localStorage כדי לקבוע את המצב ההתחלתי
+  
   const storedTheme = localStorage.getItem('theme') as Theme | null;
   const [theme, setTheme] = useState<Theme>(storedTheme || 'light');
 
   useEffect(() => {
-    // שמירת הנושא ב-localStorage בכל פעם שהוא משתנה
+   
     localStorage.setItem('theme', theme);
-  }, [theme]); // התלות היא ב-theme כדי שהקוד ירוץ רק כש-theme משתנה
+  }, [theme]); 
 
   const contextData: ThemeContextType = useMemo(() => ({
     theme,
