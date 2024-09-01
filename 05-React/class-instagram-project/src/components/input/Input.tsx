@@ -1,5 +1,6 @@
 import { memo, useState, ChangeEvent, useCallback } from "react";
 import "./Input.css";
+import { useThemeContext } from "../../contexts/theme-context";
 
 type InputProps = {
   name: string;
@@ -20,6 +21,7 @@ type ValidIcon = {
 function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
+  const { theme } = useThemeContext();
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -47,7 +49,7 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
       <label htmlFor={htmlFor} className={inputValue ? "active" : ""}>
         {text}
       </label>
-      <input name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
+      <input className={`input ${theme}-input`} name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
       {validIcon &&  <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
           {validIcon.icon}
         </span>}
