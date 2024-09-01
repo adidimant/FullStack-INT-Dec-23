@@ -12,6 +12,7 @@ import Screenshot4 from "../../../../assets/screenshot4.png";
 import { Link } from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import LittleLink from "../../../../components/littleLink/LittleLink";
+import { useThemeContext } from "../../../../contexts/theme-context";
 
 function LoginMain() {
   // const [usernameValue, setUsernameValue] = useState<string>("");
@@ -27,6 +28,7 @@ function LoginMain() {
   const [prevScreenshot, setPrevScreenshot] = useState<string>(Screenshot1);
   const [nextScreenshot, setNextScreenshot] = useState<string>(Screenshot2);
   const [isActive, setIsActive] = useState<boolean>(true);
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     const allScreenShots = [Screenshot1, Screenshot2, Screenshot3, Screenshot4];
@@ -74,7 +76,7 @@ function LoginMain() {
 
           <div className="right-container">
             <form className="login-form">
-              <div className="instagram-text-logo-container">
+              <div className={`instagram-text-logo-container ${theme}-logo`}>
                 <img src={InstagramTextLogo} alt="instagram text logo" />
               </div>
               <div className="text-inputs-container">

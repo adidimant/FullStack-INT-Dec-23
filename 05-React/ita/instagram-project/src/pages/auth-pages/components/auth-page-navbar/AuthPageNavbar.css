@@ -32,3 +32,15 @@
   display: inline-block;
   margin-left: 16px;
 }
+
+.dark-bth {
+  background-color: rgb(243, 238, 165);
+  color: black;
+  border-radius: 50%;
+}
+
+.light-bth {
+  background-color: rgb(63, 63, 80);
+  color: white;
+  border-radius: 50%;
+}
