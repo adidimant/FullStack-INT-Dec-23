@@ -1,5 +1,6 @@
-import { memo, useState, ChangeEvent } from "react";
+import { memo, useState, ChangeEvent, useCallback } from "react";
 import "./Input.css";
+import { useThemeContext } from "../../contexts/theme-context";
 
 type InputProps = {
   name: string;
@@ -20,34 +21,35 @@ type ValidIcon = {
 function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
+  const { theme } = useThemeContext();
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-    };
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  }, []);
 
-    const handleValid = () => {
-      if (!inputValue) {
-        setValidIcon(null);
-        return;
-      } 
+  const handleValid = useCallback(() => {
+    if (!inputValue) {
+      setValidIcon(null);
+      return;
+    }
 
-      if (validate) {
-        const isValid = validate(inputValue);
-        if (isValid) {
-          setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
-        } else {
-          setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
-        }
-        // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
+    if (validate) {
+      const isValid = validate(inputValue);
+      if (isValid) {
+        setValidIcon({ icon: "check_circle", classNameIcon: "iconV" });
+      } else {
+        setValidIcon({ icon: "cancel", classNameIcon: "iconX" });
       }
-  };
+      // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
+    }
+  }, [inputValue, validate]);
 
   return (
     <div className="input-wrapper">
       <label htmlFor={htmlFor} className={inputValue ? "active" : ""}>
         {text}
       </label>
-      <input name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
+      <input className={`input ${theme}-input`} name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
       {validIcon &&  <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
           {validIcon.icon}
         </span>}

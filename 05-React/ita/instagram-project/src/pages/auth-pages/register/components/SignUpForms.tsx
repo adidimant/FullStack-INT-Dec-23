@@ -8,6 +8,8 @@ import WhiteFacebookLogo from "../../../../assets/WhiteFacebookLogo.png";
 import GooglePlay from '../../../../assets/google-play.png';
 import Microsoft from '../../../../assets/microsoft.png';
 import "../Register.css";
+import '../../../../light-dark.css'
+import { useThemeContext } from "../../../../contexts/theme-context";
 
 const validateUsername = (value: unknown): boolean => {
   if (typeof value == 'string' && value.length >= 4) {
@@ -47,12 +49,13 @@ const validateFullName = (value: unknown): boolean => {
 };
 
 function RegisterForms() {
+  const { theme } = useThemeContext();
     return (
        <div className="main">
         <div className="register-container">
          <form className="login-form register-form">
            <div className="instagram-text-logo-container">
-             <img src={InstagramTextLogo} alt="instagram text logo" />
+             <img className={`${theme}-logo`} src={InstagramTextLogo} alt="instagram text logo" />
            </div>
            <div className="short-explanation-container">
             <span>Sign up to see photos and videos from your friends.</span>

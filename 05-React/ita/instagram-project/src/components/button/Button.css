@@ -11,6 +11,16 @@
   cursor: pointer;
 }
 
+.dark-theme-btn {
+  background-color: #2C2C2C;
+  color: #E0E0E0;
+}
+
+.light-theme-btn {
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
 .general-btn:hover {
   background-color: #007ac1;
 }
