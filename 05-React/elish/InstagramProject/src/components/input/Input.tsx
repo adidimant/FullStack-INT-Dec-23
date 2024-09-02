@@ -1,4 +1,4 @@
-import { memo, useState, ChangeEvent } from "react";
+import { memo, useState, ChangeEvent, useCallback } from "react";
 import './Input.css';
 
 type InputProps = {
@@ -21,11 +21,11 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
-    };
+    }, []);
 
-    const handleValid = () => {
+    const handleValid = useCallback(() => {
       if (!inputValue) {
         setValidIcon(null);
         return;
@@ -40,7 +40,7 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
         }
         // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
       }
-  };
+  }, [inputValue, validate]);
 
   return (
     <div className="input-wrapper">
