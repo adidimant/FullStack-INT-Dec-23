@@ -1,0 +1,22 @@
+{
+  "name": "first-server-app",
+  "version": "1.0.0",
+  "description": "First nodejs server based on express framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adidimant/FullStack-INT-Dec-23.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adidimant/FullStack-INT-Dec-23/issues"
+  },
+  "homepage": "https://github.com/adidimant/FullStack-INT-Dec-23#readme",
+  "dependencies": {
+    "express": "4.19.2"
+  }
+}
