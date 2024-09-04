@@ -6,4 +6,8 @@
 4) Read about HTTP status codes (1xx, 2xx, 3xx, 4xx, 5xx)
 5) [Bonus] Find the commands in terminal that shows you:
   a) All the open ports
+    - the command in linux: lsof -nP -iTCP -sTCP:LISTEN
+    - the command in windows: netstat -ano
   b) All the processes that runs on specific port (for example port 80 or port 3000)
+    - the command in linux: lsof -n -i :3000 | grep LISTEN
+    - the command in windows: netstat -ano | findstr :3000
