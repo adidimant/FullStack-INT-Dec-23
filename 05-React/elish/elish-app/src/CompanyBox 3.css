@@ -1,0 +1,29 @@
+.company-item {
+    max-width: 600px;
+    border-radius: 20px;
+    padding: 4px;
+    margin-left: 5%;
+    margin-top: 3%;
+  }
+  .company-item .company-name {
+    font-weight: bold;
+  }
+  .company-item img {
+    width: 400px;
+    margin-top: 12px;
+  }
+  .company-item .company-field {
+    margin-bottom: 8px; 
+  }
+
+  @keyframes slidein1 {
+    from {
+      translate: 150vw 0;
+      scale: 200% 1;
+    }
+  
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }

@@ -1,0 +1,13 @@
+.NavBar {
+    background-color: black;
+    height: 45px;
+}
+
+.NavLink {
+    color: rgb(255, 255, 255);
+}
+
+.container {
+    margin-left: 10px;
+}
+
