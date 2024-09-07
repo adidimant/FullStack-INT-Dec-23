@@ -1,0 +1,24 @@
+{
+  "name": "class-instagram-project-server",
+  "version": "1.0.0",
+  "description": "instagram server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adidimant/FullStack-INT-Dec-23.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adidimant/FullStack-INT-Dec-23/issues"
+  },
+  "homepage": "https://github.com/adidimant/FullStack-INT-Dec-23#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2"
+  }
+}
