@@ -8,9 +8,9 @@ function Stories() {
 	const [userData, setUserData] = useState([]);
 
 	useEffect( () => {
-		fetch("https://randomuser.me/api/?results=7")
+		fetch("http://localhost:3000/api/posts?results=7")
 		.then(response  => response.json())
-		.then(data => setUserData(data.results))
+		.then(data => setUserData(data))
 	},[])
 
 
