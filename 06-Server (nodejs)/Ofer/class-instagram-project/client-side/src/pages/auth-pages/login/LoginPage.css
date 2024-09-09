@@ -1,0 +1,199 @@
+.login-page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  margin-top: 60px;
+  margin-bottom: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  flex-grow: 1;
+}
+
+.main .left-container,
+.main .right-container {
+  margin-top: 9px;
+}
+
+.main .container {
+  display: flex;
+}
+
+.main .left-container {
+  position: relative;
+}
+
+.main .left-container .gallery-container {
+  position: absolute;
+  top: 24px;
+  left: 157px;
+  height: 542px;
+  width: 248px;
+}
+
+.main .left-container .screenshot {
+  position: absolute;
+}
+
+.main .left-container .screenshot.prev.active {
+  opacity: 1;
+}
+
+.main .left-container .screenshot.prev.disabled {
+  transition: 2s ease-in-out;
+  opacity: 0;
+}
+
+.main .left-container .screenshot.next.active {
+  transition: 2s ease-in-out;
+  opacity: 1;
+}
+
+.main .left-container .screenshot.next.disabled {
+  opacity: 0;
+}
+
+.main .login-form {
+  width: 350px;
+  height: 410px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid #dbdbdb;
+  padding: 0px 40px;
+}
+
+.main .login-form .instagram-text-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+}
+
+.main .login-form .instagram-text-logo-container img {
+  width: 175px;
+  height: 51px;
+}
+
+.main .login-form .text-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.main .login-form .flex-item-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .login-form input[type="submit"] {
+  height: 32px;
+  width: 120px;
+  background-color: #0095f6;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+}
+
+.main .login-form .or-text {
+  position: relative;
+  font-size: 13px;
+  font-weight: 600;
+  color: #737373;
+  width: 100%;
+  text-align: center;
+}
+
+.main .login-form .or-text::before,
+.main .login-form .or-text::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 40%;
+  background-color: #dbdbdb;
+  top: 45%;
+}
+
+.main .login-form .or-text::before {
+  left: 0;
+}
+
+.main .login-form .or-text::after {
+  right: 0;
+}
+
+.main .login-form .login-with-fb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #385185;
+}
+
+.main .login-form .login-with-fb img {
+  height: 16px;
+  width: 16px;
+  margin-top: 2px;
+}
+
+.main .sign-up-section {
+  margin: 10px 0;
+  width: 350px;
+  height: 63px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #dbdbdb;
+  font-size: 14px;
+}
+
+.main .sign-up-section .sign-up-text {
+  color: #0095f6;
+  font-weight: 600;
+}
+
+.main .get-app-section {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .get-app-text {
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.main .get-app-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.main .get-app-section .google-play img {
+  height: 40px;
+  width: 134.28px;
+}
+
+.main .get-app-section .microsoft img {
+  height: 40px;
+  width: 110.76px;
+}
+

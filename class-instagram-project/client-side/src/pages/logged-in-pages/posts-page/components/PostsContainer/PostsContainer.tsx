@@ -8,9 +8,9 @@ function PostsContainer() {
 
     const loadMorePosts = useCallback(async (amount: number) => {
         try {
-            const response = await fetch('https://randomuser.me/api/?results=' + amount); // Fetch posts from the API.
+            const response = await fetch('http://localhost:3000/api/posts?results=' + amount); // Fetch posts from the API.
             const data = await response.json(); // Parse the response as JSON.
-            setPosts([...posts, ...data.results]); // Update the posts state variable with the fetched posts.
+            setPosts([...posts, ...data]); // Update the posts state variable with the fetched posts.
             return data;
         } catch (error) {
             console.error('Error fetching posts:', error);
@@ -35,6 +35,7 @@ function PostsContainer() {
                 <Post user={post.name.first}
                     postImage={post.picture.large}
                     likes={index * 10}
+                    key={index}
                     timestamp={post.registered.date} />
             ))}
         </div>
