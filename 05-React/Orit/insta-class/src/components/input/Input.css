@@ -1,0 +1,80 @@
+.input-wrapper {
+    position: relative;
+    display: flex;
+    height: 36px;
+    background-color: #fafafa;
+    border-radius: 3px;
+    width: 100%;
+  }
+
+.input-wrapper label {
+    user-select: none;
+    position: absolute;
+    cursor: text;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #737373;
+    font-size: 12px;
+    transition: 0.1s ease-in-out;
+  }
+
+.input-wrapper label.active {
+    font-size: 10px;
+    top: 30%;
+  }
+  
+.input-wrapper label.active + input {
+    padding: 14px 8px 2px 8px;
+  }
+  
+.input {
+  font-size: 12px;
+  padding: 0 8px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  width: 100%;
+}
+
+.dark-input {
+  background-color: #2A2A2A;
+  border-color: #4A4A4A;
+  color: #E0E0E0;
+}
+
+.light-input {
+  background-color: #fafafa;
+  border-color: #dbdbdb;
+  color: #333333;
+}
+  
+.input-wrapper input:focus {
+    border: 1px solid #999;
+}
+
+.input-wrapper .validation-icon {
+  position: absolute;
+  right: 8px;
+  top: 8px; 
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+
+.input-wrapper .iconX {
+  color: #EA3323;
+}
+
+.input-wrapper .iconV {
+  color: #999999;
+}
+
+.input-wrapper .icon-refresh {
+  color: #17B8FD;
+}
+  
