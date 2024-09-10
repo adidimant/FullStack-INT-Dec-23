@@ -1,6 +1,6 @@
 1) Develop an endpoint that redirects with 3xx status code, the endpoint should be GET method
 open the browser, open the network (under "inspect")
-write on the navigation line the http://localhost:3000/<YOUR-3XX-ENDPOINT>
+writn line the httpe on the navigatio://localhost:3000/<YOUR-3XX-ENDPOINT>
 press enter to perform the GET request from the browsers.
 see that the status code of the first call is 3xx
 see that your browser automatically did another request to the second redirected website (you put in the "location" header)

@@ -1,12 +1,12 @@
 
 import { memo } from 'react';
+import './Post.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import './Post.css';
 
 type PostProps = {
     user: string;
@@ -15,9 +15,9 @@ type PostProps = {
     timestamp: string;
 };
 
-function Post({ user, postImage, likes, timestamp }: PostProps) {
+function PostModal({ user, postImage, likes, timestamp }: PostProps) {
     return (
-        <div className='post' >
+        <div className='postModal' >
             <div className="post__header">
                 <div className="post__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>
@@ -44,4 +44,4 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
         </div>
     );
 }
-export default memo(Post);
+export default memo(PostModal);
