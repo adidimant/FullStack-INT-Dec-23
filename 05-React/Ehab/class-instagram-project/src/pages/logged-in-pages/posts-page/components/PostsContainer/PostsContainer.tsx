@@ -10,7 +10,7 @@ function PostsContainer() {
 
     const loadMorePosts = useCallback(async()=>{
         try{
-            const response = await fetch('http://localhost:3000/posts'); // Fetch posts from the API.
+            const response = await fetch('http://localhost:3000/posts'); // Fetch posts from the server.
             const data = await response.json(); // Parse the response as JSON.
             setPosts([...posts, ...data]); // Update the posts state variable with the fetched posts.
         }
