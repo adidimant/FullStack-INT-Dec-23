@@ -13,5 +13,5 @@ see that your browser automatically did another request to the second redirected
 next lesson
 1) convert server to TypeScript!
 2) middlewares
-3) static files
-4) support views
+3) support views
+4) static files
