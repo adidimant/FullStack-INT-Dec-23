@@ -5,6 +5,7 @@ import "./PostsContainer.css";
 
 function PostsContainer() {
 	const [posts, setPosts] = useState<RandomPostApiResult[]>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
+	const [modal, setModal] = useState<boolean>(false);
 
 	const controller = new AbortController();
 
