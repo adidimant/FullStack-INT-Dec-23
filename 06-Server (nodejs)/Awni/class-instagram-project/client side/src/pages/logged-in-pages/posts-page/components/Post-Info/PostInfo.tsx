@@ -66,9 +66,9 @@ function PostsPage() {
 
     const loadMorePosts = useCallback(async (amount: number) => {
         try {
-            const response = await fetch('https://randomuser.me/api/?results=' + amount);
+            const response = await fetch('http://localhost:3000/api/posts?results=' + amount);
             const data = await response.json();
-            setPosts([...posts, ...data.results]);
+            setPosts([...posts, ...data]);
             return data;
         } catch (error) {
             console.error('Error fetching posts:', error);

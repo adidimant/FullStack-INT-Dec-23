@@ -1,6 +1,6 @@
 
 
-import { memo, useEffect, useState, useMemo } from "react";
+import { memo, useEffect, useState } from "react";
 import storyImg2 from '../../../../../assets/profile.jpg';
 import Story from "./components/Story";
 import { RandomPostApiResult } from "../../../types";
@@ -10,21 +10,19 @@ function Stories() {
 	const [userData, setUserData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://randomuser.me/api/?results=7")
+		fetch("http://localhost:3000/api/posts?results=7")
 			.then(response => response.json())
-			.then(data => setUserData(data.results))
+			.then(data => setUserData(data))
 	}, [])
 
-	const storyComponents = useMemo(() => {
-		return userData.map((user: RandomPostApiResult, index: number) => {
-			return <Story key={index} username={user.name.first} profilePic={user.picture.thumbnail} />
-		});
-	}, [userData]);
+
 
 	return (
 		<div className="Stories">
 			<Story username='ofer ben ami' profilePic={storyImg2} />
-			{storyComponents}
+			{userData ? userData.map((user: RandomPostApiResult, index: number) => {
+				return <Story key={index} username={user.name.first} profilePic={user.picture.thumbnail} />
+			}) : <></>}
 		</div>
 	);
 }

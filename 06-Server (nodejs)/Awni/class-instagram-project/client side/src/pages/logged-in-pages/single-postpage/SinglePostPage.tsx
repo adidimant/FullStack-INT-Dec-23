@@ -17,7 +17,7 @@ function SinglePostPage() {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await fetch(`https://randomuser.me/api/?seed=${postId}&results=1`);
+                const response = await fetch(`'http://localhost:3000/api/posts?results=' + ${postId}`);
                 const data = await response.json();
                 setPost(data.results[0]);
             } catch (error) {
@@ -35,8 +35,8 @@ function SinglePostPage() {
     const handleCommentSubmit = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();// Prevent the default form submission behavior of the browser to avoid page refresh on button click event 
         if (newComment.trim()) {
-            setComments([...comments, newComment]);
-            setNewComment("");
+            setComments([...comments, newComment]);// Add the new comment to the comments state array 
+            setNewComment("");// Clear the new comment input after submitting the comment 
         }
     };
 
@@ -45,7 +45,7 @@ function SinglePostPage() {
     }
 
     const handleChange = () => {
-        window.history.back();
+        window.history.back();// Go back to the previous page 
     }
     return (
         <div className="single-post-container">
