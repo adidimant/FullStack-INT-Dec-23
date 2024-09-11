@@ -8,9 +8,9 @@ function Suggested() {
 	const [userData, setUserData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://randomuser.me/api/?results=5")
+		fetch("http://localhost:3000/api/posts?results=5")
 			.then((response) => response.json())
-			.then((data) => setUserData(data.results));
+			.then((data) => setUserData(data));
 	}, []);
 
 	return (

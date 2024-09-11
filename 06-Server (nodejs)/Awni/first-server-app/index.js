@@ -45,9 +45,7 @@ app.listen(port, () => {
 });
 
 
-app.login('/login', (req, res) => {
-    res.send('Login page');
-});
+
 
 
 
