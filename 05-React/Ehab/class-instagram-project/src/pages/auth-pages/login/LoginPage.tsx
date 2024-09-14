@@ -1,17 +1,15 @@
-import { ReactNode, memo, useMemo } from "react";
+import { ReactNode, memo } from "react";
 import LoginMain from './components/LoginMain';
 import AuthPageFooter from '../components/auth-page-footer/AuthPageFooter';
-import { useThemeContext } from "../../../contexts/theme-context";
 import './LoginPage.css';
 import '../auth-pages.css';
-import '../../../contexts/theme-style.css'
+import '../../../light-dark.css'
+import { useThemeContext } from "../../../contexts/theme-context";
 
 function LoginPage(): ReactNode {
-  const { theme } = useThemeContext();
-  const isDark = useMemo(() => theme === 'dark', [theme]);
-
+  const { theme}= useThemeContext();
   return (
-    <div className= {isDark ? 'auth-page-container dark' : 'auth-page-container light'}>
+    <div className={`auth-page-container ${theme}-background`}>
       <LoginMain />
       <AuthPageFooter />
     </div>

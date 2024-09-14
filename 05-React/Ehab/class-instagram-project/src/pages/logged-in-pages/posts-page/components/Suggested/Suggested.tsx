@@ -1,29 +1,27 @@
-import { memo, useState, useEffect, useMemo} from "react";
+import { memo, useState, useEffect} from "react";
 import profilePic from "../../../../../assets/profile.jpg";
 import UserSuggested from "./UserSuggested/UserSuggested";
-import { RandomPostApiResult } from "../../../types";
-import { useThemeContext } from "../../../../../contexts/theme-context";
 import "./Suggested.css";
-import '../../../../../contexts/theme-style.css'
+import { RandomPostApiResult } from "../../../types";
+
 function Suggested() {
 	const [userData, setUserData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://randomuser.me/api/?results=5")
+		fetch("http://localhost:3000/api/posts?results=5")
 			.then((response) => response.json())
-			.then((data) => setUserData(data.results));
+			.then((data) => setUserData(data));
 	}, []);
-	const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
+
 	return (
-		<div className= {isDark ? 'Suggested dark' : 'Suggested light'}>
+		<div className="Suggested">
 			<UserSuggested
 				profilePic={profilePic}
 				userName="Ofer134"
 				fullName="Ofer Ben Ami"
 				switchOrFllow="Switch"
 			/>
-			<div className= {isDark ? 'suggested-for-you dark' : 'suggested-for-you light'}>
+			<div className="suggested-for-you">
 				<p>Suggested for you</p>
 				<button>See All</button>
 			</div>

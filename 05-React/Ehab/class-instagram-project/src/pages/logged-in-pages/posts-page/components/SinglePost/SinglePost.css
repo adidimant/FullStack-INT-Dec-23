@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: space-between; 
+    margin-left: 610px;
+    margin-bottom: 50px;
+    padding-top: 80px;
+    width: 850px;
+}
+
+.container .left {
+    width: 60%;
+    text-align: center;
+}
+.container .left img{
+    width: 100%;
+    height: 100%;
+    object-fit:  fill;
+}
+.container .right {
+    width: 40%;
+    position: relative;
+    display: flex; 
+    flex-direction: column; 
+    border: 1px solid #dbdbdb;
+}
+
+.container .right .top{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border: 1px solid #dbdbdb;
+
+}
+
+.container .right .comments{
+    flex-grow: 1;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}
+
+.container .right .bottom{
+    border: 1px solid #dbdbdb;
+    width: 100%;
+}
+
+.below-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 550px;
+    width: 980px;
+    border-top: 1px solid #dbdbdb;
+    /* Add additional styling as required */
+}

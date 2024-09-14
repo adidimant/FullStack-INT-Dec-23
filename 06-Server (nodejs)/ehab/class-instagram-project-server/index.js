@@ -1,24 +1,39 @@
-const express = require('express')
-const cors = require('cors');
-const app = express()
-const port = 3000
+import express from 'express';
+import cors from 'cors';
+import postsRouter from './controllers/posts.router.js';
+import { rateLimitingMiddleware } from './guards/rateLimiting.js';
+
+const app = express();
+const port = 3000;
+
+const platformLogMiddleware = (req, res, next) => {
+  const userAgent = req.headers["user-agent"];
+  //console.log('userAgent: ', userAgent);
+  next();
+};
+
+const authMiddleware = (req, res, next) => {
+  next();
+  return;
+  /*const num = Math.random()*100;
+  if (num > 50) {
+    next();
+    return;
+  }
+  res.status(401).send('Unauthorized! please log in!');*/
+};
+
+app.use(rateLimitingMiddleware);
+//app.use(platformLogMiddleware);
 
 app.use(express.json());
-app.use(cors({
+app.use(cors());
+/*app.use(cors({
   origin: 'http://localhost:5173' // Allow requests from your frontend
-}));
+}));*/
 
-app.get('/posts', async (req, res) => {
-  try{
-    const response = await fetch('https://randomuser.me/api/?results=2'); // Fetch posts from the API.
-    const data = await response.json(); // Parse the response as JSON.
-    res.json([...data.results]);
-  }catch{
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Failed to fetch posts' });
-  }
-})
+app.use('/api/posts', authMiddleware, postsRouter);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Server is listening on port ${port}`);
+});
