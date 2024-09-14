@@ -1,7 +1,6 @@
-import { memo, useState, ChangeEvent, useCallback, useMemo } from "react";
-import { useThemeContext } from "../../contexts/theme-context";
+import { memo, useState, ChangeEvent, useCallback } from "react";
 import "./Input.css";
-import '../../contexts/theme-style.css'
+import { useThemeContext } from "../../contexts/theme-context";
 
 type InputProps = {
   name: string;
@@ -23,7 +22,6 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
   const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -45,18 +43,13 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
       // currently not supported for username: setValidIcon({ icon: "refresh", classNameIcon: "icon-refresh" });
     }
   }, [inputValue, validate]);
-  const inputStyle = useMemo(()=>{
-    return ({
-      backgroundColor: isDark ? '#000000':'#ffffff',
-      color: isDark ? '#ffffff':'#000000'
-    })
-  },[isDark])
+
   return (
-    <div className= {isDark ? 'input-wrapper dark' : 'input-wrapper light'}>
+    <div className="input-wrapper">
       <label htmlFor={htmlFor} className={inputValue ? "active" : ""}>
         {text}
       </label>
-      <input name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} style={inputStyle} />
+      <input className={`input ${theme}-input`} name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
       {validIcon &&  <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
           {validIcon.icon}
         </span>}

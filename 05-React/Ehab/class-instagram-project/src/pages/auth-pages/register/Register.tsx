@@ -1,17 +1,15 @@
-import {  memo, useMemo } from "react";
+import {  memo } from "react";
 import RegisterForms from './components/SignUpForms';
 import BasicPageFooter from "../components/auth-page-footer/AuthPageFooter";
 import './Register.css';
 import '../auth-pages.css';
-import '../../../contexts/theme-style.css'
+import '../../../light-dark.css'
 import { useThemeContext } from "../../../contexts/theme-context";
 
 function Register() {
-    const { theme } = useThemeContext();
-    const isDark = useMemo(() => theme === 'dark', [theme]);
-    
+    const { theme}= useThemeContext()
     return (
-        <div className={isDark ? 'auth-page-container dark' : 'auth-page-container light'} >
+        <div className={`auth-page-container ${theme}-background`}>
             <RegisterForms />
             <BasicPageFooter />
         </div>

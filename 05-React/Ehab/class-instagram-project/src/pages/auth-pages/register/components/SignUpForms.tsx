@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import Input from '../../../../components/input/Input';
 import Button from "../../../../components/button/Button";
@@ -7,9 +7,9 @@ import InstagramTextLogo from '../../../../assets/instagram-text-logo.png';
 import WhiteFacebookLogo from "../../../../assets/WhiteFacebookLogo.png";
 import GooglePlay from '../../../../assets/google-play.png';
 import Microsoft from '../../../../assets/microsoft.png';
-import { useThemeContext } from "../../../../contexts/theme-context";
 import "../Register.css";
-import '../../../../contexts/theme-style.css'
+import '../../../../light-dark.css'
+import { useThemeContext } from "../../../../contexts/theme-context";
 
 const validateUsername = (value: unknown): boolean => {
   if (typeof value == 'string' && value.length >= 4) {
@@ -50,16 +50,14 @@ const validateFullName = (value: unknown): boolean => {
 
 function RegisterForms() {
   const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
-
     return (
-       <div className={isDark ? 'main dark' : 'main light'}>
-        <div className={isDark ? 'register-container dark' : 'register-container light'}>
-         <form className= {isDark ? 'login-form register-form dark' : 'login-form register-form light'}>
-           <div className={isDark ? 'instagram-text-logo-container dark' : 'instagram-text-logo-container light'}>
-             <img src={InstagramTextLogo} alt="instagram text logo" />
+       <div className="main">
+        <div className="register-container">
+         <form className="login-form register-form">
+           <div className="instagram-text-logo-container">
+             <img className={`${theme}-logo`} src={InstagramTextLogo} alt="instagram text logo" />
            </div>
-           <div className={isDark ? 'short-explanation-container dark' : 'short-explanation-container light'}>
+           <div className="short-explanation-container">
             <span>Sign up to see photos and videos from your friends.</span>
            </div>
            <Button name="facebook-btn"
@@ -67,17 +65,17 @@ function RegisterForms() {
             onClick={() => {}} 
             img={WhiteFacebookLogo} 
             altImg="facebook logo" 
-            className={isDark ? 'general-btn-height dark' : 'general-btn-height light'}/>
-            <div className={isDark ? 'flex-item-wrapper dark' : 'flex-item-wrapper light'}>
-              <div className={isDark ? 'or-text dark' : 'or-text light'}>OR</div>
+            className="general-btn-height"/>
+            <div className="flex-item-wrapper">
+              <div className="or-text">OR</div>
            </div>
-           <div className={isDark ? 'text-inputs-container dark' : 'text-inputs-container light'}>
+           <div className="text-inputs-container">
               <Input name="emailOrPhone" text="Mobile number or email address" htmlFor="emailOrPhone" type="text" id="emailOrPhone" validate={validateEmail} />
               <Input name="Full Name" text="Full Name" htmlFor="Full Name" type="text" id="fullName" validate={validateFullName}/>
               <Input name="Username" text="Username" htmlFor="Username" type="text" id="username" validate={validateUsername}/>
               <Input name="Password" text="Password" htmlFor="Password" type="Password" id="password" validate={validatePassword}/>
            </div>
-           <p className= {isDark ? 'Links-to-information dark' : 'Links-to-information light'}>
+           <p className="Links-to-information">
             <span>People who use our service may have uploaded your contact information to Instagram. 
               <LittleLink text="learn more" to={""} />.</span>
               <br />
@@ -91,20 +89,20 @@ function RegisterForms() {
             name="Sign Up"
             text="Sign Up" 
             onClick={() => {}}
-            className={isDark ? 'bth-signup dark' : 'bth-signup light'}/>
+            className="bth-signup"/>
          </form>
-         <div className={isDark ? 'sign-up-section dark' : 'sign-up-section light'}>
-            <div className={isDark ? 'create-account-text dark' : 'create-account-text light'}>
-            Have an account? <span className={isDark ? 'navbar-signup-link dark' : 'navbar-signup-link light'}><Link to={'/login'} style={{ textDecoration: 'none'}}>Log in</Link></span>
+         <div className="sign-up-section">
+            <div className="create-account-text">
+            Have an account? <span className="navbar-signup-link"><Link to={'/login'} style={{ textDecoration: 'none'}}>Log in</Link></span>
             </div>
          </div>
-         <div className={isDark ? 'get-app-section dark' : 'get-app-section light'}>
-            <div className={isDark ? 'get-app-text dark' : 'get-app-text light'}>Get the app.</div>
-            <div className={isDark ? 'get-app-img-container dark' : 'get-app-img-container light'}>
-              <div className={isDark ? 'google-play dark' : 'google-play light'}>
+         <div className="get-app-section">
+            <div className="get-app-text">Get the app.</div>
+            <div className="get-app-img-container">
+              <div className="google-play">
                 <img src={GooglePlay} alt="google play" />
               </div>
-              <div className={isDark ? 'microsoft dark' : 'microsoft light'}>
+              <div className="microsoft">
                 <img src={Microsoft} alt="microsoft" />
               </div>
             </div>

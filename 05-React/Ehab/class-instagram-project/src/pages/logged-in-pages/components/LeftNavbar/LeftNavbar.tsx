@@ -1,28 +1,23 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import InstagramLogo from "../../../../assets/instagram-text-logo.png";
 import { Link } from "react-router-dom";
 import profilePic from "../../../../assets/profile.jpg";
-import { useThemeContext } from "../../../../contexts/theme-context";
 import "./LeftNavbar.css";
-import '../../../../contexts/theme-style.css'
 
 function LeftNavbar() {
-	const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
-
 	return (
-		<div className={isDark ? 'left-navbar dark' : 'left-navbar light'}>
-			<div className={isDark ? 'left-navbar-logo dark' : 'left-navbar-logo light'}>
+		<div className="left-navbar">
+			<div className="left-navbar-logo">
 				<Link to={"/"}>
 					<img
-						className={isDark ? 'left-navbar-InstagramLogo dark' : 'left-navbar-InstagramLogo light'}
+						className="left-navbar-InstagramLogo"
 						src={InstagramLogo}
 						alt="Instagram Logo"
 					/>
 				</Link>
 			</div>
-			<div className={isDark ? 'left-navbar-links dark' : 'left-navbar-links light'} >
-				<div tabIndex={1} className={isDark ? 'home links-basic-styles dark' : 'home links-basic-styles light'} >
+			<div className="left-navbar-links">
+				<div tabIndex={1} className="home links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -39,9 +34,9 @@ function LeftNavbar() {
 							strokeWidth="2"
 						></path>
 					</svg>
-					<span className={isDark? 'links-text dark':'links-text light'}>Home</span>
+					<span className="links-text">Home</span>
 				</div>
-				<div tabIndex={2} className={isDark ? 'search links-basic-styles dark' : 'search links-basic-styles light'}>
+				<div tabIndex={2} className="search links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -70,9 +65,9 @@ function LeftNavbar() {
 							y2="22"
 						></line>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Search</span>
+					<span className="links-text">Search</span>
 				</div>
-				<div tabIndex={3} className= {isDark ? 'explore links-basic-styles dark' : 'explore links-basic-styles light'}>
+				<div tabIndex={3} className="explore links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -104,9 +99,9 @@ function LeftNavbar() {
 							strokeWidth="2"
 						></circle>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Explore</span>
+					<span className="links-text">Explore</span>
 				</div>
-				<div tabIndex={4} className= {isDark ? 'reels links-basic-styles dark' : 'reels links-basic-styles light'}>
+				<div tabIndex={4} className="reels links-basic-styles">
 					<svg
 						aria-label="Reels"
 						className="x1lliihq x1n2onr6 x5n08af"
@@ -162,9 +157,9 @@ function LeftNavbar() {
 							fillRule="evenodd"
 						></path>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Reels</span>
+					<span className="links-text">Reels</span>
 				</div>
-				<div tabIndex={5} className= {isDark ? 'links-basic-styles dark' : 'links-basic-styles light'}>
+				<div tabIndex={5} className="links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -185,9 +180,9 @@ function LeftNavbar() {
 							fillRule="evenodd"
 						></path>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Messages</span>
+					<span className="links-text">Messages</span>
 				</div>
-				<div tabIndex={5} className= {isDark ? 'notifications links-basic-styles dark' : 'notifications links-basic-styles light'}>
+				<div tabIndex={5} className="notifications links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -198,9 +193,9 @@ function LeftNavbar() {
 						<title>Notifications</title>
 						<path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Notifications</span>
+					<span className="links-text">Notifications</span>
 				</div>
-				<div tabIndex={6} className= {isDark ? 'create links-basic-styles dark' : 'create links-basic-styles light'}>
+				<div tabIndex={6} className="create links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -240,15 +235,15 @@ function LeftNavbar() {
 							y2="17.455"
 						></line>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Create</span>
+					<span className="links-text">Create</span>
 				</div>
-				<div tabIndex={7} className= {isDark ? 'profile links-basic-styles dark' : 'profile links-basic-styles light'}>
+				<div tabIndex={7} className="profile links-basic-styles">
 					<img src={profilePic} alt="" />
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>Profile</span>
+					<span className="links-text">Profile</span>
 				</div>
 			</div>
-			<div className= {isDark ? 'left-navbar-bottom-links dark' : 'left-navbar-bottom-links light'}>
-				<div tabIndex={8} className= {isDark ? 'links-basic-styles dark' : 'links-basic-styles light'}>
+			<div className="left-navbar-bottom-links">
+				<div tabIndex={8} className="links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -261,7 +256,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Threads</span>
 				</div>
-				<div tabIndex={9} className= {isDark ? 'links-basic-styles dark' : 'links-basic-styles light'}>
+				<div tabIndex={9} className="links-basic-styles">
 					<svg
 						fill="currentColor"
 						height="24"
@@ -304,7 +299,7 @@ function LeftNavbar() {
 							y2="20"
 						></line>
 					</svg>
-					<span className= {isDark ? 'links-text dark' : 'links-text light'}>More</span>
+					<span className="links-text">More</span>
 				</div>
 			</div>
 		</div>

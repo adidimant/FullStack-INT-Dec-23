@@ -10,17 +10,15 @@
   line-height: 1;
   cursor: pointer;
 }
-.general-btn-dark{
-  font-size: 14px;
-  font-weight: 500;
-  height: 32px;
-  border-radius: 8px;
-  border: none;
-  padding: 0 16px;
-  background-color: #002c49;
+
+.dark-theme-btn {
+  background-color: #2C2C2C;
+  color: #E0E0E0;
+}
+
+.light-theme-btn {
+  background-color: #0095f6;
   color: #ffffff;
-  line-height: 1;
-  cursor: pointer; 
 }
 
 .general-btn:hover {
