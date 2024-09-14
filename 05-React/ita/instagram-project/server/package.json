@@ -1,0 +1,21 @@
+{
+  "name": "instagram-server",
+  "version": "1.0.0",
+  "description": "The main server for the class instagram application",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "INT FullStack Dec 23",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "1.7.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "ioredis": "^5.4.1",
+    "rate-limiter-flexible": "^5.0.3"
+  }
+}
