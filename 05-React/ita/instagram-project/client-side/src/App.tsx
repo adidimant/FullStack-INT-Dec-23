@@ -7,6 +7,7 @@ import './App.css';
 import { useState } from 'react';
 import AuthPageNavbar from './pages/auth-pages/components/auth-page-navbar/AuthPageNavbar';
 import PostsPage from './pages/logged-in-pages/posts-page/PostsPage';
+import ModeButton from './components/modeButton/ModeButton';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <ThemeProvider>
+      <ModeButton  />
         <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn ? 'Out' : 'In'}!!!!!!</button>
         <BrowserRouter> 
                 {!isLoggedIn ? (

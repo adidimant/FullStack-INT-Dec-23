@@ -8,9 +8,9 @@ function Suggested() {
 	const [userData, setUserData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://randomuser.me/api/?results=5")
+		fetch("http://localhost:3000/api/posts?results=5")
 			.then((response) => response.json())
-			.then((data) => setUserData(data.results));
+			.then((data) => setUserData(data));
 	}, []);
 
 	return (
@@ -26,15 +26,16 @@ function Suggested() {
 				<button>See All</button>
 			</div>
 
-			{userData.length > 0 ?  userData.map((user: RandomPostApiResult, index: number) =>{
-				return <UserSuggested
-								key={index}
-								profilePic={user.picture.thumbnail}
-								userName={user.login.username}
-								fullName = {`${user.name.first} ${user.name.last}`}
-								switchOrFllow="Follow"
-							/>;
-			}): <></>}
+			{Array.isArray(userData) && userData.length > 0 ? 
+			userData.map((user: RandomPostApiResult, index: number) => (
+				<UserSuggested
+				key={index}
+				profilePic={user.picture.thumbnail}
+				userName={user.login.username}
+				fullName={`${user.name.first} ${user.name.last}`}
+				switchOrFllow="Follow"
+				/>
+			)) : <p>No users found</p>}
 		</div> 
 	);
 }

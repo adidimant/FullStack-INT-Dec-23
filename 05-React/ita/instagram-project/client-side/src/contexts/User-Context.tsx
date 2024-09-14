@@ -10,22 +10,22 @@ type User = {
 };
 
 type UserContextType = {
-    user: User,
+    userData: User,
     dispatch?: (user: User) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 function UserProvider ({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User>(undefined);
+    const [userData, setUserData] = useState<User>(undefined);
 
     const contextData: UserContextType = useMemo(() => ({
-        user,
-        dispatch: setUser,
-    }), [user])
+        userData,
+        dispatch: setUserData,
+    }), [userData])
 
     return (
-        <UserContext.Provider value={{ contextData }}>
+        <UserContext.Provider value={contextData}>
           {children}
         </UserContext.Provider>
       );
