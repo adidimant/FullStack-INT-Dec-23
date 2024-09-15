@@ -17,7 +17,7 @@ type PostProps = {
 
 function PostModal({ user, postImage, likes, timestamp }: PostProps) {
     return (
-        <div className='postModal' >
+        <div className='postModal'  >
             <div className="postModal__header">
                 <div className="postModal__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>

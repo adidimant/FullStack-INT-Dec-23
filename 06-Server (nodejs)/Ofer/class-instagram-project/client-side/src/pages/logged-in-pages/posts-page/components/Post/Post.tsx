@@ -13,11 +13,12 @@ type PostProps = {
     postImage: string;
     likes: number;
     timestamp: string;
+    toggleModal?: () => void;
 };
 
-function Post({ user, postImage, likes, timestamp }: PostProps) {
+function Post({ user, postImage, likes, timestamp, toggleModal }: PostProps) {
     return (
-        <div className='post' >
+        <div className='post' onClick={toggleModal}>
             <div className="post__header">
                 <div className="post__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>

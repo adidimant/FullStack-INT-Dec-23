@@ -1,5 +1,7 @@
 .postModal {
     width: 800px;
+    position: fixed;
+    
 }
 
 .postModal__header {
