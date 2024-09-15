@@ -9,7 +9,7 @@ app.get('/', (req, res)=>{
 
 //object
 
-app.get('/', (req, res)=>{
+app.get('/json-object', (req, res)=>{
     const responseObject = {
         message: 'JSON object',
         status: 'success',
@@ -23,7 +23,7 @@ app.get('/', (req, res)=>{
 
 //array
 
-app.get('/', (req, res)=>{
+app.get('/json-array', (req, res)=>{
     const resposeArray = [
         {id: 1, name: 'array 1'},
         {id: 2, name: 'array 2'},
@@ -40,6 +40,10 @@ app.post('/post-data', (req, res) => {
         message: "Data received successfully",
         data: receivedData
     });
+})
+
+app.get('/', (req, res)=> {
+    res.status(302).send('https://www.google.co.il/');
 })
 
 
