@@ -13,11 +13,13 @@ const platformLogMiddleware = (req, res, next) => {
 
 const authMiddleware = (req, res, next) => {
   const num = Math.random()*100;
-  if (num > 50) {
-    next();
-    return;
-  }
-  res.status(401).send('Unauthorized! please log in!');
+  next();
+  return;
+  // if (num > 1) {
+  //   next();
+  //   return;
+  // }
+  // res.status(401).send('Unauthorized! please log in!');
 };
 
 app.use(platformLogMiddleware);
