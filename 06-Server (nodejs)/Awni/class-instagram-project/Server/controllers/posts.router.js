@@ -6,32 +6,30 @@ import axios from 'axios';
 
 const postsRouter = express.Router();
 
-postsRouter.get('/', async (res, req) => {
+postsRouter.get('/', async (req, res) => {
     console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
-    const { results } = req.query; // Destructure the `results` query param from the request object.
-
+    const { results } = req.query;
     if (results > 100) {
-        res.status(400).send('`results` query param must be up to 100.');
-        return; // Stop the function execution.
+      res.status(400).send("`results` query param must be up to 100.");
+      return;
     }
-
     try {
-        const response = await axios.get('https://randomuser.me/api/?results=' + results);
-        const data = response.data;
-        res.json(data.results);
+      const response = await axios.get('https://randomuser.me/api/?results=' + results); // Fetch posts from the API.
+      const data = response.data;
+      res.json(data.results);
     } catch (err) {
-        console.error('Error fetching data:', err);
-        res.status(500).json({ error: 'Failed to fetch posts' });
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'Failed to fetch posts' });
     }
-
-});
-
+  });
+  
+  
 postsRouter.get('/:postId', async (req, res) => {
-    console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
-    const { postId } = req.params;
+    console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`); // Log the request details to the console.
+    const { postId } = req.params; // Extract the postId parameter from the request.
 
     try {
-        const response = await axios.get(`https://randomuser.me/api/?results${postId}`);
+        const response = await axios.get(`https://randomuser.me/api/?results${postId}`); // Fetch the post from the API.
         const data = response.data;
         res.json(data);
     } catch (err) {
