@@ -18,10 +18,9 @@ function Stories() {
 	return (
 		<div className="Stories">
 			<Story username='ofer ben ami' profilePic={storyImg2}/>
-			{Array.isArray(userData) && userData.length > 0 ? 
-			userData.map((user: RandomPostApiResult, index: number) => (
-				<Story key={index} username={user.name.first} profilePic={user.picture.thumbnail} />
-			)) : <p>No stories available</p>}
+			{userData ? userData.map((user: RandomPostApiResult, index: number) => {
+				return <Story key={index} username={user.name.first} profilePic={user.picture.thumbnail }/>
+			}) : <></>}
 		</div>
 	);
 }

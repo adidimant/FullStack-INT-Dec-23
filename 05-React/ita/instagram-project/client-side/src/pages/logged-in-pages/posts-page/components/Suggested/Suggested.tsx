@@ -26,16 +26,15 @@ function Suggested() {
 				<button>See All</button>
 			</div>
 
-			{Array.isArray(userData) && userData.length > 0 ? 
-			userData.map((user: RandomPostApiResult, index: number) => (
-				<UserSuggested
-				key={index}
-				profilePic={user.picture.thumbnail}
-				userName={user.login.username}
-				fullName={`${user.name.first} ${user.name.last}`}
-				switchOrFllow="Follow"
-				/>
-			)) : <p>No users found</p>}
+			{userData.length > 0 ?  userData.map((user: RandomPostApiResult, index: number) =>{
+				return <UserSuggested
+								key={index}
+								profilePic={user.picture.thumbnail}
+								userName={user.login.username}
+								fullName = {`${user.name.first} ${user.name.last}`}
+								switchOrFllow="Follow"
+							/>;
+			}): <></>}
 		</div> 
 	);
 }
