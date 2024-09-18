@@ -31,16 +31,13 @@ function PostsContainer() {
         <div className="postpage-container">
            
             <button className="postpage-btn" onClick={handleRefresh}>Refresh</button>
-            {Array.isArray(posts) && posts.length > 0 ? 
-            posts.map((post: RandomPostApiResult, index: number) => (
-                <Post
-                user={post.name.first}
-                postImage={post.picture.large}
-                likes={index * 10}
-                key={index}
-                timestamp={post.registered.date}
-                />
-            )) : <p>No posts available</p>}
+            {posts.map((post: RandomPostApiResult, index: number) => (
+                <Post user={post.name.first}
+                    postImage={post.picture.large}
+                    likes={index * 10}
+                    key={index}
+                    timestamp={post.registered.date} />
+            ))}
         </div>
     );
 }
