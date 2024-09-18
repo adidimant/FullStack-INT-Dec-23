@@ -1,11 +1,14 @@
 import express from 'express';
 import axios from 'axios';
+import { User, Post } from '../classes/postsClasses';
 const postsRouter = express.Router();
+
+
 
 postsRouter.get('/', async (req, res) => {
   console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
   const { results } = req.query;
-  if (results > 100) {
+  if (results && Number(results) > 100) {
     res.status(400).send("`results` query param must be up to 100.");
     return;
   }
@@ -18,5 +21,11 @@ postsRouter.get('/', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch posts' });
   }
 });
+
+postsRouter.put('/createPost',(req,res) =>{
+  const { user } = req.query;
+})
+
+
 
 export default postsRouter;
