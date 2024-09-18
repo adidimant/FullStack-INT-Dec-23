@@ -1,19 +1,29 @@
 {
-  "name": "oferbenami",
+  "name": "instagram-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "The main server for the class instagram application",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "dev": "nodemon src/index.ts",
+    "deploy": "sh deploy.sh",
+    "build": "tsc",
+    "start:prod": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "INT FullStack Dec 23",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "axios": "1.7.7",
+    "cors": "2.8.5",
+    "express": "4.19.2",
+    "express-rate-limit": "7.4.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "5.6.2"
   }
 }
