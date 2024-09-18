@@ -1,12 +1,11 @@
 { 
 "compilerOptions": {
   "target": "ES2020", // ECMAScript version
-  //"module": "ESNext", // Use ES module system
-  "module": "CommonJS", // Use ES module system
+  "module": "ESNext", // Use ES module system
   "lib": ["ES2020"], // Include standard library
   "outDir": "./dist", // Output directory for compiled files
   "rootDir": "./src", // Root directory of input files
-  //"strict": true, // Enable strict type checking options
+  "strict": true, // Enable strict type checking options
   "esModuleInterop": true, // Allow default imports from modules with no default export
   "forceConsistentCasingInFileNames": true, // Ensure consistent file naming
   "skipLibCheck": true, // Skip type checking of declaration files
@@ -17,6 +16,6 @@
   "experimentalDecorators": true, // Enable experimental decorators (if needed)
   "emitDecoratorMetadata": true // Emit metadata for decorators (if needed) }
   },
-  "include": ["src/**/*.ts", "src/index.ts"], // Include all TypeScript files in the src directory
+  "include": ["src/**/*.ts"], // Include all TypeScript files in the src directory
   "exclude": ["node_modules", "dist"] // Exclude node_modules and dist directories
 }
