@@ -1,28 +1,20 @@
+
 import rateLimit from "express-rate-limit";
-import { Request } from "express";
+import { MiddleWareType } from './types';
 
-// Define the rate limits for different time intervals
 const rateLimits: { [key: string]: number } = {
-  "1000": 10,
-  "2000": 15,
-  "5000": 20,
-  "10000": 35,
-  "30000": 46,
-  "60000": 58,
-  "300000": 130,
+  "1000": 140,
+  "2000": 280,
+  "5000": 500,
+  "10000": 1000,
+  "30000": 2500,
+  "60000": 4500,
+  "300000": 9000,
 };
 
-// Select a specific interval you want to use (example: 1000ms)
-const selectedInterval = "60000"; // Use your logic to select the interval dynamically if needed
+const rateLimitOptions = Object.keys(rateLimits).map((interval) => ({
+  windowMs: parseInt(interval, 10),
+  max: rateLimits[interval],
+}));
 
-// Create rate limiting options based on the selected interval
-const rateLimitOptions = {
-  windowMs: parseInt(selectedInterval, 10), // Convert string to number for the window size
-  max: rateLimits[selectedInterval],       // Set the max number of requests allowed
-};
-
-// Create the rate-limiting middleware
-export const rateLimitMiddleware = rateLimit({
-  keyGenerator: (req: Request): string => req.ip || 'unknown-ip', // Ensure a string is always returned
-  ...rateLimitOptions, // Spread the rate limit options
-});
+export const rateLimitMiddleware: MiddleWareType = rateLimit({ keyGenerator: (req) => req.ip as string, ...rateLimitOptions });
