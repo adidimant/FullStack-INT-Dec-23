@@ -1,14 +1,14 @@
 export class Post {
     private postID: string;
-    public relatedUser: User;
+    public userName: string;
     public img: string;
     public caption: string;
     public comments: [User, string][]
     public NumOflikes: number;
     public userLiked: User[];
 
-    constructor(relatedUser: User){
-        this.relatedUser = relatedUser;
+    constructor(userName: string, img: string, caption: string){
+        this.userName = userName;
         this.NumOflikes = 0;
         this.userLiked = [];
         this.caption = '';
