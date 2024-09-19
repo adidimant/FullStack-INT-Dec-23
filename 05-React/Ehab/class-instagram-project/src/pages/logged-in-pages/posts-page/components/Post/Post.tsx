@@ -19,23 +19,24 @@ type PostProps = {
 
 
 function Post({ user, postImage, likes, timestamp }: PostProps) {
-    const { dispatch } = usePostContext();
+    const PostContext = usePostContext();
     
     const [isVisible, setIsVisible] = useState(false);
     
     const moreOptionsClick = useCallback(()=>{
+        
         const _post: PostProps = {
             user: user,
             postImage: postImage,
             likes: likes,
             timestamp: timestamp 
         }
-        console.log('_post',_post);
-        if(dispatch){
-            dispatch({..._post}); 
+        if(PostContext.dispatch){
+            console.log('in dispatch');
+            PostContext.dispatch({..._post}); 
         }
         setIsVisible(!isVisible);
-    },[dispatch, isVisible, likes, postImage, timestamp, user]);
+    },[PostContext, isVisible, likes, postImage, timestamp, user]);
 
     const hiddMoreOptions = useCallback((event: MouseEvent)=>{
         const clickedDiv = event.target as HTMLDivElement;
@@ -67,7 +68,7 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
 
     return (
         <>
-        <div id='MoreOptionsDiv'>{isVisible && <MoreOptions user={user} postImage={postImage} likes={likes} timestamp={timestamp}  />}</div>
+        <div id='MoreOptionsDiv'>{isVisible && <MoreOptions user={user}  />}</div>
         <div className='post'>
             <div className="post__header">
                 <div className="post__headerAuthor">

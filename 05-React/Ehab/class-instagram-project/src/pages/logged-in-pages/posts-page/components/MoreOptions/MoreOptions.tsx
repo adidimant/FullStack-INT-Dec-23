@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 import './MoreOptions.css'
 
 
-type PostProps = {
+type PostUser = {
     user: string;
-    postImage: string;
-    likes: number;
-    timestamp: string;
 };
 
-function MoreOptions({ user, postImage, likes, timestamp }: PostProps){
-    const stateData = { user, postImage, likes, timestamp };
-    console.log(stateData);
+function MoreOptions({ user }: PostUser){
+    //const stateData = { user, postImage, likes, timestamp };
+    //console.log(stateData);
     return(
         <div className="moreoptions-container">
             <div className="option redOption">Report</div>

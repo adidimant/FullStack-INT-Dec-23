@@ -23,14 +23,14 @@ const authMiddleware = (req, res, next) => {
   res.status(401).send('Unauthorized! please log in!');*/
 };
 
-app.use(rateLimitingMiddleware);
-//app.use(platformLogMiddleware);
+//app.use(rateLimitingMiddleware);
+app.use(platformLogMiddleware);
 
 app.use(express.json());
 app.use(cors());
-/*app.use(cors({
+app.use(cors({
   origin: 'http://localhost:5173' // Allow requests from your frontend
-}));*/
+}));
 
 app.use('/api/posts', authMiddleware, postsRouter);
 

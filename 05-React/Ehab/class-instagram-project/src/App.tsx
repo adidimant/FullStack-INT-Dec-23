@@ -12,7 +12,7 @@ import SinglePost from './pages/logged-in-pages/posts-page/components/SinglePost
 import PostProvider from './contexts/Post-Context';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   
   return (
     <>
