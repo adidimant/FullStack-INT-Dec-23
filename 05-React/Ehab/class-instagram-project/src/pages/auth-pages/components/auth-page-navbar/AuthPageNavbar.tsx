@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo, useRef } from "react";
 import InstagramLogo from '../../../../assets/instagram-text-logo.png';
 import { Link } from "react-router-dom";
 import Button from "../../../../components/button/Button";

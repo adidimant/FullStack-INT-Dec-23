@@ -11,7 +11,6 @@ import AuthPageFooter from "../../../../auth-pages/components/auth-page-footer/A
 function SinglePost(){
     const { postData } = usePostContext();
     console.log('postData in SinglePost: ',postData);
-
     const addComment = useCallback(()=>{
         const parent = document.getElementById('inputZone') as HTMLDivElement;
         const inputs = parent.querySelectorAll('input');
