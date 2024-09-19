@@ -20,7 +20,7 @@ function PostsContainer() {
         if (posts.length < 50) { // critical for avoiding endless re-renders!
             loadMorePosts(2);
         }
-    }, [posts, loadMorePosts]);
+    }, [loadMorePosts, posts]);
 
     const handleRefresh = useCallback(() => { // Handle refresh button click. 
         setPosts([]);

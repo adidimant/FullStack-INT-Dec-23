@@ -4,21 +4,22 @@ import Register from './pages/auth-pages/register/Register';
 import ForgotPasswordPage from './pages/auth-pages/forgot-password/ForgotPasswordPage';
 import ThemeProvider from './contexts/theme-context';
 import './App.css';
-import {  useState } from 'react';
+import { useState } from 'react';
 import AuthPageNavbar from './pages/auth-pages/components/auth-page-navbar/AuthPageNavbar';
 import PostsPage from './pages/logged-in-pages/posts-page/PostsPage';
 import ModeButton from './components/modeButton/ModeButton';
-import SinglePost from './pages/logged-in-pages/posts-page/components/SinglePost/SinglePost';
 import PostProvider from './contexts/Post-Context';
+import SinglePost from './pages/logged-in-pages/posts-page/components/SinglePost/SinglePost';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   
   return (
     <>
       <ThemeProvider>
       <ModeButton  />
-        <button style={{ zIndex: 3000, position: 'fixed' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn ? 'Out' : 'In'}!!!!!!</button>
+        <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn ? 'Out' : 'In'}!!!!!!</button>
         <BrowserRouter> 
                 {!isLoggedIn ? (
                 <>
@@ -32,8 +33,7 @@ function App() {
                       <Route path='*' element={<></>}  />
                   </Routes>
                 </>)
-                
-                : <PostProvider> 
+                : <PostProvider>  
                     <Routes> 
                       <Route path="/posts" element={<PostsPage/>} /> 
                       <Route path="/post/:user" element={<SinglePost/>} />

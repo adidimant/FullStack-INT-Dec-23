@@ -11,7 +11,7 @@ function UserSuggested({profilePic, userName, fullName, switchOrFllow}:{profileP
 						<p className="fullName">{fullName}</p>
 					</div>
 				</div>
-				<button className="switch-user" style={{backgroundColor: 'transparent'}}>{switchOrFllow}</button>
+				<button className="switch-user">{switchOrFllow}</button>
 			</div>
     )
 }

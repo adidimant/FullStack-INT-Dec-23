@@ -7,8 +7,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import MoreOptions from '../MoreOptions/MoreOptions';
 import { usePostContext } from '../../../../../contexts/Post-Context';
+import MoreOptions from '../MoreOptions/MoreOptions';
 
 type PostProps = {
     user: string;
@@ -17,25 +17,25 @@ type PostProps = {
     timestamp: string;
 };
 
-
 function Post({ user, postImage, likes, timestamp }: PostProps) {
-    const { dispatch } = usePostContext();
+    const PostContext = usePostContext();
     
     const [isVisible, setIsVisible] = useState(false);
     
     const moreOptionsClick = useCallback(()=>{
+        
         const _post: PostProps = {
             user: user,
             postImage: postImage,
             likes: likes,
             timestamp: timestamp 
         }
-        console.log('_post',_post);
-        if(dispatch){
-            dispatch({..._post}); 
+        if(PostContext.dispatch){
+            console.log('in dispatch');
+            PostContext.dispatch({..._post}); 
         }
         setIsVisible(!isVisible);
-    },[dispatch, isVisible, likes, postImage, timestamp, user]);
+    },[PostContext, isVisible, likes, postImage, timestamp, user]);
 
     const hiddMoreOptions = useCallback((event: MouseEvent)=>{
         const clickedDiv = event.target as HTMLDivElement;
@@ -64,36 +64,34 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
             authPageContainerElement.removeEventListener('click',hiddMoreOptions);
         }
     },[hiddMoreOptions, isVisible]);
-
     return (
         <>
-        <div id='MoreOptionsDiv'>{isVisible && <MoreOptions user={user} postImage={postImage} likes={likes} timestamp={timestamp}  />}</div>
-        <div className='post'>
-            <div className="post__header">
-                <div className="post__headerAuthor">
-                    <AccountCircleIcon></AccountCircleIcon>
-                    {user} . <span>{timestamp}</span>
-                </div>
-                <span onClick={()=> moreOptionsClick()} style={{cursor: 'pointer'}}><MoreHorizIcon></MoreHorizIcon></span>
-                
-            </div>
-            <div className="post__image">
-                <img src={postImage} alt="" />
-            </div>
-            <div className="post__footer">
-                <div className="post__footerIcons">
-                    <div className="post__iconsMain">
-                        <FavoriteBorderIcon className='postIcon' />
-                        <ChatBubbleOutlineIcon className='postIcon' />
-                        <TelegramIcon className='postIcon' />
+            <div id='MoreOptionsDiv'>{isVisible && <MoreOptions user={user}  />}</div>
+            <div className='post'>
+                <div className="post__header">
+                    <div className="post__headerAuthor">
+                        <AccountCircleIcon></AccountCircleIcon>
+                        {user} . <span>{timestamp}</span>
                     </div>
-                    <div className="post_iconSave">
-                        <BookmarkBorderIcon className='postIcon' />
-                    </div>
+                    <span onClick={()=> moreOptionsClick()} style={{cursor: 'pointer'}}><MoreHorizIcon></MoreHorizIcon></span>
                 </div>
-                Liked by {likes} people
+                <div className="post__image">
+                    <img src={postImage} alt="" />
+                </div>
+                <div className="post__footer">
+                    <div className="post__footerIcons">
+                        <div className="post__iconsMain">
+                            <FavoriteBorderIcon className='postIcon' />
+                            <ChatBubbleOutlineIcon className='postIcon' />
+                            <TelegramIcon className='postIcon' />
+                        </div>
+                        <div className="post_iconSave">
+                            <BookmarkBorderIcon className='postIcon' />
+                        </div>
+                    </div>
+                    Liked by {likes} people
+                </div>
             </div>
-        </div>
         </>
     );
 }
