@@ -1,0 +1,9 @@
+.custom-link {
+    color: #00376b;
+    text-decoration: none;
+  }
+  
+  .custom-link:hover {
+    text-decoration: underline;
+  }
+  

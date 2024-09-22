@@ -1,0 +1,40 @@
+.login-form-container {
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .login-links {
+    margin-top: 15px;
+  }
+  
+  .separator {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #8e8e8e;
+    position: relative;
+  }
+  
+  .separator:before, .separator:after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    background: #dbdbdb;
+    top: 50%;
+  }
+  
+  .separator:before {
+    left: 0;
+  }
+  
+  .separator:after {
+    right: 0;
+  }
+  
