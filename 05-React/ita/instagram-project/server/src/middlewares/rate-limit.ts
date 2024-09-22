@@ -1,15 +1,15 @@
 
 import rateLimit from "express-rate-limit";
-// import { MiddleWareType } from "./types";
+import { MiddleWareType } from './types';
 
-const rateLimits = {
-  "1000": 10,
-  "2000": 15,
-  "5000": 20,
-  "10000": 35,
-  "30000": 46,
-  "60000": 58,
-  "300000": 130,
+const rateLimits: { [key: string]: number } = {
+  "1000": 140,
+  "2000": 280,
+  "5000": 500,
+  "10000": 1000,
+  "30000": 2500,
+  "60000": 4500,
+  "300000": 9000,
 };
 
 const rateLimitOptions = Object.keys(rateLimits).map((interval) => ({
@@ -17,4 +17,4 @@ const rateLimitOptions = Object.keys(rateLimits).map((interval) => ({
   max: rateLimits[interval],
 }));
 
-export const rateLimitMiddleware = rateLimit({ keyGenerator: (req) => req.ip, ...rateLimitOptions });
+export const rateLimitMiddleware: MiddleWareType = rateLimit({ keyGenerator: (req) => req.ip as string, ...rateLimitOptions });
