@@ -13,12 +13,13 @@ postsRouter.get('/', async (req, res) => {
     return;
   }
   try {
-    const response = await axios.get('https://randomuser.me/api/?results=' + parsedResults); // Fetch posts from the API.
+    const response = await axios.get('https://randomuser1.me/api/?results=' + parsedResults); // Fetch posts from the API.
     const data = response.data;
     res.json(data.results);
   } catch (err) {
     console.error('Error fetching data:', err);
     res.status(500).json({ error: 'Failed to fetch posts' });
+    //res.status(500).render('failed');
   }
 });
 
