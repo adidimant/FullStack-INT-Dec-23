@@ -6,7 +6,7 @@ type CreatePostInputT = {
     id: string;
     htmlFor: string;
     text: string;
-    setValue: (valueState: string) => void
+    setValue: (valueState: any) => void
 }
 function CreatePostInput({type, id,  htmlFor, text, setValue }: CreatePostInputT) {
 

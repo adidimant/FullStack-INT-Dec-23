@@ -45,7 +45,7 @@ function CreatePostPage(): ReactNode {
 						text={"title:"}
 						id={"CreatePost-title"}
 						htmlFor={"CreatePost-title"}
-						setValueState={""}
+						setValue={setForm}
 
 
 					/>
@@ -54,6 +54,7 @@ function CreatePostPage(): ReactNode {
 						text={"description:"}
 						id={"CreatePost-description"}
 						htmlFor={"CreatePost-description"}
+						setValue={setForm}
 					/>
 
 					<label htmlFor="CreatePost-title">upload Image:</label>
