@@ -41,14 +41,14 @@ function Popup( { show, onClose }: PopupProps ) {
         },
         body: JSON.stringify({
           text,
-          author: "Ofer134", // Replace with dynamic author name
+          author: "Ofer134", 
         }),
       });
 
       if (response.ok) {
         alert("Post uploaded successfully!");
-        setText(""); // Clear the text after submission
-        onClose(); // Close the popup
+        setText(""); 
+        onClose(); 
       } else {
         alert("Failed to upload the post.");
       }
