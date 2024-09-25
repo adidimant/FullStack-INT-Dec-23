@@ -1,10 +1,18 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import InstagramLogo from "../../../../assets/instagram-text-logo.png";
 import { Link } from "react-router-dom";
 import profilePic from "../../../../assets/profile.jpg";
+import Pupup from "../../posts-page/components/Create-post/Pupup";
 import "./LeftNavbar.css";
 
 function LeftNavbar() {
+	const [showPopup, setShowPopup] = useState(false);
+
+	const togglePopup = () => {
+		setShowPopup(!showPopup);
+		console.log(showPopup)
+	};
+
 	return (
 		<div className="left-navbar">
 			<div className="left-navbar-logo">
@@ -195,7 +203,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Notifications</span>
 				</div>
-				<div tabIndex={6} className="create links-basic-styles">
+				<div tabIndex={6} className="create links-basic-styles links" onClick={togglePopup}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -302,8 +310,10 @@ function LeftNavbar() {
 					<span className="links-text">More</span>
 				</div>
 			</div>
+			<Pupup show={showPopup} onClose={togglePopup}/>
 		</div>
 	);
 }
 
 export default memo(LeftNavbar);
+
