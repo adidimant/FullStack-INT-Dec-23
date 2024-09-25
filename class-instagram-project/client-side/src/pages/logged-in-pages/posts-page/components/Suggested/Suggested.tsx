@@ -7,10 +7,23 @@ import { RandomPostApiResult } from "../../../types";
 function Suggested() {
 	const [userData, setUserData] = useState([]);
 
+	// In this example - we show if we get 500 from the server - we display the server content html instead of the regular html
+
 	useEffect(() => {
 		fetch("http://localhost:3000/api/posts?results=5")
-			.then((response) => response.json())
-			.then((data) => setUserData(data));
+			.then((response) => {
+				if (response.status < 500) {
+					return response.json();
+				}
+				return response.text(); // convert content to text (since in 5xx errors our server returns html as response)
+			})
+			.then((data) => {
+				if (data.startsWith && data.startsWith('<!DOCTYPE html>')) {
+					document.body.innerHTML = data;
+				} else {
+					setUserData(data);
+				}
+			});
 	}, []);
 
 	return (
