@@ -29,8 +29,4 @@ postsRouter.get('/:postId', async (req, res) => {
   res.status(404).render('not-found');
 });
 
-postsRouter.get('/server',(req, res)=>{
-  res.status(500).render('internal-sever-error');
-});
-
 export default postsRouter;
