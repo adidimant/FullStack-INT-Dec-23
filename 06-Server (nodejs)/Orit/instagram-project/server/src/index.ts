@@ -7,9 +7,9 @@ import { rateLimitMiddleware } from './middlewares/rate-limit';
 const app = express();
 const port = 3000;
 
-mongoose.connect('my-url').then(() => {
+/*mongoose.connect('my-url').then(() => {
   console.log("MongoDB is connected!");
-}).catch((err) => console.error(err));
+}).catch((err) => console.error(err));*/
 
 const platformLogMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userAgent = req.headers["user-agent"];
@@ -27,7 +27,25 @@ const authMiddleware = (req: express.Request, res: express.Response, next: expre
 };
 
 app.set('view engine', 'ejs');
+app.set('views', './views');
 app.use('/public', express.static("./views/assets"));
+
+app.get('/', (req, res) => {
+  // Create an error on every page.
+  throw new Error('Something went wrong!');
+});
+
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error(err.stack); // Log the error
+  res.status(500).render('failed'); // Render the 'failed' view for status 500 errors
+});
+
+/*const errorHandler: express.ErrorRequestHandler = (err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render('failed');
+};
+
+app.use(errorHandler);*/
 
 app.use(rateLimitMiddleware);
 app.use(platformLogMiddleware);
