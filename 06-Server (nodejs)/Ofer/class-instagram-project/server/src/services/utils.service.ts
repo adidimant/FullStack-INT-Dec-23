@@ -3,12 +3,12 @@ class Utils {
     if (typeof param == 'number') {
       return param;
     }
-  
-    if (typeof param == 'string') {
+
+    if (typeof param == 'string') { 
       const result = parseInt(param);
-      return isNaN(result) ? null : result; 
+      return isNaN(result) ? null : result;
     }
-  
+
     return defaultValue;
   }
 }
