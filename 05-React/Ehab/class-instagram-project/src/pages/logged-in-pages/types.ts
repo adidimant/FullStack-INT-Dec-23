@@ -56,7 +56,6 @@ export type RandomPostApiResult = {
 };
 
 export type PostType = {
-    id: string,
     userId: string,
     createdDate: Date,
     description: string,

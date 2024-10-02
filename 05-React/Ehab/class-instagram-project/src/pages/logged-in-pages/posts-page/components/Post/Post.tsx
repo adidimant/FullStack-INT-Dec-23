@@ -46,4 +46,3 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
 }
 export default memo(Post);
 
-

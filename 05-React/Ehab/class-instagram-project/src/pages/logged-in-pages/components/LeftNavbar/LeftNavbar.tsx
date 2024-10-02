@@ -7,6 +7,7 @@ import "./LeftNavbar.css";
 
 function LeftNavbar() {
 	const [showPopup, setShowPopup] = useState(false);
+
 	const togglePopup = useCallback(() => {
 		setShowPopup(!showPopup);
 	}, [ showPopup ]);

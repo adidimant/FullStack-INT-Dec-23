@@ -6,12 +6,10 @@ interface refreshContextType {
   setValue: (value: boolean) => void;
 }
 
-// Create the context with an initial value (can be null or default values)
+// Create the context 
 const refreshContext = createContext<refreshContextType>({
   value: false,
-  setValue(value) {
-    !value;
-  },
+  setValue: () => {},
 });
 
 // Create a provider component

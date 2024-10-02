@@ -6,8 +6,9 @@ import { useRefreshContext } from "../../../../../contexts/refresh-context";
 
 function PostsContainer() {
     const [posts, setPosts] = useState<RandomPostApiResult []>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
-    const [refresh, setRefresh] = useState(false);
     const fetchingFromAPI = useRef(false);
+    const { value, setValue } = useRefreshContext();
+
     const loadMorePosts = useCallback(async (amount: number, fetchingFromAPI: string) => {
         try {
             const response = await fetch('http://localhost:3000/api/posts?results=' + amount + '&fetchingFromAPI=' + fetchingFromAPI); // Fetch posts from the API.
@@ -19,17 +20,13 @@ function PostsContainer() {
         }
     }, [posts]);
 
-    const { value, setValue } = useRefreshContext();
     
     useEffect(()=>{
+        console.log('from postContainer value=', value);
         if(value){
-            console.log('from postContainer value=', value);
             setValue(false);
-            console.log('from postContainer: refresh befor=',refresh);
-            setRefresh(!refresh);
-            console.log('from postContainer: refresh after=',refresh);
         }
-    },[refresh, setValue, value]);
+    },[setValue, value]);
     
 
     useEffect(() => { // useEffect is a hook that runs a function when the component mounts and whenever the dependencies array changes.
