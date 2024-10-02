@@ -1,10 +1,17 @@
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
 import InstagramLogo from "../../../../assets/instagram-text-logo.png";
 import { Link } from "react-router-dom";
+import CreatePostPopup from "../../posts-page/components/CreatePostPopup/CreatePostPopup";
 import profilePic from "../../../../assets/profile.jpg";
 import "./LeftNavbar.css";
 
 function LeftNavbar() {
+	const [showPopup, setShowPopup] = useState(false);
+
+	const togglePopup = useCallback(() => {
+		setShowPopup(!showPopup);
+	}, [ showPopup ]);
+
 	return (
 		<div className="left-navbar">
 			<div className="left-navbar-logo">
@@ -195,7 +202,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Notifications</span>
 				</div>
-				<div tabIndex={6} className="create links-basic-styles">
+				<div tabIndex={6} className="create links-basic-styles" onClick={togglePopup}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -302,6 +309,7 @@ function LeftNavbar() {
 					<span className="links-text">More</span>
 				</div>
 			</div>
+			<CreatePostPopup show={showPopup} onClose={togglePopup}/>
 		</div>
 	);
 }

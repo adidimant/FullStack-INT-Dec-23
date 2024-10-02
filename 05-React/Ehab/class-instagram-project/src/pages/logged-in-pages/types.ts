@@ -54,3 +54,11 @@ export type RandomPostApiResult = {
   };
   nat: string;
 };
+
+export type PostType = {
+    userId: string,
+    createdDate: Date,
+    description: string,
+    imgUrl: string,
+    location: string,
+};

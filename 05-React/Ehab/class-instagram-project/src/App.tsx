@@ -3,13 +3,11 @@ import LoginPage from './pages/auth-pages/login/LoginPage';
 import Register from './pages/auth-pages/register/Register';
 import ForgotPasswordPage from './pages/auth-pages/forgot-password/ForgotPasswordPage';
 import ThemeProvider from './contexts/theme-context';
-import './App.css';
 import { useState } from 'react';
 import AuthPageNavbar from './pages/auth-pages/components/auth-page-navbar/AuthPageNavbar';
 import PostsPage from './pages/logged-in-pages/posts-page/PostsPage';
 import ModeButton from './components/modeButton/ModeButton';
-import PostProvider from './contexts/Post-Context';
-import SinglePost from './pages/logged-in-pages/posts-page/components/SinglePost/SinglePost';
+import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,13 +31,11 @@ function App() {
                       <Route path='*' element={<></>}  />
                   </Routes>
                 </>)
-                : <PostProvider>  
-                    <Routes> 
+                :
+                <Routes>
                       <Route path="/posts" element={<PostsPage/>} /> 
-                      <Route path="/post/:user" element={<SinglePost/>} />
                       <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>}  />
-                    </Routes>
-                  </PostProvider>
+                </Routes>
                 }
                   
         </BrowserRouter> 
