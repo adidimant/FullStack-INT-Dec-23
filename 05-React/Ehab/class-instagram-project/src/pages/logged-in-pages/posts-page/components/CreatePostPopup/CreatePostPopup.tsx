@@ -55,7 +55,7 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
         setText(""); 
         onClose();
         //TODO - refresh posts to present the latest posts
-        console.log('from createPostPopup value=',value);
+        console.log('from createPostPopup value=', value);
         setValue(true);
       } else {
         alert("Failed to upload the post.");
