@@ -16,7 +16,7 @@ postsRouter.get('/', async (req, res) => {
   }
   try {
     if(fetchingFromAPI == 'false'){
-      const dbResponse = await PostModel.find({});
+      const dbResponse = await PostModel.find({}); // Get all data from DB.
       console.log('dbResponse:',dbResponse);
       res.json(dbResponse);
       return;
