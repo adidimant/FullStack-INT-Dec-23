@@ -33,8 +33,8 @@ function App() {
                 </>)
                 :
                 <Routes>
-                      <Route path="/posts" element={<PostsPage/>} /> 
-                      <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>}  />
+                    <Route path="/posts" element={<PostsPage/>} /> 
+                    <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>}  />
                 </Routes>
                 }
                   

@@ -10,7 +10,9 @@ function LeftNavbar() {
 
 	const togglePopup = useCallback(() => {
 		setShowPopup(!showPopup);
-	}, [ showPopup ]);
+	}, [showPopup]);
+	
+
 
 	return (
 		<div className="left-navbar">

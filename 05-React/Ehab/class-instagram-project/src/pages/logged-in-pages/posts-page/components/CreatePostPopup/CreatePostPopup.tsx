@@ -53,10 +53,9 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
       if (result.status == 201) {
         alert("Post uploaded successfully!");
         setText(""); 
-        onClose();
         //TODO - refresh posts to present the latest posts
-        console.log('from createPostPopup value=', value);
         setValue(true);
+        onClose();
       } else {
         alert("Failed to upload the post.");
       }
