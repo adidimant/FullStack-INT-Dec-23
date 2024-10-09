@@ -1,0 +1,25 @@
+.navbar {
+  background-color: black;
+  padding: 5px;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+    margin: 0;
+
+    li {
+      color: white;
+      padding: 5px;
+      font-size: larger;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      &:hover{
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+}
