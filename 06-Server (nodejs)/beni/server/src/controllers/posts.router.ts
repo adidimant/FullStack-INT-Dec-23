@@ -1,16 +1,10 @@
-import express from "express";
-import axios from "axios";
-import Utils from "../services/utils.service";
-import { CustomError } from "../types";
-
+import express from 'express';
+import axios from 'axios';
+import Utils from '../services/utils.service';
 const postsRouter = express.Router();
 
-postsRouter.get("/", async (req, res) => {
-  console.log(
-    `New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${
-      req.url
-    }. headers: ${JSON.stringify(req.headers)}`
-  );
+postsRouter.get('/', async (req, res) => {
+  console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
   let { results } = req.query;
   const parsedResults = Utils.convertQueryToNumber(results, 5);
 
@@ -19,27 +13,20 @@ postsRouter.get("/", async (req, res) => {
     return;
   }
   try {
-    const response = await axios.get("https://randomuser.me/api/?results=" + parsedResults); // Fetch posts from the API.
+    const response = await axios.get('https://randomuser.me/api/?results=' + parsedResults); // Fetch posts from the API.
     const data = response.data;
     res.json(data.results);
   } catch (err) {
-    console.error("Error fetching data:", err);
-    res.status(500).json({ error: "Failed to fetch posts" });
+    console.error('Error fetching data:', err);
+    res.status(500).json({ error: 'Failed to fetch posts' });
   }
 });
 
-postsRouter.get("/:postId", async (req, res) => {
+postsRouter.get('/:postId', async (req, res) => {
   const { postId } = req.params;
   // get from database the post data by postId
   // if not found:
-  res.status(404).render("not-found");
-});
-
-// trigger a 500 status code to check if my global views for 500 error code middleware works
-postsRouter.get("/err/500", async (req, res, next) => {
-  const error: CustomError = new Error("Internal server error!");
-  error.status = 500;
-  next(error);
+  res.status(404).render('not-found');
 });
 
 export default postsRouter;
