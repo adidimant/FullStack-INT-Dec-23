@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
@@ -15,10 +15,8 @@ postsRouter.get('/', async (req, res) => {
     return;
   }
   try {
-    // throw new Error("request timed out");
-    const response = await axios.get('https://randomuser.me/api/?results=' + parsedResults); // Fetch posts from the API.
-    const data = response.data;
-    res.json(data.results);
+    const dbResponse = await PostModel.find(); // get all posts
+    res.json(dbResponse);
   } catch (err) {
     console.error('Error fetching data:', err);
     res.status(500).contentType('html').render('error-500');
@@ -41,13 +39,24 @@ postsRouter.get('/:postId', async (req, res) => {
   }
 });
 
-postsRouter.put('/create', async (req, res) => {
-  const { description, location, userId } = req.body;
 
-  if (!userId || !description) {
-    res.status(400).send('One of the required parameters (userId, text) is missing');
-    return;
-  }
+const validateRequiredParams = (requiredFields: string[]) => {
+  return (req: express.Request, res: express.Response, next: NextFunction) => {
+    const body = req.body;
+
+    const allFieldsExist = requiredFields.every((field: string) => field in body);
+
+    if (!allFieldsExist) {
+      res.status(400).send(`One of the required parameters [${requiredFields.join()}] is missing`);
+      return;
+    }
+  
+    next();
+  };
+};
+
+postsRouter.put('/create', validateRequiredParams(['userId', 'description']), async (req, res) => {
+  const { description, location, userId } = req.body;
 
   const postId = uuidv4();
 

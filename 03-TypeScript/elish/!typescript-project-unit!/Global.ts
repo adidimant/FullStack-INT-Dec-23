@@ -17,6 +17,7 @@ declare global {
     interface Window {
       doNotTrack: string;
       msDoNotTrack: string;
+      ACME_SDK: object;
     }
 
     interface NetworkInformation {
