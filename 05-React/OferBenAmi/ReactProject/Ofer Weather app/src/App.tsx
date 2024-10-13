@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, memo } from 'react'
+import { useColdMeasureContext } from './Context/ColdMeasuringUnit';
+import { useDistanceMeasureContext } from './Context/DistanceUnit';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { coldMeasuringUnit, dispatch: coldMeasureDispatch } = useColdMeasureContext();
+  const { distanceMeasureUnit, dispatch: DistanceMeasureDispatch } = useDistanceMeasureContext();
 
+  function handleColdMeasuringUnit(){
+    if(coldMeasuringUnit === "Celsius"&& coldMeasureDispatch){
+      coldMeasureDispatch('Fahrenheit')
+    }
+    else if(coldMeasureDispatch){
+      coldMeasureDispatch('Celsius')
+    }
+  }
+
+  function handleDistanceMeasuringUnit(){
+    if(distanceMeasureUnit === "km"&& DistanceMeasureDispatch){
+      DistanceMeasureDispatch('mile')
+    }
+    else if(DistanceMeasureDispatch){
+      DistanceMeasureDispatch('km')
+    }
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={handleColdMeasuringUnit}>current cold Unit: {coldMeasuringUnit}</button>
+      <button onClick={handleDistanceMeasuringUnit}>current distance Unit: {distanceMeasureUnit}</button>
+      <h1>Weather App</h1>
     </>
   )
 }
 
-export default App
+export default memo(App)
