@@ -1,7 +1,7 @@
 - Weather Forecast App -
 
-Description: Create a weather app that displays current weather conditions based on the user's location (nearest to a main city) or a search query (like "Tel-Aviv" or "London", the API supports not only capital cities).
-Use the following API of wttr.into get real-time data: `GET https://wttr.in/Tel-Aviv?format=j1`
+Create a weather app that displays current weather conditions based on the user's location (nearest to a main city) or a search query (like "Tel-Aviv" or "London", the API supports not only capital cities). The user should choose if he would like to search based on his location or by the query.
+Use the following API of wttr.into to get real-time data: `GET https://wttr.in/Tel-Aviv?format=j1`
 
 Material Requirements:
 * Handling API requests and displaying real-time data.
