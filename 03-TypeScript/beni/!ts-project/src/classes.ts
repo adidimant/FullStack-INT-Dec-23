@@ -1,6 +1,6 @@
 import { CollectorInterface, ContinuousCollectorInterface } from "./interfaces";
+import Utils from "./utils.js";
 
-// --------------- START OF REGULAR COLLECTORS ----------------------------
 export class ScreenWidth implements CollectorInterface<number> {
   public intervalCount: number;
   private name: string;
@@ -1009,26 +1009,213 @@ export class TouchSupport implements CollectorInterface<boolean | number> {
     console.log(`Finished collecting data for: ${this.name}`);
   }
 }
-// --------------- END OF REGULAR COLLECTORS ----------------------------
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+export class MouseMove implements ContinuousCollectorInterface<MouseEvent[]> {
+  public bufferSize: number;
+  public intervalCount: number;
+  private name: string;
+  private data: MouseEvent[];
+  private listens: boolean;
 
-// --------------- START OF CONTINUOUS COLLECTORS ----------------------------
+  constructor(intervalCount: number, bufferSize: number) {
+    this.intervalCount = intervalCount;
+    this.name = "Mouse Move";
+    this.data = [];
+    this.bufferSize = bufferSize;
+    this.listens = false;
+  }
 
-// --------------- END OF CONTINUOUS COLLECTORS ------------------------------
+  getData(): MouseEvent[] | null {
+    return this.data;
+  }
+
+  getKey(): string {
+    return this.name;
+  }
+
+  private eventListener = (e: MouseEvent) => {
+    Utils.maintainLastXItems(this.data, this.bufferSize, e);
+  };
+
+  async startCollect(): Promise<void> {
+    console.log(`Started collecting data for ${this.name}`);
+    document.addEventListener("mousemove", this.eventListener);
+    this.listens = true;
+  }
+
+  finishCollect(): void {
+    if (this.listens) {
+      document.removeEventListener("mousemove", this.eventListener);
+      this.listens = false;
+    }
+    console.log(`Finished collecting data for: ${this.name}`);
+  }
+}
+
+export class KeyUp implements ContinuousCollectorInterface<KeyboardEvent[]> {
+  public bufferSize: number;
+  public intervalCount: number;
+  private name: string;
+  private data: KeyboardEvent[];
+  private listens: boolean;
+
+  constructor(intervalCount: number, bufferSize: number) {
+    this.intervalCount = intervalCount;
+    this.name = "Key Up";
+    this.data = [];
+    this.bufferSize = bufferSize;
+    this.listens = false;
+  }
+
+  getData(): KeyboardEvent[] | null {
+    return this.data;
+  }
+
+  getKey(): string {
+    return this.name;
+  }
+
+  private eventListener = (e: KeyboardEvent) => {
+    Utils.maintainLastXItems(this.data, this.bufferSize, e);
+  };
+
+  async startCollect(): Promise<void> {
+    console.log(`Started collecting data for ${this.name}`);
+    document.addEventListener("keyup", this.eventListener);
+    this.listens = true;
+  }
+
+  finishCollect(): void {
+    if (this.listens) {
+      document.removeEventListener("keyup", this.eventListener);
+      this.listens = false;
+    }
+    console.log(`Finished collecting data for: ${this.name}`);
+  }
+}
+
+export class Click implements ContinuousCollectorInterface<MouseEvent[]> {
+  public bufferSize: number;
+  public intervalCount: number;
+  private name: string;
+  private data: MouseEvent[];
+  private listens: boolean;
+
+  constructor(intervalCount: number, bufferSize: number) {
+    this.intervalCount = intervalCount;
+    this.name = "Click";
+    this.data = [];
+    this.bufferSize = bufferSize;
+    this.listens = false;
+  }
+
+  getData(): MouseEvent[] | null {
+    return this.data;
+  }
+
+  getKey(): string {
+    return this.name;
+  }
+
+  private eventListener = (e: MouseEvent) => {
+    Utils.maintainLastXItems(this.data, this.bufferSize, e);
+  };
+
+  async startCollect(): Promise<void> {
+    console.log(`Started collecting data for ${this.name}`);
+    document.addEventListener("click", this.eventListener);
+    this.listens = true;
+  }
+
+  finishCollect(): void {
+    if (this.listens) {
+      document.removeEventListener("click", this.eventListener);
+      this.listens = false;
+    }
+    console.log(`Finished collecting data for: ${this.name}`);
+  }
+}
+
+export class DeviceMotion implements ContinuousCollectorInterface<DeviceMotionEvent[]> {
+  public bufferSize: number;
+  public intervalCount: number;
+  private name: string;
+  private data: DeviceMotionEvent[];
+  private listens: boolean;
+
+  constructor(intervalCount: number, bufferSize: number) {
+    this.intervalCount = intervalCount;
+    this.name = "Click";
+    this.data = [];
+    this.bufferSize = bufferSize;
+    this.listens = false;
+  }
+
+  getData(): DeviceMotionEvent[] | null {
+    return this.data;
+  }
+
+  getKey(): string {
+    return this.name;
+  }
+
+  private eventListener = (e: DeviceMotionEvent) => {
+    Utils.maintainLastXItems(this.data, this.bufferSize, e);
+  };
+
+  async startCollect(): Promise<void> {
+    console.log(`Started collecting data for ${this.name}`);
+    window.addEventListener("devicemotion", this.eventListener);
+    this.listens = true;
+  }
+
+  finishCollect(): void {
+    if (this.listens) {
+      window.removeEventListener("devicemotion", this.eventListener);
+      this.listens = false;
+    }
+    console.log(`Finished collecting data for: ${this.name}`);
+  }
+}
+
+export class DeviceOrientation implements ContinuousCollectorInterface<DeviceOrientationEvent[]> {
+  public bufferSize: number;
+  public intervalCount: number;
+  private name: string;
+  private data: DeviceOrientationEvent[];
+  private listens: boolean;
+
+  constructor(intervalCount: number, bufferSize: number) {
+    this.intervalCount = intervalCount;
+    this.name = "Click";
+    this.data = [];
+    this.bufferSize = bufferSize;
+    this.listens = false;
+  }
+
+  getData(): DeviceOrientationEvent[] | null {
+    return this.data;
+  }
+
+  getKey(): string {
+    return this.name;
+  }
+
+  private eventListener = (e: DeviceOrientationEvent) => {
+    Utils.maintainLastXItems(this.data, this.bufferSize, e);
+  };
+
+  async startCollect(): Promise<void> {
+    console.log(`Started collecting data for ${this.name}`);
+    window.addEventListener("deviceorientation", this.eventListener);
+    this.listens = true;
+  }
+
+  finishCollect(): void {
+    if (this.listens) {
+      window.removeEventListener("deviceorientation", this.eventListener);
+      this.listens = false;
+    }
+    console.log(`Finished collecting data for: ${this.name}`);
+  }
+}

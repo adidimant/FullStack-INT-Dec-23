@@ -1,4 +1,4 @@
-// --------------- START OF REGULAR COLLECTORS ----------------------------
+import Utils from "./utils.js";
 export class ScreenWidth {
     intervalCount;
     name;
@@ -854,12 +854,178 @@ export class TouchSupport {
         console.log(`Finished collecting data for: ${this.name}`);
     }
 }
-// --------------- END OF REGULAR COLLECTORS ----------------------------
-//
-//
-//
-//
-//
-//
-// --------------- START OF CONTINUOUS COLLECTORS ----------------------------
-// --------------- END OF CONTINUOUS COLLECTORS ----------------------------
+export class MouseMove {
+    bufferSize;
+    intervalCount;
+    name;
+    data;
+    listens;
+    constructor(intervalCount, bufferSize) {
+        this.intervalCount = intervalCount;
+        this.name = "Mouse Move";
+        this.data = [];
+        this.bufferSize = bufferSize;
+        this.listens = false;
+    }
+    getData() {
+        return this.data;
+    }
+    getKey() {
+        return this.name;
+    }
+    eventListener = (e) => {
+        Utils.maintainLastXItems(this.data, this.bufferSize, e);
+    };
+    async startCollect() {
+        console.log(`Started collecting data for ${this.name}`);
+        document.addEventListener("mousemove", this.eventListener);
+        this.listens = true;
+    }
+    finishCollect() {
+        if (this.listens) {
+            document.removeEventListener("mousemove", this.eventListener);
+            this.listens = false;
+        }
+        console.log(`Finished collecting data for: ${this.name}`);
+    }
+}
+export class KeyUp {
+    bufferSize;
+    intervalCount;
+    name;
+    data;
+    listens;
+    constructor(intervalCount, bufferSize) {
+        this.intervalCount = intervalCount;
+        this.name = "Key Up";
+        this.data = [];
+        this.bufferSize = bufferSize;
+        this.listens = false;
+    }
+    getData() {
+        return this.data;
+    }
+    getKey() {
+        return this.name;
+    }
+    eventListener = (e) => {
+        Utils.maintainLastXItems(this.data, this.bufferSize, e);
+    };
+    async startCollect() {
+        console.log(`Started collecting data for ${this.name}`);
+        document.addEventListener("keyup", this.eventListener);
+        this.listens = true;
+    }
+    finishCollect() {
+        if (this.listens) {
+            document.removeEventListener("keyup", this.eventListener);
+            this.listens = false;
+        }
+        console.log(`Finished collecting data for: ${this.name}`);
+    }
+}
+export class Click {
+    bufferSize;
+    intervalCount;
+    name;
+    data;
+    listens;
+    constructor(intervalCount, bufferSize) {
+        this.intervalCount = intervalCount;
+        this.name = "Click";
+        this.data = [];
+        this.bufferSize = bufferSize;
+        this.listens = false;
+    }
+    getData() {
+        return this.data;
+    }
+    getKey() {
+        return this.name;
+    }
+    eventListener = (e) => {
+        Utils.maintainLastXItems(this.data, this.bufferSize, e);
+    };
+    async startCollect() {
+        console.log(`Started collecting data for ${this.name}`);
+        document.addEventListener("click", this.eventListener);
+        this.listens = true;
+    }
+    finishCollect() {
+        if (this.listens) {
+            document.removeEventListener("click", this.eventListener);
+            this.listens = false;
+        }
+        console.log(`Finished collecting data for: ${this.name}`);
+    }
+}
+export class DeviceMotion {
+    bufferSize;
+    intervalCount;
+    name;
+    data;
+    listens;
+    constructor(intervalCount, bufferSize) {
+        this.intervalCount = intervalCount;
+        this.name = "Click";
+        this.data = [];
+        this.bufferSize = bufferSize;
+        this.listens = false;
+    }
+    getData() {
+        return this.data;
+    }
+    getKey() {
+        return this.name;
+    }
+    eventListener = (e) => {
+        Utils.maintainLastXItems(this.data, this.bufferSize, e);
+    };
+    async startCollect() {
+        console.log(`Started collecting data for ${this.name}`);
+        window.addEventListener("devicemotion", this.eventListener);
+        this.listens = true;
+    }
+    finishCollect() {
+        if (this.listens) {
+            window.removeEventListener("devicemotion", this.eventListener);
+            this.listens = false;
+        }
+        console.log(`Finished collecting data for: ${this.name}`);
+    }
+}
+export class DeviceOrientation {
+    bufferSize;
+    intervalCount;
+    name;
+    data;
+    listens;
+    constructor(intervalCount, bufferSize) {
+        this.intervalCount = intervalCount;
+        this.name = "Click";
+        this.data = [];
+        this.bufferSize = bufferSize;
+        this.listens = false;
+    }
+    getData() {
+        return this.data;
+    }
+    getKey() {
+        return this.name;
+    }
+    eventListener = (e) => {
+        Utils.maintainLastXItems(this.data, this.bufferSize, e);
+    };
+    async startCollect() {
+        console.log(`Started collecting data for ${this.name}`);
+        window.addEventListener("deviceorientation", this.eventListener);
+        this.listens = true;
+    }
+    finishCollect() {
+        if (this.listens) {
+            window.removeEventListener("deviceorientation", this.eventListener);
+            this.listens = false;
+        }
+        console.log(`Finished collecting data for: ${this.name}`);
+    }
+}

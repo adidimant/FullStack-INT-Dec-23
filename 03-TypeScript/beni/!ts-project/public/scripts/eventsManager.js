@@ -1,5 +1,4 @@
 export class EventsManager {
-    // -------- START OF FETCH CONFIGURATION WITH API EXAMPLE ---------
     static async getConfigWithAPI(id) {
         try {
             const response = await fetch(`https://acme-server.com/conf?customerId=${id}`);
@@ -14,22 +13,20 @@ export class EventsManager {
             return null;
         }
     }
-    // -------- END OF FETCH CONFIGURATION WITH API EXAMPLE ---------
     static async getConfig() {
         const config = {
-            COLLECTORS_INTERVAL: 2000, // change to 60000!
+            COLLECTORS_INTERVAL: 60000,
             DEFAULT_BUFFER_CONTINOUS_COLLECTORS: 10,
             SDK_ENABLED: true,
         };
         return config;
     }
-    static async updateDataWithAPI(id) {
+    static async updateData(id) {
         try {
-            const dataString = localStorage.getItem("collectorsData");
-            if (!dataString) {
+            const dataObj = localStorage.getItem("collectorsData");
+            if (!dataObj) {
                 throw new Error("Couldn't find data object!");
             }
-            const dataObj = JSON.parse(dataString);
             const response = await fetch(`https://acme-server.com/conf?customerId=${id}`, {
                 method: "POST",
                 body: dataObj,
@@ -40,12 +37,6 @@ export class EventsManager {
         }
         catch (err) {
             console.error("Couldn't post data.", err);
-        }
-    }
-    static async updateData() {
-        const dataString = localStorage.getItem("collectorsData");
-        if (!dataString) {
-            throw new Error("Couldn't find data object!");
         }
     }
 }
