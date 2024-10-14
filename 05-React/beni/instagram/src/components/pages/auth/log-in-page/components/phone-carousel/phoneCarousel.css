@@ -1,0 +1,25 @@
+.phone-container {
+  position: relative;
+  z-index: 1;
+}
+
+.screenshot-wrapper {
+  position: absolute;
+  top: 26px;
+  left: 156px;
+  z-index: 2;
+  height: 541px;
+  width: 251px;
+}
+
+.screenshot-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+.screenshot-image.active {
+  opacity: 1;
+}
