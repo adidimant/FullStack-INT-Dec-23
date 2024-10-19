@@ -1,0 +1,11 @@
+#root {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.main {
+  background-color: var(--bg);
+  display: flex;
+  flex-grow: 1;
+}

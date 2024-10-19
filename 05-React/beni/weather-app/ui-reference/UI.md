@@ -23,4 +23,4 @@
   --- Borders/Dividers: #37393B (Dark gray for subtle borders)
 
   - Weather Icons Figma Kit:
-    https://www.figma.com/design/UWZBECvGISJ2sp4aFlQg7J/Weather--Icons-Kit-(Community)?node-id=0-1&node-type=canvas&t=TySpnyHayS0ecCDf-0
+    https://www.figma.com/design/ENqksLOA7U5mBRQzefix6W/Untitled?node-id=0-1&node-type=canvas&t=MOzq0hCDPw5X8jSt-0
