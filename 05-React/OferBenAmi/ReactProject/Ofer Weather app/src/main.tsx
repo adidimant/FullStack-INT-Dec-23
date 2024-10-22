@@ -8,11 +8,9 @@ import DistanceMeasuringUnitProvider from "./Context/DistanceUnit.tsx";
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<ColdMeasuringUnitProvider>
-		<DistanceMeasuringUnitProvider>
-
-			<App />
-		</DistanceMeasuringUnitProvider>
-
+			<DistanceMeasuringUnitProvider>
+				<App />
+			</DistanceMeasuringUnitProvider>
 		</ColdMeasuringUnitProvider>
 	</StrictMode>
 );
