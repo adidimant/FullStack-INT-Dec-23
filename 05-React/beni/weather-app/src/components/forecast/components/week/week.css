@@ -1,0 +1,8 @@
+#week {
+  padding: 0 70px;
+}
+
+.week-sum-container {
+  display: flex;
+  justify-content: space-between;
+}

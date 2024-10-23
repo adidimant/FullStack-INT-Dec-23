@@ -1,14 +1,12 @@
-import Aside from "./components/aside/Aside";
-import Forecast from "./components/forecast/Forecast";
+import { ThemeProvider } from "./context/theme-context";
+import Main from "./components/main/Main";
 import "./app.css";
 
 function App() {
-  const theme = "";
   return (
-    <main className={`main ${theme}`}>
-      <Aside />
-      <Forecast />
-    </main>
+    <ThemeProvider>
+      <Main />
+    </ThemeProvider>
   );
 }
 

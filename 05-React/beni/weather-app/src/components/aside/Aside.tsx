@@ -3,6 +3,8 @@ import SearchSVG from "../icons/SearchSVG";
 import partlyCloudy from "../../figma-svgs/partly-cloudy.svg";
 import rainIcon from "../../figma-svgs/rain.svg";
 import "./aside.css";
+import Clock from "./components/clock/Clock";
+import WeekDay from "./components/week-day/WeekDay";
 
 function Aside() {
   return (
@@ -39,8 +41,12 @@ function Aside() {
           </div>
 
           <div className="aside-time">
-            <span className="aside-time-day">Sunday</span>,{" "}
-            <span className="aside-time-hour">13:00</span>
+            <span className="aside-day">
+              <WeekDay />,{" "}
+            </span>
+            <span className="aside-clock">
+              <Clock />
+            </span>
           </div>
         </div>
 

@@ -1,0 +1,61 @@
+.sum-card {
+  user-select: none;
+  cursor: pointer;
+  background-color: var(--card-bg);
+  border-radius: 18px;
+  border: none;
+  outline: 3px solid var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 40px;
+}
+
+.sum-card.selected {
+  outline: 3px solid var(--rainy);
+}
+
+.sum-card-day {
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sum-card-img-container {
+  height: 80px;
+  width: 80px;
+}
+
+.sum-card-img {
+  height: 100%;
+  width: 100%;
+}
+
+.sum-card-tmp-container {
+  display: flex;
+  gap: 8px;
+}
+
+.sum-card-tmp-highest,
+.sum-card-tmp-lowest {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sum-card-tmp-highest {
+  color: var(--primary);
+}
+
+.sum-card-tmp-lowest {
+  color: var(--secondary);
+  opacity: 0.5;
+}
+
+.sum-card-deg-symbol {
+  vertical-align: top;
+  font-size: 18px;
+  line-height: 1.1;
+  margin-left: 1px;
+}

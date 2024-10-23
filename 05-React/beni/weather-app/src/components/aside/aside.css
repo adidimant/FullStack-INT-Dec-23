@@ -64,13 +64,10 @@
   height: 100%;
 }
 
-.aside-tmp {
-  color: var(--primary);
-}
-
 .aside-tmp-n {
   font-size: 90px;
   font-weight: 300;
+  color: var(--primary);
 }
 
 .aside-tmp-unit {
@@ -80,6 +77,7 @@
   font-weight: 200;
   letter-spacing: 4px;
   margin-left: 3px;
+  color: var(--primary);
 }
 
 .aside-time {
@@ -89,11 +87,11 @@
   border-bottom: 1px solid var(--border);
 }
 
-.aside-time-day {
+.aside-day {
   color: var(--primary);
 }
 
-.aside-time-hour {
+.aside-clock {
   color: var(--secondary);
   font-weight: 400;
 }
@@ -116,4 +114,5 @@
 .aside-rain-percentage {
   font-size: 20px;
   font-weight: 300;
+  color: var(--primary);
 }

@@ -73,7 +73,7 @@
   --rainy: #4a90e2;
 }
 
-.dark-theme {
+.dark {
   --bg: #181a1b;
   --card-bg: #232527;
   --primary: #eaeaea;
@@ -91,6 +91,8 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
   line-height: 1.2;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out,
+    outline 0.2s ease-in-out;
 }
 
 body {
