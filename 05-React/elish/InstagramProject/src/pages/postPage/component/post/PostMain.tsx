@@ -7,19 +7,19 @@ function PostMain(){
     const [posts, setPosts] = useState<RandomApiResult[]>([]);
     const loadMorePosts = useCallback( async (amount: number) =>{
         try{
-            const response = await fetch('https://randomuser.me/api/?results=' + amount);
+            const response = await fetch('http://localhost:3000/api/posts?results=' + amount);
             const data = await response.json();
-            setPosts([...posts, ...data.results]);
+            setPosts((prevPosts) => [...prevPosts, ...data]);
             return data;
         } catch (error) {
             console.error('Error fetching posts:' , error);
         }
-    }, [posts]);
+    }, []);
 
     useEffect(()=> {
         if(posts.length < 50)
             loadMorePosts(2);
-    }, [posts]);
+    }, [posts,loadMorePosts]);
 
     const handleRefresh = useCallback(()=> {
         setPosts([])
@@ -28,12 +28,17 @@ function PostMain(){
     return(
         <div className="postpage-container">
             <button className="postpage-btn" onClick={handleRefresh}>Refresh</button>
-            {posts.map((post: RandomApiResult, index: number)=>(
-                <Post user={post.name.first}
-                      postImg={post.picture.large}
-                      liks={index *10}
-                      timestamp={post.registered.date}/>
-            ))}
+            {posts.map((post: RandomApiResult, index: number) => {  
+                return (
+                    <Post
+                        user={post.name.first}
+                        postImg={post.picture.large}
+                        liks={index * 10}
+                        key={index}
+                        timestamp={post.registered.date}
+                          /> 
+                );
+            })}
         </div>
     );
 }

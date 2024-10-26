@@ -1,10 +1,11 @@
-import { memo, ReactNode } from "react";
+import { memo, ReactNode , useCallback, useState} from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import Moreinformation from "./moreinformation/Moreinformation";
 import './Post.css';
 
 type PostProps = {
@@ -14,7 +15,13 @@ type PostProps = {
     timestamp: string;
 };
 
-function Post({user, postImg, liks, timestamp} :PostProps) :ReactNode {
+function Post({user, postImg, liks, timestamp} :PostProps) : ReactNode {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = useCallback(() => {
+        setOpen((prevOpen) => !prevOpen);
+    },[]);
+    
     return(
         <div className='post'>
         <div className="post__header">
@@ -22,7 +29,7 @@ function Post({user, postImg, liks, timestamp} :PostProps) :ReactNode {
                 <AccountCircleIcon></AccountCircleIcon>
                 {user} . <span>{timestamp}</span>
             </div>
-            <MoreHorizIcon></MoreHorizIcon>
+            <div className="moreinformation" style={{cursor: 'pointer'}} onClick={handleOpen}><MoreHorizIcon></MoreHorizIcon></div>
         </div>
         <div className="post__image">
             <img src={postImg} alt="" />
@@ -40,6 +47,7 @@ function Post({user, postImg, liks, timestamp} :PostProps) :ReactNode {
             </div>
             Liked by {liks} people
         </div>
+        <Moreinformation openMore={open} onClose={handleOpen}/>
     </div>
     );
 }
