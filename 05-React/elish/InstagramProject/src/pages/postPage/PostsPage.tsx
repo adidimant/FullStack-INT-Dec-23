@@ -2,8 +2,8 @@ import { memo, ReactNode } from "react";
 import LeftNavBar from "./component/leftNavBar/LeftNavBar";
 import Stories from "./component/stories/Stories";
 import Suggested from "./component/suggested/Suggested";
-import './PostsPage.css';
 import PostMain from "./component/post/PostMain";
+import './PostsPage.css';
 
 
 function PostsPage(): ReactNode{
