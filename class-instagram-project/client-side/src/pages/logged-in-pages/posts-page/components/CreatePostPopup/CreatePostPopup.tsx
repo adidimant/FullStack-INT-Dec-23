@@ -1,6 +1,5 @@
 import { memo, useCallback, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
-import Button from "../../../../../components/button/Button";
 import profilePic from "../../../../../assets/profile.jpg";
 import "./CreatePostPopup.css";
 import axios from "axios";
@@ -17,6 +16,13 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
   const [location, setLocation] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
+
+  const uploadImage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(event.target.files[0]);
+    }
+  },[]);
 
   const handleDescriptionChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -39,14 +45,22 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
 
     setIsLoading(true);
 
-    const postData = {
-      description: text,
-      location,
-      userId: "Ofer134",
-    };
+    const formData = new FormData();
+    formData.append('description',text);
+    formData.append('location',location);
+    const userIdElement = document.getElementsByClassName('userName')[0] as HTMLElement
+    const userId = userIdElement.textContent as string
+    formData.append('userId',userId);
+    if(image){
+      formData.append('image',image);
+    }
 
     try {
-      const result = await axios.put('http://localhost:3000/api/posts/create', postData);
+      const result = await axios.put('http://localhost:3000/api/posts/create', formData, {
+        headers: {
+          "Content-Type": 'multipart/form-data'
+        }
+      });
 
       if (result.status == 201) {
         alert("Post uploaded successfully!");
@@ -86,7 +100,14 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
               <path d="M78.2 41.6 61.3 30.5c-2.1-1.4-4.9-.8-6.2 1.3-.4.7-.7 1.4-.7 2.2l-1.2 20.1c-.1 2.5 1.7 4.6 4.2 4.8h.3c.7 0 1.4-.2 2-.5l18-9c2.2-1.1 3.1-3.8 2-6-.4-.7-.9-1.3-1.5-1.8zm-1.4 6-18 9c-.4.2-.8.3-1.3.3-.4 0-.9-.2-1.2-.4-.7-.5-1.2-1.3-1.1-2.2l1.2-20.1c.1-.9.6-1.7 1.4-2.1.8-.4 1.7-.3 2.5.1L77 43.3c1.2.8 1.5 2.3.7 3.4-.2.4-.5.7-.9.9z" fill="currentColor"></path>
             </div>
             <div>Drag photos and videos here</div>
-            <div><Button text="SelectFromComputer" name="Select From Computer" onClick={() => { /* implement login here */}}/></div>
+            <input type="button" value="Select from computer" onClick={()=> document.getElementById('fileInput')?.click()}></input>
+              <input
+                id="fileInput"
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }} // Hide the default input
+                onChange={uploadImage}
+              />
           </div>
           <div className="ContentDetails">
               <div className="profil">

@@ -12,16 +12,16 @@ type PostProps = {
     user: string;
     postImage: string;
     likes: number;
-    timestamp: string;
+    createdDate: string;
 };
 
-function Post({ user, postImage, likes, timestamp }: PostProps) {
+function Post({ user, postImage, likes, createdDate }: PostProps) {
     return (
         <div className='post'>
             <div className="post__header">
                 <div className="post__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>
-                    {user} . <span>{timestamp}</span>
+                    {user}  <span style={{ marginLeft: '12px' }}>{new Date(createdDate).toLocaleDateString()}</span>
                 </div>
                 <MoreHorizIcon></MoreHorizIcon>
             </div>

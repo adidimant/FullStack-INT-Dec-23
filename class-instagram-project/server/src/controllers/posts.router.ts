@@ -1,21 +1,36 @@
 import express, { NextFunction } from 'express';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
 import { PostModel } from '../models/post.model';
+import upload from '../middlewares/upload';
 const postsRouter = express.Router();
 
 postsRouter.get('/', async (req, res) => {
   console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
-  let { results } = req.query;
+  let { results, oldestPostCreatedDate } = req.query;
   const parsedResults = Utils.convertQueryToNumber(results, 5);
 
   if (!parsedResults || parsedResults > 100) {
     res.status(400).send("`results` query param must be a number and up to 100.");
     return;
   }
+
+  /*
+    conditions:
+    1) Limit results to 100
+    2) Order by createdDate (last one is the oldest)
+    3) createdDate is smaller than oldestPostCreatedDate
+  */
+
   try {
-    const dbResponse = await PostModel.find(); // get all posts
+    const conditions = {} as any;
+    if (oldestPostCreatedDate) {
+      conditions.createdDate = { $lt: new Date(oldestPostCreatedDate as string) }
+    }
+    const dbResponse = await PostModel.find(conditions)
+  .sort({ createdDate: 1 })  // Ascending order, so the oldest entries come last
+  .limit(parsedResults);
+
     res.json(dbResponse);
   } catch (err) {
     console.error('Error fetching data:', err);
@@ -55,10 +70,14 @@ const validateRequiredParams = (requiredFields: string[]) => {
   };
 };
 
-postsRouter.put('/create', validateRequiredParams(['userId', 'description']), async (req, res) => {
+postsRouter.put('/create', validateRequiredParams(['userId', 'description']), upload.single('image'), async (req, res) => {
   const { description, location, userId } = req.body;
 
+  //TODO next lesson - debug server and understand how the data is not arrives
+
   const postId = uuidv4();
+
+  const fileName = (req as any).fileName;
 
   try {
     const post = new PostModel({
@@ -66,7 +85,7 @@ postsRouter.put('/create', validateRequiredParams(['userId', 'description']), as
       userId,
       location,
       description,
-      imgUrl: '/public/1.png',
+      imgUrl: `/uploads/${fileName}`,
       createdDate: new Date(),
     });
   

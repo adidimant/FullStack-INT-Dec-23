@@ -32,6 +32,7 @@ const authMiddleware = (req: express.Request, res: express.Response, next: expre
 
 app.set('view engine', 'ejs');
 app.use('/public', express.static("./views/assets"));
+app.use('/uploads', express.static("./uploads"));
 
 // app.use(rateLimitMiddleware);
 app.use(platformLogMiddleware);
