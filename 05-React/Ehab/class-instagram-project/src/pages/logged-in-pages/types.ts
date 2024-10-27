@@ -62,3 +62,10 @@ export type PostType = {
     imgUrl: string,
     location: string,
 };
+
+  /*id: { type: String },
+  userId: { type: String },
+  createdDate: { type: Date },
+  description: { type: String },
+  image: { type: File },
+  location: { type: String },*/

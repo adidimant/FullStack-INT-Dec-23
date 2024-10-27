@@ -1,0 +1,17 @@
+.form-seperator {
+  color: var(--secondary-l);
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 30px;
+}
+
+.form-seperator-left,
+.form-seperator-right {
+  flex-grow: 1;
+  height: 1px;
+  background-color: var(--muted-l);
+}
