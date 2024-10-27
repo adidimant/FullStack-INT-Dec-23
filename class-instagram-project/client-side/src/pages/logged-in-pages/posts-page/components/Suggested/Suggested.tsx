@@ -2,7 +2,8 @@ import { memo, useState, useEffect} from "react";
 import profilePic from "../../../../../assets/profile.jpg";
 import UserSuggested from "./UserSuggested/UserSuggested";
 import "./Suggested.css";
-import { RandomPostApiResult } from "../../../types";
+import { PostBackendAPI } from "../../../types";
+import { appendServerPrefix } from "../../../../../utils";
 
 function Suggested() {
 	const [userData, setUserData] = useState([]);
@@ -39,12 +40,12 @@ function Suggested() {
 				<button>See All</button>
 			</div>
 
-			{userData.length > 0 ?  userData.map((user: RandomPostApiResult, index: number) =>{
+			{userData.length > 0 ?  userData.map((user: PostBackendAPI, index: number) =>{
 				return <UserSuggested
 								key={index}
-								profilePic={user.picture.thumbnail}
-								userName={user.login.username}
-								fullName = {`${user.name.first} ${user.name.last}`}
+								profilePic={appendServerPrefix(user.imgUrl)}
+								userName={user.userId}
+								fullName = {`${user.userId}`}
 								switchOrFllow="Follow"
 							/>;
 			}): <></>}
