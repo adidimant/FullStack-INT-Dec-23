@@ -10,10 +10,11 @@ const app = express();
 const port = 3000;
 
 const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/';
-//console.log(process.env.MONGO_URI);
+
 mongoose.connect(mongoURI).then(() => {
   console.log("MongoDB is connected!");
 }).catch((err) => console.error(err));
+
 
 const platformLogMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userAgent = req.headers["user-agent"];
@@ -31,7 +32,9 @@ const authMiddleware = (req: express.Request, res: express.Response, next: expre
 };
 
 app.set('view engine', 'ejs');
+app.use('/postsImages', express.static("./uploads"));
 app.use('/public', express.static("./views/assets"));
+
 
 // app.use(rateLimitMiddleware);
 app.use(platformLogMiddleware);

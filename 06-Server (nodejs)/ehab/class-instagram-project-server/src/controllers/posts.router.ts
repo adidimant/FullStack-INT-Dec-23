@@ -1,30 +1,28 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
 import { PostModel } from '../models/post.model';
+import upload from '../middlewares/upload';
+import mongoose from 'mongoose';
+import { GridFile } from 'multer-gridfs-storage'; 
+
 const postsRouter = express.Router();
+
+
 
 postsRouter.get('/', async (req, res) => {
   console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
-  let { results, fetchingFromAPI } = req.query;
+  /*let { results } = req.query;
   const parsedResults = Utils.convertQueryToNumber(results, 5);
 
   if (!parsedResults || parsedResults > 100) {
     res.status(400).send("`results` query param must be a number and up to 100.");
     return;
-  }
+  }*/
   try {
-    if(fetchingFromAPI == 'false'){
-      const dbResponse = await PostModel.find({}); // Get all data from DB.
-      console.log('dbResponse:',dbResponse);
-      res.json(dbResponse);
-      return;
-    }
-    // throw new Error("request timed out");
-    const response = await axios.get('https://randomuser.me/api/?results=' + parsedResults); // Fetch posts from the API.
-    const data = response.data;
-    res.json(data.results);
+    const dbResponse = await PostModel.find(); // get all posts
+    res.json(dbResponse);
   } catch (err) {
     console.error('Error fetching data:', err);
     res.status(500).contentType('html').render('error-500');
@@ -47,14 +45,25 @@ postsRouter.get('/:postId', async (req, res) => {
   }
 });
 
-postsRouter.put('/create', async (req, res) => {
-  const { description, location, userId } = req.body;
 
-  if (!userId || !description) {
-    res.status(400).send('One of the required parameters (userId, text) is missing');
-    return;
-  }
+const validateRequiredParams = (requiredFields: string[]) => {
+  return (req: express.Request, res: express.Response, next: NextFunction) => {
+    const body = req.body;
+    const allFieldsExist = requiredFields.every((field: string) => field in body);
+   
+    if (!allFieldsExist) {
+      res.status(400).send(`One of the required parameters [${requiredFields.join()}] is missing`);
+      return;
+    }
+  
+    next();
+  };
+};
 
+
+postsRouter.put('/create'/*, validateRequiredParams(['userId', 'description'])*/, upload.single('image'), async (req, res) => {
+  const { description, location, userId, imgUrl } = req.body;
+  const image = req.file?.buffer; // Get the image file path
   const postId = uuidv4();
 
   try {
@@ -63,7 +72,8 @@ postsRouter.put('/create', async (req, res) => {
       userId,
       location,
       description,
-      imgUrl: '/public/1.png',
+      image,
+      imgUrl,
       createdDate: new Date(),
     });
   

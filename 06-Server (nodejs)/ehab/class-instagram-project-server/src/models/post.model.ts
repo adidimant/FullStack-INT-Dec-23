@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
+
 
 const postSchema = new Schema({
   id: { type: String },
@@ -6,8 +7,11 @@ const postSchema = new Schema({
   createdDate: { type: Date },
   description: { type: String },
   imgUrl: { type: String },
+  image: { type: Buffer }, // store file data as a Buffer
   location: { type: String },
 });
+
+
 
 export const PostModel = model('postModel', postSchema);
 

@@ -1,16 +1,20 @@
 import { memo, useState, useEffect} from "react";
-import profilePic from "../../../../../assets/profile.jpg";
 import UserSuggested from "./UserSuggested/UserSuggested";
 import "./Suggested.css";
-import { RandomPostApiResult } from "../../../types";
+import {PostType/*, RandomPostApiResult*/ } from "../../../types";
+import { useRefreshContext } from "../../../../../contexts/refresh-context";
 
 function Suggested() {
 	const [userData, setUserData] = useState([]);
-
+	const { value } = useRefreshContext();
 	// In this example - we show if we get 500 from the server - we display the server content html instead of the regular html
+	/*if(value && userData.length == 0){
+        setValue(false);
+    }*/
 
 	useEffect(() => {
-		fetch("http://localhost:3000/api/posts?results=5")
+		if(userData.length == 0){
+			fetch("http://localhost:3000/api/posts")
 			.then((response) => {
 				if (response.status < 500) {
 					return response.json();
@@ -24,27 +28,25 @@ function Suggested() {
 					setUserData(data);
 				}
 			});
-	}, []);
-
+		}
+	}, [userData]);
+	
+	if(value && userData.length != 0){
+        setUserData([]);
+    }
 	return (
 		<div className="Suggested">
-			<UserSuggested
-				profilePic={profilePic}
-				userName="Ofer134"
-				fullName="Ofer Ben Ami"
-				switchOrFllow="Switch"
-			/>
 			<div className="suggested-for-you">
 				<p>Suggested for you</p>
 				<button>See All</button>
 			</div>
 
-			{userData.length > 0 ?  userData.map((user: RandomPostApiResult, index: number) =>{
+			{userData.length > 0 ?  userData.map((user: PostType, index: number) =>{
 				return <UserSuggested
 								key={index}
-								profilePic={user.picture.thumbnail}
-								userName={user.login.username}
-								fullName = {`${user.name.first} ${user.name.last}`}
+								profilePic={user.imgUrl}
+								userName={user.userId}
+								fullName = {user.userId}
 								switchOrFllow="Follow"
 							/>;
 			}): <></>}
