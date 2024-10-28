@@ -1,31 +1,29 @@
-import { memo, useEffect, useState } from "react";
+import { memo,useRef, useEffect, useState } from "react";
 import axios from "axios";
 import "./MainContainer.css";
 
-type RelaventDataType = {
-	city: string;
-}
+
 
 function MainContainer() {
-	const [relaventData, setRelaventData] = useState<RelaventDataType>({});
+	const fetchData = useRef({})
+	const [city, setCity] = useState<string>("");
+	const [todayDate, setTodayDate] = useState<string>("");
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const apiData = await axios.get(
-				`https://wttr.in/${relaventData.city ? relaventData.city : ""}?format=j1`
+			const fetchData = await axios.get(
+				`https://wttr.in/${city ? city : ''}?format=j1`
 			);
-			console.log(apiData);
-			if (!relaventData.city) {
-				const nearestArea = apiData.data.nearest_area[0].areaName[0].value;
-				setRelaventData((relaventData)=>{
-
-				});
-				console.log(relaventData);
+			console.log(fetchData)
+			if (!city) {
+				const nearestArea = fetchData.data.nearest_area[0].areaName[0].value;
+				setCity(nearestArea);
+				console.log(nearestArea);
 			}
-			return apiData;
+			return fetchData;
 		};
 		try {
-			const data = fetchData();
+			fetchData();
 			// console.log(data)
 		} catch (e) {
 			console.error(e);
@@ -37,7 +35,7 @@ function MainContainer() {
 			<h1>Weather App</h1>
 			<div id="days">
 				<div id="today" className="weatherDay">
-					today {String(relaventData)}
+					today {String(city)}
 				</div>
 				<div id="tomorrow" className="weatherDay">
 					b
