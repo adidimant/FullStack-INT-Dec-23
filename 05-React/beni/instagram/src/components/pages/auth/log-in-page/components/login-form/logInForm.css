@@ -1,0 +1,74 @@
+.login-form {
+  border: 1px solid var(--muted-l);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.form-logo-container {
+  width: 175px;
+  line-height: 0;
+  margin: 30px 0;
+}
+
+.form-logo-img {
+  width: 100%;
+}
+
+.form-inputs-container {
+  width: 100%;
+}
+
+.submit-login-btn {
+  width: 100%;
+  padding: 8px 0;
+  margin: 14px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--primary-l);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit-login-btn:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
+.login-form-fb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fb-logo-blue);
+  text-decoration: none;
+}
+
+.login-form-fb:active {
+  filter: brightness(1.4);
+  -webkit-filter: brightness(1.4);
+}
+
+.login-form-fb-logo {
+  height: 16px;
+}
+
+.login-form-forgot-pwd {
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  color: var(--forgot-pwd-color-l);
+}
+
+.login-form-forgot-pwd:active {
+  opacity: 0.7;
+  filter: brightness(1.4);
+  -webkit-filter: brightness(1.4);
+}

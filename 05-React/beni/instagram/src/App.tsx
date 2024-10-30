@@ -1,21 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/AuthPages/login/LoginPage";
-import RegisterPage from "./pages/AuthPages/register/RegisterPage";
-import ForgotPasswordPage from "./pages/AuthPages/ForgotPassword/ForgotPasswordPage";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Auth from "./components/pages/auth/Auth";
+import Dashboard from "./components/pages/dashboard/Dashboard";
 import "./App.css";
 
 function App() {
+  const signedOut = true;
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/forgot-pwd" element={<ForgotPasswordPage />} />
-          <Route path="*" element={<></>} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <Router>
+      <Routes>
+        {signedOut ? (
+          <Route path="/*" element={<Auth />} />
+        ) : (
+          <Route path="/*" element={<Dashboard />} />
+        )}
+      </Routes>
+    </Router>
   );
 }
 

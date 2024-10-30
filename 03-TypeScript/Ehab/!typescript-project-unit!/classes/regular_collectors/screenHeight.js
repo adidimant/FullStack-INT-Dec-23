@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.screenHeight = void 0;
-const eventsManager_1 = require("../../classes/eventsManager");
+//const _screenHeight = void 0;
+export { _screenHeight as screenHeight };
+import { EventsManager } from "../../classes/eventsManager";
 class screenHeight {
     constructor() {
-        const confInterval = eventsManager_1.EventsManager.getInterval();
+        const confInterval = EventsManager.getInterval();
         this.interval = confInterval;
         this.data = null;
         this.intervalId = 0;
@@ -16,11 +17,11 @@ class screenHeight {
         return 'screenHeight';
     }
     startCollect() {
-        if (eventsManager_1.EventsManager.IsEnabled) {
+        if (EventsManager.IsEnabled) {
             try {
                 this.data = screen.height;
                 this.intervalId = setInterval(() => {
-                    if (!eventsManager_1.EventsManager.IsEnabled) {
+                    if (!EventsManager.IsEnabled) {
                         this.finishCollect();
                         return;
                     }
@@ -33,10 +34,11 @@ class screenHeight {
         }
     }
     finishCollect() {
-        if (this.intervalId !== null && this.intervalId !== undefined && !eventsManager_1.EventsManager.IsEnabled) {
+        if (this.intervalId !== null && this.intervalId !== undefined && !EventsManager.IsEnabled) {
             clearInterval(this.intervalId);
             this.data = null;
         }
     }
 }
-exports.screenHeight = screenHeight;
+const _screenHeight = screenHeight;
+export { _screenHeight as screenHeight };

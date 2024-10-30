@@ -14,7 +14,7 @@ const port = 3000;
 const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/';
 mongoose.connect(mongoURI).then(() => {
   console.log("MongoDB is connected!");
-}).catch((err) => console.error(err));
+}).catch((err) => console.error(err));*/
 
 const platformLogMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userAgent = req.headers["user-agent"];

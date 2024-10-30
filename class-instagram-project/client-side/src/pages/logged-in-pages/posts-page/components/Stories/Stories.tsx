@@ -1,8 +1,9 @@
 import  { memo, useEffect, useState } from "react";
 import storyImg2 from '../../../../../assets/profile.jpg';
 import Story from "./components/Story";
-import { RandomPostApiResult } from "../../../types";
+import { PostBackendAPI } from "../../../types";
 import "./Stories.css"
+import { appendServerPrefix } from "../../../../../utils";
 
 function Stories() {
 	const [userData, setUserData] = useState([]);
@@ -18,8 +19,8 @@ function Stories() {
 	return (
 		<div className="Stories">
 			<Story username='ofer ben ami' profilePic={storyImg2}/>
-			{userData ? userData.map((user: RandomPostApiResult, index: number) => {
-				return <Story key={index} username={user.name.first} profilePic={user.picture.thumbnail }/>
+			{userData ? userData.map((user: PostBackendAPI, index: number) => {
+				return <Story key={index} username={user.userId} profilePic={appendServerPrefix(user.imgUrl)}/>
 			}) : <></>}
 		</div>
 	);

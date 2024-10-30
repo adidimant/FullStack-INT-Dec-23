@@ -1,0 +1,25 @@
+.CreatePostPage-mainContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+
+    .CreatePostPage-form{
+        border: 1px rgb(212, 211, 211) solid;
+        padding: 20px;
+        width: 500px;
+        /* height: 500px; */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+
+        .CreatePost-image-view{
+            width: 300px;
+        }
+    }
+}
