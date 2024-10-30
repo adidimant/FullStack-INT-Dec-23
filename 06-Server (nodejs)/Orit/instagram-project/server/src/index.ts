@@ -1,13 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose, { mongo } from 'mongoose';
+//import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import postsRouter from './controllers/posts.router';
 import { rateLimitMiddleware } from './middlewares/rate-limit';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 const port = 3000;
 
-/*mongoose.connect('my-url').then(() => {
+//mongoose.connect('my-url').then(() => {
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/';
+mongoose.connect(mongoURI).then(() => {
   console.log("MongoDB is connected!");
 }).catch((err) => console.error(err));*/
 
