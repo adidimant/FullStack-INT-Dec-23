@@ -3,6 +3,7 @@ import EmojiPicker from "emoji-picker-react";
 import profilePic from "../../../../../assets/profile.jpg";
 import "./CreatePostPopup.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const maxChars = 2200;
 
@@ -17,6 +18,8 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
+
+  const navigate = useNavigate();
 
   const uploadImage = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -56,17 +59,18 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
     }
 
     try {
-      const result = await axios.put('http://localhost:3000/api/posts/create', formData, {
-        headers: {
-          "Content-Type": 'multipart/form-data'
-        }
+      const result = await axios({
+        method: "put",
+        url: "http://localhost:3000/api/posts/create",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       if (result.status == 201) {
         alert("Post uploaded successfully!");
         setText(""); 
         onClose();
-        //TODO - refresh posts to present the latest posts
+        navigate('/posts'); // refresh posts to present the latest posts
       } else {
         alert("Failed to upload the post.");
       }

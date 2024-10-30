@@ -3,7 +3,51 @@ import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
 import { PostModel } from '../models/post.model';
 import upload from '../middlewares/upload';
-const postsRouter = express.Router();
+import { UserModel } from '../models/user.model';
+const usersRouter = express.Router();
+
+/*
+Endpoints plan:
+1) PUT /register
+2) POST /login // here we'll send email & pass
+3) POST /update
+4) DELETE /:userId (less priority in course)
+*/
+
+usersRouter.put('/register', async (req, res) => {
+  // todo - check user not exist already for this mail
+  const { username, email, password, firstName, lastName, birthdate, country, city } = req.body;
+
+  const user = await UserModel.findOne([{ email }, { username }]);
+  if (user) {
+    if (user.username == username) {
+      res.status(400).send("username already exist");
+    } else {
+      res.status(201).send("User created!");
+    }
+    return;
+  }
+
+  const userId = uuidv4();
+
+  const createdDate = new Date();
+  const profilePicUrl = '';
+
+  // here = create the user in db, at the end response 201.
+});
+
+usersRouter.post('/login', Utils.validateRequiredParams(['email', 'password']), async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await UserModel.findOne({ email, password });
+
+  if (user) {
+    res.send("Welcome!");
+    return;
+  }
+
+  res.status(404).send("Bad combination of email and password");
+});
 
 postsRouter.get('/', async (req, res) => {
   console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
@@ -53,6 +97,22 @@ postsRouter.get('/:postId', async (req, res) => {
     res.status(500).send('Error finding the post: ' + postId);
   }
 });
+
+
+const validateRequiredParams = (requiredFields: string[]) => {
+  return (req: express.Request, res: express.Response, next: NextFunction) => {
+    const body = req.body;
+
+    const allFieldsExist = requiredFields.every((field: string) => field in body);
+
+    if (!allFieldsExist) {
+      res.status(400).send(`One of the required parameters [${requiredFields.join()}] is missing`);
+      return;
+    }
+  
+    next();
+  };
+};
 
 postsRouter.put('/create', upload.single('image'), async (req, res) => {
   const { description, location, userId } = req.body;

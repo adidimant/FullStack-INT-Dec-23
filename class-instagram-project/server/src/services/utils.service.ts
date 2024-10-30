@@ -1,3 +1,5 @@
+import express from 'express';
+
 class Utils {
   static convertQueryToNumber(param: any, defaultValue: number): number | null {
     if (typeof param == 'number') {
@@ -11,6 +13,21 @@ class Utils {
   
     return defaultValue;
   }
+
+  static validateRequiredParams = (requiredFields: string[]) => {
+    return (req: express.Request, res: express.Response, next: NextFunction) => {
+      const body = req.body;
+  
+      const allFieldsExist = requiredFields.every((field: string) => field in body);
+  
+      if (!allFieldsExist) {
+        res.status(400).send(`One of the required parameters [${requiredFields.join()}] is missing`);
+        return;
+      }
+    
+      next();
+    };
+  };
 }
 
 export default Utils;
