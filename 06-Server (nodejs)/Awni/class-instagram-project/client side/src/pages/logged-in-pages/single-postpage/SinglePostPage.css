@@ -1,0 +1,122 @@
+.single-post-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+}
+
+.single-post {
+    display: flex;
+    width: 80%;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.post-image-container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.post-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.post-details-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #dbdbdb;
+}
+.close{
+    position: absolute;
+    right: 210px;
+    top: 20px;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10000;
+
+}
+
+.post-details-container h1 {
+    font-size: 24px;
+    padding-bottom: 10px;
+    margin-bottom: -120px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.post-bio {
+    margin: 10px 0;
+    height: 100px;
+}
+
+.post-bio p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.comments {
+    margin: 10px 0;
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 50px;
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.comment p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+.footer-post {
+    margin-top: 10px;
+}
+
+.footer-post p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.comment-inpt {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #dbdbdb;
+    padding-top: 10px;
+}
+
+.comment-inpt input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.comment-inpt button.comment-btn {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.comment-inpt button.comment-btn:hover {
+    background-color: #007bb5;
+}

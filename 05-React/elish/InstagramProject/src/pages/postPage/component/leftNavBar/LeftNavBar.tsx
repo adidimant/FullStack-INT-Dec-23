@@ -1,10 +1,19 @@
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
 import InstagramLogo from "../../../login/assets/instagram-text-logo.png";
 import { Link } from "react-router-dom";
-import profilePic from '../../assets/20240211_113017.jpg'
+import profilePic from '../../assets/20240211_113017.jpg';
+import CreatNewPost from "./components/CreatNewPost";
 import "./LeftNavBar.css";
 
+
 function LeftNavBar() {
+
+	const [showPopup, setShowPopup] = useState(false);
+
+	const creatNewPost = useCallback(() => {
+		setShowPopup(!showPopup);
+		console.log(showPopup);
+	},[showPopup])
 	return (
 		<div className="left-navbar">
 			<div className="left-navbar-logo">
@@ -195,7 +204,7 @@ function LeftNavBar() {
 					</svg>
 					<span className="links-text">Notifications</span>
 				</div>
-				<div tabIndex={6} className="create links-basic-styles">
+				<div tabIndex={6} className="create links-basic-styles" onClick={creatNewPost}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -302,6 +311,7 @@ function LeftNavBar() {
 					<span className="links-text">More</span>
 				</div>
 			</div>
+			<CreatNewPost show={showPopup} onClose={creatNewPost}/>
 		</div>
 	);
 }

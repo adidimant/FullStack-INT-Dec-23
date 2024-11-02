@@ -1,0 +1,35 @@
+{
+  "name": "instagrm-project-server",
+  "version": "1.0.0",
+  "description": "server of the instagram project",
+  "main": "src/index.ts",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "deploy": "sh deploy.sh",
+    "build": "tsc",
+    "start:prod": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "mongoose": "^8.7.3",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/uuid": "^10.0.0",
+    "i": "^0.3.7",
+    "nodemon": "^3.1.5",
+    "npm": "^10.9.0",
+    "typescript": "^5.6.2"
+  }
+}

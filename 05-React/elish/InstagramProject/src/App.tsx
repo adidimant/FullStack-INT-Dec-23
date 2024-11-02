@@ -3,10 +3,13 @@ import LoginPage from './pages/login/LoginPage';
 import ForgotPassword from './pages/forgotPassword/ForgotPassword';
 import Register from "./pages/register/Register"
 import PostsPage from './pages/postPage/PostsPage';
-import { useState ,useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import ModeButton from './components/modeButton/ModeButton';
 import {useThemeContext} from './contexts/theme-context';
+import GoToPost from './pages/postPage/component/post/moreinformation/components/GoToPost';
 import './App.css';
+
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,6 +35,7 @@ function App() {
           )
           : <Routes>
                  <Route path="/posts" element={<PostsPage/>} /> 
+                 <Route path="/GoToPost" element={<GoToPost/>}/>
                  <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>}  />
             </Routes>
           }

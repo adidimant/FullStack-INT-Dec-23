@@ -1,0 +1,13 @@
+.dark-background {
+    background-color: #181818;
+    color: #E0E0E0;
+  }
+
+.dark-unborder {
+    border-color: #181818;
+}
+
+.dark-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}

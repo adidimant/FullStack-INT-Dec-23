@@ -1,19 +1,17 @@
-import { ReactNode, memo, useMemo } from "react";
+import { ReactNode, memo } from "react";
 import LeftNavbar from "../components/LeftNavbar/LeftNavbar";
 import PostsMainContent from './PostsMainContent/PostsMainContent';
-import { useThemeContext } from "../../../contexts/theme-context";
 import './PostsPage.css';
-import '../../../contexts/theme-style.css'
-
+import { RefreshProvider } from "../../../contexts/refresh-context";
 
 
 function PostsPage(): ReactNode {
-  const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
   return (
-    <div className= {isDark ? 'auth-page-container dark' : 'auth-page-container light'}>
-      <LeftNavbar />
-      <PostsMainContent/>
+    <div className="auth-page-container">
+      <RefreshProvider>
+        <LeftNavbar />
+        <PostsMainContent/>
+      </RefreshProvider>
     </div>
   );
 }

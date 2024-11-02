@@ -1,28 +1,33 @@
-import  { memo, useEffect, useMemo, useState } from "react";
-import storyImg2 from '../../../../../assets/profile.jpg';
+import  { memo, useEffect, useState } from "react";
 import Story from "./components/Story";
-import { RandomPostApiResult } from "../../../types";
-import { useThemeContext } from "../../../../../contexts/theme-context";
+import { PostType/*, RandomPostApiResult*/ } from "../../../types";
 import "./Stories.css"
-import '../../../../../contexts/theme-style.css'
+import { useRefreshContext } from "../../../../../contexts/refresh-context";
+
 function Stories() {
 	const [userData, setUserData] = useState([]);
+	const { value } = useRefreshContext();
 
+	/*if(value && userData.length == 0){
+        setValue(false);
+    }*/
 	useEffect( () => {
-		fetch("https://randomuser.me/api/?results=7")
-		.then(response  => response.json())
-		.then(data => setUserData(data.results))
-	},[])
+		if(userData.length == 0){
+			fetch("http://localhost:3000/api/posts?results=7")
+			.then(response  => response.json())
+			.then(data => setUserData(data))
+		}
+	},[userData])
 
-	const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
-
+	if(value && userData.length != 0){
+        setUserData([]);
+    }
 
 	return (
-		<div className= {isDark ? 'Stories dark' : 'Stories light'}>
-			<Story username='ofer ben ami' profilePic={storyImg2}/>
-			{userData ? userData.map((user: RandomPostApiResult, index: number) => {
-				return <Story key={index} username={user.name.first} profilePic={user.picture.thumbnail }/>
+		<div className="Stories">
+			{/*<Story username='ofer ben ami' profilePic={storyImg2}/>*/}
+			{userData ? userData.map((user: PostType, index: number) => {
+				return <Story key={index} username={user.userId} profilePic={user.imgUrl }/>
 			}) : <></>}
 		</div>
 	);

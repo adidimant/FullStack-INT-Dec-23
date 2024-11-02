@@ -1,0 +1,114 @@
+#auth-nav {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--muted-l);
+  background-color: #fff;
+}
+
+.auth-nav-logo-container {
+  margin-right: 20px;
+  flex-shrink: 0;
+  width: 103px;
+  padding-top: 8px;
+}
+
+.auth-nav-logo-img {
+  width: 100%;
+}
+
+.auth-nav-btns-container {
+  flex-shrink: 0;
+  height: 100%;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-nav-login-btn {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--primary-l);
+  color: #fff;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.auth-nav-login-btn:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
+.auth-nav-login-btn:active {
+  filter: brightness(1);
+  -webkit-filter: brightness(1);
+  opacity: 0.8;
+}
+
+.auth-nav-signup-btn {
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  color: var(--primary-l);
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px 0;
+}
+
+.auth-nav-signup-btn:hover {
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6);
+}
+
+.auth-nav-signup-btn:active {
+  filter: brightness(1);
+  -webkit-filter: brightness(1);
+  opacity: 0.7;
+}
+
+.auth-theme-btn {
+  height: 25px;
+  width: 42px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--muted-l);
+  cursor: pointer;
+  padding: 4px;
+  transition: 0.2s;
+}
+
+.auth-theme-btn.active {
+  background-color: var(--primary-l);
+}
+
+.auth-theme-btn-circle-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.auth-theme-btn-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(25px - 8px);
+  width: calc(25px - 8px);
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 0.2s;
+}
+
+.auth-theme-btn-circle.active {
+  left: 100%;
+  transform: translateX(-100%);
+}

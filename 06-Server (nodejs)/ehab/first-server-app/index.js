@@ -94,5 +94,15 @@ GET     - Retrieve data from the server.
 POST    - Submit data to the server, usually to create a new resource.
 PUT     - Update an existing resource or create a resource if it doesn't exist.
 DELETE  - Remove a resource from the server.
+
+5) [Bonus] Find the commands in terminal that shows you:
+  a) All the open ports
+    On Windows: netstat -ano | findstr LISTENING
+    On Linux: sudo netstat -tuln
+    On macOS: sudo netstat -anp tcp | grep LISTEN
+  b) All the processes that runs on specific port (for example port 80 or port 3000)
+    On Windows: netstat -aon | findstr :443
+    On Linux: sudo netstat -tuln | grep :443
+    On macOS: sudo netstat -anp tcp | grep :443
 */
 

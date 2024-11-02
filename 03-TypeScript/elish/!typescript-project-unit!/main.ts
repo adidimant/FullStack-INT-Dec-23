@@ -7,7 +7,7 @@ from './collectors/regular-collectors';
 import { Collector } from './collectors/interfaceCollectors';
 import {MouseMoveCollector, KeyboardPressCollector,ClickCollector, DeviceMotionCollector, DeviceOrientationCollector} from './collectors/continous-collectors';
 
-function main(customerId: string) {
+function init(customerId: string) {
     document.addEventListener("acme-sdk-loaded",()=>{
         const config = EventsManager.getConfig(customerId);
         if(config.SDK_ENABLED){
@@ -53,5 +53,11 @@ function main(customerId: string) {
     const event = new Event('acme-sdk-loaded');
     document.dispatchEvent(event);
 };
+
+const ACME_SDK = {
+    init,
+};
+
+window.ACME_SDK = ACME_SDK;
 
 //main('customer123');

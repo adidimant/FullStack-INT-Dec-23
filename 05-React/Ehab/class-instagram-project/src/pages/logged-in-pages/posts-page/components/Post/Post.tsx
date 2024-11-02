@@ -1,14 +1,12 @@
 
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
+import './Post.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import { useThemeContext } from '../../../../../contexts/theme-context';
-import './Post.css';
-import '../../../../../contexts/theme-style.css'
 
 type PostProps = {
     user: string;
@@ -18,28 +16,26 @@ type PostProps = {
 };
 
 function Post({ user, postImage, likes, timestamp }: PostProps) {
-    const { theme } = useThemeContext();
-	const isDark = useMemo(() => theme === 'dark', [theme]);
     return (
-        <div className={isDark ? 'post dark' : 'post light'}>
-            <div className={isDark ? 'post__header dark' : 'post__header light'}>
-                <div className= {isDark ? 'post__headerAuthor dark' : 'post__headerAuthor light'}>
+        <div className='post'>
+            <div className="post__header">
+                <div className="post__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>
                     {user} . <span>{timestamp}</span>
                 </div>
                 <MoreHorizIcon></MoreHorizIcon>
             </div>
-            <div className={isDark ? 'post__image dark' : 'post__image light'}>
+            <div className="post__image">
                 <img src={postImage} alt="" />
             </div>
-            <div className={isDark ? 'post__footer dark' : 'post__footer light'} >
-                <div className= {isDark ? 'post__footerIcons dark' : 'post__footerIcons light'}>
-                    <div className= {isDark ? 'post__iconsMain dark' : 'post__iconsMain light'}>
+            <div className="post__footer">
+                <div className="post__footerIcons">
+                    <div className="post__iconsMain">
                         <FavoriteBorderIcon className='postIcon' />
                         <ChatBubbleOutlineIcon className='postIcon' />
                         <TelegramIcon className='postIcon' />
                     </div>
-                    <div className= {isDark ? 'post_iconSave dark' : 'post_iconSave light'}>
+                    <div className="post_iconSave">
                         <BookmarkBorderIcon className='postIcon' />
                     </div>
                 </div>
@@ -49,5 +45,4 @@ function Post({ user, postImage, likes, timestamp }: PostProps) {
     );
 }
 export default memo(Post);
-
 
