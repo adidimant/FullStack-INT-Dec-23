@@ -18,8 +18,8 @@ postsRouter.get('/', async (req, res) => {
     res.json(data.results);
   } catch (err) {
     console.error('Error fetching data:', err);
-    res.status(500).json({ error: 'Failed to fetch posts' });
-    //res.status(500).render('failed');
+    //res.status(500).json({ error: 'Failed to fetch posts' });
+    res.status(500).render('failed');
   }
 });
 
