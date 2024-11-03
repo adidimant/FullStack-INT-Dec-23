@@ -2,9 +2,9 @@ import { memo } from "react";
 import SearchSVG from "../icons/SearchSVG";
 import partlyCloudy from "../../figma-svgs/partly-cloudy.svg";
 import rainIcon from "../../figma-svgs/rain.svg";
-import "./aside.css";
 import Clock from "./components/clock/Clock";
 import WeekDay from "./components/week-day/WeekDay";
+import "./aside.css";
 
 function Aside() {
   return (

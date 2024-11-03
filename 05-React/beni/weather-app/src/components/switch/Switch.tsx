@@ -1,45 +1,47 @@
-import { memo, useCallback, useState } from "react";
+import { memo, ReactNode } from "react";
 import "./switch.css";
 
 interface SwitchProps {
   imgA?: string;
   imgB?: string;
   textA?: string;
+  textAClassName?: string;
   textB?: string;
-  classNameA?: string;
-  classNameB?: string;
+  textBClassName?: string;
+  childrenA?: ReactNode;
+  childrenB?: ReactNode;
+  active?: string;
   clickFn?: () => void;
 }
 
-function Switch({ imgA, imgB, textA, textB, classNameA, classNameB, clickFn }: SwitchProps) {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const handleBtnClick = useCallback(() => {
-    setIsActive((active) => !active);
-    if (clickFn) {
-      clickFn();
-    }
-  }, [clickFn]);
-
+function Switch({
+  imgA,
+  imgB,
+  textA,
+  textAClassName,
+  textB,
+  textBClassName,
+  childrenA,
+  childrenB,
+  active,
+  clickFn,
+}: SwitchProps) {
   return (
     <>
       <div className="switch-btn-container">
-        <button className="switch-btn" onClick={handleBtnClick}>
-          <div
-            className={`switch-btn-option a ${
-              classNameA !== undefined ? classNameA : isActive ? "active" : ""
-            }`}
-          >
-            {imgA && <img src={imgA} className="switch-btn-img" />}
-            {textA && <div className="switch-btn-text">{textA}</div>}
-          </div>
+        <button className="switch-btn" onClick={clickFn}>
+          <div className={`switch-btn-options-container ${active}`}>
+            <div className="switch-btn-option">
+              {childrenA}
+              {imgA && <img src={imgA} className="switch-btn-img" />}
+              {textA && <div className={textAClassName}>{textA}</div>}
+            </div>
 
-          <div
-            className={`switch-btn-option b ${
-              classNameB !== undefined ? classNameB : isActive ? "active" : ""
-            }`}
-          >
-            {imgB && <img src={imgB} className="switch-btn-img" />}
-            {textB && <div className="switch-btn-text">{textB}</div>}
+            <div className="switch-btn-option">
+              {childrenB}
+              {imgB && <img src={imgB} className="switch-btn-img" />}
+              {textB && <div className={textBClassName}>{textB}</div>}
+            </div>
           </div>
         </button>
       </div>

@@ -1,8 +1,6 @@
 import { memo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Today from "./components/today/Today";
-import Week from "./components/week/Week";
 import "./forecast.css";
 
 function Forecast() {
@@ -11,9 +9,9 @@ function Forecast() {
       <section id="forecast">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Today />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/week" element={<Week />} />
+          <Route path="/" element={<>today</>} />
+          <Route path="/tomorrow" element={<>Tomorrow</>} />
+          <Route path="/in-2-days" element={<>In 2 Days</>} />
         </Routes>
       </section>
     </Router>

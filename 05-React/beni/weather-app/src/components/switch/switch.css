@@ -1,49 +1,36 @@
 .switch-btn {
+  --switch-btn-height: 35px;
+
   position: relative;
   background-color: var(--bg);
-  border: 1px solid var(--secondary);
+  border: none;
+  border-bottom: 1px solid var(--border);
   outline: none;
   cursor: pointer;
   overflow: hidden;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  height: var(--switch-btn-height);
+  width: var(--switch-btn-height);
+}
+
+.switch-btn-options-container {
+  position: absolute;
+  top: 0;
+  transform: translateY(0%);
+  display: flex;
+  flex-direction: column;
+  width: var(--switch-btn-height);
+  transition: 0.3s;
+}
+
+.switch-btn-options-container.active {
+  top: 100%;
+  transform: translateY(-100%);
 }
 
 .switch-btn-option {
-  position: absolute;
-  left: 0;
-  height: 40px;
-  width: 40px;
+  height: var(--switch-btn-height);
+  width: var(--switch-btn-height);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.3s ease-in-out;
-}
-
-.switch-btn-img {
-  height: 60%;
-}
-
-.switch-btn-text {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  color: var(--secondary);
-}
-
-.switch-btn-option.a {
-  top: -100%;
-}
-
-.switch-btn-option.a.active {
-  top: 0;
-}
-
-.switch-btn-option.b {
-  top: 100%;
-}
-
-.switch-btn-option.b.active {
-  top: 0;
 }
