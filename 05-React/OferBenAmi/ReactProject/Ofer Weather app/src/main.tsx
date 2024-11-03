@@ -6,11 +6,11 @@ import ColdMeasuringUnitProvider from "./Context/ColdMeasuringUnit.tsx";
 import DistanceMeasuringUnitProvider from "./Context/DistanceUnit.tsx";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
+
 		<ColdMeasuringUnitProvider>
 			<DistanceMeasuringUnitProvider>
 				<App />
 			</DistanceMeasuringUnitProvider>
 		</ColdMeasuringUnitProvider>
-	</StrictMode>
+
 );

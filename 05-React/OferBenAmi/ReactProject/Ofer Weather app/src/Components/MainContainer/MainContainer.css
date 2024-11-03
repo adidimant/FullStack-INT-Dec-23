@@ -1,6 +1,18 @@
 #MainContainer {
-	margin-top: 60px;
+	margin-top: 20px;
 
+    .area-selection{
+        span{
+            font-size: 12px;
+        }
+        input{
+            padding: 10px;
+            font-size: large;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+        }
+    }
 	#days{
         display: flex;
         justify-content: center;
@@ -10,8 +22,8 @@
 
 
         .weatherDay{
-            min-width: 200px;
-            height: 400px;
+            min-width: 400px;
+            height: 500px;
             padding: 10px;
             background-color: white;
             border-radius: 10px;
