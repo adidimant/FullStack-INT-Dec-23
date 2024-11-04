@@ -1,4 +1,5 @@
 import { memo, useRef, useEffect, useState, ChangeEvent } from "react";
+import debounce from 'lodash.debounce'
 import axios from "axios";
 import "./MainContainer.css";
 
@@ -32,13 +33,14 @@ function MainContainer() {
 	};
 
 	const handleAreaInput = (e: ChangeEvent<HTMLInputElement>) => {
-		if(e.target.value){
-			console.log(city)
-			setCity(e.target.value)
-
+		if (e.target.value || e.target.value == "") {
+			console.log(city);
+			setCity(e.target.value);
+			fetchData()
 		}
-
 	};
+
+	const debounceAreaInput = debounce(handleAreaInput, 800)
 
 	useEffect(() => {
 		try {
@@ -56,8 +58,13 @@ function MainContainer() {
 				<p>
 					type an area: <span>*optional</span>
 				</p>
-				<input type="text" onChange={handleAreaInput} />
-				<h3>current area: <h2>{city}</h2></h3>
+				<input type="text" onInput={debounceAreaInput} />
+				<div className="current-area-div">
+					<h3>
+						current area:
+					</h3>
+					<h2>{city}</h2>
+				</div>
 			</div>
 			<div id="days">
 				<div id="today" className="weatherDay">

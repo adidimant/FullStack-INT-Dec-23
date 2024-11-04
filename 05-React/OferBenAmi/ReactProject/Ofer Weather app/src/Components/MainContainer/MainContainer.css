@@ -12,6 +12,13 @@
             color: black;
             border-radius: 5px;
         }
+        .current-area-div{
+            height: 80px;
+
+            h3,h2{
+                margin: 5px;
+            }
+        }
     }
 	#days{
         display: flex;
