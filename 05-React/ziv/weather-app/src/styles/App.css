@@ -1,0 +1,184 @@
+/* styles/App.css
+
+Contains the necessary styling for background, button, input fields, weather display, and error handling.
+Provides day/night background themes, button hover effects, and styling for responsive layout.*/
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: background-color 0.5s ease;
+}
+
+.day-background {
+  background: linear-gradient(to bottom, #87CEFA, #B0E0E6); /* Light blue gradient for daytime */
+}
+
+.night-background {
+  background: linear-gradient(to bottom, #2C3E50, #4B79A1); /* Darker gradient for nighttime */
+}
+
+
+#root {
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  margin: 10px 5px 20px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #ff9500;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 5px;
+}
+
+button:hover {
+  background-color: #ffab40;
+}
+
+/* Align buttons in a container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Equal space between buttons */
+}
+
+.weather-display {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.weather-display h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.hourly-forecast {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.hour-item {
+  flex: 0 0 auto;
+  width: 70px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.hour-item p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.hour-time {
+  font-weight: bold;
+}
+
+.hour-emoji {
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+
+.hour-temp {
+  font-size: 1rem;
+}
+
+/* Error Screen Styling */
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.error-screen p {
+  color: #FFFFFF;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.error-screen input[type="text"] {
+  width: 80%;
+  padding: 8px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.error-screen button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.error-screen button:hover {
+  background-color: #4da6ff;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.advanced-details-toggle h3 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.advanced-details-toggle h3:hover {
+  color: #ff9500;
+}
