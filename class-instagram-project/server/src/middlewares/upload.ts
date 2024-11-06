@@ -3,9 +3,15 @@ import multer from 'multer';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       //cb(null, './views/assets'); // Specify the upload folder
-      cb(null, './uploads'); // Specify the upload folder
+      if (!file) {
+        return;
+      }
+      cb(null, `./uploads/`); // Specify the upload folder
     },
     filename: (req, file, cb) => {
+      if (!file) {
+        return;
+      }
       const lastDotIndex = file.originalname.lastIndexOf('.');
 
       const fileName = file.originalname.slice(0, lastDotIndex);

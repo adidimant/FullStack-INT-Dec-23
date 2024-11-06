@@ -13,6 +13,20 @@ import { Link } from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import LittleLink from "../../../../components/littleLink/LittleLink";
 import { useThemeContext } from "../../../../contexts/theme-context";
+import { validateEmail, validatePhone } from "../../../../utils";
+import axios from "axios";
+
+const validateLoginIdentityField = (value: unknown): boolean => {
+  if (!value) {
+    return false;
+  }
+
+  if (validateEmail(value) || validatePhone(value)) {
+    return true;
+  }
+
+  return false;
+};
 
 function LoginMain() {
   // const [usernameValue, setUsernameValue] = useState<string>("");
@@ -29,6 +43,26 @@ function LoginMain() {
   const [nextScreenshot, setNextScreenshot] = useState<string>(Screenshot2);
   const [isActive, setIsActive] = useState<boolean>(true);
   const { theme } = useThemeContext();
+
+  const handleLogin = async () => {
+    const identityFieldInput = document.getElementById('username') as HTMLInputElement;
+    const passwordInput = document.getElementById('pwd') as HTMLInputElement;
+
+    const email = identityFieldInput?.value;
+    const password = passwordInput?.value;
+
+    if (!validateLoginIdentityField(email)) {
+      alert('Email format is not valid!');
+      return;
+    }
+
+    const response = await axios.post('http://localhost:3000/api/users/login', {
+      email,
+      password,
+    });
+
+    //TODO - if 200 - handle & store accessToken
+  };
 
   useEffect(() => {
     const allScreenShots = [Screenshot1, Screenshot2, Screenshot3, Screenshot4];
@@ -74,17 +108,19 @@ function LoginMain() {
             </div>
           </div>
 
+          {isValid && <ErrorComponent/>}
+
           <div className="right-container">
             <form className="login-form">
               <div className={`instagram-text-logo-container ${theme}-logo`}>
                 <img src={InstagramTextLogo} alt="instagram text logo" />
               </div>
               <div className="text-inputs-container">
-              <Input type="text" id="username" name="username" text="Phone number, username or email" htmlFor="username" />
+              <Input type="text" id="username" name="username" text="Phone number or email" htmlFor="username" validate={validateLoginIdentityField} />
               <Input type="password" id="pwd" name="pwd" text="Password" htmlFor="pwd" />
               </div>
               <div className="flex-item-wrapper">
-                <Button text="Log in" name="login-submit" onClick={() => { /* implement login here */}} />
+                <Button text="Log in" name="login-submit" onClick={() => { handleLogin }} />
               </div>
               <div className="flex-item-wrapper">
                 <div className="or-text">OR</div>
