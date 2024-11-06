@@ -15,7 +15,7 @@ class Utils {
   }
 
   static validateRequiredParams = (requiredFields: string[]) => {
-    return (req: express.Request, res: express.Response, next: NextFunction) => {
+    return (req: express.Request, res: express.Response, next: express.NextFunction) => {
       const body = req.body;
   
       const allFieldsExist = requiredFields.every((field: string) => field in body);

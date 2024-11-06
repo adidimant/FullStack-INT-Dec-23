@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import postsRouter from './controllers/posts.router';
 import { rateLimitMiddleware } from './middlewares/rate-limit';
 import dotenv from 'dotenv';
+import usersRouter from './controllers/users.router';
 
 dotenv.config();
 const app = express();
