@@ -1,4 +1,4 @@
-import { memo, useRef, useEffect, useState, ChangeEvent } from "react";
+import { memo, useRef,useCallback, useEffect, useState, ChangeEvent } from "react";
 import debounce from 'lodash.debounce'
 import axios from "axios";
 import "./MainContainer.css";
@@ -7,7 +7,7 @@ function MainContainer() {
 	const [city, setCity] = useState<string>("");
 	const [threeDays, setThreeDays] = useState<string[]>([]);
 
-	const fetchData = async () => {
+	const fetchData = useCallback(async () => {
 		try {
 			const fetchData = await axios.get(
 				`https://wttr.in/${city ? city : ""}?format=j1`
@@ -30,17 +30,16 @@ function MainContainer() {
 		} catch (err) {
 			console.error(err);
 		}
-	};
+	},[city])
 
 	const handleAreaInput = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value || e.target.value == "") {
-			console.log(city);
 			setCity(e.target.value);
 			fetchData()
 		}
 	};
 
-	const debounceAreaInput = debounce(handleAreaInput, 800)
+	const debounceAreaInput = debounce(handleAreaInput, 650);
 
 	useEffect(() => {
 		try {
