@@ -1,0 +1,125 @@
+.sum-card {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  height: 430px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.sum-card-location {
+  text-align: center;
+}
+
+.sum-card-city {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.sum-card-country {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--secondary);
+}
+
+.sum-card-day {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+}
+
+.sum-card-condition-icon {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sum-card-condition-icon-img {
+  height: 100%;
+}
+
+.sum-card-temp {
+  text-align: center;
+  font-weight: 600;
+}
+
+.sum-card-temp-number {
+  font-size: 50px;
+  color: var(--primary);
+}
+
+.sum-card-temp-unit {
+  font-size: 28px;
+  color: var(--primary);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.sum-card-condition-text {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.sum-card-svg {
+  height: 100%;
+  width: 100%;
+}
+
+.sum-card-svg path {
+  color: var(--primary);
+}
+
+.sum-card-svg .sunny-path {
+  color: var(--sunny);
+}
+
+.sum-card-svg .rainy-path {
+  color: var(--rainy);
+}
+
+.sum-card-svg .cloudy-path {
+  color: var(--cloudy);
+}
+
+.sum-card-wind {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sum-card-wind-icon {
+  height: 22px;
+}
+
+.sum-card-wind-icon-img {
+  height: 100%;
+}
+
+.sum-card-wind-icon-img path {
+  color: var(--primary);
+}
+
+.sum-card-wind-number,
+.sum-card-wind-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.sum-card-not-found {
+  color: var(--primary);
+  text-align: center;
+  font-size: 30px;
+}

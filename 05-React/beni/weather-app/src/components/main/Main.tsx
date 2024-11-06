@@ -1,18 +1,27 @@
 import { memo, useContext } from "react";
-// import { useTheme } from "../../context/theme-context";
-// import Aside from "../aside/Aside";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeContext } from "../../context/theme-context";
+import Navbar from "../navbar/Navbar";
 import Forecast from "../forecast/Forecast";
 import "./main.css";
-import { ThemeContext } from "../../context/theme-context";
+import { DayProvider } from "../../context/day-context";
 
 function Main() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <main className={`main ${theme}`}>
-      {/* <Aside /> */}
-      <Forecast />
-    </main>
+    <Router>
+      <DayProvider>
+        <main className={`main ${theme}`}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Forecast />} />
+            <Route path="/tomorrow" element={<Forecast />} />
+            <Route path="/in-2-days" element={<Forecast />} />
+          </Routes>
+        </main>
+      </DayProvider>
+    </Router>
   );
 }
 
