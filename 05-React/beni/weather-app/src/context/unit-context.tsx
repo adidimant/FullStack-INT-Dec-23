@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { UnitType } from "../types/unitTypes";
 
-type UnitType = "metric" | "imperial";
 type UnitContextType = {
   unit: UnitType;
   toggleUnit?: () => void;

@@ -2,26 +2,25 @@ import { KeyboardEvent, memo, useCallback, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/theme-context";
 import { UnitContext } from "../../context/unit-context";
+import { WeatherContext } from "../../context/weather-context";
 import Switch from "../switch/Switch";
 import SearchSVG from "../SVGs/SearchSVG";
 import SunSVG from "../SVGs/SunSVG";
 import MoonSVG from "../SVGs/MoonSVG";
 import "./navbar.css";
-import { WeatherContext } from "../../context/weather-context";
 
 function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { unit, toggleUnit } = useContext(UnitContext);
-  const { setCity, fetchWeather } = useContext(WeatherContext);
+  const { setCity } = useContext(WeatherContext);
 
   const handleSearch = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.code == "Enter") {
-        fetchWeather(e.currentTarget.value);
         setCity(e.currentTarget.value);
       }
     },
-    [fetchWeather, setCity]
+    [setCity]
   );
 
   return (
@@ -78,7 +77,7 @@ function Navbar() {
               <Switch
                 childrenA={<SunSVG className="theme-svg" />}
                 childrenB={<MoonSVG className="theme-svg" />}
-                active={`${theme == "dark" ? "active" : ""}`}
+                active={`${theme == "light" ? "active" : ""}`}
                 clickFn={toggleTheme}
               />
             </div>

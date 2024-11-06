@@ -42,3 +42,5 @@ export type WeatherApiResponse = {
   nearest_area: AreaInfo[];
   weather: DailyWeather[];
 };
+
+export type WeatherDataType = WeatherApiResponse | "api error" | "not found" | null;

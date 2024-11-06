@@ -1,8 +1,8 @@
 import { createContext, useState, useCallback, ReactNode, useEffect, useMemo } from "react";
-import { WeatherApiResponse } from "../types/weatherApiTypes";
+import { WeatherApiResponse, WeatherDataType } from "../types/weatherApiTypes";
 
 type WeatherContextType = {
-  weatherData: WeatherApiResponse | "not found" | "api error" | null;
+  weatherData: WeatherDataType;
   city: string;
   setCity: (city: string) => void;
   fetchWeather: (city: string) => Promise<void>;
@@ -16,8 +16,7 @@ export const WeatherContext = createContext<WeatherContextType>({
 });
 
 export const WeatherProvider = ({ children }: { children: ReactNode }) => {
-  const savedCity = useMemo(() => localStorage.getItem("savedCity"), []);
-
+  const savedCity = localStorage.getItem("savedCity");
   const defaultCity = useMemo(() => {
     if (savedCity) {
       return savedCity;
@@ -26,9 +25,7 @@ export const WeatherProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [savedCity]);
 
-  const [weatherData, setWeatherData] = useState<
-    WeatherApiResponse | "not found" | "api error" | null
-  >(null);
+  const [weatherData, setWeatherData] = useState<WeatherDataType>(null);
 
   const [city, setCity] = useState(defaultCity);
 
