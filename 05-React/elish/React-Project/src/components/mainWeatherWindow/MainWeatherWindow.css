@@ -1,0 +1,59 @@
+
+  
+  .inner-main {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .inner-main p {
+    padding: 0px 0px 5px 0px;
+    position: relative;
+    transition: all 0.5s ease-out;
+    color: #113555;
+  }
+  
+  .inner-main > img {
+    position: relative;
+    left: -80px;
+    top: 90px;
+    width: 300px;
+    transition: visibility 2s ease-out;
+  }
+  
+  .today {
+    position: relative;
+    width: 350px;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  
+  .today > h1 {
+    margin-bottom: 15px;
+  }
+  
+  .title {
+    position: absolute;
+    top: -10px;
+    color: #365a7a;
+    font-size: 4rem;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .title:before {
+    content: '';
+    background: url('/assets/02d.svg') no-repeat;
+    background-size: 100%;
+    width: 250px;
+    height: 250px;
+    display: block;
+  }
+  
