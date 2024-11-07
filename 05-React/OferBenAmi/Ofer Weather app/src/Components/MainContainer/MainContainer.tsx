@@ -1,41 +1,59 @@
-import { memo, useRef,useCallback, useEffect, useState, ChangeEvent } from "react";
-import debounce from 'lodash.debounce'
+import { memo, useCallback, useEffect, useState, ChangeEvent } from "react";
+import debounce from "lodash.debounce";
 import axios from "axios";
+import { days, ApiResFormatted} from "../../types/types";
 import "./MainContainer.css";
+
+
 
 function MainContainer() {
 	const [city, setCity] = useState<string>("");
-	const [threeDays, setThreeDays] = useState<string[]>([]);
+	const [fetchedData, setFetchedData] = useState<ApiResFormatted>();
 
-	const fetchData = useCallback(async () => {
+	const fetchData = useCallback(async (inputCity: string) => {
 		try {
 			const fetchData = await axios.get(
-				`https://wttr.in/${city ? city : ""}?format=j1`
+				`https://wttr.in/${inputCity}?format=j1`
 			);
-			console.log(fetchData);
-			if (!city) {
-				const nearestArea = fetchData.data.nearest_area[0].areaName[0].value;
-				const fetchedDate: string[] = [
-					fetchData.data.weather[0].date,
-					fetchData.data.weather[1].date,
-					fetchData.data.weather[2].date,
-				];
-				setThreeDays(fetchedDate);
-				console.log(fetchData);
-				setCity(nearestArea);
-				console.log(nearestArea);
-			} else {
+			const fetchedDateFormatted: ApiResFormatted = {
+				today: {
+					date: fetchData.data.weather[days.today].date,
+					avgtempC: fetchData.data.weather[days.today].avgtempC,
+					avgtempF: fetchData.data.weather[days.today].avgtempC,
+				},
+				tomorrow: {
+					date: fetchData.data.weather[days.tomorrow].date,
+					avgtempC: fetchData.data.weather[days.tomorrow].avgtempC,
+					avgtempF: fetchData.data.weather[days.tomorrow].avgtempC,
+				},
+				in2Days: {
+					date: fetchData.data.weather[days.in2Days].date,
+					avgtempC: fetchData.data.weather[days.in2Days].avgtempC,
+					avgtempF: fetchData.data.weather[days.in2Days].avgtempC,
+				},
+				country: fetchData.data.nearest_area[0].country[0].value,
+				city: fetchData.data.nearest_area[0].areaName[0].value
+			};
+			if (inputCity == "") {
+				setFetchedData(fetchedDateFormatted)
 			}
-			return fetchData;
+
+			// setFetchedData(fetchedDateFormatted);
+			// setCity(nearestArea);
+			return fetchedDateFormatted;
 		} catch (err) {
+			//TODO - Update UI when the server throws an error!!
+			console.log(`eroprrrr oferrrrr`);
 			console.error(err);
 		}
-	},[city])
+	}, []);
 
-	const handleAreaInput = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleAreaInput = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value || e.target.value == "") {
-			setCity(e.target.value);
-			fetchData()
+			const res = await fetchData(e.target.value);
+			if (res) {
+				setFetchedData(res)
+			}
 		}
 	};
 
@@ -43,7 +61,7 @@ function MainContainer() {
 
 	useEffect(() => {
 		try {
-			fetchData();
+			fetchData("");
 			// console.log(data)
 		} catch (e) {
 			console.error(e);
@@ -59,21 +77,21 @@ function MainContainer() {
 				</p>
 				<input type="text" onInput={debounceAreaInput} />
 				<div className="current-area-div">
-					<h3>
-						current area:
-					</h3>
-					<h2>{city}</h2>
+					<h2>{`${fetchedData?.city}, ${fetchedData?.country || ''}`}</h2>
 				</div>
 			</div>
 			<div id="days">
 				<div id="today" className="weatherDay">
-					<h3>Today: {threeDays[0]}</h3>
+					<h3>Today: {fetchedData?.today.date}</h3>
+					<p>{fetchedData?.today.avgtempC}</p>
 				</div>
 				<div id="tomorrow" className="weatherDay">
-					<h3>Tomorrow: {threeDays[1]}</h3>
+					<h3>Tomorrow: {fetchedData?.tomorrow.date}</h3>
+					<p>{fetchedData?.tomorrow.avgtempC}</p>
 				</div>
 				<div id="twoDays" className="weatherDay">
-					<h3>The day after tomorrow: {threeDays[2]}</h3>
+					<h3>The day after tomorrow: {fetchedData?.in2Days.date}</h3>
+					<p>{fetchedData?.in2Days.avgtempC}</p>
 				</div>
 			</div>
 		</div>

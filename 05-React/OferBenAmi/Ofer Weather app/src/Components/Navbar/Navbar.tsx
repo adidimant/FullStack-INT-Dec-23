@@ -26,12 +26,15 @@ function Navbar() {
 	}
 	return (
 		<div id="navbar">
+			<div className="navbar-btns">
 			<button className="navbar-btn" onClick={handleColdMeasuringUnit}>
 				cold Unit: {coldMeasuringUnit}
 			</button>
 			<button className="navbar-btn" onClick={handleDistanceMeasuringUnit}>
 				distance Unit: {distanceMeasureUnit}s
 			</button>
+
+			</div>
 		</div>
 	);
 }
