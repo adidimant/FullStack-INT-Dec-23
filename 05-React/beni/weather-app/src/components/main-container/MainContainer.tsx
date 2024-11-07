@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeContext } from "../../context/theme-context";
 import Navbar from "../navbar/Navbar";
 import Forecast from "../forecast/Forecast";
-import "./main.css";
+import "./mainContainer.css";
 
-function Main() {
+function MainContainer() {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -20,4 +20,4 @@ function Main() {
   );
 }
 
-export default memo(Main);
+export default memo(MainContainer);

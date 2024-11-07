@@ -56,6 +56,7 @@ function Navbar() {
               type="text"
               id="location"
               name="location"
+              autoComplete="off"
               placeholder="Search location.."
               onKeyDown={handleSearch}
             />

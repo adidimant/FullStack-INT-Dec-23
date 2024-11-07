@@ -1,5 +1,6 @@
 import { memo } from "react";
 import SumCard from "../sum-card/SumCard";
+import MoreInfo from "../more-info/MoreInfo";
 import "./forecast.css";
 
 function Forecast() {
@@ -7,7 +8,7 @@ function Forecast() {
     <>
       <section id="forecast">
         <SumCard />
-        <button className="advanced-btn">More Info</button>
+        <MoreInfo />
       </section>
     </>
   );

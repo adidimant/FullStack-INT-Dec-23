@@ -3,7 +3,7 @@ import { UnitProvider } from "./context/unit-context";
 import { WeatherProvider } from "./context/weather-context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { DayProvider } from "./context/day-context";
-import Main from "./components/main/Main";
+import MainContainer from "./components/main-container/MainContainer";
 import "./app.css";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <ThemeProvider>
           <UnitProvider>
             <DayProvider>
-              <Main />
+              <MainContainer />
             </DayProvider>
           </UnitProvider>
         </ThemeProvider>

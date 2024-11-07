@@ -10,9 +10,11 @@ type CurrentCondition = {
   temp_C: string;
   temp_F: string;
   weatherDesc: WeatherDescription[];
-  winddir16Point: string;
+  winddirDegree: string;
   windspeedKmph: string;
   windspeedMiles: string;
+  visibility: string;
+  visibilityMiles: string;
 };
 
 type AreaInfo = {
@@ -28,13 +30,33 @@ type HourlyForecast = {
   weatherDesc: WeatherDescription[];
   windspeedKmph: string;
   windspeedMiles: string;
+  humidity: string;
+  visibility: string;
+  visibilityMiles: string;
+  winddirDegree: string;
+};
+
+type AstronomyData = {
+  moon_illumination: string;
+  moon_phase: string;
+  moonrise: string;
+  moonset: string;
+  sunrise: string;
+  sunset: string;
 };
 
 type DailyWeather = {
+  astronomy: AstronomyData[];
   avgtempC: string;
   avgtempF: string;
   date: string;
   hourly: HourlyForecast[];
+  uvIndex: string;
+  sunHour: string;
+  mintempC: string;
+  mintempF: string;
+  maxtempC: string;
+  maxtempF: string;
 };
 
 export type WeatherApiResponse = {
