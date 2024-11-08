@@ -7,6 +7,7 @@ import {
   getCountryName,
   getDayName,
   getTemperature,
+  getWeatherDescCode,
   getWeatherDescription,
   isNightTime,
 } from "../../utils";
@@ -24,6 +25,7 @@ function SumCard() {
   const countryName = useMemo(() => getCountryName(weatherData), [weatherData]);
   const dayName = useMemo(() => getDayName(weatherData, day), [weatherData, day]);
   const weatherDesc = useMemo(() => getWeatherDescription(weatherData, day), [weatherData, day]);
+  const weatherCode = useMemo(() => getWeatherDescCode(weatherData, day), [weatherData, day]);
   const nightTime = useMemo(() => isNightTime(day), [day]);
   const temp = useMemo(() => getTemperature(weatherData, day, unit), [weatherData, day, unit]);
 
@@ -86,7 +88,7 @@ function SumCard() {
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <WeatherIcon desc={weatherDesc} night={nightTime} className="sum-card-svg" />
+              <WeatherIcon code={weatherCode} night={nightTime} className="sum-card-svg" />
             </motion.div>
             <motion.div
               className="sum-card-condition-text"

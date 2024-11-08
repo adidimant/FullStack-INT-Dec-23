@@ -18,120 +18,91 @@ import MoonSVG from "../SVGs/MoonSVG";
 import PartlyCloudyNightSVG from "../SVGs/PartlyCloudyNightSVG";
 
 type WeatherIconProps = {
-  desc: string | undefined;
+  code: string | undefined;
   night: boolean;
   className: string;
 };
 
-function WeatherIcon({ desc, night, className }: WeatherIconProps): ReactNode {
-  switch (desc) {
-    case "Clear":
+function WeatherIcon({ code, night, className }: WeatherIconProps): ReactNode {
+  switch (code) {
+    case "113":
       return <MoonSVG className={className} />;
-    case "Sunny":
+    case "114":
       return <SunSVG className={className} />;
-    case "Partly cloudy":
+    case "116":
       return night ? (
         <PartlyCloudyNightSVG className={className} />
       ) : (
         <PartlyCloudyDaySVG className={className} />
       );
-    case "Cloudy":
+    case "119":
+    case "122":
       return <CloudySVG className={className} />;
-    case "Overcast":
-      return <CloudySVG className={className} />;
-    case "Mist":
+    case "143":
       return <FogSVG className={className} />;
-    case "Patchy rain nearby":
+    case "176":
+    case "177":
       return <PatchyRainSVG className={className} />;
-    case "Patchy rain possible":
-      return <PatchyRainSVG className={className} />;
-    case "Patchy snow possible":
+    case "179":
       return <SnowSVG className={className} />;
-    case "Patchy sleet possible":
+    case "182":
       return <SleetSVG className={className} />;
-    case "Patchy freezing drizzle possible":
+    case "185":
       return <DrizzleSVG className={className} />;
-    case "Thundery outbreaks in nearby":
+    case "200":
       return <ThunderstormSVG className={className} />;
-    case "Thundery outbreaks possible":
-      return <ThunderstormSVG className={className} />;
-    case "Blowing snow":
+    case "227":
       return <BlowingSnowSVG className={className} />;
-    case "Blizzard":
+    case "230":
       return <BlizzardSVG className={className} />;
-    case "Fog":
+    case "248":
+    case "260":
       return <FogSVG className={className} />;
-    case "Freezing fog":
-      return <FogSVG className={className} />;
-    case "Patchy light drizzle":
+    case "263":
+    case "266":
+    case "281":
+    case "284":
       return <DrizzleSVG className={className} />;
-    case "Light drizzle":
-      return <DrizzleSVG className={className} />;
-    case "Freezing drizzle":
-      return <DrizzleSVG className={className} />;
-    case "Heavy freezing drizzle":
-      return <DrizzleSVG className={className} />;
-    case "Patchy light rain":
+    case "293":
+    case "296":
+    case "299":
+    case "302":
       return <RainSVG className={className} />;
-    case "Light rain":
-      return <RainSVG className={className} />;
-    case "Moderate rain at times":
-      return <RainSVG className={className} />;
-    case "Moderate rain":
-      return <RainSVG className={className} />;
-    case "Heavy rain at times":
+    case "305":
+    case "308":
       return <HeavyRainSVG className={className} />;
-    case "Heavy rain":
-      return <HeavyRainSVG className={className} />;
-    case "Light freezing rain":
+    case "311":
       return <RainSVG className={className} />;
-    case "Moderate or heavy freezing rain":
+    case "314":
       return <HeavyRainSVG className={className} />;
-    case "Light sleet":
+    case "317":
+    case "320":
       return <SleetSVG className={className} />;
-    case "Moderate or heavy sleet":
-      return <SleetSVG className={className} />;
-    case "Patchy light snow":
+    case "323":
+    case "326":
+    case "329":
+    case "332":
+    case "335":
+    case "338":
       return <SnowSVG className={className} />;
-    case "Light snow":
-      return <SnowSVG className={className} />;
-    case "Patchy moderate snow":
-      return <SnowSVG className={className} />;
-    case "Moderate snow":
-      return <SnowSVG className={className} />;
-    case "Patchy heavy snow":
-      return <SnowSVG className={className} />;
-    case "Heavy snow":
-      return <SnowSVG className={className} />;
-    case "Ice pellets":
+    case "350":
       return <HailSVG className={className} />;
-    case "Light rain shower":
-      return <RainSVG className={className} />;
-    case "Moderate or heavy rain shower":
+    case "353":
+    case "356":
       return <HeavyRainSVG className={className} />;
-    case "Torrential rain shower":
+    case "359":
       return <HeavyRainSVG className={className} />;
-    case "Light sleet showers":
+    case "362":
+    case "365":
       return <SleetSVG className={className} />;
-    case "Moderate or heavy sleet showers":
-      return <SleetSVG className={className} />;
-    case "Light snow showers":
+    case "368":
+    case "371":
       return <SnowSVG className={className} />;
-    case "Moderate or heavy snow showers":
-      return <SnowSVG className={className} />;
-    case "Patchy light rain in area with thunder":
+    case "386":
+    case "389":
       return <RainThunderSVG className={className} />;
-    case "Patchy light rain with thunder":
-      return <RainThunderSVG className={className} />;
-    case "Moderate or heavy rain in area with thunder":
-      return <RainThunderSVG className={className} />;
-    case "Moderate or heavy rain with thunder":
-      return <RainThunderSVG className={className} />;
-    case "Patchy light snow with thunder":
-      return <ThunderstormSVG className={className} />;
-    case "Moderate or heavy snow in area with thunder":
-      return <ThunderstormSVG className={className} />;
-    case "Moderate or heavy snow with thunder":
+    case "392":
+    case "395":
       return <ThunderstormSVG className={className} />;
     default:
       return <div>N/A</div>;

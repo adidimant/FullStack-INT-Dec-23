@@ -10,6 +10,7 @@ type CurrentCondition = {
   temp_C: string;
   temp_F: string;
   weatherDesc: WeatherDescription[];
+  weatherCode: string;
   winddirDegree: string;
   windspeedKmph: string;
   windspeedMiles: string;
@@ -28,6 +29,7 @@ type HourlyForecast = {
   tempC: string;
   tempF: string;
   weatherDesc: WeatherDescription[];
+  weatherCode: string;
   windspeedKmph: string;
   windspeedMiles: string;
   humidity: string;

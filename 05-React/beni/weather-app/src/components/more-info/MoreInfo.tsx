@@ -1,8 +1,8 @@
 import { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import InfoCard from "../info-card/InfoCard";
-import "./moreInfo.css";
 import { WeatherContext } from "../../context/weather-context";
+import { DayContext } from "../../context/day-context";
+import { UnitContext } from "../../context/unit-context";
 import {
   getHumidity,
   getMaxTemp,
@@ -14,10 +14,12 @@ import {
   getWindDirDegree,
   getWindSpeed,
 } from "../../utils";
-import { DayContext } from "../../context/day-context";
+import HumiditySVG from "../SVGs/HumiditySVG";
+import InfoCard from "../info-card/InfoCard";
 import LineLoader from "../loaders/line-loader/LineLoader";
 import ArcMeter from "../arc-meter/ArcMeter";
-import { UnitContext } from "../../context/unit-context";
+import Meter from "../meter/Meter";
+import "./moreInfo.css";
 
 function MoreInfo() {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -123,7 +125,23 @@ function MoreInfo() {
               <InfoCard
                 cardClassName="info-card"
                 dataTitle="Humidity"
-                dataContent={weatherData == null ? <LineLoader /> : humidity}
+                dataContent={
+                  weatherData == null ? (
+                    <LineLoader />
+                  ) : (
+                    <>
+                      <div className="humidity-card-content">
+                        <div className="humidity-card-info">
+                          <div className="humidity-card-info-svg-container">
+                            <HumiditySVG className="humidity-card-info-svg" />
+                          </div>
+                          <div className="humidity-card-info-number">{humidity}%</div>
+                        </div>
+                        <Meter value={humidity} />
+                      </div>
+                    </>
+                  )
+                }
               />
             </motion.div>
             <motion.div

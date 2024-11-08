@@ -31,14 +31,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  justify-items: center;
   gap: 20px;
-  width: 100%;
   height: 100%;
   padding-bottom: 40px;
 }
 
 .info-card-container {
   width: 100%;
+  min-width: 310px;
+  max-width: 420px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -66,9 +68,46 @@
 .info-card .card-content {
   color: var(--primary);
   margin-top: 10px;
+  padding: 0 20px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.humidity-card-content {
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.humidity-card-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.humidity-card-info-svg-container {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.humidity-card-info-svg {
+  height: 100%;
+  width: 100%;
+}
+
+.humidity-card-info-svg path {
+  color: var(--rainy);
+}
+
+.humidity-card-info-number {
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--rainy);
 }

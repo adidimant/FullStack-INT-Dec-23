@@ -164,6 +164,22 @@ export const getWeatherDescription = (data: WeatherDataType, day: number) => {
   }
 };
 
+export const getWeatherDescCode = (data: WeatherDataType, day: number) => {
+  if (!isWeatherDataValid(data)) {
+    return "N/A";
+  }
+
+  try {
+    const hourlyCode = (data as WeatherApiResponse).weather[day - 1].hourly[4].weatherCode;
+    const currentCode = (data as WeatherApiResponse).current_condition[0].weatherCode;
+    const code = day == 1 ? currentCode : hourlyCode;
+    return code ? code : "N/A";
+  } catch (error) {
+    console.error("Couldn't get weather code:", error);
+    return "N/A";
+  }
+};
+
 export const isNightTime = (day: number) => {
   if (day == 1) {
     const currentTime = new Date().getTime();
