@@ -1,10 +1,19 @@
 #navbar {
+  position: fixed;
+  top: 0;
+  background-color: var(--bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 110px;
+  height: 80px;
   width: 100%;
   padding: 0 70px;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-left {
+  flex-shrink: 0;
 }
 
 .navbar-link {

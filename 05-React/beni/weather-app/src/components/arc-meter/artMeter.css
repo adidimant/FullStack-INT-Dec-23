@@ -42,8 +42,8 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  font-size: 45px;
-  font-weight: 400;
+  transform: translate(-50%, 18%);
+  font-size: 60px;
+  font-weight: 300;
   color: var(--highlight);
 }

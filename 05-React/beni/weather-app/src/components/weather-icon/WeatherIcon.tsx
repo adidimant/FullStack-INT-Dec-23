@@ -26,7 +26,7 @@ type WeatherIconProps = {
 function WeatherIcon({ code, night, className }: WeatherIconProps): ReactNode {
   switch (code) {
     case "113":
-      return <MoonSVG className={className} />;
+      return night ? <MoonSVG className={className} /> : <SunSVG className={className} />;
     case "114":
       return <SunSVG className={className} />;
     case "116":

@@ -14,7 +14,9 @@ const ArcMeter = ({ value }: { value: string }) => {
         <div className="arc-meter-body">
           <div
             className="arc-meter-fill"
-            style={{ transform: `rotate(${(isNumber(value) / 12) * 180}deg)` }}
+            style={{
+              transform: `rotate(${isNumber(value) <= 12 ? (isNumber(value) / 12) * 180 : 180}deg`,
+            }}
           ></div>
         </div>
         <div className="arc-meter-cover"></div>
