@@ -1,0 +1,27 @@
+#hour-select {
+  display: flex;
+  gap: 10px;
+}
+
+.hour-select-btn {
+  padding: 10px;
+  flex-shrink: 0;
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 400;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.hour-select-btn.active {
+  border-bottom: 1px solid var(--secondary);
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  #hour-select {
+    flex-direction: column;
+  }
+}

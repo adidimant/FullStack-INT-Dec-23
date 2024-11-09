@@ -23,9 +23,27 @@ function Navbar() {
     [setCity]
   );
 
+  const handleMenuClick = useCallback(() => {
+    (document.querySelector(".navbar-left") as HTMLDivElement).classList.toggle("active");
+    (document.querySelector(".navbar-menu-btn-top-line") as HTMLDivElement).classList.toggle(
+      "active"
+    );
+    (document.querySelector(".navbar-menu-btn-middle-line") as HTMLDivElement).classList.toggle(
+      "active"
+    );
+    (document.querySelector(".navbar-menu-btn-bottom-line") as HTMLDivElement).classList.toggle(
+      "active"
+    );
+  }, []);
+
   return (
     <>
       <nav id="navbar">
+        <button className="navbar-menu-btn" onClick={handleMenuClick}>
+          <div className="navbar-menu-btn-top-line"></div>
+          <div className="navbar-menu-btn-middle-line"></div>
+          <div className="navbar-menu-btn-bottom-line"></div>
+        </button>
         <div className="navbar-left">
           <div className="navbar-links-container">
             <NavLink to="/" className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}>

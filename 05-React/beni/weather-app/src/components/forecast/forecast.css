@@ -7,3 +7,9 @@
   gap: 40px;
   margin-top: 80px;
 }
+
+@media screen and (max-width: 768px) {
+  #forecast {
+    margin-top: 110px;
+  }
+}

@@ -312,7 +312,9 @@ function MoreInfo() {
                           </div>
                           <div className="wind-direction-text-container">
                             <div className="wind-direction-degree">{windDirDegree}</div>
-                            <div className="wind-direction-code">{windDirCode}</div>
+                            <div className="wind-direction-code">
+                              {windDirCode == "N/A" ? "" : windDirCode}
+                            </div>
                           </div>
                         </div>
                       </div>
