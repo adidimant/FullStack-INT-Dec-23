@@ -7,7 +7,7 @@ import "./MainContainer.css";
 
 
 function MainContainer() {
-	const [city, setCity] = useState<string>("");
+	// const [city, setCity] = useState<string>("");
 	const [fetchedData, setFetchedData] = useState<ApiResFormatted>();
 
 	const fetchData = useCallback(async (inputCity: string) => {
