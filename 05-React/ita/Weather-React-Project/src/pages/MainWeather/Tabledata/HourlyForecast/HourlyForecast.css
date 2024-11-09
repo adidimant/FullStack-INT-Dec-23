@@ -1,0 +1,16 @@
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 95%;
+    font-size: 20px;
+  }
+  
+  tr {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+  }
+
+  th, td {
+    text-align: center;
+    padding: 15px;
+  }
