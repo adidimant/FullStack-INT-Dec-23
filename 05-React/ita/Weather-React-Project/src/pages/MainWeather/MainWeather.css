@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    padding-top: 120px;
+    background-image: linear-gradient(#2E5C6E, #6cb7d4);
+    gap: 20px;
+}
+
+.flexDay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 790px;
+}
+
+.bottom {
+    width: 100%;
+    height: 300px;
+    background-color: #16324F;
+}

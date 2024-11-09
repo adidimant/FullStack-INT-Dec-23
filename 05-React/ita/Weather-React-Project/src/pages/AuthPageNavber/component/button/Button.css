@@ -1,0 +1,21 @@
+.weather-button {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #2a8fb4; 
+    color: #ffffff; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.weather-button:hover {
+    background-color: #1d6e8c; 
+    transform: scale(1.05); 
+}
+
+
+
+
