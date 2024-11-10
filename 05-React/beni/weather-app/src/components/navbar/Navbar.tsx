@@ -91,7 +91,7 @@ function Navbar() {
 
           <div className="navbar-hour-select-container">
             <select name="hour" id="hour" value={selectedHour} onChange={handleSelectHour}>
-              {day == 1 && <option value="currently">Currently</option>}
+              {day == 1 && <option value="currently">Current</option>}
               <option value="00">00:00</option>
               <option value="300">03:00</option>
               <option value="600">06:00</option>
