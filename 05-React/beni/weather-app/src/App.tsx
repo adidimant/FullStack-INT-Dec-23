@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { DayProvider } from "./context/day-context";
 import { HourProvider } from "./context/hour-context";
 import MainContainer from "./components/main-container/MainContainer";
-import "./app.css";
+import "./App.css";
 
 function App() {
   return (
