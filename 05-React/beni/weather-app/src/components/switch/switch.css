@@ -1,0 +1,36 @@
+.switch-btn {
+  --switch-btn-height: 35px;
+
+  position: relative;
+  background-color: var(--bg);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  height: var(--switch-btn-height);
+  width: var(--switch-btn-height);
+}
+
+.switch-btn-options-container {
+  position: absolute;
+  top: 0;
+  transform: translateY(0%);
+  display: flex;
+  flex-direction: column;
+  width: var(--switch-btn-height);
+  transition: 0.3s;
+}
+
+.switch-btn-options-container.active {
+  top: 100%;
+  transform: translateY(-100%);
+}
+
+.switch-btn-option {
+  height: var(--switch-btn-height);
+  width: var(--switch-btn-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

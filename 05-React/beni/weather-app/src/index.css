@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+:root {
+  --bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --primary: #2d2d2d;
+  --secondary: #7e7e7e;
+  --border: #c7c7c7;
+  --highlight: #fdc830;
+  --sunny: #ffd700;
+  --cloudy: #b0bec5;
+  --rainy: #4a90e2;
+}
+
+.dark {
+  --bg: #181a1b;
+  --card-bg: #232527;
+  --primary: #eaeaea;
+  --secondary: #8e8e8e;
+  --highlight: #fdc830;
+  --border: #424242;
+  --sunny: #ffdd57;
+  --cloudy: #78909c;
+  --rainy: #42a5f5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out,
+    outline 0.2s ease-in-out;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}

@@ -1,0 +1,15 @@
+#forecast {
+  height: 100%;
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 80px;
+}
+
+@media screen and (max-width: 768px) {
+  #forecast {
+    margin-top: 110px;
+  }
+}

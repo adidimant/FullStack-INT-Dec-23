@@ -1,0 +1,102 @@
+.sum-card {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  height: 430px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.sum-card-day {
+  font-size: 34px;
+  font-weight: 500;
+  color: var(--primary);
+  text-align: center;
+}
+
+.sum-card-location {
+  text-align: center;
+}
+
+.sum-card-city {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.sum-card-country {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--secondary);
+}
+
+.sum-card-condition-icon {
+  margin-top: 20px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sum-card-condition-icon-img {
+  height: 100%;
+}
+
+.sum-card-condition-text {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.sum-card-temp {
+  text-align: center;
+}
+
+.sum-card-temp-number {
+  font-size: 60px;
+  font-weight: 400;
+  color: var(--primary);
+}
+
+.sum-card-temp-unit {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.8;
+  vertical-align: top;
+  color: var(--primary);
+}
+
+.sum-card-svg {
+  height: 100%;
+  width: 100%;
+}
+
+.sum-card-svg path {
+  color: var(--primary);
+}
+
+.sum-card-svg .sunny-path {
+  color: var(--sunny);
+}
+
+.sum-card-svg .rainy-path {
+  color: var(--rainy);
+}
+
+.sum-card-svg .cloudy-path {
+  color: var(--cloudy);
+}
+
+.sum-card-not-found {
+  color: var(--primary);
+  text-align: center;
+  font-size: 30px;
+}
