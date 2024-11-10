@@ -34,6 +34,39 @@ export const convertDayNumToDayName = (day: number): string | Error => {
   return dayName;
 };
 
+export const convertHourStringToIndex = (hour: string): number => {
+  let hourNum = 0;
+
+  switch (hour) {
+    case "00":
+      hourNum = 0;
+      break;
+    case "300":
+      hourNum = 1;
+      break;
+    case "600":
+      hourNum = 2;
+      break;
+    case "900":
+      hourNum = 3;
+      break;
+    case "1200":
+      hourNum = 4;
+      break;
+    case "1500":
+      hourNum = 5;
+      break;
+    case "1800":
+      hourNum = 6;
+      break;
+    case "2100":
+      hourNum = 7;
+      break;
+  }
+
+  return hourNum;
+};
+
 export const isWeatherDataValid = (data: WeatherDataType): boolean => {
   if (
     data !== null &&
@@ -86,20 +119,28 @@ export const getDayName = (data: WeatherDataType, day: number) => {
   return "N/A";
 };
 
-export const getTemperature = (data: WeatherDataType, day: number, unit: UnitType) => {
+export const getTemperature = (
+  data: WeatherDataType,
+  day: number,
+  unit: UnitType,
+  hour: string
+) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
+
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
     const dayData = (data as WeatherApiResponse).weather[day - 1];
     if (unit == "imperial") {
-      if (day == 1) {
-        return (data as WeatherApiResponse).current_condition[0].temp_F;
-      } else return dayData.avgtempF;
+      if (hour == "currently") {
+        return (data as WeatherApiResponse).current_condition[0].temp_F || "N/A";
+      } else return dayData.hourly[chosenHour].tempF || "N/A";
     } else if (unit == "metric") {
-      if (day == 1) {
-        return (data as WeatherApiResponse).current_condition[0].temp_C;
-      } else return dayData.avgtempC;
+      if (hour == "currently") {
+        return (data as WeatherApiResponse).current_condition[0].temp_C || "N/A";
+      } else return dayData.hourly[chosenHour].tempC || "N/A";
     }
   } catch (error) {
     console.error("Couldn't get temp object:", error);
@@ -107,21 +148,28 @@ export const getTemperature = (data: WeatherDataType, day: number, unit: UnitTyp
   }
 };
 
-export const getWindSpeed = (data: WeatherDataType, day: number, unit: UnitType) => {
+export const getWindSpeed = (data: WeatherDataType, day: number, unit: UnitType, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
-    const hourly = (data as WeatherApiResponse).weather[day - 1].hourly[4];
     if (unit == "imperial") {
-      if (day == 1) {
-        return (data as WeatherApiResponse).current_condition[0].windspeedMiles;
-      } else return hourly.windspeedMiles;
+      if (hour == "currently") {
+        return (data as WeatherApiResponse).current_condition[0].windspeedMiles || "N/A";
+      } else
+        return (
+          (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].windspeedMiles || "N/A"
+        );
     } else if (unit == "metric") {
-      if (day == 1) {
-        return (data as WeatherApiResponse).current_condition[0].windspeedKmph;
-      } else return hourly.windspeedKmph;
+      if (hour == "currently") {
+        return (data as WeatherApiResponse).current_condition[0].windspeedKmph || "N/A";
+      } else
+        return (
+          (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].windspeedKmph || "N/A"
+        );
     }
   } catch (error) {
     console.error("Couldn't get windspeed object:", error);
@@ -129,17 +177,19 @@ export const getWindSpeed = (data: WeatherDataType, day: number, unit: UnitType)
   }
 };
 
-export const getWindDirDegree = (data: WeatherDataType, day: number) => {
+export const getWindDirDegree = (data: WeatherDataType, day: number, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
     const winddirDegree =
-      day == 1
+      hour == "currently"
         ? (data as WeatherApiResponse).current_condition[0].winddirDegree
-        : (data as WeatherApiResponse).weather[day - 1].hourly[0].winddirDegree;
-    return winddirDegree ? winddirDegree : "N/A";
+        : (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].winddirDegree;
+    return winddirDegree || "N/A";
   } catch (error) {
     console.error("Couldn't get winddirDegree object:", error);
     return "N/A";
@@ -171,91 +221,103 @@ export const getWindDirectionCode = (degreeString: string) => {
   if (degree >= 326.25 && degree < 348.75) return "NNW";
 };
 
-export const getWeatherDescription = (data: WeatherDataType, day: number) => {
+export const getWeatherDescription = (data: WeatherDataType, day: number, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
-    const hourlyDesc = (data as WeatherApiResponse).weather[day - 1].hourly[4].weatherDesc[0].value;
-    const currentDesc = (data as WeatherApiResponse).current_condition[0].weatherDesc[0].value;
-    const description = day == 1 ? currentDesc : hourlyDesc;
-    return description
-      ? description.charAt(0).toUpperCase() + description.slice(1).toLowerCase().trim()
-      : "N/A";
+    if (hour == "currently") {
+      const currentDesc = (data as WeatherApiResponse).current_condition[0].weatherDesc[0].value;
+      return currentDesc || "N/A";
+    }
+    const hourlyDesc = (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour]
+      .weatherDesc[0].value;
+    return hourlyDesc || "N/A";
   } catch (error) {
     console.error("Couldn't get weather description:", error);
     return "N/A";
   }
 };
 
-export const getWeatherDescCode = (data: WeatherDataType, day: number) => {
+export const getWeatherDescCode = (data: WeatherDataType, day: number, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
-    const hourlyCode = (data as WeatherApiResponse).weather[day - 1].hourly[4].weatherCode;
-    const currentCode = (data as WeatherApiResponse).current_condition[0].weatherCode;
-    const code = day == 1 ? currentCode : hourlyCode;
-    return code ? code : "N/A";
+    if (hour == "currently") {
+      return (data as WeatherApiResponse).current_condition[0].weatherCode || "N/A";
+    }
+    return (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].weatherCode || "N/A";
   } catch (error) {
     console.error("Couldn't get weather code:", error);
     return "N/A";
   }
 };
 
-export const isNightTime = (day: number) => {
-  if (day == 1) {
-    const currentTime = new Date().getTime();
+export const isNightTime = (hour: string) => {
+  if (hour == "currently") {
+    const currentTime = new Date().getHours();
     if (currentTime > 6 && currentTime < 18) {
       return false;
     }
     return true;
+  } else if (convertHourStringToIndex(hour) <= 5 && convertHourStringToIndex(hour) >= 2) {
+    return false;
   }
-  return false;
+  return true;
 };
 
-export const getUvIndex = (data: WeatherDataType, day: number) => {
+export const getUvIndex = (data: WeatherDataType, day: number, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
-    const uvIndex = (data as WeatherApiResponse).weather[day - 1].uvIndex;
-    return uvIndex ? uvIndex : "N/A";
+    if (hour == "currently") {
+      return (data as WeatherApiResponse).current_condition[0].uvIndex || "N/A";
+    }
+    return (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].uvIndex || "N/A";
   } catch (error) {
     console.error("Couldn't get uvIndex object:", error);
     return "N/A";
   }
 };
 
-export const getHumidity = (data: WeatherDataType, day: number) => {
+export const getHumidity = (data: WeatherDataType, day: number, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
-  try {
-    if (day == 1) {
-      const humidity = (data as WeatherApiResponse).current_condition[0].humidity;
-      return humidity ? humidity : "N/A";
-    }
+  const chosenHour = convertHourStringToIndex(hour);
 
-    const humidity = (data as WeatherApiResponse).weather[day - 1].hourly[4].humidity;
-    return humidity ? humidity : "N/A";
+  try {
+    if (hour == "currently") {
+      return (data as WeatherApiResponse).current_condition[0].humidity || "N/A";
+    }
+    return (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].humidity || "N/A";
   } catch (error) {
     console.error("Couldn't get humidity object:", error);
     return "N/A";
   }
 };
 
-export const getVisibility = (data: WeatherDataType, day: number, unit: UnitType) => {
+export const getVisibility = (data: WeatherDataType, day: number, unit: UnitType, hour: string) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
 
+  const chosenHour = convertHourStringToIndex(hour);
+
   try {
-    if (day == 1) {
+    if (hour == "currently") {
       const visibility =
         unit == "imperial"
           ? (data as WeatherApiResponse).current_condition[0].visibilityMiles
@@ -266,8 +328,8 @@ export const getVisibility = (data: WeatherDataType, day: number, unit: UnitType
 
     const visibility =
       unit == "imperial"
-        ? (data as WeatherApiResponse).weather[day - 1].hourly[0].visibilityMiles
-        : (data as WeatherApiResponse).weather[day - 1].hourly[0].visibility;
+        ? (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].visibilityMiles
+        : (data as WeatherApiResponse).weather[day - 1].hourly[chosenHour].visibility;
 
     return visibility ? visibility : "N/A";
   } catch (error) {
@@ -280,6 +342,7 @@ export const getSunrise = (data: WeatherDataType, day: number) => {
   if (!isWeatherDataValid(data)) {
     return "N/A";
   }
+
   try {
     const sunrise = (data as WeatherApiResponse).weather[day - 1].astronomy[0].sunrise;
     return sunrise ? sunrise : "N/A";

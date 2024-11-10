@@ -2,6 +2,8 @@ import { memo, useContext, useMemo } from "react";
 import { motion } from "framer-motion";
 import { UnitContext } from "../../context/unit-context";
 import { WeatherContext } from "../../context/weather-context";
+import { DayContext } from "../../context/day-context";
+import { HourContext } from "../../context/hour-context";
 import {
   getCityName,
   getCountryName,
@@ -11,7 +13,6 @@ import {
   getWeatherDescription,
   isNightTime,
 } from "../../utils";
-import { DayContext } from "../../context/day-context";
 import LineLoader from "../loaders/line-loader/LineLoader";
 import WeatherIcon from "../weather-icon/WeatherIcon";
 import "./sumCard.css";
@@ -20,14 +21,24 @@ function SumCard() {
   const { day } = useContext(DayContext);
   const { unit } = useContext(UnitContext);
   const { weatherData } = useContext(WeatherContext);
+  const { hour } = useContext(HourContext);
 
   const cityName = useMemo(() => getCityName(weatherData), [weatherData]);
   const countryName = useMemo(() => getCountryName(weatherData), [weatherData]);
   const dayName = useMemo(() => getDayName(weatherData, day), [weatherData, day]);
-  const weatherDesc = useMemo(() => getWeatherDescription(weatherData, day), [weatherData, day]);
-  const weatherCode = useMemo(() => getWeatherDescCode(weatherData, day), [weatherData, day]);
-  const nightTime = useMemo(() => isNightTime(day), [day]);
-  const temp = useMemo(() => getTemperature(weatherData, day, unit), [weatherData, day, unit]);
+  const weatherDesc = useMemo(
+    () => getWeatherDescription(weatherData, day, hour),
+    [weatherData, day, hour]
+  );
+  const weatherCode = useMemo(
+    () => getWeatherDescCode(weatherData, day, hour),
+    [weatherData, day, hour]
+  );
+  const nightTime = useMemo(() => isNightTime(hour), [hour]);
+  const temp = useMemo(
+    () => getTemperature(weatherData, day, unit, hour),
+    [weatherData, day, unit, hour]
+  );
 
   if (!weatherData) {
     return (

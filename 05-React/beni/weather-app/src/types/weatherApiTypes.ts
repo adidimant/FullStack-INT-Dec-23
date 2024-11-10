@@ -16,6 +16,7 @@ type CurrentCondition = {
   windspeedMiles: string;
   visibility: string;
   visibilityMiles: string;
+  uvIndex: string;
 };
 
 type AreaInfo = {
@@ -36,6 +37,7 @@ type HourlyForecast = {
   visibility: string;
   visibilityMiles: string;
   winddirDegree: string;
+  uvIndex: string;
 };
 
 type AstronomyData = {

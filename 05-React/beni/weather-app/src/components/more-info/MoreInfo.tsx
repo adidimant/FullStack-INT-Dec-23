@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { WeatherContext } from "../../context/weather-context";
 import { DayContext } from "../../context/day-context";
 import { UnitContext } from "../../context/unit-context";
+import { HourContext } from "../../context/hour-context";
 import {
   getHumidity,
   getMaxTemp,
@@ -36,18 +37,26 @@ function MoreInfo() {
   const { weatherData } = useContext(WeatherContext);
   const { day } = useContext(DayContext);
   const { unit } = useContext(UnitContext);
+  const { hour } = useContext(HourContext);
 
-  console.log(weatherData);
-
-  const uvIndex = useMemo(() => getUvIndex(weatherData, day), [weatherData, day]);
-  const humidity = useMemo(() => getHumidity(weatherData, day), [weatherData, day]);
-  const visibility = useMemo(() => getVisibility(weatherData, day, unit), [weatherData, day, unit]);
+  const uvIndex = useMemo(() => getUvIndex(weatherData, day, hour), [weatherData, day, hour]);
+  const humidity = useMemo(() => getHumidity(weatherData, day, hour), [weatherData, day, hour]);
+  const visibility = useMemo(
+    () => getVisibility(weatherData, day, unit, hour),
+    [weatherData, day, unit, hour]
+  );
   const sunrise = useMemo(() => getSunrise(weatherData, day), [weatherData, day]);
   const sunset = useMemo(() => getSunset(weatherData, day), [weatherData, day]);
   const maxTemp = useMemo(() => getMaxTemp(weatherData, day, unit), [weatherData, day, unit]);
   const minTemp = useMemo(() => getminTemp(weatherData, day, unit), [weatherData, day, unit]);
-  const windSpeed = useMemo(() => getWindSpeed(weatherData, day, unit), [weatherData, day, unit]);
-  const windDirDegree = useMemo(() => getWindDirDegree(weatherData, day), [weatherData, day]);
+  const windSpeed = useMemo(
+    () => getWindSpeed(weatherData, day, unit, hour),
+    [weatherData, day, unit, hour]
+  );
+  const windDirDegree = useMemo(
+    () => getWindDirDegree(weatherData, day, hour),
+    [weatherData, day, hour]
+  );
   const windDirCode = useMemo(() => getWindDirectionCode(windDirDegree), [windDirDegree]);
 
   const handleMoreInfoToggle = useCallback(() => {
@@ -84,8 +93,6 @@ function MoreInfo() {
       }
       setCardReveal(true);
     }, 500);
-
-    console.log(isSmallScreen);
 
     return () => {
       clearTimeout(timeout);
@@ -257,7 +264,7 @@ function MoreInfo() {
                           <div className="max-temp-text-container">
                             <div className="max-temp-text">{maxTemp}</div>
                             <div className="max-temp-unit">
-                              {maxTemp == "N/A/" ? "" : unit == "imperial" ? "°F" : "°C"}
+                              {maxTemp == "N/A" ? "" : unit == "imperial" ? "°F" : "°C"}
                             </div>
                           </div>
                         </div>
@@ -269,7 +276,7 @@ function MoreInfo() {
                           <div className="min-temp-text-container">
                             <div className="min-temp-text">{minTemp}</div>
                             <div className="min-temp-unit">
-                              {minTemp == "N/A/" ? "" : unit == "imperial" ? "°F" : "°C"}
+                              {minTemp == "N/A" ? "" : unit == "imperial" ? "°F" : "°C"}
                             </div>
                           </div>
                         </div>

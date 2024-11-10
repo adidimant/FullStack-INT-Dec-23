@@ -1,8 +1,18 @@
-import { KeyboardEvent, memo, useCallback, useContext } from "react";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/theme-context";
 import { UnitContext } from "../../context/unit-context";
 import { WeatherContext } from "../../context/weather-context";
+import { DayContext } from "../../context/day-context";
+import { HourContext } from "../../context/hour-context";
 import Switch from "../switch/Switch";
 import SearchSVG from "../SVGs/SearchSVG";
 import SunSVG from "../SVGs/SunSVG";
@@ -13,6 +23,15 @@ function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { unit, toggleUnit } = useContext(UnitContext);
   const { setCity } = useContext(WeatherContext);
+  const { day } = useContext(DayContext);
+  const { hour, changeHour } = useContext(HourContext);
+
+  const [selectedHour, setSelectedHour] = useState<string>(hour);
+
+  const handleSelectHour = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedHour(e.target.value);
+    changeHour(e.target.value);
+  };
 
   const handleSearch = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
@@ -35,6 +54,13 @@ function Navbar() {
       "active"
     );
   }, []);
+
+  useEffect(() => {
+    if (day !== 1 && hour == "currently") {
+      setSelectedHour("1200");
+      changeHour("1200");
+    }
+  }, [day, hour, changeHour]);
 
   return (
     <>
@@ -61,6 +87,20 @@ function Navbar() {
             >
               In 2 Days
             </NavLink>
+          </div>
+
+          <div className="navbar-hour-select-container">
+            <select name="hour" id="hour" value={selectedHour} onChange={handleSelectHour}>
+              {day == 1 && <option value="currently">Currently</option>}
+              <option value="00">00:00</option>
+              <option value="300">03:00</option>
+              <option value="600">06:00</option>
+              <option value="900">09:00</option>
+              <option value="1200">12:00</option>
+              <option value="1500">15:00</option>
+              <option value="1800">18:00</option>
+              <option value="2100">21:00</option>
+            </select>
           </div>
         </div>
 
