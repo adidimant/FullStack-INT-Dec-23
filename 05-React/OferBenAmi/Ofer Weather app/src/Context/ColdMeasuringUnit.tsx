@@ -12,12 +12,12 @@ export const ColdMeasureContext = createContext({
 });
 
 function ColdMeasuringUnitProvider({ children }: { children: ReactNode }) {
-	const [coldMeasuringUnit, setcoldMeasuringUnit] = useState<ColdMeasuringUnit>("Celsius");
+	const [coldMeasuringUnit, setColdMeasuringUnit] = useState<ColdMeasuringUnit>("Celsius");
 
 	const contextData: coldMeasuringUnitContextType = useMemo(
 		() => ({
 			coldMeasuringUnit,
-			dispatch: setcoldMeasuringUnit,
+			dispatch: setColdMeasuringUnit,
 		}),
 		[coldMeasuringUnit]
 	);
