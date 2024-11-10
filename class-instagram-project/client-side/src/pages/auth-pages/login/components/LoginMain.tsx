@@ -9,19 +9,20 @@ import Screenshot1 from "../../../../assets/screenshot1.png";
 import Screenshot2 from "../../../../assets/screenshot2.png";
 import Screenshot3 from "../../../../assets/screenshot3.png";
 import Screenshot4 from "../../../../assets/screenshot4.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import LittleLink from "../../../../components/littleLink/LittleLink";
 import { useThemeContext } from "../../../../contexts/theme-context";
-import { validateEmail, validatePhone } from "../../../../utils";
-import axios from "axios";
+import { parseJwt, validateEmail, validateUsername } from "../../../../utils";
+import axios, { AxiosError } from "axios";
+import { useUserContext } from "../../../../contexts/User-Context";
 
 const validateLoginIdentityField = (value: unknown): boolean => {
   if (!value) {
     return false;
   }
 
-  if (validateEmail(value) || validatePhone(value)) {
+  if (validateEmail(value) || validateUsername(value)) {
     return true;
   }
 
@@ -29,37 +30,62 @@ const validateLoginIdentityField = (value: unknown): boolean => {
 };
 
 function LoginMain() {
-  // const [usernameValue, setUsernameValue] = useState<string>("");
-  // const [pwdValue, setPwdValue] = useState<string>("");
-
-  // const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setUsernameValue(event.target.value);
-  // };
-  // const handlePwdChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setPwdValue(event.target.value);
-  // };
-
   const [prevScreenshot, setPrevScreenshot] = useState<string>(Screenshot1);
   const [nextScreenshot, setNextScreenshot] = useState<string>(Screenshot2);
   const [isActive, setIsActive] = useState<boolean>(true);
   const { theme } = useThemeContext();
+  const { dispatch: dispatchUserData } = useUserContext();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     const identityFieldInput = document.getElementById('username') as HTMLInputElement;
     const passwordInput = document.getElementById('pwd') as HTMLInputElement;
 
-    const email = identityFieldInput?.value;
+    const emailOrUsername = identityFieldInput?.value;
     const password = passwordInput?.value;
-
-    if (!validateLoginIdentityField(email)) {
-      alert('Email format is not valid!');
+    if (!validateLoginIdentityField(emailOrUsername)) {
+      alert('email/username format is not valid!');
       return;
     }
 
-    const response = await axios.post('http://localhost:3000/api/users/login', {
-      email,
-      password,
-    });
+    try {
+      const response = await axios.post('http://localhost:3000/api/users/login', {
+        emailOrUsername,
+        password,
+      });
+
+      const accessToken = response?.data?.accessToken;
+
+      if (accessToken) {
+        window.localStorage.setItem('accessToken', accessToken); // store accessToken in localStorage
+        const userPayload = parseJwt(accessToken);
+
+        const userData = {
+          isLoggedIn: true,
+          email: userPayload.email,
+          userId: userPayload.userId,
+          username: userPayload.username,
+          firstName: userPayload.firstName,
+          lastName: userPayload.lastName,
+          birthdate: userPayload.birthdate,
+          devices: userPayload.devices || [],
+        };
+
+        dispatchUserData?.(userData); // update global state (context) on logged-in user
+        navigate('/'); // navigate to home page
+        
+        //TODO - generate secret V
+        //TODO - implement backend verify token & refresh token
+        //TODO - use the verify in all api endpoints (posts)
+        //TODO - implement logout
+        //TODO - manage devices history (using the user-agent)
+        //TODO send accessToken in each API request automatically
+        //TODO - if we get 401 somehow - logout immediately
+      }
+
+    } catch (err: unknown) {
+      alert(`Error occurred: ${(err as AxiosError).response?.data}`);
+    }
 
     //TODO - if 200 - handle & store accessToken
   };
@@ -108,8 +134,6 @@ function LoginMain() {
             </div>
           </div>
 
-          {isValid && <ErrorComponent/>}
-
           <div className="right-container">
             <form className="login-form">
               <div className={`instagram-text-logo-container ${theme}-logo`}>
@@ -120,7 +144,7 @@ function LoginMain() {
               <Input type="password" id="pwd" name="pwd" text="Password" htmlFor="pwd" />
               </div>
               <div className="flex-item-wrapper">
-                <Button text="Log in" name="login-submit" onClick={() => { handleLogin }} />
+                <Button text="Log in" name="login-submit" type={'button'} onClick={handleLogin} />
               </div>
               <div className="flex-item-wrapper">
                 <div className="or-text">OR</div>

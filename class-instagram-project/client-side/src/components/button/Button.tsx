@@ -8,12 +8,13 @@ type ButtonProps = {
   onClick: () => void;
   width?: string;
   height?: string;
+  type?: 'button' | 'reset' | 'submit';
   img?: string;
   altImg?: string;
   className?: string;
 };
 
-function Button({ name, text, onClick, width, height, img, altImg, className }: ButtonProps) {
+function Button({ name, text, onClick, width, height, img, altImg, className, type }: ButtonProps) {
   const { theme} = useThemeContext();
   
   // create a style object - if provided width/height - it will be exist in the style object
@@ -23,7 +24,7 @@ function Button({ name, text, onClick, width, height, img, altImg, className }: 
   }), [width, height]);
 
   return (
-    <button name={name} className={`${className} ${theme}-theme-btn general-btn`} style={styleObj} onClick={onClick}>
+    <button name={name} type={type || 'button'} className={`${className} ${theme}-theme-btn general-btn`} style={styleObj} onClick={onClick}>
       {img && <img src={img} alt={altImg} />}
       {text}
     </button>

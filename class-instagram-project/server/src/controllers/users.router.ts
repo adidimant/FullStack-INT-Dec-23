@@ -28,7 +28,7 @@ usersRouter.put('/register', upload.single('profilePic'), async (req, res) => {
     if (user.username == username) {
       res.status(400).send("username already exist");
     } else {
-      res.status(201).send("User created!");
+      res.status(201).send("User registered succesfully!");
     }
     return;
   }
@@ -62,14 +62,19 @@ usersRouter.put('/register', upload.single('profilePic'), async (req, res) => {
 
 // POST /api/users/login
 
-usersRouter.post('/login', Utils.validateRequiredParams(['email', 'password']), async (req, res) => {
-  const { email, password } = req.body;
+usersRouter.post('/login', Utils.validateRequiredParams(['emailOrUsername', 'password']), async (req, res) => {
+  const { emailOrUsername, password } = req.body;
 
-  const user = await UserModel.findOne({ email, password });
+  let user;
+  if (emailOrUsername.includes('@')) {
+    user = await UserModel.findOne({ email: emailOrUsername, password });
+  } else {
+    user = await UserModel.findOne({ username: emailOrUsername, password });
+  }
 
   if (user) {
-    const payload = { email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName, iat: Date.now() };
-    const accessToken = jwt.sign(payload, '<MY-SECRET>', { expiresIn: expirationTime });
+    const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName, iat: Date.now() };
+    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: expirationTime });
     // create a token, ecoding the user details (email, username, userId, fullName)
     // respond the token to the client side in the body, with 200
 

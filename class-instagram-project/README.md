@@ -6,7 +6,14 @@
 # Run the server side locally:
 1) `cd server`
 2) `npm i`
-3) `npm run dev`
+3) update .env file with your access & refresh token secrets:
+run `node`
+then run:
+`require('crypto').randomBytes(48).toString('hex')`
+use it twice and paste your first secret in: ACCESS_TOKEN_SECRET
+and your second secret in REFRESH_TOKEN_SECRET
+save your .env file
+4) `npm run dev` (or run the server via the debugger)
 
 # To run mongo locally:
 1) Install Docker software from here - https://docs.docker.com/get-docker/
