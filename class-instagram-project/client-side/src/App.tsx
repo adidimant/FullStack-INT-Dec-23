@@ -3,23 +3,22 @@ import LoginPage from './pages/auth-pages/login/LoginPage';
 import Register from './pages/auth-pages/register/Register';
 import ForgotPasswordPage from './pages/auth-pages/forgot-password/ForgotPasswordPage';
 import ThemeProvider from './contexts/theme-context';
-import './App.css';
-import { useState } from 'react';
 import AuthPageNavbar from './pages/auth-pages/components/auth-page-navbar/AuthPageNavbar';
 import PostsPage from './pages/logged-in-pages/posts-page/PostsPage';
 import ModeButton from './components/modeButton/ModeButton';
+import { useUserContext } from './contexts/User-Context';
+import './App.css';
+
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const { userData } = useUserContext();
   
   return (
     <>
       <ThemeProvider>
       <ModeButton  />
-        <button style={{ zIndex: 3000, position: 'absolute' }} onClick={() => setIsLoggedIn(!isLoggedIn)}>Log {isLoggedIn ? 'Out' : 'In'}!!!!!!</button>
         <BrowserRouter> 
-                {!isLoggedIn ? (
+                {!userData.isLoggedIn ? (
                 <>
                   <AuthPageNavbar />
                   <Routes> 
@@ -32,6 +31,7 @@ function App() {
                   </Routes>
                 </>)
                 : <Routes> 
+                    <Route path="/" element={<PostsPage/>} /> 
                     <Route path="/posts" element={<PostsPage/>} /> 
                     <Route path='*' element={<div style={{ marginLeft: '300px' }}>Not supported yet, <Link to={'/posts'}>Posts page</Link></div>}  />
                 </Routes>

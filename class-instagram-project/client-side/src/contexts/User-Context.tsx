@@ -6,6 +6,8 @@ type User = {
     firstName: string;
     lastName: string;
     userId: string;
+    username: string;
+    birthdate: string;
     devices: string[];
 };
 
@@ -14,15 +16,28 @@ type UserContextType = {
     dispatch?: (user: User) => void;
 }
 
+const initalizeUserData = () => {
+  return {
+    isLoggedIn: false,
+    email: '',
+    firstName: '',
+    lastName: '',
+    userId: '',
+    username: '',
+    birthdate: '',
+    devices: [],
+  }
+}
+
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 function UserProvider ({ children }: { children: ReactNode }) {
-    const [userData, setUserData] = useState<User>(undefined);
+    const [userData, setUserData] = useState<User>(initalizeUserData());
 
     const contextData: UserContextType = useMemo(() => ({
         userData,
         dispatch: setUserData,
-    }), [userData])
+    }), [userData]);
 
     return (
         <UserContext.Provider value={contextData}>
