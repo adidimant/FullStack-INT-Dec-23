@@ -108,7 +108,7 @@ function Navbar() {
                 id="location"
                 name="location"
                 autoComplete="off"
-                placeholder="Search location.."
+                placeholder="Search.."
               />
             </form>
           </div>
