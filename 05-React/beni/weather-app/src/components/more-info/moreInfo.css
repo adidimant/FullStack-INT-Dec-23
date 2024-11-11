@@ -88,9 +88,7 @@
 
 .humidity-card-info-svg-container {
   height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 60px;
 }
 
 .humidity-card-info-svg {
@@ -125,6 +123,7 @@
 
 .visibility-card-info-svg-container {
   height: 60px;
+  width: 60px;
 }
 
 .visibility-card-info-svg {
@@ -169,7 +168,13 @@
 .sunrise-svg-container,
 .sunset-svg-container {
   height: 50px;
-  width: fit-content;
+  width: 50px;
+}
+
+.sunrise-svg,
+.sunset-svg {
+  height: 100%;
+  width: 100%;
 }
 
 .sunrise-svg *,
@@ -202,6 +207,7 @@
 .max-temp-svg-container,
 .min-temp-svg-container {
   height: 60px;
+  width: 60px;
 }
 
 .max-temp-svg,
@@ -262,6 +268,7 @@
 
 .wind-svg-container {
   height: 50px;
+  width: 50px;
 }
 
 .wind-svg {
@@ -294,6 +301,7 @@
 
 .compass-svg-container {
   height: 34px;
+  width: 34px;
 }
 
 .compass-svg {

@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, memo, useCallback, useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/theme-context";
 import { UnitContext } from "../../context/unit-context";
@@ -34,10 +26,10 @@ function Navbar() {
   };
 
   const handleSearch = useCallback(
-    (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.code == "Enter") {
-        setCity(e.currentTarget.value);
-      }
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const searchInput = e.currentTarget.querySelector("#location") as HTMLInputElement;
+      setCity(searchInput.value);
     },
     [setCity]
   );
@@ -109,15 +101,16 @@ function Navbar() {
             <div className="search-icon">
               <SearchSVG className="search-svg" />
             </div>
-            <input
-              className="search-input"
-              type="text"
-              id="location"
-              name="location"
-              autoComplete="off"
-              placeholder="Search location.."
-              onKeyDown={handleSearch}
-            />
+            <form onSubmit={handleSearch} className="search-input-form">
+              <input
+                className="search-input"
+                type="search"
+                id="location"
+                name="location"
+                autoComplete="off"
+                placeholder="Search location.."
+              />
+            </form>
           </div>
 
           <div className="navbar-btns-container">
