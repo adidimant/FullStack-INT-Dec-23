@@ -84,7 +84,9 @@
 
 .search-icon {
   color: var(--secondary);
-  height: 100%;
+  height: 24px;
+  width: 24px;
+  margin-right: 2px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -92,7 +94,8 @@
 }
 
 .search-svg {
-  height: 45%;
+  height: 100%;
+  width: 100%;
   margin-right: 4px;
 }
 
@@ -103,8 +106,13 @@
   outline: none;
   font-size: 18px;
   font-weight: 600;
-  padding: 0 3px;
+  padding: 0;
+  margin: 0;
   width: 185px;
+}
+
+.search-input::-webkit-search-cancel-button {
+  display: none;
 }
 
 .search-input::placeholder {
@@ -215,13 +223,5 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-
-  .navbar-search-container {
-    width: 180px;
-  }
-
-  .search-input {
-    width: 170px;
   }
 }
