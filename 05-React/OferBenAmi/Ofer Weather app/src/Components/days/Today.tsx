@@ -1,17 +1,23 @@
 import { memo } from "react";
 import { useWeatherContext } from "../../Context/WeatherContext";
+import { useColdMeasureContext } from "../../Context/ColdMeasuringUnit";
+import { useDistanceMeasureContext } from "../../Context/DistanceUnit";
+import SkeletonDay from "./SkeletonDay";
 
 function Today () {
-	const {fetchedData, setFetchedData} = useWeatherContext()
+	const {fetchedData} = useWeatherContext();
+	const {coldMeasuringUnit} = useColdMeasureContext();
+	const {distanceMeasureUnit} = useDistanceMeasureContext();
 
 	if(!fetchedData){
-		return <div>loading...</div>
+		return <SkeletonDay/>
 	}
 
 	return (
+
 		<div id="today" className="weatherDay">
 			<h3>Today: {fetchedData?.today.date}</h3>
-			<p>{fetchedData?.today.avgtempC}</p>
+			<p className="temp">{coldMeasuringUnit == 'Celsius' ? fetchedData?.today.avgtempC : fetchedData?.today.avgtempF}{fetchedData?.today.date ? <>&#176;</> : ''}</p>
 		</div>
 	);
 };

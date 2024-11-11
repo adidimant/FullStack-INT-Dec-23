@@ -16,3 +16,4 @@ export type ApiResFormatted = {
 	country: string;
     city: string;
 };
+export type DayDisplayed = 'Today'| 'Tomorrow' | 'IntwoDays'

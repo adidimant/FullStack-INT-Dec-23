@@ -9,7 +9,21 @@
 	justify-content: space-around;
 	/* background-color: rgb(31, 31, 31); */
 	/* box-shadow: 10px 10px 10px 1px rgba(0,0,0, 0.1); */
-
+	.days-pick{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		button{
+			text-decoration: none;
+			border: none;
+			outline: none;
+		}
+		.active-day{
+			background-color: grey;
+			transition: background-color 0.3s;
+		}
+	}
 	.navbar-btns {
 		display: flex;
 		align-items: center;

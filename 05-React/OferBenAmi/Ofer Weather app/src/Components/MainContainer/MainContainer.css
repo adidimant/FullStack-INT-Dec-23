@@ -35,7 +35,12 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 5px 5px 10px 1px rgba(0,0,0, 0.1);
+            .temp{
+                margin: 0;
+                margin-left: 20px;
+                font-size: 80px;
 
+            }
         }
 
 	}

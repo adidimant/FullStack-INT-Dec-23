@@ -6,7 +6,7 @@ type WeatherChildrenType = {
 };
 type WeatherContextType = {
 	fetchedData: ApiResFormatted | undefined;
-	setFetchedData: React.Dispatch<React.SetStateAction<undefined>>;
+	setFetchedData: (ApiResFormatted: ApiResFormatted) => void;
 }
 
 
