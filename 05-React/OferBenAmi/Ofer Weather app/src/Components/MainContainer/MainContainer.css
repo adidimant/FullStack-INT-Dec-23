@@ -64,6 +64,21 @@
 					background: linear-gradient(90deg, #ddda 40%, #efefefaa, #ddda 60%)right / 300% 100%;
 					animation: skeleton-loading 1.5s linear infinite;
 				}
+                .title{
+                    margin-top: 18px;
+                    width: 80%;
+                    height: 40px;
+                    border-radius: 10px;
+                    background: linear-gradient(90deg, #ddda 40%, #efefefaa, #ddda 60%)right / 300% 100%;
+					animation: skeleton-loading 1.5s linear infinite;
+                }
+                .info{
+                    margin-top: 12px;
+                    width: 80%;
+                    height: 20px;
+                    border-radius: 5px;
+                    background-color: #ddda;
+                }
 			}
 			.temp {
 				margin: 0;

@@ -7,7 +7,11 @@ function SkeletonDay() {
 				<div className="skeleton-img">
 					<p></p>
 				</div>
-				<h3>Loading......</h3>
+				<div className="title"></div>
+				<div className="info"></div>
+				<div className="info"></div>
+				<div className="info"></div>
+				<div className="info"></div>
 			</div>
 		</div>
 	);
