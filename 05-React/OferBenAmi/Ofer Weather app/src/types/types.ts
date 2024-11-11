@@ -7,6 +7,10 @@ export type DateData = {
 	date: string;
 	avgtempC: string;
 	avgtempF: string;
+	hourly: string[];
+	weatherDesc?: string;
+	windspeedKmph?: string;
+	windspeedMiles?: string;
 };
 
 export type ApiResFormatted = {
@@ -17,3 +21,5 @@ export type ApiResFormatted = {
     city: string;
 };
 export type DayDisplayed = 'Today'| 'Tomorrow' | 'IntwoDays'
+
+export type WeatherTypes = 'sunny'|'cloudy'|'rainy'|'snowy'| 'thunder'| 'defaultWeather';

@@ -9,6 +9,7 @@ import Tomorrow from "../days/Tomorrow";
 import IntwoDays from "../days/IntwoDays";
 import { useDayDisplayedContext } from "../../Context/dayDisplayed";
 import "./MainContainer.css";
+import SkeletonDay from "../days/SkeletonDay";
 
 
 
@@ -21,10 +22,11 @@ function MainContainer() {
 		try {
 			const fetchData = await axios.get(`https://wttr.in/${inputCity}?format=j1`);
 			const fetchedDateFormatted: ApiResFormatted = sortApiData(fetchData)
+			// console.log(fetchData)
+			// console.log(fetchedDateFormatted)
 			setFetchedData(fetchedDateFormatted)
 			return fetchedDateFormatted;
 		} catch (err) {
-			//TODO - Update UI when the server throws an error!!
 			setFetchedData(sortApiFailed())
 			console.log(`an error occurred  while trying to reach the server:`);
 			console.error(err);
