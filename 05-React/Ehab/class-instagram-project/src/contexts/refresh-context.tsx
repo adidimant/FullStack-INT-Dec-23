@@ -31,7 +31,7 @@ export const RefreshProvider: React.FC<refreshProviderProps> = ({ children }) =>
 export const useRefreshContext = () => {
   const context = useContext(refreshContext);
   if (context === undefined) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error('useRefreshContext must be used within an AppProvider');
   }
   return context;
 };

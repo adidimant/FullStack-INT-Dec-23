@@ -1,0 +1,30 @@
+.moreoptions-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    max-width: 400px;
+    height: 473px;
+    transform: translate(-50%, -50%);
+    z-index: 300;
+    border-radius: 10px; 
+    background-color: white;
+}
+
+.moreoptions-container .option{
+    text-align: center;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    border-bottom: 1px solid #dbdbdb ;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.moreoptions-container .redOption{
+    font-weight: 700;
+    color: rgb(237, 73, 86);
+}
+
+.moreoptions-container .lastOption{
+    border-bottom: none;
+}
