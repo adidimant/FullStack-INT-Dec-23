@@ -8,11 +8,11 @@ import blackWhiteWeather from "../../assets/blackWhiteWeather.svg";
 import clouds from '../../assets/clouds.svg'
 import rain from '../../assets/rain.svg'
 
-export default function AdvanceToday() {
+export default function AdvanceTomorrow() {
 	const { fetchedData } = useWeatherContext();
 	const { coldMeasuringUnit } = useColdMeasureContext();
 	const { distanceMeasureUnit } = useDistanceMeasureContext();
-	const day = fetchedData?.today
+	const day = fetchedData?.tomorrow
 	return (
 		<>
 			<div className="advance-day">

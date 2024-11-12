@@ -15,6 +15,9 @@ export type DateData = {
 	uvIndex?: string;
 	FeelsLikeC: string;
 	FeelsLikeF: string;
+	chanceofrain: string;
+	cloudcover: string;
+
 };
 
 export type ApiResFormatted = {

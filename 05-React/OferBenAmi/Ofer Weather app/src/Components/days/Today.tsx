@@ -1,9 +1,8 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { useWeatherContext } from "../../Context/WeatherContext";
 import SkeletonDay from "./SkeletonDay";
 import Temp from "../Temp";
 import Wind from "../Wind";
-import Hourly from "../Hours/Hourly";
 import Hourlydiv from "../Hours/Hourlydiv";
 
 function Today() {

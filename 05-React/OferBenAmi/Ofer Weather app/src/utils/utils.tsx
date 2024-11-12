@@ -20,6 +20,8 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			uvIndex: fetchData.data.current_condition[0].uvIndex,
 			FeelsLikeC: fetchData.data.current_condition[0].FeelsLikeC,
 			FeelsLikeF: fetchData.data.current_condition[0].FeelsLikeF,
+			chanceofrain: fetchData.data.weather[days.today].hourly[3].chanceofrain,
+			cloudcover: fetchData.data.weather[days.today].hourly[3].cloudcover,
 		},
 		tomorrow: {
 			date: fetchData.data.weather[days.tomorrow].date,
@@ -33,6 +35,8 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			uvIndex: fetchData.data.weather[days.tomorrow].hourly[3].uvIndex,
 			FeelsLikeC: fetchData.data.weather[days.tomorrow].hourly[3].FeelsLikeC,
 			FeelsLikeF: fetchData.data.weather[days.tomorrow].hourly[3].FeelsLikeF,
+			chanceofrain: fetchData.data.weather[days.tomorrow].hourly[3].chanceofrain,
+			cloudcover: fetchData.data.weather[days.tomorrow].hourly[3].cloudcover,
 		},
 		in2Days: {
 			date: fetchData.data.weather[days.in2Days].date,
@@ -46,6 +50,8 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			uvIndex: fetchData.data.weather[days.in2Days].hourly[3].uvIndex,
 			FeelsLikeC: fetchData.data.weather[days.in2Days].hourly[3].FeelsLikeC,
 			FeelsLikeF: fetchData.data.weather[days.in2Days].hourly[3].FeelsLikeF,
+			chanceofrain: fetchData.data.weather[days.in2Days].hourly[3].chanceofrain,
+			cloudcover: fetchData.data.weather[days.in2Days].hourly[3].cloudcover,
 		},
 		country: fetchData.data.nearest_area[0].country[0].value,
 		city: fetchData.data.nearest_area[0].areaName[0].value,
@@ -67,6 +73,8 @@ export function sortApiFailed(): ApiResFormatted {
 			uvIndex:'',
 			FeelsLikeC: '',
 			FeelsLikeF:'',
+			chanceofrain:'',
+			cloudcover: '',
 
 		},
 		tomorrow: {
@@ -81,6 +89,8 @@ export function sortApiFailed(): ApiResFormatted {
 			uvIndex:'',
 			FeelsLikeC: '',
 			FeelsLikeF:'',
+			chanceofrain:'',
+			cloudcover: '',
 		},
 		in2Days: {
 			date: '',
@@ -94,6 +104,8 @@ export function sortApiFailed(): ApiResFormatted {
 			uvIndex:'',
 			FeelsLikeC: '',
 			FeelsLikeF:'',
+			chanceofrain:'',
+			cloudcover: '',
 		},
 		country: '',
 		city: 'Not able to get Country',
