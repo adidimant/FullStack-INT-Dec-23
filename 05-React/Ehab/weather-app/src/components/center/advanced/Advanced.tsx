@@ -19,8 +19,8 @@ function Advanced(day: AdvancedProps): ReactNode{
     const divMore = useRef<HTMLDivElement | null>(null);
 
     const advancedData = useMemo(() => {
-        const d = day.day;
-        const h = Utils.getArrayIndexByTime();
+        const d: number = day.day;
+        const h: number = Utils.getArrayIndexByTime();
         if (!data?.weather?.[d]?.hourly[h]) {
             return []; // Return an empty array if data is not available
         }
@@ -60,7 +60,7 @@ function Advanced(day: AdvancedProps): ReactNode{
     
 
     const handelSeeMore = useCallback(()=>{
-        if(divContainer.current && advancedData[0] && advancedData[0].HeatIndexC.length > 1 ){
+        if(divContainer.current && advancedData[0] ){
             divContainer.current.classList.add('mor');
             if(theme === 'dark'){
                 if(divContainer.current.classList.contains('mor')){

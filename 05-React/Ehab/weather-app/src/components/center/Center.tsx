@@ -8,7 +8,7 @@ import { useWeatherContext } from "../../contexts/Weather-Context";
 import { useThemeContext } from "../../contexts/theme-context";
 
 function Center(): ReactNode {
-    const [day, setDay] = useState(0);
+    const [day, setDay] = useState<number>(0);
     const { data } = useWeatherContext();
     const { theme }= useThemeContext();
     const prev = useCallback(() => {
@@ -25,20 +25,20 @@ function Center(): ReactNode {
 
     return (
         <div>
-                <Search />
-                {data?.weather?.[0]?.hourly && <div className={`navigator ${theme}`}>
-                    <div className={`prev ${theme}-border ${theme}-hover`} onClick={prev}>
-                        <div className="text">PREV</div>
-                        <div className={`icon ${theme}-border`}>{'<'}</div>
-                    </div>
-                    <div className={`next ${theme}-border ${theme}-hover `} onClick={next}>
-                        <div className={`icon ${theme}-border`}>{'>'}</div>
-                        <div className="text">NEXT</div>
-                    </div>
-                </div>}
-                <CurrentDay day={day} />
-                <Todayforecast day={day} />
-                <Advanced day={day} />
+            <Search />
+            {data?.weather?.[0]?.hourly && <div className={`navigator ${theme}`}>
+                <div className={`prev ${theme}-border ${theme}-hover`} onClick={prev}>
+                    <div className="text">PREV</div>
+                    <div className={`icon ${theme}-border`}>{'<'}</div>
+                </div>
+                <div className={`next ${theme}-border ${theme}-hover `} onClick={next}>
+                    <div className={`icon ${theme}-border`}>{'>'}</div>
+                    <div className="text">NEXT</div>
+                </div>
+            </div>}
+            <CurrentDay day={day} />
+            <Todayforecast day={day} />
+            <Advanced day={day} />
         </div>
     );
 }

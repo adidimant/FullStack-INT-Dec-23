@@ -17,18 +17,18 @@ interface HourProps {
 }
 
 function Hour({ time, tempC, tempF, chanceofrain }: HourProps): ReactNode {
-    const [imageName, setImageName] = useState('');
+    const [imageName, setImageName] = useState<string>('');
     const { theme }= useThemeContext();
 
     useEffect(()=>{
         if(tempC && chanceofrain){
-            const img = Utils.getIconName(parseInt(tempC),undefined,parseInt(chanceofrain));
+            const img: string | null = Utils.getIconName(parseInt(tempC),undefined,parseInt(chanceofrain));
             if(img){
                 setImageName(img);
             }
         }
         else if(tempF && chanceofrain){
-            const img = Utils.getIconName(undefined,parseInt(tempF),parseInt(chanceofrain));
+            const img: string | null = Utils.getIconName(undefined,parseInt(tempF),parseInt(chanceofrain));
             if(img){
                 setImageName(img);
             }
