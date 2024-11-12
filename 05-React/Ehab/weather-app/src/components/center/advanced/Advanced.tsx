@@ -12,7 +12,7 @@ type AdvancedProps = {
 function Advanced(day: AdvancedProps): ReactNode{
     const { data } = useWeatherContext();
     const { unit } = useUnitContext();
-    const [ seeMore, setSeeMore ] = useState(false);
+    const [ seeMore, setSeeMore ] = useState<boolean>(false);
     const { theme }= useThemeContext();
     const divContainer = useRef<HTMLDivElement | null>(null);
     const divLess = useRef<HTMLDivElement | null>(null);
