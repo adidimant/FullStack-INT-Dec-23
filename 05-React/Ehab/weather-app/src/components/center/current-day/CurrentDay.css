@@ -1,0 +1,51 @@
+.currentDay-container{
+    display: flex;
+    width: 100%;
+    /*justify-content: space-between;*/
+}
+
+.currentDay-container .box{
+    flex: 1; /* each box takes up an equal portion of the container */
+    box-sizing: border-box;
+    text-align: start;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    /*color: grey;*/
+}
+.currentDay-container .box .date{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.currentDay-container .box .tempCDiv{
+    margin-top: auto;
+}
+
+.currentDay-container .box .tempCDiv span{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.currentDay-container .box h1,h3{
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.currentDay-container .box img{
+    width: 200px;
+    height: 200px;
+    align-self: flex-end;
+    margin-right: 150px;
+}
+
+.dark{
+    background-color: #2B3443;
+    color: grey;
+}
+.light{
+    background-color:#a0e0fa;
+    color: black;
+    font-weight: bold;
+}

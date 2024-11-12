@@ -1,0 +1,33 @@
+.hour-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Ensures padding/border are included in width */
+}
+
+.hour-container .time,
+.hour-container .temperature {
+    /*color: grey;*/
+    font-weight: bold;
+}
+
+.hour-container .icon {
+    max-width: 50px;
+    height: 50px;
+    align-self: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.hour-container .icon img {
+    width: 100%; /* Make image take the full width of .day-icon */
+    height: 100%; /* Make image take the full height of .day-icon */
+    object-fit: cover; /* Keeps the aspect ratio */ 
+}
+
+
+.dark{
+    color: grey;
+}
+.light{
+    color: black;
+}
