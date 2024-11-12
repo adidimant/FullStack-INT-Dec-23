@@ -1,0 +1,46 @@
+.TodayforecastContainer {
+    display: flex;
+    flex-direction: column; /* Stack h2 and DayRow vertically */
+    align-items: flex-start; /* Align content to the start horizontally */
+    margin-top: 30px;
+    /*background-color: #2B3443;*/
+    border-radius: 15px;
+    height: 195px;
+    padding: 10px;
+}
+
+.TodayforecastContainer .DayRow {
+    display: flex; /* Keeps Day components in a row */
+    align-items: center;
+    justify-content: space-between; /* Distribute items evenly */
+    width: 100%; /* Make DayRow take full width of container */
+    padding: 0 10px; /* Add horizontal padding if needed */
+    box-sizing: border-box; /* Ensures padding/border are included in width */
+}
+
+.TodayforecastContainer .DayRow .DayWrapper{
+    /*border-right: 2px solid gray;*/
+    padding: 5px;
+    flex-grow: 1; /* Allow each DayWrapper to grow */
+    text-align: center; /* Center content within each DayWrapper if needed */
+}
+
+.TodayforecastContainer .DayRow .LastColumn{
+    border-right: none;
+}
+
+.TodayforecastContainer h2 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Space below h2 if needed */
+    /*color: grey;*/
+}
+
+.dark{
+    background-color: #2B3443;
+    color: grey;
+}
+.light{
+    background-color:#a0e0fa;
+    color: black;
+    font-weight: bold;
+}

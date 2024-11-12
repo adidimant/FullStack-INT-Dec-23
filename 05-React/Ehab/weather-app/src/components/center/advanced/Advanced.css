@@ -1,0 +1,39 @@
+.mor{
+    transition: background-color 2s ease, gap 2s ease, justify-content 2s ease; /* Set transition properties */
+    /*background-color: #2B3443;*/
+    justify-content: space-evenly;
+}
+
+.advanced-container {
+    transition: background-color 2s ease, gap 2s ease, justify-content 2s ease; /* Set transition properties */
+    display: flex;
+    flex-direction: row; /* Stack h2 and DayRow vertically */
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align content to the start horizontally */
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.advanced-container .seeMoreOrLess{
+    /*background-color: #2B3443;*/
+    color: grey;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    width: 80px;
+}
+
+.advanced-container .seeMoreOrLess:hover{
+    border: 1px solid gray;
+}
+
+.advanced-container div{
+    padding: 10px;
+    color: grey;
+}
+
+.advanced-container .seeMoreOrLess:hover{
+    font-weight: bold;
+    color: grey;
+}
