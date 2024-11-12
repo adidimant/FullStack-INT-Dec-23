@@ -9,7 +9,6 @@ import Tomorrow from "../days/Tomorrow";
 import IntwoDays from "../days/IntwoDays";
 import { useDayDisplayedContext } from "../../Context/dayDisplayed";
 import "./MainContainer.css";
-import SkeletonDay from "../days/SkeletonDay";
 
 
 
@@ -17,13 +16,14 @@ function MainContainer() {
 	// const [dayDisplayed, setDayDisplayed] = useState<'Today'| 'Tomorrow' | 'IntwoDays'>('Today');
 	const {fetchedData, setFetchedData} = useWeatherContext()
 	const {dayDisplayed, dispatch} = useDayDisplayedContext()
+	const [isAdvanceOptOpen, setIsAdvanceOptOpen] = useState<boolean>(false)
 
 	const fetchData = useCallback(async (inputCity: string) => {
 		try {
 			const fetchData = await axios.get(`https://wttr.in/${inputCity}?format=j1`);
 			const fetchedDateFormatted: ApiResFormatted = sortApiData(fetchData)
-			// console.log(fetchData)
-			// console.log(fetchedDateFormatted)
+			console.log(fetchData)
+			console.log(fetchedDateFormatted)
 			setFetchedData(fetchedDateFormatted)
 			return fetchedDateFormatted;
 		} catch (err) {
@@ -41,6 +41,9 @@ function MainContainer() {
 			}
 		}
 	};
+	const handleAdvanceOpt = ()=> {
+		setIsAdvanceOptOpen(isAdvanceOptOpen => !isAdvanceOptOpen)
+	}
 
 	const debounceAreaInput = debounce(handleAreaInput, 650);
 
@@ -69,6 +72,10 @@ function MainContainer() {
 				{dayDisplayed == `Today`  ? <Today /> : <></>}
 				{dayDisplayed == `Tomorrow` ? <Tomorrow /> : <></>}
 				{dayDisplayed == `IntwoDays` ? <IntwoDays /> : <></>}
+
+			</div>
+			<button onClick={handleAdvanceOpt} className="advance-opt-btn">advance options {isAdvanceOptOpen ? <> &#8593;</>: <> &#8595;</>} </button>
+			<div className="advance-options">
 
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useColdMeasureContext } from "../../Context/ColdMeasuringUnit";
 import { useDistanceMeasureContext } from '../../Context/DistanceUnit';
 import { useDayDisplayedContext } from "../../Context/dayDisplayed";
@@ -7,11 +7,8 @@ import './Navbar.css'
 
 function Navbar() {
 	const {dayDisplayed, dispatch: dispatchSetDayDisplayed} = useDayDisplayedContext()
-
-	const { coldMeasuringUnit, dispatch: coldMeasureDispatch } =
-		useColdMeasureContext();
-	const { distanceMeasureUnit, dispatch: DistanceMeasureDispatch } =
-		useDistanceMeasureContext();
+	const { coldMeasuringUnit, dispatch: coldMeasureDispatch } =useColdMeasureContext();
+	const { distanceMeasureUnit, dispatch: DistanceMeasureDispatch } =useDistanceMeasureContext();
 
 	function handleColdMeasuringUnit() {
 		if (coldMeasuringUnit === "Celsius" && coldMeasureDispatch) {
@@ -41,6 +38,10 @@ function Navbar() {
 
 		dispatchSetDayDisplayed?.(day)
 	}
+
+	useEffect(()=>{
+		document.querySelector('.Today')?.classList.add('active-day')
+	},[])
 	return (
 		<div id="navbar">
 			<div className="days-pick">

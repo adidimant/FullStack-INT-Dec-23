@@ -1,25 +1,29 @@
 import { memo } from "react";
 import { useWeatherContext } from "../../Context/WeatherContext";
-import { useColdMeasureContext } from "../../Context/ColdMeasuringUnit";
-import { useDistanceMeasureContext } from "../../Context/DistanceUnit";
 import SkeletonDay from "./SkeletonDay";
-import { findCorrectIcon } from "../../utils/utils";
+import Temp from "../Temp";
+import Hourlydiv from "../Hours/Hourlydiv";
+import Wind from "../Wind";
 
 function IntwoDays () {
 	const {fetchedData} = useWeatherContext();
-	const {coldMeasuringUnit} = useColdMeasureContext();
-	const {distanceMeasureUnit} = useDistanceMeasureContext();
 
 	if(!fetchedData){
 		return <SkeletonDay/>
 	}
 
 	return (
+		<>
 		<div id="today" className="weatherDay">
 			<h3>In two days: {fetchedData?.in2Days.date}</h3>
-			<p className="temp">{coldMeasuringUnit == 'Celsius' ? fetchedData?.in2Days.avgtempC : fetchedData?.in2Days.avgtempF}{fetchedData?.in2Days.date ? <>&#176;</> : ''}</p>
-			<img className="weather-icon" src={findCorrectIcon(fetchedData?.tomorrow?.weatherDesc)} alt="sunny" />
+			<Temp avgtempC={fetchedData?.in2Days.avgtempC} avgtempF={fetchedData?.in2Days.avgtempF} date={fetchedData?.in2Days.date} weatherDesc={fetchedData?.in2Days.weatherDesc}/>
+			<Wind
+					windspeedKmph={fetchedData?.in2Days.windspeedKmph}
+					windspeedMiles={fetchedData?.in2Days.windspeedMiles}
+				/>
 		</div>
+		<Hourlydiv hourlyData={fetchedData.in2Days.hourly}/>
+		</>
 	);
 };
 export default memo(IntwoDays);

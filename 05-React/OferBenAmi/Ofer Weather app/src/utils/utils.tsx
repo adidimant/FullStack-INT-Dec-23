@@ -13,20 +13,26 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			avgtempF: fetchData.data.weather[days.today].avgtempF,
 			hourly:fetchData.data.weather[days.today].hourly,
 			weatherDesc: fetchData.data.current_condition[0].weatherDesc[0].value,
+			windspeedKmph: fetchData.data.current_condition[0].windspeedKmph,
+			windspeedMiles: fetchData.data.current_condition[0].windspeedMiles
 		},
 		tomorrow: {
 			date: fetchData.data.weather[days.tomorrow].date,
 			avgtempC: fetchData.data.weather[days.tomorrow].avgtempC,
 			avgtempF: fetchData.data.weather[days.tomorrow].avgtempF,
 			hourly:fetchData.data.weather[days.tomorrow].hourly,
-			weatherDesc: fetchData.data.weather[days.tomorrow].hourly[3].weatherDesc[0].value
+			weatherDesc: fetchData.data.weather[days.tomorrow].hourly[3].weatherDesc[0].value,
+			windspeedKmph: fetchData.data.weather[days.tomorrow].hourly[3].windspeedKmph,
+			windspeedMiles: fetchData.data.weather[days.tomorrow].hourly[3].windspeedMiles,
 		},
 		in2Days: {
 			date: fetchData.data.weather[days.in2Days].date,
 			avgtempC: fetchData.data.weather[days.in2Days].avgtempC,
 			avgtempF: fetchData.data.weather[days.in2Days].avgtempF,
 			hourly:fetchData.data.weather[days.in2Days].hourly,
-			weatherDesc: fetchData.data.weather[days.in2Days].hourly[3].weatherDesc[0].value
+			weatherDesc: fetchData.data.weather[days.in2Days].hourly[3].weatherDesc[0].value,
+			windspeedKmph: fetchData.data.weather[days.in2Days].hourly[3].windspeedKmph,
+			windspeedMiles: fetchData.data.weather[days.in2Days].hourly[3].windspeedMiles,
 		},
 		country: fetchData.data.nearest_area[0].country[0].value,
 		city: fetchData.data.nearest_area[0].areaName[0].value,

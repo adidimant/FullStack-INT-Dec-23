@@ -1,29 +1,36 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useWeatherContext } from "../../Context/WeatherContext";
-import { useColdMeasureContext } from "../../Context/ColdMeasuringUnit";
-import { useDistanceMeasureContext } from "../../Context/DistanceUnit";
 import SkeletonDay from "./SkeletonDay";
-import { findCorrectIcon } from "../../utils/utils";
+import Temp from "../Temp";
+import Wind from "../Wind";
+import Hourly from "../Hours/Hourly";
+import Hourlydiv from "../Hours/Hourlydiv";
 
+function Today() {
+	const { fetchedData } = useWeatherContext();
 
-function Today () {
-	const {fetchedData} = useWeatherContext();
-	const {coldMeasuringUnit} = useColdMeasureContext();
-	const {distanceMeasureUnit} = useDistanceMeasureContext();
-
-	if(!fetchedData){
-		return <SkeletonDay/>
+	if (!fetchedData) {
+		return <SkeletonDay />;
 	}
 
-	return (
-		<div id="today" className="weatherDay">
-			<h3>Today: {fetchedData?.today.date}</h3>
-			<div className="">
-			<p className="temp">{coldMeasuringUnit == 'Celsius' ? fetchedData?.today.avgtempC : fetchedData?.today.avgtempF}{fetchedData?.today.date ? <>&#176;</> : ''}</p>
-			<img className="weather-icon" src={findCorrectIcon(fetchedData?.today?.weatherDesc)} alt="sunny" />
-			</div>
 
-		</div>
+	return (
+		<>
+			<div id="today" className="weatherDay">
+				<h3>Today: {fetchedData?.today.date}</h3>
+				<Temp
+					avgtempC={fetchedData?.today.avgtempC}
+					avgtempF={fetchedData?.today.avgtempF}
+					date={fetchedData?.today.date}
+					weatherDesc={fetchedData?.today.weatherDesc}
+				/>
+				<Wind
+					windspeedKmph={fetchedData?.today.windspeedKmph}
+					windspeedMiles={fetchedData?.today.windspeedMiles}
+				/>
+			</div>
+			<Hourlydiv hourlyData={fetchedData.today.hourly}/>
+		</>
 	);
-};
+}
 export default memo(Today);

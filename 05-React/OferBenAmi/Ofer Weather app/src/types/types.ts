@@ -7,7 +7,7 @@ export type DateData = {
 	date: string;
 	avgtempC: string;
 	avgtempF: string;
-	hourly: string[];
+	hourly: any;
 	weatherDesc?: string;
 	windspeedKmph?: string;
 	windspeedMiles?: string;
