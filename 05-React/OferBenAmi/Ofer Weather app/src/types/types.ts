@@ -11,6 +11,10 @@ export type DateData = {
 	weatherDesc?: string;
 	windspeedKmph?: string;
 	windspeedMiles?: string;
+	humidity?: string;
+	uvIndex?: string;
+	FeelsLikeC: string;
+	FeelsLikeF: string;
 };
 
 export type ApiResFormatted = {

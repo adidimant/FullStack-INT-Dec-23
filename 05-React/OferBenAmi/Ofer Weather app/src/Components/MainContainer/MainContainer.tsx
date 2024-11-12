@@ -9,6 +9,7 @@ import Tomorrow from "../days/Tomorrow";
 import IntwoDays from "../days/IntwoDays";
 import { useDayDisplayedContext } from "../../Context/dayDisplayed";
 import "./MainContainer.css";
+import AdvanceToday from "../Advance/AdvanceToday";
 
 
 
@@ -22,7 +23,7 @@ function MainContainer() {
 		try {
 			const fetchData = await axios.get(`https://wttr.in/${inputCity}?format=j1`);
 			const fetchedDateFormatted: ApiResFormatted = sortApiData(fetchData)
-			console.log(fetchData)
+			console.log(fetchData.data.today)
 			console.log(fetchedDateFormatted)
 			setFetchedData(fetchedDateFormatted)
 			return fetchedDateFormatted;
@@ -74,8 +75,10 @@ function MainContainer() {
 				{dayDisplayed == `IntwoDays` ? <IntwoDays /> : <></>}
 
 			</div>
-			<button onClick={handleAdvanceOpt} className="advance-opt-btn">advance options {isAdvanceOptOpen ? <> &#8593;</>: <> &#8595;</>} </button>
-			<div className="advance-options">
+			<button onClick={handleAdvanceOpt} className="advance-opt-btn">{isAdvanceOptOpen ?  'close': 'open'} Advance {isAdvanceOptOpen ? <> &#8593;</>: <> &#8595;</>} </button>
+			<div className="">
+				{dayDisplayed == `Today` && isAdvanceOptOpen? <AdvanceToday data={fetchedData?.today}/> : <></>}
+
 
 			</div>
 		</div>

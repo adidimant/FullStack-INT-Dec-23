@@ -1,4 +1,4 @@
-import { ApiResFormatted, WeatherTypes, days } from "../types/types";
+import { ApiResFormatted, days } from "../types/types";
 import sunny from '../assets/sunny.svg';
 import cloudy from '../assets/cloudy.svg';
 import rainy from '../assets/rainy.svg';
@@ -7,6 +7,7 @@ import thunder from '../assets/thunder.svg';
 import defaultWeather from '../assets/defaultWeather.svg'
 export function sortApiData(fetchData: any): ApiResFormatted {
 	const sortedData: ApiResFormatted = {
+
 		today: {
 			date: fetchData.data.weather[days.today].date,
 			avgtempC: fetchData.data.weather[days.today].avgtempC,
@@ -14,7 +15,11 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			hourly:fetchData.data.weather[days.today].hourly,
 			weatherDesc: fetchData.data.current_condition[0].weatherDesc[0].value,
 			windspeedKmph: fetchData.data.current_condition[0].windspeedKmph,
-			windspeedMiles: fetchData.data.current_condition[0].windspeedMiles
+			windspeedMiles: fetchData.data.current_condition[0].windspeedMiles,
+			humidity: fetchData.data.current_condition[0].humidity,
+			uvIndex: fetchData.data.current_condition[0].uvIndex,
+			FeelsLikeC: fetchData.data.current_condition[0].FeelsLikeC,
+			FeelsLikeF: fetchData.data.current_condition[0].FeelsLikeF,
 		},
 		tomorrow: {
 			date: fetchData.data.weather[days.tomorrow].date,
@@ -24,6 +29,10 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			weatherDesc: fetchData.data.weather[days.tomorrow].hourly[3].weatherDesc[0].value,
 			windspeedKmph: fetchData.data.weather[days.tomorrow].hourly[3].windspeedKmph,
 			windspeedMiles: fetchData.data.weather[days.tomorrow].hourly[3].windspeedMiles,
+			humidity: fetchData.data.weather[days.tomorrow].hourly[3].humidity,
+			uvIndex: fetchData.data.weather[days.tomorrow].hourly[3].uvIndex,
+			FeelsLikeC: fetchData.data.weather[days.tomorrow].hourly[3].FeelsLikeC,
+			FeelsLikeF: fetchData.data.weather[days.tomorrow].hourly[3].FeelsLikeF,
 		},
 		in2Days: {
 			date: fetchData.data.weather[days.in2Days].date,
@@ -33,6 +42,10 @@ export function sortApiData(fetchData: any): ApiResFormatted {
 			weatherDesc: fetchData.data.weather[days.in2Days].hourly[3].weatherDesc[0].value,
 			windspeedKmph: fetchData.data.weather[days.in2Days].hourly[3].windspeedKmph,
 			windspeedMiles: fetchData.data.weather[days.in2Days].hourly[3].windspeedMiles,
+			humidity: fetchData.data.weather[days.in2Days].hourly[3].humidity,
+			uvIndex: fetchData.data.weather[days.in2Days].hourly[3].uvIndex,
+			FeelsLikeC: fetchData.data.weather[days.in2Days].hourly[3].FeelsLikeC,
+			FeelsLikeF: fetchData.data.weather[days.in2Days].hourly[3].FeelsLikeF,
 		},
 		country: fetchData.data.nearest_area[0].country[0].value,
 		city: fetchData.data.nearest_area[0].areaName[0].value,
@@ -47,6 +60,13 @@ export function sortApiFailed(): ApiResFormatted {
 			avgtempC: '',
 			avgtempF: '',
 			hourly: [],
+			weatherDesc: '',
+			windspeedKmph: '',
+			windspeedMiles:'',
+			humidity: '',
+			uvIndex:'',
+			FeelsLikeC: '',
+			FeelsLikeF:'',
 
 		},
 		tomorrow: {
@@ -54,12 +74,26 @@ export function sortApiFailed(): ApiResFormatted {
 			avgtempC: '',
 			avgtempF: '',
 			hourly: [],
+			weatherDesc: '',
+			windspeedKmph: '',
+			windspeedMiles:'',
+			humidity: '',
+			uvIndex:'',
+			FeelsLikeC: '',
+			FeelsLikeF:'',
 		},
 		in2Days: {
 			date: '',
 			avgtempC: '',
 			avgtempF: '',
 			hourly: [],
+			weatherDesc: '',
+			windspeedKmph: '',
+			windspeedMiles:'',
+			humidity: '',
+			uvIndex:'',
+			FeelsLikeC: '',
+			FeelsLikeF:'',
 		},
 		country: '',
 		city: 'Not able to get Country',
