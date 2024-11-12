@@ -11,7 +11,7 @@ function PostsMainContent(): ReactNode {
 				<Stories />
 				<PostsContainer />
 			</div>
-    <Suggested/>
+      <Suggested/>
 		</div>
 	);
 }

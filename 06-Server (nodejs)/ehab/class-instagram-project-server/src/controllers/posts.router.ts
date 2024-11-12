@@ -1,27 +1,36 @@
 import express, { NextFunction } from 'express';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
 import { PostModel } from '../models/post.model';
 import upload from '../middlewares/upload';
-import mongoose from 'mongoose';
-import { GridFile } from 'multer-gridfs-storage'; 
-
 const postsRouter = express.Router();
-
-
 
 postsRouter.get('/', async (req, res) => {
   console.log(`New request from ip: ${req.ip}, method: ${req.method}, endpoint: ${req.url}. headers: ${JSON.stringify(req.headers)}`);
-  /*let { results } = req.query;
+  let { results, oldestPostCreatedDate } = req.query;
   const parsedResults = Utils.convertQueryToNumber(results, 5);
 
   if (!parsedResults || parsedResults > 100) {
     res.status(400).send("`results` query param must be a number and up to 100.");
     return;
-  }*/
+  }
+
+  /*
+    conditions:
+    1) Limit results to 100
+    2) Order by createdDate (last one is the oldest)
+    3) createdDate is smaller than oldestPostCreatedDate
+  */
+
   try {
-    const dbResponse = await PostModel.find(); // get all posts
+    const conditions = {} as any;
+    if (oldestPostCreatedDate) {
+      conditions.createdDate = { $lt: new Date(oldestPostCreatedDate as string) }
+    }
+    const dbResponse = await PostModel.find(conditions)
+  .sort({ createdDate: 'desc' })  // Ascending order, so the oldest entries come last
+  .limit(parsedResults);
+
     res.json(dbResponse);
   } catch (err) {
     console.error('Error fetching data:', err);
@@ -45,26 +54,12 @@ postsRouter.get('/:postId', async (req, res) => {
   }
 });
 
+postsRouter.put('/create', upload.single('image'), async (req, res) => {
+  const { description, location, userId } = req.body;
 
-const validateRequiredParams = (requiredFields: string[]) => {
-  return (req: express.Request, res: express.Response, next: NextFunction) => {
-    const body = req.body;
-    const allFieldsExist = requiredFields.every((field: string) => field in body);
-   
-    if (!allFieldsExist) {
-      res.status(400).send(`One of the required parameters [${requiredFields.join()}] is missing`);
-      return;
-    }
-  
-    next();
-  };
-};
-
-
-postsRouter.put('/create'/*, validateRequiredParams(['userId', 'description'])*/, upload.single('image'), async (req, res) => {
-  const { description, location, userId, imgUrl } = req.body;
-  const image = req.file?.buffer; // Get the image file path
   const postId = uuidv4();
+
+  const fileName = (req as any).fileName;
 
   try {
     const post = new PostModel({
@@ -72,8 +67,7 @@ postsRouter.put('/create'/*, validateRequiredParams(['userId', 'description'])*/
       userId,
       location,
       description,
-      image,
-      imgUrl,
+      imgUrl: `/uploads/${fileName}`,
       createdDate: new Date(),
     });
   
@@ -83,6 +77,20 @@ postsRouter.put('/create'/*, validateRequiredParams(['userId', 'description'])*/
   } catch(err) {
     console.error('Error creating a post in the db: ', err);
     res.status(500).send('Error uploading the new post.');
+  }
+});
+
+
+postsRouter.delete('/delete',async (req, res)=>{
+  const { imgUrl } = req.query;
+  try {
+    const post = await PostModel.findOneAndDelete({ imgUrl });
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting post', error });
   }
 });
 

@@ -55,17 +55,11 @@ export type RandomPostApiResult = {
   nat: string;
 };
 
-export type PostType = {
-    userId: string,
-    createdDate: Date,
-    description: string,
-    imgUrl: string,
-    location: string,
+export type PostBackendAPI = {
+    id: string;
+    userId: string;
+    createdDate: string;
+    description: string;
+    imgUrl: string;
+    location: string;
 };
-
-  /*id: { type: String },
-  userId: { type: String },
-  createdDate: { type: Date },
-  description: { type: String },
-  image: { type: File },
-  location: { type: String },*/

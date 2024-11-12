@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 }
 .left-navbar {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	top: 0;
 	height: 100vh;
