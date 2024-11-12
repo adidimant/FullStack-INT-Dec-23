@@ -1,0 +1,19 @@
+.weatherTable {
+    padding: 10px;
+}
+.weatherTable table.table {
+    text-align: left;
+    border-style: hidden;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.weatherTable table.table td,
+.weatherTable table.table th {
+    border-bottom: 1px solid #ccc; 
+}
+.weatherTable table.table th {
+    padding-right: 10px;
+}
+.weatherTable table.table tr {
+    line-height: 1.7;
+}

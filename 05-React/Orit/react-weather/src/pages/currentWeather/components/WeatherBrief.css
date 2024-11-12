@@ -1,0 +1,16 @@
+.weather-brief {
+    background: #F0F7FD;
+    border-left: 4px solid #c3d3e0;
+    padding: 10px;
+    min-width: 150px;
+    position: relative;
+    height: fit-content;
+}
+.weather-brief h3 {
+    font-size: 30px;
+}
+.weather-brief img#cur-weather {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

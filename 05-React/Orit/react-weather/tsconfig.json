@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }/*,
+    for server-side add the following config file
+    {
+      "path": "./tsconfig.node.json"
+    }*/
+  ]
+}

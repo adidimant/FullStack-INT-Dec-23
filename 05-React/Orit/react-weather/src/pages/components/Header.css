@@ -1,0 +1,44 @@
+.header {
+    padding: 25px 10%;
+    display: flex;
+    justify-content: space-between;
+    background: #008F8F;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.header-left h1,
+.header-left p {
+    margin: 0;
+}
+.header-left h1 {
+    margin-block-end: 10px;
+}
+.header-left p {
+    font-weight: 500;
+    font-size: 20px;
+}
+.header-right {
+    align-self: flex-end;
+}
+.search-container form.header-search {
+    display: flex;
+    align-content: center;
+}
+.search-container .header-search .search-input {
+    box-sizing: border-box;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid black;
+    border-right: none;
+    padding: 5px;
+    height: 30px;
+}
+.search-container .header-search .search-button {
+    height: 30px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    /*cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1 1 0 0 0 .198.287l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1 1 0 0 0-.287-.2zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>'), auto;*/
+}

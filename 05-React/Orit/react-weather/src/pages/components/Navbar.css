@@ -1,0 +1,31 @@
+nav.navbarContainer {
+    width: 120px;
+    text-align: center;
+    position: sticky;
+    top: 130px;
+    height: calc(100vh - 130px);
+    height: fit-content;
+    overflow-y: auto;
+    padding: 20px;
+    min-width: 120px
+}
+nav.navbarContainer .logo img {
+    width: -webkit-fill-available;
+}
+.navbarContainer ul.navbar {
+    padding-left: 0;
+    text-align: center;
+}
+.navbarContainer li {
+    list-style: none;
+    margin: 7px 0;
+}
+.navbarContainer .navbar li.active a {
+    background: black;
+    color: white;
+}
+.navbarContainer .navbar li a {
+    padding: 3px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
