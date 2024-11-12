@@ -33,6 +33,13 @@ type onScreenData = {
     mintempF2: string,
     mintempF3: string,
 };
+const images: { [key: string]: string } = {
+    hot,
+    extrahot,
+    rainning,
+    snow,
+    cloudyClipartWeather
+};
 
 function ThreeDayForecast(): ReactNode{
     const { data } = useWeatherContext();
@@ -45,13 +52,7 @@ function ThreeDayForecast(): ReactNode{
     const [ imageName2,setImageName2 ] = useState<string>('');
     const [ imageName3,setImageName3 ] = useState<string>('');
 
-    const images: { [key: string]: string } = {
-        hot,
-        extrahot,
-        rainning,
-        snow,
-        cloudyClipartWeather
-    };
+    
 
     useEffect(()=>{
         if(data.weather){

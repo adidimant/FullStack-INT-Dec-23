@@ -6,29 +6,42 @@ import axios from "axios";
 import { WeatherType } from "../../../types/types";
 import { useThemeContext } from "../../../contexts/theme-context";
 
+const getLocation = async (): Promise<string | null> => {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (res, rej) => {
+        try {
+            const result: string | null = await Utils.getUserLocation();
+            if (result) {
+                res(result);
+            }
+            res(null);
+        } catch (err) {
+            rej('Error => '+err);
+        }
+    });
+};
+
 function Search(): ReactNode {
     const [countriesArray, setCountriesArray] = useState<string[]>([]);
     const [selectedValue, setSelectedValue] = useState('');
     const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     const { dispatch } = useWeatherContext();
     const firstLoad = useRef<boolean>(true);
     const { theme }= useThemeContext();
-    
+   
     const getData = useCallback(async () => {
         if (selectedValue) {
             const url = `https://wttr.in/${selectedValue}?format=j1`;
             try {
                 const response = await axios.get(url);
-                if (response.status === 404) {
-                    alert('Data not found for the selected location.');
-                    return;
-                }
                 const data: WeatherType = response.data;
-                if(data.nearest_area){
+
+                if (data.nearest_area) {
                     const area: string = (data.nearest_area[0]?.areaName as unknown as { value: string }[])?.[0]?.value;
                     if (area && !area.includes('Ban Not')) {
                         dispatch(data);
+
                         // Check if the selected value is already in local storage, add if not
                         if (!countriesArray.includes(selectedValue)) {
                             const updatedCountries = [...countriesArray.reverse(), selectedValue];
@@ -38,46 +51,41 @@ function Search(): ReactNode {
                     } else {
                         alert('No data found, please try again');
                     }
-                }
-                else{
-                    console.error('Incorrect data format,',data);
+                } else {
+                    console.error('Incorrect data format,', data);
                 }
             } catch (error) {
-                console.error("Error fetching data:", error);
+                if (axios.isAxiosError(error)) {
+                    if (error.response && error.response.status === 404) {
+                        alert('Data not found for the selected location.');
+                    } else {
+                        console.error("Error fetching data:", error.message);
+                    }
+                } else {
+                    console.error("An unexpected error occurred:", error);
+                }
             }
         }
     }, [countriesArray, dispatch, selectedValue]);
     
     useEffect(() => {
         // Retrieve countries array from local storage or initialize with an empty array
-        const storedCountries: Array<string> = JSON.parse(localStorage.getItem("countriesArray") || "[]");
-        
-        setCountriesArray(storedCountries.reverse());
-
-        const getLocation = async (): Promise<string | null> => {
-            // eslint-disable-next-line no-async-promise-executor
-            return new Promise(async (res, rej) => {
-                try {
-                    const result: string | null = await Utils.getUserLocation();
-                    if (result) {
-                        res(result);
-                    }
-                    res(null);
-                } catch (err) {
-                    rej('Error => '+err);
+        try {
+            const storedCountries: Array<string> = JSON.parse(localStorage.getItem("countriesArray") || "[]");
+            setCountriesArray(storedCountries.reverse());
+            getLocation().then((location) => {
+                if (location ) {
+                    setSelectedValue(location);
                 }
-            });
-        };
-
-        getLocation().then((location) => {
-            if (location ) {
-                setSelectedValue(location);
-            }
-        });
+            });  
+        } catch (error) {
+            console.error(error);
+        }
+        
     }, []);
     
     useEffect(() => {
-        // Run getData only once after selectedValue is set by getUserLocation2
+        // Run getData only once after selectedValue is set by getUserLocation (in first render)
         if (selectedValue && firstLoad.current) {
             firstLoad.current = false;
             getData();
