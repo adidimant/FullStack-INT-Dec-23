@@ -10,8 +10,8 @@ function WeatherTomorrow() {
     const { date } = useParams();
     const { weatherData } = useWeatherContext();
 
-    const index = useMemo(() => {return weatherData?.weather.findIndex(day => day.date === date)
-    }, [weatherData, date]) ;
+    const index = useMemo(() =>  weatherData?.weather.findIndex(day => day.date === date)
+    , [weatherData, date]) ;
 
     return (
         <div className="container">

@@ -8,21 +8,23 @@ import "./HourlyForecast.css";
 type HourlyForecastProp = {
   index: number;
 }
+
+function convertMinutesToTime(time: number) {
+  const hour = parseInt(time, 10);
+  const isPM = hour >= 1200;
+  const formattedHour = (hour % 1200) / 100 || 12;
+  const period = isPM ? 'PM' : 'AM';
+  return `${formattedHour}:00 ${period}`;
+}
+
 function HourlyForecast({ index }: HourlyForecastProp) {
     const { temp } = useTempContext();
     const { weatherData } = useWeatherContext();
 
-    const hourly = useMemo(() => {return weatherData?.weather[index]?.hourly
-    }, [weatherData]);
+    const hourly = useMemo(() => weatherData?.weather[index]?.hourly
+    , [weatherData, index]);
 
-    const convertMinutesToTime = useCallback((time: number) => {
-        const hour = parseInt(time, 10);
-        const isPM = hour >= 1200;
-        const formattedHour = (hour % 1200) / 100 || 12;
-        const period = isPM ? 'PM' : 'AM';
-        return `${formattedHour}:00 ${period}`;
-    }, []);
-
+    
     if (!hourly) return null;
 
     return (
@@ -35,7 +37,7 @@ function HourlyForecast({ index }: HourlyForecastProp) {
 
             return (
               <tr key={index}>
-                <td>{convertMinutesToTime(Number(hour.time))}</td>
+                <td>{convertMinutesToTime((hour.time))}</td>
                 <td>{`${hour[`temp${temp}`]}°`}</td>
                 <td><img src={imgPath} alt={description} style={{ height: '35px' }} /></td>
                 <td>{hour.humidity}%</td>
