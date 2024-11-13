@@ -1,0 +1,25 @@
+.currentWeatherContainer {
+    padding: 20px;
+    flex: 1;
+    overflow-x: hidden;
+}
+.currentWeatherContainer .current-weather-header{
+    margin-bottom: 20px;
+}
+.weatherContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+.currentWeatherContainer h1 {
+    text-align: center;
+}
+.currentWeatherContainer .current-weather {
+    display: flex;
+    gap: 10%;
+    flex-wrap: wrap;
+}
+.currentWeatherContainer .current-weather-bottom {
+    margin: 30px 0;
+}

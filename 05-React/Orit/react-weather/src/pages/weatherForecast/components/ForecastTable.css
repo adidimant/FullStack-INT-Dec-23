@@ -1,0 +1,46 @@
+.navigation-container {
+    text-align: center;
+}
+.table-container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+.forecast-table {
+    width: 100%;
+    table-layout: fixed; 
+    border-collapse: collapse;
+}
+.forecast-table th, .forecast-table td {
+    width: 25%; 
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd; 
+}
+.forecast-table th {
+    font-weight: bold;
+    background-color: #f5f5f5; /* Light background for headers */
+}
+.forecast-table th.leftHeader {
+    width: 7%;
+}
+
+/* Alternating row colors */
+.forecast-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.forecast-table tbody tr:nth-child(even) {
+    background-color: #f0f0f0; /* Light gray background for alternating rows */
+}
+
+/* Make lines thin between cells */
+.forecast-table th, #wt-48 td {
+    border: 1px solid #ccc;
+}
+.advanced-fields {
+    position: fixed;
+    max-width: 120px;
+    white-space: normal;
+    text-align: center;
+    padding: 8px;
+}
