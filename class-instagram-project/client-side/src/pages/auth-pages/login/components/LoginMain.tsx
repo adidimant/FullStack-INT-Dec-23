@@ -57,7 +57,9 @@ function LoginMain() {
       const accessToken = response?.data?.accessToken;
 
       if (accessToken) {
+        const refreshToken = response.data.refreshToken;
         window.localStorage.setItem('accessToken', accessToken); // store accessToken in localStorage
+        window.localStorage.setItem('refreshToken', refreshToken);
         const userPayload = parseJwt(accessToken);
 
         const userData = {
@@ -75,12 +77,13 @@ function LoginMain() {
         navigate('/'); // navigate to home page
         
         //TODO - generate secret V
-        //TODO - implement backend verify token & refresh token
-        //TODO - use the verify in all api endpoints (posts)
+        //TODO - implement backend verify token V
+        //TODO - use the verify in all api endpoints (posts) V
+        //TODO - refresh token (/token)
         //TODO - implement logout
         //TODO - manage devices history (using the user-agent)
         //TODO send accessToken in each API request automatically
-        //TODO - if we get 401 somehow - logout immediately
+        //TODO - if we get 401 somehow - try to refresh token, if failed also - logout immediately
       }
 
     } catch (err: unknown) {

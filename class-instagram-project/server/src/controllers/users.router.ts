@@ -4,9 +4,17 @@ import Utils from '../services/utils.service';
 import upload from '../middlewares/upload';
 import { UserModel } from '../models/user.model';
 import jwt from 'jsonwebtoken';
+import { authMiddleware } from '../middlewares/authMiddleware';
+import { ACTIVE_USERS_SESSIONS_AND_TOKENS } from '../services/sessions.management.service';
 const usersRouter = express.Router();
 
+
 const expirationTime = `${process.env.ACCESS_TOKEN_EXPIRATION_TIME || 30000}ms`
+
+const generateAccessToken = (payload: object): string => {
+  const accessToken = jwt.sign({ ...payload, iat: Date.now() }, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: expirationTime });
+  return accessToken;
+};
 
 /*
 Endpoints plan:
@@ -73,18 +81,56 @@ usersRouter.post('/login', Utils.validateRequiredParams(['emailOrUsername', 'pas
   }
 
   if (user) {
-    const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName, iat: Date.now() };
-    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: expirationTime });
+    const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName };
+    const accessToken = generateAccessToken(payload);
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string);
     // create a token, ecoding the user details (email, username, userId, fullName)
     // respond the token to the client side in the body, with 200
 
-    res.json({ accessToken });
+    const tokens = { accessToken, refreshToken };
+
+    ACTIVE_USERS_SESSIONS_AND_TOKENS[(user.userId as string)] = { ...tokens, lastActivity: Date.now() };
+    res.json(tokens);
     return;
   }
 
   // tokenSecret: ifb3cyb2iy42vwoi57y3ui33$_C%4g28cyuiq5h4ivu4yib7y5i743
 
   res.status(404).send("Bad combination of email and password");
+});
+
+
+// GET `/token` API providing a new accessToken
+usersRouter.get('/token', (req, res) => {
+  const authorizationHeader = req.headers.authorization; // 'Bearer <refresh-token>'
+  if (typeof authorizationHeader == 'string') {
+    const refreshToken = authorizationHeader.split(' ')?.[1];
+    if (refreshToken) {
+      try {
+        const userData = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
+        if (typeof userData == 'object') {
+          const accessToken = generateAccessToken(userData);
+          res.json({ accessToken });
+          return;
+        }
+      } catch (err) {}
+    }
+  }
+  res.status(401).send("Unauthorized! please log in!");
+});
+
+usersRouter.post('/logout', authMiddleware, (req, res) => {
+  const userData = (req as any).userData;
+  const userId = userData.userId;
+
+  // making sure the server is no longer treating the user accessToken & refreshToken as valid
+  delete ACTIVE_USERS_SESSIONS_AND_TOKENS[userId];
+
+  res.send('Logged out successfully');
+});
+
+usersRouter.post('/update-profile', authMiddleware, async (req,res) => {
+  //TODO - implement if we have time
 });
 
 export default usersRouter;
