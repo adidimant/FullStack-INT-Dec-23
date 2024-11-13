@@ -6,6 +6,7 @@ import postsRouter from './controllers/posts.router';
 import { rateLimitMiddleware } from './middlewares/rate-limit';
 import dotenv from 'dotenv';
 import usersRouter from './controllers/users.router';
+import { authMiddleware } from './middlewares/authMiddleware';
 
 dotenv.config();
 const app = express();
@@ -21,15 +22,6 @@ const platformLogMiddleware = (req: express.Request, res: express.Response, next
   const userAgent = req.headers["user-agent"];
   console.log('userAgent: ', userAgent);
   next();
-};
-
-const authMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const num = Math.random()*100;
-  if (num > 1) {
-    next();
-    return;
-  }
-  res.status(401).send('Unauthorized! please log in!');
 };
 
 app.set('view engine', 'ejs');
