@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { useWeatherContext } from "../../../context/data-weather-context";
 import "./WeatherBoxByDays.css";
 import { useTempContext } from "../../../context/temp-context";
@@ -15,11 +15,10 @@ function WeatherBoxByDays({ index }) {
     const { weatherData } = useWeatherContext();
     const { temp } = useTempContext();
 
-    const day = useMemo(() => {
-        return weatherData?.weather[index]?.date;
-    }, [weatherData, index]);
+    const day = useMemo(() => weatherData?.weather[index]?.date;
+    , [weatherData, index]);
 
-    const weatherDescImg = useMemo(() => {
+    const weatherDescImg = useCallback(() => {
         const weatherDesc = weatherData?.weather[index]?.hourly?.[4]?.weatherDesc?.[0]?.value;;
         return getWeatherImg(weatherDesc);
     }, [weatherData, index])

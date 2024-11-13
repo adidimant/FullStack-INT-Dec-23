@@ -14,13 +14,14 @@ import UmbrellaIcon from '@mui/icons-material/Umbrella';
 import sunset from "../../../../assets/WeatherIcon/sunset.png"
 import sunrise from "../../../../assets/WeatherIcon/sunrise.png"
 import "./DetailedWeather.css";
+import { OrbitProgress } from "react-loading-indicators";
 
 function DetailedWeather() {
     const { weatherData } = useWeatherContext();
     const { temp } = useTempContext();
 
     if (!weatherData) {
-        return <p>Loading weather data...</p>;
+        return <OrbitProgress color="#053e51" size="medium" text="" textColor="" />;
     }
 
     const dayData = weatherData.weather[0];

@@ -12,10 +12,10 @@ function AuthPageNavber() {
     
     const { fetchWeatherData } = useWeatherContext();
 
-    const handleGeoapifyChange = (value: { properties: { city?: string; name: string } }) => {
+    const handleGeoapifyChange = useCallback((value: { properties: { city?: string; name: string } }) => {
         const cityName = value.properties.city || value.properties.name; 
         fetchWeatherData(cityName); 
-    };
+    }, [fetchWeatherData]);
 
     return (
         <div className="navbarContainer">
