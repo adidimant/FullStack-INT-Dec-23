@@ -109,9 +109,13 @@ usersRouter.get('/token', (req, res) => {
       try {
         const userData = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
         if (typeof userData == 'object') {
-          const accessToken = generateAccessToken(userData);
-          res.json({ accessToken });
-          return;
+          const session = ACTIVE_USERS_SESSIONS_AND_TOKENS[userData.userId];
+          // Checking if there's an active session for the user AND the accessToken that is allowed in this session is really the accessToken that was provided in the request
+          if (session && session.refreshToken == refreshToken) {
+            const accessToken = generateAccessToken(userData);
+            res.json({ accessToken });
+            return;
+          }
         }
       } catch (err) {}
     }

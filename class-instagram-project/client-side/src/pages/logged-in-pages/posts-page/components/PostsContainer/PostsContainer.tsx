@@ -3,6 +3,7 @@ import Post from "../Post/Post";
 import { PostBackendAPI } from "../../../types";
 import './PostsContainer.css';
 import { appendServerPrefix } from "../../../../../utils";
+import { axiosClient } from "../../../../../axiosClient";
 
 function PostsContainer() {
     const [posts, setPosts] = useState<PostBackendAPI[]>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
@@ -11,12 +12,12 @@ function PostsContainer() {
 
     const loadMorePosts = useCallback(async (amount: number, oldestPostCreatedDate: string | null) => {
         try {
-            let query = 'http://localhost:3000/api/posts?results=' + amount;
+            let query = '/api/posts?results=' + amount;
             if (oldestPostCreatedDate) {
                 query += `&oldestPostCreatedDate=${oldestPostCreatedDate}`;
             }
-            const response = await fetch(query); // Fetch posts from the API.
-            const data = await response.json(); // Parse the response as JSON.
+            const response = await axiosClient.get(query);
+            const data = response.data; // Parse the response as JSON.
             if (data.length) {
                 // if received users - take the oldest createdDate and store it in the state
                 const oldestPost = data[data.length-1];

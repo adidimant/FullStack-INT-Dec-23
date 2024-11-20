@@ -14,8 +14,9 @@ import Button from "../../../../components/button/Button";
 import LittleLink from "../../../../components/littleLink/LittleLink";
 import { useThemeContext } from "../../../../contexts/theme-context";
 import { parseJwt, validateEmail, validateUsername } from "../../../../utils";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useUserContext } from "../../../../contexts/User-Context";
+import { axiosClient } from "../../../../axiosClient";
 
 const validateLoginIdentityField = (value: unknown): boolean => {
   if (!value) {
@@ -49,7 +50,7 @@ function LoginMain() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', {
+      const response = await axiosClient.post('/api/users/login', {
         emailOrUsername,
         password,
       });
@@ -79,11 +80,12 @@ function LoginMain() {
         //TODO - generate secret V
         //TODO - implement backend verify token V
         //TODO - use the verify in all api endpoints (posts) V
-        //TODO - refresh token (/token)
-        //TODO - implement logout
+        //TODO - refresh token (/token) V
+        //TODO - implement logout V
         //TODO - manage devices history (using the user-agent)
         //TODO send accessToken in each API request automatically
-        //TODO - if we get 401 somehow - try to refresh token, if failed also - logout immediately
+        //TODO - implement logout on client side
+        //TODO - if we get 401 somehow (on the accessToken) - try to refresh token (/token), if failed also - logout immediately
       }
 
     } catch (err: unknown) {

@@ -4,6 +4,7 @@ import UserSuggested from "./UserSuggested/UserSuggested";
 import "./Suggested.css";
 import { PostBackendAPI } from "../../../types";
 import { appendServerPrefix } from "../../../../../utils";
+import { axiosClient } from "../../../../../axiosClient";
 
 function Suggested() {
 	const [userData, setUserData] = useState([]);
@@ -11,20 +12,18 @@ function Suggested() {
 	// In this example - we show if we get 500 from the server - we display the server content html instead of the regular html
 
 	useEffect(() => {
-		fetch("http://localhost:3000/api/posts?results=5")
+		axiosClient.get('/api/posts?results=5')
 			.then((response) => {
-				if (response.status < 500) {
-					return response.json();
-				}
-				return response.text(); // convert content to text (since in 5xx errors our server returns html as response)
+				setUserData(response.data);
 			})
-			.then((data) => {
-				if (data.startsWith && data.startsWith('<!DOCTYPE html>')) {
+			.catch((error) => {
+				const failedRes = error.response;
+				const data = failedRes.data;
+				console.log("final then data:", data);
+				if (failedRes.status == 500 && data.startsWith && data.startsWith('<!DOCTYPE html>')) {
 					document.body.innerHTML = data;
-				} else {
-					setUserData(data);
 				}
-			});
+			})
 	}, []);
 
 	return (
