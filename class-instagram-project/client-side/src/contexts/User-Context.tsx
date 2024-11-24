@@ -16,7 +16,7 @@ type UserContextType = {
     dispatch?: (user: User) => void;
 }
 
-const initalizeUserData = () => {
+export const initalizeUserData = () => {
   return {
     isLoggedIn: false,
     email: '',
@@ -53,7 +53,7 @@ export const useUserContext = (): UserContextType => {
   const context = useContext(UserContext);
   if (context === undefined) {
     // if there is no value the hook is not being called within a function component that is rendered within a `ThemeContext`
-    throw new Error('useThemeContext must be used within App');
+    throw new Error('useUserContext must be used within App');
   }
   return context;
 };

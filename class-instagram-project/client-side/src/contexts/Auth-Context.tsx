@@ -1,8 +1,13 @@
-import { createContext, ReactNode, useEffect } from "react";
+import { createContext, ReactNode, useCallback, useContext, useLayoutEffect, useMemo, useState } from "react";
 import { axiosClient, baseUrl } from "../axiosClient";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { initalizeUserData, useUserContext } from "./User-Context";
 
-const AuthContext = createContext(undefined);
+type AuthContextType = {
+  logout?: () => void;
+}
+
+const AuthContext = createContext<AuthContextType>({});
 
 /*
   Auth Provider jobs:
@@ -13,7 +18,32 @@ const AuthContext = createContext(undefined);
 */
 
 function AuthProvider ({ children }: { children: ReactNode }) {
-  useEffect(() => {
+  const { dispatch: dispatchUserContext } = useUserContext();
+
+  const logout = useCallback(async () => {
+    try {
+      await axiosClient.post('/api/users/logout'); // make api call to /logout
+    } catch(err) {
+      console.log('logout api call error: ', err);
+    }
+    // clear accessToken & refreshToken
+    window.localStorage.removeItem('accessToken');
+    window.localStorage.removeItem('refreshToken');
+    window.localStorage.removeItem('isLoggedIn');
+
+    dispatchUserContext?.(initalizeUserData()); // clear user-context
+
+    window.location.pathname = '/login' // navigate /login page
+  }, [dispatchUserContext]);
+
+
+  // create state for the AuthProvider context, the state will include the logout function
+  const authContextData: AuthContextType = useMemo(() => ({
+    logout,
+  }), [logout]);
+
+  // Create interceptors on every request & response from this specific axiosClient with our server:
+  useLayoutEffect(() => {
     const requestInterceptor = axiosClient.interceptors.request.use((req) => {
       // add authorization header to the request
       const accessToken = window.localStorage.getItem('accessToken');
@@ -25,17 +55,21 @@ function AuthProvider ({ children }: { children: ReactNode }) {
 
     const responseInterceptor = axiosClient.interceptors.response.use((res) => {
       return res;
-    }, async (err) => {
+    }, async (err: AxiosError) => {
       const response = err.response;
-      if (response.status == 401) {
+      if (response?.status == 401) {
         const refreshToken = window.localStorage.getItem('refreshToken');
         if (!refreshToken) {
-          // logout()
-          return;
+          if (!response?.config.url?.includes('/api/users/logout')) {
+            logout();
+          }
+          return response;
         }
 
         try {
           // we use here axios and NOT axiosClient to avoid interruptions of the request & response interceptors
+          //TODO - (using localStorage) check if we already called in the lest minute to /token, if yes - don't call /token and use last token
+          //TODO - next lesson check with short expiry accessToken
           const response = await axios.get(baseUrl + '/api/users/token', {
             headers: { Authorization: `Bearer ${refreshToken}`},
           });
@@ -44,10 +78,12 @@ function AuthProvider ({ children }: { children: ReactNode }) {
 
           // retry the failed request with the new accessToken in the auth header
           const originalRequest = err.config;
-          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-          return axios.request(originalRequest);
+          if (originalRequest) {
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+            return axios.request(originalRequest);
+          }
         } catch(err) {
-          // logout()
+          logout();
         }
       }
     });
@@ -59,11 +95,20 @@ function AuthProvider ({ children }: { children: ReactNode }) {
   }, []);
 
     return (
-        <AuthContext.Provider value={undefined}>
+        <AuthContext.Provider value={authContextData}>
           {children}
         </AuthContext.Provider>
       );
 }
+
+export const useAuthContext = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    // if there is no value the hook is not being called within a function component that is rendered within a `ThemeContext`
+    throw new Error('useAuthContext must be used within App');
+  }
+  return context;
+};
 
 export default AuthProvider;
 
