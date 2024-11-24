@@ -61,6 +61,7 @@ function LoginMain() {
         const refreshToken = response.data.refreshToken;
         window.localStorage.setItem('accessToken', accessToken); // store accessToken in localStorage
         window.localStorage.setItem('refreshToken', refreshToken);
+        window.localStorage.setItem('isLoggedIn', 'true');
         const userPayload = parseJwt(accessToken);
 
         const userData = {

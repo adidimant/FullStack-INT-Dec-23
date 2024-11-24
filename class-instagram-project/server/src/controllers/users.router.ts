@@ -113,6 +113,7 @@ usersRouter.get('/token', (req, res) => {
           // Checking if there's an active session for the user AND the accessToken that is allowed in this session is really the accessToken that was provided in the request
           if (session && session.refreshToken == refreshToken) {
             const accessToken = generateAccessToken(userData);
+            session.accessToken = accessToken;
             res.json({ accessToken });
             return;
           }
