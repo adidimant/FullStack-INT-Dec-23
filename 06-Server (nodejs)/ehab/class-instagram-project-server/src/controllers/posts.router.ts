@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
 import { PostModel } from '../models/post.model';
 import upload from '../middlewares/upload';
+import fs from 'fs';
+
 const postsRouter = express.Router();
 
 postsRouter.get('/', async (req, res) => {
@@ -80,18 +82,34 @@ postsRouter.put('/create', upload.single('image'), async (req, res) => {
   }
 });
 
+// DELETE http://localhost:3000/api/posts/bdfuydfbsii34ufbehrb
+postsRouter.delete('/:postId', async (req, res) => {
+  const { postId } = req.params;
 
-postsRouter.delete('/delete',async (req, res)=>{
-  const { imgUrl } = req.query;
-  try {
-    const post = await PostModel.findOneAndDelete({ imgUrl });
-    if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
-    }
-    res.status(200).json({ message: 'Post deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error deleting post', error });
+  const userId = '<DELETOR-USER-ID>';
+
+  // delete post from db, with checking that this user really owns this post:
+  const deletedPost = await PostModel.findOneAndDelete({ id: postId, userId });
+  
+  if (deletedPost) {
+    const { imgUrl } = deletedPost;
+    const filePath = `${__dirname}${imgUrl}`; // __dirname => the same path of the project package.json
+    
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.error(`Error removing file: ${err}`);
+        return;
+      }
+    
+      console.log(`File ${filePath} has been successfully removed.`);
+    });
+  
+    res.send("Post deleted succesfully!");
+    return;
   }
+
+  res.status(403).send("Post deletion is forbidden!");
 });
+
 
 export default postsRouter;

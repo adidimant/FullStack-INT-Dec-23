@@ -4,13 +4,15 @@ import { useThemeContext } from "../../contexts/theme-context";
 
 type InputProps = {
   name: string;
-  text: string;
+  text?: string;
   htmlFor: string;
   type: string;
   id: string;
   onBlur?: () => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   validate?: (value: unknown) => boolean;
   children?: React.ReactNode;
+  required?: boolean;
 };
 
 type ValidIcon = {
@@ -18,13 +20,14 @@ type ValidIcon = {
   classNameIcon: string;
 } | null;
 
-function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
+function Input({ name, text, htmlFor, type, id, validate, onChange, required }: InputProps) {
   const [inputValue, setValue] = useState<string>("");
   const [validIcon, setValidIcon] = useState<ValidIcon>(null);
   const { theme } = useThemeContext();
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
+    onChange?.(event);
   }, []);
 
   const handleValid = useCallback(() => {
@@ -49,7 +52,7 @@ function Input({ name, text, htmlFor, type, id, validate }: InputProps) {
       <label htmlFor={htmlFor} className={inputValue ? "active" : ""}>
         {text}
       </label>
-      <input className={`input ${theme}-input`} name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
+      <input required={required} className={`input ${theme}-input`} name={name} type={type} id={id} onChange={handleChange} onBlur={handleValid} />
       {validIcon &&  <span className={`material-symbols-outlined validation-icon ${validIcon.classNameIcon}`}>
           {validIcon.icon}
         </span>}
