@@ -1,0 +1,8 @@
+complete application flow - 2 lessons
+cookies - 1 lesson
+sql - 2 lessons
+react-native - 2 lessons
+2 lessons - CI-CD/redis/docker/testing + השלמות
+CORS + options request
+exam - 1 lesson
+final projects - 2-3 lessons

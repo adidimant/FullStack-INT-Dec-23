@@ -2,7 +2,7 @@ import { memo, useCallback, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import profilePic from "../../../../../assets/profile.jpg";
 import "./CreatePostPopup.css";
-import axios from "axios";
+import { axiosClient } from "../../../../../axiosClient";
 import { useNavigate } from "react-router-dom";
 
 const maxChars = 2200;
@@ -59,7 +59,7 @@ function CreatePostPopup( { show, onClose }: CreatePostPopupProps ) {
     }
 
     try {
-      const result = await axios({
+      const result = await axiosClient({
         method: "put",
         url: "http://localhost:3000/api/posts/create",
         data: formData,
