@@ -4,16 +4,41 @@ import { Link } from "react-router-dom";
 import CreatePostPopup from "../../posts-page/components/CreatePostPopup/CreatePostPopup";
 import profilePic from "../../../../assets/profile.jpg";
 import "./LeftNavbar.css";
+import { useAuthContext } from "../../../../contexts/Auth-Context";
+
 
 function LeftNavbar() {
 	const [showPopup, setShowPopup] = useState(false);
+	const [showMore, setShowMore] = useState(false);
 
 	const togglePopup = useCallback(() => {
 		setShowPopup(!showPopup);
 	}, [showPopup]);
 
+	const more = useCallback(()=> {
+		setShowMore(!showMore);
+	},[showMore]);
+
+	const { logout } = useAuthContext();
+
+	const handleLogout =useCallback(() => {
+		if (logout) {
+			logout();
+		}
+	},[logout]);
 	return (
 		<div className="left-navbar">
+			{showMore && 
+			<div className="moreBtn">
+				<div className="morOption">Settings</div>
+				<div className="morOption">Your activity</div>
+				<div className="morOption">Saved</div>
+				<div className="morOption">Switch appearance</div>
+				<div className="morOption">Report a proplem</div>
+				<div className="morOption">Switch accounts</div>
+				<div className="morOption" onClick={handleLogout}>Log out</div>
+			</div>
+			}
 			<div className="left-navbar-logo">
 				<Link to={"/"}>
 					<img
@@ -263,7 +288,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Threads</span>
 				</div>
-				<div tabIndex={9} className="links-basic-styles">
+				<div tabIndex={9} className="links-basic-styles" onClick={()=>{more()}}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -306,7 +331,8 @@ function LeftNavbar() {
 							y2="20"
 						></line>
 					</svg>
-					<span className="links-text">More</span>
+					<span className="links-text" >More</span>
+					
 				</div>
 			</div>
 			<CreatePostPopup show={showPopup} onClose={togglePopup}/>
