@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useLayoutEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { axiosClient, baseUrl } from "../axiosClient";
 import axios, { AxiosError } from "axios";
 import { initalizeUserData, useUserContext } from "./User-Context";
@@ -36,6 +36,7 @@ function AuthProvider ({ children }: { children: ReactNode }) {
     window.location.pathname = '/login' // navigate /login page
   }, [dispatchUserContext]);
 
+  const isRefreshTokenActive = useRef(false);
 
   // create state for the AuthProvider context, the state will include the logout function
   const authContextData: AuthContextType = useMemo(() => ({
@@ -63,29 +64,59 @@ function AuthProvider ({ children }: { children: ReactNode }) {
           if (!response?.config.url?.includes('/api/users/logout')) {
             logout();
           }
-          return response;
+          throw err;
         }
+
+        let accessToken;
 
         try {
           // we use here axios and NOT axiosClient to avoid interruptions of the request & response interceptors
-          //TODO - (using localStorage) check if we already called in the lest minute to /token, if yes - don't call /token and use last token
+          // (using localStorage) check if we already called in the lest minute to /token, if yes - don't call /token and use last token
           //TODO - next lesson check with short expiry accessToken
-          const response = await axios.get(baseUrl + '/api/users/token', {
-            headers: { Authorization: `Bearer ${refreshToken}`},
-          });
-          const accessToken = response.data.accessToken;
-          window.localStorage.setItem('accessToken', accessToken);
+          const lastAccessTokenRenewalStr = window.localStorage.getItem('latr');
+          const lastAccessTokenRenewal = lastAccessTokenRenewalStr ? parseInt(lastAccessTokenRenewalStr) : 0;
+          if (!isRefreshTokenActive.current && (Date.now() - lastAccessTokenRenewal > 10000 || !window.localStorage.getItem('accessToken'))) {
+            isRefreshTokenActive.current = true;
+            const response = await axios.get(baseUrl + '/api/users/token', {
+              headers: { Authorization: `Bearer ${refreshToken}`},
+            });
 
+            window.localStorage.setItem('latr', Date.now().toString()); // latr = last access token renewal/refresh date
+  
+            accessToken = response.data.accessToken;
+            window.localStorage.setItem('accessToken', accessToken);
+            isRefreshTokenActive.current = false;
+          } else {
+            if (isRefreshTokenActive.current == true) {
+              // Promise to handle the parralel interceptors that aren't refreshing the token, in their case - they just wait until the refreshToken renewal finished and only then the promise is resolved 
+              await new Promise((res) => {
+                const interval = setInterval(() => {
+                  if (isRefreshTokenActive.current == false) {
+                    clearInterval(interval);
+                    res(true);
+                  }
+                }, 200);
+              });
+            }
+            accessToken = window.localStorage.getItem('accessToken');
+          }
+        } catch(err) {
+          isRefreshTokenActive.current = false;
+          if (!response?.config.url?.includes('/api/users/logout')) {
+            logout();
+          }
+        }
+
+        if (accessToken) {
           // retry the failed request with the new accessToken in the auth header
           const originalRequest = err.config;
           if (originalRequest) {
             originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-            return axios.request(originalRequest);
+            return await axios.request(originalRequest);
           }
-        } catch(err) {
-          logout();
         }
       }
+      throw err;
     });
 
     return () => {

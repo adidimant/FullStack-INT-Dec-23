@@ -63,7 +63,6 @@ function LoginMain() {
         window.localStorage.setItem('refreshToken', refreshToken);
         window.localStorage.setItem('isLoggedIn', 'true');
         const userPayload = parseJwt(accessToken);
-
         const userData = {
           isLoggedIn: true,
           email: userPayload.email,
@@ -73,6 +72,7 @@ function LoginMain() {
           lastName: userPayload.lastName,
           birthdate: userPayload.birthdate,
           devices: userPayload.devices || [],
+          profilePicUrl: userPayload.profilePicUrl,
         };
 
         dispatchUserData?.(userData); // update global state (context) on logged-in user
