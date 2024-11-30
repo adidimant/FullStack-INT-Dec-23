@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import { useThemeContext } from '../../../../../contexts/theme-context';
 
 type PostProps = {
     user: string;
@@ -16,12 +17,13 @@ type PostProps = {
 };
 
 function Post({ user, postImage, likes, createdDate }: PostProps) {
+    const { theme}= useThemeContext()
     return (
         <div className='post'>
             <div className="post__header">
                 <div className="post__headerAuthor">
                     <AccountCircleIcon></AccountCircleIcon>
-                    {user}  <span style={{ marginLeft: '12px' }}>{new Date(createdDate).toLocaleDateString()}</span>
+                    {user}  <span style={{ marginLeft: '12px', color: theme === 'dark' ? '#ffffff' : undefined }}>{new Date(createdDate).toLocaleDateString()}</span>
                 </div>
                 <MoreHorizIcon></MoreHorizIcon>
             </div>

@@ -61,8 +61,10 @@ postsRouter.put('/create', upload.single('image'), async (req, res) => {
 
   const postId = uuidv4();
 
-  const fileName = (req as any).fileName;
-
+  let fileName = (req as any).fileName;
+  if(typeof fileName === 'undefined'){
+    fileName = 'default_profile.jpg';
+  }
   try {
     const post = new PostModel({
       id: postId,

@@ -1,14 +1,15 @@
 import { memo, useState, useEffect} from "react";
 import profilePic from "../../../../../assets/profile.jpg";
 import UserSuggested from "./UserSuggested/UserSuggested";
-import "./Suggested.css";
 import { PostBackendAPI } from "../../../types";
 import { appendServerPrefix } from "../../../../../utils";
 import { axiosClient } from "../../../../../axiosClient";
+import "./Suggested.css";
+import { useThemeContext } from "../../../../../contexts/theme-context";
 
 function Suggested() {
 	const [userData, setUserData] = useState([]);
-
+	const { theme }= useThemeContext()
 	// In this example - we show if we get 500 from the server - we display the server content html instead of the regular html
 
 	useEffect(() => {
@@ -36,7 +37,7 @@ function Suggested() {
 			/>
 			<div className="suggested-for-you">
 				<p>Suggested for you</p>
-				<button>See All</button>
+				<button style={{color: theme === 'dark' ? '#ffffff' : undefined}}>See All</button>
 			</div>
 
 			{userData.length > 0 ?  userData.map((user: PostBackendAPI, index: number) =>{

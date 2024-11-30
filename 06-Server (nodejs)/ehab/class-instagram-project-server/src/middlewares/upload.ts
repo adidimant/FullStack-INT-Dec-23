@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
       */
 
       const fileFullName = fileName + Math.trunc(Date.now() /100) + fileExtension;
+      
       (req as any).fileName = fileFullName;
 
       cb(null, fileFullName); // Append timestamp to file name

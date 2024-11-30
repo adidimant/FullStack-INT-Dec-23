@@ -9,7 +9,6 @@ function PostsContainer() {
     const [posts, setPosts] = useState<PostBackendAPI[]>([]); // setPosts is a function that updates the posts state variable with the new value passed to it as an argument (in this case, an array of posts) and triggers a re-render of the component.
     const [anyPostsLeft, setAnyPostsLeft] = useState(true);
     const [oldestPostCreatedDate, setOldestPostCreatedDate] = useState(null);
-
     const loadMorePosts = useCallback(async (amount: number, oldestPostCreatedDate: string | null) => {
         try {
             let query = '/api/posts?results=' + amount;
@@ -37,11 +36,13 @@ function PostsContainer() {
         if (posts.length < 50 && anyPostsLeft) { // critical for avoiding endless re-renders!
             loadMorePosts(2, oldestPostCreatedDate);
         }
-    }, [posts]);
+    }, [anyPostsLeft, loadMorePosts, oldestPostCreatedDate, posts]);
 
-    const handleRefresh = useCallback(() => { // Handle refresh button click. 
+    const handleRefresh = useCallback(() => {
         setPosts([]);
-    }, []);
+        setOldestPostCreatedDate(null);
+        setAnyPostsLeft(true);
+    }, [])
 
     return (
         <div className="postpage-container">

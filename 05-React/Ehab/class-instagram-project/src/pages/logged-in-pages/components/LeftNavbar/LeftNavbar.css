@@ -60,6 +60,34 @@
 			&:focus {
 				font-weight: 700;
 			}
+
+			
+		}
+
+		.links-basic-styles-dark {
+			width: 100%;
+			padding: 12px;
+			display: flex;
+			justify-content: start;
+			gap: 19px;
+			font-weight: 400;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+				Helvetica, Arial, sans-serif;
+			transition: background-color 0.2s, font-weight 0.2s;
+			user-select: none;
+			.links-text {
+				margin-top: 2px;
+			}
+
+			&:hover {
+				background-color: gray;
+				cursor: pointer;
+			}
+			&:focus {
+				font-weight: 700;
+			}
+
+			
 		}
 	}
 	.left-navbar-bottom-links {
@@ -71,7 +99,7 @@
 		gap: 7px;
 
 		.links-basic-styles {
-      width: 100%;
+      		width: 100%;
 			padding: 12px;
 			display: flex;
 			justify-content: start;
@@ -86,6 +114,32 @@
       }
 		}
 	}
+
+	.left-navbar-bottom-links-dark {
+		margin-top: auto;
+			display: flex;
+			flex-direction: column;
+			justify-self: center;
+			align-items: start;
+			gap: 7px;
+	
+			.links-basic-styles {
+				  width: 100%;
+				padding: 12px;
+				display: flex;
+				justify-content: start;
+				gap: 19px;
+				font-weight: 400;
+		  &:hover {
+			background-color: rgba(230, 230, 230, 0.574);
+			cursor: pointer;
+		  }
+		  &:focus {
+			font-weight: 700;
+		  }
+			}
+		}
+
 	.moreBtn{
 		position: absolute;
 		bottom: 70px;
@@ -110,6 +164,28 @@
 			background-color: rgba(230, 230, 230, 0.574);
 		}
 	}	
+	.moreBtn-dark{
+		position: absolute;
+		bottom: 70px;
+		left: 15px;
+		width: 300px;
+		height: 300px;
+		background-color: black;
+		border: 2px solid #dbdbdb;
+		border-radius: 20px;
+		padding: 10px;
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		gap: 7px;
+		.morOption{
+			padding: 7px;
+			border-radius: 10px;
+		}
+		.morOption:hover{
+			font-weight: bold;
+			cursor: pointer;
+			background-color: rgba(230, 230, 230, 0.574);
+		}
+	}	
 }
-
-

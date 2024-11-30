@@ -13,9 +13,8 @@
 
         p{
             font-size: 14px;
-            color: rgb(115, 115, 115);
+            color: #737373;
             font-weight: 600;
-            &:hover{}
         }
 
         button{
