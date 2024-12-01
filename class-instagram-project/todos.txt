@@ -1,8 +1,10 @@
 complete application flow - 2 lessons
+architecture/design for the full flow of the token (draw.io)
 cookies - 1 lesson
+CORS + options request
 sql - 2 lessons
+styled-components
 react-native - 2 lessons
 2 lessons - CI-CD/redis/docker/testing + השלמות
-CORS + options request
 exam - 1 lesson
 final projects - 2-3 lessons

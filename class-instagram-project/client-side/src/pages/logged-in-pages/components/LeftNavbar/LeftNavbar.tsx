@@ -1,30 +1,58 @@
 import { memo, useCallback, useState } from "react";
 import InstagramLogo from "../../../../assets/instagram-text-logo.png";
+import InstagramDarkLogo from "../../../../assets/instagram-text-logo-dark.png"
 import { Link } from "react-router-dom";
 import CreatePostPopup from "../../posts-page/components/CreatePostPopup/CreatePostPopup";
 import profilePic from "../../../../assets/profile.jpg";
+import { useAuthContext } from "../../../../contexts/Auth-Context";
+import { useThemeContext } from "../../../../contexts/theme-context";
 import "./LeftNavbar.css";
 
+
 function LeftNavbar() {
+	const { theme}= useThemeContext()
 	const [showPopup, setShowPopup] = useState(false);
+	const [showMore, setShowMore] = useState(false);
 
 	const togglePopup = useCallback(() => {
 		setShowPopup(!showPopup);
 	}, [showPopup]);
 
+	const more = useCallback(()=> {
+		setShowMore(!showMore);
+	},[showMore]);
+
+	const { logout } = useAuthContext();
+
+	const handleLogout =useCallback(() => {
+		if (logout) {
+			logout();
+		}
+	},[logout]);
 	return (
-		<div className="left-navbar">
-			<div className="left-navbar-logo">
+		<div className={`left-navbar ${theme}-background`}>
+			{showMore && 
+			<div className={theme === 'dark' ? 'moreBtn-dark':'moreBtn'}>
+				<div className={`morOption `}>Settings</div>
+				<div className={`morOption `}>Your activity</div>
+				<div className={`morOption `}>Saved</div>
+				<div className={`morOption `}>Switch appearance</div>
+				<div className={`morOption `}>Report a proplem</div>
+				<div className={`morOption `}>Switch accounts</div>
+				<div className={`morOption `} onClick={handleLogout}>Log out</div>
+			</div>
+			}
+			<div className={`left-navbar-logo `}>
 				<Link to={"/"}>
 					<img
-						className="left-navbar-InstagramLogo"
-						src={InstagramLogo}
+						className={`left-navbar-InstagramLogo `}
+						src={ theme === 'dark' ? InstagramDarkLogo : InstagramLogo}
 						alt="Instagram Logo"
 					/>
 				</Link>
 			</div>
-			<div className="left-navbar-links">
-				<div tabIndex={1} className="home links-basic-styles">
+			<div className={`left-navbar-links `}>
+				<div tabIndex={1} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -41,9 +69,9 @@ function LeftNavbar() {
 							strokeWidth="2"
 						></path>
 					</svg>
-					<span className="links-text">Home</span>
+					<span className={`links-text`}>Home</span>
 				</div>
-				<div tabIndex={2} className="search links-basic-styles">
+				<div tabIndex={2} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -72,9 +100,9 @@ function LeftNavbar() {
 							y2="22"
 						></line>
 					</svg>
-					<span className="links-text">Search</span>
+					<span className={`links-text `}>Search</span>
 				</div>
-				<div tabIndex={3} className="explore links-basic-styles">
+				<div tabIndex={3} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -106,9 +134,9 @@ function LeftNavbar() {
 							strokeWidth="2"
 						></circle>
 					</svg>
-					<span className="links-text">Explore</span>
+					<span className={`links-text `}>Explore</span>
 				</div>
-				<div tabIndex={4} className="reels links-basic-styles">
+				<div tabIndex={4} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						aria-label="Reels"
 						className="x1lliihq x1n2onr6 x5n08af"
@@ -166,7 +194,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Reels</span>
 				</div>
-				<div tabIndex={5} className="links-basic-styles">
+				<div tabIndex={5} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -189,7 +217,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Messages</span>
 				</div>
-				<div tabIndex={5} className="notifications links-basic-styles">
+				<div tabIndex={5} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -202,7 +230,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Notifications</span>
 				</div>
-				<div tabIndex={6} className="create links-basic-styles" onClick={togglePopup}>
+				<div tabIndex={6} className={theme === 'dark'? 'home links-basic-styles-dark': 'home links-basic-styles'} onClick={togglePopup}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -244,12 +272,13 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Create</span>
 				</div>
-				<div tabIndex={7} className="profile links-basic-styles">
+				<div tabIndex={7} className= {theme === 'dark'? "profile links-basic-styles-dark": "profile links-basic-styles"}>
 					<img src={profilePic} alt="" />
 					<span className="links-text">Profile</span>
 				</div>
 			</div>
-			<div className="left-navbar-bottom-links">
+			
+			<div className={theme === 'dark' ? "left-navbar-bottom-links-dark" : "left-navbar-bottom-links"}>
 				<div tabIndex={8} className="links-basic-styles">
 					<svg
 						fill="currentColor"
@@ -263,7 +292,7 @@ function LeftNavbar() {
 					</svg>
 					<span className="links-text">Threads</span>
 				</div>
-				<div tabIndex={9} className="links-basic-styles">
+				<div tabIndex={9} className="links-basic-styles" onClick={()=>{more()}}>
 					<svg
 						fill="currentColor"
 						height="24"
@@ -306,7 +335,8 @@ function LeftNavbar() {
 							y2="20"
 						></line>
 					</svg>
-					<span className="links-text">More</span>
+					<span className="links-text" >More</span>
+					
 				</div>
 			</div>
 			<CreatePostPopup show={showPopup} onClose={togglePopup}/>
