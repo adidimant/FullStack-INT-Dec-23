@@ -1,3 +1,7 @@
+/**
+ * test
+ */
+
 let a = 12.2;
 let b = a ** 2;
 let c = a + b;
