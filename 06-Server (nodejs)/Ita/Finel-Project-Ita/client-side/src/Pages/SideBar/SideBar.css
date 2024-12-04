@@ -1,0 +1,85 @@
+.SideBarContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50px;
+    height: 100%;
+    background-color: #007474;
+    color: #fff;
+    padding: 15px;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    position: fixed;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    align-items: center;
+    
+}
+
+.itemSideBar {
+    background-color: transparent;  
+    display: flex;
+    flex-direction: column;
+    width: 65px;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+
+    .iconSideBar {
+        width: 30px;
+        height: 30px;
+        filter: brightness(0) invert(1);
+        transition: all 0.3s ease;  
+    }
+
+    &:hover {  
+        color: #a0ffff;
+
+        .iconSideBar {
+            filter: invert(80%) sepia(39%) saturate(454%) hue-rotate(157deg) brightness(108%) contrast(96%);
+        }
+    }
+}
+
+
+
+.customPopup {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    position: relative; /* Needed for ::before positioning */
+    z-index: 1000;
+    width: 200px;
+  }
+  
+  .customPopup::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent white transparent; /* Adjust for color */
+    top: -10px; /* Adjust this value for position */
+    left: 50%; /* This centers the arrow horizontally */
+    transform: translateX(-50%); /* This centers the arrow */
+  }
+  
+  .popupItem {
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  
+  .popupItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .popupItem a {
+    text-decoration: none;
+    color: #333;
+  }
+  

@@ -1,0 +1,94 @@
+.general-btn {
+    font-size: 24px;
+    font-weight: 700;
+    height: 60px;
+    border-radius: 8px; /* Modern sharper radius */
+    border: 2px solid #004C4C; /* Updated border to match new color */
+    padding: 15px 25px;
+    background-color: #004C4C; /* Updated background color */
+    color: #ffffff; /* White text for contrast */
+    line-height: 1;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Outlined variant */
+.general-btn.outlined {
+    background-color: transparent; /* No background */
+    border: 2px solid #004C4C; /* Frame color same as filled button */
+    color: #004C4C; /* Text color matches frame */
+    padding: 13px 23px; /* Adjusted padding for visual balance */
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.general-btn.outlined:hover {
+    background-color: #004C4C; /* Filled background on hover */
+    color: #ffffff; /* White text on hover */
+    border-color: #006060; /* Slight border lightening effect */
+}
+
+.general-btn.outlined:active {
+    background-color: #003838; /* Slightly darker fill on active */
+    color: #E0E0E0; /* Subtle text color change */
+    border-color: #003838;
+    opacity: 0.9;
+}
+
+/* Dark theme */
+.dark-theme-btn {
+    background-color: #003838; /* Darker variant for dark theme */
+    color: #D0D0D0; /* Light gray text */
+    border: 2px solid #cdcece; /* Matches background */
+}
+
+.dark-theme-btn.outlined {
+    background-color: transparent;
+    border: 2px solid #003838;
+    color: #003838;
+}
+
+.dark-theme-btn.outlined:hover {
+    background-color: #003838;
+    color: #ffffff;
+    border-color: #006060; /* Lightening effect on hover */
+}
+
+/* Light theme */
+.light-theme-btn {
+    background-color: #006060; /* Slightly lighter variant for light theme */
+    color: #ffffff;
+    border: 2px solid #006060;
+}
+
+.light-theme-btn.outlined {
+    background-color: transparent;
+    border: 2px solid #006060;
+    color: #006060;
+}
+
+.light-theme-btn.outlined:hover {
+    background-color: #028686;
+    color: #ffffff;
+}
+
+/* General button hover and active states */
+.general-btn:hover {
+    background-color: #018383; /* Lighter hover effect */
+    border-color: #006060; /* Matches hover background */
+}
+
+.general-btn:active {
+    background-color: #003838; /* Darker active background */
+    color: #E0E0E0; /* Subtle text color change */
+    border-color: #003838;
+    opacity: 0.9;
+}
+
+/* Icon inside button */
+.general-btn img {
+    height: 16px;
+    width: 16px;
+    margin-right: 8px; /* Add spacing between icon and text */
+}
