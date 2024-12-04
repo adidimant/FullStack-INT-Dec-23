@@ -1,0 +1,98 @@
+.general-select {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.select-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 3px;
+}
+
+.select-field {
+  border: none;
+  border-bottom: 0.5px solid rgb(153, 153, 153);
+  font-size: 18px;
+  padding: 5px 0;
+  outline: none;
+  color: inherit;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+  font-family: "Rubik", sans-serif;
+  height: 45px;
+
+}
+
+/* Placeholder styling */
+.select-field:invalid {
+  color: rgb(153, 153, 153);
+}
+
+.select-field.error {
+  border-bottom: 0.5px solid red;
+}
+
+/* Full frame style */
+.select-field.full-frame {
+  border: 0.5px solid rgb(153, 153, 153);
+  border-radius: 8px;
+  padding: 5px 10px;
+  background: transparent;
+}
+
+.select-field.full-frame.error {
+  border-color: red;
+}
+
+/* Error message */
+.error-message {
+  font-size: 12px;
+  color: red;
+  margin-top: 3px;
+}
+
+/* Option styles */
+.select-field option {
+  background-color: #ffffff;
+  color: #333333;
+  font-family: "Rubik", sans-serif;
+}
+
+.select-field option:hover {
+  background-color: #d3d3d3;
+}
+
+/* Dark mode styles */
+.dark .select-title {
+  color: #f5f5f5;
+}
+
+.dark .select-field {
+  color: #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
+}
+
+.dark .select-field.error {
+  border-bottom: 2px solid red;
+}
+
+.dark .select-field.full-frame {
+  border: 2px solid #f5f5f5;
+}
+
+.dark .select-field.full-frame.error {
+  border-color: red;
+}
+
+.dark .select-field option {
+  background-color: #333333;
+  color: #f5f5f5;
+}
+
+.dark .select-field option:hover {
+  background-color: #555555;
+}

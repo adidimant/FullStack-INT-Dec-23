@@ -1,0 +1,16 @@
+.general-box {
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.light-theme-box {
+    background-color: #fff;
+    color: #000000;
+}
+
+.dark-theme-box {
+    background-color: #333333;
+    color: #e0e0e0;
+}
