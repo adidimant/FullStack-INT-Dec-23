@@ -83,7 +83,7 @@ usersRouter.post('/login', Utils.validateRequiredParams(['emailOrUsername', 'pas
   if (user) {
     const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName };
     const accessToken = generateAccessToken(payload);
-    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string);
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string); // specifically in instagram, we won't define refreshToken expiration - to enable the user to be logged-in forever
     // create a token, ecoding the user details (email, username, userId, fullName)
     // respond the token to the client side in the body, with 200
 

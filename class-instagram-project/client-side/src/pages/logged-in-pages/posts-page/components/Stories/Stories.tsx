@@ -1,12 +1,14 @@
 import  { memo, useEffect, useState } from "react";
-import storyImg2 from '../../../../../assets/profile.jpg';
 import Story from "./components/Story";
 import { PostBackendAPI } from "../../../types";
-import "./Stories.css"
 import { appendServerPrefix } from "../../../../../utils";
 import { axiosClient } from "../../../../../axiosClient";
+import { useThemeContext } from "../../../../../contexts/theme-context";
+import "./Stories.css";
+import '../../../../../light-dark.css';
 
 function Stories() {
+	const { theme }= useThemeContext()
 	const [userData, setUserData] = useState([]);
 
 	useEffect( () => {
@@ -17,8 +19,7 @@ function Stories() {
 
 
 	return (
-		<div className="Stories">
-			<Story username='ofer ben ami' profilePic={storyImg2}/>
+		<div className={`Stories ${theme}-background`}>
 			{userData ? userData.map((user: PostBackendAPI, index: number) => {
 				return <Story key={index} username={user.userId} profilePic={appendServerPrefix(user.imgUrl)}/>
 			}) : <></>}
