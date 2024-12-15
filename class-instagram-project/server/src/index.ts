@@ -34,7 +34,9 @@ app.use(platformLogMiddleware);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:5173' // Allow requests from your frontend
+  origin: 'http://localhost:5173', // Allow requests from your frontend
+  allowedHeaders: 'Authorization, Content-Type, Cookie',
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
 }));
 
 app.use('/api/posts', authMiddleware, postsRouter);
