@@ -8,3 +8,5 @@ react-native - 2 lessons
 2 lessons - deploy web app + domain,CI-CD/redis/docker/testing + השלמות
 exam - 1 lesson
 final projects - 2-3 lessons
+
+AI tools - ollama ; https://lmstudio.ai/

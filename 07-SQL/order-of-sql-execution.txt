@@ -1,0 +1,9 @@
+SELECT first_name as fname, deals
+FROM Customers WHERE deal_year = 2024 ORDER BY deals desc LIMIT 3;
+
+from the upper query, the order of operations will be:
+1) Look at the relevant table(s) (FROM Customers)
+2) For each row in the table(s) - run the condition (WHERE), filter only the rows that fulfills the condition
+3) Sort the rows (according to the ORDER BY)
+4) LIMIT the top x items
+5) SELECT only the specified columns for the final output
