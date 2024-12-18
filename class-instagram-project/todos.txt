@@ -4,6 +4,7 @@ cookies - 1 lesson V
 CORS + options request 0.5 lesson V - https://aws.amazon.com/what-is/cross-origin-resource-sharing/#:~:text=your%20CORS%20requirements%3F-,What%20is%20Cross-Origin%20Resource%20Sharing%3F,resources%20in%20a%20different%20domain.
 sql - 2 lessons - https://www.w3schools.com/sql/
 styled-components
+bcrypt
 react-native - 2 lessons
 2 lessons - deploy web app + domain,CI-CD/redis/docker/testing + השלמות
 exam - 1 lesson
