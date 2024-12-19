@@ -1,0 +1,21 @@
+Based on the data here - https://www.programiz.com/sql/online-compiler/
+
+1) Get all the orders that the order deal is above 300$
+
+2) Get all the unique item name from the orders
+
+3) Get all the unique items of specific customer ID = 4
+
+4) get how many shippings are in "Pending" status
+
+5) Get how many customers have more than 1 item in "Pending" status
+
+6) get all the customers that their country is USA and their age is higher than 25, OR they are from UK and their age is lower than 25
+
+learn by yourself:
+7) Get all the customers that are from UK and their first name starts with "D..."
+
+learn by yourself:
+8) Get the average amount of all the last orders
+
+9) get the average amount of all the last orders that are at least 300$

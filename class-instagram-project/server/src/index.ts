@@ -17,6 +17,7 @@ const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/';
 mongoose.connect(mongoURI).then(() => {
   console.log("MongoDB is connected!");
 }).catch((err) => console.error(err));
+// 10.0.0.1:27832 -> my-server.com(212.9.5.66):27017
 
 const platformLogMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userAgent = req.headers["user-agent"];

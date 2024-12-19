@@ -86,7 +86,8 @@ postsRouter.put('/create', upload.single('image'), async (req, res) => {
 postsRouter.delete('/:postId', async (req, res) => {
   const { postId } = req.params;
 
-  const userId = '<DELETOR-USER-ID>';
+  const userData = (req as any).userData;
+  const userId = userData.userId;
 
   // delete post from db, with checking that this user really owns this post:
   const deletedPost = await PostModel.findOneAndDelete({ id: postId, userId });
