@@ -6,7 +6,8 @@ sql - 2 lessons - https://www.w3schools.com/sql/
 styled-components
 bcrypt
 react-native - 2 lessons
-2 lessons - deploy web app + domain,CI-CD/redis/docker/testing + השלמות
+2 lessons - deploy web app + domain,aws,CI-CD/redis/docker/testing + השלמות
+exercises - like the plusOne - https://leetcode.com/problems/plus-one/?envType=problem-list-v2&envId=array, or here - https://leetcode.com/problem-list/array/
 exam - 1 lesson
 final projects - 2-3 lessons
 
