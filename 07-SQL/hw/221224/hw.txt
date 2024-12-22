@@ -1,0 +1,17 @@
+Based on the data here - https://www.programiz.com/sql/online-compiler/
+
+INSERT INTO Orders (item, amount, customer_id)
+VALUES ('Keyboard', 500, 4);
+
+1) Write an SQL statement lists the number of customers in each country, sorted high to low (Only include countries with more than 5 customers)
+
+2) Give me all the users with at least two orders
+
+3) Give me how many people has the name 'John' among my customers.
+
+4) Give me how many different people I have in the same age in the same country.
+
+5) Give me the customer ids of people that was buying Keyboard, have at least two items and they paid for them at least 600$
+
+6) Give me the customer ids that did at least two orders with the same price.
+

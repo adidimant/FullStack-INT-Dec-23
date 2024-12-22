@@ -120,12 +120,3 @@ WHERE assignee IS NULL AND date <= Convert(datetime, '2024-10-01');
 SELECT first_name
 FROM Customers
 WHERE Country IS NOT NULL;
-
-- DELETE
-- update
-
--- INSERT
--- UPDATE
--- DELETE
--- TODO - QUERY TO CREATE AND ALTER TABLE
--- CREATE READ UPDATE DELETE
