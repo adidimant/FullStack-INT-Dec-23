@@ -4,8 +4,11 @@ import Utils from '../services/utils.service';
 import upload from '../middlewares/upload';
 import { UserModel } from '../models/user.model';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { ACTIVE_USERS_SESSIONS_AND_TOKENS } from '../services/sessions.management.service';
+
+const saltRounds = 10; // for bcrypt salt rounds, can be also env variable
 const usersRouter = express.Router();
 
 
@@ -50,12 +53,31 @@ usersRouter.put('/register', upload.single('profilePic'), async (req, res) => {
 
   const createdDate = new Date();
 
+  // test empty password
+  // test very long password
+  // test undefined password
+  // test null password
+
+  if (!password) {
+    res.status(400).send("invalid password provided");
+    return;
+  }
+
+  let hashedPassword;
+
+  try {
+    hashedPassword = await bcrypt.hash(password, saltRounds);
+  } catch(err) {
+    res.status(500).send("Internal server error");
+    return;
+  }
+
   const newUser = new UserModel({
     userId,
     username,
     email,
     createdDate,
-    password,
+    password: hashedPassword,
     firstName,
     lastName,
     birthdate,
@@ -75,12 +97,20 @@ usersRouter.post('/login', Utils.validateRequiredParams(['emailOrUsername', 'pas
 
   let user;
   if (emailOrUsername.includes('@')) {
-    user = await UserModel.findOne({ email: emailOrUsername, password });
+    user = await UserModel.findOne({ email: emailOrUsername });
   } else {
-    user = await UserModel.findOne({ username: emailOrUsername, password });
+    user = await UserModel.findOne({ username: emailOrUsername });
   }
 
-  if (user) {
+  let passwordVerified;
+  
+  try {
+    passwordVerified = await bcrypt.compare(password, user?.password);
+  } catch (err) {
+    res.status(500).send("Internal server error");
+  }
+
+  if (user && passwordVerified) {
     const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName };
     const accessToken = generateAccessToken(payload);
     const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string); // specifically in instagram, we won't define refreshToken expiration - to enable the user to be logged-in forever
