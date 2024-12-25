@@ -92,3 +92,59 @@ FROM Orders
 GROUP BY customer_id, item
 HAVING item_purchases >= 2
 ORDER BY item_purchases DESC;
+
+-- INNER JOIN:
+customer_id	first_name	last_name	age	country
+1	John	Doe	31	USA 4	Keyboard	400
+1	John	Doe	31	USA 9	Monitor	500
+
+-- LEFT JOIN:
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA 4 'Keyboard' 400
+
+-- LEFT JOIN:
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA null null null
+1	John	Doe	31	USA 4 'Keyboard' 400
+
+
+Complexity = O(N x N)
+
+
+SELECT Products.ProductID, Products.ProductName, Categories.CategoryName
+FROM Products
+INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+
+The example above works without specifying table names, because none of the specified column names are present in both tables. If you try to include CategoryID in the SELECT statement, you will get an error if you do not specify the table name (because CategoryID is present in both tables).
+
+!!JOIN and INNER JOIN will return the same result.
+
+-- JOIN on 3 tables:
+SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+FROM ((Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+
+-- Build a query that presents the customer_id, his country, the item(s) and the amount(s) he paid for his,
+-- order by customer_id ASC:
+SELECT Customers.customer_id, Customers.country, Orders.item, Orders.amount
+FROM Customers
+INNER JOIN Orders
+ON Customers.customer_id = Orders.customer_id
+ORDER BY Customers.customer_id ASC;
+
+-- Another example
+SELECT C.CustomerName, O.OrderID
+FROM Customers C
+LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
+ORDER BY Customers.CustomerName;
+
+-- Same example - with table nicknames:
+SELECT C.CustomerName, O.OrderID
+FROM Customers C
+LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
+ORDER BY C.CustomerName;
+
