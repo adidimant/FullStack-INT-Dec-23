@@ -103,25 +103,27 @@ usersRouter.post('/login', Utils.validateRequiredParams(['emailOrUsername', 'pas
   }
 
   let passwordVerified;
+
+  if (user) {
+    try {
+      passwordVerified = await bcrypt.compare(password, user?.password as string);
+    } catch (err) {
+      res.status(500).send("Internal server error");
+    }
+
+    if (passwordVerified) {
+      const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName };
+      const accessToken = generateAccessToken(payload);
+      const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string); // specifically in instagram, we won't define refreshToken expiration - to enable the user to be logged-in forever
+      // create a token, ecoding the user details (email, username, userId, fullName)
+      // respond the token to the client side in the body, with 200
   
-  try {
-    passwordVerified = await bcrypt.compare(password, user?.password);
-  } catch (err) {
-    res.status(500).send("Internal server error");
-  }
-
-  if (user && passwordVerified) {
-    const payload = { email: user.email, userId: user.userId, username: user.username, birthdate: user.birthdate, firstName: user.firstName, lastName: user.lastName };
-    const accessToken = generateAccessToken(payload);
-    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string); // specifically in instagram, we won't define refreshToken expiration - to enable the user to be logged-in forever
-    // create a token, ecoding the user details (email, username, userId, fullName)
-    // respond the token to the client side in the body, with 200
-
-    const tokens = { accessToken, refreshToken };
-
-    ACTIVE_USERS_SESSIONS_AND_TOKENS[(user.userId as string)] = { ...tokens, lastActivity: Date.now() };
-    res.json(tokens);
-    return;
+      const tokens = { accessToken, refreshToken };
+  
+      ACTIVE_USERS_SESSIONS_AND_TOKENS[(user.userId as string)] = { ...tokens, lastActivity: Date.now() };
+      res.json(tokens);
+      return;
+    }
   }
 
   // tokenSecret: ifb3cyb2iy42vwoi57y3ui33$_C%4g28cyuiq5h4ivu4yib7y5i743
