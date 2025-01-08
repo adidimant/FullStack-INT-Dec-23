@@ -13,5 +13,14 @@
       "runtimeArgs": ["run", "dev"],
       "console": "integratedTerminal"
     },
+    {
+      "name": "Debug Server Specific Test File",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/class-instagram-project/server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "test", "${file}"],
+      "console": "integratedTerminal",
+    },
   ]
 }

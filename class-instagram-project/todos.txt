@@ -12,3 +12,17 @@ exam - 1 lesson
 final projects - 2-3 lessons
 
 AI tools - ollama ; https://lmstudio.ai/
+
+CI:
+npm i
+npm audit (automaticall scan vulnerabilities within packages your code uses)
+npm run build
+npm run tests
+npm run list
+create container image & push:
+docker build -t my-server-xxx -f server.dockerfile .
+docker push my-server-xxx <some-docker-images-registry-url>
+
+CD:
+docker pull <some-docker-images-registry-url>
+docker run my-server-xxx
