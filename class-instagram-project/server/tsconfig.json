@@ -14,7 +14,7 @@
   "allowSyntheticDefaultImports": true, // Allow default imports from modules even if they don’t have a default export
   "noEmit": true,
   "allowImportingTsExtensions": true,
-  "types": ["node", "express"], // Include Node.js and Express types
+  "types": ["node", "express", "jest"], // Include Node.js and Express types
   "experimentalDecorators": true, // Enable experimental decorators (if needed)
   "emitDecoratorMetadata": true // Emit metadata for decorators (if needed) }
   },
