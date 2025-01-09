@@ -1,0 +1,24 @@
+{ 
+  "compilerOptions": {
+  "target": "ES2020",
+  "module": "commonjs", // Use ES module system
+  "lib": ["ES2020"], // Include standard library
+  "outDir": "./dist", // Output directory for compiled files
+  "rootDir": "./src", // Root directory of input files
+  "strict": true, // Enable strict type checking options
+  "esModuleInterop": true, // Allow default imports from modules with no default export
+  "forceConsistentCasingInFileNames": true, // Ensure consistent file naming
+  "skipLibCheck": true, // Skip type checking of declaration files
+  "resolveJsonModule": true, // Allow importing JSON files
+  "moduleResolution": "node", // Use node-style module resolution
+  "allowSyntheticDefaultImports": true, // Allow default imports from modules even if they don’t have a default export
+  "noEmit": true,
+  "allowImportingTsExtensions": true,
+  "types": ["node", "express"], // Include Node.js and Express types
+  "experimentalDecorators": true, // Enable experimental decorators (if needed)
+  "emitDecoratorMetadata": true, // Emit metadata for decorators (if needed) }
+  "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": ["src/**/*.ts", "src/index.ts"], // Include all TypeScript files in the src directory
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and dist directories
+}

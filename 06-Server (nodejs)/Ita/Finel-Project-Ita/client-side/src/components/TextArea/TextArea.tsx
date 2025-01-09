@@ -10,14 +10,16 @@ type TextAreaProps = {
     fontSize?: string;
     width?: string;
     height?: string;
+    value?: string;
     isRequired?: boolean;
     fullFrame?: boolean;
     onBlur?: () => void;
     validate?: (value: unknown) => boolean;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     children?: React.ReactNode;
   };
 
-function TextArea({ id, placeholder, title, fullFrame = true, fontSize, width, height, rows }: TextAreaProps) {
+function TextArea({ id, placeholder, title, fullFrame = true, fontSize, width, height, onChange ,value, rows }: TextAreaProps) {
     const { theme } = useThemeContext();
    
 
@@ -32,6 +34,8 @@ function TextArea({ id, placeholder, title, fullFrame = true, fontSize, width, h
                 placeholder={placeholder}
                 className={`input-field ${fullFrame ? 'full-frame' : ''}`}
                 rows={rows}
+                value={value}
+                onChange={onChange}
                 style={{ fontSize: fontSize, width: width, height: height }}
             />
         </div>

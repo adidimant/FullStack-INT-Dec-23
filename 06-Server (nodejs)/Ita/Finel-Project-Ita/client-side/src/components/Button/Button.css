@@ -40,13 +40,13 @@
 .dark-theme-btn {
     background-color: #003838; /* Darker variant for dark theme */
     color: #D0D0D0; /* Light gray text */
-    border: 2px solid #cdcece; /* Matches background */
+    border: 1.5px solid #003838; /* Matches background */
 }
 
 .dark-theme-btn.outlined {
-    background-color: transparent;
-    border: 2px solid #003838;
-    color: #003838;
+    background-color:  #016868;
+    border: 1.5px solid #003838;
+    color: #D0D0D0;
 }
 
 .dark-theme-btn.outlined:hover {

@@ -16,8 +16,8 @@ const sidebarItems = [
       icon: diagram,
       label: "הכנסות",
       links: [
-        { text: "הרשאות", url: "/income/monthly" },
-        { text: "הכנסות", url: "/income/yearly" },
+        { text: "הפקת חשבונית חדשה", url: "/new-invoice" },
+        { text: "ריכוז נתוני הכנסות", url: "/Income-data" },
       ],
     },
     {
@@ -32,8 +32,8 @@ const sidebarItems = [
       icon: expenses,
       label: "הוצאות",
       links: [
-        { text: "Daily Expenses", url: "/expenses/daily" },
-        { text: "Budget", url: "/expenses/budget" },
+        { text: "הוצאה חדשה", url: "/expenses/daily" },
+        { text: "ריכוז נתוני הוצאות", url: "/Expense-data" },
       ],
     },
   ];

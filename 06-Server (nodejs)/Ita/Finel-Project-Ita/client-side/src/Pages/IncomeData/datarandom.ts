@@ -1,0 +1,17 @@
+export const data = [
+    { invoiceNumber: 3000, customer: "לקוח א", productDescription: "מוצר א", amount: 100, date: "2025-01-01", paymentType: "אשראי" },
+    { invoiceNumber: 3001, customer: "לקוח ב", productDescription: "מוצר ב", amount: 200, date: "2025-01-02", paymentType: "מזומן" },
+    { invoiceNumber: 3002, customer: "לקוח ג", productDescription: "מוצר ג", amount: 150, date: "2025-01-03", paymentType: "חובה" },
+    { invoiceNumber: 3003, customer: "לקוח א", productDescription: "מוצר א", amount: 120, date: "2025-01-04", paymentType: "אשראי" },
+    { invoiceNumber: 3004, customer: "לקוח ד", productDescription: "מוצר ד", amount: 250, date: "2025-01-05", paymentType: "אשראי" },
+    { invoiceNumber: 3005, customer: "לקוח א", productDescription: "מוצר ב", amount: 180, date: "2025-01-06", paymentType: "מזומן" },
+    { invoiceNumber: 3006, customer: "לקוח ב", productDescription: "מוצר ג", amount: 200, date: "2025-01-07", paymentType: "חובה" },
+    { invoiceNumber: 3007, customer: "לקוח א", productDescription: "מוצר א", amount: 140, date: "2025-01-08", paymentType: "אשראי" },
+    { invoiceNumber: 3008, customer: "לקוח ג", productDescription: "מוצר ד", amount: 220, date: "2025-01-09", paymentType: "מזומן" },
+    { invoiceNumber: 3009, customer: "לקוח ד", productDescription: "מוצר ג", amount: 190, date: "2025-01-10", paymentType: "חובה" },
+    { invoiceNumber: 3010, customer: "לקוח ב", productDescription: "מוצר א", amount: 160, date: "2025-01-11", paymentType: "אשראי" },
+    { invoiceNumber: 3011, customer: "לקוח ג", productDescription: "מוצר ב", amount: 170, date: "2025-01-12", paymentType: "מזומן" },
+    { invoiceNumber: 3012, customer: "לקוח ד", productDescription: "מוצר ד", amount: 230, date: "2025-01-13", paymentType: "אשראי" },
+    { invoiceNumber: 3013, customer: "לקוח א", productDescription: "מוצר א", amount: 180, date: "2025-01-14", paymentType: "חובה" },
+    { invoiceNumber: 3014, customer: "לקוח ב", productDescription: "מוצר ד", amount: 200, date: "2025-01-15", paymentType: "מזומן" },
+];

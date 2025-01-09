@@ -3,6 +3,7 @@
     padding: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 .light-theme-box {
@@ -11,6 +12,6 @@
 }
 
 .dark-theme-box {
-    background-color: #333333;
+    background-color: #505050;
     color: #e0e0e0;
 }

@@ -33,7 +33,7 @@ function Navbar({ popupLinks = [] }) {
 
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
+ 
 
   if (!popupLinks) {
     return <div className="navBarContainer"></div>;
@@ -52,36 +52,6 @@ function Navbar({ popupLinks = [] }) {
      </Link>
       ))}
       </div> 
-
-
-      <div>
-        <button
-          className={`iconPlus ${open ? "rotated" : ""}`}
-          onClick={handleClick}
-          // onMouseLeave={handleMouseLeave}
-          aria-describedby={id}
-          aria-expanded={open}
-        >
-        <AddIcon style={{ fontWeight: "500", fontSize: "45px" }} />
-        </button>
-        <Popper 
-              id={id} 
-              open={open} 
-              anchorEl={anchorEl} 
-              placement="left-start"
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
-              >
-          <div className="customPopup">
-            <Link to="/new-invoice" className="popperLink">
-              חשבונית חדשה
-            </Link>
-            <Link to="/new-quote" className="popperLink">
-              הצעת מחיר חדשה
-            </Link>
-          </div>
-        </Popper>
-      </div>
       
     </div>
   );
