@@ -1,7 +1,7 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../services/utils.service';
-import { uploadProfilePicture } from '../middlewares/upload';
+import { deleteFile, getAbsoluteFilePath, getDbFilePath, uploadProfilePicture } from '../middlewares/upload';
 import jwt from 'jsonwebtoken';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { ACTIVE_USERS_SESSIONS_AND_TOKENS } from '../services/sessions.management.service';
@@ -10,6 +10,11 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import { promisePool } from '../index'; // Import MySQL pool connection
 import { RowDataPacket } from 'mysql2';
+import path from 'path';
+import fs from 'fs';
+
+
+import { fstat } from 'fs';
 
 dotenv.config();
 
@@ -47,7 +52,6 @@ usersRouter.post('/send-code', async (req: express.Request, res: express.Respons
       return;
     }
 
-    // Check if the email already exists in the users table
     const [rows]: any = await promisePool.query(`SELECT email FROM users WHERE email = ?`, [email]);
 
     if (rows.length > 0) {
@@ -55,18 +59,16 @@ usersRouter.post('/send-code', async (req: express.Request, res: express.Respons
       return;
     }
 
-    // Generate a 6-digit random verification code
+    
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     console.log('Generated verification code:', verificationCode);
 
-    // Insert the code into the verification_codes table
     await promisePool.query(
       `INSERT INTO verification_codes (email, code, createdDate) VALUES (?, ?, NOW())
        ON DUPLICATE KEY UPDATE code = VALUES(code), createdDate = NOW()`,
       [email, verificationCode]
     );
 
-    // Send the verification code via email
     try {
       await transporter.sendMail({
         from: `"חשבונית בקליק" <${process.env.EMAIL_USER}>`, // Use app name as sender
@@ -114,9 +116,15 @@ usersRouter.post('/verify-code', async (req, res): Promise<void> => {
 
 usersRouter.post('/complete-registration', uploadProfilePicture.single('profilePic'), async (req, res): Promise<void> => {
   try {
-    const { email, fullName, password, companyname, companynumber, address, city } = req.body;
+    const { email, fullName, password, companyName, companyNumber, address, city } = req.body;
 
-    // Check if the email is already registered
+    // Validate required fields
+    if (!fullName || !companyName || !companyNumber || !address || !city || !email || !password) {
+      res.status(400).json({ error: 'All fields are required' });
+      return;
+    }
+
+    // Check if email already exists in the database
     const [rows] = await promisePool.query(`SELECT * FROM users WHERE email = ?`, [email]);
     if ((rows as any[]).length > 0) {
       res.status(400).json({ error: 'Email already registered' });
@@ -126,19 +134,32 @@ usersRouter.post('/complete-registration', uploadProfilePicture.single('profileP
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate a unique user ID and capture the current date
+    // Generate a unique userId
     const userId = uuidv4();
 
-    let fileName = (req as any).fileName;
-    if (!fileName) {
-      fileName = 'default_profile.jpg'; // Use a default profile picture
+    let profilePicPath = '/uploads/altLogo.png'; // Default image if none is uploaded
+
+    if (req.file) {
+      // Convert the uploaded file to a full path for storage in the database
+      profilePicPath = `/uploads/${req.file.filename}`;
+
+      // If there is a file, check if the profile picture exists and delete the old one if it isn't the default one
+      const [oldUser] = await promisePool.query<RowDataPacket[]>(`SELECT profilePic FROM users WHERE email = ?`, [email]);
+
+      if (oldUser[0]?.profilePic && !oldUser[0].profilePic.includes('default_profile')) {
+        try {
+          await deleteFile(oldUser[0].profilePic);
+        } catch (err) {
+          console.error('Error deleting old profile picture:', err);
+        }
+      }
     }
 
-    // Save the user to the database
+    // Insert the new user data into the database
     await promisePool.query(
       `INSERT INTO users (userId, email, createdDate, password, fullName, companyName, companyNumber, address, city, profilePic)
        VALUES (?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)`,
-      [userId, email, hashedPassword, fullName, companyname, companynumber, address, city, `/uploads/${fileName}`]
+      [userId, email, hashedPassword, fullName, companyName, companyNumber, address, city, profilePicPath]
     );
 
     res.status(201).json({ message: 'User registered successfully!' });
@@ -152,7 +173,6 @@ usersRouter.post('/login', Utils.validateRequiredParams(['email', 'password']), 
   try {
     const { email, password } = req.body;
 
-    // Find user by email
     const [rows] = await promisePool.query(`SELECT * FROM users WHERE email = ?`, [email]);
     const user = (rows as any[])[0];
 
@@ -161,14 +181,12 @@ usersRouter.post('/login', Utils.validateRequiredParams(['email', 'password']), 
       return;
     }
 
-    // Compare password with stored hash
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       res.status(401).send("Invalid email or password");
       return;
     }
 
-    // Generate tokens if authentication successful
     const payload = {
       email: user.email,
       userId: user.userId,
@@ -177,9 +195,11 @@ usersRouter.post('/login', Utils.validateRequiredParams(['email', 'password']), 
       fullname: user.fullName
     };
 
+    //יצירת טוקן וריפרש-טוקן
     const accessToken = generateAccessToken(payload);
     const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string);
 
+    //ניהול משתמשים פעילים
     ACTIVE_USERS_SESSIONS_AND_TOKENS[user.userId] = {
       accessToken,
       refreshToken,
@@ -221,123 +241,146 @@ usersRouter.post('/logout', authMiddleware, (req, res) => {
   res.send('Logged out successfully');
 });
 
-usersRouter.post('/update-profile', authMiddleware, async (req,res) => {
-  //TODO - implement if we have time
-});
+
+
+
+
+
+
+
+
+
 
 //קבלת פרטי המשתמש
 usersRouter.get('/details/:userId', async (req, res): Promise<void> => {
   const { userId } = req.params;
 
   if (!userId) {
-      res.status(400).send('User ID is required');
-      return;
+    res.status(400).send('User ID is required');
+    return;
   }
 
   try {
-      const [rows]: any = await promisePool.query(
-          `
-          SELECT 
-              fullName,
-              companyName,
-              companyNumber,
-              address,
-              city,
-              profilePic
-          FROM 
-              users
-          WHERE 
-              userId = ?;
-          `,
-          [userId]
-      );
+    const [rows]: any = await promisePool.query(
+      `SELECT fullName, companyName, companyNumber, address, city, profilePic
+       FROM users WHERE userId = ?;`,
+      [userId]
+    );
 
-      if (rows.length === 0) {
-          res.status(404).send('User not found');
-          return;
+    if (rows.length === 0) {
+      res.status(404).send('User not found');
+      return;
+    }
+
+   
+    if (rows[0].profilePic) {
+      try {
+        const absolutePath = getAbsoluteFilePath(rows[0].profilePic);
+        const imageBuffer = await fs.promises.readFile(absolutePath);
+        rows[0].profilePic = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+      } catch (err) {
+        console.error('Error reading profile picture:', err);
+        rows[0].profilePic = null;
       }
+    }
 
-      res.json(rows[0]);
+    res.json(rows[0]);
   } catch (error) {
-      console.error('Error fetching user details:', error);
-      res.status(500).send('Error fetching user details.');
+    console.error('Error fetching user details:', error);
+    res.status(500).send('Error fetching user details.');
   }
 });
 
-//עידכון פרטי המשתמש
+// עידכון נתוני משתמש
 usersRouter.put('/details/:userId', authMiddleware, uploadProfilePicture.single('profilePic'), async (req, res): Promise<void> => {
   const { userId } = req.params;
   const { fullName, companyName, companyNumber, address, city } = req.body;
-  const profilePic = req.file ? `/uploads/${req.file.filename}` : null;
 
-  if (!userId) {
-      res.status(400).send('User ID is required');
-      return;
-  }
-
-  if (!fullName || !companyName || !companyNumber) {
-      res.status(400).send('Full name, company name, and company number are required');
-      return;
+  if (!fullName || !companyName || !companyNumber || !address || !city) {
+    res.status(400).json({ error: 'All fields are required' });
+    return;
   }
 
   try {
-      const [result]: any = await promisePool.query(
-          `
-          UPDATE 
-              users
-          SET 
-              fullName = ?, 
-              companyName = ?, 
-              companyNumber = ?, 
-              address = ?, 
-              city = ?, 
-              profilePic = COALESCE(?, profilePic)
-          WHERE 
-              userId = ?;
-          `,
-          [fullName, companyName, companyNumber, address, city, profilePic, userId]
+    let profilePicPath: string | undefined;
+
+    if (req.file) {
+      // ממיר את שם הקובץ לנתיב מלא לשמירה במסד הנתונים
+      profilePicPath = getDbFilePath(req.file.filename);
+
+      // מביא את נתיב התמונה הישנה מהמסד נתונים
+      const [oldUser] = await promisePool.query<RowDataPacket[]>(
+        'SELECT profilePic FROM users WHERE userId = ?',
+        [userId]
       );
 
-      if (result.affectedRows === 0) {
-          res.status(404).send('User not found');
-          return;
+      // אם יש תמונה  ישנה והיא לא ברירת מחדל אז מוחק את התמונה הישנה
+      if (oldUser[0]?.profilePic && !oldUser[0].profilePic.includes('default_profile')) {
+        try {
+          await deleteFile(oldUser[0].profilePic);
+        } catch (err) {
+          console.error('Error deleting old profile picture:', err);
+          
+        }
       }
+    }
+    // שאילתה אם אפשרות האם הועלתה תמונה חדשה או שלא
+    const updateQuery = `
+      UPDATE users
+      SET 
+        fullName = ?,
+        companyName = ?,
+        companyNumber = ?,
+        address = ?,
+        city = ?
+        ${profilePicPath ? ', profilePic = ?' : ''}
+      WHERE userId = ?
+    `;
 
-      res.send('User details updated successfully');
+    const queryParams = profilePicPath
+      ? [fullName, companyName, companyNumber, address, city, profilePicPath, userId]
+      : [fullName, companyName, companyNumber, address, city, userId];
+
+    const [result] = await promisePool.query(updateQuery, queryParams);
+
+    if ((result as any).affectedRows === 0) {
+      res.status(404).json({ error: 'User not found' });
+      return;
+    }
+
+    // 
+    let base64Image = null;
+    if (profilePicPath) { //אם תמונה חדשה
+      try {
+        const absolutePath = getAbsoluteFilePath(profilePicPath); //קריאת קובץ התמונה
+        const imageBuffer = await fs.promises.readFile(absolutePath); 
+        base64Image = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+      } catch (err) {
+        console.error('Error reading new profile picture:', err);
+      }
+    }
+
+    res.json({
+      message: 'User details updated successfully',
+      profilePic: base64Image
+    });
+
   } catch (error) {
-      console.error('Error updating user details:', error);
-      res.status(500).send('Error updating user details.');
+    console.error('Error updating user details:', error);
+    res.status(500).json({ error: 'Internal server error while updating user details' });
   }
 });
 
-// קבלת נתוני חברה (בשביל קבלה)
-usersRouter.get('/company-details/:userId', async (req, res): Promise<void> => {
-  try {
-      const { userId } = req.params;
 
-      const [rows] = await promisePool.query<RowDataPacket[]>(
-          `SELECT 
-              companyName,
-              companyNumber,
-              address,
-              city,
-              profilePic as logoUrl
-          FROM users 
-          WHERE userId = ?`,
-          [userId]
-      );
 
-      if (rows.length === 0) {
-        res.status(404).json({ error: 'Company not found' });
-        return;
-      }
 
-      res.json(rows[0]);
-  } catch (error) {
-      console.error('Error fetching company details:', error);
-      res.status(500).json({ error: 'Failed to fetch company details' });
-  }
-});
+
+
+
+
+
+
+
 
 
 // Step 1: Check email existence and send verification code
@@ -350,7 +393,7 @@ usersRouter.post('/check-email', async (req: express.Request, res: express.Respo
       return;
     }
 
-    // Check if the email exists in the users table
+    // בדיקה האם האימייל נמצא בטבלה
     const [rows]: any = await promisePool.query(
       `SELECT email FROM users WHERE email = ?`, 
       [email]
@@ -361,10 +404,9 @@ usersRouter.post('/check-email', async (req: express.Request, res: express.Respo
       return;
     }
 
-    // Generate a 6-digit random verification code
+    
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Insert or update the code in verification_codes table
     await promisePool.query(
       `INSERT INTO verification_codes (email, code, createdDate) 
        VALUES (?, ?, NOW())
@@ -372,7 +414,6 @@ usersRouter.post('/check-email', async (req: express.Request, res: express.Respo
       [email, verificationCode]
     );
 
-    // Send the verification code via email
     try {
       await transporter.sendMail({
         from: `"חשבונית בקליק" <${process.env.EMAIL_USER}>`,
@@ -401,8 +442,7 @@ usersRouter.post('/check-email', async (req: express.Request, res: express.Respo
   }
 });
 
-// Step 2: Verify the code (you can reuse your existing verify-code endpoint)
-// But let's add a time check to ensure the code hasn't expired
+
 usersRouter.post('/verify-code', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { email, code } = req.body;
@@ -428,15 +468,12 @@ usersRouter.post('/verify-code', async (req: express.Request, res: express.Respo
   }
 });
 
-// Step 3: Reset the password
 usersRouter.post('/reset-password', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { email, password } = req.body;
 
-    // Hash the new password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Update the user's password
     const [result] = await promisePool.query(
       `UPDATE users SET password = ? WHERE email = ?`,
       [hashedPassword, email]
@@ -447,7 +484,6 @@ usersRouter.post('/reset-password', async (req: express.Request, res: express.Re
       return;
     }
 
-    // Clean up the verification code
     await promisePool.query(
       `DELETE FROM verification_codes WHERE email = ?`,
       [email]

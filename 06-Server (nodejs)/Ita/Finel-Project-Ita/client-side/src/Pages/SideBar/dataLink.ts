@@ -1,17 +1,8 @@
 import diagram from "../../assets/diagram.png";
 import document from "../../assets/document.png";
 import expenses from "../../assets/expenses.png";
-import menu from "../../assets/menu.png"
 
 const sidebarItems = [
-    {
-      icon: menu,
-      label: "בית",
-      links: [
-        { text: "נתונים", url: "/" },
-        { text: "נתונים", url: "/settings" },
-      ],
-    },
     {
       icon: diagram,
       label: "הכנסות",
@@ -36,6 +27,10 @@ const sidebarItems = [
         { text: "ריכוז נתוני הוצאות", url: "/Expense-data" },
       ],
     },
+  ];
+   export const settingsLinks = [
+    { url: '/update-details', text: 'עדכון פרטים' },
+    { url: '/logout', text: 'התנתק' }
   ];
 
   export default sidebarItems

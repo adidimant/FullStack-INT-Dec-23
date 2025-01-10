@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,34 +7,69 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
-import axios from 'axios';
+import { axiosClient } from '../../../axiosClient';
+import { useThemeContext } from '../../../context/theme-context';
 
 interface ExchangeRate {
-  CurrencyCode: string;
-  CurrencyName: string;
-  ExchangeRate: number;
-  Change: number;
+  key: string;
+  currentExchangeRate: number;
+  currentChange: number;
+  unit: number;
+  lastUpdate: string;
+  name: string;
+  currency?: string;
 }
 
+interface ExchangeRatesResponse {
+  exchangeRates: ExchangeRate[];
+}
+
+const countryCurrencyMap: { [key: string]: string } = {
+  "USD": "דולר אמריקאי",
+  "GBP": "לירה שטרלינג",
+  "JPY": "ין יפני",
+  "EUR": "אירו",
+  "AUD": "דולר אוסטרלי",
+  "CAD": "דולר קנדי",
+  "DKK": "כתר דני",
+  "NOK": "כתר נורבגי",
+  "ZAR": "ראנד דרום אפריקאי",
+  "SEK": "כתר שוודי",
+  "CHF": "פרנק שוויצרי",
+  "JOD": "דינר ירדני",
+  "LBP": "לירה לבנונית",
+  "EGP": "לירה מצרית",
+};
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('he-IL', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+};
+
+
 function ExchangeRatesTable() {
-  const [exchangeRates, setExchangeRates] = useState<ExchangeRate[]>([]);
+  const [exchangeRates, setExchangeRates] = useState<ExchangeRatesResponse>({ exchangeRates: [] });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastUpdate, setLastUpdate] = useState<string>("");
+  const { theme } = useThemeContext()
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
       try {
-        const response = await axios.get('/api/PublicApi/GetExchangeRates');
-
-        const processedData: ExchangeRate[] =
-          response?.data?.ExchangeRates?.map((item: any) => ({
-            CurrencyCode: item.CurrencyCode || 'N/A',
-            CurrencyName: item.CurrencyName_He || 'לא זמין',
-            ExchangeRate: item.Rate || 0,
-            Change: item.ChangePercentage || 0,
-          })) || [];
-
-        setExchangeRates(processedData);
+        const response = await axiosClient.get<ExchangeRatesResponse>('/api/variance/exchange-rates');
+        const updatedRates = response.data.exchangeRates.map((rate) => ({
+          ...rate,
+          currency: countryCurrencyMap[rate.key] || "מטבע לא ידוע",
+        }));
+        setExchangeRates({ exchangeRates: updatedRates });
+        if (updatedRates.length > 0) {
+          setLastUpdate(updatedRates[0].lastUpdate);
+        }
       } catch (error) {
         console.error('Error fetching exchange rates:', error);
         setError('שגיאה בטעינת הנתונים, אנא נסה מאוחר יותר.');
@@ -46,48 +81,101 @@ function ExchangeRatesTable() {
     fetchExchangeRates();
   }, []);
 
+  const tableStyle = useMemo(() => ({
+      backgroundColor: theme === 'dark' ? '#2E2E2E' : '#FFFFFF',
+      color: theme === 'dark' ? '#e0e0e0' : '#000000', // צבע טקסט מותאם
+  }), [theme]);
+
+  const headerCellStyle = useMemo(() => ({
+      fontWeight: 'bold',
+      fontSize: '20px',
+      color: theme === 'dark' ? '#FFFFFF' : '#000000', // טקסט לבן בכותרת במצב חשוך
+      backgroundColor: theme === 'dark' ? '#424242' : '#f5f5f5', // רקע שונה לכותרת
+      borderBottom: '1px solid lightgray',
+  }), [theme]);
+
+  const cellStyle = useMemo(() => ({
+      color: theme === 'dark' ? '#e0e0e0' : '#000000', // צבע טקסט מותאם לתאים
+  }), [theme]);
+
+ 
+
   return (
-    <TableContainer component={Paper} sx={{ maxWidth: 800, margin: 'auto', marginTop: '20px' }}>
+    <div style={{ maxWidth: 800 }}>
       {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
           <CircularProgress />
         </div>
       ) : error ? (
         <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>
-      ) : exchangeRates.length === 0 ? (
+      ) : exchangeRates.exchangeRates.length === 0 ? (
         <p style={{ textAlign: 'center', padding: '20px' }}>לא נמצאו נתונים להצגה</p>
       ) : (
-        <Table sx={{ minWidth: 650 }} aria-label="Exchange Rates Table">
-          <TableHead>
-            <TableRow>
-              <TableCell>קוד מטבע</TableCell>
-              <TableCell align="right">שם המטבע</TableCell>
-              <TableCell align="right">שער חליפין</TableCell>
-              <TableCell align="right">שינוי&nbsp;(%)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {exchangeRates.map((row) => (
-              <TableRow key={row.CurrencyCode}>
-                <TableCell component="th" scope="row">
-                  {row.CurrencyCode}
-                </TableCell>
-                <TableCell align="right">{row.CurrencyName}</TableCell>
-                <TableCell align="right">
-                  {row.ExchangeRate.toLocaleString(undefined, { minimumFractionDigits: 3 })}
-                </TableCell>
-                <TableCell
-                  align="right"
-                  style={{ color: row.Change >= 0 ? 'green' : 'red' }}
-                >
-                  {row.Change.toFixed(2)}%
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <>
+          <h2 style={{ textAlign: 'center', direction: 'rtl' }}>
+            שערי מטבעות - תאריך עדכון: {formatDate(lastUpdate)}
+          </h2>
+          <TableContainer
+            component={Paper}
+            sx={{ maxHeight: 235, overflowY: 'auto', direction: 'rtl', ...tableStyle }}
+          >
+            <Table sx={{ minWidth: 650 }} stickyHeader aria-label="Exchange Rates Table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={headerCellStyle}>מדינה</TableCell>
+                  <TableCell align="center" style={headerCellStyle}>
+                    מטבע
+                  </TableCell>
+                  <TableCell align="right" style={headerCellStyle}>
+                    שער
+                  </TableCell>
+                  <TableCell align="right" style={headerCellStyle}>
+                    שינוי יומי
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {exchangeRates.exchangeRates.map((row) => (
+                  <TableRow
+                    key={row.key}
+                    sx={{
+                      backgroundColor: theme === 'dark' ? '#2E2E2E' : '#FFFFFF', // רקע מותאם לשורות
+                      '&:hover': {
+                        backgroundColor: theme === 'dark' ? '#383838' : '#f5f5f5', // רקע בעת ריחוף
+                      },
+                    }}
+                  >
+                    <TableCell component="th" scope="row" style={cellStyle}>
+                      {row.key}
+                    </TableCell>
+                    <TableCell align="center" style={cellStyle}>
+                      {row.currency}
+                    </TableCell>
+                    <TableCell align="right" style={cellStyle}>
+                      {row.currentExchangeRate.toFixed(3)}
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      style={{
+                        ...cellStyle,
+                        color:
+                          row.currentChange > 0
+                            ? 'green'
+                            : row.currentChange < 0
+                            ? 'red'
+                            : cellStyle.color,
+                      }}
+                    >
+                      {row.currentChange.toFixed(2)}%
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </>
       )}
-    </TableContainer>
+    </div>
   );
 }
 

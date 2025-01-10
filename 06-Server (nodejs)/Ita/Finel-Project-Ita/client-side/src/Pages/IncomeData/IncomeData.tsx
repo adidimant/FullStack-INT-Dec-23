@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import Box from "../../components/Box/Box";
 import {
     Table,
@@ -24,8 +24,7 @@ import InputSelect from "../../components/InputSelect/InputSelect";
 import { writeFile, utils } from 'xlsx';
 import { generatePDF, type ReceiptData, type CompanyDetails, generateIncomeExpenseReport, type Filters } from "../../untils/pdfGenerator";
 import { axiosClient } from "../../axiosClient";
-import { jwtDecode } from "jwt-decode";
-import { paymentTypeOptions } from "../../utils";
+import { extractUserIdFromToken, paymentTypeOptions } from "../../utils";
 
 interface Receipt {
     receiptNumber: number;
@@ -43,9 +42,6 @@ interface Receipt {
     customer?: string;
 }
 
-interface DecodedToken {
-    userId: string;
-}
 
 // interface DataItem {
 //     receiptNumber: string;
@@ -73,34 +69,28 @@ function IncomeData() {
     const rowsPerPage = 12;
     const { theme } = useThemeContext();
 
-    const headerCellStyle = {
+    const headerCellStyle = useMemo(() => ({
         fontWeight: 'bold',
         fontSize: '18px',
         borderBottom: '1px solid lightgray',
         textAlign: 'right',
-        color: theme === 'dark' ? '#FFFFFF' : '#000000'
-    } as const;
-    
-    const cellStyle = {
+        color: theme === 'dark' ? '#FFFFFF' : '#000000',
+    }), [theme]);
+
+    const cellStyle = useMemo(() => ({
         textAlign: 'right',
-        color: theme === 'dark' ? '#FFFFFF' : '#000000'
-    } as const;
+        color: theme === 'dark' ? '#FFFFFF' : '#000000',
+    }), [theme]);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const token = localStorage.getItem('accessToken');
-                if (!token) {
-                    throw new Error('No authentication token found');
-                }
+                const userId = extractUserIdFromToken();
 
-                const decodedToken = jwtDecode<DecodedToken>(token);
-                const userId = decodedToken.userId;
-
-                // Fetch receipts and company details in parallel
+                
                 const [receiptsResponse, companyResponse] = await Promise.all([
                     axiosClient.get(`/api/receipts/user/${userId}`),
-                    axiosClient.get(`/api/users/company-details/${userId}`)
+                    axiosClient.get(`/api/users/details/${userId}`)
                 ]);
 
                 setReceipts(receiptsResponse.data);
@@ -115,7 +105,7 @@ function IncomeData() {
         fetchData();
     }, []);
 
-    const handleDownloadPDF = async (receipt: Receipt) => {
+    const handleDownloadPDF = useCallback(async (receipt: Receipt) => {
         try {
             if (!companyDetails) {
                 throw new Error('Company details not available');
@@ -134,7 +124,7 @@ function IncomeData() {
                 account: receipt.account?.toString(),
                 details: receipt.details,
                 footerContent: receipt.footerContent,
-                receiptNumber: receipt.receiptNumber
+                receiptNumber: receipt.receiptNumber,
             };
 
             const doc = await generatePDF(receiptData, companyDetails);
@@ -143,36 +133,37 @@ function IncomeData() {
             console.error('Error generating PDF:', error);
             alert('שגיאה בהורדת הקבלה');
         }
-    };
+    }, [companyDetails]);
 
-    const getPaymentTypeLabel = (type: string) => {
+    const getPaymentTypeLabel = useCallback((type: string) => {
         return paymentTypeOptions.find(option => option.value === type)?.label || type;
-    };
+    }, []);
+
 
     //פונקציית מיון
-    const handleRequestSort = (property: string) => {
+    const handleRequestSort = useCallback((property: string) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-    };
+    }, [order, orderBy]);
+
     //פונקציית העברת עמוד
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = useCallback((event: unknown, newPage: number) => {
         setPage(newPage);
-    };
+    }, []);
 
     //פונקציות סינון
-    const handleFilterValueChange = (event: any) => {
+    const handleFilterValueChange = useCallback((event: any) => {
         setFilterValue(event.target.value);
-    };
+    }, []);
 
-    const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleStartDateChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setStartDate(event.target.value);
-    };
+    }, []);
 
-    const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleEndDateChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setEndDate(event.target.value);
-    };
-
+    }, []);
     
 
 
@@ -220,8 +211,7 @@ function IncomeData() {
     }, [sortedData, filterType, filterValue, startDate, endDate]);
 
 
-    const handleExportToExcel = () => {
-        // Prepare data for export
+    const handleExportToExcel = useCallback(() => {
         const exportData = filteredData.map((row) => ({
             'מספר קבלה': row.receiptNumber,
             'לקוח': row.customerName,
@@ -230,20 +220,16 @@ function IncomeData() {
             'תאריך': row.date,
             'סוג תשלום': row.paymentType,
         }));
-    
-        // Create a worksheet
+
         const worksheet = utils.json_to_sheet(exportData);
-    
-        // Create a workbook and append the worksheet
         const workbook = utils.book_new();
         utils.book_append_sheet(workbook, worksheet, 'נתוני הכנסות');
-    
-        // Write the workbook to an Excel file
         writeFile(workbook, 'IncomeData.xlsx');
-    };
+    }, [filteredData]);
 
-    const handleDownloadReport = () => {
-        // Create filters object matching the Filters interface
+
+    const handleDownloadReport = useCallback(() => {
+        
         const filters: Filters = {
             customer: filterType === 'customer' ? filterValue : undefined,
             date: filterType === 'date' && startDate && endDate ? `${startDate} to ${endDate}` : undefined
@@ -258,9 +244,9 @@ function IncomeData() {
             date: receipt.paymentDate,
         }));
         
-        // Pass "Income" as the reportType instead of boolean
+       
         generateIncomeExpenseReport(mappedData, filters, "Income");
-    };
+    }, [filterType, filterValue, startDate, endDate, filteredData]);
     
 
     return (

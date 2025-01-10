@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
@@ -18,7 +18,7 @@ interface ServerError {
   error: string;
 }
 
-const TIMER_DURATION = 300; // 5 minutes in seconds
+const TIMER_DURATION = 300; 
 
 const RegistrationForm = () => {
   const [step, setStep] = useState(1);
@@ -60,13 +60,8 @@ const RegistrationForm = () => {
     };
   }, [timeLeft]);
 
-  const formatTime = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
 
-  const validateFields = (): string | null => {
+  const validateFields = useCallback((): string | null => {
     if (!validateEmail(email)) return 'כתובת דוא״ל לא תקינה';
     if (!validatePassword(password)) return 'הסיסמה חייבת להכיל לפחות 5 תווים, אות גדולה, אות קטנה, מספר ותו מיוחד';
     if (password !== confirmPassword) return 'הסיסמאות אינן תואמות';
@@ -74,9 +69,9 @@ const RegistrationForm = () => {
       return 'אחד השדות החיוניים חסר!';
     }
     return null;
-  };
+  }, [email, password, confirmPassword, fullName, CompanyName, CompanyNumber]);
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleEmailSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -95,9 +90,9 @@ const RegistrationForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, setStep, setTimeLeft, setCanResend, setError, setLoading]);
 
-  const handleCodeVerification = async (e: React.FormEvent) => {
+  const handleCodeVerification = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -120,9 +115,9 @@ const RegistrationForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, code, setStep, setLoading, setError]);
 
-  const handleFinalSubmit = async (e: React.FormEvent) => {
+  const handleFinalSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -139,12 +134,12 @@ const RegistrationForm = () => {
   formData.append('email', email);
   formData.append('fullName', fullName);
   formData.append('password', password);
-  formData.append('companyName', CompanyName); // Match case with backend
+  formData.append('companyName', CompanyName); 
   formData.append('companyNumber', CompanyNumber);
   formData.append('address', Address);
   formData.append('city', City);
   
-  if (image instanceof File) { // Important type check
+  if (image instanceof File) { 
     formData.append('profilePic', image);
   }
 
@@ -171,7 +166,7 @@ const RegistrationForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, fullName, password, CompanyName, CompanyNumber, Address, City, image, setSuccess, setLoading, setError, navigate, validateFields]);
 
   return (
     <Box className="reg-box">

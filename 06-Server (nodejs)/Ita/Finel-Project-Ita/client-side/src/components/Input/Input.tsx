@@ -18,8 +18,9 @@ type InputProps = {
   validate?: (value: unknown) => boolean;
   children?: React.ReactNode;
   disabled?: boolean;
+  accept?: string;
 };
-  function Input({  type, id, placeholder, title, isRequired = false,  fullFrame = false, fontSize, width, height, value, onChange, disabled }: InputProps) {
+  function Input({  type, id, placeholder, title, isRequired = false,  fullFrame = false, fontSize, width, height, value, onChange, disabled, accept }: InputProps) {
     const { theme } = useThemeContext();
     const [isTouched, setIsTouched] = useState(false);
 
@@ -45,6 +46,7 @@ type InputProps = {
               className={`input-field ${fullFrame ? 'full-frame' : ''} ${hasError ? 'error' : ''}`}
               style={{ fontSize: fontSize, width: width, height: height }}
               disabled={disabled}
+              accept={accept}
           />
       </div>
       {hasError && <span className="error-message">Required field</span>}

@@ -4,12 +4,13 @@ import Box from "../../components/Box/Box";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { parseJwt, validateEmail } from "../../utils";
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useUserContext } from "../../context/User-Context";
 import { axiosClient } from "../../axiosClient";
+import logo1 from '../../assets/logo1.png'
 
 const validateLoginIdentityField = (value: unknown): boolean => {
     if (!value) {
@@ -69,7 +70,7 @@ function LoginPage() {
       } catch (err: unknown) {
           setError(`אירעה שגיאה: ${(err as AxiosError).response?.data}`);
       } finally {
-          setLoading(false); // Ensure loading stops
+          setLoading(false); 
       }
   };
   
@@ -105,7 +106,7 @@ function LoginPage() {
                 </form>  
             </div>
             <div className="left">
-                <div>חשבונית בקליק</div>
+                <div><img src={logo1}/></div>
             </div>
 
         </div>

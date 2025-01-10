@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Box from '../../components/Box/Box';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import '../Register/RegistrationForm/RegistrationForm.css'
 import { validatePassword } from '../../utils';
+import '../Register/RegistrationForm/RegistrationForm.css'
 
 const axiosUser = axios.create({
   baseURL: 'http://localhost:3001/api/users',
@@ -26,7 +26,7 @@ function PasswordResetForm() {
 
   const navigate = useNavigate();
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleEmailSubmit = useCallback(async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -37,7 +37,7 @@ function PasswordResetForm() {
         setStep(2);
       }
     } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.data) {
+      if (axios.isAxiosError(err) && err.response?.data) { //בדיקה האם השגיאה היא מאקסיוס, מחזיר true. + אם אובייקט השגיאה מכיל מידע. זאת שגיאה מותאמת אישית
         setError(err.response.data.error);
       } else {
         setError('בדיקת הדוא״ל נכשלה');
@@ -45,9 +45,9 @@ function PasswordResetForm() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email]);
 
-  const handleCodeVerification = async (e: React.FormEvent) => {
+  const handleCodeVerification = useCallback(async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -70,9 +70,9 @@ function PasswordResetForm() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, code]);
 
-  const handlePasswordReset = async (e: React.FormEvent) => {
+  const handlePasswordReset = useCallback(async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -104,7 +104,7 @@ function PasswordResetForm() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, password, confirmPassword, navigate]);
 
   return (
     <Box className="password-reset-box">

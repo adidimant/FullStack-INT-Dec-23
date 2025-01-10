@@ -1,12 +1,10 @@
 import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { promisePool } from '../index'; // Assuming server.ts exports the promise pool
+import { promisePool } from '../index'; //משפר ביצועים, חוסך משאבים, ותומך בניהול חיבורים אסינכרוני-שהקוד ימשיך לרוץ ולא יתקע
 import { uploadInvoice, uploadProfilePicture } from '../middlewares/upload';
 import fs from 'fs';
 import path from 'path';
 import {transporter} from '../controllers/users.router'
-import { RowDataPacket } from 'mysql2';
-
 
 const receiptsRouter = express.Router();
 
@@ -46,10 +44,10 @@ type RequiredField = keyof Pick<ReceiptData, 'userId' | 'customerName' | 'date' 
 
 //מביא מספר אחרון של קבלה לפי משתמשמ
 receiptsRouter.get('/next-receipt-number/:userId', async (req: Request, res: Response): Promise<void> => {
-  const { userId } = req.params;  // Changed from req.body to req.params
+  const { userId } = req.params; 
   
   if (!userId) {
-      res.status(400).send('User ID is required');
+      res.status(400).send('User ID is required'); //כשל בקלט ש המשתמש
       return;
   }
 
@@ -59,13 +57,12 @@ receiptsRouter.get('/next-receipt-number/:userId', async (req: Request, res: Res
           [userId]
       );
       const lastReceiptNumber = rows[0]?.lastReceiptNumber ?? 2999;
-      const companyName = rows[0]?.companyName || null;
       const nextReceiptNumber = lastReceiptNumber + 1;
       
-      res.json({ nextReceiptNumber });
+      res.json({ nextReceiptNumber }); //נשלח למשתמש מספר הקבלה הבא
   } catch (error) {
       console.error('Error fetching next receipt number:', error);
-      res.status(500).send('Error fetching next receipt number.');
+      res.status(500).send('Error fetching next receipt number.'); //בעיה בשרת ולא טעות של המשתמש-שאילתה נכלה,שגיאה בקוד עצמו
   }
 });
 
@@ -89,7 +86,7 @@ receiptsRouter.post('/save', async (req, res): Promise<void> => {
       customerEmail
     } = req.body;
 
-    // Validate required fields
+    // מערך מה חובה לשמירה+ ואחר כך מפלטר כדי לבדק שכולם נמצאים
     const requiredFields = [
       'userId', 'customerName', 'date', 'description',
       'receiptType', 'paymentDate', 'amount'
@@ -101,7 +98,7 @@ receiptsRouter.post('/save', async (req, res): Promise<void> => {
       return;
     }
 
-    // Check if receipt number already exists
+    // מניעת יצירת קבלה עם אותו מספר
     const [rows] = await promisePool.query(
       `SELECT * FROM receipts WHERE userId = ? AND receiptNumber = ?`,
       [userId, receiptNumber]
@@ -111,10 +108,10 @@ receiptsRouter.post('/save', async (req, res): Promise<void> => {
       return;
     }
 
-    // Generate a unique receipt ID
+    
     const receiptId = uuidv4();
 
-    // Save the receipt to the database
+    // שאילתה של מירת הנתונים 
     await promisePool.query(
       `INSERT INTO receipts (
         receiptId, userId, receiptNumber, customerName, date,
@@ -147,7 +144,7 @@ receiptsRouter.post('/save', async (req, res): Promise<void> => {
     });
   } catch (error) {
     console.error('Error saving receipt:', error);
-    res.status(500).json({ error: 'Failed to save receipt' });
+    res.status(500).json('Failed to save receipt');
   }
 });
 
@@ -157,7 +154,7 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
   try {
       const { receiptNumber, userId, customerEmail, emailContent } = req.body;
 
-      // Validation
+      // אימות נתונים הכרחיים
       if (!receiptNumber || !userId || !customerEmail) {
           res.status(400).json({ error: 'Missing required fields: receiptNumber, userId, or customerEmail' });
           return;
@@ -168,13 +165,13 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
           return;
       }
 
-      // Get user data
+      // שאילתה לנתוני המשמתמש בשביל שליחת המייל
       const [rows] = await promisePool.query(
           `SELECT companyName, email as companyEmail FROM users WHERE userId = ?`,
           [userId]
       );
 
-      const userData: UserData[] = rows as UserData[];
+      const userData: UserData[] = rows as UserData[]; // סידור של טייפים
 
       if (!userData || userData.length === 0) {
           res.status(404).json({ error: 'User not found' });
@@ -183,10 +180,10 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
 
       const { companyName, companyEmail } = userData[0];
 
-      // Get the full path of the uploaded file
+      //קבלת הנתיב המלא של הקובץ
       const filePath = req.file.path;
 
-      // Send email with attachment
+      //שליחת אמייל
       await transporter.sendMail({
           from: `${companyName} <${companyEmail}>`,
           to: customerEmail,
@@ -202,13 +199,13 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
           attachments: [
               {
                   filename: `receipt_${receiptNumber}.pdf`,
-                  content: fs.readFileSync(filePath), // Read file content directly
+                  content: fs.readFileSync(filePath), 
                   contentType: 'application/pdf',
               }
           ]
       });
 
-      // Clean up: Delete the file after sending
+      // מחיקת הקובץ אחרי קבלת הבקשה
       fs.unlinkSync(filePath);
 
       res.status(200).json({
@@ -219,7 +216,7 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
   } catch (error) {
       console.error('Error in /send-email:', error);
       if (req.file && fs.existsSync(req.file.path)) {
-          fs.unlinkSync(req.file.path); // Clean up file if email fails
+          fs.unlinkSync(req.file.path); // בכל מקרה למחוק את הקובץ מהשרת
       }
       res.status(500).json({ error: 'An unexpected error occurred. Please try again later.' });
   }
@@ -243,7 +240,6 @@ receiptsRouter.post('/send-email', uploadInvoice.single('pdf'), async (req: Requ
 
 
 // מביא קבלות\נתוני הכנסה עבור משתמש ספציפי
-// In your receiptsRouter.ts
 receiptsRouter.get('/user/:userId', async (req: Request, res: Response) => {
   const { userId } = req.params;
 
@@ -271,68 +267,6 @@ receiptsRouter.get('/user/:userId', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error fetching receipts:', error);
     res.status(500).send('Error fetching receipts.');
-  }
-});
-
-// עידכון קבלה (כנראה שלא צריך בכלל)
-receiptsRouter.put('/update/:receiptId', async (req: Request, res: Response) => {
-  const { receiptId } = req.params;
-  const {
-    customerName,
-    date,
-    description,
-    receiptType,
-    paymentDate,
-    amount,
-    bank,
-    branch,
-    account,
-    details,
-    footerContent,
-    customerEmail,
-  } = req.body;
-
-  try {
-    const [result]: any = await promisePool.query(
-      `UPDATE receipts SET 
-        customerName = ?,
-        date = ?,
-        description = ?,
-        receiptType = ?,
-        paymentDate = ?,
-        amount = ?,
-        bank = ?,
-        branch = ?,
-        account = ?,
-        details = ?,
-        footerContent = ?,
-        customerEmail = ?
-      WHERE receiptId = ?`,
-      [
-        customerName,
-        date,
-        description,
-        receiptType,
-        paymentDate,
-        amount,
-        bank,
-        branch,
-        account,
-        details,
-        footerContent,
-        customerEmail,
-        receiptId,
-      ]
-    );
-
-    if (result.affectedRows > 0) {
-      res.json({ message: 'Receipt updated successfully!' });
-    } else {
-      res.status(404).send('Receipt not found.');
-    }
-  } catch (error) {
-    console.error('Error updating receipt:', error);
-    res.status(500).send('Error updating receipt.');
   }
 });
 
@@ -388,8 +322,8 @@ receiptsRouter.post('/upload-invoice', uploadProfilePicture.single('invoiceImage
 });
 
 // קבלת נתוני הכנסה והוצאה לפי שנה
-receiptsRouter.get('/monthly-summary/:year', async (req: Request, res: Response) => {
-  const { year } = req.params;
+receiptsRouter.get('/monthly-summary/:userId/:year', async (req: Request, res: Response) => {
+  const { userId,  year } = req.params;
 
   try {
     const [rows]: any = await promisePool.query(`
@@ -399,13 +333,20 @@ receiptsRouter.get('/monthly-summary/:year', async (req: Request, res: Response)
         SUM(CASE WHEN receiptType = 'Expense' THEN amount ELSE 0 END) AS expenses
       FROM receipts
       WHERE YEAR(paymentDate) = ?
+      AND userId = ?
       GROUP BY MONTH(paymentDate)
       ORDER BY MONTH(paymentDate) ASC;
-    `, [year]);
+    `, [year, userId]);
 
-    // Convert months to names (if needed)
+    //חילוץ החודש מתאריך התשלום
+    //סכום מתשלומים ספציפים, אם התשלום מסוג אחר מחשיב כ-0
+    // בודק אם קיים מזהה הוצאה , אם אין מוסיף 0
+    //מסנן לפי שנה ספציפית ויוזר
+    //קיבוץ התוצאות לפי חודש
+    //סידור התוצאות בסדר עולה
+
     const formattedData = rows.map((row: any) => ({
-      month: new Date(0, row.month - 1).toLocaleString('en', { month: 'long' }), // Converts month numbers to names
+      month: new Date(0, row.month - 1).toLocaleString('en', { month: 'long' }), // המרת כל חודש לשם באנגלית
       income: row.income || 0,
       expenses: row.expenses || 0,
     }));
@@ -419,7 +360,7 @@ receiptsRouter.get('/monthly-summary/:year', async (req: Request, res: Response)
 
 // קבלת שנת רישום של המשתמש (גם לצורך קלט עם בחירת שנה)
 receiptsRouter.get('/registrationYear/:userId', async (req: Request, res: Response): Promise<void> => {
-  const { userId } = req.params; // Use req.query for GET requests to pass parameters
+  const { userId } = req.params;
 
   try {
     const [rows]: any = await promisePool.query(
@@ -427,16 +368,15 @@ receiptsRouter.get('/registrationYear/:userId', async (req: Request, res: Respon
       [userId]
     );
 
-    // Check if rows are empty or user not found
     if (!rows || rows.length === 0) {
       res.status(404).json({ message: "No registration year found" });
       return
     }
 
-    // Extract and format the registration year
+    // מביא רק את שנת הרישום
     const registrationYear = new Date(rows[0].createdDate).getFullYear();
 
-    // Send response with the registration year
+    
     res.status(200).json({ registrationYear });
   } catch (error) {
     console.error("Error fetching registration year:", error);

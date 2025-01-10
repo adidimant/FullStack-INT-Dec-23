@@ -1,83 +1,112 @@
-import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import multer from 'multer'; //ניהול העלאת קבצים
+import path from 'path';//ניתובים
+import fs from 'fs'; //מודול לניהול קבצים
 
-// Create uploads directory and its subdirectories if they don't exist
-const createUploadDirs = () => {
-  const dirs = ['./uploads', './uploads/invoices', './uploads/profile-pictures'];
-  dirs.forEach(dir => {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-  });
+// מגדיר את נתיב הבסיס לתיקיית ההעלאות: תיקייה בשם uploads במיקום יחסי לשורש השרת.
+const BASE_UPLOAD_DIR = path.join(__dirname, '..', '..', 'uploads');
+
+// יצירת תקייה אם לא קיימת
+const createUploadDir = () => {
+  if (!fs.existsSync(BASE_UPLOAD_DIR)) {
+    fs.mkdirSync(BASE_UPLOAD_DIR, { recursive: true });
+  }
 };
 
-createUploadDirs();
+createUploadDir();
 
-// Configure storage for different file types
+//הגדרות איחסון
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    if (!file) return;
-
-    // Determine destination based on upload type
-    let uploadPath = './uploads/';
-    
-    if (req.baseUrl.includes('invoice')) {
-      uploadPath += 'invoices/';
-    } else if (req.baseUrl.includes('profile')) {
-      uploadPath += 'profile-pictures/';
-    }
-
-    cb(null, uploadPath);
+  destination: (req, file, cb) => { //הגדרת תקיית היעד
+    cb(null, BASE_UPLOAD_DIR);
   },
   filename: (req, file, cb) => {
-    if (!file) return;
-
+    // קידומת על סמך סוג הקובץ
+    const prefix = req.originalUrl.includes('invoice') ? 'invoice-' : 'profile-';
+    
     const lastDotIndex = file.originalname.lastIndexOf('.');
     const fileName = file.originalname.slice(0, lastDotIndex);
     const fileExtension = file.originalname.slice(lastDotIndex);
-    const fileFullName = `${fileName}-${Math.trunc(Date.now() /100)}${fileExtension}`;
-    
-    (req as any).fileName = fileFullName;
+    const fileFullName = `${prefix}${fileName}-${Math.trunc(Date.now() / 100)}${fileExtension}`;
     cb(null, fileFullName);
   }
 });
 
-// File filter to validate file types
-const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-  if (req.baseUrl.includes('invoice')) {
-    // Allow only PDFs for invoices
-    if (file.mimetype === 'application/pdf') {
-      cb(null, true);
-    } else {
-      cb(new Error('Only PDF files are allowed for invoices!'));
-    }
-  } else if (req.baseUrl.includes('profile')) {
-    // Allow common image formats for profile pictures
-    const allowedMimes = ['image/jpeg', 'image/png', 'image/gif'];
+// Profile picture upload configuration
+export const uploadProfilePicture = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    const allowedMimes = ['image/jpeg', 'image/png', 'image/gif'];  //הגבלת סוג הקובץ
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
       cb(new Error('Only JPG, PNG and GIF files are allowed for profile pictures!'));
     }
-  } else {
-    cb(null, true);
+  },
+  limits: {
+    fileSize: 2 * 1024 * 1024 // 2MB
+  }
+});
+
+// 
+export const uploadInvoice = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF files are allowed for invoices!'));
+    }
+  },
+  limits: {
+    fileSize: 5 * 1024 * 1024 // 5MB
+  }
+});
+
+// קבלת נתיב בשביל שליחה למס הנתונים
+export const getDbFilePath = (filename: string): string => {
+  return `/uploads/${filename}`;
+};
+
+// קבלת נתיב מוחלט
+export const getAbsoluteFilePath = (dbPath: string): string => {
+  const relativePath = dbPath.replace('/uploads/', '');
+  return path.join(__dirname, '..', '..', 'uploads', relativePath);
+};
+
+// אופציה למחיקת קובץ
+export const deleteFile = async (dbPath: string): Promise<void> => {
+  try {
+    const absolutePath = getAbsoluteFilePath(dbPath);
+    await fs.promises.unlink(absolutePath);
+    console.log('File deleted successfully:', absolutePath);
+  } catch (err) {
+    console.error('Error deleting file:', err);
+    throw err;
   }
 };
 
-// Create multer instances for different upload types
-export const uploadInvoice = multer({
-  storage,
-  fileFilter,
-  limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit for invoices
+// קבלת קובץ כ-Base64
+export const getFileAsBase64 = async (dbPath: string): Promise<string | null> => {
+  try {
+    const absolutePath = getAbsoluteFilePath(dbPath);
+    const buffer = await fs.promises.readFile(absolutePath);
+    const mimeType = path.extname(dbPath).toLowerCase() === '.pdf' 
+      ? 'application/pdf' 
+      : 'image/jpeg';
+    return `data:${mimeType};base64,${buffer.toString('base64')}`;
+  } catch (err) {
+    console.error('Error reading file:', err);
+    return null;
   }
-});
+};
 
-export const uploadProfilePicture = multer({
-  storage,
-  fileFilter,
-  limits: {
-    fileSize: 2 * 1024 * 1024 // 2MB limit for profile pictures
+// מחזיר Buffer של קובץ 
+export const getFileBuffer = async (dbPath: string): Promise<Buffer | null> => {
+  try {
+    const absolutePath = getAbsoluteFilePath(dbPath);
+    return await fs.promises.readFile(absolutePath);
+  } catch (err) {
+    console.error('Error reading file:', err);
+    return null;
   }
-});
+};

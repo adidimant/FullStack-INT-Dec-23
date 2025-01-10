@@ -62,8 +62,8 @@
 
 .flex-bottom-home {
     display: flex;
-    flex-wrap: wrap; /* מאפשר יצירת שורות */
-    justify-content: space-between; /* פיזור אלמנטים */
+    flex-wrap: wrap; 
+    justify-content: space-between; 
     width: 1160px;
    
     
@@ -88,3 +88,5 @@
     font-weight: 700;
     text-align: right;
 }
+
+

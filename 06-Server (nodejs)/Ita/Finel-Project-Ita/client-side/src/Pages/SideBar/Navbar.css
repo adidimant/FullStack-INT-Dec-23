@@ -9,7 +9,7 @@
 }
 
 .navBarTop {
-    height: 60px;
+    height: 70px;
     background-color: #ffffff;
     color: #007474;
     display: flex;
@@ -90,4 +90,11 @@
 .popperLink a {
     text-decoration: none;
     color: #333;
+}
+
+.logo {
+    position: absolute; 
+    left: 0; 
+    margin-left: 95px;
+    margin-top: 0; 
 }

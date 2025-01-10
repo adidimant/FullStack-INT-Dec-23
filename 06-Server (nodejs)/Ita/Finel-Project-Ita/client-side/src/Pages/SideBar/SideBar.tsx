@@ -1,119 +1,134 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import sidebarItems from "./dataLink";
+import sidebarItems, { settingsLinks } from "./dataLink";
 import { Popper } from "@mui/material";
 import altLogo from "../../assets/altLogo.png";
 import "./SideBar.css";
 import Navbar from "./Navbar";
+import menu from "../../assets/menu.png"
 import { Link } from "react-router-dom";
 import ButtonModeTheme from "../ButtonModeTheme/ButtonModeTheme";
 import { axiosClient } from "../../axiosClient";
-import { jwtDecode } from "jwt-decode";
 import { useAuthContext } from "../../context/Auth-context";
 import SettingsIcon from '@mui/icons-material/Settings';
 import { extractUserIdFromToken } from "../../utils";
 
+interface CompanyDetails {
+  companyName: string;
+  profilePic: string; 
+}
 
 function SideBar() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [popupLinks, setPopupLinks] = useState([]); // Array of links displayed in Popper
-  const [selectedLinks, setSelectedLinks] = useState([]); // Links passed to Navbar
-  const [closeTimeout, setCloseTimeout] = useState(null); // Timeout for delayed popup close
-  const [userDetails, setUserDetails] = useState<any>(null);
+  const [popupLinks, setPopupLinks] = useState([]);
+  const [selectedLinks, setSelectedLinks] = useState([]);
+  const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [companyDetails, setCompanyDetails] = useState<CompanyDetails | null>(null);
   const [settingsAnchorEl, setSettingsAnchorEl] = useState<HTMLElement | null>(null);
+  const [logoError, setLogoError] = useState(false);
   const { logout } = useAuthContext();
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
+    const fetchCompanyDetails = async () => {
       try {
-        const userId = extractUserIdFromToken()
+        const userId = extractUserIdFromToken();
+        if (!userId) return;
 
-        const response = await axiosClient.get(`/api/users/details/${userId}`);;
-        setUserDetails(response.data);
+        const response = await axiosClient.get(`/api/users/details/${userId}`);
+        console.log("Server response:", response.data);
+        setCompanyDetails(response.data);
+        setLogoError(false); // Reset error state when new data is fetched
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        console.error("Error fetching company details:", error);
+        setLogoError(true);
       }
     };
 
-    fetchUserDetails();
+    fetchCompanyDetails();
   }, []);
 
-  
-  // Handle mouse enter
-  const handleMouseEnter = useCallback((event: React.MouseEvent<HTMLElement>, links: PopupLink[]) => {
-    if (closeTimeout) {
-      clearTimeout(closeTimeout);
-      setCloseTimeout(null);
-    }
-    setAnchorEl(event.currentTarget);
-    setPopupLinks(links);
-  }, [closeTimeout]);
+  const handleMouseEnter = useCallback(
+    (event: React.MouseEvent<HTMLElement>, links: any[]) => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        setCloseTimeout(null);
+      }
+      setAnchorEl(event.currentTarget);
+      setPopupLinks(links);
+    },
+    [closeTimeout]
+  );
 
-  // Handle mouse leave
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     const timeout = setTimeout(() => {
-      setAnchorEl(null); // Close the Popper after 500ms
+      setAnchorEl(null);
     }, 500);
-    setCloseTimeout(timeout); // Store the timeout for cleanup
-  };
+    setCloseTimeout(timeout);
+  }, []);
 
-  // Handle link click
-  const handleLinkClick = (links) => {
-    setSelectedLinks(links); // Set the selected links to display in Navbar
-  };
+  const handleLinkClick = useCallback((links: any[]) => {
+    setSelectedLinks(links);
+  }, []);
 
-
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     if (logout) {
       logout();
     }
-  };
+  }, [logout]);
 
-  const handleSettingsMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
-    if (closeTimeout) {
-      clearTimeout(closeTimeout);
-      setCloseTimeout(null);
-    }
-    setSettingsAnchorEl(event.currentTarget);
-  };
+  const handleSettingsMouseEnter = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        setCloseTimeout(null);
+      }
+      setSettingsAnchorEl(event.currentTarget);
+    },
+    [closeTimeout]
+  );
 
-  const handleSettingsMouseLeave = () => {
+  const handleSettingsMouseLeave = useCallback(() => {
     const timeout = setTimeout(() => {
       setSettingsAnchorEl(null);
     }, 500);
     setCloseTimeout(timeout);
-  };
+  }, []);
 
-  const settingsLinks = [
-    { url: '/update-details', text: 'עדכון פרטים' },
-    { url: '/logout', text: 'התנתק' }
-  ];
-
-  
+  const handleLogoError = useCallback(() => {
+    setLogoError(true);
+  }, []);
 
   return (
     <>
-    <Navbar popupLinks={selectedLinks}/>
-    <div className="SideBarContainer">
-      {sidebarItems.map((item, index) => (
-        <div
-          key={index}
+      <Navbar popupLinks={selectedLinks}/>
+      <div className="SideBarContainer">
+        <div 
           className="itemSideBar"
-          onMouseEnter={(event) => handleMouseEnter(event, item.links)}
-          onMouseLeave={handleMouseLeave}
+          onClick={() => window.location.href = "/"} 
         >
           <div>
-            <img src={item.icon} className="iconSideBar" alt={item.label} />
+            <img src={menu} className="iconSideBar" alt="Home" />
           </div>
-          <div>{item.label}</div>
+          <div>בית</div>
         </div>
-      ))}
+        {sidebarItems.map((item, index) => (
+          <div
+            key={index}
+            className="itemSideBar"
+            onMouseEnter={(event) => handleMouseEnter(event, item.links)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div>
+              <img src={item.icon} className="iconSideBar" alt={item.label} />
+            </div>
+            <div>{item.label}</div>
+          </div>
+        ))}
 
-        {/* Company Logo Section */}
         <div className="companySection">
-        <div>
-          <ButtonModeTheme />
-        </div>
-        <div 
+          <div>
+            <ButtonModeTheme />
+          </div>
+          <div 
             onClick={handleSettingsMouseEnter}
             onMouseLeave={handleSettingsMouseLeave}
           >
@@ -128,64 +143,57 @@ function SideBar() {
               }
             }} />
           </div>
-          {userDetails && (
+          {companyDetails && (
             <>
               <img
-                src={userDetails.logoUrl || altLogo}
+                src={logoError ? altLogo : companyDetails.profilePic} 
                 className="companyLogo"
                 alt="Company Logo"
-                onError={(e) => (e.currentTarget.src = altLogo)} // Fallback to altLogo on error
+                onError={handleLogoError}
               />
-              <div>{userDetails.companyName}</div>
+              <div>{companyDetails.companyName}</div>
             </>
           )}
         </div>
 
-        
-
-
-
-      
-      <Popper
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        placement="right-start"
-        onMouseEnter={() => {
-          if (closeTimeout) {
-            clearTimeout(closeTimeout);
-            setCloseTimeout(null);
-          }
-        }}
-        onMouseLeave={handleMouseLeave}
-        modifiers={[
-          {
+        <Popper
+          open={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          placement="right-start"
+          onMouseEnter={() => {
+            if (closeTimeout) {
+              clearTimeout(closeTimeout);
+              setCloseTimeout(null);
+            }
+          }}
+          onMouseLeave={handleMouseLeave}
+          modifiers={[
+            {
               name: "offset",
               options: { offset: [0, 5] },
-          },
-          {
-            name: "arrow",
-            options: {
-              element: ".customPopup::before" 
+            },
+            {
+              name: "arrow",
+              options: {
+                element: ".customPopup::before" 
               },
-          },
-      ]}
-      >
-        <div className="customPopup">
-          {popupLinks.map((link, index) => (
-            <div
-              key={index}
-              className="popupItem"
-              onClick={() => handleLinkClick(popupLinks)} // Pass the entire array to Navbar on click
-            >
-              <Link to={link.url}>
-                {link.text}
-              </Link>
-            </div>
-          ))}
-        </div>
-      </Popper>
+            },
+          ]}
+        >
+          <div className="customPopup">
+            {popupLinks.map((link, index) => (
+              <div
+                key={index}
+                className="popupItem"
+                onClick={() => handleLinkClick(popupLinks)}
+              >
+                <Link to={link.url}>{link.text}</Link>
+              </div>
+            ))}
+          </div>
+        </Popper>
 
-      <Popper
+        <Popper
           open={Boolean(settingsAnchorEl)}
           anchorEl={settingsAnchorEl}
           placement="right-start"
@@ -225,12 +233,8 @@ function SideBar() {
             ))}
           </div>
         </Popper>
-
-      
-      
-    </div>
+      </div>
     </>
-    
   );
 }
 

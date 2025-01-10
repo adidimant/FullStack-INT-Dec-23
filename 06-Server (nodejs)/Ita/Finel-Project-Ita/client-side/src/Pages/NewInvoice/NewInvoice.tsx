@@ -1,11 +1,10 @@
-import { memo, useEffect, useState, FormEvent } from "react";
+import { memo, useEffect, useState, FormEvent, useCallback } from "react";
 import Box from "../../components/Box/Box";
 import Input from "../../components/Input/Input";
 import "./NewInvoice.css";
 import InputSelect from "../../components/InputSelect/InputSelect";
 import TextArea from "../../components/TextArea/TextArea";
 import Button from "../../components/Button/Button";
-import { jwtDecode } from "jwt-decode";
 import { axiosClient } from "../../axiosClient";
 import 'jspdf-autotable';
 import { extractUserIdFromToken, paymentTypeOptions, validateEmail } from '../../utils'
@@ -15,10 +14,6 @@ import { CircularProgress } from "@mui/material";
 import axios from "axios";
 
 
-interface DecodedToken {
-    userId: string;
-    companyname: string;
-}
 
 interface InvoiceFormData {
     customerName: string;
@@ -76,17 +71,11 @@ function NewInvoice() {
         async function fetchInitialData() {
             try {
                 setIsLoading(true);
-                const token = localStorage.getItem('accessToken');
-                if (!token) {
-                    throw new Error('No authentication token found');
-                }
-
-                const decodedToken = jwtDecode<DecodedToken>(token);
-                const userId = decodedToken.userId;
+                const userId = extractUserIdFromToken();
 
                 const [receiptResponse, companyResponse] = await Promise.all([
                     axiosClient.get(`/api/receipts/next-receipt-number/${userId}`),
-                    axiosClient.get(`/api/users/company-details/${userId}`)
+                    axiosClient.get(`/api/users/details/${userId}`)
                 ]);
 
                 setReceiptNumber(receiptResponse.data.nextReceiptNumber);
@@ -102,15 +91,15 @@ function NewInvoice() {
         fetchInitialData();
     }, []);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({
             ...prev,
             [id]: value
         }));
-    };
+    }, []);
 
-    const handlePreview = async (e: React.MouseEvent) => {
+    const handlePreview = useCallback(async (e: React.MouseEvent) => {
         e.preventDefault();
         try {
             if (!companyDetails || !receiptNumber) {
@@ -139,7 +128,7 @@ function NewInvoice() {
                 return;
             }
 
-            // Create modal overlay
+            // שכבת רקע כהה שמכסה את המסך
             const overlay = document.createElement('div');
             overlay.style.cssText = `
                 position: fixed;
@@ -155,7 +144,7 @@ function NewInvoice() {
                 z-index: 9999;
             `;
 
-            // Create preview container
+            // קונטיינר לתצוגת ה-PDF.
             const previewContainer = document.createElement('div');
             previewContainer.style.cssText = `
                 width: 90%;
@@ -166,7 +155,7 @@ function NewInvoice() {
                 position: relative;
             `;
 
-            // Create close button
+            // כפתור לסגירת התצוגה
             const closeButton = document.createElement('button');
             closeButton.textContent = 'סגור תצוגה מקדימה';
             closeButton.style.cssText = `
@@ -183,7 +172,7 @@ function NewInvoice() {
                 z-index: 1;
             `;
 
-            // Create and embed PDF viewer
+            // הצגת קובץ ה-PDF.
             const objectElement = document.createElement('object');
             objectElement.style.cssText = `
                 width: 100%;
@@ -193,7 +182,7 @@ function NewInvoice() {
             objectElement.type = 'application/pdf';
             objectElement.data = URL.createObjectURL(pdfBlob);
 
-            // Handle closing
+            // סגירה
             const closePreview = () => {
                 document.body.removeChild(overlay);
                 URL.revokeObjectURL(objectElement.data);
@@ -206,19 +195,19 @@ function NewInvoice() {
                 }
             };
 
-            // Assemble preview
+            // הרכבת האלמנטים
             previewContainer.appendChild(closeButton);
             previewContainer.appendChild(objectElement);
             overlay.appendChild(previewContainer);
-            document.body.appendChild(overlay);
+            document.body.appendChild(overlay); //הצגה
 
         } catch (error) {
             console.error("Error previewing document:", error);
             alert("שגיאה בתצוגה המקדימה");
         }
-    };
+    }, [companyDetails, receiptNumber, formData]);
 
-    const handleSaveReceipt = async (e: FormEvent) => {
+    const handleSaveReceipt = useCallback(async (e: FormEvent) => {
         e.preventDefault();
     
         if (isProcessing || savedReceipt) return; // Prevent multiple submissions
@@ -273,10 +262,10 @@ function NewInvoice() {
             setIsProcessing(false);
             setLoading(false);
         }
-    };
+    }, [isProcessing, savedReceipt, formData, receiptNumber, setLoading, setError, setSavedReceipt, setIsProcessing]);
     
 
-    const handleSendEmail = async (e: FormEvent) => {
+    const handleSendEmail = useCallback(async (e: FormEvent) => {
         e.preventDefault();
     
         if (isProcessing || !savedReceipt || !receiptNumber || !companyDetails) return;
@@ -341,7 +330,7 @@ function NewInvoice() {
         } finally {
             setIsProcessing(false);
         }
-    };
+    }, [isProcessing, savedReceipt, receiptNumber, companyDetails, formData, navigate, setIsProcessing]);
     
         
     
@@ -367,12 +356,12 @@ function NewInvoice() {
             <div className="subtitle">פירוט תקבולים</div>
             <div className="part-3">
                 <div><InputSelect id="receiptType" title="סוג תקבול" 
-                     options={paymentTypeOptions} // Use the paymentTypeOptions array directly
+                     options={paymentTypeOptions} 
                      isRequired={true}
                      fullFrame={true}
                      width="190px"
                      value={formData.receiptType} 
-                     onChange={handleInputChange} // Ensure the value is passed
+                     onChange={handleInputChange} 
                  /></div>
                 <div><Input title="תאריך" type="date"  value={formData.paymentDate} onChange={handleInputChange} id="paymentDate" fullFrame={true} fontSize="16px" height="23px" width="140px" /></div>
                 <div><Input title="סכום" type="number"  value={formData.amount} onChange={handleInputChange} id="amount" fullFrame={true} fontSize="16px" height="23px" width="90px" /></div>

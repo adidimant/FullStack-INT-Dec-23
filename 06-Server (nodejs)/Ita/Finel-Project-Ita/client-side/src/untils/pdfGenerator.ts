@@ -5,6 +5,7 @@ import NotoSansHebrewRegular from '../fonts/NotoSansHebrew-Regular.ttf';
 import rubikFont from '../fonts/Rubik-Regular.ttf';
 import rubikBold from '../fonts/Rubik-Bold.ttf';
 import { paymentTypeOptions } from '../utils';
+import logo from '../assets/logo.png';
 
 
 
@@ -56,9 +57,22 @@ export interface Filters {
     date?: string;
   }
 
+const loadImage = (src: string): Promise<HTMLImageElement> => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
+};
 
-export async function generatePDF(data: ReceiptData, company: CompanyDetails) {
+
+
+export async function generatePDF(data: ReceiptData, company: CompanyDetails): Promise<jsPDF> {
     const doc = new jsPDF('p', 'mm', 'a4');
+
+    const img = new Image();
+    img.src = logo;
     
     // Add fonts
     doc.addFont(NotoSansHebrewRegular, 'NotoSansHebrew', 'normal');
@@ -70,26 +84,16 @@ export async function generatePDF(data: ReceiptData, company: CompanyDetails) {
     
     // Set default font to Hebrew font
     doc.setFont('NotoSansHebrew', 'normal');
-    
-    // Add logo if exists
+
+  try {
+    // Load logo
+    const img = await loadImage(logo);
+    const aspectRatio = img.width / img.height;
+    const autoWidth = 8 * aspectRatio;
+
+    // Add company logo if exists
     if (company?.logoUrl) {
-        try {
-            const response = await fetch(company.logoUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const blob = await response.blob();
-            if (blob.size > 0) {
-                const logo = await new Promise<string>((resolve) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => resolve(reader.result as string);
-                    reader.readAsDataURL(blob);
-                });
-                doc.addImage(logo, 'PNG', 165, 10, 30, 30);
-            }
-        } catch (error) {
-            console.warn('Logo loading failed, continuing without logo:', error);
-        }
+        doc.addImage(company.logoUrl, 'PNG', 165, 10, 30, 30);
     }
     
     // Company details
@@ -139,40 +143,53 @@ export async function generatePDF(data: ReceiptData, company: CompanyDetails) {
         doc.text(data.details, 190, doc.lastAutoTable.finalY + 40, { align: 'right' });
     }
 
-     doc.setFontSize(8);
-    doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290)
-    
+    // Add footer logo and text
+    doc.addImage(logo, 'PNG', 20, 280, autoWidth, 8);
+    doc.setFontSize(8);
+    doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
+
     return doc;
+} catch (error) {
+    console.error('Error generating PDF:', error);
+    throw error;
+}
 }
 
 
-// Function to generate and download the PDF repor
-export const generateIncomeExpenseReport = (data: IncomeExpenseData[], filters: Filters, reportType: "Income" | "Expense") => {
+// 
+export async function generateIncomeExpenseReport(data: IncomeExpenseData[], filters: Filters, reportType: "Income" | "Expense"):  Promise<void> {
     const doc = new jsPDF('p', 'mm', 'a4');
   
-    // Add fonts and enable RTL
     doc.addFont(NotoSansHebrewRegular, 'NotoSansHebrew', 'normal');
     doc.addFont(rubikFont, 'Rubik', 'normal');
     doc.addFont(rubikBold, 'Rubik', 'bold');
-    
-    // Enable right-to-left
     doc.setR2L(true);
-    
-    // Set default font to Hebrew font
     doc.setFont('NotoSansHebrew', 'normal');
   
-    // Add the report title in Hebrew
-    doc.setFontSize(18);
-    doc.text(reportType === "Income" ? "נתוני הכנסות" : "נתוני הוצאות", 190, 20, { align: 'right' });
-  
-    // Add the filters section only if there are active filters
-    if (filters.customer || filters.date) {
-      doc.setFontSize(12);
-      let filterText = "סינון לפי: ";
-      if (filters.customer) filterText += `לקוח: ${filters.customer} `;
-      if (filters.date) filterText += `תאריך: ${filters.date} `;
-      doc.text(filterText, 190, 30, { align: 'right' });
-    }
+    try {
+      // Load and add logo at the top
+      const img = await loadImage(logo);
+      const aspectRatio = img.width / img.height;
+      const logoWidth = 30;  // Fixed width for top logo
+      const logoHeight = logoWidth / aspectRatio;
+      doc.addImage(logo, 'PNG', 165, 10, logoWidth, logoHeight);
+
+      // Add the report title in Hebrew
+      doc.setFontSize(18);
+      doc.text(reportType === "Income" ? "נתוני הכנסות" : "נתוני הוצאות", 190, 20 + logoHeight, { align: 'right' });
+      
+      // Adjust starting Y position for filters based on logo height
+      let currentY = 30 + logoHeight;
+      
+      // Add the filters section only if there are active filters
+      if (filters.customer || filters.date) {
+          doc.setFontSize(12);
+          let filterText = "סינון לפי: ";
+          if (filters.customer) filterText += `לקוח: ${filters.customer} `;
+          if (filters.date) filterText += `תאריך: ${filters.date} `;
+          doc.text(filterText, 190, currentY, { align: 'right' });
+          currentY += 10;
+      }
   
     // Helper function to get Hebrew payment type label
     const getPaymentTypeLabel = (type: string) => {
@@ -215,16 +232,16 @@ export const generateIncomeExpenseReport = (data: IncomeExpenseData[], filters: 
     // Calculate starting Y position based on whether filters are present
     const startY = (filters.customer || filters.date) ? 40 : 30;
   
-    // Add the table with data
+   
     doc.autoTable({
       head: [columns.map(col => col.header)],
       body: data.map(item => [
-        formatDate(item.date),                // Date
-        formatAmount(item.amount),           // Amount
-        getPaymentTypeLabel(item.paymentType), // Payment type
-        item.description || '',              // Description
-        item.customer,                       // Customer
-        formatNumber(item.receiptNumber)     // Receipt number
+        formatDate(item.date),             
+        formatAmount(item.amount),           
+        getPaymentTypeLabel(item.paymentType),
+        item.description || '',              
+        item.customer,                       
+        formatNumber(item.receiptNumber)     
     ]),
       startY: startY,
       theme: 'grid',
@@ -242,29 +259,28 @@ export const generateIncomeExpenseReport = (data: IncomeExpenseData[], filters: 
         halign: 'right'
       },
       columnStyles: {
-        0: { halign: 'right' }, // Date
-        1: { halign: 'right' }, // Amount
-        2: { halign: 'right' }, // Payment type
-        3: { halign: 'right' }, // Description
-        4: { halign: 'right' }, // Customer
-        5: { halign: 'right' }  // Receipt number
+        0: { halign: 'right' }, 
+        1: { halign: 'right' }, 
+        2: { halign: 'right' }, 
+        3: { halign: 'right' }, 
+        4: { halign: 'right' }, 
+        5: { halign: 'right' }  
       },
       margin: { right: 15 }
     });
   
-    // Calculate total payment
-    const totalPayment = data.reduce((sum, item) => {
-      return sum + (typeof item.amount === 'number' ? item.amount : 0);
-    }, 0);
+    const totalPayment = data.reduce((sum, item) => sum + (typeof item.amount === 'number' ? item.amount : 0), 0);
+        const totalText = `סה"כ: ${formatAmount(totalPayment)}`;
+        doc.text(totalText, 190, doc.lastAutoTable.finalY + 10, { align: 'right' });
   
-    // Add the final payment amount with LTR marker
-    const totalText = `סה"כ: ${formatAmount(totalPayment)}`;
-    doc.text(totalText, 190, doc.lastAutoTable.finalY + 10, { align: 'right' });
+    const footerLogoWidth = 8 * aspectRatio;
+        doc.addImage(logo, 'PNG', 20, 280, footerLogoWidth, 8);
+        doc.setFontSize(8);
+        doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
   
-    // Add footer
-    doc.setFontSize(8);
-    doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
-  
-    // Save the PDF with the report
-    doc.save(`${reportType === "Income" ? "הכנסות" : "הוצאות"}-דוח.pdf`);
+        doc.save(`${reportType === "Income" ? "הכנסות" : "הוצאות"}-דוח.pdf`);
+      } catch (error) {
+          console.error('Error generating income/expense report:', error);
+          throw error;
+      }
   };

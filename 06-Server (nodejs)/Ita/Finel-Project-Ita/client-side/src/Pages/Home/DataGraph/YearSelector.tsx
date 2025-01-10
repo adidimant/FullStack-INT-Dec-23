@@ -11,21 +11,24 @@ async function fetchRegistrationYear (userId: string) {
     return response.data.registrationYear;
   } catch (error) {
     console.error("Error fetching registration year:", error);
-    throw new Error("Unable to fetch registration year.");
   }
 };
 
+interface YearSelectorProps {
+  value: string;
+  onChange: (year: string) => void;
+}
 
-function YearSelector() {
+
+function YearSelector({ value, onChange }: YearSelectorProps) {
   const [yearOptions, setYearOptions] = useState<{ value: string; label: string }[]>([]);
-  const [year, setYear] = useState(new Date().getFullYear().toString()); // Default to the current year
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadYears = async () => {
       try {
-        const userId = extractUserIdFromToken(); // Extract the user ID from the token
-        const registrationYear = await fetchRegistrationYear(userId); // Pass the user ID
+        const userId = extractUserIdFromToken(); 
+        const registrationYear = await fetchRegistrationYear(userId); 
         const currentYear = new Date().getFullYear();
         const years = Array.from(
           { length: currentYear - registrationYear + 1 },
@@ -34,9 +37,9 @@ function YearSelector() {
             return { value: year, label: year };
           }
         );
-        setYearOptions(years); // Update the state with year options
+        setYearOptions(years); 
       } catch {
-        setError("Failed to load year options. Please try again later.");
+        setError("טעינת אפשרויות השנה נכשלה. אנא נסה שוב מאוחר יותר.");
       }
     };
 
@@ -54,8 +57,8 @@ function YearSelector() {
       id="year-select"
       width="180px"
       fullFrame={true}
-      value={year}
-      onChange={(e) => setYear(e.target.value)} // Adjusted to event handling
+      value={value}  // במקום year המקומי
+      onChange={(e) => onChange(e.target.value)}  // במקום setYear המקומי
     />
   );
 }
