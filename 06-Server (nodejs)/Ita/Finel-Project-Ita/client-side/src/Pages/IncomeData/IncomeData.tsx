@@ -43,21 +43,9 @@ interface Receipt {
 }
 
 
-// interface DataItem {
-//     receiptNumber: string;
-//     customer: string;
-//     description: string;
-//     paymentType: string;
-//     amount: number;
-//     date: string;
-//   }
-  
-
-
-
 function IncomeData() {
-    const [order, setOrder] = useState<'asc' | 'desc'>('asc');
-    const [orderBy, setOrderBy] = useState<keyof Receipt>('date');
+    const [order, setOrder] = useState<'asc' | 'desc'>('asc'); //סדר המיון
+    const [orderBy, setOrderBy] = useState<keyof Receipt>('date'); //השדה שממנו המיון מתבצע
     const [page, setPage] = useState(0);
     const [filterType, setFilterType] = useState('');
     const [filterValue, setFilterValue] = useState('');
@@ -135,12 +123,12 @@ function IncomeData() {
         }
     }, [companyDetails]);
 
-    const getPaymentTypeLabel = useCallback((type: string) => {
-        return paymentTypeOptions.find(option => option.value === type)?.label || type;
+    const getPaymentTypeLabel = useCallback((type: string) => {  //פונקציה שמחזירה את הערך בעברית
+        return paymentTypeOptions.find(option => option.value === type)?.label || type; //חיפוש הערך באובייקט, אם קיים מחזיר את החלק בעברית ואם לא מחזיר את הסוג באנגלית
     }, []);
 
 
-    //פונקציית מיון
+    //פונקצייה של איכון המיון
     const handleRequestSort = useCallback((property: string) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -152,11 +140,13 @@ function IncomeData() {
         setPage(newPage);
     }, []);
 
-    //פונקציות סינון
+    //הכנסת הערך לפילטר
     const handleFilterValueChange = useCallback((event: any) => {
         setFilterValue(event.target.value);
     }, []);
 
+
+    //ערך התחלה וסיום לתאריך
     const handleStartDateChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setStartDate(event.target.value);
     }, []);
@@ -169,18 +159,18 @@ function IncomeData() {
 
 
     const sortedData = useMemo(() => {
-        return [...receipts].sort((a, b) => {
-            if (orderBy === 'amount' || orderBy === 'receiptNumber') {
-                return (order === 'asc' ? a[orderBy] - b[orderBy] : b[orderBy] - a[orderBy]);
+        return [...receipts].sort((a, b) => { //יצירת עותק חדש כדי לא לשנות את המקור
+            if (orderBy === 'amount' || orderBy === 'receiptNumber') { //ערך מספרי
+                return (order === 'asc' ? a[orderBy] - b[orderBy] : b[orderBy] - a[orderBy]); // מיון עולה או יורד
             }
-            if (orderBy === 'date' || orderBy === 'paymentDate') {
+            if (orderBy === 'date' || orderBy === 'paymentDate') { //ערך תאריך
                 return (order === 'asc' 
-                    ? new Date(a[orderBy]).getTime() - new Date(b[orderBy]).getTime() 
+                    ? new Date(a[orderBy]).getTime() - new Date(b[orderBy]).getTime() //המרת תאריך למספר והשוואה
                     : new Date(b[orderBy]).getTime() - new Date(a[orderBy]).getTime()
                 );
             }
-            return (order === 'asc' 
-                ? String(a[orderBy]).localeCompare(String(b[orderBy])) 
+            return (order === 'asc'  //ערך של מילים
+                ? String(a[orderBy]).localeCompare(String(b[orderBy])) // -ממירים לסטרינג והפונקציה עושה השוואה - עולה
                 : String(b[orderBy]).localeCompare(String(a[orderBy]))
             );
         });
@@ -194,11 +184,11 @@ function IncomeData() {
     const filteredData = useMemo(() => {
         return sortedData.filter((row) => {
             if (filterType === 'year' && filterValue) {
-                return new Date(row.date).getFullYear().toString() === filterValue;
+                return new Date(row.date).getFullYear().toString() === filterValue;  
             }
             if (filterType === 'date' && startDate && endDate) {
                 const rowDate = new Date(row.date);
-                return rowDate >= new Date(startDate) && rowDate <= new Date(endDate);
+                return rowDate >= new Date(startDate) && rowDate <= new Date(endDate); //בדיק אם התאריך בין התאריכים
             }
             if (filterType === 'customer' && filterValue) {
                 return row.customerName.toLowerCase().includes(filterValue.toLowerCase());
@@ -229,24 +219,36 @@ function IncomeData() {
 
 
     const handleDownloadReport = useCallback(() => {
+        if (!companyDetails) {
+            alert('פרטי החברה אינם זמינים');
+            return;
+        }
         
-        const filters: Filters = {
+        // הגדרת הפילטרים
+        const filters: Filters = { //צריך להמשיך...
             customer: filterType === 'customer' ? filterValue : undefined,
-            date: filterType === 'date' && startDate && endDate ? `${startDate} to ${endDate}` : undefined
+            date: filterType === 'date' ? 
+                (startDate && endDate ? `${startDate} עד ${endDate}` : undefined) : 
+                (filterType === 'year' ? filterValue : undefined)
         };
     
+        // המרת הנתונים למבנה הנדרש
         const mappedData = filteredData.map((receipt) => ({
             receiptNumber: receipt.receiptNumber,
             customer: receipt.customerName,
             description: receipt.description || '',
             paymentType: receipt.paymentType,
-            amount: typeof receipt.amount === 'number' ? receipt.amount : 0, // Add validation here
-            date: receipt.paymentDate,
+            amount: receipt.amount,
+            date: receipt.date 
         }));
-        
-       
-        generateIncomeExpenseReport(mappedData, filters, "Income");
-    }, [filterType, filterValue, startDate, endDate, filteredData]);
+    
+        try {
+            generateIncomeExpenseReport(mappedData, companyDetails,filters,"Income");
+        } catch (error) {
+            console.error('Error generating report:', error);
+            alert('שגיאה בהורדת הדוח');
+        }
+    }, [filterType, filterValue, startDate, endDate, filteredData, companyDetails]);
     
 
     return (

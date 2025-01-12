@@ -117,6 +117,13 @@ const RegistrationForm = () => {
     }
   }, [email, code, setStep, setLoading, setError]);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+
   const handleFinalSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -273,8 +280,7 @@ const RegistrationForm = () => {
                 id="profilePic"
                 title="לוגו חברה/עסק"
                 placeholder="הוסף תמונה"
-                value={image}
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
+                onChange={handleFileChange}
               />
               <Input
                 type="password"

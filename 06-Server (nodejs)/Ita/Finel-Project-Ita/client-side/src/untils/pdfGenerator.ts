@@ -9,6 +9,7 @@ import logo from '../assets/logo.png';
 
 
 
+
 // Type declarations
 declare module 'jspdf' {
     interface jsPDF {
@@ -40,7 +41,7 @@ export interface CompanyDetails {
   companyNumber: string;
   address: string;
   city: string;
-  logoUrl?: string;
+  profilePic?: string; 
 }
 
 export interface IncomeExpenseData {
@@ -57,107 +58,136 @@ export interface Filters {
     date?: string;
   }
 
-const loadImage = (src: string): Promise<HTMLImageElement> => {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = src;
-    });
+
+function formatDate(dateString: string | Date): string {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 };
 
 
+const getHebrewPaymentType = (paymentType: string): string => {
+
+  const option = paymentTypeOptions.find(opt => opt.value === paymentType);
+  return option ? option.label : paymentType;
+};
+
+const reverseDate = (date: string): string => {
+  return date.split('').reverse().join('');
+};
+
+const reverseAmount = (amount: number): string => {
+  return amount.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).split('').reverse().join('');
+};
+
+const reverseReceiptNumber = (receiptNumber: number): string => {
+  return receiptNumber.toString().split('').reverse().join('');
+};
+
+const formatAmount = (amount: number) => {
+  return `\u202D₪ ${amount.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+  })}\u202C`;
+};
+
 
 export async function generatePDF(data: ReceiptData, company: CompanyDetails): Promise<jsPDF> {
-    const doc = new jsPDF('p', 'mm', 'a4');
+  const doc = new jsPDF('p', 'mm', 'a4');
+  
 
-    const img = new Image();
-    img.src = logo;
-    
-    // Add fonts
-    doc.addFont(NotoSansHebrewRegular, 'NotoSansHebrew', 'normal');
-    doc.addFont(rubikFont, 'Rubik', 'normal');
-    doc.addFont(rubikBold, 'Rubik', 'bold');
-    
-    // Enable right-to-left
-    doc.setR2L(true);
-    
-    // Set default font to Hebrew font
-    doc.setFont('NotoSansHebrew', 'normal');
+  doc.addFont(NotoSansHebrewRegular, 'NotoSansHebrew', 'normal');
+  doc.addFont(rubikFont, 'Rubik', 'normal');
+  doc.addFont(rubikBold, 'Rubik', 'bold');
+  
+  doc.setR2L(true);
+  
+  doc.setFont('NotoSansHebrew', 'normal');
+
+  
 
   try {
-    // Load logo
-    const img = await loadImage(logo);
-    const aspectRatio = img.width / img.height;
-    const autoWidth = 8 * aspectRatio;
+      if (company?.profilePic) {
+          try {
+              const base64Data = company.profilePic.split(',')[1] || company.profilePic;
+              doc.addImage(
+                  base64Data,
+                  'JPEG',
+                  165,
+                  10,
+                  30,
+                  30
+              );
+          } catch (logoError) {
+              console.error('Error adding company logo:', logoError);
+          }
+      }
+  
 
-    // Add company logo if exists
-    if (company?.logoUrl) {
-        doc.addImage(company.logoUrl, 'PNG', 165, 10, 30, 30);
-    }
-    
-    // Company details
-    doc.setFontSize(20);
-    doc.text(company?.companyName || '', 190, 50, { align: 'right' });
-    
-    doc.setFontSize(12);
-    doc.text(`ח.פ: ${company?.companyNumber}`, 190, 60, { align: 'right' });
-    doc.text(`${company?.address}, ${company?.city}`, 190, 70, { align: 'right' });
-    
-    // Receipt details
-    doc.text(`קבלה מספר: ${data.receiptNumber}`, 190, 90, { align: 'right' });
-    doc.text(`תאריך: ${data.date}`, 190, 100, { align: 'right' });
-    doc.text(`לכבוד: ${data.customerName}`, 190, 110, { align: 'right' });
+      doc.setFontSize(20);
+      doc.text(company?.companyName || '', 190, 50, { align: 'right' });
+      
+      doc.setFontSize(12);
+      doc.text(`ח.פ: ${company?.companyNumber}`, 190, 60, { align: 'right' });
+      doc.text(`${company?.address}, ${company?.city}`, 190, 70, { align: 'right' });
+      
+      doc.text(`קבלה מספר: ${data.receiptNumber}`, 190, 90, { align: 'right' });
+      doc.text(`תאריך: ${formatDate(data.date)}`, 190, 100, { align: 'right' });
+      doc.text(`לכבוד: ${data.customerName}`, 190, 110, { align: 'right' });
 
-    // Table
-    doc.autoTable({
-        head: [['סכום', 'אופן תשלום', 'פירוט']],
+      const hebrewPaymentType = getHebrewPaymentType(data.receiptType);
+      
+      const paymentDetails = hebrewPaymentType + 
+          (data.bank ? ` בנק: ${data.bank}` : '') +
+          (data.branch ? ` סניף: ${data.branch}` : '') +
+          (data.account ? ` חשבון: ${data.account}` : '');
+
+      
+      doc.autoTable({
+        head: [['תאריך', 'סכום', 'אופן תשלום', 'פירוט']],
         body: [[
-            `${data.amount.toLocaleString()} ${data.currency}`,
-            `${data.receiptType}${data.bank ? ` בנק: ${data.bank}${data.branch ? `, סניף: ${data.branch}${data.account ? `, חשבון: ${data.account}` : ''}` : ''}` : ''}`,
-            data.description
+          reverseDate(formatDate(data.date)), 
+          `₪ ${reverseAmount(data.amount)}`,   
+          paymentDetails,         
+          data.description          
         ]],
         startY: 120,
-        theme: 'grid',
+        theme: 'grid', 
         styles: {
-            font: 'NotoSansHebrew',
-            fontSize: 10,
-            halign: 'right'
-        },
-        headStyles: {
-            fillColor: [200, 200, 200],
-            fontStyle: 'bold'
-        },
-        tableWidth: 'auto',
-        margin: { right: 15 }
-    });
+          font: 'NotoSansHebrew',
+          fontSize: 10,
+          halign: 'right' 
+        }
+      });
 
-    // Footer sections
-    if (data.footerContent) {
-        doc.setFontSize(10);
-        doc.text(data.footerContent, 190, doc.lastAutoTable.finalY + 20, { align: 'right' });
-    }
+      if (data.footerContent) {
+          doc.setFontSize(10);
+          doc.text(data.footerContent, 190, doc.lastAutoTable.finalY + 20, { align: 'right' });
+      }
 
-    if (data.details) {
+      if (data.details) {
+          doc.setFontSize(8);
+          doc.text(data.details, 190, doc.lastAutoTable.finalY + 40, { align: 'right' });
+      }
+
+      doc.addImage(logo, 'PNG', 20, 280, 20, 8);
         doc.setFontSize(8);
-        doc.text(data.details, 190, doc.lastAutoTable.finalY + 40, { align: 'right' });
-    }
+        doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
 
-    // Add footer logo and text
-    doc.addImage(logo, 'PNG', 20, 280, autoWidth, 8);
-    doc.setFontSize(8);
-    doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
-
-    return doc;
-} catch (error) {
-    console.error('Error generating PDF:', error);
-    throw error;
+      return doc;
+  } catch (error) {
+      console.error('Error generating PDF:', error);
+      throw error;
+  }
 }
-}
-
 
 // 
-export async function generateIncomeExpenseReport(data: IncomeExpenseData[], filters: Filters, reportType: "Income" | "Expense"):  Promise<void> {
+export async function generateIncomeExpenseReport(data: IncomeExpenseData[], company: CompanyDetails, filters: Filters, reportType: "Income" | "Expense"):  Promise<void> {
     const doc = new jsPDF('p', 'mm', 'a4');
   
     doc.addFont(NotoSansHebrewRegular, 'NotoSansHebrew', 'normal');
@@ -167,120 +197,68 @@ export async function generateIncomeExpenseReport(data: IncomeExpenseData[], fil
     doc.setFont('NotoSansHebrew', 'normal');
   
     try {
-      // Load and add logo at the top
-      const img = await loadImage(logo);
-      const aspectRatio = img.width / img.height;
-      const logoWidth = 30;  // Fixed width for top logo
-      const logoHeight = logoWidth / aspectRatio;
-      doc.addImage(logo, 'PNG', 165, 10, logoWidth, logoHeight);
-
-      // Add the report title in Hebrew
+      // Add company logo if available
+      if (company?.profilePic) {
+        try {
+          const base64Data = company.profilePic.split(',')[1] || company.profilePic;
+          doc.addImage(base64Data, 'JPEG', 165, 10, 30, 30);
+        } catch (logoError) {
+          console.error('Error adding company logo:', logoError);
+        }
+      }
+  
+      
+      doc.setFontSize(20);
+      doc.text(company?.companyName || '', 190, 50, { align: 'right' });
+  
+      doc.setFontSize(12);
+      doc.text(`ח.פ: ${company?.companyNumber}`, 190, 60, { align: 'right' });
+      doc.text(`${company?.address}, ${company?.city}`, 190, 70, { align: 'right' });
+  
+      
       doc.setFontSize(18);
-      doc.text(reportType === "Income" ? "נתוני הכנסות" : "נתוני הוצאות", 190, 20 + logoHeight, { align: 'right' });
-      
-      // Adjust starting Y position for filters based on logo height
-      let currentY = 30 + logoHeight;
-      
-      // Add the filters section only if there are active filters
+      doc.text(reportType === "Income" ? "נתוני הכנסות" : "נתוני הוצאות", 190, 90, { align: 'right' });
+  
+      let filterText = '';
       if (filters.customer || filters.date) {
-          doc.setFontSize(12);
-          let filterText = "סינון לפי: ";
-          if (filters.customer) filterText += `לקוח: ${filters.customer} `;
-          if (filters.date) filterText += `תאריך: ${filters.date} `;
-          doc.text(filterText, 190, currentY, { align: 'right' });
-          currentY += 10;
+        filterText = "סינון לפי: ";
+        if (filters.customer) filterText += `לקוח: ${filters.customer} `;
+        if (filters.date) filterText += `תאריך: ${filters.date}`;
       }
+      doc.setFontSize(12);
+      doc.text(filterText, 190, 100, { align: 'right' });
   
-    // Helper function to get Hebrew payment type label
-    const getPaymentTypeLabel = (type: string) => {
-      const option = paymentTypeOptions.find(opt => opt.value === type);
-      return option ? option.label : type;
-    };
+      
+      doc.autoTable({
+        head: [['תאריך', 'סכום', 'סוג תשלום', 'תיאור', 'לקוח', 'מספר קבלה']],
+        body: data.map(item => [
+          reverseDate(formatDate(item.date)),        
+          reverseAmount(item.amount),                
+          getHebrewPaymentType(item.paymentType),   
+          item.description || '',                  
+          item.customer,                             
+          reverseReceiptNumber(item.receiptNumber)  
+        ]),
+        startY: 110,
+        theme: 'grid',
+        styles: {
+          font: 'NotoSansHebrew',
+          fontSize: 10,
+          halign: 'right' 
+        }
+      });
   
-    // Format date function with LTR marker to prevent reversal
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `\u202D${day}/${month}/${year}\u202C`;
-    };
-    
-    // Format number function with LTR marker
-    const formatNumber = (num: number) => {
-        return `\u202D${num.toLocaleString('en-US')}\u202C`;
-    };
-    
-    // Format amount with shekel
-    const formatAmount = (amount: number) => {
-        return `\u202D₪ ${amount.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        })}\u202C`;
-    };
+      const totalPayment = data.reduce((sum, item) => sum + Number(item.amount), 0);
+      const totalText = `סה"כ: ₪${formatAmount(totalPayment)}`;
+      doc.text(totalText, 60, doc.lastAutoTable.finalY + 10, { align: 'right' });
   
-    // Define table columns in reverse order
-    const columns = [
-      { header: "תאריך", dataKey: "date" },
-      { header: "סכום", dataKey: "amount" },
-      { header: "סוג תשלום", dataKey: "paymentType" },
-      { header: "תיאור", dataKey: "description" },
-      { header: "לקוח", dataKey: "customer" },
-      { header: "מספר קבלה", dataKey: "receiptNumber" }
-    ];
+      doc.addImage(logo, 'PNG', 20, 280, 20, 8);
+      doc.setFontSize(8);
+      doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
   
-    // Calculate starting Y position based on whether filters are present
-    const startY = (filters.customer || filters.date) ? 40 : 30;
-  
-   
-    doc.autoTable({
-      head: [columns.map(col => col.header)],
-      body: data.map(item => [
-        formatDate(item.date),             
-        formatAmount(item.amount),           
-        getPaymentTypeLabel(item.paymentType),
-        item.description || '',              
-        item.customer,                       
-        formatNumber(item.receiptNumber)     
-    ]),
-      startY: startY,
-      theme: 'grid',
-      styles: {
-        font: 'NotoSansHebrew',
-        fontSize: 10,
-        halign: 'right',
-        cellPadding: 3
-      },
-      headStyles: {
-        fillColor: [200, 200, 200],
-        textColor: [0, 0, 0],
-        fontSize: 12,
-        fontStyle: 'bold',
-        halign: 'right'
-      },
-      columnStyles: {
-        0: { halign: 'right' }, 
-        1: { halign: 'right' }, 
-        2: { halign: 'right' }, 
-        3: { halign: 'right' }, 
-        4: { halign: 'right' }, 
-        5: { halign: 'right' }  
-      },
-      margin: { right: 15 }
-    });
-  
-    const totalPayment = data.reduce((sum, item) => sum + (typeof item.amount === 'number' ? item.amount : 0), 0);
-        const totalText = `סה"כ: ${formatAmount(totalPayment)}`;
-        doc.text(totalText, 190, doc.lastAutoTable.finalY + 10, { align: 'right' });
-  
-    const footerLogoWidth = 8 * aspectRatio;
-        doc.addImage(logo, 'PNG', 20, 280, footerLogoWidth, 8);
-        doc.setFontSize(8);
-        doc.text('הופק על-ידי "חשבונית בקליק" בע"מ', 10, 290);
-  
-        doc.save(`${reportType === "Income" ? "הכנסות" : "הוצאות"}-דוח.pdf`);
-      } catch (error) {
-          console.error('Error generating income/expense report:', error);
-          throw error;
-      }
-  };
+      doc.save(`${reportType === "Income" ? "הכנסות" : "הוצאות"}-דוח.pdf`);
+    } catch (error) {
+      console.error('Error generating income/expense report:', error);
+      throw error;
+    }
+  }

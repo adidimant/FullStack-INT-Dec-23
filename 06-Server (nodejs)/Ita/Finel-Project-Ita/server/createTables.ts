@@ -69,7 +69,7 @@ async function createTables() {
         console.log('Tables created successfully!');
     } catch (error) {
         console.error('Error creating tables:', error);
-        process.exit(1); // Exit the application if table creation fails
+        process.exit(1); // סיום התהליך עם קוד שגיאה
     }
   };
 

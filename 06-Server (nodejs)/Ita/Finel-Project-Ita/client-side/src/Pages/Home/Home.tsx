@@ -35,7 +35,7 @@ function Home() {
             const response = await axiosClient.get(`/api/users/details/${userId}`);
             console.log("Server response:", response.data);
             setCompanyDetails(response.data);
-            setLogoError(false); // Reset error state when new data is fetched
+            setLogoError(false); 
           } catch (error) {
             console.error("Error fetching company details:", error);
             setLogoError(true);

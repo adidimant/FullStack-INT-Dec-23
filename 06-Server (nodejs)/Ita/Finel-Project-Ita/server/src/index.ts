@@ -50,7 +50,7 @@ const platformLogMiddleware = (req: express.Request, res: express.Response, next
   next();
 };
 
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 app.use('/public', express.static("./views/assets"));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

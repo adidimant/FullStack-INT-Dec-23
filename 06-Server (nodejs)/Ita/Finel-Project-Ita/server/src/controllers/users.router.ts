@@ -131,19 +131,17 @@ usersRouter.post('/complete-registration', uploadProfilePicture.single('profileP
       return;
     }
 
-    // Hash the password
+ 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate a unique userId
+   
     const userId = uuidv4();
 
-    let profilePicPath = '/uploads/altLogo.png'; // Default image if none is uploaded
+    let profilePicPath = '/uploads/altLogo.png'; 
 
     if (req.file) {
-      // Convert the uploaded file to a full path for storage in the database
       profilePicPath = `/uploads/${req.file.filename}`;
 
-      // If there is a file, check if the profile picture exists and delete the old one if it isn't the default one
       const [oldUser] = await promisePool.query<RowDataPacket[]>(`SELECT profilePic FROM users WHERE email = ?`, [email]);
 
       if (oldUser[0]?.profilePic && !oldUser[0].profilePic.includes('default_profile')) {
@@ -155,7 +153,6 @@ usersRouter.post('/complete-registration', uploadProfilePicture.single('profileP
       }
     }
 
-    // Insert the new user data into the database
     await promisePool.query(
       `INSERT INTO users (userId, email, createdDate, password, fullName, companyName, companyNumber, address, city, profilePic)
        VALUES (?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?)`,
@@ -235,7 +232,6 @@ usersRouter.post('/logout', authMiddleware, (req, res) => {
   const userData = (req as any).userData;
   const userId = userData.userId;
 
-  // making sure the server is no longer treating the user accessToken & refreshToken as valid
   delete ACTIVE_USERS_SESSIONS_AND_TOKENS[userId];
 
   res.send('Logged out successfully');
@@ -383,7 +379,6 @@ usersRouter.put('/details/:userId', authMiddleware, uploadProfilePicture.single(
 
 
 
-// Step 1: Check email existence and send verification code
 usersRouter.post('/check-email', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { email } = req.body;
@@ -447,7 +442,6 @@ usersRouter.post('/verify-code', async (req: express.Request, res: express.Respo
   try {
     const { email, code } = req.body;
 
-    // Check if code exists and is not expired (15 minutes validity)
     const [rows] = await promisePool.query(
       `SELECT * FROM verification_codes 
        WHERE email = ? 
