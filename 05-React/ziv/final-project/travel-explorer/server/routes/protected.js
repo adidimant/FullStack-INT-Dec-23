@@ -4,10 +4,10 @@ import { logger } from '../utils/logger.js';
 
 const router = express.Router();
 
-// Protected route example
+//מסלול מוגן
 router.get('/dashboard', verifyToken, async (req, res) => {
   try {
-    // Access the authenticated user's ID via req.userId
+    // גש למזהה המשתמש המאומת באמצעות req.userId
     logger.info('Dashboard accessed by user:', req.userId);
     res.json({ 
       message: 'Welcome to your dashboard',
@@ -19,7 +19,7 @@ router.get('/dashboard', verifyToken, async (req, res) => {
   }
 });
 
-// User profile route
+// מסלול פרופיל משתמש
 router.get('/profile', verifyToken, async (req, res) => {
   try {
     logger.info('Profile accessed by user:', req.userId);
@@ -33,7 +33,7 @@ router.get('/profile', verifyToken, async (req, res) => {
   }
 });
 
-// User settings route
+// מסלול הגדרות משתמש
 router.get('/settings', verifyToken, async (req, res) => {
   try {
     logger.info('Settings accessed by user:', req.userId);
@@ -48,3 +48,29 @@ router.get('/settings', verifyToken, async (req, res) => {
 });
 
 export default router;
+
+/*
+
+הקוד מגדיר נתיבים מוגנים שדורשים אימות טוקן JWT (באמצעות verifyToken) כדי לגשת אליהם.
+
+מה הקוד עושה:
+נתיב /dashboard:
+
+מוגן על ידי verifyToken, כלומר יש צורך באימות טוקן JWT כדי לגשת אליו.
+ברגע שהמשתמש מאומת, המידע על המשתמש (ID) נשמר ב-req.userId ומוצג בתגובה.
+אם יש שגיאה במהלך הגישה, תישלח הודעת שגיאה עם סטטוס 500.
+נתיב /profile:
+
+גם נתיב זה מוגן על ידי verifyToken.
+המידע על המשתמש (ID) מוצג בתגובה.
+אם יש שגיאה, תישלח הודעת שגיאה עם סטטוס 500.
+נתיב /settings:
+
+נתיב נוסף המוגן על ידי verifyToken.
+המידע על המשתמש (ID) מוצג בתגובה.
+אם יש שגיאה, תישלח הודעת שגיאה עם סטטוס 500.
+מטרת הקוד:
+הקוד מגדיר נתיבים מוגנים שדורשים אימות טוקן JWT. המידע של המשתמש (ID) נשמר ב-req.userId ומוצג בתגובה לכל אחד מהנתיבים.
+
+
+*/

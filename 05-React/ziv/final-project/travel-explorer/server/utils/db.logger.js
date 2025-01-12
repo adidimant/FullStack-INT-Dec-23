@@ -18,3 +18,7 @@ export const logDBEvent = (event, details = null) => {
       logger.info(`MongoDB event: ${event}`, details);
   }
 };
+
+/*
+הפונקציה `logDBEvent` רושמת לוגים עבור אירועים הקשורים למסד הנתונים MongoDB, כמו חיבור מוצלח, שגיאות, ניתוק או חיבור מחדש. היא משתמשת במודול `logger` כדי לרשום את האירועים ברמות לוג שונות, ומאפשרת להוסיף פרטים נוספים אם יש צורך.
+*/

@@ -8,7 +8,10 @@ export const createSocketServer = (httpServer) => {
       origin: [
         'http://localhost:5503',
         'http://127.0.0.1:5503',
-        /^http:\/\/10\.0\.0\.\d+:5503$/
+        /^http:\/\/10\.0\.0\.\d+:5503$/,
+        'http://localhost:5504/',
+        'http://127.0.0.1:5504',
+        /^http:\/\/10\.0\.0\.\d+:5504$/,
       ],
       methods: ['GET', 'POST'],
       credentials: true
@@ -18,7 +21,7 @@ export const createSocketServer = (httpServer) => {
   io.on('connection', (socket) => {
     logger.info('Client connected:', socket.id);
     
-    // Set up review handlers
+    // הגדר מטפלי ביקורת
     handleReviews(io, socket);
 
     socket.on('disconnect', () => {
@@ -28,3 +31,7 @@ export const createSocketServer = (httpServer) => {
 
   return io;
 };
+
+/*
+הקוד הזה יוצר שרת Socket.IO שמאזין לחיבורים ומבצע פעולות בזמן אמת כמו עדכון חוות דעת. הוא מאפשר חיבורים מדומיינים שונים ומוודא שהלקוחות יכולים לשלוח ולקבל עדכונים תוך שמירה על אבטחת CORS וקרדנציאלים.
+*/

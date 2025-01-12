@@ -72,3 +72,67 @@ CREATE TABLE "Note" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+
+/* הקובץ מגדיר את מבנה בסיס הנתונים, כולל טבלאות, עמודות, קשרים ואינדקסים, המאפשרים ניהול משתמשים, מדינות, ביקורות, מועדפים, ביקורים והערות בצורה מאורגנת.
+
+
+טבלת User
+
+מייצגת משתמשים במערכת.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+email: כתובת דוא"ל ייחודית (מאובטחת עם אינדקס ייחודי).
+password: סיסמה מוצפנת.
+name: שם המשתמש.
+avatar: קישור לתמונת פרופיל.
+createdAt, updatedAt: תאריכים לניהול זמן יצירה ועדכון.
+טבלת Country
+
+מייצגת מדינות הזמינות במערכת.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+name, capital: שם המדינה ובירתה.
+description: תיאור המדינה.
+imageUrl: קישור לתמונה.
+currency, language, timezone: פרטים על המטבע, שפה ואזור זמן.
+latitude, longitude: מיקום גיאוגרפי.
+טבלת Review
+
+מייצגת ביקורות על מדינות.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+rating: דירוג (מספרי).
+comment: תוכן הביקורת.
+createdAt, updatedAt: זמן יצירה ועדכון.
+userId, countryId: מזהי משתמש ומדינה (Foreign Keys).
+טבלת VisitedPlace
+
+מייצגת מקומות בהם המשתמש ביקר.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+visitDate: תאריך הביקור.
+notes: הערות.
+userId, countryId: מזהי משתמש ומדינה (Foreign Keys).
+טבלת Favorite
+
+מייצגת מדינות מועדפות על המשתמש.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+createdAt: זמן יצירת המועדפות.
+userId, countryId: מזהי משתמש ומדינה (Foreign Keys).
+טבלת Note
+
+מייצגת הערות משתמשים על מדינות.
+עמודות עיקריות:
+id: מזהה ייחודי (Primary Key).
+title, content: כותרת ותוכן ההערה.
+createdAt, updatedAt: זמן יצירה ועדכון.
+userId, countryId: מזהי משתמש ומדינה (Foreign Keys).
+אינדקס ייחודי לטבלת User
+
+מוודא שכתובת דוא"ל (email) תהיה ייחודית בכל המערכת.
+*/
+
+
+

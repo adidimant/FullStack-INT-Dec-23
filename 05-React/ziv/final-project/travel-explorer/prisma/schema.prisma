@@ -31,8 +31,8 @@ model Country {
   currency    String
   language    String
   timezone    String
-  latitude    Float    // Changed from coordinates JSON
-  longitude   Float    // Changed from coordinates JSON
+  latitude    Float    
+  longitude   Float    
 
   reviews        Review[]
   visitedPlaces  VisitedPlace[]
@@ -86,3 +86,4 @@ model Note {
   countryId String
   country   Country @relation(fields: [countryId], references: [id])
 }
+

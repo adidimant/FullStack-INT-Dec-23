@@ -37,7 +37,7 @@ try {
     }
   });
 
-  // Hash password before saving
+  // Hash סיסמה לפני השמירה
   userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) return next();
     
@@ -46,15 +46,17 @@ try {
       this.password = await bcrypt.hash(this.password, salt);
       next();
     } catch (error) {
+      console.error('Error hashing password:', error); // שגיאה אם לא מצליחים להגניב את הסיסמה
       next(error);
     }
   });
 
-  // Compare password method
+  // השווה את שיטת הסיסמה
   userSchema.methods.comparePassword = async function(candidatePassword) {
     try {
       return await bcrypt.compare(candidatePassword, this.password);
     } catch (error) {
+      console.error('Error comparing password:', error); // שגיאה אם לא מצליחים להשוות סיסמאות
       throw new Error(error);
     }
   };
@@ -119,3 +121,28 @@ export const verifyToken = async (req, res) => {
     res.status(500).json({ valid: false });
   }
 };
+
+
+/*
+
+הקוד ב-authController.js כולל את המודלים והפונקציות הבסיסיות לניהול משתמשים, רישום, התחברות ואימות טוקן.
+
+הסבר על הקוד:
+מודל משתמש:
+
+הקוד בודק אם מודל המשתמש כבר קיים. אם לא, הוא יוצר אותו עם שדות כמו name, email, password, avatar, ו-createdAt.
+לפני שמירת המשתמש, הסיסמה נגנבת (hashing) על ידי bcrypt.
+פונקציית רישום (register):
+
+בודקת אם המשתמש כבר קיים בבסיס הנתונים לפי המייל.
+אם לא, היא יוצרת משתמש חדש עם המידע שנשלח בבקשה, שומרת אותו בבסיס הנתונים, ומחזירה הודעת הצלחה.
+פונקציית התחברות (login):
+
+בודקת אם המייל והסיסמה תואמים למידע בבסיס הנתונים.
+אם כן, מחזירה הודעת הצלחה. אם לא, מחזירה שגיאה.
+פונקציית אימות טוקן (verifyToken):
+
+בודקת את תקפות הטוקן שנשלח בבקשה.
+אם הטוקן תקין, מחזירה תשובה חיובית, אחרת מחזירה שגיאה.
+
+*/

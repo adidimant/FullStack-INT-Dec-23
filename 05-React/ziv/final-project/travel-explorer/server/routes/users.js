@@ -4,7 +4,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Get user profile
+ // קבל פרופיל משתמש
 router.get('/profile', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
@@ -14,7 +14,7 @@ router.get('/profile', verifyToken, async (req, res) => {
   }
 });
 
-// Update user profile
+// עדכן את פרופיל המשתמש
 router.put('/profile', verifyToken, async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -30,7 +30,7 @@ router.put('/profile', verifyToken, async (req, res) => {
   }
 });
 
-// Get user favorites
+// קבל מועדפים של משתמשים
 router.get('/favorites', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('favorites');
@@ -40,7 +40,7 @@ router.get('/favorites', verifyToken, async (req, res) => {
   }
 });
 
-// Add to favorites
+// הוסף למועדפים
 router.post('/favorites/:countryId', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -54,7 +54,7 @@ router.post('/favorites/:countryId', verifyToken, async (req, res) => {
   }
 });
 
-// Remove from favorites
+// הסר מהמועדפים
 router.delete('/favorites/:countryId', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -67,3 +67,35 @@ router.delete('/favorites/:countryId', verifyToken, async (req, res) => {
 });
 
 export default router;
+
+/*
+הקובץ server/routes/users.js הוא קובץ המגדיר את כל המסלולים (routes) הקשורים למשתמשים בשרת. להלן הסבר מתומצת על כל מסלול:
+
+GET /profile:
+
+מבצע חיפוש על פי מזהה המשתמש (הנמצא ב-req.user.id שנשלח עם הטוקן).
+מחזיר את פרטי המשתמש (ללא הסיסמה) כתגובה.
+אם יש שגיאה, מחזיר הודעת שגיאה עם קוד 500.
+PUT /profile:
+
+מאפשר למשתמש לעדכן את שמו וכתובת הדוא"ל שלו.
+אם השינוי מצליח, מחזיר את פרטי המשתמש המעודכנים (ללא הסיסמה).
+אם יש שגיאה, מחזיר הודעת שגיאה עם קוד 500.
+GET /favorites:
+
+מחזיר את רשימת המקומות המועדפים של המשתמש.
+אם יש שגיאה, מחזיר הודעת שגיאה עם קוד 500.
+POST /favorites/:countryId:
+
+מוסיף מדינה לרשימת המועדפים של המשתמש.
+אם המדינה לא קיימת כבר ברשימה, היא מתווספת.
+מחזיר את רשימת המועדפים המעודכנת.
+אם יש שגיאה, מחזיר הודעת שגיאה עם קוד 500.
+DELETE /favorites/:countryId:
+
+מסיר מדינה מרשימת המועדפים של המשתמש.
+מחזיר את רשימת המועדפים המעודכנת לאחר ההסרה.
+אם יש שגיאה, מחזיר הודעת שגיאה עם קוד 500.
+סיכום:
+הקובץ מגדיר את כל הפעולות שניתן לבצע על פרופיל המשתמש (הצגת פרופיל, עדכון פרופיל) ורשימת המועדפים (הוספה, הסרה). כל הפעולות מגינות באמצעות middleware verifyToken לוודא שהמשתמש מחובר ומורשה לבצע את הפעולה.
+*/

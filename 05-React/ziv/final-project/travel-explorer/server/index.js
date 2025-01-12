@@ -7,7 +7,7 @@ import { configureCors } from './middleware/cors.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './utils/logger.js';
 import countryRoutes from './routes/countryRoutes.js';
-import authRoutes from './routes/auth.js'; // הוסף את זה
+import authRoutes from './routes/auth.js'; 
 
 dotenv.config();
 
@@ -16,8 +16,10 @@ const httpServer = createServer(app);
 
 const startServer = async () => {
   try {
+    // התחברות ל-MongoDB
     await connectDB();
 
+    // הגדרת WebSocket
     const io = new Server(httpServer, {
       cors: {
         origin: [
@@ -31,9 +33,10 @@ const startServer = async () => {
       }
     });
 
-    app.set('io', io); // Store io instance on app for use in controllers
+    // אחסן את מופע io לשימוש בבקרים
+    app.set('io', io);
 
-    // Configure CORS
+    // הגדרת CORS
     configureCors(app);
 
     // Middleware
@@ -43,14 +46,14 @@ const startServer = async () => {
       next();
     });
 
-    // Routes
-    app.use('/api/countries', countryRoutes); // נתיב למדינות
-    app.use('/api/auth', authRoutes); // הוסף את הנתיב הזה עבור auth
+    // נתיבי API
+    app.use('/api/countries', countryRoutes);
+    app.use('/api/auth', authRoutes);
 
-    // Error handling middleware
+    // טיפול בשגיאות
     app.use(errorHandler);
 
-    // WebSocket connection handling
+    // טיפול בחיבור WebSocket
     io.on('connection', (socket) => {
       logger.info('Client connected:', socket.id);
 
@@ -59,6 +62,7 @@ const startServer = async () => {
       });
     });
 
+    // הפעלת השרת
     const PORT = process.env.PORT || 5503;
     httpServer.listen(PORT, '0.0.0.0', () => {
       logger.info(`Server running on port ${PORT}`);
@@ -72,16 +76,62 @@ const startServer = async () => {
 
 startServer();
 
-// Handle uncaught exceptions
+// מטפל בחריגים שלא נתפסו
 process.on('uncaughtException', (err) => {
   logger.error('Uncaught Exception:', err);
   process.exit(1);
 });
 
-// Handle unhandled promise rejections
+// מטפל בדחיות הבטחות ללא טיפול
 process.on('unhandledRejection', (err) => {
   logger.error('Unhandled Rejection:', err);
   process.exit(1);
 });
 
 export { app };
+
+
+
+/*
+
+הקובץ index.js מגדיר את ההגדרות הראשיות של השרת בעזרת Express ו-Socket.IO. הנה הסבר על החלקים השונים בקובץ:
+
+הגדרת תלותים:
+
+express: מאפשר יצירת אפליקציית שרת.
+dotenv: לטעינת משתנים מקובץ .env.
+http: מאפשר יצירת שרת HTTP.
+socket.io: מאפשר תקשורת WebSocket בזמן אמת.
+connectDB: פונקציה להתחברות למסד הנתונים.
+configureCors: הגדרת CORS.
+errorHandler: טיפול בשגיאות.
+logger: רישום אירועים.
+countryRoutes ו-authRoutes: נתיבי API עבור מדינות ואותנטיקציה.
+הגדרת השרת:
+
+השרת נוצר בעזרת express ו-http.createServer.
+חיבור למסד הנתונים מתבצע בעזרת connectDB().
+הגדרת WebSocket:
+
+יצירת חיבור WebSocket בעזרת new Server(httpServer, {...}).
+הגדרת CORS ל-WebSocket כך שהחיבורים יגיעו רק מכתובת URL ספציפית.
+חיבור משתמשים ל-WebSocket ושמירה על החיבור באמצעות io.on('connection', ...).
+טיפול בהתחברות והפסקת חיבור של משתמשים.
+הגדרת מסלולים (Routes):
+
+app.use('/api/countries', countryRoutes) – מסלול לטיפול במדינות.
+app.use('/api/auth', authRoutes) – מסלול לטיפול באותנטיקציה.
+הגדרת Middleware:
+
+express.json() – מאפשר טיפול בבקשות JSON.
+Middleware לרישום כל בקשה שנכנסת לשרת.
+טיפול בשגיאות:
+
+errorHandler לטיפול בשגיאות כלליות.
+הפעלת השרת:
+
+השרת מאזין על פורט שנשאב מתוך משתני הסביבה או 5503 ברירת מחדל.
+טיפול בשגיאות קריטיות כמו uncaughtException ו-unhandledRejection.
+הקובץ מציין את התחלת השרת, את הגדרת ה-WebSocket, את המסלולים השונים, ומוודא שהשרת פועל כראוי עם רישום שגיאות וניהול חיבורים בזמן אמת.
+
+*/

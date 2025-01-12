@@ -6,26 +6,31 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user by email and select password field
+    // בדיקה אם יש נתונים בגוף הבקשה
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    // חיפוש המשתמש לפי אימייל
     const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     if (!user) {
       return res.status(401).json({ message: 'User does not exist' });
     }
 
-    // Compare the passwords
+    // השוואת סיסמאות
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'User does not exists' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Create JWT token
+    // יצירת טוקן JWT
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
 
-    // Respond with the user and token
+    // החזרת תגובה מוצלחת
     res.json({
       token,
       user: {
@@ -36,7 +41,19 @@ export const login = async (req, res) => {
       }
     });
   } catch (error) {
+    // אם יש שגיאה במהלך תהליך ההתחברות, נרשום את השגיאה בצורה מפורטת
     logger.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+
+    // החזרת שגיאה עם מידע נוסף
+    if (error.name === 'MongoError') {
+      return res.status(500).json({ message: 'Database error during login' });
+    }
+
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(500).json({ message: 'Error generating JWT token' });
+    }
+
+    // שגיאה כללית
+    res.status(500).json({ message: 'Server error during login', error: error.message });
   }
 };

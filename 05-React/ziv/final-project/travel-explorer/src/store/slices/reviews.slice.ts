@@ -6,7 +6,7 @@ export interface ReviewsSlice {
   reviews: Review[];
   setReviews: (reviews: Review[]) => void;
   addReview: (review: Review) => void;
-  likeReview: (reviewId: string, userId: string) => void;
+  likeReview: (reviewId: string, userId: number) => void;
 }
 
 export const createReviewsSlice: StateCreator<

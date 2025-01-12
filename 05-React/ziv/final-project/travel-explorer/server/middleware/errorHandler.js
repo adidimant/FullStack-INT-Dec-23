@@ -3,7 +3,7 @@ import { logger } from '../utils/logger.js';
 export const errorHandler = (err, req, res, next) => {
   logger.error('Unhandled error:', err);
 
-  // Log request details for debugging
+  // פרטי בקשת יומן עבור ניפוי באגים
   logger.debug('Request details:', {
     method: req.method,
     path: req.path,
@@ -16,7 +16,7 @@ export const errorHandler = (err, req, res, next) => {
     }
   });
 
-  // Handle mongoose validation errors
+  // טפל בשגיאות אימות נמייה
   if (err.name === 'ValidationError') {
     return res.status(400).json({
       message: 'Validation failed',
@@ -24,7 +24,7 @@ export const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Handle MongoDB errors
+  // טיפול בשגיאות MongoDB
   if (err.name === 'MongoError' || err.name === 'MongoServerError') {
     if (err.code === 11000) {
       return res.status(400).json({
@@ -34,7 +34,7 @@ export const errorHandler = (err, req, res, next) => {
     }
   }
 
-  // Default error response
+  // תגובת ברירת מחדל לשגיאה
   res.status(err.status || 500).json({
     message: err.message || 'Internal server error',
     ...(process.env.NODE_ENV === 'development' && {
@@ -43,3 +43,8 @@ export const errorHandler = (err, req, res, next) => {
     })
   });
 };
+
+/*
+
+מטפל בשגיאות של MongoDB (כולל שגיאות של מפתח כפול), שגיאות של אימות (ValidationError), ומספק תשובה עם פרטי השגיאה במקרה של שגיאות כלליות.
+*/
