@@ -1,4 +1,3 @@
-import React from 'react';
 import { Cloud, Sun, CloudRain, Wind } from 'lucide-react';
 import { format } from 'date-fns';
 import { Weather } from '../../types';

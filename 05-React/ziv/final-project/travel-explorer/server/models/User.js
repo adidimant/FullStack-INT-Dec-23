@@ -24,21 +24,14 @@ const userSchema = new mongoose.Schema({
     minlength: [8, 'Password must be at least 8 characters long'],
     select: false
   },
-  avatar: String,
+  avatar: {
+    type: String,
+    default: ''
+  },
   createdAt: {
     type: Date,
     default: Date.now
-  },
-  lastLogin: Date,
-  favorites: [{
-    type: String,
-    ref: 'Country'
-  }],
-  visitedCountries: [{
-    countryId: String,
-    visitDate: Date,
-    notes: String
-  }]
+  }
 });
 
 // Hash password before saving
@@ -63,4 +56,6 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   }
 };
 
-export default mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+export default User;

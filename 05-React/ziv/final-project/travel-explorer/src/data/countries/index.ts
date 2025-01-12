@@ -1,18 +1,18 @@
 import { Country } from '../../types';
-import { asianCountries } from './asia';
-import { europeanCountries } from './europe';
+import { asiaCountries } from './asia';
+import { europeCountries } from './europe';
 import { middleEastCountries } from './middle-east';
 import { africanCountries } from './africa';
 import { oceaniaCountries } from './oceania';
-import { northAmericanCountries } from './north-america';
+import { northamericaCountries } from './north-america';
 
 export const countries: Country[] = [
   ...middleEastCountries,
-  ...asianCountries,
-  ...europeanCountries,
+  ...asiaCountries,
+  ...europeCountries,
   ...africanCountries,
   ...oceaniaCountries,
-  ...northAmericanCountries
+  ...northamericaCountries
 ];
 
 export default countries;

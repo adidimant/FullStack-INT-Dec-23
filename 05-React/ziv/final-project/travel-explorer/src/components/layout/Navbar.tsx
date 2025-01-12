@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, User, Globe, Plane, Menu, X } from 'lucide-react';
-import { useStore } from '../../store/useStore';
+import { User, Globe, Plane, Menu, X, MessageSquare } from 'lucide-react';
 import { SearchBar } from '../search/SearchBar';
+import { FavoritesDropdown } from '../favorites/FavoritesDropdown';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const favorites = useStore((state) => state.favorites);
 
   return (
     <nav className="bg-black text-white shadow-lg sticky top-0 z-50">
@@ -29,12 +28,14 @@ export const Navbar = () => {
             </Link>
             <Link to="/services" className="hover:text-blue-400 transition-colors flex items-center">
               <Plane className="w-4 h-4 mr-1" />
-              Travel Services            </Link>
-            <SearchBar />
-            <Link to="/favorites" className="flex items-center space-x-1 hover:text-blue-400">
-              <Heart className="w-5 h-5" />
-              <span>{favorites.length}</span>
+              Travel Services
             </Link>
+            <Link to="/reviews" className="hover:text-blue-400 transition-colors flex items-center">
+              <MessageSquare className="w-4 h-4 mr-1" />
+              Reviews
+            </Link>
+            <SearchBar />
+            <FavoritesDropdown />
             <Link to="/profile" className="flex items-center space-x-1 hover:text-blue-400">
               <User className="w-5 h-5" />
               <span>Profile</span>
@@ -81,15 +82,19 @@ export const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Plane className="w-4 h-4 mr-1" />
-                Travel Services              </Link>
+                Travel Services
+              </Link>
               <Link
-                to="/favorites"
-                className="flex items-center space-x-1 hover:text-blue-400 px-2 py-1"
+                to="/reviews"
+                className="hover:text-blue-400 transition-colors px-2 py-1 flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Heart className="w-5 h-5" />
-                <span>Favorites ({favorites.length})</span>
+                <MessageSquare className="w-4 h-4 mr-1" />
+                Reviews
               </Link>
+              <div className="px-2 py-1">
+                <FavoritesDropdown />
+              </div>
               <Link
                 to="/profile"
                 className="flex items-center space-x-1 hover:text-blue-400 px-2 py-1"

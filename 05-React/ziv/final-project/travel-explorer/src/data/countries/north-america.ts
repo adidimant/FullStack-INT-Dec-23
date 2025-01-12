@@ -1,4 +1,6 @@
-export const northAmericanCountries = [
+import { Country } from '../../types';
+
+export const northamericaCountries: Country[] = [
     {
       id: 'usa-new-york',
       name: 'New York',
@@ -34,7 +36,7 @@ export const northAmericanCountries = [
         id: 'santas-workshop',
         name: 'Santa\'s Workshop',
         description: 'Legendary workshop where Christmas magic happens',
-        imageUrl: 'https://images.unsplash.com/photo-1576919228236-a097c32a5cd4',
+        imageUrl: 'https://townsquare.media/site/554/files/2023/08/attachment-np8.jpg?w=780&q=75',
         rating: 5.0,
         reviews: [],
         location: [90, 0]
@@ -116,7 +118,7 @@ Today, Canada stands as one of the world's most developed nations, known for its
         id: 'banff',
         name: 'Banff National Park',
         description: 'Stunning mountain scenery and outdoor activities',
-        imageUrl: 'https://images.unsplash.com/photo-1513273216459-54c4833d6b4c',
+        imageUrl: 'https://images.squarespace-cdn.com/content/v1/614a40e6b66dd834720ac476/1632659808842-VGWQ7TH4V6TG7104GGF7/Snowy+Moraine+Lake+at+Banff+National+Park%2C+Alberta%2C+Canada',
         rating: 4.9,
         reviews: [],
         location: [51.1784, -115.5708]
@@ -158,6 +160,113 @@ Today, Canada stands as one of the world's most developed nations, known for its
       {
         title: 'Bilingualism',
         description: 'Both English and French are official languages',
+        category: 'culture'
+      }
+    ]
+  },
+  {
+    id: 'mexico-cancun',
+    name: 'Mexico',
+    capital: 'Cancun',
+    description: 'Caribbean paradise with ancient Mayan ruins and pristine beaches',
+    imageUrl: 'https://images.unsplash.com/photo-1552074284-5e88ef1aef18',
+    flagUrl: 'https://flagcdn.com/mx.svg',
+    established: '1970',
+    history: `Cancun, transformed from a small fishing village into a major tourism destination in the 1970s, sits at the heart of the ancient Mayan civilization. The region was home to the Maya for over 2,000 years.`,
+    currency: 'Mexican Peso (MXN)',
+    language: 'Spanish',
+    timezone: 'UTC-5',
+    coordinates: [21.1619, -86.8515],
+    budget: {
+      low: 1000,
+      high: 3000,
+      currency: 'MXN',
+      details: {
+        accommodation: 'Hotels from 1500 MXN/night, hostels from 300 MXN/night',
+        food: 'Meals from 100-400 MXN',
+        transportation: 'Bus: 12 MXN per ride',
+        activities: 'Chichen Itza tour: 1000 MXN'
+      }
+    },
+    attractions: [
+      {
+        id: 'chichen-itza',
+        name: 'Chichen Itza',
+        description: 'Ancient Mayan pyramid complex',
+        imageUrl: 'https://images.unsplash.com/photo-1518638150340-f706e86654de',
+        rating: 4.9,
+        reviews: [],
+        location: [20.6843, -88.5678]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Winter',
+        months: ['December', 'January', 'February'],
+        description: 'Peak season with perfect weather',
+        activities: ['Beach activities', 'Archaeological tours', 'Snorkeling'],
+        weather: 'Warm temperatures 23-28°C',
+        highlights: ['Perfect weather', 'Cultural events', 'Water sports']
+      }
+    ],
+    customs: [
+      {
+        title: 'Siesta',
+        description: 'Afternoon rest period is common',
+        category: 'culture'
+      }
+    ]
+  },
+
+  {
+    id: 'costa-rica',
+    name: 'Costa Rica',
+    capital: 'San Jose',
+    description: 'Tropical paradise with rainforests, volcanoes, and beaches',
+    imageUrl: 'https://images.ctfassets.net/wv75stsetqy3/7jJ4xHBXMvgvPOtBM4EmzI/c9fa2014e6a0d055f0c9eed3456ebb17/Costa_Rica_Featured_Image.jpg?q=60&fit=fill&fm=webp',
+    flagUrl: 'https://flagcdn.com/cr.svg',
+    established: '1821',
+    history: `Costa Rica, independent since 1821, has been a pioneer in environmental conservation and sustainable tourism. The country abolished its military in 1948 to focus on social development.`,
+    currency: 'Costa Rican Colon (CRC)',
+    language: 'Spanish',
+    timezone: 'UTC-6',
+    coordinates: [9.9281, -84.0907],
+    budget: {
+      low: 30000,
+      high: 100000,
+      currency: 'CRC',
+      details: {
+        accommodation: 'Hotels from 50000 CRC/night, hostels from 15000 CRC/night',
+        food: 'Meals from 5000-15000 CRC',
+        transportation: 'Bus: 1000 CRC',
+        activities: 'National Park entry: 10000 CRC'
+      }
+    },
+    attractions: [
+      {
+        id: 'arenal-volcano',
+        name: 'Arenal Volcano',
+        description: 'Active volcano with hot springs',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Arenal_volcano_%2870785p%29_%28cropped%29.jpg',
+        rating: 4.8,
+        reviews: [],
+        location: [10.4626, -84.7037]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Dry Season',
+        months: ['December', 'January', 'February', 'March', 'April'],
+        description: 'Perfect weather for outdoor activities',
+        activities: ['Hiking', 'Wildlife watching', 'Beach visits'],
+        weather: 'Warm temperatures 25-30°C',
+        highlights: ['Wildlife activity', 'Perfect weather', 'Festivals']
+      }
+    ],
+    customs: [
+      {
+        title: 'Pura Vida',
+        description: 'Relaxed, pure life philosophy',
         category: 'culture'
       }
     ]

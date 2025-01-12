@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, MapPin } from 'lucide-react';
-import { Country } from '../../types';
-import { useStore } from '../../store/useStore';
+import { Country } from '../types';
+import { useStore } from '../store/useStore';
 
 interface CountryCardProps {
   country: Country;

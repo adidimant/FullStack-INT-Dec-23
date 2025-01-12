@@ -1,7 +1,6 @@
-import React from 'react';
 import { Cloud, Sun, CloudRain, Wind, CloudLightning, CloudSnow, Cloudy, Droplets, Sunrise, Sunset } from 'lucide-react';
 import { format } from 'date-fns';
-import { Weather } from '../../types/weather.types';
+import { Weather } from '../types/weather.types';
 
 interface WeatherWidgetProps {
   weather: Weather;

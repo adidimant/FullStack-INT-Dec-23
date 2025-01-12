@@ -1,4 +1,7 @@
-export const africanCountries = [
+import { Country } from '../../types';
+
+
+export const africanCountries: Country[] = [
     {
       id: 'egypt-cairo',
       name: 'Egypt',
@@ -34,7 +37,7 @@ export const africanCountries = [
         id: 'pyramids-giza',
         name: 'Pyramids of Giza',
         description: 'Ancient Egyptian pyramids and the Great Sphinx',
-        imageUrl: 'https://images.unsplash.com/photo-1572252009286-268acec5ca0a',
+        imageUrl: 'https://images.unsplash.com/photo-1553913861-c0fddf2619ee',
         rating: 4.9,
         reviews: [],
         location: [29.9792, 31.1342]
@@ -43,7 +46,7 @@ export const africanCountries = [
         id: 'khan-el-khalili',
         name: 'Khan el-Khalili',
         description: 'Historic bazaar and marketplace',
-        imageUrl: 'https://images.unsplash.com/photo-1553913861-c0fddf2619ee',
+        imageUrl: 'https://www.introducingegypt.com/f/egipto/egipto/guia/khan-el-khalili-m.jpg',
         rating: 4.7,
         reviews: [],
         location: [30.0471, 31.2620]
@@ -102,7 +105,7 @@ Today, Zanzibar balances its role as a tourist destination with preserving its c
     budget: {
       low: 50,
       high: 200,
-      currency: 'USD',
+      currency: 'TZS',
       details: {
         accommodation: 'Hotels from $80/night, guesthouses from $30/night',
         food: 'Meals from $5-20 per person',
@@ -157,6 +160,113 @@ Today, Zanzibar balances its role as a tourist destination with preserving its c
       {
         title: 'Greetings',
         description: 'Learning basic Swahili greetings is appreciated',
+        category: 'culture'
+      }
+    ]
+  },
+  {
+    id: 'morocco-marrakech',
+    name: 'Morocco',
+    capital: 'Marrakech',
+    description: 'Ancient imperial city with vibrant souks and rich cultural heritage',
+    imageUrl: 'https://www.familytour.co.il/wp-content/uploads/2017/05/%D7%9E%D7%A8%D7%95%D7%A7%D7%95-960x500.jpg',
+    flagUrl: 'https://flagcdn.com/ma.svg',
+    established: '1062',
+    history: `Marrakech, founded in 1062 by the Almoravids, has served as a crucial imperial city throughout Morocco's history. The city's name comes from the Berber words "mur" (n) and "akush," meaning "Land of God."`,
+    currency: 'Moroccan Dirham (MAD)',
+    language: 'Arabic, Berber',
+    timezone: 'UTC+1',
+    coordinates: [31.6295, -7.9811],
+    budget: {
+      low: 300,
+      high: 800,
+      currency: 'MAD',
+      details: {
+        accommodation: 'Riads from 500 MAD/night, hostels from 100 MAD/night',
+        food: 'Meals from 30-150 MAD',
+        transportation: 'Taxi: 20-50 MAD',
+        activities: 'Museum entries: 50-70 MAD'
+      }
+    },
+    attractions: [
+      {
+        id: 'medina',
+        name: 'Medina of Marrakech',
+        description: 'UNESCO World Heritage site with traditional souks',
+        imageUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/63/94/51/kveldsstemningeksotisktusen.jpg?w=900&h=500&s=1',
+        rating: 4.8,
+        reviews: [],
+        location: [31.6295, -7.9811]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Spring',
+        months: ['March', 'April', 'May'],
+        description: 'Perfect weather for exploring',
+        activities: ['Souk shopping', 'Desert tours', 'Garden visits'],
+        weather: 'Mild temperatures 20-25°C',
+        highlights: ['Rose Festival', 'Perfect weather', 'Cultural events']
+      }
+    ],
+    customs: [
+      {
+        title: 'Bargaining',
+        description: 'Haggling is expected in souks',
+        category: 'culture'
+      }
+    ]
+  },
+
+  {
+    id: 'south-africa-cape-town',
+    name: 'South Africa',
+    capital: 'Cape Town',
+    description: 'Stunning coastal city with dramatic landscapes and rich history',
+    imageUrl: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99',
+    flagUrl: 'https://flagcdn.com/za.svg',
+    established: '1652',
+    history: `Cape Town, established in 1652 by the Dutch East India Company, is South Africa's oldest city. The city has played a crucial role in the country's history, from colonial times through apartheid to democracy.`,
+    currency: 'South African Rand (ZAR)',
+    language: 'English, Afrikaans, Xhosa',
+    timezone: 'UTC+2',
+    coordinates: [-33.9249, 18.4241],
+    budget: {
+      low: 500,
+      high: 1500,
+      currency: 'ZAR',
+      details: {
+        accommodation: 'Hotels from 800 ZAR/night, hostels from 200 ZAR/night',
+        food: 'Meals from 100-300 ZAR',
+        transportation: 'MyCiti bus: 25 ZAR',
+        activities: 'Table Mountain cable car: 380 ZAR'
+      }
+    },
+    attractions: [
+      {
+        id: 'table-mountain',
+        name: 'Table Mountain',
+        description: 'Iconic flat-topped mountain with cable car',
+        imageUrl: 'https://cdn.britannica.com/41/75841-050-FAAE44F0/Table-Mountain-Cape-Town-Western-Bay-South.jpg',
+        rating: 4.9,
+        reviews: [],
+        location: [-33.9628, 18.4037]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Summer',
+        months: ['December', 'January', 'February'],
+        description: 'Perfect beach weather',
+        activities: ['Beach visits', 'Hiking', 'Wine tasting'],
+        weather: 'Warm temperatures 25-30°C',
+        highlights: ['Beach days', 'Outdoor festivals', 'Wine harvests']
+      }
+    ],
+    customs: [
+      {
+        title: 'Ubuntu',
+        description: 'Spirit of community and humanity',
         category: 'culture'
       }
     ]

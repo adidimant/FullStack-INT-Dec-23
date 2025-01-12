@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-const API_KEY = 'YOUR_API_KEY'; // You'll need to get an API key from a currency API provider
-const BASE_URL = 'https://api.exchangerate-api.com/v4/latest';
+const API_KEY = '2514a30c5446960118ca750c';
+const BASE_URL = 'https://v6.exchangerate-api.com/v6';
 
 export const getCurrencyRates = async (baseCurrency: string) => {
   try {
-    const response = await axios.get(`${BASE_URL}/${baseCurrency}`);
-    return response.data.rates;
+    const response = await axios.get(`${BASE_URL}/${API_KEY}/latest/${baseCurrency}`);
+    return response.data.conversion_rates;
   } catch (error) {
     console.error('Error fetching currency rates:', error);
-    throw error;
+    throw new Error('Failed to fetch currency rates');
   }
 };

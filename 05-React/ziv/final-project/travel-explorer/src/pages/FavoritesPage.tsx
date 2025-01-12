@@ -1,4 +1,3 @@
-import React from 'react';
 import { CountryCard } from '../components/shared/CountryCard';
 import { useStore } from '../store/useStore';
 import { countries } from '../data/countries';

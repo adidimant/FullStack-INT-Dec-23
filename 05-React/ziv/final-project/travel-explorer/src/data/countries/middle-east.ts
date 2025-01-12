@@ -81,5 +81,58 @@ Modern Israel has developed into a multicultural society, blending ancient tradi
         category: 'etiquette'
       }
     ]
+  },
+  {
+    id: 'uae-dubai',
+    name: 'United Arab Emirates',
+    capital: 'Dubai',
+    description: 'Ultra-modern city rising from the desert with iconic architecture',
+    imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c',
+    flagUrl: 'https://flagcdn.com/ae.svg',
+    established: '1971',
+    history: `Dubai transformed from a small fishing village into a global metropolis. The discovery of oil in 1966 catalyzed rapid development and architectural innovation.`,
+    currency: 'UAE Dirham (AED)',
+    language: 'Arabic, English',
+    timezone: 'UTC+4',
+    coordinates: [25.2048, 55.2708],
+    budget: {
+      low: 300,
+      high: 1000,
+      currency: 'AED',
+      details: {
+        accommodation: 'Hotels from 500 AED/night, apartments from 300 AED/night',
+        food: 'Meals from 50-200 AED',
+        transportation: 'Metro: 4-8 AED per ride',
+        activities: 'Burj Khalifa entry: 149 AED'
+      }
+    },
+    attractions: [
+      {
+        id: 'burj-khalifa',
+        name: 'Burj Khalifa',
+        description: "World's tallest building",
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEmz0W8u7Uj1ODblO_FapQfm3npAKOsoQf-Q&s',
+        rating: 4.8,
+        reviews: [],
+        location: [25.1972, 55.2744]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Winter',
+        months: ['November', 'December', 'January', 'February'],
+        description: 'Perfect weather for outdoor activities',
+        activities: ['Desert safaris', 'Shopping festivals', 'Beach visits'],
+        weather: 'Pleasant temperatures 20-30°C',
+        highlights: ['Shopping Festival', 'Perfect weather', 'Outdoor events']
+      }
+    ],
+    customs: [
+      {
+        title: 'Ramadan',
+        description: 'Respect fasting during daylight hours',
+        category: 'culture'
+      }
+    ]
   }
 ];

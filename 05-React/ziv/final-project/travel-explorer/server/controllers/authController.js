@@ -1,97 +1,121 @@
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { User } from '../models/User.js';
-import { logger } from '../utils/logger.js';
+import validator from 'validator';
 
-export const register = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+// אם המודל כבר קיים, פשוט נייבא אותו
+let User;
+try {
+  User = mongoose.model('User'); // מנסה לגשת למודל אם הוא כבר קיים
+} catch (error) {
+  // אם לא קיים, ניצור את המודל
+  const userSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: [true, 'Please provide your name'],
+      trim: true,
+      minlength: [2, 'Name must be at least 2 characters long'],
+      maxlength: [50, 'Name cannot exceed 50 characters']
+    },
+    email: {
+      type: String,
+      required: [true, 'Please provide your email'],
+      unique: true,
+      lowercase: true,
+      trim: true,
+      validate: [validator.isEmail, 'Please provide a valid email']
+    },
+    password: {
+      type: String,
+      required: [true, 'Please provide a password'],
+      minlength: [8, 'Password must be at least 8 characters long'],
+      select: false
+    },
+    avatar: String,
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  });
+
+  // Hash password before saving
+  userSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next();
     
-    // Check if user exists
-    const existingUser = await User.findOne({ email: email.toLowerCase() });
+    try {
+      const salt = await bcrypt.genSalt(10);
+      this.password = await bcrypt.hash(this.password, salt);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  // Compare password method
+  userSchema.methods.comparePassword = async function(candidatePassword) {
+    try {
+      return await bcrypt.compare(candidatePassword, this.password);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  // יצירת המודל אם הוא לא קיים
+  User = mongoose.model('User', userSchema);
+}
+
+export default User;
+
+// פונקציה לרישום משתמש חדש
+export const register = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'Email already registered' });
+      return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Create new user
-    const user = new User({
-      name,
-      email: email.toLowerCase(),
-      password: await bcrypt.hash(password, 10)
-    });
-
+    const user = new User({ name, email, password });
     await user.save();
 
-    // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
-    );
-
-    logger.info(`User registered successfully: ${user._id}`);
-
-    res.status(201).json({
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar
-      }
-    });
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    logger.error('Registration error:', error);
-    res.status(500).json({ message: 'Server error during registration' });
+    console.error('Error creating user:', error);  // הוספת console.error כדי לראות את השגיאה
+    res.status(500).json({ message: 'Server error during registration', error: error.message });
   }
 };
 
+// פונקציה להתחברות
 export const login = async (req, res) => {
+  const { email, password } = req.body;
+
   try {
-    const { email, password } = req.body;
-
-    // Find user
-    const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
+    const user = await User.findOne({ email }).select('+password');
     if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Verify password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
-    );
-
-    logger.info(`User logged in successfully: ${user._id}`);
-
-    res.json({
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar
-      }
-    });
+    res.status(200).json({ message: 'Login successful' });
   } catch (error) {
-    logger.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    console.error('Error logging in:', error);  // הוספת console.error כדי לראות את השגיאה
+    res.status(500).json({ message: 'Error logging in' });
   }
 };
 
+// פונקציה לאימות טוקן
 export const verifyToken = async (req, res) => {
+  const { token } = req.body;
+
   try {
-    const { token } = req.body;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    res.json({ valid: true, userId: decoded.userId });
+    // אימות הטוקן יכול להתבצע כאן
+    res.status(200).json({ valid: true });
   } catch (error) {
-    res.json({ valid: false });
+    console.error('Error verifying token:', error);  // הוספת console.error כדי לראות את השגיאה
+    res.status(500).json({ valid: false });
   }
 };

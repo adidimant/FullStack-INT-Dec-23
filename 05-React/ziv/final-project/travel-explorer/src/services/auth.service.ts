@@ -1,5 +1,5 @@
 import api from './api';
-import { User, AuthResponse } from '../types';
+import { User, AuthResponse } from '../types/auth.types';
 
 export class AuthService {
   static async login(email: string, password: string): Promise<AuthResponse> {
@@ -14,11 +14,6 @@ export class AuthService {
 
   static async getProfile(): Promise<User> {
     const response = await api.get<User>('/users/profile');
-    return response.data;
-  }
-
-  static async updateProfile(data: Partial<User>): Promise<User> {
-    const response = await api.put<User>('/users/profile', data);
     return response.data;
   }
 }

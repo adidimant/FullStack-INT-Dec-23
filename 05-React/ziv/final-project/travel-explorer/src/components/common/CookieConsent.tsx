@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { X, Shield } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Shield } from 'lucide-react';
 
 export const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
@@ -23,21 +23,7 @@ export const CookieConsent = () => {
     setShowBanner(false);
   };
 
-  const handleReset = () => {
-    localStorage.removeItem('cookieConsent');
-    setShowBanner(true);
-  };
-
-  if (!showBanner) {
-    return (
-      <button
-        onClick={handleReset}
-        className="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition-colors"
-      >
-        Reset Cookie Preferences
-      </button>
-    );
-  }
+  if (!showBanner) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t z-50">

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Star, ThumbsUp, Flag } from 'lucide-react';
-import { Review } from '../../types';
+import { Review } from '../../types/review.types';
 import { Button } from '../ui/Button';
 import { useAuth } from '../../hooks/useAuth';
 
 interface ReviewSectionProps {
   reviews: Review[];
   countryId: string;
-  onAddReview: (review: Omit<Review, 'id' | 'date'>) => Promise<void>;
+  onAddReview: (review: Omit<Review, 'id' | 'likes' | 'likedBy' | 'createdAt'>) => Promise<void>;
 }
 
 export const ReviewSection = ({ reviews, countryId, onAddReview }: ReviewSectionProps) => {
   const { user } = useAuth();
   const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState('');
+  const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,13 +23,15 @@ export const ReviewSection = ({ reviews, countryId, onAddReview }: ReviewSection
     setIsSubmitting(true);
     try {
       await onAddReview({
-        userId: user.id,
-        userName: user.name,
+        authorName: user.name,
+        isAnonymous: false,
+        state: '',
+        content,
         rating,
-        comment,
+        photoUrl: '',
         countryId
       });
-      setComment('');
+      setContent('');
       setRating(5);
     } finally {
       setIsSubmitting(false);
@@ -60,8 +62,8 @@ export const ReviewSection = ({ reviews, countryId, onAddReview }: ReviewSection
             </div>
           </div>
           <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             placeholder="Share your experience..."
             className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             rows={4}
@@ -84,13 +86,13 @@ export const ReviewSection = ({ reviews, countryId, onAddReview }: ReviewSection
               <div className="flex items-center space-x-2">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                   <span className="text-blue-600 font-semibold">
-                    {review.userName[0].toUpperCase()}
+                    {review.authorName[0].toUpperCase()}
                   </span>
                 </div>
                 <div>
-                  <p className="font-semibold">{review.userName}</p>
+                  <p className="font-semibold">{review.authorName}</p>
                   <p className="text-sm text-gray-500">
-                    {new Date(review.date).toLocaleDateString()}
+                    {new Date(review.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
@@ -105,11 +107,11 @@ export const ReviewSection = ({ reviews, countryId, onAddReview }: ReviewSection
                 ))}
               </div>
             </div>
-            <p className="text-gray-700">{review.comment}</p>
+            <p className="text-gray-700">{review.content}</p>
             <div className="mt-4 flex items-center space-x-4 text-sm text-gray-500">
               <button className="flex items-center space-x-1 hover:text-blue-600">
                 <ThumbsUp className="w-4 h-4" />
-                <span>Helpful</span>
+                <span>Helpful ({review.likes})</span>
               </button>
               <button className="flex items-center space-x-1 hover:text-red-600">
                 <Flag className="w-4 h-4" />

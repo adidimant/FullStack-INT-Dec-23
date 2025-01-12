@@ -13,6 +13,7 @@ import { ExplorePage } from './pages/ExplorePage';
 import { TravelServicesPage } from './pages/TravelServicesPage';
 import { RegulationsPage } from './pages/RegulationsPage';
 import { ContactPage } from './pages/ContactPage';
+import { ReviewsPage } from './pages/ReviewsPage';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { CookieConsent } from './components/common/CookieConsent';
 import { initializeAds } from './services/adService';
@@ -38,6 +39,7 @@ function App() {
               <Route path="/services" element={<TravelServicesPage />} />
               <Route path="/regulations" element={<RegulationsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
               <Route
                 path="/favorites"
                 element={

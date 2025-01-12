@@ -1,6 +1,6 @@
 import { Country } from '../../types';
 
-export const asianCountries: Country[] = [
+export const asiaCountries: Country[] = [
   {
     id: 'japan',
     name: 'Japan',
@@ -241,6 +241,113 @@ Modern Hanoi balances rapid economic development with preservation of its cultur
         title: 'Shoes Off',
         description: 'Remove shoes when entering homes',
         category: 'etiquette'
+      }
+    ]
+  },
+  {
+    id: 'south-korea-seoul',
+    name: 'South Korea',
+    capital: 'Seoul',
+    description: 'Dynamic metropolis blending ancient traditions with modern innovation',
+    imageUrl: 'https://www.masa.co.il/MASA/_fck_uploads/seoul-tower.jpg',
+    flagUrl: 'https://flagcdn.com/kr.svg',
+    established: '18 BCE',
+    history: `Seoul, with over 2000 years of history, has been Korea's capital since the Joseon Dynasty. The city has transformed from an ancient royal capital to a global technology hub.`,
+    currency: 'Korean Won (KRW)',
+    language: 'Korean',
+    timezone: 'UTC+9',
+    coordinates: [37.5665, 126.9780],
+    budget: {
+      low: 50000,
+      high: 150000,
+      currency: 'KRW',
+      details: {
+        accommodation: 'Hotels from 80,000 KRW/night, hostels from 25,000 KRW/night',
+        food: 'Meals from 8,000-20,000 KRW',
+        transportation: 'Subway: 1,350 KRW',
+        activities: 'Palace entry: 3,000 KRW'
+      }
+    },
+    attractions: [
+      {
+        id: 'gyeongbokgung',
+        name: 'Gyeongbokgung Palace',
+        description: 'Main royal palace of Joseon Dynasty',
+        imageUrl: 'https://ucarecdn.com/2667d034-3197-4c39-b162-579a4e2e583a/-/crop/1920x1007/0,72/-/resize/1200x630/-/resize/x300/',
+        rating: 4.8,
+        reviews: [],
+        location: [37.5796, 126.9770]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Spring',
+        months: ['March', 'April', 'May'],
+        description: 'Cherry blossom season',
+        activities: ['Cherry blossom viewing', 'Palace visits', 'Street food tours'],
+        weather: 'Mild temperatures 10-20°C',
+        highlights: ['Cherry blossoms', 'Spring festivals', 'Traditional markets']
+      }
+    ],
+    customs: [
+      {
+        title: 'Respect for Elders',
+        description: 'Show deference to older people',
+        category: 'culture'
+      }
+    ]
+  },
+
+  {
+    id: 'singapore',
+    name: 'Singapore',
+    capital: 'Singapore',
+    description: 'Modern city-state known for architecture, cuisine, and cleanliness',
+    imageUrl: 'https://edge.media.datahc.com/HI833719304.jpg',
+    flagUrl: 'https://flagcdn.com/sg.svg',
+    established: '1965',
+    history: `Singapore, founded as a British trading colony in 1819, gained independence in 1965. The city-state has transformed from a small fishing village to one of the world's most prosperous nations.`,
+    currency: 'Singapore Dollar (SGD)',
+    language: 'English, Mandarin, Malay, Tamil',
+    timezone: 'UTC+8',
+    coordinates: [1.3521, 103.8198],
+    budget: {
+      low: 100,
+      high: 300,
+      currency: 'SGD',
+      details: {
+        accommodation: 'Hotels from 200 SGD/night, hostels from 30 SGD/night',
+        food: 'Hawker centers: 5-10 SGD, Restaurants: 20-50 SGD',
+        transportation: 'MRT: 1-2 SGD per trip',
+        activities: 'Gardens by the Bay: 28 SGD'
+      }
+    },
+    attractions: [
+      {
+        id: 'marina-bay-sands',
+        name: 'Marina Bay Sands',
+        description: 'Iconic hotel with infinity pool',
+        imageUrl: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd',
+        rating: 4.9,
+        reviews: [],
+        location: [1.2834, 103.8607]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Dry Season',
+        months: ['February', 'March', 'April'],
+        description: 'Less rainfall and comfortable temperatures',
+        activities: ['Sightseeing', 'Shopping', 'Food tours'],
+        weather: 'Warm temperatures 25-32°C',
+        highlights: ['Cultural festivals', 'Outdoor events', 'Night markets']
+      }
+    ],
+    customs: [
+      {
+        title: 'No Chewing Gum',
+        description: 'Importing/selling gum is prohibited',
+        category: 'culture'
       }
     ]
   }

@@ -4,14 +4,16 @@ import { logger } from '../utils/logger.js';
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
+      serverSelectionTimeoutMS: 5000, // זמן המתנה לחיבור לשרת
+      socketTimeoutMS: 45000, // זמן המתנה לפעולה כלשהי על socket
+      retryWrites: true, // ניסיון לכתוב מחדש במקרה של כשלון
+      w: 'majority', // כתיבה ברוב הקול
     });
 
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
-    
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+
+    // Handle connection events
     mongoose.connection.on('error', (err) => {
       logger.error('MongoDB connection error:', err);
     });
@@ -20,10 +22,14 @@ const connectDB = async () => {
       logger.info('MongoDB disconnected');
     });
 
+    mongoose.connection.on('reconnected', () => {
+      logger.info('MongoDB reconnected');
+    });
+
     return conn;
   } catch (error) {
     logger.error('MongoDB Connection Error:', error);
-    throw error;
+    throw error; // חשוב להשליך את השגיאה כדי שלא יימשך התהליך
   }
 };
 

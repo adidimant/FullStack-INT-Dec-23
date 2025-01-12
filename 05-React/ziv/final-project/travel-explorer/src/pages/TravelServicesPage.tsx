@@ -1,4 +1,3 @@
-import React from 'react';
 import { Plane, Building2, Car, Utensils, MapPin, Star } from 'lucide-react';
 
 export const TravelServicesPage = () => {

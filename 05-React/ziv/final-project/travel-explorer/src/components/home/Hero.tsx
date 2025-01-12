@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeroSearch } from '../search/HeroSearch';
 
 export const Hero = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { MapPin, Calendar, DollarSign, Globe, Languages, Flag, Clock, Info } from 'lucide-react';
+import { MapPin, Globe, Languages, Flag, Clock, } from 'lucide-react';
 import { countries } from '../data/countries';
 import { WeatherWidget } from '../components/weather/WeatherWidget';
 import { CurrencyConverter } from '../components/currency/CurrencyConverter';

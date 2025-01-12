@@ -7,15 +7,16 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   server: {
+    host: '0.0.0.0', // Allow external access
+    port: 5503,
     proxy: {
       '/api': {
-        target: 'http://localhost:5501',
+        target: 'http://localhost:5503',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false
       },
       '/socket.io': {
-        target: 'http://localhost:5501',
+        target: 'http://localhost:5503',
         ws: true,
       },
     },

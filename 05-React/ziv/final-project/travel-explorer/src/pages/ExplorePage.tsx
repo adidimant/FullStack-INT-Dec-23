@@ -6,7 +6,6 @@ import { SearchFilters } from '../components/explore/SearchFilters';
 import { CountryGrid } from '../components/explore/CountryGrid';
 import { ExploreHero } from '../components/explore/ExploreHero';
 import { countries } from '../data/countries';
-import { Country } from '../types';
 
 export const ExplorePage = () => {
   const navigate = useNavigate();

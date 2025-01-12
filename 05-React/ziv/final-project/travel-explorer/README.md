@@ -21,17 +21,17 @@ npm run server
 
 The application will be available at:
 - Frontend: http://localhost:5173
-- Backend: http://localhost:3000
+- Backend: http://localhost:5503
 
 ## Environment Variables
 
 Create a `.env` file in the root directory with the following variables:
 
 ```env
-PORT=3000
+PORT=5503
 NODE_ENV=development
 CLIENT_URL="http://localhost:5173"
-VITE_API_URL="http://localhost:3000"
+VITE_API_URL="http://localhost:5503"
 MONGODB_URI="your_mongodb_uri"
 JWT_SECRET="your_jwt_secret"
 JWT_EXPIRES_IN="7d"
@@ -44,3 +44,4 @@ JWT_EXPIRES_IN="7d"
 - `npm run build`: Build the application for production
 - `npm run preview`: Preview the production build locally
 - `npm run lint`: Run ESLint to check code quality
+

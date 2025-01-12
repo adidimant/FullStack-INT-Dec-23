@@ -1,4 +1,6 @@
-export const europeanCountries = [
+import { Country } from '../../types';
+
+export const europeCountries: Country[] = [
     {
       id: 'prague',
       name: 'Czech Republic',
@@ -319,6 +321,59 @@ Modern Lisbon has emerged as a vibrant cultural and economic center, blending hi
       {
         title: 'Meal Times',
         description: 'Late lunch and dinner are common',
+        category: 'culture'
+      }
+    ]
+  },
+  {
+    id: 'italy-venice',
+    name: 'Italy',
+    capital: 'Venice',
+    description: 'Romantic city of canals, art, and historic architecture',
+    imageUrl: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0',
+    flagUrl: 'https://flagcdn.com/it.svg',
+    established: '421 CE',
+    history: `Venice, founded in 421 CE, was the capital of the powerful Republic of Venice for over a millennium. The city's unique architecture and art were shaped by its maritime empire and trade dominance.`,
+    currency: 'Euro (EUR)',
+    language: 'Italian',
+    timezone: 'UTC+1',
+    coordinates: [45.4408, 12.3155],
+    budget: {
+      low: 80,
+      high: 250,
+      currency: 'EUR',
+      details: {
+        accommodation: 'Hotels from €120/night, hostels from €30/night',
+        food: 'Meals from €15-40',
+        transportation: 'Vaporetto: €7.50 per ride',
+        activities: 'Doge Palace: €25'
+      }
+    },
+    attractions: [
+      {
+        id: 'san-marco',
+        name: "St. Mark's Basilica",
+        description: 'Byzantine church with golden mosaics',
+        imageUrl: 'https://cdn4.tuscanynowandmore.com/storage/app/media/discover-italy/st-mark-church-venice.jpg',
+        rating: 4.8,
+        reviews: [],
+        location: [45.4347, 12.3397]
+      }
+    ],
+    seasons: [
+      {
+        name: 'Spring',
+        months: ['March', 'April', 'May'],
+        description: 'Pleasant weather before summer crowds',
+        activities: ['Gondola rides', 'Museum visits', 'Island tours'],
+        weather: 'Mild temperatures 15-20°C',
+        highlights: ['Carnival', 'Art exhibitions', 'Local festivals']
+      }
+    ],
+    customs: [
+      {
+        title: 'Aperitivo',
+        description: 'Pre-dinner drinks and snacks',
         category: 'culture'
       }
     ]

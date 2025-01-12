@@ -3,78 +3,64 @@ import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './config/database.js';
-import corsMiddleware from './middleware/cors.js';
+import { configureCors } from './middleware/cors.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './utils/logger.js';
-import authRoutes from './routes/auth.js';
-import countryRoutes from './routes/countries.js';
-import userRoutes from './routes/users.js';
-import protectedRoutes from './routes/protected.js';
-import { verifyToken } from './middleware/auth.js';
+import countryRoutes from './routes/countryRoutes.js';
+import authRoutes from './routes/auth.js'; // הוסף את זה
 
 dotenv.config();
 
+const app = express();
+const httpServer = createServer(app);
+
 const startServer = async () => {
   try {
-    // Connect to MongoDB
     await connectDB();
 
-    const app = express();
-    const httpServer = createServer(app);
     const io = new Server(httpServer, {
       cors: {
-        origin: process.env.CLIENT_URL || 'http://localhost:5173',
+        origin: [
+          'http://localhost:5503',
+          'http://127.0.0.1:5503',
+          'http://localhost:5504',
+          'http://127.0.0.1:5504',
+          /^http:\/\/10\.0\.0\.\d+:5503$/
+        ],
         credentials: true
       }
     });
 
-    // Request logging middleware
+    app.set('io', io); // Store io instance on app for use in controllers
+
+    // Configure CORS
+    configureCors(app);
+
+    // Middleware
+    app.use(express.json());
     app.use((req, res, next) => {
       logger.info(`${req.method} ${req.path}`);
       next();
     });
 
-    // Middleware
-    app.use(corsMiddleware);
-    app.use(express.json());
-
-    // Public routes
-    app.use('/api/auth', authRoutes);
-    app.use('/api/countries', countryRoutes);
-
-    // Protected routes
-    app.use('/api/users', verifyToken, userRoutes);
-    app.use('/api/protected', protectedRoutes);
+    // Routes
+    app.use('/api/countries', countryRoutes); // נתיב למדינות
+    app.use('/api/auth', authRoutes); // הוסף את הנתיב הזה עבור auth
 
     // Error handling middleware
     app.use(errorHandler);
 
     // WebSocket connection handling
     io.on('connection', (socket) => {
-      logger.info('User connected:', socket.id);
-
-      socket.on('join-country', (countryId) => {
-        socket.join(countryId);
-        logger.debug('User joined country room:', { socketId: socket.id, countryId });
-      });
-
-      socket.on('leave-country', (countryId) => {
-        socket.leave(countryId);
-        logger.debug('User left country room:', { socketId: socket.id, countryId });
-      });
-
-      socket.on('new-review', (data) => {
-        logger.debug('New review received:', data);
-        io.to(data.countryId).emit('review-added', data);
-      });
+      logger.info('Client connected:', socket.id);
 
       socket.on('disconnect', () => {
-        logger.info('User disconnected:', socket.id);
+        logger.info('Client disconnected:', socket.id);
       });
     });
 
-    const PORT = process.env.PORT || 3000;
-    httpServer.listen(PORT, () => {
+    const PORT = process.env.PORT || 5503;
+    httpServer.listen(PORT, '0.0.0.0', () => {
       logger.info(`Server running on port ${PORT}`);
     });
 
@@ -97,3 +83,5 @@ process.on('unhandledRejection', (err) => {
   logger.error('Unhandled Rejection:', err);
   process.exit(1);
 });
+
+export { app };

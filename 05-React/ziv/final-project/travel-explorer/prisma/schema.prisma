@@ -1,3 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reviews        Review[]
+  visitedPlaces  VisitedPlace[]
+  favorites      Favorite[]
+  notes          Note[]
+}
+
+model Country {
+  id          String   @id
+  name        String
+  capital     String
+  description String
+  imageUrl    String
+  currency    String
+  language    String
+  timezone    String
+  latitude    Float    // Changed from coordinates JSON
+  longitude   Float    // Changed from coordinates JSON
+
+  reviews        Review[]
+  visitedPlaces  VisitedPlace[]
+  favorites      Favorite[]
   notes          Note[]
 }
 
