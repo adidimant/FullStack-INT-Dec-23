@@ -1,0 +1,37 @@
+.top-data {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    gap: 20px;
+}
+
+.vertical-line {
+  width: 1px; /* רוחב הקו */
+  height: 100%; /* גובה הקו - אפשרי להחליף בגובה מותאם */
+  background-color: #ccc; /* צבע הקו - אפור בהיר */
+  margin: 0 10px; /* רווחים אופקיים משני הצדדים */
+}
+.transverse-line {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 40px 0;
+    
+}
+
+.graph-box {
+    width: 600px;
+    height: 400px; 
+    margin: 0 auto; 
+    direction: rtl;
+    
+}
+
+.graph-box-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #707070;
+    font-size: 20px;
+    font-weight: 400;
+}

@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #2563eb;
+    --error-color: #dc2626;
+    --success-color: #16a34a;
+    --background-color: #f3f4f6;
+  }
+  
+  .reg-box {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
+  }
+  
+  .form-title {
+    font-size: 35px;
+    font-weight: 500;
+    padding: 15px 0;
+  }
+  
+  .bthReg {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 180px;
+  }
+  

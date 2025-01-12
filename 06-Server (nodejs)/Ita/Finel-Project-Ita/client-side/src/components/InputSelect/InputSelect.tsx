@@ -1,6 +1,6 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { useThemeContext } from "../../context/theme-context";
-import "./InputSelect.css"
+import "./InputSelect.css";
 
 type SelectProps = {
   id: string;
@@ -9,39 +9,44 @@ type SelectProps = {
   placeholder?: string;
   isRequired?: boolean;
   fullFrame?: boolean;
-  withd?: string
+  width?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-function InputSelect({ id, title, options, isRequired = false, fullFrame = false, withd }: SelectProps) {
+function InputSelect({
+  id,
+  title,
+  options,
+  isRequired = false,
+  fullFrame = false,
+  width,
+  value,
+  onChange,
+}: SelectProps) {
   const { theme } = useThemeContext();
-  const [value, setValue] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value);
-  };
-
-
 
   return (
     <div className={`general-select ${theme}`}>
-    {title && <label htmlFor={id} className="select-title">{title}</label>}
-    <select
-      id={id}
-      value={value}
-      onChange={handleChange}
-      className={`select-field ${fullFrame ? "full-frame" : ""}`}
-      style={{ width: withd }}
-    >
-      <option value="" disabled hidden>
-        {options[0]?.label || "Select an option"}
-      </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+      {title && <label htmlFor={id} className="select-title">{title}</label>}
+      <select
+        id={id}
+        value={value || ""}
+        onChange={onChange}
+        className={`select-field ${fullFrame ? "full-frame" : ""}`}
+        style={{ width }}
+        required={isRequired}
+      >
+        <option value="" disabled hidden>
+          {options[0]?.label || "Select an option"}
         </option>
-      ))}
-    </select>
-  </div>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 

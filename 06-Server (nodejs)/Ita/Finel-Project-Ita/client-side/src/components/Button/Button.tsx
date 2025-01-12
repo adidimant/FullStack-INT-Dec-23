@@ -5,17 +5,18 @@ import "./Button.css"
 
 type ButtonProps = {
   name: string;
-  text: string;
-  onClick: () => void;
+  text: string | React.ReactNode;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   width?: string;
   height?: string;
   img?: string;
   altImg?: string;
   className?: string;
   variant?: "filled" | "outlined";
+  disabled?: boolean;
 };
 
-function Button({ name, text, onClick, width, height, img, altImg, className, variant = "filled" }: ButtonProps) {
+function Button({ name, text, onClick, width, height, img, altImg, className, variant = "filled", disabled }: ButtonProps) {
   const { theme } = useThemeContext();
   
   // create a style object - if provided width/height - it will be exist in the style object
@@ -25,7 +26,7 @@ function Button({ name, text, onClick, width, height, img, altImg, className, va
   }), [width, height]);
 
   return (
-    <button name={name} className={`${className} ${theme}-theme-btn general-btn ${variant}`}  style={styleObj} onClick={onClick}>
+    <button name={name} className={`${className} ${theme}-theme-btn general-btn ${variant}`}  style={styleObj} onClick={onClick} disabled={disabled}>
       {img && <img src={img} alt={altImg} />}
       {text}
     </button>

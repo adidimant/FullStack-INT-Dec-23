@@ -82,4 +82,21 @@
     text-decoration: none;
     color: #333;
   }
+
+  .companySection {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .companyLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 15px;
+  }
+
+  
+  
   
