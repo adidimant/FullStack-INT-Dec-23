@@ -36,12 +36,11 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className='profile'>
       <h1>Profile</h1>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      {/* Add form or modal to update profile information */}
-      {/* Call handleUpdateProfile with updated data */}
+      <p>Name: <span>{user.name}</span></p>
+      <p>Email: <span>{user.email}</span></p>
+
     </div>
   );
 };

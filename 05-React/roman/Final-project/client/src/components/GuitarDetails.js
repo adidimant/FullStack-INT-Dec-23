@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../utils/axiosConfig';
+import { AuthContext } from '../context/AuthContext';
+
 
 const GuitarDetails = () => {
   const { id } = useParams();
+  const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [guitar, setGuitar] = useState(null);
 
   useEffect(() => {
@@ -22,13 +26,22 @@ const GuitarDetails = () => {
     fetchGuitarDetails();
   }, [id]);
 
+  const handleEditGuitarClick = () => {
+    navigate(`/edit-guitar/${id}`);
+  };
+
   if (!guitar) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h1>{guitar.name}</h1>
-      <p>{guitar.description}</p>
-      <p>Categories: {guitar.categories.join(', ')}</p>
+    <div className='guitar-detail'>
+      <div className='text-container'>
+        <p>Name: <span>{guitar.name}</span></p>
+        <p>Description: <span>{guitar.description}</span></p>
+        <p className="categories">Categories: <span>{guitar.categories.join(', ')}</span></p>
+        {/* {isAuthenticated && (
+          <button onClick={handleEditGuitarClick}>Edit Guitar</button>
+        )} */}
+      </div>
       {guitar.image && <img src={guitar.image} alt={guitar.name} />}
     </div>
   );

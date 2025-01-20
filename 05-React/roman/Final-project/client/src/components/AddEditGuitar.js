@@ -14,7 +14,7 @@ const AddEditGuitar = ({ guitar }) => {
     } else {
       await addGuitar(guitarData);
     }
-    navigate('/guitars'); // Redirect to guitar list page after adding/editing
+    navigate('/'); 
   };
 
   return (

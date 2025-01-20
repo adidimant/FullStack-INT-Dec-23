@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import GuitarList from './components/GuitarList';
 import GuitarDetails from './components/GuitarDetails';
 import AddEditGuitar from './components/AddEditGuitar';
+import './styles/style.scss';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/guitars" element={<GuitarList />} />
             <Route path="/guitars/:id" element={<GuitarDetails />} />
             <Route path="/add-edit-guitar" element={<AddEditGuitar />} />
+            <Route path="/edit-guitar/:id" element={<AddEditGuitar />} /> 
           </Routes>
         </Router>
       </GuitarProvider>

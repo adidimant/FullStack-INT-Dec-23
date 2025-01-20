@@ -9,7 +9,6 @@ const NavBar = () => {
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to="/guitars">Guitar List</Link>
       {isAuthenticated ? (
         <>
           <Link to="/profile">Profile</Link>

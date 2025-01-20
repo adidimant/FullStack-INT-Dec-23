@@ -25,7 +25,7 @@ const GuitarForm = ({ guitar, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form class ="guitar-form" onSubmit={handleSubmit}>
       <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
       <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
       <select multiple value={categories} onChange={handleCategoryChange}>
