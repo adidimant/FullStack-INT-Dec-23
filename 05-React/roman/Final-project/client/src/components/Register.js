@@ -25,7 +25,7 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form class ="register-form" onSubmit={handleSubmit}>
       <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
       <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
       <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

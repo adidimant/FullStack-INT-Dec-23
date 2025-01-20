@@ -1,26 +1,34 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GuitarContext } from '../context/GuitarContext';
 
-const GuitarList = () => {
-  const { guitars, fetchGuitars } = useContext(GuitarContext);
+const GuitarList = ({ guitars = [], fetchGuitars, handleGuitarClick }) => {
+  const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchGuitars();
-  }, [fetchGuitars]);
 
-  const handleGuitarClick = (id) => {
-    navigate(`/guitars/${id}`);
+  const categories = guitars.length > 0 ? ['All', ...new Set(guitars.map(guitar => guitar.categories).flat())] : []; // Include "All" in categories
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category === 'All' ? '' : category); // Reset filter if "All" is selected
   };
 
+  const filteredGuitars = selectedCategory
+    ? guitars.filter(guitar => guitar.categories.includes(selectedCategory))
+    : guitars;
+
   return (
-    <div>
-      <h1>Guitar List</h1>
+    <div className='guitar-list'>
+      <h2>Categories</h2>
+      {categories.map(category => (
+        <button key={category} onClick={() => handleCategoryClick(category)}>
+          {category}
+        </button>
+      ))}
+      <h2>Guitars</h2>
       <ul>
-        {guitars.map((guitar) => (
+        {filteredGuitars.map(guitar => (
           <li key={guitar._id} onClick={() => handleGuitarClick(guitar._id)} style={{ cursor: 'pointer' }}>
-            <img src={guitar.image} alt={guitar.name}  />
+            <img src={guitar.image} alt={guitar.name} style={{ marginRight: '10px' }} />
             {guitar.name}
           </li>
         ))}
