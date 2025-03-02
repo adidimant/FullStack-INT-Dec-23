@@ -65,7 +65,7 @@ router.delete('/:id', protect, async (req, res) => {
   }
 
   if (guitar) {
-    await guitar.remove();
+    await Guitar.deleteOne({ _id: req.params.id });
     res.json({ success: true, message: 'Guitar removed' });
   } else {
     res.status(404).json({ success: false, message: 'Guitar not found' });
