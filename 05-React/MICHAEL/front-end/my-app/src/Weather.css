@@ -1,0 +1,114 @@
+.weather-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    padding-right: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+
+  button {
+    background-color: #ffffff;
+    font-size: 12px;
+    background: none;
+    color: rgba(0, 0, 0, 0.555);
+    border: 0.1px solid rgba(0, 0, 0, 0.527);
+    border-radius: 0px;
+    transition: 0.4s ease-in-out;
+    margin: 5px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 14px;
+
+
+  }
+
+
+
+
+.search-input {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+  transition: all 0.5s ease;
+  padding-left: 15px;
+}
+
+.search-input.visible {
+  width: 200px; 
+  opacity: 1;
+}
+
+
+.father-adv {
+  display: flex;
+  flex-direction: row;
+ gap: 45px;
+ justify-content: center;
+}
+
+
+
+.additional-info {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  transition: 0.4s ease-in-out;
+}
+
+.additional-info p {
+  margin: 5px 0;
+}
+
+
+
+.view-mode-buttons button {
+  margin-right: 10px;
+  padding: 8px;
+  background-color: #696969;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hourly-forecast, .daily-forecast {
+  margin-top: 20px;
+}
+
+.hour-forecast, .day-forecast {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.search-input input {
+  margin-bottom: 10px;
+}
+
+
