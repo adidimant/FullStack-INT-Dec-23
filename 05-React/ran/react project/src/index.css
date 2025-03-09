@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f7fa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set default font size for better accessibility */
+html {
+  font-size: 16px;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Basic button styles */
+button {
+  cursor: pointer;
+}
+
+/* Basic link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Improve form element styling */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Improve accessibility for focus states */
+:focus {
+  outline: 2px solid #2575fc;
+  outline-offset: 2px;
+}
+
+/* Hide focus outline for mouse users, but keep for keyboard users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
