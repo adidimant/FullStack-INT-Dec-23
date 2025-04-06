@@ -1,0 +1,8 @@
+make sure to run Android device emulator
+
+`npx create-expo-app`
+cd to the created folder (the default is 'my-app')
+`npm run android`
+after the server is established - press "a" for running android
+
+troubleshoot - if you get "something went wrong" - on the phone itself - go to main screen, uninstall the expo application, and press "a" again on the server cli

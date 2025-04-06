@@ -1,0 +1,2 @@
+https://styled-components.com/
+getting started documentation - https://styled-components.com/docs/basics#getting-started
