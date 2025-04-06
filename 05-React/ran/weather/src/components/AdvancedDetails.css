@@ -1,0 +1,116 @@
+.advanced-details-container {
+  margin-bottom: 2rem;
+}
+
+.advanced-toggle-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2575fc;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.advanced-toggle-button:hover {
+  background-color: #f8f8f8;
+}
+
+.advanced-details-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.advanced-details-title {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.advanced-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.detail-grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-grid-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.detail-grid-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.weather-chances {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.weather-chances-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.weather-chances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.chance-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: #f8f8f8;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.chance-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.chance-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .advanced-details-content {
+    padding: 1rem;
+  }
+  
+  .advanced-details-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .weather-chances-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

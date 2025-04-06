@@ -1,0 +1,28 @@
+complete application flow - 2 lessons V
+architecture/design for the full flow of the token (draw.io) V
+cookies - 1 lesson V
+CORS + options request 0.5 lesson V - https://aws.amazon.com/what-is/cross-origin-resource-sharing/#:~:text=your%20CORS%20requirements%3F-,What%20is%20Cross-Origin%20Resource%20Sharing%3F,resources%20in%20a%20different%20domain.
+sql - 2 lessons - https://www.w3schools.com/sql/ V
+bcrypt V
+styled-components V
+react-native - 
+2 lessons - deploy web app + domain,aws,CI-CD/redis/docker/testing + השלמות
+exercises - like the plusOne - https://leetcode.com/problems/plus-one/?envType=problem-list-v2&envId=array, or here - https://leetcode.com/problem-list/array/
+exam - 1 lesson
+final projects - 2-3 lessons
+
+AI tools - ollama ; https://lmstudio.ai/
+
+CI:
+npm i
+npm audit (automaticall scan vulnerabilities within packages your code uses)
+npm run build
+npm run tests
+npm run list
+create container image & push:
+docker build -t my-server-xxx -f server.dockerfile .
+docker push my-server-xxx <some-docker-images-registry-url>
+
+CD:
+docker pull <some-docker-images-registry-url>
+docker run my-server-xxx

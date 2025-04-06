@@ -1,0 +1,25 @@
+.register-form-container {
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .register-links {
+    margin-top: 15px;
+  }
+  
+  .register-links p {
+    font-size: 14px;
+    color: #8e8e8e;
+  }
+  
